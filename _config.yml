@@ -32,7 +32,7 @@ root: /haya14busa-s-blog
 # permalink: /blog/:year/:month/:day/:title/
 permalink: /:title/
 source: source
-destination: public/haya14busa-s-blog
+destination: public/github
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
