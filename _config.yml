@@ -17,7 +17,7 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /github/atom.xml
+subscribe_rss: /haya14busa-s-blog/atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -31,7 +31,7 @@ email:
 root: /haya14busa-s-blog
 permalink: /blog/:year/:month/:day/:title/
 source: source
-destination: public/github
+destination: public/haya14busa-s-blog
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
