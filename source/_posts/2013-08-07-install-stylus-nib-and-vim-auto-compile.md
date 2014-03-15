@@ -2,7 +2,6 @@
 title: Stylus,nibのインストールとVimで自動コンパイル
 author: haya14busa
 layout: post
-permalink: /install-stylus-nib-and-vim-auto-compile/
 categories:
   - Stylus
 tags:

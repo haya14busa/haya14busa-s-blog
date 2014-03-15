@@ -2,7 +2,6 @@
 title: ブログ作った。
 author: haya14busa
 layout: post
-permalink: /first-post/
 categories:
   - Uncategorized
 ---

@@ -2,7 +2,6 @@
 title: 'PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]'
 author: haya14busa
 layout: post
-permalink: /tweepy-read-aloud-list-tl/
 categories:
   - Python
   - Tweepy

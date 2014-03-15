@@ -2,7 +2,6 @@
 title: 解決:Mac OSXのPythonのインタプリタで日本語入力する方法
 author: haya14busa
 layout: post
-permalink: /mac-python-readline-input-japanese/
 categories:
   - Python
 tags:

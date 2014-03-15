@@ -2,7 +2,6 @@
 title: UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】
 author: haya14busa
 layout: post
-permalink: /detect-mobile-ua-in-wordpress/
 categories:
   - Wordpress
 tags:

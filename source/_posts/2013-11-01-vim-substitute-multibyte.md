@@ -2,7 +2,6 @@
 title: Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ
 author: haya14busa
 layout: post
-permalink: /vim-substitute-multibyte/
 categories:
   - Vim
 tags:

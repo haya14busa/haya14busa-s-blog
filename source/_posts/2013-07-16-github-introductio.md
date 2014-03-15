@@ -2,7 +2,6 @@
 title: GitHub導入メモ
 author: haya14busa
 layout: post
-permalink: /github-introductio/
 categories:
   - Git
 tags:

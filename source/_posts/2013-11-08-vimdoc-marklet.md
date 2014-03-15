@@ -2,7 +2,6 @@
 title: Vimのhelpをブラウザで見るときのためのブックマークレット作った
 author: haya14busa
 layout: post
-permalink: /vimdoc-marklet/
 categories:
   - Vim
 tags:

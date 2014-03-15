@@ -2,7 +2,6 @@
 title: Vim-EasyMotionをforkされた拡張バージョンに変更する
 author: haya14busa
 layout: post
-permalink: /change-vim-easymotion-from-lokaltog-to-forked/
 categories:
   - Vim
 tags:

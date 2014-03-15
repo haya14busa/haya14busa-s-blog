@@ -2,7 +2,6 @@
 title: Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット
 author: haya14busa
 layout: post
-permalink: /googunosy/
 categories:
   - Bookmarklet
 tags:

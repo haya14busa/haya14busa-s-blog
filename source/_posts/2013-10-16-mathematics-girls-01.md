@@ -2,7 +2,6 @@
 title: 数学ガール第1巻読んだメモなど
 author: haya14busa
 layout: post
-permalink: /mathematics-girls-01/
 categories:
   - Memo
 ---

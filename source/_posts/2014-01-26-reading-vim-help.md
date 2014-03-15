@@ -2,7 +2,6 @@
 title: Vimのhelpを快適に引こう
 author: haya14busa
 layout: post
-permalink: /reading-vim-help/
 categories:
   - Vim
 tags:

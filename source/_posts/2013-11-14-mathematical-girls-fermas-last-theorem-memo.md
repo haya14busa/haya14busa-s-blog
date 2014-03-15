@@ -2,7 +2,6 @@
 title: 数学ガールフェルマーの最終定理読んだメモ
 author: haya14busa
 layout: post
-permalink: /mathematical-girls-fermas-last-theorem-memo/
 categories:
   - Memo
 tags:

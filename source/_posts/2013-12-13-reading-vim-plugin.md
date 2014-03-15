@@ -2,7 +2,6 @@
 title: Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった
 author: haya14busa
 layout: post
-permalink: /reading-vim-plugin/
 categories:
   - Vim
 tags:

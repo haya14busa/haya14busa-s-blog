@@ -2,7 +2,6 @@
 title: 統計的規則性の学習と記憶の関連性
 author: haya14busa
 layout: post
-permalink: /learn-statistical-regularity-and-memory/
 categories:
   - Memo
 tags:

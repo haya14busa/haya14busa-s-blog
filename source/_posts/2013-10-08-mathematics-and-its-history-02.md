@@ -2,7 +2,6 @@
 title: 'Mathematics and its History #02'
 author: haya14busa
 layout: post
-permalink: /mathematics-and-its-history-02/
 categories:
   - Memo
 ---

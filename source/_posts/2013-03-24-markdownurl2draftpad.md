@@ -2,7 +2,6 @@
 title: 'MarkdownURL->DraftPad'
 author: haya14busa
 layout: post
-permalink: /markdownurl2draftpad/
 categories:
   - Bookmarklet
 ---

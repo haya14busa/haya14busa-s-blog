@@ -2,7 +2,6 @@
 title: Vimでmigemoを使って日本語でもローマ字のまま検索がしたい
 author: haya14busa
 layout: post
-permalink: /vim_migemo_search/
 categories:
   - Vim
 tags:

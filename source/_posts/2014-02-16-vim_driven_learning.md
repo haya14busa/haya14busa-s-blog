@@ -2,7 +2,6 @@
 title: 1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい
 author: haya14busa
 layout: post
-permalink: /vim_driven_learning/
 categories:
   - Vim
 tags:

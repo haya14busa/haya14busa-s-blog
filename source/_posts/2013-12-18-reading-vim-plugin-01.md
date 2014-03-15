@@ -2,7 +2,6 @@
 title: Vimプラグイン読書会やりましたー
 author: haya14busa
 layout: post
-permalink: /reading-vim-plugin-01/
 categories:
   - Vim
 tags:

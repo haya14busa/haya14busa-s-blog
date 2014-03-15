@@ -2,7 +2,6 @@
 title: Python,NLTKで自然言語処理
 author: haya14busa
 layout: post
-permalink: /python-nltk-natural-language-processing/
 categories:
   - Python
 tags:

@@ -2,7 +2,6 @@
 title: 身体的短期記憶の歪み・バイアス
 author: haya14busa
 layout: post
-permalink: /bias-of-short-term-memory/
 categories:
   - Memo
 tags:

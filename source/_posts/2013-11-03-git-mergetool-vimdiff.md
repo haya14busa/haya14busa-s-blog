@@ -2,7 +2,6 @@
 title: git mergetoolでvimdiffを便利に使う
 author: haya14busa
 layout: post
-permalink: /git-mergetool-vimdiff/
 categories:
   - Vim
 tags:

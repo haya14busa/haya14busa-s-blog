@@ -2,7 +2,6 @@
 title: Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!
 author: haya14busa
 layout: post
-permalink: /preparation_of_reading_vim_plugin_02/
 categories:
   - Vim
 tags:

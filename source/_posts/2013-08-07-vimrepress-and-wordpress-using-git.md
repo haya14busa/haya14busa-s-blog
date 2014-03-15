@@ -2,7 +2,6 @@
 title: GitでWordPressにPostしたいと思ったけど結局VimRepress導入した
 author: haya14busa
 layout: post
-permalink: /vimrepress-and-wordpress-using-git/
 categories:
   - Wordpress
 tags:

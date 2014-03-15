@@ -2,7 +2,6 @@
 title: 'MarkdownQuote &#038; AmazonQuote'
 author: haya14busa
 layout: post
-permalink: /markdownquote-amazonquote/
 categories:
   - Bookmarklet
 tags:

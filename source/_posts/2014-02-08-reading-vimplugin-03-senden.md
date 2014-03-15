@@ -2,7 +2,6 @@
 title: 第3回 Vim Plugin読書会が開催されます!!!
 author: haya14busa
 layout: post
-permalink: /reading-vimplugin-03-senden/
 categories:
   - Vim
 tags:

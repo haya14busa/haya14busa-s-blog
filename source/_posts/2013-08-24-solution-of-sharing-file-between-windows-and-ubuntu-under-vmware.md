@@ -2,7 +2,6 @@
 title: VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法
 author: haya14busa
 layout: post
-permalink: /solution-of-sharing-file-between-windows-and-ubuntu-under-vmware/
 categories:
   - Linux
 tags:

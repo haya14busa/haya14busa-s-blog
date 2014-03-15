@@ -2,7 +2,6 @@
 title: 数学ガールゲーデルの不完全性定理読んだメモ
 author: haya14busa
 layout: post
-permalink: /mathematical_girls_godels_incompleteness_theorems/
 categories:
   - Memo
 tags:

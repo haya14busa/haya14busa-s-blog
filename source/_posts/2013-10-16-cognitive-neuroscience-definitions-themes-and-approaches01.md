@@ -2,7 +2,6 @@
 title: 'Cognitive Neuroscience: Definitions, Themes, and Approaches#01'
 author: haya14busa
 layout: post
-permalink: /cognitive-neuroscience-definitions-themes-and-approaches01/
 categories:
   - Memo
 ---

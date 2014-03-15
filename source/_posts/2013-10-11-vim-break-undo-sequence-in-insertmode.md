@@ -2,7 +2,6 @@
 title: VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)
 author: haya14busa
 layout: post
-permalink: /vim-break-undo-sequence-in-insertmode/
 categories:
   - Vim
 tags:

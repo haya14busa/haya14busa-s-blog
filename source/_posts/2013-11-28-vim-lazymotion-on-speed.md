@@ -2,7 +2,6 @@
 title: Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する
 author: haya14busa
 layout: post
-permalink: /vim-lazymotion-on-speed/
 categories:
   - Vim
 tags:

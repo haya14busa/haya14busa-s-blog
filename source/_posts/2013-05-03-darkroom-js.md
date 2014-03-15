@@ -2,7 +2,6 @@
 title: ブラウザで動くシンプルなエディタ「Darkroom.js」
 author: haya14busa
 layout: post
-permalink: /darkroom-js/
 categories:
   - Darkroom.js
 tags:

@@ -2,7 +2,6 @@
 title: Pythonで素数数え上げスクリプト
 author: haya14busa
 layout: post
-permalink: /python-enumerate-prime/
 categories:
   - Python
 tags:

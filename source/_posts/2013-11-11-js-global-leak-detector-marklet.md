@@ -2,7 +2,6 @@
 title: JavaScriptでグローバル領域を汚染しているプロパティを見つけるブックマークレット
 author: haya14busa
 layout: post
-permalink: /js-global-leak-detector-marklet/
 categories:
   - Bookmarklet
 tags:

@@ -2,7 +2,6 @@
 title: JBiOSでも自前ビルド/コンパイルがしたい！
 author: haya14busa
 layout: post
-permalink: /build-or-compile-on-jb-ios/
 categories:
   - JB
 tags:

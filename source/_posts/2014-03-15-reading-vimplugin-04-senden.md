@@ -2,7 +2,6 @@
 title: Vimプラグイン読書会第4回が3/15(土)21:00から開催されます
 author: haya14busa
 layout: post
-permalink: /reading-vimplugin-04-senden/
 categories:
   - Vim
 tags:

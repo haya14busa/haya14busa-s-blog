@@ -2,7 +2,6 @@
 title: Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい
 author: haya14busa
 layout: post
-permalink: /cannot-input-japanese-in-python-interpreter/
 categories:
   - Python
 tags:
