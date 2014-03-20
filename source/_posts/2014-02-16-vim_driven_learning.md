@@ -1,6 +1,7 @@
 ---
 title: 1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい
 author: haya14busa
+date: 2014-02-16
 layout: post
 categories:
   - Vim

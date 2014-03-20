@@ -195,7 +195,7 @@ end
 
 desc "Move source to source.old, install source theme updates, replace source/_includes/navigation.html with source.old's navigation"
 task :update_source, :theme do |t, args|
-  theme = args.theme || 'classic'
+  theme = args.theme || 'mjolvim-octotheme'
   if File.directory?("#{source_dir}.old")
     puts "## Removed existing #{source_dir}.old directory"
     rm_r "#{source_dir}.old", :secure=>true
@@ -405,10 +405,14 @@ task :list do
 end
 
 desc "Generate website and preview"
-task :gen_preview => [:integrate, :install, :generate, :preview] do
+# task :gen_preview => [:integrate, :install, :update_style, :generate, :preview] do
+task :gen_preview => [:integrate, :install, :update_source, :update_style, :preview] do
 end
 
 desc "Update style and preview"
 task :update_preview => [:integrate, :update_style, :preview] do
 end
 
+desc "Update All!"
+task :update_all => [:integrate, :install, :generate, :update_source, :update_style, :preview] do
+end
