@@ -38,7 +38,7 @@ task :install, :theme do |t, args|
     abort("rake aborted!") if ask("A theme is already installed, proceeding will overwrite existing files. Are you sure?", ['y', 'n']) == 'n'
   end
   # copy theme into working Jekyll directories
-  theme = args.theme || 'classic'
+  theme = args.theme || 'mjolvim-octotheme'
   puts "## Copying "+theme+" theme into ./#{source_dir} and ./sass"
   mkdir_p source_dir
   cp_r "#{themes_dir}/#{theme}/source/.", source_dir
@@ -180,7 +180,8 @@ end
 
 desc "Move sass to sass.old, install sass theme updates, replace sass/custom with sass.old/custom"
 task :update_style, :theme do |t, args|
-  theme = args.theme || 'classic'
+  # theme = args.theme || 'classic'
+  theme = args.theme || 'mjolvim-octotheme'
   if File.directory?("sass.old")
     puts "removed existing sass.old directory"
     rm_r "sass.old", :secure=>true
@@ -402,3 +403,12 @@ task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
   puts "(type rake -T for more detail)\n\n"
 end
+
+desc "Generate website and preview"
+task :gen_preview => [:integrate, :install, :generate, :preview] do
+end
+
+desc "Update style and preview"
+task :update_preview => [:integrate, :update_style, :preview] do
+end
+
