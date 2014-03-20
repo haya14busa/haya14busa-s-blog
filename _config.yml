@@ -4,9 +4,9 @@
 
 # url: http://haya14busa.github.io//github
 url: http://haya14busa.github.io/haya14busa-s-blog/
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: haya14busa
+subtitle: haya14busa's memo
+author: haya14busa
 simple_search: https://www.google.com/search
 description:
 
@@ -27,8 +27,8 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-# root: /github
-root: /haya14busa-s-blog
+root: /github
+# root: /haya14busa-s-blog
 # permalink: /blog/:year/:month/:day/:title/
 permalink: /:title/
 source: source
