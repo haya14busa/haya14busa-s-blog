@@ -1,6 +1,7 @@
 ---
 title: 数学ガールフェルマーの最終定理読んだメモ
 author: haya14busa
+date: 2013-11-14
 layout: post
 categories:
   - Memo

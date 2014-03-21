@@ -1,6 +1,7 @@
 ---
 title: Vimのhelpを快適に引こう
 author: haya14busa
+date: 2014-01-26
 layout: post
 categories:
   - Vim

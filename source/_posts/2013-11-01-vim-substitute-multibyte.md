@@ -1,6 +1,7 @@
 ---
 title: Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ
 author: haya14busa
+date: 2013-11-01
 layout: post
 categories:
   - Vim

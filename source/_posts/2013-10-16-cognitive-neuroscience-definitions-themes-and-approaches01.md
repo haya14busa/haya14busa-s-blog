@@ -1,6 +1,7 @@
 ---
 title: 'Cognitive Neuroscience: Definitions, Themes, and Approaches#01'
 author: haya14busa
+date: 2013-10-16
 layout: post
 categories:
   - Memo

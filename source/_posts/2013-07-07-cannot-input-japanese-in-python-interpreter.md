@@ -1,6 +1,7 @@
 ---
 title: Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい
 author: haya14busa
+date: 2013-07-07
 layout: post
 categories:
   - Python

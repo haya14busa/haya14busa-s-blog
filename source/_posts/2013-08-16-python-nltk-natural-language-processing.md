@@ -1,6 +1,7 @@
 ---
 title: Python,NLTKで自然言語処理
 author: haya14busa
+date: 2013-08-16
 layout: post
 categories:
   - Python

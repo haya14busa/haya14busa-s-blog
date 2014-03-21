@@ -1,6 +1,7 @@
 ---
 title: UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】
 author: haya14busa
+date: 2013-03-29
 layout: post
 categories:
   - Wordpress

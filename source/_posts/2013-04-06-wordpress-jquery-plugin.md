@@ -1,6 +1,7 @@
 ---
 title: WordPressでfunctions.phpを使ったjQueryプラグインの導入方法
 author: haya14busa
+date: 2013-04-06
 layout: post
 categories:
   - Wordpress

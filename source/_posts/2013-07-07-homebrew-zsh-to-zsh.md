@@ -1,6 +1,7 @@
 ---
 title: MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ
 author: haya14busa
+date: 2013-07-07
 layout: post
 categories:
   - Zsh

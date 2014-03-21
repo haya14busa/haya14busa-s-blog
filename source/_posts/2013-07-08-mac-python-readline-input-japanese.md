@@ -1,6 +1,7 @@
 ---
 title: 解決:Mac OSXのPythonのインタプリタで日本語入力する方法
 author: haya14busa
+date: 2013-07-08
 layout: post
 categories:
   - Python

@@ -1,6 +1,7 @@
 ---
 title: VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法
 author: haya14busa
+date: 2013-08-24
 layout: post
 categories:
   - Linux

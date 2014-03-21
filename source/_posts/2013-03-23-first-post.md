@@ -1,6 +1,7 @@
 ---
 title: ブログ作った。
 author: haya14busa
+date: 2013-03-23
 layout: post
 categories:
   - Uncategorized

@@ -1,6 +1,7 @@
 ---
 title: Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題
 author: haya14busa
+date: 2013-08-07
 layout: post
 categories:
   - Vim

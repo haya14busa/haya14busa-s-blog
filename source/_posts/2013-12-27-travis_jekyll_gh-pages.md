@@ -1,6 +1,7 @@
 ---
 title: Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった
 author: haya14busa
+date: 2013-12-27
 layout: post
 categories:
   - Git

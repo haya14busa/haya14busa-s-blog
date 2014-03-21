@@ -1,6 +1,7 @@
 ---
 title: 数学ガール第1巻読んだメモなど
 author: haya14busa
+date: 2013-10-16
 layout: post
 categories:
   - Memo

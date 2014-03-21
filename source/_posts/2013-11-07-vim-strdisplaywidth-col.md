@@ -1,6 +1,7 @@
 ---
 title: '[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった'
 author: haya14busa
+date: 2013-11-07
 layout: post
 categories:
   - Vim

@@ -1,6 +1,7 @@
 ---
 title: 'PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]'
 author: haya14busa
+date: 2013-07-06
 layout: post
 categories:
   - Python

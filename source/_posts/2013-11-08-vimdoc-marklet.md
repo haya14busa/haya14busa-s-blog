@@ -1,6 +1,7 @@
 ---
 title: Vimのhelpをブラウザで見るときのためのブックマークレット作った
 author: haya14busa
+date: 2013-11-08
 layout: post
 categories:
   - Vim

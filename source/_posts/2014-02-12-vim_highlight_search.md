@@ -1,6 +1,7 @@
 ---
 title: Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい
 author: haya14busa
+date: 2014-02-12
 layout: post
 categories:
   - Vim

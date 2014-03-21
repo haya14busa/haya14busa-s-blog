@@ -1,6 +1,7 @@
 ---
 title: 数学ガールゲーデルの不完全性定理読んだメモ
 author: haya14busa
+date: 2013-12-18
 layout: post
 categories:
   - Memo

@@ -1,6 +1,7 @@
 ---
 title: GitでWordPressにPostしたいと思ったけど結局VimRepress導入した
 author: haya14busa
+date: 2013-08-07
 layout: post
 categories:
   - Wordpress

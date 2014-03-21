@@ -1,6 +1,7 @@
 ---
 title: 'PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]'
 author: haya14busa
+date: 2013-07-06
 layout: post
 categories:
   - Python

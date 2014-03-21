@@ -1,6 +1,7 @@
 ---
 title: ブラウザで動くシンプルなエディタ「Darkroom.js」
 author: haya14busa
+date: 2013-05-03
 layout: post
 categories:
   - Darkroom.js

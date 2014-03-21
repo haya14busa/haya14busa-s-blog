@@ -1,6 +1,7 @@
 ---
 title: Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました
 author: haya14busa
+date: 2013-12-29
 layout: post
 categories:
   - Uncategorized

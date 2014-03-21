@@ -1,6 +1,7 @@
 ---
 title: Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった
 author: haya14busa
+date: 2013-12-13
 layout: post
 categories:
   - Vim

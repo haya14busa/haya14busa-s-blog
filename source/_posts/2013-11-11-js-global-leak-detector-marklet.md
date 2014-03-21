@@ -1,6 +1,7 @@
 ---
 title: JavaScriptでグローバル領域を汚染しているプロパティを見つけるブックマークレット
 author: haya14busa
+date: 2013-11-11
 layout: post
 categories:
   - Bookmarklet
