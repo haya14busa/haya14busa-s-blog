@@ -17,11 +17,11 @@ tags:
 
 ## jsGlobalLeakDetector
 
-[jsGlobalLeakDetector][3]
+<a href="javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a>
 
 上記リンクをブックマークバーにドラックなどして登録して好きなサイトで実行してください。
 
-iOS登録用: [jsGlobalLeakDetector][4]
+iOS登録用: <a href="http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a>
 
 上記リンクをクリックしてから、ページをブックマークして、?以前の文字を消去してください。
 
@@ -75,6 +75,5 @@ iframeってこんな使い方があるんですね。iframe作って、display:
  [1]: http://null.ly/post/66672290942/javascript-gloabl-leak
  [2]: https://gist.github.com/nulltask/7412711#file-index-js
  [3]: javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);
- [4]: http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);
  [5]: https://github.com/haya14busa/misc/blob/master/JavaScript/detect-global-properties.js
  [6]: http://blog.tanarky.com/2010/07/12-iframe.html#
