@@ -406,7 +406,7 @@ end
 
 desc "Generate website and preview"
 # task :gen_preview => [:integrate, :install, :update_style, :generate, :preview] do
-task :gen_preview => [:integrate, :install, :update_source, :update_style, :preview] do
+task :gen_preview => [:integrate, :generate, :preview] do
 end
 
 desc "Update style and preview"
