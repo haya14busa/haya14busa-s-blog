@@ -1,0 +1,3 @@
+[submodule ".themes/mjolvim"]
+	path = .themes/mjolvim
+	url = git://github.com/haya14busa/mjolvim-octotheme.git
