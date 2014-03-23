@@ -3,6 +3,7 @@ title: Vimのhelpをブラウザで見るときのためのブックマークレ
 author: haya14busa
 date: 2013-11-08
 layout: post
+comments: true
 categories:
   - Vim
 tags:

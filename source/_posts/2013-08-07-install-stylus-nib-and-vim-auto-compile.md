@@ -3,6 +3,7 @@ title: Stylus,nibのインストールとVimで自動コンパイル
 author: haya14busa
 date: 2013-08-07
 layout: post
+comments: true
 categories:
   - Stylus
 tags:

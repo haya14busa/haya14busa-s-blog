@@ -3,6 +3,7 @@ title: git mergetoolでvimdiffを便利に使う
 author: haya14busa
 date: 2013-11-03
 layout: post
+comments: true
 categories:
   - Vim
 tags:

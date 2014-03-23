@@ -3,6 +3,7 @@ title: UserAgent 判別でモバイル用にコンテンツを振り分ける【
 author: haya14busa
 date: 2013-03-29
 layout: post
+comments: true
 categories:
   - Wordpress
 tags:

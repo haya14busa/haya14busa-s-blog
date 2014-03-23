@@ -3,6 +3,7 @@ title: 'Mathematics and its History #02'
 author: haya14busa
 date: 2013-10-08
 layout: post
+comments: true
 categories:
   - Memo
 ---

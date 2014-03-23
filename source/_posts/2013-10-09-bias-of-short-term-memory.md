@@ -3,6 +3,7 @@ title: 身体的短期記憶の歪み・バイアス
 author: haya14busa
 date: 2013-10-09
 layout: post
+comments: true
 categories:
   - Memo
 tags:

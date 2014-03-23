@@ -3,6 +3,7 @@ title: Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動�
 author: haya14busa
 date: 2013-11-28
 layout: post
+comments: true
 categories:
   - Vim
 tags:

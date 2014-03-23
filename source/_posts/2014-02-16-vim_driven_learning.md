@@ -3,6 +3,7 @@ title: 1年間『Vim駆動学習』してきて最高に楽しかったのでオ
 author: haya14busa
 date: 2014-02-16
 layout: post
+comments: true
 categories:
   - Vim
 tags:
@@ -166,8 +167,6 @@ Vimが好きになってくるとやはりプラグインを自分で作って�
 ## まとめ
 
 **『Vim駆動学習』**最高でした。これからもよろしくおねがいします。
-
-site.url
 
  [1]: http://atnd.org/events/45072
  [2]: https://twitter.com/haya14busa/statuses/302754464400568320?tw_i=302754464400568320&tw_e=details&tw_p=archive

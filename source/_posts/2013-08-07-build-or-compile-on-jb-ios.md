@@ -3,6 +3,7 @@ title: JBiOSでも自前ビルド/コンパイルがしたい！
 author: haya14busa
 date: 2013-08-07
 layout: post
+comments: true
 categories:
   - JB
 tags:

@@ -3,6 +3,7 @@ title: Vimでマルチバイト文字を座標によって一括置換したと�
 author: haya14busa
 date: 2013-11-01
 layout: post
+comments: true
 categories:
   - Vim
 tags:

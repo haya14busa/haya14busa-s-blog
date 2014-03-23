@@ -3,6 +3,7 @@ title: VimのインサートモードでUndo履歴を区切る(改行、削除�
 author: haya14busa
 date: 2013-10-11
 layout: post
+comments: true
 categories:
   - Vim
 tags:

@@ -3,6 +3,7 @@ title: 'PythonでTwitterのタイムラインをストリーミングで読み�
 author: haya14busa
 date: 2013-07-06
 layout: post
+comments: true
 categories:
   - Python
   - Tweepy

@@ -3,6 +3,7 @@ title: Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをする�
 author: haya14busa
 date: 2013-12-27
 layout: post
+comments: true
 categories:
   - Git
 tags:

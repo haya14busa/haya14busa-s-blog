@@ -3,6 +3,7 @@ title: 'PythonでツイッターのリストのTLを擬似ストリーミング�
 author: haya14busa
 date: 2013-07-06
 layout: post
+comments: true
 categories:
   - Python
   - Tweepy

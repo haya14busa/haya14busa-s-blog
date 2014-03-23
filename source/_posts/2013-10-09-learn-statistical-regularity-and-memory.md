@@ -3,6 +3,7 @@ title: 統計的規則性の学習と記憶の関連性
 author: haya14busa
 date: 2013-10-09
 layout: post
+comments: true
 categories:
   - Memo
 tags:

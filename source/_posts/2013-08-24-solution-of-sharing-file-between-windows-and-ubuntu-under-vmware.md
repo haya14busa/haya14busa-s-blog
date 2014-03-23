@@ -3,6 +3,7 @@ title: VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォル
 author: haya14busa
 date: 2013-08-24
 layout: post
+comments: true
 categories:
   - Linux
 tags:

@@ -3,6 +3,7 @@ title: Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこ�
 author: haya14busa
 date: 2014-02-12
 layout: post
+comments: true
 categories:
   - Vim
 tags:

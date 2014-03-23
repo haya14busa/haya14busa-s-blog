@@ -3,6 +3,7 @@ title: Vim script読書会開催します！または予習としてPlugin作る
 author: haya14busa
 date: 2013-12-13
 layout: post
+comments: true
 categories:
   - Vim
 tags:

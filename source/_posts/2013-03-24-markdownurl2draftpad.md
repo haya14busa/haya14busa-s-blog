@@ -3,6 +3,7 @@ title: 'MarkdownURL->DraftPad'
 author: haya14busa
 date: 2013-03-24
 layout: post
+comments: true
 categories:
   - Bookmarklet
 ---

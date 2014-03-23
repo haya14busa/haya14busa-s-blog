@@ -3,6 +3,7 @@ title: Vim-EasyMotionをforkされた拡張バージョンに変更する
 author: haya14busa
 date: 2013-08-16
 layout: post
+comments: true
 categories:
   - Vim
 tags:

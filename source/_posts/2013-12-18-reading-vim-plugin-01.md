@@ -3,6 +3,7 @@ title: Vimプラグイン読書会やりましたー
 author: haya14busa
 date: 2013-12-18
 layout: post
+comments: true
 categories:
   - Vim
 tags:

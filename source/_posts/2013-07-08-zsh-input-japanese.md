@@ -3,6 +3,7 @@ title: zsh5.0.2に変えたら日本語打てなくなった問題と解決法
 author: haya14busa
 date: 2013-07-08
 layout: post
+comments: true
 categories:
   - Zsh
 tags:

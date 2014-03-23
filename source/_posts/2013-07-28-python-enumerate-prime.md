@@ -3,6 +3,7 @@ title: Pythonで素数数え上げスクリプト
 author: haya14busa
 date: 2013-07-28
 layout: post
+comments: true
 categories:
   - Python
 tags:

@@ -3,6 +3,7 @@ title: MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたら�
 author: haya14busa
 date: 2013-07-07
 layout: post
+comments: true
 categories:
   - Zsh
 tags:

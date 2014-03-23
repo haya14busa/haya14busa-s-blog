@@ -3,6 +3,7 @@ title: 第3回 Vim Plugin読書会が開催されます!!!
 author: haya14busa
 date: 2014-02-08
 layout: post
+comments: true
 categories:
   - Vim
 tags:

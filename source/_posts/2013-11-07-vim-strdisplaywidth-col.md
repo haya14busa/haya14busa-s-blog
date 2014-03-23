@@ -3,6 +3,7 @@ title: '[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなか�
 author: haya14busa
 date: 2013-11-07
 layout: post
+comments: true
 categories:
   - Vim
 tags:

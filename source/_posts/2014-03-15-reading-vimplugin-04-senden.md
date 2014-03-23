@@ -3,6 +3,7 @@ title: Vimプラグイン読書会第4回が3/15(土)21:00から開催されま�
 author: haya14busa
 date: 2014-03-15
 layout: post
+comments: true
 categories:
   - Vim
 tags:

@@ -3,6 +3,7 @@ title: JavaScriptでグローバル領域を汚染しているプロパティを
 author: haya14busa
 date: 2013-11-11
 layout: post
+comments: true
 categories:
   - Bookmarklet
 tags:
