@@ -167,9 +167,11 @@ Vimが好きになってくるとやはりプラグインを自分で作って�
 
 **『Vim駆動学習』**最高でした。これからもよろしくおねがいします。
 
+site.url
+
  [1]: http://atnd.org/events/45072
  [2]: https://twitter.com/haya14busa/statuses/302754464400568320?tw_i=302754464400568320&tw_e=details&tw_p=archive
- [3]: http://haya14busa.com/wp-content/uploads/2014/02/Screenshot-from-2014-02-05-015432.png
+ [3]: ../images/misc/wp/2014/02/Screenshot-from-2014-02-05-015432.png
  [4]: https://github.com/vim-jp
  [5]: http://lingr.com/room/vim/
  [6]: http://atnd.org/events/33746
@@ -177,7 +179,7 @@ Vimが好きになってくるとやはりプラグインを自分で作って�
  [8]: http://haya14busa.github.io/reading-vimplugin/
  [9]: https://github.com/thinca/vim-scouter
  [10]: http://vim-users.jp/2009/07/hack-39/
- [11]: http://haya14busa.com/wp-content/uploads/2014/02/Screenshot-from-2014-02-16-054350.png
+ [11]: ../images/misc/wp/2014/02/Screenshot-from-2014-02-16-054350.png
  [12]: https://github.com/mattn/emmet-vim
  [13]: https://github.com/Lokaltog/vim-easymotion
  [14]: http://haya14busa.com/reading-vim-help/

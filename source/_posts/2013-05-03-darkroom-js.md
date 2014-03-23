@@ -301,7 +301,7 @@ javascriptでPHP Markdown Extraが使える。感謝しかない   参考: [tan
 
 ### ドヤ顔プラグイン
 
-[<img src="http://haya14busa.com/wp-content/uploads/2013/05/20130503-135340-225x300.jpg" alt="20130503-135340.jpg" width="225" height="300" class="alignnone size-medium wp-image-41" />][9]  
+[<img src="../images/misc/wp/2013/05/20130503-135340-225x300.jpg" alt="20130503-135340.jpg" width="225" height="300" class="alignnone size-medium wp-image-41" />][9]  
 参照:[無駄にエンターを強く押してしまいそうな誰得jQueryプラグイン jdtMdnStrongEnter.js | Re* Programming][10]
 
 #### Enable DoyagaoEdit
@@ -346,7 +346,7 @@ javascriptでPHP Markdown Extraが使える。感謝しかない
  [6]: http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/fat-binary-badge-web.png
  [7]: http://serennz.sakura.ne.jp/sb/log/eid73.html
  [8]: https://github.com/tanakahisateru/js-markdown-extra
- [9]: http://haya14busa.com/wp-content/uploads/2013/05/20130503-135340.jpg
+ [9]: ../images/misc/wp/2013/05/20130503-135340.jpg
  [10]: http://nantokaworks.com/?page_id=700
  [11]: http://d.hatena.ne.jp/wineroses/
  [12]: https://twitter.com/jazzzz2012

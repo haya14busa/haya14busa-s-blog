@@ -134,8 +134,8 @@ u\_quote\_and_unicode.py
 
 あとインタプリタ上で日本語入力ができてるように見えますけど、内部？では1文字の「あ」ではなくカーソル3つ分くらいの長さを持ってるので、カーソルを移動させたり、消去すると表示がバグります。いったん何文字か売ってカーソルを左に移動させてからもう一度右にするとわかりやすいです。……ということで日本語部分を書き直すなら文頭から全部書きなおすようにしたほうがいいですね。<div class=clearfix> 最初に数文字打って……… 
 
-[<img src="http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM-300x128.png" alt="Screen Shot 2013-07-08 at 9.08.49 AM" width="300" height="128" class="aligncenter size-medium wp-image-61 clearfix" />][2] カーソルを左右に移動させると……… [<img src="http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM-300x119.png" alt="Screen Shot 2013-07-08 at 9.09.36 AM" width="300" height="119" class="alignnone size-medium wp-image-62 clearfix" />][3] </div>
+[<img src="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM-300x128.png" alt="Screen Shot 2013-07-08 at 9.08.49 AM" width="300" height="128" class="aligncenter size-medium wp-image-61 clearfix" />][2] カーソルを左右に移動させると……… [<img src="http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM-300x119.png" alt="Screen Shot 2013-07-08 at 9.09.36 AM" width="300" height="119" class="alignnone size-medium wp-image-62 clearfix" />][3] </div>
 
  [1]: http://haya14busa.com/cannot-input-japanese-in-python-interpreter/
- [2]: http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM.png
- [3]: http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM.png
+ [2]: ../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM.png
+ [3]: ../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM.png

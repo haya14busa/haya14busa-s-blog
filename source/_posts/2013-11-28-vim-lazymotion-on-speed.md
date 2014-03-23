@@ -262,14 +262,14 @@ ujihisa.vim#3のderisさんのスライド[How to move cursor more effectively(f
 
  [1]: http://atnd.org/events/33746
  [2]: http://d.hatena.ne.jp/thinca/20131127/1385487671
- [3]: http://haya14busa.com/wp-content/uploads/2013/11/top-demo.gif
+ [3]: ../images/misc/wp/2013/11/top-demo.gif
  [4]: https://github.com/haya14busa/vim-easymotion
  [5]: https://github.com/Lokaltog/vim-easymotion
  [6]: https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108
- [7]: http://haya14busa.com/wp-content/uploads/2013/11/two-key-motion.gif
+ [7]: ../images/misc/wp/2013/11/two-key-motion.gif
  [8]: https://github.com/rhysd/clever-f.vim
- [9]: http://haya14busa.com/wp-content/uploads/2013/11/easymotion-vimfiler.gif
+ [9]: ../images/misc/wp/2013/11/easymotion-vimfiler.gif
  [10]: http://cohama.hateblo.jp/entry/2013/10/07/020453
- [11]: http://haya14busa.com/wp-content/uploads/2013/11/keep_cursor.gif
+ [11]: ../images/misc/wp/2013/11/keep_cursor.gif
  [12]: http://www.slideshare.net/deris0126/ujihisavim3
  [13]: http://vim-jp.org/vimdoc-ja/motion.html#motion.txt
