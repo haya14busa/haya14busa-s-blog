@@ -63,7 +63,7 @@ EasyMotionは主に*スクリーン内の見えている範囲の移動*にお�
 
 そこで僕がforkして活動量のゴリ押しで改善,開発していたところ、コラボレータとして開発を引き継がないか？と提案され、現在は僕がメインで開発を行っています。
 
-実は[VAC2012の記事](http://haya14busa.com/vim-lazymotion-on-speed/)でもEasyMotionについて紹介したのですが、その時点ではfork状態で、開発もまだまだ途中だったので、晴れて開発を引き継いで安定もしてきたのでもう一度、前回の記事から追加された機能などをメインに紹介します。
+実は[VAC2012の記事](http://haya14busa.com/vim-lazymotion-on-speed/)でもEasyMotionについて紹介したのですが、その時点ではfork状態で、開発もまだまだ途中だったので、晴れて開発を引き継いで安定もしてきた今、もう一度前回の記事以降に追加された機能などをメインに紹介します。
 
 ということで、ある程度基本のコンセプトは知っているという前提でここから書いていきます。が、知らなくてもgifや[README](https://github.com/Lokaltog/vim-easymotion)を軽くみればなんとなくわかっていただけるかなぁとも思います。EasyMotion,オススメですよ!
 
@@ -75,7 +75,7 @@ EasyMotionは前回紹介させていただいた時点では`<Plug>`マッピ�
 
 確かに、後方互換性のためにデフォルトのキーバインドは設定されるという点はありますが、`let g:EasyMotion_do_mapping = 0`とすることで回避できます。
 
-『お行儀のいい』なんて当たり前のようなことですが、これはプラグインにとっては重要なことですし、`normal`,`visual`,`operator-pending` modeのすべてのモードで正しく動作し、[tpope/vim-repeat](https://github.com/tpope/vim-repeat)を追加でインストールしていただければ`.`によるドットリピートも有効にするようにしたなど、地味に苦労はしました...
+『お行儀のいい』なんて当たり前のようなことですが、これはプラグインにとっては重要なことですし、`normal`,`visual`,`operator-pending` modeのすべてのモードで正しく動作し、[tpope/vim-repeat](https://github.com/tpope/vim-repeat)を追加でインストールすれば`.`によるドットリピートも有効にするなどと、地味に苦労はしました...
 
 
 Now, EasyMotion is Completely Configurable
@@ -97,9 +97,9 @@ map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
 ```
 
-これだと、例えば`df{char}`とした時にカーソル行に`{char}`が1つであればVimデフォルトの`f`の機能、2つ以上あればラベルで選択するという挙動が可能です。対象の`{char}`が1つしかないというケースは多いですし、逆に2つ以上あった時にはVimデフォルトの`f`だと数値を正しくカウントすることは面倒だし、1つめだと思っていたのにその途中に存在していた同じ`{char}`を見落としていて、思っていた部分まで`delete`できないなどといったケースを回避することができます。
+これだと、例えば`df{char}`とした時にカーソル行に`{char}`が1つであればVimデフォルトの`f`の機能、2つ以上あればラベルで選択するという挙動が可能です。対象の`{char}`が1つしかないというケースは多いですし、逆に2つ以上あった時にはVimデフォルトの`f`だと数値を正しくカウントすることは面倒だし、1つ目だと思っていたのにその途中に存在していた同じ`{char}`を見落としていて、思っていた部分まで`delete`できないなどといったケースを回避することができます。
 
-url内のスラッシュ(`/`)やLispの`()`の連続、Vimのautoload関数の`#`などなどに1行に同じ文字がたくさんあるけど`f`や`t`で`d`や`c`したい!というケースで特に有用だったりします。
+url内のスラッシュ(`/`)やLispの`()`の連続、Vimのautoload関数の`#`などなどの1行に同じ文字がたくさんあるけど`f`や`t`で`d`や`c`したい!というケースで特に有用だったりします。
 
 勿論[tpope/vim-repeat](https://github.com/tpope/vim-repeat)があれば`.`リピートも可能です。
 
@@ -117,7 +117,7 @@ omap <Leader>w <Plug>(easymotion-bd-wl)
 omap <Leader>e <Plug>(easymotion-bd-el)
 ```
 
-などなど好きなようにマッピングすることができるようになっています。
+このようにoperator-pending時だけ指定する、などなど好きなようにマッピングすることができるようになっています。
 
 Now, EasyMotion is Completely Sophisticated
 -------------------------------------------
@@ -146,9 +146,11 @@ map <Space> <Plug>(easymotion-s2)
 
 以前の`s{char}{label}`だと、多くのターゲットにマッチしすぎて`{label}`を2回押す必要があるケースが多々ありました。一度に押すべきラベルを2つ提示する機能を前回までに実装していてある程度楽になっていたとはいえ、`{char}`は最初から押すべきキーがわかっているのに対し、`{label}`は基本的に何が出るかわからず『ラベルを視認してから押す』という段階を踏む必要があって押しにくいのです。
 
-今回の2-key find motionであれば、まず押すべきラベルは1つで足りますし、`{char}{char}`の部分は最初から押すべきキーがわかっているので素早く押すことが出来ます。
+今回の2-key find motionであれば、まず押すべきラベルが2つになることは内ですし、`{char}{char}`の部分は最初から押すべきキーがわかっているので素早く押すことが出来ます。
 
-また`{char}{char}`と2つの組み合わせで指定するので、最初から画面内に1つしかマッチする部分がなく、ラベルを押さずに一瞬で移動できるということも多々あってよいです。(例: 冒頭で提示したgif画像は`fi`にマッチするものが1つしかなく、一瞬でジャンプしています。)
+また`{char}{char}`と2つの組み合わせで指定するので、最初から画面内にマッチするものが1つだけで、ラベルを押さずに一瞬で移動できるということも多々あってよいです。(例: 冒頭で提示したgif画像は`fi`にマッチするものが1つしかなく、一瞬でジャンプしています。)
+
+単に最小限のキーストロークという観点でいえば`<Plug>(easymotion-s)`で`s{char}{label}`という3キーストロークのほうが少ないのですが、平均すると`s{char}{char}{label}`とした方が全体としては快適に移動できるので、慣れるまで使ってみる価値はあると思います。
 
 ### Minimumにこの機能だけつかいたい
 
@@ -160,7 +162,7 @@ let g:EasyMotion_do_mapping = 0 "Disable default mappings
 nmap s <Plug>(easymotion-s2)
 ```
 
-というミニマムな構成で使うのもよいと思います。また実際にそういう設定をしている方もいます。
+というミニマムな構成で使うのもよいと思います。また実際にこのような使い方をしている方も見かけました。
 
 
 ### 補足とか。
@@ -193,10 +195,10 @@ let g:EasyMotion_space_jump_first = 1
 " Search Motions
 " =======================================
 " Extend search motions with vital-over command line interface
-" Incremental highlight all matches
-" Now, you don't need to repetitibly press `n` or `N` with EasyMotion feature
-" `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
-" :h easymotion-command-line*
+" Incremental highlight of all the matches
+" Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
+" `<Tab>` & `<S-Tab>` to scroll up/down a page of next match
+" :h easymotion-command-line
 nmap g/ <Plug>(easymotion-sn)
 xmap g/ <Plug>(easymotion-sn)
 omap g/ <Plug>(easymotion-tn)
@@ -208,7 +210,7 @@ EMCommandLineNoreMap <C-j> <Space>
 
 冒頭のgifで最後にお見せしたモーションです。Vimデフォルトの`incsearch`が最初のマッチだけインクリメンタルにハイライトするのに対して、こちらはすべてのマッチをインクリメンタルにハイライトします。また`<CR>`でEasyMotionの機能が起動されてラベルを選択できるので、`n`や`N`などを何回も押して移動するという必要がなくなります。
 
-またこのモーションは対象の範囲を画面内にとどまらずに画面外まで探してくれるので、入力している最中にスクリーン内に対象がなくなればVimデフォルトの`/`と同じように自動でスクロールしますし、飛びたい目的のマッチが画面内にない場合は`<Tab>`キーを押すことによってスクロールし、また単に次のページに飛んだのではなくその先の最初にマッチするページまで飛んでくれます。逆にスクロールする場合は`<S-Tab>`です。
+またこのモーションは対象の範囲を画面内にとどまらずに画面外まで探してくれるので、入力している最中にスクリーン内に対象がなくなればVimデフォルトの`/`と同じように自動でスクロールしますし、飛びたい目的のマッチが画面内にない場合は`<Tab>`キーを押すことによってスクロールし、また単に次のページに飛んだのではなく、その先の検索した文字列に最初にマッチするページまで飛んでくれます。逆に前方向にスクロールする場合は`<S-Tab>`です。
 
 正直、文章だとわかりずらいし、gifを見てもまだわかりずらいかもしれませんが、バッファのテキストを検索して移動する場合、デフォルトの`/`だと何回も何回も`n`を押す必要があったりして面倒くさい!というつらみを解消することができます。
 
@@ -217,13 +219,16 @@ EMCommandLineNoreMap <C-j> <Space>
 この[osyo-manga/vital-over](https://github.com/osyo-manga/vital-over)のコマンドラインのおかげで、Vimデフォルトの履歴やレジスタ挿入といった機能やマッピングといったほとんどの機能が擬似的に実装されており、さらにバッファのテキストの補完(EasyMotionではデフォルトで`<C-l>`)が使えたりと、デフォルトの`/`を置き換えれるレベルのものになっていると思います。
 
 
-この機能と似ている(というかもともと先に実装されていた)[t9md/vim-smalls](https://github.com/t9md/vim-smalls)では、`<CR>`でexcursionモード、`;`でラベルの表示となっており、`;`をターゲットとして選択できない代わりに`;`がとても押しやすくて便利なのですが、これもマッピングをつかえば可能となります。個人的には`<Space>`が押しやすくていいし、`\s`などで代替できるので`EMCommandLineNoreMap <Space> <CR>`を設定しています。
+この機能と似ている(というかもともと先に実装されていた)[t9md/vim-smalls](https://github.com/t9md/vim-smalls)では、`<CR>`でexcursionモード、`;`でラベルの表示となっています。
+
+実際に使ってみると`;`をターゲットとして選択できない代わりに`;`で起動するのがとても押しやすくて便利なのですが、これもマッピングをつかえばEasyMotionでも可能となります。個人的には`<Space>`が押しやすくていいし、`\s`などで代替できるので`EMCommandLineNoreMap <Space> <CR>`を設定しています。
 
 ```
 EMCommandLineNoreMap ; <CR>
+EMCommandLineNoreMap <Space> <CR>
 ```
 
-実はこのコマンドラインインターフェースの機能は`<Plug>(easymotion-s2)`、`<Plug>(easymoton-s)`といった1文字や2文字のfind motionでも使うように変更しているので、2-key findmotionでのエンター代わりに`<Space>`をつかうといったことが可能だったり、1文字目を間違えても`<C-h>`で削除できたりします。より便利。
+実はこのコマンドラインインターフェースの機能は`<Plug>(easymotion-s2)`、`<Plug>(easymoton-s)`といった1文字や2文字のfind motionでも使うように変更しているので、2-key findmotionでのエンター代わりに`<Space>`をつかうといったことが可能だったりします。
 
 
 その他の追加機能
@@ -240,15 +245,16 @@ map <C-p> <Plug>(easymotion-prev)
 
 `<Plug>(easymotion-repeat)`で前回のモーションをリピートしたり、`<Plug>(easymotion-next)`,`<Plug>(easymotion-prev)`で`;` & `,`のように次/前のマッチに飛ぶことができます。
 
-最初にジャンプしたところと似たところにジャンプして`.`リピートしたいといったケースなどで、最初に飛んで編集したあとは`<Plug>(easymotion-next)`で次のマッチに移動して、`.`リピート!といったことが出来ます。
+最初にジャンプしたところと似たところにジャンプして`.`リピートしたいといったケースなどで、最初に移動して編集したあとは`<Plug>(easymotion-next)`で次のマッチに移動して、`.`リピート!といったことが出来ます。
 
-またハイライトがカーソル移動などで自動で消えるので、この挙動が好みならば下記のように設定すればわざわざ`:nohlsearch`コマンドでハイライトを消すという作業をしなくて済むようになります。
+またハイライトがカーソル移動などで自動で消えるという実装なので、この挙動が好みならば下記のように設定すればよくある`:nohlsearch`コマンドでわざわざハイライトを消すという作業をしなくて済むようになります。
 
 ```vim
 set nohlsearch
-map / <Plug>(easymotion-sn)
-map n <Plug>(easymotion-next)
-map N <Plug>(easymotion-prev)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
 
 " いらなくなる
 " nmap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -259,7 +265,7 @@ map N <Plug>(easymotion-prev)
 let g:EasyMotion_use_migemo = 1
 ```
 
-migemo機能をONにすると結構時間がかかってしまうという欠点があったのですが、画面内にマルチバイト文字がない場合に自動的にOFFにすることにより、普通にコードを書いているときは自動でoffになるようになりました。
+migemo機能をONにすると結構時間がかかってしまうという欠点があったのですが、画面内にマルチバイト文字がない場合に自動的にOFFにすることにより、普通にコードを書いているときはmigemoの遅さを気にせず使えるようになりました。
 
 また、`cmigemo`がインストールされていた場合は上述した2-key & n-key find motionでもmigemo機能が有効になります。
 
@@ -283,28 +289,28 @@ migemo機能をONにすると結構時間がかかってしまうという欠点
 
 `f`の機能を拡張して2つ`{char}`として指定できる。[goldfeld/vim-seek](https://github.com/goldfeld/vim-seek)のほうが先に出ていたけどsneakのほうが活発に開発されていて(たぶん) 基本的には上位互換。
 
-sneakは最近clever-f機能を取り込んで、EasyMotionのラベルで意図していないものを押すのが思考の妨げになってどうしても慣れない/嫌、でもモーション拡張プラグイン使いたいという人に正直一番いいかなぁと思います。`f`と違って対象として2つ`{char}`を指定すればマッチが格段に減るので`s{char}{char}sssss....`というふうに何も考えずに移動できます。また2 charsだとハイライトも地味に嬉しい。
+sneakは最近clever-f機能を取り込んで、EasyMotionのラベルで意図していないものを押すのが思考の妨げになってどうしても慣れない or 嫌、でもモーション拡張プラグイン使ってみたいという人に一番いいと思います。`f`と違って対象として2つ`{char}`を指定すればマッチが格段に減るので`s{char}{char}ssss...`でスムーズかつラベルの考慮など何も考えずに移動できます。また2 charsだとハイライトしてくれるのも地味に嬉しい。
 
 `s`,`S`を勝手に書き換えるという挙動以外のつらみがあった実装は最近直ってきているので良いと思います。
 
-ただ、同時に最近は`streak`モードというEasyMotionライクな機能を実装していて、これは主観とか差し引いても基本的にEasyMotionの下位互換機能となっているのでオススメしません。
+ただ、同時に最近は`streak`モードというEasyMotionライクな機能を実装していて、これは主観とか差し引いてもEasyMotionの下位互換機能、劣化となっているのでこの機能はあまりオススメしません。
 
 ### vim-smalls
 [t9md/vim-smalls](https://github.com/t9md/vim-smalls)
 
 もともと任意のキーストロークでEasyMotionライクに移動できるというのはvim-smallsが最初に実装していて、それにインスパイア & 2-keyを実装するなら任意のキーもついでに実装できるという理由でEasyMotionもついでに`<Plug>(easymotion-sn)`として実装しました。
 
-vim-smallsの売りは良くも悪くもexcursion-modeだと思っているのですが、単に移動するにはToo much感がなきにしもあらず、なんとなく常用にいたらないという印象です。移動先を決めてから`delete`や`yank`を出来たりと正直全機能は把握していませんが便利に使える方法もあるかも。
+vim-smallsの売りは良くも悪くもexcursion-modeだと思っているのですが、単に移動するにはToo much感がなきにしもあらず、なんとなく常用にいたらないという印象です。移動先を決めてから`delete`や`yank`を出来たりと正直全機能は把握していませんが便利に使える方法もあるとはおもいます。
 
-vim-smallsの劣化になるなぁーと考えて、EasyMotionの検索拡張機能にスクロールなどを追加したりしたのですが、excursion-modeが画面外も対象に移動できるようになったりすると、もっと便利になる可能性あるなぁと思ったりもします。
+vim-smallsの劣化になるなぁーと考えて、EasyMotionの検索拡張機能にスクロールなどを追加したりしたのですが、逆に言えばexcursion-modeが画面外も対象に移動できるようになったりすると、もっと便利になる可能性あるなぁと思ったりもします。
 
 
 上記の3つともEasyMotionを拡張するにあたって多かれ少なかられ参考にさせてもらったりしたので、非常に感謝しています。
 
 
-しかし、一番はEasyMotion,そのラベルによってキーストロークを最小限にできるというコンセプトで、自分の知る限りのバグはfixしてお行儀もよくなったり、細かい便利機能などを実装した今、最強はEasyMotionだと自分で思ってます。
+しかし、自分のなかで一番なのはEasyMotion,つまりはそのラベルによってキーストロークを最小限にして移動するというコンセプトで、自分の知る限りのバグはfixしてお行儀もよくなり、各種便利機能などを実装した今、EasyMotionがベストだと自分で思ってます。
 
-ほんとに自分で言うのもなんですが、ベースはLokaltogさんが作っているしリスペクトも含めてですね。そもそもこう思っていなかったらCollaboratorとして開発を引き継ぐまでには至らないし、言うまでもないかもしれない。
+自分で開発しておいて自分で言うのもなんですが、ベースはLokaltogさんが作ったというリスペクトも含めてやっぱり好きです。そもそもこう思っていなかったらCollaboratorとして開発を引き継ぐまでには至らないし、言うまでもないかもしれないですね。
 
 ### 素Vim
 おそらく、EasyMotionを使うであろうというケースの移動では`set incsearch`,`set nohlsearch`で`/`,`*`などを駆使して検索して移動していると勝手に思ってます。...というか`HML`とか`tag`,`grep`だとか`)`,`]]`,`}`だとか`relativenumber`などなどそれぞれ使い分けてるというのが正解かな。
@@ -323,7 +329,7 @@ EasyMotionを使っていても、徐々にいろんな移動の仕方を覚え�
 
 などが便利で、`Word`の拡張モーションなんかは使わない人もいるなぁーと思うので主に上記の3点を中心にした設定例を適当なコメントと共に載せておきます。勿論もっとミニマムに設定したり、もっと変態的に設定しまくってもいいんですよっ//
 
-またEasyMotionのデフォルトのprefixキーが`<Leader><Leader>`なのはLokaltogさんの他のプラグインと競合しないための配慮というだけで、デフォルトで使っても絶対面倒なので、インストールしただけで終わらないでください。下記の設定を真似するか、少なくとも`map <Leader> <Plug>(easymotion-prefix)`するなどして使うとよさがよりでます。
+またEasyMotionのデフォルトのprefixキーが`<Leader><Leader>`で使いづらいのはLokaltogさんが他のプラグインと競合しないために配慮した過去があるというだけで、デフォルトで使っても絶対面倒です。ぜひインストールしただけで終わらずに、下記の設定を真似するか、少なくとも`map <Leader> <Plug>(easymotion-prefix)`するなどして使うと使いやすくなります。
 
 そもそも後方互換さえ無ければデフォルトのキーバインドは無くしたいというレベルなのでデフォルトに頼らず好きなものを必要なだけ使ってください。
 特殊バッファを使ったアプリケーション的なプラグイン以外は、デフォルトのキーバインドに頼らずに自分で設定するのがベターだと思います。
@@ -369,7 +375,7 @@ map <Leader>k <Plug>(easymotion-k)
 let g:EasyMotion_startofline = 0
 
 " =======================================
-" General Configulation
+" General Configuration
 " =======================================
 let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
 " Show target key with upper case to improve readability
@@ -383,8 +389,8 @@ let g:EasyMotion_space_jump_first = 1
 " Search Motions
 " =======================================
 " Extend search motions with vital-over command line interface
-" Incremental highlight all matches
-" Now, you don't need to repetitibly press `n` or `N` with EasyMotion feature
+" Incremental highlight of all the matches
+" Now, you don't need to repetitively press `n` or `N` with EasyMotion feature
 " `<Tab>` & `<S-Tab>` to scroll up/down a page with next match
 " :h easymotion-command-line
 nmap g/ <Plug>(easymotion-sn)
