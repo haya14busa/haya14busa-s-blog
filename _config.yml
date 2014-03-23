@@ -101,7 +101,10 @@ disqus_show_comment_count: false
 google_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
+
+# Hatena Bookmark
+hatena_bookmark_button: true
 
 # Gravatar url
 gravatar_url: https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0
