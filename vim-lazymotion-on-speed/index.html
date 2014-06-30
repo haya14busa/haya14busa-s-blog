@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Vim Advent Calendar 2012の363日目の記事です。 昨日はthincaさんの本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成でした。 あと3日でVAC2013になるということですが、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vim-lazymotion-on-speed/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-28T00:00:00+09:00" pubdate data-updated="true">November 28, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の363日目の記事です。 昨日はthincaさんの<a href="http://d.hatena.ne.jp/thinca/20131127/1385487671">本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成</a>でした。</p>
+
+<p>あと3日でVAC2013になるということですが、<s>いまさら</s>VAC2012の99人目として記事を書いてみたいと思います。</p>
+
+<p>僕は今年の1月か、2月あたりからVimを使い始めたので、自分のVim歴よりも前に始まったAdvent Calendarに参加すると思うと歴史を感じます。すごい。</p>
+
+<p>Vimで最初に習うのはhjklによるカーソル移動です。<br/>
+その後w,bなどたくさんの移動コマンドを覚えると思います。<br/>
+またVimを使っているとき、その7,8割はカーソル移動してるんじゃないでしょうか???<br/>
+カーソル移動大事。</p>
+
+<p>ということでカーソル移動系プラグインであるvim-easymotionの話をします。</p>
+
+<h2>vim-easymotionとは</h2>
+
+<p>任意の場所や単語の先頭などをハイライト&amp;アルファベットなどの候補キーを出して、その行きたい場所のキーを押すことによってその場所にジャンプするプラグインです。今回、これを一から作ったというわけではなく、フォークして便利にしたという話とおすすめの使い方書くよという話です。その辺よろしくお願いします。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<h2>もっとvim-easymotionしよう</h2>
+
+<p>Github: <strong><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></strong></p>
+
+<p>Install</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-easymotion'
+</code></pre>
+
+<p>本家: <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>なるべく本家Easymotionからの移行時にびっくりしないよう、新規機能は基本的にデフォルトでオフになっていて、オンなのは候補の2キー表示と双方向サーチである<code>&lt;Leader&gt;s</code>の追加、バグフィックスあたりだけなのでぜひ気軽に試してフィードバックorプルリクください。</p>
+
+<p>以下面倒なのでデフォルトのprefixキーである<code>&lt;Leader&gt;&lt;Leader&gt;</code>を<code>&lt;Leader&gt;</code>に変更しているとして解説します。(特に機能名がないので機能をMappingで表したりします)</p>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108">:h easymotion-default-mapping</a></p>
+
+<h2>よくわかる拡張機能</h2>
+
+<ul>
+<li>最初から候補画面で2キー表示する!</li>
+<li>fやFの双方向バージョンが追加され、画面内ならどこでも飛べる!(<code>&lt;Leader&gt;s</code>)</li>
+<li>Smartcase機能でもっと楽々移動!</li>
+<li>1文字migemo実装で日本語でもeasymotion!</li>
+<li>その他もろもろ</li>
+<li>バグフィックス
+
+<ul>
+<li>マルチバイトバグ</li>
+<li>バッファ名バグ(今までuniteやref-vimでバグってました)</li>
+<li>その他いろいろ</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初から2キー表示する!</h2>
+
+<p>おそらくVim-Easymotionを使ったことがある人であれば必ず思うであろう、</p>
+
+<p><strong>「2回キー押すとき面倒くさい&#8230;」</strong></p>
+
+<p>これが改善されています。2回以上押さなければならない場合は最初から2つ分表示されてストレス90％減です(当社比)</p>
+
+<p><img src="../images/misc/wp/2013/11/two-key-motion.gif" alt="easymotion_two_key_combo" /></p>
+
+<h2>双方向サーチでカーソル位置を気にせず使う</h2>
+
+<p>これも使ったことがある人なら面倒くさいと思ったことがあるんじゃないでしょうか？</p>
+
+<p><strong><code>&lt;Leader&gt;f</code>か<code>&lt;Leader&gt;F</code>のどっち使うか決めるの面倒くさい。</strong></p>
+
+<p>飛びたい場所が現在位置の上下近くだったりすると意外とめんどくさくて脳のリソース消費します。これが<code>&lt;Leader&gt;s</code>で双方向サーチするという新機能で解決です。また、ひとつのマッピングでほぼすべての移動を補えるようになるところが見逃せないポイント。</p>
+
+<h2>Smartcaseでもっと楽々移動したい!</h2>
+
+<p>正直Shift押すのも面倒くさい。</p>
+
+<p>vimrc</p>
+
+<pre><code>" smartcase
+let g:EasyMotion_smartcase = 1
+</code></pre>
+
+<p>上記の設定で<code>&lt;Leader&gt;sv</code>で<strong>v</strong>imにも<strong>V</strong>imにもマッチして移動できます。楽。勿論smartcaseなので<code>&lt;Leader&gt;sV</code>だと<strong>V</strong>imだけにマッチします。</p>
+
+<h2>1文字migemo実装で日本語でもeasymotion!</h2>
+
+<p>migemo一回使ってみたら、日本語移動でかなり便利だったのでeasymotionでも実装したいなーと思っていました。そこで探してみると、<a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a>ですでに擬似migemo実装されてる事案があったのでclever-fの作者であるLindanさんに許可とってパク&#8230;参考にして実装しました。</p>
+
+<p>cmigemoなしでも動きます。</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_use_migemo = 1
+</code></pre>
+
+<p>Vimで日本語書くときになかなかいいです。</p>
+
+<p>注意事項として候補が多すぎたりスペック低かったりすると、ちょっと遅くてイラッとするかもしれません&#8230;もうちょっと改善したい。ちなみに<code>&lt;Leader&gt;w</code>など単語移動モーション使うと必ずしも行きたい場所には行けませんが移動はかなりサクッと行きます。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<p>だいたい主な拡張機能はこんな感じです。</p>
+
+<p>以下元からあった機能も適当に解説しながらなんやかんやしていきます。</p>
+
+<h2>Find Motion</h2>
+
+<p>新機能である<code>&lt;Leader&gt;s</code>や<code>&lt;Leader&gt;f</code>などがこのFind Motionに当たります</p>
+
+<ul>
+<li><strong><Leader>s{char}</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>f{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>F{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>t{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}の1文字手前にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>T{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}の1文字後にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>おそらく基本的に使うのは<code>&lt;Leader&gt;s{char}</code>で、オペレーション待機モードで<code>&lt;Leader&gt;t{char}</code>,<code>&lt;Leader&gt;T{char}</code>使うかもといった感じです。</p>
+
+<p>おすすめは<code>&lt;Leader&gt;s{char}</code>が便利すぎるので、<code>s</code>キーをマップして<code>s{char}</code>で動作するようにするとたった<strong>3(or4)キー</strong>(<code>s{char}{target}</code>)で任意の場所に一瞬で移動できるので非常に捗ります。</p>
+
+<p>vimrc</p>
+
+<pre><code>" もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion を`s`に割り当てます"
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) " surround.vimとかぶるので`z`
+</code></pre>
+
+<h2>Word Motion</h2>
+
+<ul>
+<li><strong><Leader>w</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>W</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>b</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>B</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>e</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>E</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>ge</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>gE</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>S</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として単語の先頭にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>好みによりますが、Findモーションよりも移動したいのは基本単語の先頭だし、Wordモーションのほうが好きという方もいると思います。こちらのほうがキー入力が抑えられます。</p>
+
+<p>またもう一つの優位点としてターゲットとして入力できない単語の移動(日本語など)で使えます。</p>
+
+<p>あと堂々と<strong><Leader>S</strong>と書いてありますが、挙動を変えて単語の先頭、後ろ、その他いい感じの場所にマッチさせて、なるべくどこでも移動できるという挙動に変えるかもしれません&#8230;すいません。(本家easymotionのissueでjump-to-anywareみたいなものがあったのでそれを意識。)</p>
+
+<h2>Search Motion</h2>
+
+<ul>
+<li><strong><Leader>n</strong>
+
+<ul>
+<li>カーソルより右側の検索結果にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>N</strong>
+
+<ul>
+<li>カーソルより左側の検索結果にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>意外と使われてないんじゃないかと思われる検索結果にマッチする機能です。<code>/vim&lt;CR&gt;</code>などしてから<code>&lt;Leader&gt;n</code>or<code>&lt;Leader&gt;N</code>を押すと検索結果がハイライトされて移動できます。</p>
+
+<p>検索してからマッチするところが多すぎてn連打つらい！というのが解消できます。僕はあまり使っていませんが</p>
+
+<h2>JK Motion (行移動)</h2>
+
+<p>個人的に<code>&lt;Leader&gt;s</code>の次に気に入っているのが、Easymotion#JKモーションという行移動機能です。</p>
+
+<p>もう一度言います。<strong>JK</strong> Motionです！</p>
+
+<p><code>&lt;Leader&gt;j</code>でカーソルより下の行、<code>&lt;Leader&gt;k</code>で上の行に飛べます。だいたいこれくらいかなーと適当に<code>10j</code>してから違ってたら調節というわずわらしさとはおさらばです。</p>
+
+<p>また個人的に、UniteやVimfiler、Gundo、Gitvなどなどの行によって何かしら行うUIを持つPluginとJKモーションの親和性が高くておすすめです。</p>
+
+<p>Vimfilerでeasymotion <img src="../images/misc/wp/2013/11/easymotion-vimfiler.gif" alt="easymotion-vimfiler" /></p>
+
+<p>ちなみにVimの<code>set relativenumber</code>を使うとデフォルトでも似たようなことができます。</p>
+
+<p>参考: <a href="http://cohama.hateblo.jp/entry/2013/10/07/020453">&#8216;set relativenumber&#8217; で Vim のカーソルの縦移動とかを改善する &#8211; 反省はしても後悔はしない</a></p>
+
+<p>こちらだとデフォルトで使用できるのが強みですが、数字がアルファベットよりも打ちにくいこと、各種プラグインで行番号が表示されていない時に役に立たないのが少し痛いですね。そんなときでも使えるJKモーション。おすすめです。</p>
+
+<p>それと、JK Motionはデフォルトでは行の先頭に移動するのですが、カラムが同じ位置に飛ぶようになるオプションがつきました。(よりデフォルトのj,kの挙動に近づきます)</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_startofline=0
+</code></pre>
+
+<p><code>&lt;C-v&gt;</code>の矩形選択時などにこの設定をしておくと幸せになります</p>
+
+<p>Example: <img src="../images/misc/wp/2013/11/keep_cursor.gif" alt="keep_cursor_motion" /></p>
+
+<h2>まとめvimrcの例</h2>
+
+<p><noscript>
+  <pre><code class="language-viml viml">NeoBundle &lsquo;haya14busa/vim-easymotion&rsquo;</p>
+
+<p>&ldquo; vim-eazymotion
+&rdquo; デフォルトだと&lt;Leader&gt;&lt;Leader&gt;となってるprefixキーを変更
+let g:EasyMotion_leader_key = &lsquo;;&rsquo;</p>
+
+<p>&ldquo; 候補選択: 候補が最初から2キー表示されるので大文字や打ちにくい文字は全面的に消す
+&rdquo; なお、最後の数文字が2キーの時の最初のキーになるので打ちやすいものを選ぶとよさそうです。
+let g:EasyMotion_keys=&lsquo;hklyuiopnm,qwertzxcvbasdgjf;&rsquo;</p>
+
+<p>&ldquo; 拡張版機能</p>
+
+<p>&ldquo; もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion をsに割り当て
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) &rdquo; surround.vimとかぶるのでz</p>
+
+<p>&ldquo; keep cursor column
+let g:EasyMotion_startofline = 0</p>
+
+<p>&ldquo; smartcase
+let g:EasyMotion_smartcase = 1</p>
+
+<p>&ldquo; Migemo
+let g:EasyMotion_use_migemo = 1</p>
+
+<p></code></pre>
+</noscript></p>
+
+<h2>雑感</h2>
+
+<p>まとめると、キーマップすれば <code>s{char}{target}</code>の3キーで任意の場所に飛べる ので捗っておすすめってことです。おそらく、他のプラグインとしても画面内全体を対象として、この数のキーで移動できるのはほぼ最小じゃないでしょうか。</p>
+
+<p>ujihisa.vim#3のderisさんのスライド<a href="http://www.slideshare.net/deris0126/ujihisavim3">How to move cursor more effectively(for Beginner)</a>や<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a>を読んでるとたくさん移動コマンドがありすぎて正直考えるの面倒です。これを画面内移動だけでも一つに集約できるとかなり楽な感じがしませんか?</p>
+
+<p>ただ、勿論easymotion好きじゃないって人もいて欠点として</p>
+
+<ol>
+<li>{target}がVimから提示されるのを待つしかない
+
+<ul>
+<li>(思考の流れを止めてしまう)</li>
+</ul>
+</li>
+<li>デフォルトのVimモーションの挙動と全然違う
+
+<ul>
+<li>clever-fやvim-sneakはデフォルトの挙動を拡張してるという感が強い</li>
+</ul>
+</li>
+<li>リピートめんどい
+
+<ul>
+<li>そもそもリピートせずに飛ぶというのがコンセプトですが</li>
+</ul>
+</li>
+<li>近くに移動する場合に近い割にキー入力多くて特にめんどくさい</li>
+</ol>
+
+
+<p>この辺が考えられます。他のプラグインと併用するなどして自分にあったカーソル移動を考えるとよさそうです。</p>
+
+<p>そしてこのフォークしたeasymotion,実はまだまだ改善途中といったところで、Vim Scriptアンチパターンのようなものに当てはまっている部分もほとんど直せてません。すいません。ぜひぜひ、アドバイスとプルリクお待ちしています。みんなでカーソル移動を考えましょう。</p>
+
+<h2>VAC2012</h2>
+
+<p>明日の<a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の364日目の記事を新規の人が書くと100人目のようです。興味ある方はぜひ書くとみなさん喜ぶと思います。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-28T00:00:00+09:00" pubdate data-updated="true">November 28, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vim-lazymotion-on-speed/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vim-lazymotion-on-speed/" data-via="haya14busa" data-counturl="http://haya14busa.com/vim-lazymotion-on-speed/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/vimconf2013/" title="Previous Post: VimConf2013に参加してきました!">&laquo; VimConf2013に参加してきました!</a>
+      
+      
+        <a class="basic-alignment right" href="/reading-vim-plugin/" title="Next Post: Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vim-lazymotion-on-speed/';
+        var disqus_url = 'http://haya14busa.com/vim-lazymotion-on-speed/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

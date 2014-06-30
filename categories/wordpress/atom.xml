@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: wordpress | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/wordpress/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GitでWordPressにPostしたいと思ったけど結局VimRepress導入した]]></title>
+    <link href="http://haya14busa.com/vimrepress-and-wordpress-using-git/"/>
+    <updated>2013-08-07T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vimrepress-and-wordpress-using-git</id>
+    <content type="html"><![CDATA[<h2>GitでWPにPostしたくなった</h2>
+
+<p>最近Git使い出して、GitHubに気軽にコードとREADMEをpushしたりできて、こんなに便利だと記事をGitで管理して、出来れば<code>git push</code>,または簡単なコマンドを打てばWordPressに投稿できるようにしたい！と思うのは必然ですよね？.</p>
+
+<p><code>git push</code>はWordPress運用してるサーバーにgitがないとだめだし、そのままpushとかはできなさそうなのでXML_RPCプロトコルが使えそう</p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/XML-RPC">XML-RPC &#8211; Wikipedia</a></li>
+<li><a href="http://codex.wordpress.org/XML-RPC_WordPress_API">XML-RPC WordPress API « WordPress Codex</a></li>
+</ul>
+
+
+<p>一応そもそもGitで作れるブログにするとかいう選択肢もあるのだけど、すでにWordPress使ってるし、テーマとかプラグイン便利なのであまり移行する気が起こらないのでとりあえず却下。</p>
+
+<h2>GitでWPにポスト?</h2>
+
+<p>「Git WordPress」で検索するとWordPressのテーマかプラグイン、またはそもそもWordPress本体をGitで管理する話ばっかりでノイズが酷かったけど一応なんとなくそれっぽいのは見つけました.</p>
+
+<p><a href="http://www.brool.com/index.php/posting-to-wordpress-from-git">Posting To WordPress From Git | brool</a></p>
+
+<p>ただ考えてみればタイトルやらタグやらつけるのも大変そうで、そもそも手を付ける前に次の策に移行しました…一応今からor今度やってみるかも(フラグ)</p>
+
+<p>なぜそんな手を付ける前に移行したかというと、そういえばVimでWordPressにPostするとかいう記事をどっかで記憶があったから。ということでそっちを試してみる.</p>
+
+<h2>VimRepress</h2>
+
+<h3>Install</h3>
+
+<p>.vimrc</p>
+
+<pre><code>NeoBundle 'pentie/VimRepress'
+</code></pre>
+
+<p><a href="https://github.com/vim-scripts/VimRepress">vim-scripts/VimRepress</a>が公式だけど、開発止まっててforkされてるやつを導入.</p>
+
+<p>記事書きながら,<a href="https://github.com/sousu/VimRepress">sousu/VimRepress</a>もいいかもしれないと読んでて思ったけど、試してはいません.ローカルに一時保存出来る機能とかあるらしくて良さそう.</p>
+
+<h3>Settings</h3>
+
+<p>~/.vimpressrc</p>
+
+<pre><code>[Blog0]
+blog_url = http://haya14busa.com
+username = haya14busa
+password = password
+store_markdown = n
+
+[Blog1]
+blog_url = http://hogehoge.com
+username = hogehoge
+</code></pre>
+
+<p><code>~/.vimpressrc</code>にブログURLなどを保存.passwordはオプションで書かなかった場合その都度入力できる.</p>
+
+<h3>Markdown</h3>
+
+<p>VimRepressはMarkdownをサポートしてて</p>
+
+<pre><code>$ easy_install python-markdown2
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ pip install markdown2
+</code></pre>
+
+<p>すれば有効になる</p>
+
+<p>ただ僕は<a href="http://wordpress.org/plugins/markdown-on-save-improved/">WordPress › Markdown on Save Improved « WordPress Plugins</a>をすでに使ってました.こっちだと<a href="http://michelf.ca/projects/php-markdown/extra/">PHP Markdown Extra</a>が使えること、また<code>"EditFormat : HTML</code>かつMarkdown On Save Improvedをインストールした状態でMarkdown形式で書くと、ちゃんと変換されてPostできることを確認したことから、VimRepressのMarkdownは使ってません.</p>
+
+<h2>使い方</h2>
+
+<p>詳しくは<code>:h vimpress</code>か記事末尾のリンクがわかりやすい</p>
+
+<p>余談だけど<code>:h vimrepress</code>じゃないところが辛かった.なぜプラグイン名と違うのか.</p>
+
+<h3>起動</h3>
+
+<ul>
+<li><code>:BlogList</code>で記事一覧を見てEnterで編集画面
+
+<ul>
+<li>デフォルトでは最新の10記事表示.でもMoreでどんどん読める.</li>
+</ul>
+</li>
+<li><code>:BlogNew</code>で新記事の編集画面</li>
+</ul>
+
+
+<p><code>:BlogOpen</code>もあるけどあまり使わなさそう.記事が大量にあって,昔の記事をurlから起動する時とかに使えそう?.</p>
+
+<h3>Edit</h3>
+
+<p>編集画面</p>
+
+<pre><code>"=========== Meta ============
+"StrID : 
+"Title : GitでWordPressにPostしたいと思ったけど結局VimRepress導入した
+"Slug  : install-vimrepress
+"Cats  : WordPress
+"Tags  : wordpress, git, vim
+"=============================
+"EditType   : post
+"EditFormat : HTML
+"BlogAddr   : http://haya14busa.com
+</code></pre>
+
+<p>StrIDは自動で挿入されるので空白でOK.Slugも一応いらない.Cats(Category)はすでにカテゴリーが作られていないとダメっぽいです.Tagsは新しいものでもOK.VimRepressのMarkdown機能を使う場合はEditFormatをMarkdownに.</p>
+
+<h3>Preview</h3>
+
+<ul>
+<li><code>:BlogPreviw draft</code>でブラウザが起動し、WordPressの下書きプレビュー
+
+<ul>
+<li>デフォルトの<code>:BlogPreviw (local)</code>だとローカルプレビューでCSS効いてなかったり、Markdown on save ImprovedでMarkdown対応している場合使い物にならない.</li>
+</ul>
+</li>
+<li><code>:BlogPreviw publish</code>だと投稿してプレビューだけどそれプレビューじゃなくね？</li>
+</ul>
+
+
+<h3>Post and Save</h3>
+
+<ul>
+<li><code>:BlogSave (draft)</code>で下書き保存
+
+<ul>
+<li>なお<code>:w</code>しても意味なし。癖でやっちゃうからVimRepressの編集画面ではaliasするとかしたい.Vimscript勉強したらできるかな?</li>
+</ul>
+</li>
+<li><code>:BlogSave publish</code>で投稿！
+
+<ul>
+<li>または<code>:BlogPreview publish</code></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>コンフリクトしてうざったい</h3>
+
+<p>.vimrc</p>
+
+<pre><code>nnoremap &lt;CR&gt; o&lt;ESC&gt;
+</code></pre>
+
+<p>インサートモードに入らずにEnterキーで改行を挿入出来るようにキーマップしてるとVimRePressの<code>:BlogList</code>から編集画面に飛ぶエンターの挙動とコンフリクトしてエラーがいっぱいでちゃう。一応動くけど。</p>
+
+<p>VimRepress側の設定でなんとかしたいけどわからなかった.Help見る限り,keymap用の変数とかも用意されてないっぽいし[要出典]</p>
+
+<h3>結論:捗る</h3>
+
+<p>既存記事の編集とかも含め、管理画面にアクセスせずに投稿できるのがとても捗る.</p>
+
+<p>ただ今までは<a href="http://haya14busa.com/darkroom-js/">ブラウザで動くシンプルなエディタ「Darkroom.js」 « haya14busa</a>を使ってブラウザ完結で記事書いたりして、アプリ間の移動がいらなかったり、iPadでも全く同じ方法で使えたりと、Darkroom-jsも捨てがたい.そもそもiPadではVimRepress使えないし、時と場合によって使い分ける所存.</p>
+
+<p>(Darkroom-jsに対するアクションなくて寂しいのでぜひ見てやってください.)</p>
+
+<h2>Link</h2>
+
+<h3>Repository</h3>
+
+<ul>
+<li><a href="https://github.com/pentie/VimRepress">pentie/VimRepress</a></li>
+<li><a href="https://github.com/vim-scripts/VimRepress">vim-scripts/VimRepress</a></li>
+<li><a href="https://github.com/sousu/VimRepress">sousu/VimRepress</a></li>
+</ul>
+
+
+<h3>VimRepress</h3>
+
+<ul>
+<li><a href="http://tsuchikazu.net/vim_markdown_wordpress/">Vimを使ってMarkdown形式でWordPressに投稿してみる | tsuchikazu blog</a></li>
+<li><a href="http://akakyouryuu.com/blog/vim%E3%81%8B%E3%82%89vimrepress%E3%81%A7wordpress%E3%81%AB%E6%8A%95%E7%A8%BF%E3%81%99%E3%82%8B/">vimからVimRepressでWordPressに投稿する | 赤恐竜</a></li>
+<li><a href="http://sousu.jp/wp/tool/wordpress-vim-markdown/">WordPress+Vim+Markdownでメモ環境の構築</a></li>
+</ul>
+
+
+<h3>Other</h3>
+
+<ul>
+<li><a href="http://www.brool.com/index.php/posting-to-wordpress-from-git">Posting To WordPress From Git | brool</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/XML-RPC">XML-RPC &#8211; Wikipedia</a></li>
+<li><a href="http://codex.wordpress.org/XML-RPC_WordPress_API">XML-RPC WordPress API « WordPress Codex</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressでfunctions.phpを使ったjQueryプラグインの導入方法]]></title>
+    <link href="http://haya14busa.com/wordpress-jquery-plugin/"/>
+    <updated>2013-04-06T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/wordpress-jquery-plugin</id>
+    <content type="html"><![CDATA[<p>そろそろjQueryプラグインというものに触れてみたかった。</p>
+
+<p>プラグインやheader.phpに直接書くのではなく、functions.phpで一括管理する方法。任意のページで読み込ませることやjQueryをGoogle Library APIを使って読み込ます方法もメモ。 今回は<a href="http://masonry.desandro.com/">jQuery Masonry</a>を導入します。</p>
+
+<h2>最初に</h2>
+
+<p>各種プラグインを配布してるサイトから.jsファイルをダウンロードしてテーマの[WPテーマのディレクトリ]/js/フォルダにアップロード。</p>
+
+<h2>Google Hosted LibraryからjQueryを読み込む</h2>
+
+<p><a href="https://developers.google.com/speed/libraries/devguide#jquery">Google Hosted Libraries &#8211; Developer&#8217;s Guide &#8211; Make the Web Faster — Google Developers</a></p>
+
+<p>サーバーの負荷の分散と他サイトでも使われていることによってキャッシュが効いてくるのがメリットなはず。</p>
+
+<dl>
+<dt>functions.php</dt>
+<dd><pre><code>  //Using jQuery Google API
+  function modify_jquery() {
+      if (!is_admin()) {
+          // comment out the next two lines to load the local copy of jQuery
+          wp_deregister_script('jquery');
+          wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3');
+          wp_enqueue_script('jquery');
+      }
+  }
+  add_action('init', 'modify_jquery');
+</code></pre></dd>
+</dl>
+
+<p>記事執筆時点でjQueryの最新バージョンは1.9.1ですが、Wordpressに標準搭載されてるものは1.8.3なので1.8.3を読み込んでおけば不具合は起きないはず。<br/>
+1.9.1読み込みたかったら使用してる各種WPのプラグインが対応できているか確認する必要ありです。</p>
+
+<h2>functions.phpで任意のページで振り分けて読み込む</h2>
+
+<blockquote><p> 
+    if (!is_admin()) {
+       function register_script(){
+         wp_register_script(&lsquo;rollover&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/rollover.js&rsquo;);
+         wp_register_script(&lsquo;slide&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/slide.js&rsquo;);
+         wp_register_script(&lsquo;jquery-lightbox&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/jquery-lightbox.js&rsquo;);
+       }
+       function add_script() {
+         register_script();
+         // 全ページ共通
+         wp_enqueue_script(&lsquo;rollover&rsquo;);
+         // TOPページ専用
+         if (is_home()) {
+            wp_enqueue_script(&lsquo;slide&rsquo;);
+         }
+         // 固定ページIDが“1”と“3”のページ専用
+         elseif (is_page(array(1,3))) {
+            wp_enqueue_script(&lsquo;jquery-lightbox&rsquo;);
+         }
+       }
+       add_action(&lsquo;wp_print_scripts&rsquo;, &lsquo;add_script&rsquo;);
+    }
+      </p>
+
+<p>&#8211; <cite><a href="http://www.webcreator-net.com/tips_memo/wordpress/20111229230125.html">WordPressでCSSやJavascriptをページ毎に振り分ける | Webクリエイターネット</a></cite></p></blockquote>
+
+<p>最初に!is_admin()で管理画面で読み込まないようにしてから、is_home(),is_archive(),ページIDなどなどでさらに振り分けます。</p>
+
+<h3>ついでにMobileでも振り分け</h3>
+
+<p><a href="http://haya14busa.com/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【Wordpress】 « haya14busa</a></p>
+
+<p>少しコードを変えて、</p>
+
+<dl>
+<dt>funcitons.php</dt>
+<dd><pre><code>  if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
+      /* for PC */
+      wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
+      wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
+  } else {
+      /* for Mobile */
+  }
+</code></pre></dd>
+</dl>
+
+<h2>まとめ</h2>
+
+<p>今回はjQuery Masonryを使うことによって、記事一覧をpinterest風に表示することが目的なので、ホームとアーカイブページに読み込み、かつ画面の小さいモバイル端末では読み込ませないようにします。</p>
+
+<dl>
+<dt>functions.php</dt>
+<dd><pre><code>  //Using jQuery Google API
+  function modify_jquery() {
+      if (!is_admin()) {
+          // comment out the next two lines to load the local copy of jQuery
+          wp_deregister_script('jquery');
+          wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3');
+          wp_enqueue_script('jquery');
+      }
+  }
+  add_action('init', 'modify_jquery');
+
+  //javascript management
+  if (!is_admin()) {
+     function register_script(){
+       //wp_register_script('rollover', get_bloginfo('template_directory').'/js/rollover.js');
+         wp_register_script('masonry', get_bloginfo('template_directory').'/js/jquery.masonry.min.js');
+         wp_register_script('pinterest', get_bloginfo('template_directory').'/js/pinterest.js');
+     }
+     function add_script() {
+       register_script();
+       //wp_enqueue_script('rollover');
+       if (is_home()) {
+          //wp_enqueue_script('slide');
+
+          if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
+          /* for PC */
+           wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
+           wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
+          } else {
+          /* for Mobile */
+          }
+
+       } else if (is_archive()) {
+
+          if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
+          /* for PC */
+           wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
+           wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
+          } else {
+          /* for Mobile */
+          }
+       }
+     }
+     add_action('wp_print_scripts', 'add_script');
+  }
+</code></pre></dd>
+</dl>
+
+<p>ResponsiveサイトでのjQuery Masonryの使用では、Media Queryでもスタイルや動作を切り替えておくとよさそう。<br/>
+<a href="http://www.koikikukan.com/archives/2012/10/19-015555.php">レスポンシブWebデザイン制作にjQuery Masonryを利用するための5つのポイント: 小粋空間</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】]]></title>
+    <link href="http://haya14busa.com/detect-mobile-ua-in-wordpress/"/>
+    <updated>2013-03-29T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/detect-mobile-ua-in-wordpress</id>
+    <content type="html"><![CDATA[<h3>プラグインに頼ってもいいじゃない。</h3>
+
+<p>結論から言うとmobbleというプラグインを使います。</p>
+
+<p><a href="http://wordpress.org/extend/plugins/mobble/">WordPress › mobble « WordPress Plugins</a></p>
+
+<blockquote><dl>
+<dt>What functions are available?The most useful ones are:</dt>
+<dd><pre><code>  &lt;?php 
+  is_handheld(); // any handheld device (phone, tablet, Nintendo)
+  is_mobile(); // any type of mobile phone (iPhone, Android, etc)
+  is_tablet(); // any tablet device
+  is_ios(); // any Apple device (iPhone, iPad, iPod)
+  ?&gt;
+     
+</code></pre></dd>
+</dl>
+
+<p>&#8211; <cite><a href="http://wordpress.org/extend/plugins/mobble/faq/">WordPress › mobble « WordPress Plugins</a></cite></p></blockquote>
+
+<dl>
+<dt>使用例</dt>
+<dd><pre><code>  &lt;?php if (( !function_exists(’is_mobile’)) || !is_mobile()) :?&gt;
+  /* for PC */
+  &lt;?php else :?&gt;
+  /* for Mobile */
+  &lt;?php endif; ?&gt;
+</code></pre></dd>
+</dl>
+
+<p><a href="http://wordpress.org/extend/plugins/mobble/">mobble</a>をインストール後、上記コードを好きなところに記述すれば動きます。<br/>
+（関数名がis_mobile()でfunctions.phpで対応する場合と一緒なのでプラグイン使わない場合も上記コードで OK。）</p>
+
+<h3>なぜプラグインか？</h3>
+
+<p>WordPressには<a href="http://codex.wordpress.org/Function_Reference/wp_is_mobile">wp_is_mobile « WordPress Codex</a>というUAを判別する関数がバージョン3.4から存在しますが、iPadなどのタブレットもモバイルと判定してしまいます。それはダメ。ということで却下。</p>
+
+<p>そこでis_mobile関数をfunctions.phpで実装するという選択肢が浮上します。これは下記サイトが参考になります。</p>
+
+<blockquote><p> 
+これはどこからどう見てもスマートフォン判別用の文字列 (の配列)。どうやらこれを HTTP ヘッダの User-Agent と突き合わせて、スマートフォンからのアクセスを判別しているらしい。そうとわかればあとは簡単で、自作テーマの functions.php にこんな関数を書いてみました:     </p>
+
+<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
+
+<p>おそらくこれが賢い選択肢だと思うのですが、このサイトでも言われてるように欠点がある気がします。</p>
+
+<blockquote><p> 
+判別のために文字列のリストを用意するっていう部分が、どうもいまいちなんじゃないかって気がするんですよね。たとえば、今後出てくるであろう新しいスマートフォンに対応しようとすると、このリストを永遠にメンテナンスし続けなきゃなんないじゃないですか。     </p>
+
+<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
+
+<p>調べてはいませんが参考サイトの記事が書かれた年が2010年。それから新しいスマートフォンはたくさんでていますし、これから出てくるたくさんの端末にその都度対応するのはしんどい。</p>
+
+<p><em>じゃあメンテナンスを何かに任せればいいじゃない。何に任せるか？プラグインでしょ？</em></p>
+
+<p>他人任せですがちゃんとアップデートされてるプラグインを選べば自分で書くよりも上手く対応してくれると思います。</p>
+
+<p>一応僕はfunctions.phpにもis_mobile関数を記述してコメントアウトする形をとりました。これならいざという時すぐ対応できるかなと…</p>
+
+<h3>Media Queryでよくない？</h3>
+
+<p>Media Query使ってdisplay:none;で対応すればユーザーエージェントに関係なくviewportで一括管理できます。しかし、これだとモバイルでアクセスした時、PC用のコンテンツを読み込んでCSSで隠すという無駄な読み込みが発生します。</p>
+
+<p>また、レスポンシブデザイン対応する時に困るのがGoogleAdsense。Googleさん、レスポンシブデザイン推してるのにレスポンシブ用の広告はありません。もちろんCSS弄ったら<em>BAN</em>!</p>
+
+<p>このときMedia Queryで対応するよりis_mobile関数でそもそも読み込ませない方法のほうが安全かも？[要出典]</p>
+]]></content>
+  </entry>
+  
+</feed>

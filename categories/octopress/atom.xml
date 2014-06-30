@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressからOctopressに移行した]]></title>
+    <link href="http://haya14busa.com/move-to-octopress-from-wordpress/"/>
+    <updated>2014-03-23T18:30:56+09:00</updated>
+    <id>http://haya14busa.com/move-to-octopress-from-wordpress</id>
+    <content type="html"><![CDATA[<h2>Octopressに移行しました</h2>
+
+<p>常々、WordPressからOctopressに移行したいなぁーと考えていたんですが、とうとう実行に移して完全移行を実現しました。</p>
+
+<p>理由としては</p>
+
+<ul>
+<li>WordPressの管理画面にいってどうこうするとか、面倒になってきたし、VimRepressというプラグインも使いづらかった</li>
+<li>ブログ記事をgitで管理したかった</li>
+<li>CUIで簡潔する。ｱﾂｲ。VimやGitとの相性が抜群</li>
+<li>Jekyllを使ってある程度慣れていた。</li>
+<li>Programmer向けの静的サイトジェネレータで、プラグインなども公開していたり、自分で作れちゃったりする</li>
+<li><del>GitHub Pagesで管理すればCurrent Streakを伸ばすための1つの選択肢になる</del></li>
+<li>etc&hellip;</li>
+</ul>
+
+
+<p>移行しない理由がなかった。</p>
+
+<h2>Octopressのテーマを作りました</h2>
+
+<p><a href="https://github.com/haya14busa/mjolvim-octotheme">haya14busa/mjolvim-octotheme</a></p>
+
+<p>基本的に移行前のブログのデザインをベースにして、いろいろ改善しました。</p>
+
+<p>個人的にはシンプルでいい感じになったと思います。
+WordPressの時と違って手元で変更してFTPでアップロードなどせずとも、
+普通に編集してgit push出来るので何か気になったら気軽に改善できるところが嬉しいですね。</p>
+
+<h2>WordPress1年間ありがとう</h2>
+
+<p>実はWordPressでサイトを公開してからちょうど1年になります。</p>
+
+<p>1年前のポスト: <a href="http://haya14busa.com/first-post/">ブログ作った。 - haya14busa</a></p>
+
+<p>WordPressでウェブサイト作ってみよう！とHTML, CSSから初めて,そこで
+Vimを使い出したり,プログラミングに興味を持つ1つのきっかけになったりしたので、
+とても感慨深いです。</p>
+
+<p>WordPressさんありがとうございました。</p>
+
+<h2>Octopress楽しい!</h2>
+
+<p>Octopress使って間もないですが、弄り甲斐があってとても楽しく、これからもっと
+ブログ執筆環境を改善して、楽々ブログ更新したいなぁーと思います。</p>
+
+<p>テーマの作り方とか、GitHub pagesでユーザーページではなくプロジェクトページを使う、
+DNS設定の仕方などの記事も気が向いたら書いていこうかなと思います。</p>
+]]></content>
+  </entry>
+  
+</feed>

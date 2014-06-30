@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vim-EasyMotionをforkされた拡張バージョンに変更する - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="追記: VAC2012でもっと詳しい紹介記事を書きました Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa Vim-Easymotionが好き 僕がvimのプラグインを導入して、一番最初に感動したのはvim-easymotionでした[要出典] &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vim-EasyMotionをforkされた拡張バージョンに変更する</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true">August 16, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>追記: VAC2012でもっと詳しい紹介記事を書きました</p>
+
+<p><a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a></p>
+
+<h2>Vim-Easymotionが好き</h2>
+
+<p>僕がvimのプラグインを導入して、一番最初に感動したのは<a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a>でした[要出典]</p>
+
+<p>特にvim触りたての頃なんてj連打で移動していたりなんかしてるので、カーソル移動系のプラグインは余計感動モノです。</p>
+
+<p>そんなvim-easymotionを今でも使いまくってるのですが、少し不満な点、こんな機能あったら良くない？っていう点がありました。</p>
+
+<ol>
+<li>移動先の候補がたくさんあって2回打たなければならないとき面倒くさい
+
+<ul>
+<li>この記事で解決</li>
+</ul>
+</li>
+<li>カーソルより左(F)か右(f)かのどちらかでしかサーチできないけど、画面内に収まってる全範囲でサーチ出来るようにしたい。
+
+<ul>
+<li>この記事で解決</li>
+</ul>
+</li>
+<li>Visualモードでのバグを是非fixしてほしい
+
+<ul>
+<li>仕様かも。相対行使ってるから難しいとか？</li>
+</ul>
+</li>
+<li>Insertモードでも使いたい()
+
+<ul>
+<li>無理。しかも正直なくてもよい</li>
+</ul>
+</li>
+</ol>
+
+
+<p>2に関しては最初は<code>H&lt;Leader&gt;f</code>して、エスケープで中断されたら<C-o>でカーソル位置を戻すvimscriptとか作ればいいのかなーとか考えてたりしたんだけど、そういえばForkされてるやつあるんじゃね？と思いつきGithubへ。</p>
+
+<h2>Githubで探す</h2>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>Githubのネットワークグラフで探してみると、案の定拡張機能付きのForkされたものがありました。</p>
+
+<p>ただ多すぎてどれが一番いいかわからないorz</p>
+
+<p>単純に一番最新のものを使うという手もあるけど、スターも付いてなかったのでそこそこスターついてて、拡張された奴を選びました。</p>
+
+<p><a href="https://github.com/supasorn/vim-easymotion">supasorn/vim-easymotion</a></p>
+
+<p><code>&lt;Leader&gt;s</code>でforword-backword serchが出来る他、<code>vl</code>や<code>yl</code>で行選択や行単位のヤンクを便利にしてくれるというお節介機能付き。(<code>vl</code>とか使うのでやめて…)</p>
+
+<p>またtwo-key comboとして、候補が多い時はじめから2つキーを表示してくれるようになります。</p>
+
+<h2>ということで.vimrc</h2>
+
+<p>.vimrc</p>
+
+<pre><code>" vim-easymotion
+"------------------------------------
+let g:EasyMotion_leader_key = ';'
+let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;:f'
+
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+" forked easymotion extention
+let g:EasyMotion_special_select_line = 0
+let g:EasyMotion_special_select_phrase = 0
+
+let g:EasyMotion_leader_key = ';'
+</code></pre>
+
+<p>呼び出すキーを&#8217;;&lsquo;に変更.</p>
+
+<pre><code>let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;:f'
+</code></pre>
+
+<p>晴れて最初から2つキーを表示してくれるようになったので、候補から打ちにくいキーは全面的に消してみる。</p>
+
+<pre><code>let g:EasyMotion_special_select_line = 0
+let g:EasyMotion_special_select_phrase = 0
+</code></pre>
+
+<p><code>vl</code>で行選択を楽にって言われてもそこまで便利にならないし、何より<code>vl</code>とか普通に使うので機能をOFFに。</p>
+
+<p>ドキュメントがFork元のものなので、ソース直接見ないとキーマップの変更の仕方とかわからないという罠。</p>
+
+<p>ハイライトの設定も追加しなくてはならないのによくわかんないので保留…</p>
+
+<p>すこしつまずきはあったもののこれで快適easymotion生活！</p>
+
+<h2>使いそうなコマンドまとめ</h2>
+
+<dl>
+<dt><code>;f</code></dt>
+<dd>  カーソルより右側の任意の文字を検索</dd>
+<dt><code>;F</code></dt>
+<dd>  カーソルより左側の任意の文字を検索</dd>
+<dt><strong><code>;s</code></strong></dt>
+<dd>  画面内の任意の文字を検索(双方向)</dd>
+<dt><code>;j</code></dt>
+<dd>  下方向に行移動</dd>
+<dt><code>;k</code></dt>
+<dd>  上方向に行移動</dd>
+<dt><code>;w</code></dt>
+<dd>  カーソルより右側の単語移動</dd>
+<dt><code>;b</code></dt>
+<dd>  カーソルより左側の単語移動</dd>
+<dt><code>;n</code></dt>
+<dd>  前方検索</dd>
+<dt><code>;N</code></dt>
+<dd>  後方検索</dd>
+</dl>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true">August 16, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/" data-via="haya14busa" data-counturl="http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/vimrepress-and-wordpress-using-git/" title="Previous Post: GitでWordPressにPostしたいと思ったけど結局VimRepress導入した">&laquo; GitでWordPressにPostしたいと思ったけど結局VimRepress導入した</a>
+      
+      
+        <a class="basic-alignment right" href="/python-nltk-natural-language-processing/" title="Next Post: Python,NLTKで自然言語処理">Python,NLTKで自然言語処理 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/';
+        var disqus_url = 'http://haya14busa.com/change-vim-easymotion-from-lokaltog-to-forked/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

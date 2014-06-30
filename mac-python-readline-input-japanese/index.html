@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>解決:Mac OSXのPythonのインタプリタで日本語入力する方法 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="環境 Mac OSX 10.8.4
+Python 2.7.5 (Homebrewでインストール)
+Python 3.3.2でも確認
+readline 6.2.4(Homebrew) Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/mac-python-readline-input-japanese/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">解決:Mac OSXのPythonのインタプリタで日本語入力する方法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>環境</h2>
+
+<ul>
+<li>Mac OSX 10.8.4</li>
+<li>Python 2.7.5 (Homebrewでインストール)</li>
+<li>Python 3.3.2でも確認</li>
+<li>readline 6.2.4(Homebrew)</li>
+</ul>
+
+
+<p><a href="http://haya14busa.com/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « haya14busa</a></p>
+
+<p>やっと解決しました。まさかzsh調べてる過程でPythonの問題を解決できるとは思わなかった。</p>
+
+<h2>解決法</h2>
+
+<p>やっぱりreadline / GNU readlineの問題でした。readlineは~/.inputrcを読み込むようで、そこに下記の記述でPythonのインタプリタで(一応)日本語が打てるようになります。</p>
+
+<p>~/.inputrc</p>
+
+<pre><code>kanji-code utf-8
+
+# Enable 8bit input
+set meta-flag on
+set input-meta on
+
+# Turns off 8th bit stripping
+set convert-meta off
+
+# Keep the 8th bit for display
+set output-meta on
+
+set enable-keypad on
+</code></pre>
+
+<p>いまいち.inputrcの再読み込みのやり方わからなかったんで、シェルごと再起動させて調べてました。</p>
+
+<p>readlineの環境としてはHomebrewでインストールしたreadline6.2.4。PythonのDependenciesに含まれてるので、普通にbrew install pythonしてれば入ってますeasy_install readlineやpip install readlineはしてもしなくても変わりませんでした。特に後者はディレクトリの配置が優先されないのかそもそも機能してるか怪しいです。readlineをpipのみで入れるとimportでエラー吐くので。</p>
+
+<p>とにかく、~/.inputrcに上記の記述でひとまず日本語を打つときに「ガッガッ」と警告音ならされて文字が消えることなく、入力できるはずです。</p>
+
+<h2>バグ挙動</h2>
+
+<blockquote><p>訳注: IDLE をはじめ、ほとんどの Python 2 用のインタラクティブシェルは、非ASCII 文字を含む Unicode リテラルを利用することができません。このサンプルを実行するには、インタプリタ内蔵のインタラクティブシェルを利用する必要があります。 この問題は Python 3 では解決されています。</p>
+
+<p>&#8211; <cite><a href="http://docs.python.jp/2/tutorial/introduction.html#unicode">3. 形式ばらない Python の紹介 — Python 2.7ja1 documentation</a></cite></p></blockquote>
+
+<p>そもそも公式ドキュメントで書いてある通り、インタプリタでの日本語の使用はあまりできないっぽいです。今回解決した結果も例に漏れずバクがあります。</p>
+
+<p>まず最初に書いたURL -> <a href="http://haya14busa.com/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « haya14busa</a> の記述と同様Pythonインタプリタで使用される文字エンコーディングをすべて&#8217;utf-8&#8242;に変えます。</p>
+
+<p>~/.zshrc</p>
+
+<pre><code>export PYTHONSTARTUP=~/.pythonstartup
+export PYTHONIOENCODING='utf-8'
+</code></pre>
+
+<p>~/.pythonstartup</p>
+
+<pre><code>import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+import codecs
+
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+sys.stdin = codecs.getreader('utf_8')(sys.stdin)
+</code></pre>
+
+<p>エンコーディングを変えた環境で開発するのは配布の際などに不具合をきたす可能性があがってよくないですが、日本語扱うためにはある程度しかたないです。そもそもインタプリタってちょっと気軽に確認したいってときに使うことが多いと思うので。また普通にスクリプトを実行する際は上記の記述はまったく関係ないはずなので問題ないと思います。</p>
+
+<h3>で…実行すると</h3>
+
+<pre><code>% python
+Python 2.7.5 (default, Jul  8 2013, 03:25:24) 
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; a = 'こんにちは'
+&gt;&gt;&gt; type(a)
+&lt;type 'str'&gt;
+&gt;&gt;&gt; len(a)
+15
+&gt;&gt;&gt; print a
+こんにちは
+&gt;&gt;&gt; b = u'こんにちは'
+&gt;&gt;&gt; type(b)
+&lt;type 'unicode'&gt;
+&gt;&gt;&gt; len(b)
+15
+&gt;&gt;&gt; print b
+ããã«ã¡ã¯
+</code></pre>
+
+<p>aに関してはいいですよ………問題は<strong>b</strong>です。len(b)が15ってなんだよ！ぉこだよ！？printで文字化けしてんじゃねーよ！！！</p>
+
+<p>これじゃあ日本語入力できても結局確認にすら使えないですよね。そこでちょっと強引な解決法として</p>
+
+<pre><code>&gt;&gt;&gt; c = unicode(a,'utf-8')
+&gt;&gt;&gt; type(c)
+&lt;type 'unicode'&gt;
+&gt;&gt;&gt; len(c)
+5
+&gt;&gt;&gt; print c
+こんにちは
+&gt;&gt;&gt; c[1:3]
+u'\u3093\u306b'
+&gt;&gt;&gt; print c[1:3]
+んに
+</code></pre>
+
+<p>これだと文字列のスライスもできてますし、ちょっと日本語関係のコードを確認するときは一旦str型で入力したものをunicode(text,&#8217;utf-8&#8242;)すればちゃんと動くってことですね。これでひとまず解決！！！</p>
+
+<p>ところでu&#8221;テキスト&#8221;とunicode(&#8220;テキスト&#8221;,&#8217;utf-8&#8242;)の違いってなんなんだろうか。</p>
+
+<p>u_quote_and_unicode.py</p>
+
+<pre><code># coding:utf-8
+print u"てきすと" == unicode("てきすと",'utf-8') # True
+</code></pre>
+
+<p>シェルでなくスクリプトファイルで確認するとTrueだったので違いはないのかな？</p>
+
+<p>ちなみにPython3のインタプリタで試した所、無駄なこと一切せず動きます。文字コードに関しては3に移行したいと思った。ついでに言うとPyrhon2.6から実装されたfrom <strong>future</strong> import unicode_literalsすると全部u&#8221;てきすと&#8221;の扱いになるので今回は逆効果です。</p>
+
+<p>あとインタプリタ上で日本語入力ができてるように見えますけど、内部？では1文字の「あ」ではなくカーソル3つ分くらいの長さを持ってるので、カーソルを移動させたり、消去すると表示がバグります。いったん何文字か売ってカーソルを左に移動させてからもう一度右にするとわかりやすいです。……ということで日本語部分を書き直すなら文頭から全部書きなおすようにしたほうがいいですね。<div class=clearfix> 最初に数文字打って………</p>
+
+<p><a href="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM.png"><img src="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM-300x128.png" alt="Screen Shot 2013-07-08 at 9.08.49 AM" width="300" height="128" class="aligncenter size-medium wp-image-61 clearfix" /></a> カーソルを左右に移動させると……… <a href="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM.png"><img src="http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM-300x119.png" alt="Screen Shot 2013-07-08 at 9.09.36 AM" width="300" height="119" class="alignnone size-medium wp-image-62 clearfix" /></a> </div></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/mac-python-readline-input-japanese/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/mac-python-readline-input-japanese/" data-via="haya14busa" data-counturl="http://haya14busa.com/mac-python-readline-input-japanese/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/homebrew-zsh-to-zsh/" title="Previous Post: MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ">&laquo; MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ</a>
+      
+      
+        <a class="basic-alignment right" href="/zsh-input-japanese/" title="Next Post: zsh5.0.2に変えたら日本語打てなくなった問題と解決法">zsh5.0.2に変えたら日本語打てなくなった問題と解決法 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/mac-python-readline-input-japanese/';
+        var disqus_url = 'http://haya14busa.com/mac-python-readline-input-japanese/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

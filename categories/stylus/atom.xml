@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: stylus | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/stylus/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stylus,nibのインストールとVimで自動コンパイル]]></title>
+    <link href="http://haya14busa.com/install-stylus-nib-and-vim-auto-compile/"/>
+    <updated>2013-08-07T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/install-stylus-nib-and-vim-auto-compile</id>
+    <content type="html"><![CDATA[<h2>Install</h2>
+
+<p>まずはnode.js</p>
+
+<pre><code>$ brew install node
+</code></pre>
+
+<p>Stylusとnibのインストール</p>
+
+<pre><code>$ npm install -g stylus nib
+</code></pre>
+
+<p>これでOK</p>
+
+<h2>Vimで自動コンパイル</h2>
+
+<p>.vimrc</p>
+
+<pre><code>autocmd BufWritePost,FileWritePost *.styl silent !stylus &lt;afile&gt; -u nib &gt;/dev/null
+</code></pre>
+
+<p>Node.jsで自動でコンパイルさせるとか,<code>Stylus -w</code>させるとか色々方法はあると思うけど、Vimで設定しておくと手軽に使える.</p>
+
+<p>本当はちゃんと条件分岐したほうがいいんだろうな…</p>
+
+<h2>Example</h2>
+
+<p>example.styl</p>
+
+<pre><code>@import 'nib'
+
+.nib
+    border-radius:10px
+</code></pre>
+
+<p>これを保存(:w)すると自動でexample.cssが生成されます.</p>
+
+<p>example.css</p>
+
+<pre><code>.nib {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+</code></pre>
+
+<p>これだけだとnibの必要性薄そうに見えるけど<code>global-reset()</code>とかその他機能が目白押しで便利</p>
+
+<h2>for Emmet (zen-coding)</h2>
+
+<p><a href="https://github.com/mattn/emmet-vim">mattn/emmet-vim</a></p>
+
+<p>.vimrc</p>
+
+<pre><code>autocmd BufRead,BufNewFile *.styl set filetype=sass
+
+" let g:user_emmet_settings = {
+" \  'styl' : {
+" \    'filters' : 'fc',
+" \  },
+" \}
+</code></pre>
+
+<p>コメントアウトしてあるように、設定したりして見たのだけど、うまく*.stylファイルでちゃんとcssの設定に変わらないので<code>filetype=sass</code>にしてお茶を濁してます.というか<code>fl:l|fc</code>自体効かないので他がおかしいのかも…</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://learnboost.github.io/stylus/">Stylus</a></li>
+<li><a href="http://visionmedia.github.io/nib/">nib &#8211; CSS3 extensions for Stylus</a></li>
+<li><a href="http://bonpworks.tumblr.com/post/14120084222/stylus-nib-node-canvas">Stylus, Nib, node-canvas をインストール •• connecting dots</a></li>
+<li><a href="http://bonpworks.tumblr.com/post/14222158520/stylus-nib">Stylus + Nib を使ってみた •• connecting dots</a></li>
+<li><a href="http://astronaughts.net/css-preprocessor-advent-calendar-2012-sixday/">磯野ー、Stylus を導入しようぜー！ | astronaughts.net</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

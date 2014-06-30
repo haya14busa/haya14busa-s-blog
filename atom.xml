@@ -1,0 +1,4290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[haya14busa]]></title>
+  <link href="http://haya14busa.com/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Osaka.vim #1 に行ってきた]]></title>
+    <link href="http://haya14busa.com/osaka-vim-01/"/>
+    <updated>2014-06-30T19:09:21+09:00</updated>
+    <id>http://haya14busa.com/osaka-vim-01</id>
+    <content type="html"><![CDATA[<ul>
+<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
+<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
+</ul>
+
+
+<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
+
+<h2>関西圏のVim勉強会!</h2>
+
+<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
+
+<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
+
+<h4>2014/04/05</h4>
+
+<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
+
+<p>manga_osyo: やると聞いて
+              haya14busa.vim</p>
+
+<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
+
+<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
+
+<h4>2014/05/17</h4>
+
+<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
+          iyuuya.vimやってもいいんですけどねー</p>
+
+<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
+
+<p><strong>やりたい!!!</strong></p>
+
+<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
+一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
+という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</span><span class='line'>  @iyuuya<span class="p">++</span>
+</span><span class='line'><span class="k">endfor</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
+
+<h2>Osaka.vim #1</h2>
+
+<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
+
+<h3>@thinca さんによるライブコーディング</h3>
+
+<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
+個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
+
+<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
+さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
+デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
+これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
+
+<ul>
+<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
+<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
+</ul>
+
+
+<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
+
+<h3>フリータイム</h3>
+
+<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
+
+<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
+
+<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
+
+<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
+聞いてみると興味をそそられました。
+<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
+いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
+コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
+使い方がとても良さそうでした。</p>
+
+<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
+
+<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
+
+<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
+<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
+
+<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
+
+<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
+この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
+それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
+周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
+
+<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
+
+<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
+
+<p>がんばりたい</p>
+
+<h3>発表した</h3>
+
+<ul>
+<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
+</ul>
+
+
+<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
+
+<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
+と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
+拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
+
+<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
+あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
+結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
+ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
+
+<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
+
+<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
+かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
+に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
+
+<p>反応はイマイチわからなかった()</p>
+
+<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
+しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
+
+<h2>懇親会&hellip;そしてカラオケオールへ</h2>
+
+<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
+アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
+
+<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
+初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
+
+<ul>
+<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
+</ul>
+
+
+<p>更新便利になって満足。</p>
+
+<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
+
+<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
+
+<h2>次回&hellip;?</h2>
+
+<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
+
+<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
+
+<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
+
+<p><strong><code>:wq Osaka.vim_01</code></strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimプラグイン読書会第5回が4/12(土)21:00から開催されます]]></title>
+    <link href="http://haya14busa.com/reading-vimplugin-05-senden/"/>
+    <updated>2014-04-12T12:57:25+09:00</updated>
+    <id>http://haya14busa.com/reading-vimplugin-05-senden</id>
+    <content type="html"><![CDATA[<h2>第5回 Vimプラグイン読書会</h2>
+
+<ul>
+<li>日時: 2014/04/12 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a></li>
+</ul>
+</li>
+<li>目的: Vim scriptでリスト、文字列、辞書の効率的かつ汎用的な扱い方を学ぶ</li>
+</ul>
+
+
+<p><strong>!!!本日(4/12)の21:00から開催です!!!</strong> <del>また宣伝記事が当日になってしまった&hellip;</del></p>
+
+<p><strong>初心者でも歓迎ですよ</strong></p>
+
+<p><a href="https://github.com/vim-jp/vital.vim/issues/80">昔開催されたvital.vim読書会</a>では、<code>Data.String</code>を読んだらしいので、今回は<code>Data.List</code>と<code>Data.Dictionary</code>のどちらか1つ,または両方を読むと思います。</p>
+
+<h2>読みどころ</h2>
+
+<p><a href="https://github.com/vim-jp/vital.vim">vital.vim</a>は主にvim-jpのVim script超詳しいマンのかっくいい方々が開発している Vim プラグインのためのライブラリです。これまでVimプラグイン読書会で読んだプラグインは何かしらVimの機能自体を拡張していたのに対し、vital.vimはあくまでも<em>ライブラリ</em>であり、Vim scriptによる汎用的かつ効率的なリストやディクショナリなどなどの操作の仕方を学べるので、「まだVim独自の仕様とかよくわからない&hellip;」という方にとっても読みやすくてよいかもしれません。Vim scriptまだ良くわからないという方も含め、ぜひぜひ気軽に参加してください!</p>
+
+<p>また、vital.vimでなにが出来るのかも外から見ただけではイマイチよくわからなかったりするので、どういう関数が提供されていて、どういう仕様なのかなぁーとさらっと見ていくだけでも面白いんじゃないかと思います。</p>
+
+<h2>vitalの使い方サンプル</h2>
+
+<p>インストールした後適当なスクラッチバッファでQuickrunとかして動作確認しながら読むとよいかもしれない(かも)。vimrcに書いて自作vimrc関数で使ってもOKです。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'vim-jp/vital.vim'
+</span><span class='line'>
+</span><span class='line'>" vital.vimを単体で使う場合は`vital#of('vital')`
+</span><span class='line'>" プラグインに組み込む場合は引数の'vital'の代わりにプラグインの名前(Vitalize --name で指定した値)
+</span><span class='line'>let s:V = vital#of('vital')
+</span><span class='line'>
+</span><span class='line'>" vitalのData.Listをimportする。
+</span><span class='line'>" 基本的に s:List.&lt;utility_function&gt;(arguments) という使い方をする
+</span><span class='line'>" :h vital-data-list.txt
+</span><span class='line'>let s:List = s:V.import('Data.List')
+</span><span class='line'>
+</span><span class='line'>echo '= flatten =========='
+</span><span class='line'>
+</span><span class='line'>" リストをフラットに
+</span><span class='line'>echo s:List.flatten([[1],[2,[3,4]]])
+</span><span class='line'>" -&gt; [1,2,3,4]
+</span><span class='line'>
+</span><span class='line'>echo '= push & pop ======='
+</span><span class='line'>
+</span><span class='line'>" スタックスタック
+</span><span class='line'>let s = []
+</span><span class='line'>echo s:List.push(s, 1)
+</span><span class='line'>" [1]
+</span><span class='line'>echo s:List.push(s, 2)
+</span><span class='line'>" [1, 2]
+</span><span class='line'>echo s:List.push(s, 3)
+</span><span class='line'>" [1, 2, 3]
+</span><span class='line'>echo s
+</span><span class='line'>" [1, 2, 3]
+</span><span class='line'>echo s:List.pop(s)
+</span><span class='line'>" 3
+</span><span class='line'>echo s:List.pop(s)
+</span><span class='line'>" 2
+</span><span class='line'>echo s
+</span><span class='line'>" [1]
+</span><span class='line'>
+</span><span class='line'>echo '= uniq ============='
+</span><span class='line'>
+</span><span class='line'>" ユニークな値だけを残す。最近vim本体にも組み込まれたはずだけど仕様は異なる
+</span><span class='line'>echo s:List.uniq(['vim', 'emacs', 'vim', 'vim'])
+</span><span class='line'>" ['vim', 'emacs']
+</span><span class='line'>
+</span><span class='line'>" 条件つけたりも
+</span><span class='line'>echo s:List.uniq_by(
+</span><span class='line'>\ ['vim', 'Vim', 'VIM', 'emacs', 'Emacs', 'EMACS', 'gVim', 'GVIM'],
+</span><span class='line'>\ 'tolower(v:val)')
+</span><span class='line'>" ['vim', 'emacs', 'gVim']
+</span><span class='line'>
+</span><span class='line'>echo '= zip =============='
+</span><span class='line'>
+</span><span class='line'>" Vim girlイラスト、zipでください
+</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6])
+</span><span class='line'>" [[1, 4], [2, 5], [3, 6]]
+</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
+</span><span class='line'>" [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+</span><span class='line'>
+</span><span class='line'>" etc...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vimプラグインに組み込む方法の詳しい日本語記事とか意外と無いし、アップデートは<code>Vitalize .</code>だけでOKとかはhelpにも書いていないような気がするのでそのうち記事を誰かが書いてくれるはず。</p>
+
+<p>僕はまだvital自体をそんなに使ってないですが、<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>というvitalの外部モジュール機能を使った<code>vim-over</code>のライブラリを使わせてもらったりしてます。vitalとても便利なのでｵｽｽﾒです。</p>
+
+<h2>過去のVim Advent Calendar の vital に関する記事</h2>
+
+<ul>
+<li><a href="http://qiita.com/rbtnn/items/deb569ebc94d5172a5e5">vital.vimをどんどん使っていこう。 - Qiita</a></li>
+<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-6/">vitalのData.List.take_whileを例にvital開発の指南書</a></li>
+<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-8/">構文解析器kp19ppと字句解析器Vital.Lexerを用いた超簡単な処理系作成方法</a></li>
+<li><a href="https://gist.github.com/ujihisa/5761509">Vital.ProcessManagerとその無限の可能性について</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/11/08/224821">コマンドオプションを解析するライブラリ Vital.OptionParser を書いた - sorry, uninuplemented:</a></li>
+</ul>
+
+
+<p>適当にVACで検索しただけだったりする。<code>OptionParser</code>とか使ってみたいかも。</p>
+
+<h2>本日21:00開催のVimプラグイン読書会に参加しよう!!!</h2>
+
+<p>と、言うことでVimプラグイン読書会に参加してvitalを読んで実際に使ってみたり、バグとか改善点を見つけ本体にｺﾝﾄﾘﾋﾞｭｯｼｮﾝしたりしましょう！初心者でも歓迎ですし質問すれば詳しい方が解説してくれるはずです。「hi」と発言して読んでることを宣言してもらえるだけでも少なくとも僕は喜びます。 <del>人数少なすぎると読書会の存続自体が危うくなるのでhiだけでも便利</del></p>
+
+<p>本日21:00から、<a href="http://lingr.com/room/vim">LingrのVim部屋</a>で開催です！ぜひ参加してください。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする]]></title>
+    <link href="http://haya14busa.com/improve-x-with-vim-submode/"/>
+    <updated>2014-03-24T09:10:46+09:00</updated>
+    <id>http://haya14busa.com/improve-x-with-vim-submode</id>
+    <content type="html"><![CDATA[<h2>Vim Advent Calendarです</h2>
+
+<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 108 日目の記事になります。日付がおかしいとか細かいことは気にしてはいけません。Vim Advent CalendarはVim記事を書きたいという人がいるかぎり続きます。しかしいったい、いつまで続くんでしょう&hellip;気になります!</p>
+
+<p>Vimに関することであれば基本的に何を書いてもよいはずなので、興味がある方は気軽に書いてみるとよいのではないでしょうか。</p>
+
+<h2>vim-submodeで x の挙動をカイゼンする</h2>
+
+<p><a href="https://github.com/kana/vim-submode">kana/vim-submode</a></p>
+
+<p>Lingrで発言したときに若干反応があったのでVAC Tipsとして簡単なものですが紹介します。</p>
+
+<p>Vimデフォルトの<code>x</code>はカーソル下の文字を消すという機能です。</p>
+
+<p><code>x</code>の挙動のちょっとした不満点として1文字消すためだけにレジスタを汚してしまうというものがあり、それをカイゼンするために<code>nnoremap x "_x</code>を設定しているvimrcをたまに見かけます。</p>
+
+<p>しかし、よくみるレジスタの問題の他にも不満点がありました。それは<code>x</code>後の<strong><code>u</code>ndo</strong>の挙動です。</p>
+
+<p><code>x</code>で1文字消すごとにundo履歴が区切られてしまい、いざ<code>x</code>を連打した後に間違っていると判明して、<code>u</code>ndoしたい!と思っても、<code>x</code>を押した分だけ何回も何回も<code>u</code>を押さなくてはいけません。</p>
+
+<p>連続した<code>x</code>で一気に消した分は、1回のundoで戻せたら素敵じゃないでしょうか?</p>
+
+<p>そんな機能を実現できる、かゆいところに手が届くプラグインが<a href="https://github.com/kana/vim-submode">vim-submode</a>です。</p>
+
+<h3>コード</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;kana/vim-submode&#39;</span>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:my_x<span class="p">()</span>
+</span><span class='line'>    <span class="k">undojoin</span>
+</span><span class='line'>    normal<span class="p">!</span> <span class="c">&quot;_x</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'><span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span><span class="k">x</span><span class="p">)</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>my_x<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'><span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;_x&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">call</span> submode#map<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Plug&gt;(my-x)&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>簡単に解説すると、最初に<code>x</code>を押した時に<code>"_x</code>でブラックホールレジスタに放り込んで1文字消すと同時に<code>my_x</code>という<code>submode</code>に入るようにし、この<code>my_x</code>という<code>submode</code>下での<code>x</code>は事前に定義した<code>&lt;Plug&gt;(my-x)</code>を呼んで、<a href="http://vim-jp.org/vimdoc-ja/undo.html#%3Aundojoin">undojoin</a>を使用することによりundo履歴を1つにまとめています。</p>
+
+<blockquote><p>:undoj[oin] 以降の変更を直前の undo ブロックにつなげる。</p>
+
+<p>&ndash; <cite><a href="http://vim-jp.org/vimdoc-ja/undo.html">Vim documentation: undo</a></p></blockquote>
+
+<h3>欠点</h3>
+
+<p><code>x</code>連打してここまで消したい！というときに1〜2カラム分行きすぎてしまったなどといった場合、<code>u</code>ndoすると初めから全部戻ってしまいます。一長一短ですね&hellip;</p>
+
+<p>しかし、undo履歴が汚れ無いようになるし、結構気に入っています。ﾋﾟﾝと来た方は使ってみてはいかがでしょうか?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる]]></title>
+    <link href="http://haya14busa.com/mastering-vim-easymotion/"/>
+    <updated>2014-03-23T21:34:54+09:00</updated>
+    <id>http://haya14busa.com/mastering-vim-easymotion</id>
+    <content type="html"><![CDATA[<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 113 日目の記事になります。</p>
+
+<p>また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 <em>Happy Vimming to me</em>.</p>
+
+<h2>カーソル移動がエディット時間の80%を占める</h2>
+
+<p>Vimでエディットしている時間の中で、カーソル移動の割合は恐らく80%以上を占めてます[当社比][要出典]</p>
+
+<p>何をするにしても基本的にはカーソルを移動させ、それからVimの強力な<code>operator</code>や<code>textobject</code>を駆使してテキストをエディットしたり、<code>Insert</code>モードに入って文字を入力するでしょう。また<code>tag</code>ジャンプや、<code>*</code>,<code>#</code>などでカーソル下の単語を検索して移動するために、そこまでカーソルを移動させるという『カーソル移動のためのカーソル移動』をするケースだってあります。</p>
+
+<p>多くのVimmerは方向キーの代わりにホームポジションにある<code>hjkl</code>でカーソル移動をすることによって無駄な手の移動をなくし、スムーズなカーソルを実現することによって生産性を高めることからはじまります。</p>
+
+<p>しかし、すべての移動を<code>hjkl</code>で行うには数字キーのカウントで一気に行えるということを差し引いても非常に無駄が多く、<strong><code>hjkl</code>の先</strong>のモーションを覚える必要があります。</p>
+
+<ul>
+<li><code>w</code>,<code>b</code>といった<code>Word</code>単位での移動</li>
+<li><code>f</code>,<code>F</code>を使った行内の文字を<code>Find</code>する移動</li>
+<li><code>)</code>,<code>(</code>の文単位の移動や,<code>}</code>,<code>{</code>のパラグラフ単位の移動</li>
+<li><code>/</code>,<code>?</code>,<code>*</code>,<code>#</code>を使った検索による移動</li>
+<li><code>H</code>,<code>M</code>,<code>L</code>による画面内移動</li>
+<li><code>&lt;C-o&gt;</code>,<code>&lt;C-i&gt;</code>,<code>gi</code>,<code>g;</code>,<code>[(</code>, etc&hellip;といった特殊なJumpモーション</li>
+<li><code>vimgrep</code>や外部の<code>grep</code>機能を使った<code>grep</code>によるファイルを横断する移動</li>
+<li>etc&hellip; 詳しくは<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
+</ul>
+
+
+<p>また、単純な移動ではなく<code>operator</code>と組み合わせることによって真価を発揮する<code>textobject</code>もモーションの一種で、一部のJumpや上記したgrepによる移動などを除いた多くの<code>Motion</code>は<code>d</code>elete,<code>y</code>ank,<code>c</code>hangeといった<code>Operator</code>と組み合わせることができ、<code>Motion</code>は単純に移動だけを補助する仕組みにとどまらない、非常に重要な概念です。</p>
+
+<p>しかし、これらモーションの種類はあまりにも多くて適切に使い分けるのが難しかったり、これだけあってもかゆいところに手が届かなかったりします。</p>
+
+<p>そこで、そのモーション機能に一石を投じるプラグインの1つが<strong><a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a></strong>です</p>
+
+<h2>Vim Motions on Speed!</h2>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p><img src="../images/gif/easymotion_on_speed_ex.gif" alt="easymotion_on_speed_ex" /></p>
+
+<h3>How to Install</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'Lokaltog/vim-easymotion'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>EasyMotionは主に<em>スクリーン内の見えている範囲の移動</em>において<strong>最小</strong>のキーストロークで<strong>爆速</strong>にカーソルを移動させることを目指したカーソル移動系プラグインです。</p>
+
+<h3>TL;DR</h3>
+
+<p>主観で1つだけイチオシ機能を紹介するなら</p>
+
+<p><code>nmap s &lt;Plug&gt;(easymotion-s2)</code>によって<code>s{char}{char}{label}</code>のわずか<strong>4</strong>キーストロークで画面内のどこへでも<strong>素早く</strong>移動できる</p>
+
+<p>という機能です。詳しくは下記で説明しますが、個人的にはこれが現在一番はやく、スムーズに移動できる汎用的な手段だと思っています。</p>
+
+<h3>EasyMotionのついて</h3>
+
+<p>もともとは<a href="https://github.com/Lokaltog/">Lokaltog</a>氏が開発していたのですが、本人がEmacsに移行するなど長らく開発が止まっており、せっかくコンセプトがよいのに惜しいところがたくさんありました。</p>
+
+<p>そこで僕がforkして活動量のゴリ押しで改善,開発していたところ、コラボレータとして開発を引き継がないか？と提案され、現在は僕がメインで開発を行っています。</p>
+
+<p>実は<a href="http://haya14busa.com/vim-lazymotion-on-speed/">VAC2012の記事</a>でもEasyMotionについて紹介したのですが、その時点ではfork状態で、開発もまだまだ途中だったので、晴れて開発を引き継いで安定もしてきた今、もう一度前回の記事以降に追加された機能などをメインに紹介します。</p>
+
+<p>ということで、ある程度基本のコンセプトは知っているという前提でここから書いていきます。が、知らなくてもgifや<a href="https://github.com/Lokaltog/vim-easymotion">README</a>を軽くみればなんとなくわかっていただけるかなぁとも思います。EasyMotion,オススメですよ!</p>
+
+<h2>Now, EasyMotion is Completely Well-behaved</h2>
+
+<p>EasyMotionは前回紹介させていただいた時点では<code>&lt;Plug&gt;</code>マッピングすらちゃんと提供できていなかったり、いろいろな制約上好ましくない挙動を示していたりもしたのですが、<code>&lt;Plug&gt;</code>マッピングの提供やバグフィックスなどなどを行って、晴れて<em>お行儀の良い</em>プラグインになったと思います。</p>
+
+<p>確かに、後方互換性のためにデフォルトのキーバインドは設定されるという点はありますが、<code>let g:EasyMotion_do_mapping = 0</code>とすることで回避できます。</p>
+
+<p>『お行儀のいい』なんて当たり前のようなことですが、これはプラグインにとっては重要なことですし、<code>normal</code>,<code>visual</code>,<code>operator-pending</code> modeのすべてのモードで正しく動作し、<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>を追加でインストールすれば<code>.</code>によるドットリピートも有効にするなどと、地味に苦労はしました&hellip;</p>
+
+<h2>Now, EasyMotion is Completely Configurable</h2>
+
+<p><code>&lt;Plug&gt;</code>マッピングによって、デフォルトで紹介されている機能に加えて様々なモーションを提供しており、自分好みの機能を選択して快適に使うことができます。</p>
+
+<p>こう聞くと機能追加しすぎて遅くなってるんじゃ..みたいなことも考えられますが、ほとんどはコードを加えたというよりも引数などオプションで挙動を変えただけなので、機能追加を目指して肥大化しているということは(おそらく)ないです。逆にハイライト周りの速度改善を行ったりなどしたのでそのへんはここで明記しておきます。</p>
+
+<p><code>nmap</code>,<code>omap</code>,<code>xmap</code>などで柔軟にマップできるのは勿論、画面の背景を灰色にする<code>shade</code>オプションなど、たいていの機能は<code>Configurable</code>、柔軟に設定可能になりました。</p>
+
+<p>例えば新たに追加された機能として<code>Within Line Motion</code>という、ターゲットの対象をカーソル行だけに絞ったモーションがあります。</p>
+
+<p>一見対象を絞るなんてバカげているアイデアのようにも思えますが、EasyMotionはターゲットが1つしかない場合はラベルを選択するフェーズを飛ばして自動的にジャンプしてくれるので以下のような設定をすると便利になったりします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>fl<span class="p">)</span>
+</span><span class='line'>map <span class="k">t</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tl</span><span class="p">)</span>
+</span><span class='line'>map F <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>Fl<span class="p">)</span>
+</span><span class='line'>map T <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>Tl<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだと、例えば<code>df{char}</code>とした時にカーソル行に<code>{char}</code>が1つであればVimデフォルトの<code>f</code>の機能、2つ以上あればラベルで選択するという挙動が可能です。対象の<code>{char}</code>が1つしかないというケースは多いですし、逆に2つ以上あった時にはVimデフォルトの<code>f</code>だと数値を正しくカウントすることは面倒だし、1つ目だと思っていたのにその途中に存在していた同じ<code>{char}</code>を見落としていて、思っていた部分まで<code>delete</code>できないなどといったケースを回避することができます。</p>
+
+<p>url内のスラッシュ(<code>/</code>)やLispの<code>()</code>の連続、Vimのautoload関数の<code>#</code>などなどの1行に同じ文字がたくさんあるけど<code>f</code>や<code>t</code>で<code>d</code>や<code>c</code>したい!というケースで特に有用だったりします。</p>
+
+<p>勿論<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>があれば<code>.</code>リピートも可能です。</p>
+
+<p>また基本的にすべてのモーションは<code>bidirection</code>機能、つまり対象とする範囲を<code>forward</code>/<code>backward</code>の両方向にできるモーションも提供しているので</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>fl<span class="p">)</span>
+</span><span class='line'>map <span class="k">t</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">tl</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このようにマップして、<code>F</code>と<code>T</code>の挙動をまかなったり、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>omap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>wl<span class="p">)</span>
+</span><span class='line'>omap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">e</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">el</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このようにoperator-pending時だけ指定する、などなど好きなようにマッピングすることができるようになっています。</p>
+
+<h2>Now, EasyMotion is Completely Sophisticated</h2>
+
+<p><a href="http://haya14busa.com/vim-lazymotion-on-speed/">前回</a>から追加された特に便利な機能としては2つあります。</p>
+
+<h3>2-key Find Motion</h3>
+
+<p>1つ目は以前までの<code>&lt;Leader&gt;f{char}</code>(<code>&lt;Plug&gt;(easymotion-f)</code>)のfind motionを拡張した2つ<code>{char}</code>を指定できる機能です。</p>
+
+<p><a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>/<a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>がデフォルトの<code>f</code>で<code>{char}</code>を2つ指定できるという機能にインスパイアされて実装し、最近はこのモーションが以前まで常用していた<code>s{char}</code>(<code>nmap s &lt;Plug&gt;(easymotion-s)</code>)の<code>{char}</code>が1つのモーションよりも快適で、慣れれば最高のカーソル移動手段になると思います。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>xmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; surround.vimと被らないように</span>
+</span><span class='line'>omap z <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot;もしくはこんな感じがオススメ</span>
+</span><span class='line'>map <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>最小のキーストロークで、スムーズに、素早く移動できる</h3>
+
+<p>最初に述べましたがこれによって<code>s{char}{char}{label}</code>というわずか<strong>4</strong>キーストロークで画面内の(主にmiddleからlong range)の移動をたった<strong>1つ</strong>のキーバインド(<code>s</code>)でまかなうことができます。</p>
+
+<p>以前の<code>s{char}{label}</code>だと、多くのターゲットにマッチしすぎて<code>{label}</code>を2回押す必要があるケースが多々ありました。一度に押すべきラベルを2つ提示する機能を前回までに実装していてある程度楽になっていたとはいえ、<code>{char}</code>は最初から押すべきキーがわかっているのに対し、<code>{label}</code>は基本的に何が出るかわからず『ラベルを視認してから押す』という段階を踏む必要があって押しにくいのです。</p>
+
+<p>今回の2-key find motionであれば、まず押すべきラベルが2つになることはないですし、<code>{char}{char}</code>の部分は最初から押すべきキーがわかっているので素早く押すことが出来ます。</p>
+
+<p>また<code>{char}{char}</code>と2つの組み合わせで指定するので、最初から画面内にマッチするものが1つだけで、ラベルを押さずに一瞬で移動できるということも多々あってよいです。(例: 冒頭で提示したgif画像は<code>fi</code>にマッチするものが1つしかなく、一瞬でジャンプしています。)</p>
+
+<p>単に最小限のキーストロークという観点でいえば<code>&lt;Plug&gt;(easymotion-s)</code>で<code>s{char}{label}</code>という3キーストロークのほうが少ないのですが、平均すると<code>s{char}{char}{label}</code>とした方が全体としては快適に移動できるので、慣れるまで使ってみる価値はあると思います。</p>
+
+<h3>Minimumにこの機能だけつかいたい</h3>
+
+<p>この機能は特にイチオシなので</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;Lokaltog/vim-easymotion&#39;</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span> <span class="c">&quot;Disable default mappings</span>
+</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>というミニマムな構成で使うのもよいと思います。また実際にこのような使い方をしている方も見かけました。</p>
+
+<h3>補足とか。</h3>
+
+<h4><code>s{char}&lt;CR&gt;</code></h4>
+
+<p><code>s{char}&lt;CR&gt;</code>と<code>{char}</code>を1つの状態でエンターキーを押すとそのまま1つの<code>{char}</code>で検索されます。</p>
+
+<h4><code>s&lt;CR&gt;</code></h4>
+
+<p><code>s&lt;CR&gt;</code>と<code>{char}</code>を1つも押さずにエンターキーを押すと、前回の<code>s{char}{char}</code>というモーションをリピートすることができます。便利。</p>
+
+<h4>Jump to first match</h4>
+
+<p>1つ目のマッチに飛びたいというケースが多々あり、その都度ラベルのキーを押すのは面倒です。</p>
+
+<p>そこで下記の設定をするとラベル選択時に<code>&lt;Space&gt;</code>か<code>&lt;CR&gt;</code>を押すことによって最初のマッチに飛ぶことが出来ます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Jump to first match with enter &amp; space</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_enter_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_space_jump_first <span class="p">=</span> <span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>初めから1つ目のマッチに飛びたいという場合に<code>s{char}{char}&lt;Space&gt;</code>と事前に押すべきキーがわかるので便利です。</p>
+
+<h3>n-key Find Motion</h3>
+
+<p>2つ目の大きな機能としては<code>{char}</code>としてn-keyの任意のキーを指定できるVimデフォルトの検索の拡張とも言えるべき機能です。</p>
+
+<p>設定例:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Search Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Extend search motions with vital-over command line interface</span>
+</span><span class='line'><span class="c">&quot; Incremental highlight of all the matches</span>
+</span><span class='line'><span class="c">&quot; Now, you don&#39;t need to repetitively press `n` or `N` with EasyMotion feature</span>
+</span><span class='line'><span class="c">&quot; `&lt;Tab&gt;` &amp; `&lt;S-Tab&gt;` to scroll up/down a page of next match</span>
+</span><span class='line'><span class="c">&quot; :h easymotion-command-line</span>
+</span><span class='line'>nmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>xmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; Support mappings feature</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap ; <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>C<span class="p">-</span><span class="k">j</span><span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>冒頭のgifで最後にお見せしたモーションです。Vimデフォルトの<code>incsearch</code>が最初のマッチだけインクリメンタルにハイライトするのに対して、こちらはすべてのマッチをインクリメンタルにハイライトします。また<code>&lt;CR&gt;</code>でEasyMotionの機能が起動されてラベルを選択できるので、<code>n</code>や<code>N</code>などを何回も押して移動するという必要がなくなります。</p>
+
+<p>またこのモーションは対象の範囲を画面内にとどまらずに画面外まで探してくれるので、入力している最中にスクリーン内に対象がなくなればVimデフォルトの<code>/</code>と同じように自動でスクロールしますし、飛びたい目的のマッチが画面内にない場合は<code>&lt;Tab&gt;</code>キーを押すことによってスクロールし、また単に次のページに飛んだのではなく、その先の検索した文字列に最初にマッチするページまで飛んでくれます。逆に前方向にスクロールする場合は<code>&lt;S-Tab&gt;</code>です。</p>
+
+<p>正直、文章だとわかりずらいし、gifを見てもまだわかりずらいかもしれませんが、バッファのテキストを検索して移動する場合、デフォルトの<code>/</code>だと何回も何回も<code>n</code>を押す必要があったりして面倒くさい!というつらみを解消することができます。</p>
+
+<p>このfind motionのコマンドラインインターフェースはおしょーさん作で<a href="https://github.com/osyo-manga/vim-over">osyo-manga/vim-over</a>で使われていたものをvitalのライブラリ,<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>として作ってもらい、これを使用させていただいています。おしょーさんいろいろ本当にありがとうございました。</p>
+
+<p>この<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>のコマンドラインのおかげで、Vimデフォルトの履歴やレジスタ挿入といった機能やマッピングといったほとんどの機能が擬似的に実装されており、さらにバッファのテキストの補完(EasyMotionではデフォルトで<code>&lt;C-l&gt;</code>)が使えたりと、デフォルトの<code>/</code>を置き換えれるレベルのものになっていると思います。</p>
+
+<p>この機能と似ている(というかもともと先に実装されていた)<a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a>では、<code>&lt;CR&gt;</code>でexcursionモード、<code>;</code>でラベルの表示となっています。</p>
+
+<p>実際に使ってみると<code>;</code>をターゲットとして選択できない代わりに<code>;</code>で起動するのがとても押しやすくて便利なのですが、これもマッピングをつかえばEasyMotionでも可能となります。個人的には<code>&lt;Space&gt;</code>が押しやすくていいし、<code>\s</code>などで代替できるので<code>EMCommandLineNoreMap &lt;Space&gt; &lt;CR&gt;</code>を設定しています。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>EMCommandLineNoreMap ; <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実はこのコマンドラインインターフェースの機能は<code>&lt;Plug&gt;(easymotion-s2)</code>、<code>&lt;Plug&gt;(easymoton-s)</code>といった1文字や2文字のfind motionでも使うように変更しているので、2-key findmotionでのエンター代わりに<code>&lt;Space&gt;</code>をつかうといったことが可能だったりします。</p>
+
+<h2>その他の追加機能</h2>
+
+<h3>Repeat Motion</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;&lt;</span>Leader<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>repeat<span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>C<span class="p">-</span><span class="k">n</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>next<span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>C<span class="p">-</span><span class="k">p</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">prev</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; map ; &lt;Plug&gt;(easymotion-next)</span>
+</span><span class='line'><span class="c">&quot; map , &lt;Plug&gt;(easymotion-prev)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>&lt;Plug&gt;(easymotion-repeat)</code>で前回のモーションをリピートしたり、<code>&lt;Plug&gt;(easymotion-next)</code>,<code>&lt;Plug&gt;(easymotion-prev)</code>で<code>;</code> &amp; <code>,</code>のように次/前のマッチに飛ぶことができます。</p>
+
+<p>最初にジャンプしたところと似たところにジャンプして<code>.</code>リピートしたいといったケースなどで、最初に移動して編集したあとは<code>&lt;Plug&gt;(easymotion-next)</code>で次のマッチに移動して、<code>.</code>リピート!といったことが出来ます。</p>
+
+<p>またハイライトがカーソル移動などで自動で消えるという実装なので、この挙動が好みならば下記のように設定すればよくある<code>:nohlsearch</code>コマンドでわざわざハイライトを消すという作業をしなくて済むようになります。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span> <span class="k">nohlsearch</span>
+</span><span class='line'>map  / <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap / <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span><span class='line'>map  <span class="k">n</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>next<span class="p">)</span>
+</span><span class='line'>map  <span class="k">N</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">prev</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; いらなくなる</span>
+</span><span class='line'><span class="c">&quot; nmap &lt;silent&gt; &lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Migemoの改善</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_use_migemo <span class="p">=</span> <span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>migemo機能をONにすると結構時間がかかってしまうという欠点があったのですが、画面内にマルチバイト文字がない場合に自動的にOFFにすることにより、普通にコードを書いているときはmigemoの遅さを気にせず使えるようになりました。</p>
+
+<p>また、<code>cmigemo</code>がインストールされていた場合は上述した2-key &amp; n-key find motionでもmigemo機能が有効になります。</p>
+
+<h3>その他いろいろ</h3>
+
+<p><strong>その他いろいろです!!!!!</strong></p>
+
+<h2>他のカーソル移動系プラグインとか素Vimとかと比較</h2>
+
+<ul>
+<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a></li>
+<li><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a> (<a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>)</li>
+<li><a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a></li>
+</ul>
+
+
+<h3>clever-f</h3>
+
+<p><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a></p>
+
+<p>行を跨いで移動するという機能を<code>f</code>につけ、<code>;</code>の代わりに<code>f</code>でリピートできるので中距離(数行程度)までならclever-fで移動するとスムーズかもしれない。しかし、どちらかといえば<code>;</code>&amp;<code>,</code>マッピングを節約できる、migemoやsmartcaseといった追加機能が美味しいという感じで<code>f</code>に足りない痒いところに手が届く機能を提供しているというところがいいところだと思っている。</p>
+
+<h3>vim-sneak</h3>
+
+<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a></p>
+
+<p><code>f</code>の機能を拡張して2つ<code>{char}</code>として指定できる。<a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>のほうが先に出ていたけどsneakのほうが活発に開発されていて(たぶん) 基本的には上位互換。</p>
+
+<p>sneakは最近clever-f機能を取り込んで、EasyMotionのラベルで意図していないものを押すのが思考の妨げになってどうしても慣れない or 嫌、でもモーション拡張プラグイン使ってみたいという人に一番いいと思います。<code>f</code>と違って対象として2つ<code>{char}</code>を指定すればマッチが格段に減るので<code>s{char}{char}ssss...</code>でスムーズかつラベルの考慮など何も考えずに移動できます。また2 charsだとハイライトしてくれるのも地味に嬉しい。</p>
+
+<p><code>s</code>,<code>S</code>を勝手に書き換えるという挙動以外のつらみがあった実装は最近直ってきているので良いと思います。</p>
+
+<p>ただ、同時に最近は<code>streak</code>モードというEasyMotionライクな機能を実装していて、これは主観とか差し引いてもEasyMotionの下位互換機能、劣化となっているのでこの機能はあまりオススメしません。</p>
+
+<h3>vim-smalls</h3>
+
+<p><a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a></p>
+
+<p>もともと任意のキーストロークでEasyMotionライクに移動できるというのはvim-smallsが最初に実装していて、それにインスパイア &amp; 2-keyを実装するなら任意のキーもついでに実装できるという理由でEasyMotionもついでに<code>&lt;Plug&gt;(easymotion-sn)</code>として実装しました。</p>
+
+<p>vim-smallsの売りは良くも悪くもexcursion-modeだと思っているのですが、単に移動するにはToo much感がなきにしもあらず、なんとなく常用にいたらないという印象です。移動先を決めてから<code>delete</code>や<code>yank</code>を出来たりと正直全機能は把握していませんが便利に使える方法もあるとはおもいます。</p>
+
+<p>vim-smallsの劣化になるなぁーと考えて、EasyMotionの検索拡張機能にスクロールなどを追加したりしたのですが、逆に言えばexcursion-modeが画面外も対象に移動できるようになったりすると、もっと便利になる可能性あるなぁと思ったりもします。</p>
+
+<p>上記の3つともEasyMotionを拡張するにあたって多かれ少なかられ参考にさせてもらったりしたので、非常に感謝しています。</p>
+
+<p>しかし、自分のなかで一番なのはEasyMotion,つまりはそのラベルによってキーストロークを最小限にして移動するというコンセプトで、自分の知る限りのバグはfixしてお行儀もよくなり、各種便利機能などを実装した今、EasyMotionがベストだと自分で思ってます。</p>
+
+<p>自分で開発しておいて自分で言うのもなんですが、ベースはLokaltogさんが作ったというリスペクトも含めてやっぱり好きです。そもそもこう思っていなかったらCollaboratorとして開発を引き継ぐまでには至らないし、言うまでもないかもしれないですね。</p>
+
+<h3>素Vim</h3>
+
+<p>おそらく、EasyMotionを使うであろうというケースの移動では<code>set incsearch</code>,<code>set nohlsearch</code>で<code>/</code>,<code>*</code>などを駆使して検索して移動していると勝手に思ってます。&hellip;というか<code>HML</code>とか<code>tag</code>,<code>grep</code>だとか<code>)</code>,<code>]]</code>,<code>}</code>だとか<code>relativenumber</code>などなどそれぞれ使い分けてるというのが正解かな。</p>
+
+<p>検索に関しては<code>n</code>の連打をする必要がなくなったり、検索履歴を汚さないなどいろいろあるのですが、そもそもプラグイン使わないよ派だったり、やはりEasyMotionの長所でもあり欠点でもある<em>ラベル</em>を選択するという事前にわからない不確定の要素で思考を妨げられるのがいやだったりと、やっぱり素Vimだよねというのも良い(というか尊敬しています)ですよね。</p>
+
+<p>EasyMotionを使っていても、徐々にいろんな移動の仕方を覚えて、それらを使い分けていきたいですね。</p>
+
+<h2>まとめたvimrcの設定例</h2>
+
+<p>個人的には</p>
+
+<ul>
+<li><code>&lt;Plug&gt;(easymotion-s2)</code> or <code>&lt;Plug&gt;(easymotion-s)</code>のFind motion</li>
+<li><code>&lt;Plug&gt;(easymotion-j)</code> &amp; <code>&lt;Plug&gt;(easymotion-k)</code>の行移動を拡張するJK motion</li>
+<li>今回紹介した<code>&lt;Plug&gt;(easymotion-sn)</code>機能</li>
+</ul>
+
+
+<p>などが便利で、<code>Word</code>の拡張モーションなんかは使わない人もいるなぁーと思うので主に上記の3点を中心にした設定例を適当なコメントと共に載せておきます。勿論もっとミニマムに設定したり、もっと変態的に設定しまくってもいいんですよっ//</p>
+
+<p>またEasyMotionのデフォルトのprefixキーが<code>&lt;Leader&gt;&lt;Leader&gt;</code>で使いづらいのはLokaltogさんが他のプラグインと競合しないために配慮した過去があるというだけで、デフォルトで使っても絶対面倒です。ぜひインストールしただけで終わらずに、下記の設定を真似するか、少なくとも<code>map &lt;Leader&gt; &lt;Plug&gt;(easymotion-prefix)</code>するなどして使うと使いやすくなります。</p>
+
+<p>そもそも後方互換さえ無ければデフォルトのキーバインドは無くしたいというレベルなのでデフォルトに頼らず好きなものを必要なだけ使ってください。
+特殊バッファを使ったアプリケーション的なプラグイン以外は、デフォルトのキーバインドに頼らずに自分で設定するのがベターだと思います。</p>
+
+<p>vimrc</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Vim motions on speed!</span>
+</span><span class='line'>NeoBundle <span class="s1">&#39;Lokaltog/vim-easymotion&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Boost your productivity with EasyMotion</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Disable default mappings</span>
+</span><span class='line'><span class="c">&quot; If you are true vimmer, you should explicitly map keys by yourself.</span>
+</span><span class='line'><span class="c">&quot; Do not rely on default bidings.</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Or map prefix key at least(Default: &lt;Leader&gt;&lt;Leader&gt;)</span>
+</span><span class='line'><span class="c">&quot; map &lt;Leader&gt; &lt;Plug&gt;(easymotion-prefix)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Find Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Jump to anywhere you want by just `4` or `3` key strokes without thinking!</span>
+</span><span class='line'><span class="c">&quot; `s{char}{char}{target}`</span>
+</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>xmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>omap z <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; Of course, you can map to any key you want such as `&lt;Space&gt;`</span>
+</span><span class='line'><span class="c">&quot; map &lt;Space&gt;(easymotion-s2)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Turn on case sensitive feature</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_smartcase <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Line Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; `JK` Motions: Extend line motions</span>
+</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">j</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">j</span><span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">k</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">k</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; keep cursor column with `JK` motions</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_startofline <span class="p">=</span> <span class="m">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; General Configuration</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_keys <span class="p">=</span> <span class="s1">&#39;;HKLYUIOPNM,QWERTASDGZXCVBJF&#39;</span>
+</span><span class='line'><span class="c">&quot; Show target key with upper case to improve readability</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_use_upper <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="c">&quot; Jump to first match with enter &amp; space</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_enter_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_space_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Search Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Extend search motions with vital-over command line interface</span>
+</span><span class='line'><span class="c">&quot; Incremental highlight of all the matches</span>
+</span><span class='line'><span class="c">&quot; Now, you don&#39;t need to repetitively press `n` or `N` with EasyMotion feature</span>
+</span><span class='line'><span class="c">&quot; `&lt;Tab&gt;` &amp; `&lt;S-Tab&gt;` to scroll up/down a page with next match</span>
+</span><span class='line'><span class="c">&quot; :h easymotion-command-line</span>
+</span><span class='line'>nmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>xmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>最後に</h2>
+
+<p>もっと詳しく知りたい場合はぜひhelpを読んでください。<a href="https://github.com/Lokaltog/vim-easymotion/blob/master/doc/easymotion.txt">:h easymotion.txt</a></p>
+
+<p>普段なにげなく使っているカーソル移動を爆速にして、生産性を向上させましょう!</p>
+
+<p><strong>Boost your productivity with EasyMotion!</strong></p>
+
+<p><del>結局思考が追いつかないし、進捗力ある人 with メモ帳に負ける</del></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[WordPressからOctopressに移行した]]></title>
+    <link href="http://haya14busa.com/move-to-octopress-from-wordpress/"/>
+    <updated>2014-03-23T18:30:56+09:00</updated>
+    <id>http://haya14busa.com/move-to-octopress-from-wordpress</id>
+    <content type="html"><![CDATA[<h2>Octopressに移行しました</h2>
+
+<p>常々、WordPressからOctopressに移行したいなぁーと考えていたんですが、とうとう実行に移して完全移行を実現しました。</p>
+
+<p>理由としては</p>
+
+<ul>
+<li>WordPressの管理画面にいってどうこうするとか、面倒になってきたし、VimRepressというプラグインも使いづらかった</li>
+<li>ブログ記事をgitで管理したかった</li>
+<li>CUIで簡潔する。ｱﾂｲ。VimやGitとの相性が抜群</li>
+<li>Jekyllを使ってある程度慣れていた。</li>
+<li>Programmer向けの静的サイトジェネレータで、プラグインなども公開していたり、自分で作れちゃったりする</li>
+<li><del>GitHub Pagesで管理すればCurrent Streakを伸ばすための1つの選択肢になる</del></li>
+<li>etc&hellip;</li>
+</ul>
+
+
+<p>移行しない理由がなかった。</p>
+
+<h2>Octopressのテーマを作りました</h2>
+
+<p><a href="https://github.com/haya14busa/mjolvim-octotheme">haya14busa/mjolvim-octotheme</a></p>
+
+<p>基本的に移行前のブログのデザインをベースにして、いろいろ改善しました。</p>
+
+<p>個人的にはシンプルでいい感じになったと思います。
+WordPressの時と違って手元で変更してFTPでアップロードなどせずとも、
+普通に編集してgit push出来るので何か気になったら気軽に改善できるところが嬉しいですね。</p>
+
+<h2>WordPress1年間ありがとう</h2>
+
+<p>実はWordPressでサイトを公開してからちょうど1年になります。</p>
+
+<p>1年前のポスト: <a href="http://haya14busa.com/first-post/">ブログ作った。 - haya14busa</a></p>
+
+<p>WordPressでウェブサイト作ってみよう！とHTML, CSSから初めて,そこで
+Vimを使い出したり,プログラミングに興味を持つ1つのきっかけになったりしたので、
+とても感慨深いです。</p>
+
+<p>WordPressさんありがとうございました。</p>
+
+<h2>Octopress楽しい!</h2>
+
+<p>Octopress使って間もないですが、弄り甲斐があってとても楽しく、これからもっと
+ブログ執筆環境を改善して、楽々ブログ更新したいなぁーと思います。</p>
+
+<p>テーマの作り方とか、GitHub pagesでユーザーページではなくプロジェクトページを使う、
+DNS設定の仕方などの記事も気が向いたら書いていこうかなと思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimプラグイン読書会第4回が3/15(土)21:00から開催されます]]></title>
+    <link href="http://haya14busa.com/reading-vimplugin-04-senden/"/>
+    <updated>2014-03-15T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vimplugin-04-senden</id>
+    <content type="html"><![CDATA[<h2>第4回Vimプラグイン読書会</h2>
+
+<ul>
+<li>日時: 2014/03/15 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/tpope/vim-pathogen">tpope/vim-pathogen</a></li>
+</ul>
+</li>
+<li>目的: プラグインマネージャの仕組みを理解する</li>
+</ul>
+
+
+<p>ぜひ気軽に参加してください。</p>
+
+<h2>pathogen読みます</h2>
+
+<p>かの有名なtpope先生のプラグインです。first commitが5years agoの(たぶん)一番古株のプラグインマネージャで歴史を感じます。(<a href="https://github.com/c9s/Vimana">c9s/Vimana</a>というのもあったらしいですがperlスクリプトで、かつどっちが先かはよくわかりません)</p>
+
+<p>326行1ファイルなので分量的には気軽に読めそうです。(密度は知らない)</p>
+
+<h3>読みどころ</h3>
+
+<p>Vim触り始めの頃からNeoBundleやVundle,pathogenといったプラグインマネージャが存在して、vimのランタイムパスとかほぼ気にせずプラグインを簡単にインストール、管理できた身としてはそのあたりで何やってるかというのは、しばらく全くわかっていませんでした。(そして今もそこまでわかってないかも&#8230;)</p>
+
+<p>と、いうことでruntimepath周りや、「プラグインマネージャって結局何をどうやってるのよ?」みたいなところが１つの読みどころかなぁと思います。</p>
+
+<p>あとは関連して、ファイルやディレクトリのpathの操作などは他の用途でも汎用的に使えそうです。</p>
+
+<h2>pathogenの命名</h2>
+
+<ul>
+<li><a href="http://eow.alc.co.jp/search?q=pathogen">pathogenの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+<li><a href="http://eow.alc.co.jp/search?q=infect">infectの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+<li><a href="http://eow.alc.co.jp/search?q=incubate">incubateの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+</ul>
+
+
+<p>pathogenってどういう意味かなぁと思って調べると、infectやincubateといった関数が存在することから、 そのまま「病原体」の&#8221;pathogen&#8221;と&#8221;path&#8221;を掛けたっぽいですね。[要出典]</p>
+
+<p>「<code>~/vim/bundle/</code>のディレクトリをvimのruntimepathという病原体(pathogen)でinfect(感染)させるぜ!」と言ったところでしょうか。</p>
+
+<p>結構カッコイイ命名っぽい。</p>
+
+<h2>ということで</h2>
+
+<p>明日、3/15(土)21:00から[LingrのVim部屋]((<a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>)で開催されるのでぜひワイワイ読みましょう！</p>
+
+<p>初見でも初心者でも歓迎ですよ!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい]]></title>
+    <link href="http://haya14busa.com/vim_driven_learning/"/>
+    <updated>2014-02-16T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vim_driven_learning</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 78日目の記事になります。私事ですが本日2014/02/16日、Vimmerとして1歳の誕生日(Vim歴換算)を迎えましたので個人的な話題を含むVACの記事を書かせていただきます。そういうものが嫌いな方はブラウザバック推奨です。</p>
+
+<p>この記事によってVimの魅力が少しでも伝われば幸いです</p>
+
+<hr />
+
+<p><a href="https://twitter.com/haya14busa/statuses/302754464400568320?tw_i=302754464400568320&amp;tw_e=details&amp;tw_p=archive">vimtutorを終えた一年前のツイート</a>(ツイートの文面が恥ずかしい&#8230;)</p>
+
+<p>Vim歴1年、めでたいです。</p>
+
+<h2>『Vim駆動学習』</h2>
+
+<p>なぜ『Vim駆動学習』かというと、僕のプログラミング歴自体がVim歴+半年あるかないか程度なので、僕のプログラミング力の大部分は『Vim駆動』で学習し、向上してきたといっても過言ではないからです。Vim駆動バンザイ。</p>
+
+<p>(最近はVim駆動でVim自体を学んでいる割合が高すぎるのでそろそろVim以外の進捗もだしていこうと反省はしています&#8230;)</p>
+
+<h2>『Vim駆動学習』をおすすめしたい</h2>
+
+<h3>Vim駆動学習によってGitHub で Stars over 1000 のリポジトリをメインで開発できるようになった</h3>
+
+<ul>
+<li>vim-easymotionというカーソル移動系のVimプラグインです。</li>
+<li>Repository: <a href="https://github.com/Lokaltog/vim-easymotion">https://github.com/Lokaltog/vim-easymotion</a></li>
+</ul>
+
+
+<p>めでたいです。</p>
+
+<p>Trend入りもしました:)</p>
+
+<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-05-015432.png" alt="trend" /></p>
+
+<p>1からスターover 1000のリポジトリを作り上げたわけでは勿論なく、プログラミング力というより単なる活動量のゴリ押しと些細なアイデアによって、開発が止まっていたプロジェクトを乗っ取った(collaboratorになって開発しませんかと提案された)というのが現実です。 ですので、実は数字に見合うほどのことはできていないですが、これだけユーザー数が多いプラグインを扱えるというのはｸﾞｻｸﾞｻくるissuesがちょっぴりつらいものの、今までに無い経験でとても楽しく、『Vim駆動学習』としてVim プラグインを扱うならではのものだったと思います。 Vimを好きにならなかったらこんな経験はいまの時点の僕にはおそらくできていませんでした。</p>
+
+<p>また海外のユーザーの方もよく使ってくれている、むしろもともと日本人より海外勢のユーザーが多いプラグインなので無い英語力を引っ張りだして無理やり使ういい機会にもなったりもします。</p>
+
+<h3>Vimのコミュニティが面白い</h3>
+
+<p>GitHubでスターover 1000のリポジトリがどうだと言ったことよりも、Vimのコミュニティがおもしろいというところは特筆したいです。スター1000のリポジトリなんていっても、その99%は他のVimmerの人たちの助けを借りて、質問に答えてもらったり、アドバイスやアイデアをもらうことによる賜物でした。本当にみなさんには感謝しています。</p>
+
+<p><a href="https://github.com/vim-jp">vim-jp</a>や<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>、Twitterなどで数々のVimmerが活動しており、</p>
+
+<p>パッチ職人の方たちが数々のパッチをvim&#95;devに送って本体に取り込まれたり、</p>
+
+<p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>がなぜか365日通して続いたり、</p>
+
+<p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>や<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>を毎週/毎月オンラインで開催してわいわいみんなで他人のvimrcやプラグインを読んだり、</p>
+
+<p><a href="http://lingr.com/room/vim/">LingrのVim部屋</a>では絶えず誰かがVim活していて質問すれば答えてくれるし、</p>
+
+<p>いろんなVimmerがVimを便利にしたり、Vimプラグインを作ったりメンテしたり&#8230;</p>
+
+<p>Vimmerたちの活動には見ていて本当に圧巻されます。 Vim自体が好きなのは勿論なのですが、Vimをとりまく多種多様な人たちあってのVimでもあり、僕はその人達も含めてVimが好きです。</p>
+
+<h3>他にもたくさん『Vim駆動』で得られるものがある</h3>
+
+<p>たとえば、Web上の記事よりも公式ドキュメントを読むという大事さはVimの膨大なhelpを目の当たりにすれば自然と気が付きますし、Vimはテキストを効率的にエディットするもの&#8230;<strong>Vimはテキストを効率的にエディットする</strong>ものですから、テキスト編集、プログラミングなどにおいて、Vimを極めればそれ以前と比べて数百倍の生産性(妄想)を得ることができます。決してVim scriptにハマってしまって逆に生産性が低下するなんてことはありません!!!</p>
+
+<p>そして個人的には<strong>プログラミングが楽しい</strong>とVimによってより強く思えるようになりました。Vim駆動最高です。</p>
+
+<h2>vimrcの記録</h2>
+
+<p>ここで1年間のvimrcの軌跡をちょっと振り返ってみます</p>
+
+<p>Vimの戦闘力は単純にvimrcの行数が多ければいいというわけではありませんが１つの指標としては面白いです</p>
+
+<p>一応コメントや空行を無視して正味の行数を測ってくれるScouterの情報も載せます。</p>
+
+<ul>
+<li><a href="https://github.com/thinca/vim-scouter">thinca/vim-scouter</a></li>
+<li><a href="http://vim-users.jp/2009/07/hack-39/">Vim-users.jp &#8211; Hack #39: Vimの戦闘力を計測する</a></li>
+</ul>
+
+
+<h3>一年前のvimrc</h3>
+
+<ul>
+<li>Date: 2013/02/16</li>
+<li>Lines:0</li>
+</ul>
+
+
+<p>厳密にはとある方が公開されていたシンプルな100行未満のvimrcを最初に使用していました。プラグインなし、基本オプション設定のみのものだった気がします。</p>
+
+<h3>git &amp; GitHub 使い始めのvimrc</h3>
+
+<ul>
+<li>Date: 2013/07/16</li>
+<li>Source: <a href="https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc">https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc</a></li>
+<li>Lines:205</li>
+<li>Scouter:156</li>
+</ul>
+
+
+<p>大体半年後ですがあんまり増えてないですね。gitの情報として残っている公式記録としては最古のvimrcです。</p>
+
+<h3>現在のvimrc</h3>
+
+<ul>
+<li>Date: 2014/02/16</li>
+<li>Source: <a href="https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62">https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62</a></li>
+<li>Lines: 2794</li>
+<li>Scouter: 1296</li>
+</ul>
+
+
+<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-16-054350.png" alt="vimrc_3000" /></p>
+
+<p>1年間で約<strong>3000</strong>行になりました!!!</p>
+
+<h2>1年間、どうやってvimrcを成長させたか</h2>
+
+<h3>はじめはコピーやプラグインを使ってもいいかも</h3>
+
+<p>はじめは右も左もわからないし、ただでさえ慣れていないVimで効率がどうしても劣ってしまうので、最初は基本的なオススメ設定のvimrcをそのままコピーしてある程度便利に使うというのはありかなと思います(決してvim distributionとか呼ばれてるプラグインがいっぱい入ったものを勧めているわけではないです)。</p>
+
+<p>また、素Vimで1から順に学んでいくのもいいですが、それだとキリがないし割と早い段階でプラグインつかってVim便利！と感じるのもVimを挫折しないためにはオススメかなと思います。実際僕は<a href="https://github.com/mattn/emmet-vim">mattn/emmet-vim</a>や<a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a>の便利さに感動してVim頑張って使ってたという側面もありました。</p>
+
+<p>注意すべきところは知らないプラグインは入れないということでしょうか。当たり前のように思えますが、NeoBundleを導入したときに紹介されていたプラグインをそのままコピペしてインストールし困るということが僕はありました&#8230;というのもプラグインによっては使わなくてもデフォルトの挙動やマッピングを置き換えてしまうお行儀の悪いものがあり、それに気づかず操作方法を間違って憶えてしまうなんてことがあるからです。</p>
+
+<h3>vimrc読書会に参加する</h3>
+
+<p>毎週土曜日の23時から<a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>という、<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>でオンラインで他の人のvimrcをわいわいみんなで読んで「この設定よさそう」とか「ここの指定のしかたはダメ」だとかをいい合う勉強会があり、これに参加すると格段にvimrc力が上がるのでオススメです。</p>
+
+<p>vimrc読書会は最初はVimmer怖いし、何が書かれているかも、何言ってるかもわからないし、僕は最初はROMっていただけなのですが、それでも参加した時に「hi」、読んでいる間は他の人が言及しているところに絞って読む、終わったら「お疲れ様でした」と言うだけでもきっとVim部屋の方々は喜びますし、最初はそれだけでいいと思います。</p>
+
+<p>勿論基本的なことでも質問すればきっと誰かが答えてくれますし、参加していれば徐々に分かることが増えてきて楽しくなる/vimrc力が上がるのでぜひ参加してみることをオススメします。</p>
+
+<h3>他人のvimrcをパクる</h3>
+
+<p>vimrc読書会ともかぶるのですが、すでにvimrc読書会で読まれたVim力の高い周りのVimmerのvimrcなどを個別に参考にしたりすると、より手っ取り早くvimrc力が上がると思います。また、プラグインの設定などでは、そのプラグインの作者のvimrcがREADMEやhelpよりも参考になるといった事案もあるのでちょっとそのプラグインの設定部分だけ盗み見るとかするのも面白いかなと思います。</p>
+
+<h2>1年間どうやってVimを学んできたか</h2>
+
+<p>vimrcとも関連していますね。</p>
+
+<h3>helpを読む</h3>
+
+<p>参考: <a href="http://haya14busa.com/reading-vim-help/">Vimのhelpを快適に引こう « haya14busa</a></p>
+
+<p>Vimのことはたいていhelpに載っているので、下手にWEB上の記事を読むよりもhelpをスラスラと引けるようになったほうが格段にVim力が上がりやすくなります。なるべく速くhelpの引き方は憶えて使いこなせるようになったほうが後々のためです。</p>
+
+<h3>実践Vimを読む</h3>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim 思考のスピードで編集しよう!</a></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&#038;ASIN=4048916599&#038;Format=_SL110_&#038;ID=AsinImage&#038;MarketPlace=JP&#038;ServiceVersion=20070822&#038;WS=1&#038;tag=haya14busa-22" /></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=haya14busa-22&#038;l=as2&#038;o=9&#038;a=4048916599" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim</a>は本当にオススメです。vimtutorが終わってからすぐ読んでもいいのではないかという話を聞いたことがありますが、本当にそれぐらい初期に読んでも絶対ためになると思います。素のVimについてのいいところを十二分に、体系的に解説してくれている良書です。ドットによるリピートやテキストオブジェクトなどVimの便利な機能をあますことなく解説してくれるし、Vim的な編集の思考法などもこの本によって学ぶことができます。僕は実践VimによってVimへの興味が数段上がりました。</p>
+
+<h3>Vim Advent CalendarなどVim記事を読む/書く</h3>
+
+<p>学んだらアウトプットするとよいというのはVimに限りませんが。Vim Advent Calendarとして書けば間違っていれば指摘が入るし、一定数の人は読んでくれるので気軽にVACとして書いちゃってもいいとおもいます。</p>
+
+<h3>Lingrやvim-jp,TwitterなどなどでVim活する</h3>
+
+<p>上述したように、いろんなところでいろんな方達が活動しているので、そこで割と気軽に質問したりアドバイスをもらったりできるのは強みだと思います。特にLingrだと一番気軽に聞けてよいです。</p>
+
+<h3>Vimの勉強会などに参加する</h3>
+
+<p>僕は<a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a>に参加しただけで、個人的には勉強会にたくさん参加したというわけではありませんが、東京を中心として地方でもVimに関する勉強会がたまに開催されているので参加すると楽しいと思います。(関西圏で開催されないかなー&#8230;ﾁﾗｯ)</p>
+
+<h3>Vim プラグイン開発に手を出してみる</h3>
+
+<p>Vimが好きになってくるとやはりプラグインを自分で作ってみたいと思うようになるかと思います。そういう時は <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に参加するとよいです。</p>
+
+<p>今のところ月に一回のペースでVimプラグイン読書会が開催されており、誰かのプラグインを読んであれこれ言っています。もともと、Vimプラグインを作ってみたい初心者向けに始まったので、なるべく簡単なプラグインを読むことが多く、作ってみたい！と思ったら気軽に参加して読んでみたりあれこれ質問したりすることをオススメします。</p>
+
+<p>自分でプラグインを開発するというだけでなく、vimrcや使っているプラグインへの理解が進んだりするといったメリットもあるので、プラグインとか難しいとか考えずに参加してみてもよいかなと思います。</p>
+
+<h2>まとめ</h2>
+
+<p><strong>『Vim駆動学習』</strong>最高でした。これからもよろしくおねがいします。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimでmigemoを使って日本語でもローマ字のまま検索がしたい]]></title>
+    <link href="http://haya14busa.com/vim_migemo_search/"/>
+    <updated>2014-02-14T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vim_migemo_search</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事になります。</p>
+
+<h2>Migemoとは</h2>
+
+<ul>
+<li><a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
+<li><a href="http://0xcc.net/unimag/2/">横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索</a></li>
+</ul>
+
+
+<p>「Migemoとはローマ字のまま日本語を検索できるものです」みたいな紹介をしようと思ったら思ったよりも『インクリメンタル』が重要なファクターっぽいですね。今回はインクリメンタル基本的にしない/できないmigemoの紹介です。</p>
+
+<p>vimでもmigemo使いたいですよね。</p>
+
+<h2>+kaoriyaのVimならデフォルトでmigemoが使えるけど</h2>
+
+<p>+kaoriya以外のVimでmigemo使うのは(昔は)結構面倒くさかったように思えます。</p>
+
+<p>-kaoriyaでmigemoを使う方法としては</p>
+
+<ol>
+<li><a href="http://www.kaoriya.net/software/cmigemo/">C/Migemo</a>を端末にインストール</li>
+<li>cmigemoと連携する Vim プラグインをインストール</li>
+</ol>
+
+
+<p>なのですが、1は</p>
+
+<pre><code>apt-get install cmigemo
+brew install cmigemo
+</code></pre>
+
+<p>などなどで割と簡単だったのですが、<a href="https://github.com/koron/cmigemo">koron/cmigemo</a>のVimプラグインの部分がかなり昔から書かれていたこともありその後の2でパス通すのがつらい、プラグインのみで配布されていないのでプラグインマネージャで簡単にインストールできないなどなどちょっとつらい仕様だったので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>がはじまった初期の右も左もわからない時にPull Requestしてkaoriyaさんにレビューしてもらったり、プラグイン部分を独立してGitHubに上げる権限をもらったりしました。</p>
+
+<p><a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a></p>
+
+<p>ということで、昔の他の人の記事とかを見るとちょっと面倒くさいようにみえるcmigemoのVimへの導入も、</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-migemo'
+</code></pre>
+
+<p>このように割と簡単にできるようになりました。あとvimprocが使えたら使うなどちょっとした改善もしたような記憶があります。</p>
+
+<p>使い方は以前と同じで <code>:Migemo</code> コマンドまたはデフォルトで <code>&lt;Leader&gt;mi</code> にマッピングされています。(<code>&lt;Plug&gt;</code>の提供とかプロンプトの文字列の変更とかの追加はそういえばやっていないけれどしたほうがよいかな&#8230;)</p>
+
+<h2>別のプラグインでちょっと便利に(?)つかう</h2>
+
+<p>基本的にどのプラグインも+kaoriyaでmigemoがデフォルトで使えればそれを、cmigemoがインストールされていればcmigemoを、どれも無理なら使えないという仕様になっていたはずです。</p>
+
+<h3><a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a></h3>
+
+<p>つい先日、<a href="http://techracho.bpsinc.jp/yamasita-taisuke/2014_02_06/15331">vim日本語検索をちょっと便利にするmigemo検索 | TechRacho</a>で紹介されていましたがLindanさん ware の<a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a>というプラグインがあります。</p>
+
+<pre><code>NeoBundle 'rhysd/migemo-search.vim'
+if executable('cmigemo')
+    cnoremap &lt;expr&gt;&lt;CR&gt; migemosearch#replace_search_word()."\&lt;CR&gt;"
+endif
+</code></pre>
+
+<p>これは<code>&lt;CR&gt;</code>にマッピングすることで、Vimデフォルトの検索をするときに、検索文字列がローマ字っぽかったらmigemoをよしなに呼んでくれるというものです。こちらの仕様のほうが好きな人はオススメです。個人的にはちょっと試した程度でほぼ使っていないので実は使用感はお伝え出来ません。</p>
+
+<h3>Uniteのmatcherにmigemoを使う</h3>
+
+<p><a href="https://github.com/Shougo/unite.vim">Shougo/unite.vim</a></p>
+
+<p>:h unite-filter-matcher_migemo</p>
+
+<pre><code>NeoBundle 'Shougo/unite.vim'
+nnoremap &lt;silent&gt; g/ :&lt;C-u&gt;Unite -buffer-name=search line -start-insert&lt;CR&gt;
+call unite#custom#source('line', 'matchers', 'matcher_migemo')
+</code></pre>
+
+<p>実はUniteのmatcherの１つにmigemo機能があります。なので、Vimデフォルトの検索とは 操作法が異なりますが、lineソースにmigemoのmatchersを充ててmigemo検索をUniteですることができます。</p>
+
+<h3>EasyMotionのmigemo機能</h3>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>2012年のVAC記事(<a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a>)でEasyMotionで1文字migemoを使えるようにしたと紹介したのですが、最近 n-key motionとして任意の数のキーでEasyMotionできるVimデフォルトの検索の拡張を実装したので、cmigemoがインストールかつ、migemoオプションがオンなら同様にEasyMotionでもmigemo検索できるようになりました。</p>
+
+<pre><code>NeoBundle 'Lokaltog/vim-easymotion'
+map g/ &lt;Plug&gt;(easymotion-sn)
+omap g/ &lt;Plug&gt;(easymotion-tn) " opeartor-pending時にVimデフォルトの検索の仕様に合わせる
+let g:EasyMotion_use_migemo = 1 " Migemo機能ON
+</code></pre>
+
+<p>このあたりは全く別の記事でまた紹介したいのですが、このEasyMotionの検索機能の拡張とも言うべき機能は、インクリメンタルにハイライトしたり、普通のEasyMotionの機能と違って画面外まで飛んだり、<code>&lt;Tab&gt;</code>キーでスクロールできたり、勿論検索履歴やテキストオブジェクト<code>gn</code>とも連携させたりしているので、完璧とは言わないまでもデフォルトの検索をこれに置き換えてもよいかなぁというレベルになっています。</p>
+
+<h4>仕様</h4>
+
+<p>もともとEasyMotionが<strong>スクリーン内</strong>の移動を拡張するというコンセプトなので、仕様としてはmigemo機能がONになっていてもスクリーン上にマルチバイト文字が無ければmigemoを使わないようになっています。なので、普段コードを書くときにmigemoによって遅くならないようになっているともいえるし、画面外に日本語があるとはわかっているんだけど画面内に日本語が無ければ発動しないという残念仕様でもあるとは言えますね&#8230;</p>
+
+<p>またインクリメンタルハイライトにmigemoを対応させていないので、実はMigemoに関してはインクリメンタルハイライトの一貫性がなくなってしまっている状態(インクリメンタルにハイライトはされていなくても<code>&lt;CR&gt;</code>で実行するとマッチする)なのでmigemo機能として使うには実はあんまりオススメはできません()。現状での仕様をわかった上で使ってくれたらいいかなぁと思います。</p>
+
+<p>というのも、システムのcmigemoを呼ぶという性質上、毎回のinputでインクリメンタルにcmigemoを呼ぶと、とてもじゃないけど耐えらたものじゃない速度になってしまい、実装してみましたが敢え無く断念しました。このためにProcessManagerも使ってみたんですがやっぱりダメでした&#8230;無念。</p>
+
+<p>そのうち要望 or 気が向いたら、インクリメンタル検索中のキーマッピングとしてmigemo使って一時的にハイライトさせるみたいな機能を実装するかもしれません。(それでも不便感は拭えないですが&#8230;)</p>
+
+<h3>まとめ</h3>
+
+<p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
+
+<p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい]]></title>
+    <link href="http://haya14busa.com/vim_highlight_search/"/>
+    <updated>2014-02-12T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vim_highlight_search</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 73日目の記事になります。</p>
+
+<p>普段何気なくvimrcに書いている<code>set hlsearch</code>や<code>:nohlsearch</code>。実はこれ、結構ややこしいです。</p>
+
+<h2>まずはhelp!</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27hlsearch%27">:h &#8216;hlsearch&#8217;</a> &lt;- オプション</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a> &lt;- コマンド</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#v:hlsearch">:h v:hlsearch</a> &lt;- 新たなる変数(最近入った)</li>
+</ul>
+
+
+<p>そして他に注意すべきものとして</p>
+
+<ul>
+<li><code>set nohlsearch</code> &lt;- <code>set hlsearch</code>の逆。<strong><code>:nohlsearch</code>とは違う</strong></li>
+<li><code>&amp;hlsearch</code> &lt;- オプションhlsearchの値の変数。<code>set hlsearch</code>なら1,<code>set nohlsearchなら0</code></li>
+</ul>
+
+
+<p>ややこしいですね。</p>
+
+<h2>v:hlsearchを解説しながら全体的に説明するよ</h2>
+
+<p>最近縁があったのでv:hlsearchの日本語訳を書かせて頂きましたが、ぶっちゃけ元の英語の説明もわかりづらいのでここで解説します。</p>
+
+<p><noscript>
+  <pre><code class="language- ">                    <em>v:hlsearch</em> <em>hlsearch-variable</em>
+v:hlsearch  検索による強調表示がオンになっているかどうかを決定する変数。
+        |+extra_search| 機能が必要である &lsquo;hlsearch&rsquo; が有効になっている
+        時のみ意味をなす。この変数を0に設定することは、 |:nohlsearch|
+        コマンドを実行することと同様に働き、1に設定することは以下と同様に働く &gt;
+            let &amp;hlsearch = &amp;hlsearch</code></pre>
+</noscript></p>
+
+<p>まず仕様ですが、この変数は<strong>実際に現在</strong>検索によるハイライトが行われているかどうかを判定、決定できます。</p>
+
+<h3>判定</h3>
+
+<p><code>echo v:hlsearch</code></p>
+
+<ul>
+<li>ハイライトが行われている -> 1</li>
+<li>ハイライトが行われていない -> 0</li>
+</ul>
+
+
+<h3>決定(ハイライトをON or OFFにする)</h3>
+
+<blockquote><p>この変数を0に設定することは、 |:nohlsearch| コマンドを実行することと同様に働き、 1に設定することは以下と同様に働く let &amp;hlsearch = &amp;hlsearch</p></blockquote>
+
+<p>わかりずらい!!!</p>
+
+<h4>let v:hlsearch = 0</h4>
+
+<p>これは、helpによると<code>:nohlsearch</code>コマンドを実行することと同様に働きます。</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a></li>
+</ul>
+
+
+<blockquote><p>|:nohlsearch| コマンドを使うと、<strong>一時的に</strong>強調表示をやめさせることができます。</p></blockquote>
+
+<p><strong>一時的に</strong> というのがミソです。この<code>:nohlsearch</code>コマンドは<code>hlsearch</code>オプションの変数である、<code>&amp;hlsearch</code>を変更しないのです。つまり<code>set hlsearch</code>している場合<code>&amp;hlsearch</code>変数の値は1ですが、<code>:nohlsearch</code>を実行しても<code>&amp;hlsearch</code>の値は1のままでハイライトを一時的にオフにします。</p>
+
+<h4>let v:hlsearch = 1</h4>
+
+<p>helpによると1に設定することは</p>
+
+<p><code>let &amp;hlsearch = &amp;hlsearch</code></p>
+
+<p>をすることと同様に働くようです。ここがかなりわかりずらい。</p>
+
+<p>前提として、</p>
+
+<ol>
+<li>基本的に<code>v:hlsearch</code>は実際にハイライトを行っているかどうかを決定するのですが<code>set nohlsearch</code>が設定されていた場合は<code>set nohlsearch</code>が優先されます。</li>
+<li>コマンド<code>:nohlsearch</code>によって一時的にハイライトをオフにした場合、再び検索するなどしたときにハイライトが有効になるのですが、<code>set hlsearch</code>,つまりは<strong><code>let &amp;hlsearch = 1</code></strong>を設定した場合も同様にトリガーとなってハイライトが有効になります(実装は見ていないので予測含む。動作確認はしています)</li>
+</ol>
+
+
+<p>よって、もし<code>set nohlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は0なので<code>let &amp;hlsearch = 0</code>と同様の動作となり何も起こりません。</p>
+
+<p>反対に、<code>set hlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は1で、<code>let &amp;hlsearch = 1</code>と同様になり、前提の2からこの動作がトリガーとなって再びハイライトがONになります。</p>
+
+<p>はぁ、ややこしかった。わからなかった方は直接@haya14busaまで質問とかしてください。また間違ってたらご指摘よろしくおねがいします。</p>
+
+<p>ここから<code>v:hlsearch</code>から得られたTipsを2つ紹介します</p>
+
+<h2>Reloadableなvimrcの設定</h2>
+
+<p>一般的には下記のような設定をしている方が多いと思います</p>
+
+<p><noscript>
+  <pre><code class="language- ">set hlsearch
+nnoremap &lt;silent&gt;&lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code></pre>
+</noscript></p>
+
+<p>が、リローダブルなvimrcを目指している方はこの問題に少なからず気づいているかもしれません。</p>
+
+<p>つまり、<code>set hlsearch</code>を記述しているとリロード時に問答無用でハイライトされてしまうのです。(ｳｻﾞｲ</p>
+
+<p>これを改善しましょう</p>
+
+<h3>1. 簡単かつv:hlsearchがなくてもOK</h3>
+
+<p><noscript>
+  <pre><code class="language- ">&ldquo; hlsearchは使うがvimrcを読み込んだ時にハイライトしないようにする
+set hlsearch | nohlsearch</code></pre>
+</noscript></p>
+
+<p>上記のようにすると<code>&amp;hlsearch</code>の値は1で検索のハイライトは有効になっていますが、<code>:nohlsearch</code>コマンドによりそれを一時的にOFFにします。</p>
+
+<p>欠点: ハイライトしている状態でリロードするとハイライトが消えてしまう。</p>
+
+<h3>2. v:hlsearchを使って1の欠点をなくす</h3>
+
+<p><noscript>
+  <pre><code class="language- ">if exists(&lsquo;v:hlsearch&rsquo;)
+  let v_hl_save = v:hlsearch
+endif
+set hlsearch
+execute exists(&lsquo;v:hlsearch&rsquo;) ? &lsquo;let v:hlsearch = v_hl_save&rsquo; : &lsquo;nohlsearch&rsquo;</code></pre>
+</noscript></p>
+
+<p>欠点: 書き方が悪いということを除いてもわざわざそこまでしたくない&#8230;</p>
+
+<h2>スクリプトから扱う</h2>
+
+<h3>ハイライトを確認する</h3>
+
+<p><code>v:hlsearch</code>が登場する以前では<code>&amp;hlsearch</code>の値を見ることしかできず、ハイライトの設定がされているかどうかは分かるけれども、実際にハイライトされているかどうかがわかりませんでした。(<code>:nohlsearch</code>で一時的にハイライトしていなくても<code>set hlsearch</code>していれば一貫して<code>&amp;hlsearch</code>の値は1です)</p>
+
+<p><code>v:hlsearch</code>の登場によって改善されたのはほぼこの一点といってもいいでしょう。</p>
+
+<h3>実際に関数からハイライトさせる</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131021/1382346459">Vim の関数内で set hlsearch しても反映されない場合の対処方法 &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>上記の記事の問題は<code>v:hlsearch</code>でも同じなようで、関数内で<code>let v:hlsearch = 1</code>にしても実行が終わると勝手に元の値に戻されてしまいます。これを回避するには記事にあるように<a href="http://vim-jp.org/vimdoc-ja/eval.html#feedkeys%28%29">:h feedkeys()</a>を使うしかないようです。残念&#8230;</p>
+
+<h4>ちょっと改善</h4>
+
+<p>上記の記事の関数だと<code>set nohlsearch</code>のオプションを無視してしまうので下記のように<code>:let &amp;hlsearch=&amp;hlsearch\&lt;CR&gt;</code>を使うとよりお行儀よくハイライトさせることができます。</p>
+
+<p><noscript>
+  <pre><code class="language-viml viml">function! HLsearch()
+    call feedkeys(&ldquo;:let &amp;hlsearch=&amp;hlsearch&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+    &ldquo; または
+    &rdquo; call feedkeys(&ldquo;:let v:hlsearch=1&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+endfunction</code></pre>
+</noscript></p>
+
+<h2>最後に</h2>
+
+<p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
+
+<p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[第3回 Vim Plugin読書会が開催されます!!!]]></title>
+    <link href="http://haya14busa.com/reading-vimplugin-03-senden/"/>
+    <updated>2014-02-08T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vimplugin-03-senden</id>
+    <content type="html"><![CDATA[<ul>
+<li>日時: 2014/02/08 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim/">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
+<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unite-fold</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>投稿時点で30分前です!!!怠慢!</p>
+
+<p>ぜひわいわい参加しましょう。</p>
+
+<h2>unite sourceの作り方</h2>
+
+<p>:h unite-create-source</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/thinca/20101105/1288896674">簡単な unite の source の作り方 &#8211; 永遠に未完成</a></li>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20130520/1369049201">unite-source を作成する流れをまとめてみた &#8211; C++でゲームプログラミング</a></li>
+<li><a href="http://vim-users.jp/2011/01/hack197/">Vim-users.jp &#8211; Hack #197: unite.vim の source を作成する</a></li>
+</ul>
+
+
+<h2>読むプラグインの紹介</h2>
+
+<h3>unite-mcdonalds-vim</h3>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
+</ul>
+
+
+<p>unite-sourceの作り方とweb-api.vimの使い方を両方同時に学べて,お腹もいい感じにすく一石三鳥なプラグインです。</p>
+
+<p><a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>もあるのでこちらもオススメです</p>
+
+<h3>unite-fold</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>製作者のおしょーさん曰く、魔改造されていて自分でも難しいとのこと[要出典]なので、気合を入れて読む必要があるかもしれません。Vim script力の高まりを感じましょう。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimのhelpを快適に引こう]]></title>
+    <link href="http://haya14busa.com/reading-vim-help/"/>
+    <updated>2014-01-26T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vim-help</id>
+    <content type="html"><![CDATA[<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の58日目の記事です。 57日目は<a href="https://twitter.com/deris0126">@deris0126</a>さんによる<a href="http://deris.hatenablog.jp/entry/2014/01/26/124336">Vimのタブで開いているバッファのdiffを簡単に表示するpluginを書いた</a>でした。</p>
+
+<p>Vimのhelpを自由自在に引けることは、真のvimmerになるための第一歩。</p>
+
+<blockquote><p>:helpを使いこなす = Vimを極めるための一歩</p>
+
+<p>&#8211; <cite><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></cite></p></blockquote>
+
+<p>ということで、数多くのVimmerがVimのhelpの使い方を解説したり、おすすめのhelpを紹介したりしています。しかし、helpを読むための設定、カスタマイズ方法を紹介するものがあまりないように思えたので、今回は既存のhelpに関する記事のまとめと、設定/カスタマイズ方法を中心に書いていきます。</p>
+
+<h2>help記事のまとめ</h2>
+
+<h3>Helpの使い方全般</h3>
+
+<ul>
+<li><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></li>
+<li><a href="http://vim-users.jp/2009/07/hack45/">Vim-users.jp &#8211; Hack #45: help を引く</a></li>
+<li><a href="http://vim-users.jp/2011/02/hack199/">Vim-users.jp &#8211; Hack #199: :helpに慣れ親しむ</a></li>
+<li><a href="http://nanasi.jp/articles/howto/help/vim_help.html">vimエディタの「help」コマンドの使い方 — 名無しのvim使い</a></li>
+</ul>
+
+
+<p>まずは上記の記事や<a href="http://vim-jp.org/vimdoc-ja/helphelp.html">:h helphelp.txt</a>で使い方を覚えましょう。さらっと流し見するだけでも未だに使いこなせてないものがたくさん見つかったりなどすることがあり、今一度読んでみるのもいいのではないでしょうか。</p>
+
+<p>詳しい使い方については上記の記事でほぼ解説されているのでここでは割愛します。</p>
+
+<h3>おすすめのhelp</h3>
+
+<ul>
+<li><a href="http://cohama.hateblo.jp/entry/2013/07/28/235823">おすすめの :help まとめ &#8211; 反省はしても後悔はしない</a></li>
+</ul>
+
+
+<p>覚えておくor読むと良さげなhelpがたくさん紹介されています。</p>
+
+<p>ここに載ってるものを除いて独断でおすすめすると</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a>
+
+<ul>
+<li>(motion.txtの一部)</li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/cmdline.html#cmdwin">:h cmdwin</a></li>
+</ul>
+
+
+<p>このあたりですね。</p>
+
+<p>motion.txtはhjklからtext-objects,inclusive/exclusiveのような普段あまり意識しない概念など、詳しくmotionについて書かれているので時間があるときに読むと面白いです。</p>
+
+<p>cmdwinについてはちょっとした思い入れがあるという個人的な紹介です。</p>
+
+<p>Vimの設定/操作法を大きく変更するときは、何かとVACの記事などでおすすめされているものをみて設定するということが多いのですが、通常のcommandlineからcommandline-windowに乗り換えたきっかけは僕の場合helpを読んでいて便利そう！と感じたからでした。</p>
+
+<p>よりよい設定方法を模索するためにその後コマンドラインウィンドウに関する記事を読んだりはしましたが、「記事を読む->便利かも?」という流れより「help読んで便利そう-> もっといい設定法ないか探す」という流れのほうが愛着が沸くのでオススメです。</p>
+
+<h2>ここから設定Tips</h2>
+
+<h3><strong>K</strong>でカーソル下の単語のhelpを引く</h3>
+
+<pre><code>set keywordprg=:help " Open Vim internal help by K command
+</code></pre>
+
+<p>デフォルトでKはmanを引く設定になっていますが、上記の設定でvimのhelpを引けるようになります。visualモードで選択した範囲を引くこともできます。引きたいものが関数だと括弧を含めるかどうかで結果が変わるので<code>(</code>を含めて選択して引くといったことができるのでいい感じです。K押しやすい。</p>
+
+<h3>helpがちょっと読みにくい</h3>
+
+<pre><code>nnoremap &lt;Space&gt;t :&lt;C-u&gt;tab help&lt;Space&gt;
+nnoremap &lt;Space&gt;v :&lt;C-u&gt;vertical belowright help&lt;Space&gt;
+" MoveToNewTab
+nnoremap &lt;silent&gt; tm :&lt;C-u&gt;call &lt;SID&gt;MoveToNewTab()&lt;CR&gt;
+function! s:MoveToNewTab()
+    tab split
+    tabprevious
+
+    if winnr('$') &gt; 1
+        close
+    elseif bufnr('$') &gt; 1
+        buffer #
+    endif
+
+    tabnext
+endfunction
+</code></pre>
+
+<p>参考: <a href="http://www.sopht.jp/blog/index.php?/archives/445-vim.html">あにゃログ &#8211; vim でタブを使う</a></p>
+
+<p>直接helpとは関係ありませんが、使い始めの頃helpのウィンドウが読みづらくて仕方なかった覚えがあります。特に開いた後ちまちまwindowのサイズを大きくするのは面倒くさい。</p>
+
+<p>ということで、最初からtab/vsplitで開く設定や、カレントウィンドウを別のタブに開き直すキーマップを使うといいと思います。MoveToNewTabの設定によって「気軽にKで開く->本格的に読みたいからタブページで開き直す」という流れなどがスムーズになっておすすめです。</p>
+
+<p>カレントウィンドウを別のタブに開き直すMoveToNewTabの設定は最初の頃設定してライフチェンジングした覚えがあり、今でもかなり使ってます。help以外でも使えますね。</p>
+
+<h3>help用の設定をする</h3>
+
+<pre><code>augroup MyVimrc
+  autocmd!
+augroup END
+
+" qでhelpを閉じる
+autocmd MyVimrc help nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+
+" 一気に複数設定する場合
+function! s:init_help()
+  nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+  nnoremap &lt;buffer&gt; &lt;Space&gt;&lt;Space&gt; &lt;C-]&gt;
+  " etc ...
+endfunction
+autocmd MyVimrc help call s:init_help()
+</code></pre>
+
+<p>個人的にはqで閉じるくらいしか設定していませんが、もっと便利な設定とかきっとあるので自分好みにしていきたい。</p>
+
+<h3>日本語でも読みたい</h3>
+
+<ul>
+<li><p><a href="https://github.com/vim-jp/vimdoc-ja">vim-jp/vimdoc-ja</a></p>
+
+<p>set helplang&amp; helplang=en,ja &ldquo; If true Vim master, use English help file.
+NeoBundle &lsquo;vim-jp/vimdoc-ja&rsquo;</p></li>
+</ul>
+
+
+<p>僕の場合最初は英語だけを設定しており、なんとか頑張ってhelpを読むといった状態でした。</p>
+
+<p>それはそれでいいことだとも言えるのですが、なんだかんだ日本語だとよりわかりやすかったり、英語でわからなかったら日本語で読めばいいという安心感からhelpを読む抵抗が減るので、英語環境でvimを使っていてまだ使っていない方はインストールしておくと良いと思います。</p>
+
+<p>上記の設定だとkeywordの後に@jaをつけることで日本語helpが読め、デフォルトでは英語になります。</p>
+
+<h3>自動でhelpを折りたたんでほしい</h3>
+
+<ul>
+<li><p><a href="https://github.com/thinca/vim-ft-help_fold">thinca/vim-ft-help_fold</a></p>
+
+<p>NeoBundleLazy &lsquo;thinca/vim-ft-help_fold&rsquo;, {
+      \ &lsquo;filetypes&rsquo; : &lsquo;help&rsquo;
+      \ }</p></li>
+</ul>
+
+
+<p>これは、前々から思っていて、無ければ自分で作ってみようかと思っていた時期が僕にもありました。</p>
+
+<p>が、調べてみるとthincaさんがすでに作ってた。試してみたところfoldtextも含めいい感じに折りたたんでくれます。</p>
+
+<p>折りたたみ好きはぜひ</p>
+
+<h3>Uniteでhelpを引く</h3>
+
+<ul>
+<li><a href="https://github.com/tsukkee/unite-help">tsukkee/unite-help</a></li>
+<li><p><a href="https://github.com/Shougo/unite-help">Shougo/unite-help</a></p>
+
+<p>&ldquo; NeoBundleLazy &lsquo;tsukkee/unite-help&rsquo;
+NeoBundleLazy &lsquo;Shougo/unite-help&rsquo;, {
+      \ &lsquo;unite_sources&rsquo; : &lsquo;help&rsquo;
+      \ }</p>
+
+<p>&ldquo; Execute help.
+nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+&rdquo; Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
+</ul>
+
+
+<p>書いている時に気づいたのですがShougoさんのfork版が存在してメンテナンスされてるっぽいです。中身の差分みてないので何が改善されてるかは知らない(怠慢)</p>
+
+<p>追記: 主にキャッシュ周りが改善されているようです</p>
+
+<p>Uniteでインクリメンタルに検索できてhelpが格段にひきやすくなるので良さげです。</p>
+
+<h2>ブラウザでもhelpを引く</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a>(日本語)</li>
+<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>(英語)</li>
+</ul>
+
+
+<p>Vim記事を呼んでいるとき、LingrのVim部屋で気になるものがあったけど、botに検索してもらうほどでもないかな..というとき、手元のタブレットでvimのヘルプが読みたいときなどなど、ブラウザでvimのhelpを読めると便利な場面がきっとあるとおもいます。</p>
+
+<p>そんな時は上記の日本語版ヘルプ or Sourceforgeの本家のヘルプを読むといいんですが、日本語版は検索がGoogleカスタム検索で少し不便、英語版は検索機能は高いけどレイアウトが見づらい&#8230;両方わざわざアクセスするの面倒くさい&#8230;</p>
+
+<p>そういった不満を改善する(かもしれない)ブックマークレット、作りました。</p>
+
+<p>GitHub: <a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<ul>
+<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
+<li><a href="javascript:(function(){var">vimdoc@en</a></li>
+<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
+</ul>
+
+
+<p>ブックマークバーにドラッグ&amp;ドロップで登録できます。</p>
+
+<p>上から日本語版ヘルプを検索、英語版ヘルプを検索、どちらかを開いているときにもう片方の言語で開くブックマークレットです。(en-to-jaとかネーミングおかしいのは目を瞑りましょう)</p>
+
+<p>vimdoc@ja,@enは事前に選択しておくとそのワードで検索します。これでVim記事読む時もhelpが手軽に読めて便利。</p>
+
+<p>日本語版ヘルプの検索機能は、Googleカスタム検索ではなく、おしょーさんにつけてもらったLingrのbotが使っている方法のリダイレクトバージョンを使っているので、ほとんどvimの検索ワードと同じように使えるはずです。おしょーさんありがとうございます。</p>
+
+<h2>まとめ</h2>
+
+<p>ここまで個人的に有用だと思うhelpに関する設定やプラグインを紹介しましたが、もっと便利な設定や知見がきっとたくさんあります。それを上級Vimmerに教えてもらう&#8230;のもいいですが、それだけでなく自分でhelpを読み込んで使いこなせるようになりましょう!(自戒)</p>
+
+<p><strong>Let&#8217;s :help!</strong></p>
+
+<p><strong>Don&#8217;t panic!</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!]]></title>
+    <link href="http://haya14busa.com/preparation_of_reading_vim_plugin_02/"/>
+    <updated>2014-01-10T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/preparation_of_reading_vim_plugin_02</id>
+    <content type="html"><![CDATA[<h2>第2回 Vimプラグイン読書会 案内</h2>
+
+<ul>
+<li>日時: 2014年 1/11(土) 21:00-</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン: <a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ul>
+
+
+<p>このページでVimプラグイン読書会の情報をまとめています。-> <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></p>
+
+<h2>clever-fの紹介</h2>
+
+<ul>
+<li><a href="https://github.com/rhysd/clever-f.vim">GitHub:rhysd/clever-f</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fはその名の通り<code>f{char}</code> による移動を強力にするプラグインです。</p>
+
+<p><code>f</code>で移動したあと<code>;</code>、<code>,</code>の代わりに<code>f</code> , <code>F</code>でそれそれ順方向、逆方向に移動できるのでキーマップを節約できたり、オプションを設定すれば、行をまたいで移動、smartcase機能、migemo機能などを使うことができます。</p>
+
+<p>使ったことない人は、少しだけ試してから読書会にくると、より見るべき部分がわかって面白いと思うので使ってみるとよさそうです。</p>
+
+<p><code>;</code>や<code>,</code>はあまり頻繁に使用しないせいで何かしらのprefixキーとして潰されてたり、そうでなくてもこれから使えると便利な位置にあるので、オプション設定無しで単に<code>f</code> or <code>F</code>でリピートさせるという使い方だけでも地味に助かるプラグインだと思います。</p>
+
+<p>個人的には簡単なマクロ使うときにとても重宝しています。(そういう意味では行を跨ぐ機能はOFFにしたほうがいいかなーと最近思ってる。オプションでちゃんと設定できます)</p>
+
+<h2>見どころ(個人的に)</h2>
+
+<p>前回のjunkfile.vimやvisualstar.vimよりも少し大きくなってちょっと実践度があがるのかなと思います。(helperスクリプトようにファイルを分けたりも前回はしていなかった気もするし)</p>
+
+<h3>カーソルキーの位置、状態によってキーの挙動をかえてる</h3>
+
+<p>どうやって実装してるのか、こういうところは<a href="https://github.com/kana/vim-submode">kana/vim-submode</a>と似たようなところがあるのかな？ないのかな？とか他にも応用できないかとか、いろいろ考えられそう。(これはvim-submode読まないとわからないけど。あとたぶん違う実装方な気がする)</p>
+
+<p>他にも行跨ぐ機能とか気になるところを重点的によんだりすると良さげ</p>
+
+<h3><code>.</code>によるオペレーションのリピート対応</h3>
+
+<p>カーソル移動系プラグインではこれがあるのとないのとではランクがひとつ、ふたつ違うってほど重要事項だとおもうのでこのへんのノウハウはぜひ読みたい。</p>
+
+<p>ちなみにeasymotionでは対応できていないし、同じくfを拡張して2キー対応しているvim-sneakは2キーの場合はリピートできるけど1キーだとできないという現状だったりします。(あと<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>依存だったり)</p>
+
+<h3>migemo対応時のマルチバイト対応など</h3>
+
+<p>clever-fとかあんまり使わないというひとでもこういう細かいところは他の場面でも使えるので、汎用的な部分があれば積極的にみていくと良さげ感あります。clever-fに限った話じゃないですが。</p>
+
+<h3>Vim scriptでもテストを書きたい</h3>
+
+<ul>
+<li><a href="https://github.com/kana/vim-vspec">kana/vim-vspec</a></li>
+<li><a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-plugins-vs-travis-ci.html">Vim プラグイン開発でも継続的インテグレーションがしたい! (Travis CI 編) &#8211; TIM Labs</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-vspec-introduction.html">Vim プラグイン開発でもユニットテストがしたい! (vim-vspec 編) &#8211; TIM Labs</a></li>
+<li>他のテストフレームワーク: <a href="https://github.com/Shougo/vesting/wiki/Test-framework-for-Vim-scripts">Shougo/vesting/wiki/Test-framework-for-Vim-scripts</a></li>
+</ul>
+
+
+<p>テストの書き方とか参考にしたいなとか個人的に思ってるけど、clever-fの場合はvim-vspecだけでなく、<a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a>を使っててさらに拡張していたりするので、そのへん見たり見なかったりするのもよさげ。</p>
+
+<h3>2キー対応拡張したい</h3>
+
+<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>のように2キー(or 複数キー)対応ができれば更に便利になるので余裕があれば複数キーに対応するにはどうやって実装すればいいかなーとか考えると面白いと思います。</p>
+
+<h2>最後に</h2>
+
+<p>ぜひ参加してわいわい読みましょう。</p>
+
+<p>今回参加できなくてもまだゆるゆると続くと思うので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に更新情報を載せたりしますので時間あるときに参加しましょう。日時もなんとなく土曜21:00となっているけど、他の時間帯がいいという人が多ければ変えれると思うので意見していくときっといいです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました]]></title>
+    <link href="http://haya14busa.com/jekyll_reading_vimplugin_site/"/>
+    <updated>2013-12-29T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/jekyll_reading_vimplugin_site</id>
+    <content type="html"><![CDATA[<h2>つくりました</h2>
+
+<p>Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。</p>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<p>注: URLは変わるかもしれません</p>
+
+<h2>GitHub公式ドキュメント</h2>
+
+<ul>
+<li><a href="http://pages.github.com/#project_pages">GitHub Pages</a></li>
+<li><a href="https://help.github.com/categories/20/articles">GitHub Help</a></li>
+</ul>
+
+
+<p>静的サイトをホストしてくれる。プロジェクトごとに作ったり、ユーザーのブログとして使えたりする。</p>
+
+<h2>Jekyll</h2>
+
+<ul>
+<li><a href="http://jekyllrb.com/">Jekyll • Simple, blog-aware, static sites</a>
+
+<ul>
+<li>静的サイトのジェネレーター。GitHub Pagesで搭載されている。</li>
+</ul>
+</li>
+<li><a href="http://docs.shopify.com/themes/liquid-basics">Liquid basics &#8211; Shopify Themes</a>
+
+<ul>
+<li>Liquidというテンプレートエンジンが使われておりif,for文使ったり、includeしたりといろいろできる。</li>
+</ul>
+</li>
+<li><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyllいつやるの？ジキやルの？今でしょ！</a>
+
+<ul>
+<li>ジキリました。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初に砂場あそびしました</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/gh-page-sandbox/">Happy Vimming!</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/gh-page-sandbox">haya14busa/gh-page-sandbox</a></li>
+</ul>
+
+
+<p>GitHub PagesのAutomatic Generatorを使ってJekyll on GitHub Pagesの仕様をなんとなく把握。適当な流れをリンク先に書きました。</p>
+
+<h2>そしてBootstrapつかってVimプラグイン読書会作成へ</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<h3>参考Link</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/">vim-jp » Vimのユーザーと開発者を結ぶコミュニティサイト</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>どっちもJekyll使ってたので参考にしました。特にvimrc読書会と似たようなサイトにしたほうがいいっぽいので構成とかほぼ同じになってます。参考にしながらやってると明らかな間違いとか割と見つけたりして簡単なPullReq案件が出てくるので便利。Vimプラグイン読書会のナビゲーションヘッダ便利という声からvimrc読書会のサイトのにもナビゲーション実装したりもしました。</p>
+
+<h3>Twitter Bootstrap</h3>
+
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="http://bootswatch.com/">Bootswatch: Free themes for Bootstrap</a></li>
+<li><a href="http://bootswatch.com/simplex/">Bootswatch: Simplex</a></li>
+</ul>
+
+
+<p>ArchiveページでTableゴリゴリ使うっぽいのでTwitter Bootstrap使って楽々ストライプデザインにしたり、簡単にResponsiveなヘッダーを作れて便利でした。配色とか考えてたけどデザイン力なさすぎて途中でBootswatchというBootstrapのテーマサイトからSimplexというテーマをベースに作ることにしました。</p>
+
+<p>そしたらおしゃれっぽくなったんだけど、自分のサイトとめっちゃ似てるデザインになってつらさを感じた。反省してます。</p>
+
+<h2>こっからTips的ななにか</h2>
+
+<h3>ローカルでもCSS,JSを効かせた状態で確認する方法</h3>
+
+<p>&#95;config.yml (いろいろ設定がかける)</p>
+
+<pre><code>baseurl: /{repository-name}
+</code></pre>
+
+<p>default.htmlなどで</p>
+
+<p>Shell</p>
+
+<pre><code>bundle exec jekyll serve -w -b /{repository-name}
+</code></pre>
+
+<p>上記コマンドを叩いて<code>http://localhost:4000/{repository-name}/</code>にアクセスするといい感じにCSS,JSなどすべてのページで効くようになります</p>
+
+<p>詳しくは<code>jekyll serve --help</code>とかするとよい。</p>
+
+<ul>
+<li><a href="http://jekyllrb.com/docs/github-pages/">Jekyll &#8211; GitHub Pages</a>
+
+<ul>
+<li>公式サイトで詳しく書いてあります。英語ですが。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
+
+<p>これは書いてても一応使えるんですが問題があって、<code>/jekyll_reading_vimplugin_site/</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>jekyll_reading_vimplugin_site/</code>)</p>
+
+<p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
+
+<h3>Markdown</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>markdown: rdiscount
+
+rdiscount:
+  extensions:
+    - autolink      # greedily urlify links
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
+</code></pre>
+
+<p>デフォルトのmarkdownエンジンはmarukuになっていて(たぶん)、あんまり良くないのでrdiscountかredcarpetあたりを選ぶと便利なようです。</p>
+
+<ul>
+<li><a href="http://dafoster.net/projects/rdiscount/">RDiscount | Markdown for Ruby | DaFoster</a></li>
+</ul>
+
+
+<p>Markdownファイルをかけば勝手にコンバートしてくれるわけではなく、先頭に記述する必要があります。</p>
+
+<p>index.mdなど</p>
+
+<pre><code>---
+layout: default
+title: なにかタイトル
+---
+
+本文
+</code></pre>
+
+<h3>&#95;layout</h3>
+
+<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの&#8220;にMarkdown内容を出力することになります。</p>
+
+<p><code>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</code>や&#8220;を使用してよさげに作るとよいです</p>
+
+<h3>Gemfile</h3>
+
+<p>Gemfile</p>
+
+<pre><code>source 'https://rubygems.org'
+gem 'github-pages'
+</code></pre>
+
+<p>Rubyとbundlerとか事前にインストールしておくと<code>bundle install</code>とか<code>bundle exec jekyll serve</code>とかできて用意しておくと便利。travis-ciに登録とか気軽にできるのでリポジトリの紹介ページとかでなく、純粋にGitHub Pagesとしてリポジトリを使う場合は便利です。</p>
+
+<p><a href="http://haya14busa.com/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった « haya14busa</a></p>
+
+<h3>ConvertからExcludeする</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>exclude:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+  - 'README.md'
+  - 'scripts'
+</code></pre>
+
+<p>markdownやらhtml以外の物も<code>_site</code>以下にJekyllはコンバートするので、気づかずにREADMEとかをおいておくとサイトからアクセスできちゃったりします。しっかり除外設定しておくと良さげです。</p>
+
+<p><code>find _site -type f</code>とかして確認するとよいです。</p>
+
+<h3>&#95;includeを使う</h3>
+
+<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において`<hgroup>
+  <h1><a href="http://haya14busa.com/">haya14busa</a></h1></p>
+
+<pre><code>&lt;h2&gt;haya14busa's memo&lt;/h2&gt;
+</code></pre>
+
+<p></hgroup></p>
+
+<p>`とレイアウトなどなどから呼び出すことができます。</p>
+
+<h3>&#95;dataとfor loopが便利っぽい</h3>
+
+<p>&#95;data/members.yml</p>
+
+<pre><code>- name: sanaechan
+  github: deco_mori
+  twitter: decochan
+
+- name: haya14busa
+  github: haya14busa
+  twitter: haya14busa
+</code></pre>
+
+<p>とかしておくとMarkdownファイル含め任意のところで</p>
+
+<p>こんなふうに呼び出せて便利そうです。</p>
+
+<p>よんだvimrcとかvim pluginをテーブルに直書きじゃなくてデータに書いてloop回してわっしょいとかもよさそう。</p>
+
+<h3>結局は</h3>
+
+<p>他人のサイトみて良さげな書き方参考にするとすぐできるのではかどります。</p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+
+
+<p>とか</p>
+
+<ul>
+<li><a href="https://github.com/twbs/bootstrap">twbs/bootstrap</a>
+
+<ul>
+<li>Twitter BootstrapのSource版がそのままjekyllで使えて参考になったり</li>
+</ul>
+</li>
+<li><a href="https://github.com/nitoyon/tech.nitoyon.com">nitoyon/tech.nitoyon.com</a>
+
+<ul>
+<li><a href="http://tech.nitoyon.com/ja/blog/2012/09/20/moved-completed/">俺の最強ブログ システムが火を噴くぜ &#8211; てっく煮ブログ</a></li>
+<li>こういうところを参考に熱意をあげたり</li>
+</ul>
+</li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a>
+
+<ul>
+<li>ここを温かい目で眺めたり</li>
+</ul>
+</li>
+</ul>
+
+
+<p>などなど、GitHubにホストされてるものを公式ドキュメントなどと見比べながらやっていくといろいろ発見があったり、ついでにプルリクれたりしてよいです。</p>
+
+<p>ただGitHub PagesはJekyll Pluginなどが使えなくて、Octopressとか使って若干違う構成になっていることもあるので注意です。鵜呑みコピペ怖い。</p>
+
+<h2>結論</h2>
+
+<p>Jekyll on GitHub Pages with Twitter Bootstrap 便利すぎる。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった]]></title>
+    <link href="http://haya14busa.com/travis_jekyll_gh-pages/"/>
+    <updated>2013-12-27T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/travis_jekyll_gh-pages</id>
+    <content type="html"><![CDATA[<h2>なんどpushしてもTravisが動いてくれなくて非常につらかった</h2>
+
+<p>何度も設定見なおして、何度も更新して、何度も何度もpushしました。</p>
+
+<p>しかし何も起こらなかった。。。</p>
+
+<h2>解決</h2>
+
+<p>ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&#8230;</p>
+
+<blockquote><p>Note that the gh-pages branch will not be built unless you add it to the whitelist (branches.only).</p>
+
+<p>&#8211; <cite><a href="http://about.travis-ci.org/docs/user/build-configuration/">Travis CI: Configuring your build</a></cite></p></blockquote>
+
+<p>書いてあった！！！</p>
+
+<p><code>gh-pages</code>ブランチはデフォルトではテストしてくれなくて、whitelistで明示的に指定しないとダメなようです。</p>
+
+<p>.travis.yml</p>
+
+<pre><code>language: ruby
+rvm:
+  - 2.0.0
+before_script: "bundle show"
+script: "bundle exec jekyll build"
+after_script: "find _site -type f"
+branches:
+  only:
+    - gh-pages
+</code></pre>
+
+<p>よく考えたら、gh-pagesってプロジェクトと全く別の物が置かれているわけだから、デフォルトで無視してくれるっていうのは気が効いてていいかもしれないですね。 <code>gh-pages</code>のテストとか別にローカルで書くときにビルドしてればわかるのでそもそもあんまりテストする必要性がないのかもしれないというのはある。</p>
+
+<p>ちなみに上記のようにwhitelistでgh-pages onlyの設定にしていてもPull Requestにはちゃんと反応してくれるっぽいです。Travisさんさすがです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimプラグイン読書会やりましたー]]></title>
+    <link href="http://haya14busa.com/reading-vim-plugin-01/"/>
+    <updated>2013-12-18T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vim-plugin-01</id>
+    <content type="html"><![CDATA[<h2>Vim script読書会 #01</h2>
+
+<h3>読んだプラグイン</h3>
+
+<ol>
+<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></li>
+</ol>
+
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>12/14(土) 21:00-23:00</li>
+</ul>
+
+
+<h3>ログ</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822571">Logです</a></li>
+</ul>
+
+
+<h3>Pull Request</h3>
+
+<ul>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/4">Use negative value and doesn&#8217;t use reverse() by thinca · Pull Request #4 · Shougo/junkfile.vim</a></li>
+<li>thincaさんチェック便利</li>
+</ul>
+
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<h2>感想とか</h2>
+
+<p>やりたいとか言っておきながら読みたいプラギンとか決めるのぐだぐだだったり、僕自信に拡散力のようなものが備わっていなかったりで色々と不安だったけど、蓋を開けてみると割と参加者も集まってくれて、「勉強になる」とかいい反応もあったりしてよかった。参加者の皆さん、ありがとうございます。</p>
+
+<p>特におしょーさんはいろいろ取り仕切ってくれてありがとうございます。</p>
+
+<h2>junkfile.vim</h2>
+
+<p><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></p>
+
+<p>plugin/とautoload/の使い分け方とかプラグインの基本的な作り方を読んだり訊いたりして今回の「プラグインの基本的な構成や作り方について学ぶ」という目的に適ってとてもいい感じでした。</p>
+
+<h3>おまじない</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#use-cpo-save">:help use-cpo-save</a></li>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822765">そのへんのログ</a></li>
+</ul>
+
+
+<p><noscript>
+  <pre><code class="language-viml viml">&ldquo; おまじない
+&rdquo; Load Once
+if exists(&lsquo;g:loaded_helloworld&rsquo;) &amp;&amp; g:loaded_helloworld
+  finish
+endif
+let g:loaded_helloworld = 1</p>
+
+<p>&ldquo; Saving &lsquo;cpoptions&rsquo;
+let s:save_cpo = &amp;cpo
+set cpo&amp;vim</p>
+
+<p>&ldquo; Restore &lsquo;cpoptions&rsquo;
+let &amp;cpo = s:save_cpo
+unlet s:save_cpo
+</code></pre>
+</noscript></p>
+
+<p>行連結・副作用の回避をしましょう。おまじないレベルなのでとりあえずhelp読んである程度理解したら、なにも考えず書いておくといいっぽいです。</p>
+
+<h3>autoload変数とか</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822792">そのへんのログ</a></li>
+<li>プルリク: <a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><p><a href="http://vim-jp.org/vimdoc-ja/eval.html#internal-variables">:h internal-variables</a></p>
+
+<p>hoge#foo -> autoload
+hoge_foo -> plugin</p></li>
+</ul>
+
+
+<p>値をセットするだけなら<code>let g:hoge#foo='hoge'</code>しても、autoloadが呼ばれてしまうというわけではないはずだけど、やはりautoload変数はautoloadで定義するといいっぽい。</p>
+
+<p>plugin下では<code>g:hoge_foo</code>とかを使うのがよくあるけど<code>b:</code>とかいろいろあって難しい</p>
+
+<h3>autoloadとpluginの違い</h3>
+
+<p>C でいう、</p>
+
+<pre><code>plugin -&gt; .h
+autoload -&gt; .c
+</code></pre>
+
+<blockquote><p>実装を autoload に書いて、それを呼び出すコマンドなどを plugin で定義するのが最近の流行りですね<br/>
+と、いうのも plugin は起動時に読み込まれるため、plugin に全部の実装を書いてしまうと起動時間に影響するため</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822953">vim-users.jp &#8211; Lingr</a></cite></p></blockquote>
+
+<p>せっかく分けているのにpluginでautoloadの関数を直接呼ぶとVim起動時にautoload以下も呼ばれてしまうのでそのへんを注意して残念プラグインにならないように注意すべき。</p>
+
+<p>必然的に<Plug>マッピングの提供などはplugin下でやるべきということになる。</p>
+
+<h2>vim-visualstar</h2>
+
+<p><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></p>
+
+<p>plugin下に100行程度で簡単そうかと思いきや、実装が結構難しくてVim script力の高まりを感じたり感じなかったりした。</p>
+
+<blockquote><p>itchyny<br/>
+@/とか&#8217;>とかの勉強になるとは思う</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823713">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>この辺は初心者でも便利ってかんじでcountの話とかはなかなか難しかった。というか僕は<code>line("'&lt;")</code>を<code>line("v")</code>の違いでハマったみたいなこといってからその再現しようとしてたりしてvim-visualstarを完璧に理解することを諦めたりしていた。</p>
+
+<p>最近<a href="https://github.com/koron/cmigemo">cmigemo</a>のvimプラグイン部分をプルリクったり、個別に管理させてもらったり(<a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a>)してた関係もあって検索する部分とか参考になった。</p>
+
+<blockquote><p>raa0121<br/>
+(&#8220;v&#8221;) と (&#8220;`v&#8221;) が顔文字に見える</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823525">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>かわいい(&#8220;`v&#8221;)</p>
+
+<h2>Vim script読書会 #02</h2>
+
+<p>結構反応もよかったのでめでたく第2回も開催しようという流れになりました。</p>
+
+<ol>
+<li>毎週21時からやるやる</li>
+<li>隔週で行う</li>
+<li>月1で行う</li>
+<li>不定期、気が向いたら</li>
+</ol>
+
+
+<p>2か3あたりかなーという感じですが、年末年始なので次回は年明けの1/11(土曜日)です。</p>
+
+<p>この辺反応良かったりして人が安定していると隔週になったりすると思うのでぜひぜひ参加したりしてわいわい読みましょう。</p>
+
+<h3>読むプラグイン(予定)</h3>
+
+<ol>
+<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ol>
+
+
+<p>または</p>
+
+<ol>
+<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
+<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unit-fold</a></li>
+</ol>
+
+
+<p>clever-fの製作者であるりんだんさん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>)が参加できそうならclever-f,無理そうならunite-sourceを読もうということでunite-mcdonalds-vimとunite-fold読みます(たぶん)。</p>
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>2014/01/11(土) 21:00-23:00</li>
+</ul>
+
+
+<h2>各プラギン紹介記事Link</h2>
+
+<h3>clever-f</h3>
+
+<ul>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fは<a href="https://github.com/haya14busa/vim-easymotion">vim-easymotion</a>にmigemo組み込むときの参考に軽く読んでいたり、人によってはライフチェンジングプラグインでclever-f面白いし、作者のりんだんさんすごい!みたいな感じでかなり個人的に提案しました() -> <a href="http://rhysd.hatenablog.com/entry/2013/12/13/011420">（進捗あります！✧＼\٩(‘ω’)و /／✧）o 。(&#8216;､3)_ヽ)＿ &#8211; sorry, unimplemented:</a></p>
+
+<p>ただthincaさんが魔改造していてthincaさん説明も期待できそうだし、1回で1つのプラグインを集中的に読む場合、分量的にいい感じっぽいので目的にもよりますが面白そうだと思います。</p>
+
+<h3>unite-mcdonalds-vim</h3>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
+</ul>
+
+
+<p>これがいわゆる人々の生活を豊かにするプラグインの内のひとつ! -> <a href="http://mattn.kaoriya.net/software/vim/20131206144325.htm">Big Sky :: Vim script は人々の生活を豊かにしなければならないッ！</a></p>
+
+<p>unite-sourceかつ<a href="https://github.com/mattn/webapi-vim">mattn/webapi-vim</a>を使っているのでウェブ上のソースを使った便利unite-sourceが作れるようになるかもですね。</p>
+
+<p>またマクドナルドのページの構造変わってて動かなくなっていたのをmattnさんに直して頂きました。ありがとうございます。<a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>も直して頂いたので、時間あったら一緒に読むとお腹すきそうでよさそう。</p>
+
+<h3>unite-fold</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120802/1343888407">unite-fold を github に上げた &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>おしょーさんwareなので作者本人の説明も期待できます。個人的にはunite-foldは特にvimrc編集するときに便利</p>
+
+<p>どれもいい感じのプラグインなのでみなさん参加しましょう。</p>
+
+<p>unite-sourceになる場合unite予習事案が発生するので予習によさそうなリンクとか別にまとめる予定(あくまでも予定)</p>
+
+<h2>今後についてとか</h2>
+
+<blockquote><p>[今後の課題]</p>
+
+<ul>
+<li>会ごとに具体的な目的を決めたい</li>
+<li>読んでみたいプラグインをまとめる</li>
+<li>まとめサイトほしい</li>
+<li>23時から vimrc読書会があるので延長するのが厳しい</li>
+</ul>
+
+
+<p>&#8211; <cite><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></cite></p></blockquote>
+
+<h3>目的について</h3>
+
+<ol>
+<li>Vim script 力を身につけたい、高めたい</li>
+<li>プラグイン構成を理解する、 プラグインを作ってみたい</li>
+<li>プラグインのある部分の実装を読んでみたい(そして取り込みたいor作りたい)</li>
+<li>unite-source作りたい、vim-textobj-hogeなどなど作りたい</li>
+<li>作ったから添削してもらいたい</li>
+<li>便利だけどちょっと実装が&#8230;というプラグインを読んで怒涛のプルリクを行いたい</li>
+<li>単純におもしろそうだからみんなでわいわい読もう<a href="https://github.com/google/maktaba">google/mactaba</a>とか(?)</li>
+<li>etc&#8230;</li>
+</ol>
+
+
+<p>Vim scriptに限らずプログラミング力も高めたいとかもあるかもしれない。気軽にみんなでわいわいコードをオンラインで読めるというのはおもしろいし、vimrc読書会などそういうことができるVimのコミュニティー力はすごいなーと見ていて思う。</p>
+
+<p>なんにせよ、おしょーさんが言うように漫然と読まずに目的を決めて読むというのは大事だし得るものもその分大きくなるので決めていきたいですね。</p>
+
+<p>3.などは目的が絞られる分、参加者層にささるかが未知数だけど、こういうプラグイン作りたくて似たような部分があるプラグインを参照する事案は実際にあるのでおもしろそう。</p>
+
+<p>例えばずっと2の目的とかだと続かないので、やっぱり回ごとに決めるという流れをもっとサクサクできるようになるとよさそう。次回の例で言えば、clever-fなら「Vimのカーソル移動を拡張するプラグインを作りたい」(3に近い)、unite-sourceならそのまま「unite-sourceの構成を理解して作ってみたい」(2)みたいな目的をもってそれを参加者が共有できていると実りのある読書会ができるんじゃないかなーと思う。</p>
+
+<h3>まとめさいととか</h3>
+
+<p>vimrc読書会みたいにまとめページと、リクエストできるページあったら便利そうなのでGithub Pagesとかで(?)適当に作ろうと思って何もせず3日くらい経ってるので次回始まるまでに適当に作りたい。</p>
+
+<p>時間とかvimrc読書会の関係上もっとゆっくり読みたかったり、予想外に盛り上がっても続けれないとかあって難しい。日曜日だと次の日が月よう&#8230;ｳｯ</p>
+
+<p>いろいろ懸念事項はありますが、わいわい読めておもしろかったので興味出てきた人は1/11日に<a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>を覗いて見るときっといい感じです。</p>
+
+<p>あと今回のプラグイン構成を理解しよーという目的だったので<a href="https://github.com/haya14busa/vim-helloworld">haya14busa/vim-helloworld</a>という本当にhello worldするだけのプラグイン作って復習しました。本当は予習として作るつもりだった。読むと良さそうなhelp書いたりgitのコミットログを追っていけば勉強になるようにと意識したので、本当にこれから作るってひとは見るといいかもしれないけど、やっぱりそうでもなかったりします。ﾊｲ</p>
+
+<p>こーゆーの作りたいなーというのはあったりなかったりするので、やっぱり作りたいものを作っていきたい</p>
+
+<p>そんな時に便利なVimプラグイン読書会。次回は来年の1/11(土)です。よろしくおねがいします。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数学ガールゲーデルの不完全性定理読んだメモ]]></title>
+    <link href="http://haya14busa.com/mathematical_girls_godels_incompleteness_theorems/"/>
+    <updated>2013-12-18T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/mathematical_girls_godels_incompleteness_theorems</id>
+    <content type="html"><![CDATA[<h2>ペアノ・アリスメティック</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Peano_axioms">Peano axioms &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%9A%E3%82%A2%E3%83%8E%E3%81%AE%E5%85%AC%E7%90%86">ペアノの公理 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>ペアノ算術</p>
+
+<dl>
+<dt>公理</dt>
+<dd>  証明がなくても成り立つとみなす命題</dd>
+<dt>命題</dt>
+<dd>  真偽が定まる数学的主張</dd>
+</dl>
+
+<h2>ガリレオのためらい</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%86%E5%90%88">集合 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Set_(mathematics)">Set (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<dl>
+<dt>外延的定義</dt>
+<dd>  {2,4,6,8,&#8230;}</dd>
+<dt>内包的定義</dt>
+<dd>  {n | nは2の倍数}</dd>
+<dd><p>  -> 無限集合を扱える!</p></dd>
+</dl>
+
+<h3>ラッセルのパラドクス</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Russell%27s_paradox">Russell&#8217;s paradox &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%A9%E3%83%83%E3%82%BB%E3%83%AB%E3%81%AE%E3%83%91%E3%83%A9%E3%83%89%E3%83%83%E3%82%AF%E3%82%B9">ラッセルのパラドックス &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Barber_paradox">Barber paradox &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BA%8A%E5%B1%8B%E3%81%AE%E3%83%91%E3%83%A9%E3%83%89%E3%83%83%E3%82%AF%E3%82%B9">床屋のパラドックス &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>集合 <-> 論理</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan&#8217;s laws &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%BB%E3%83%A2%E3%83%AB%E3%82%AC%E3%83%B3%E3%81%AE%E6%B3%95%E5%89%87">ド・モルガンの法則 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>写像</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Map_(mathematics)">Map (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%86%99%E5%83%8F">写像 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Surjective_function">Surjective function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%A8%E5%B0%84">全射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Injective_function">Injective function &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8D%98%E5%B0%84">単射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Bijection">Bijection &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%A8%E5%8D%98%E5%B0%84">全単射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>ガリレオ</p>
+
+<ul>
+<li>&lt;&lt;無限では、全単射で個数が等しいとは言えない>></li>
+</ul>
+</li>
+<li><p>デテキント</p>
+
+<ul>
+<li>&lt;&lt;無限とは、全体と部分との間に全単射が存在するものである>></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Galileo_Galilei">Galileo Galilei &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%83%AA%E3%83%AC%E3%82%AA%E3%83%BB%E3%82%AC%E3%83%AA%E3%83%AC%E3%82%A4">ガリレオ・ガリレイ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Richard_Dedekind">Richard Dedekind &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%92%E3%83%A3%E3%83%AB%E3%83%88%E3%83%BB%E3%83%87%E3%83%BC%E3%83%87%E3%82%AD%E3%83%B3%E3%83%88">リヒャルト・デーデキント &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Georg_Cantor">Georg Cantor &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%82%AA%E3%83%AB%E3%82%AF%E3%83%BB%E3%82%AB%E3%83%B3%E3%83%88%E3%83%BC%E3%83%AB">ゲオルク・カントール &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>&lt;&lt;飛躍前の停滞>></p></li>
+<li><p>&lt;&lt;わからなくなる最前線>></p></li>
+<li>&lt;&lt;自分はどこがわかってないんだろう>></li>
+</ul>
+
+
+<h2>限りなく近づく目標地点</h2>
+
+<dl>
+<dt>発散</dt>
+<dd>  divergence</dd>
+<dt>収斂</dt>
+<dd>  convergence</dd>
+</dl>
+
+<p><a href="http://home.alc.co.jp/db/owa/etm_rsch?er_sn_in=585">L.vergere = to incline(傾く) </a></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Augustin-Louis_Cauchy">Augustin-Louis Cauchy &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%BC%E3%82%AE%E3%83%A5%E3%82%B9%E3%82%BF%E3%83%B3%EF%BC%9D%E3%83%AB%E3%82%A4%E3%83%BB%E3%82%B3%E3%83%BC%E3%82%B7%E3%83%BC">オーギュスタン＝ルイ・コーシー &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Karl_Weierstrass">Karl Weierstrass &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%AF%E3%82%A4%E3%82%A8%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%82%B9">カール・ワイエルシュトラス &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p><strong>極限値は収束する、「行き先」を指しているだけであって、けっしてけっしてその行き先に到達するとは言っていない</strong></p>
+
+<h2>ライプニッツの夢</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz">Gottfried Wilhelm Leibniz &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B4%E3%83%83%E3%83%88%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%97%E3%83%8B%E3%83%83%E3%83%84">ゴットフリート・ライプニッツ &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>ゲーデルの不完全性定理</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel&#8217;s incompleteness theorems &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86">ゲーデルの不完全性定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3><a href="http://ja.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E4%BD%93%E7%B3%BB">形式体系 &#8211; Wikipedia</a></h3>
+
+<dl>
+<dt>&lt;&lt;意味論的方法>></dt>
+<dd>  semantics</dd>
+<dd><p>  真偽値を使う</p></dd>
+<dt>&lt;&lt;構文的方法>></dt>
+<dd>  syntax</dd>
+<dd><p>  真偽値を使わない</p></dd>
+</dl>
+
+<ol>
+<li>論理式</li>
+<li>公理と推論規則</li>
+<li>証明と定理</li>
+</ol>
+
+
+<p>&lt;&lt;数学を数学する>></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/David_Hilbert">David Hilbert &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%83%80%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%BB%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88">ダフィット・ヒルベルト &#8211; Wikipedia</a></p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Modus_ponens">Modus ponens &#8211; Wikipedia, the free encyclopedia</a></p></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%80%E3%82%B9%E3%83%9D%E3%83%8D%E3%83%B3%E3%82%B9">モーダスポネンス &#8211; Wikipedia</a></p></li>
+</ul>
+
+
+<h2>イプシロン・デルタ</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/(%CE%B5,_%CE%B4)-definition_of_limit">(ε, δ)-definition of limit &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%97%E3%82%B7%E3%83%AD%E3%83%B3-%E3%83%87%E3%83%AB%E3%82%BF%E8%AB%96%E6%B3%95">イプシロン-デルタ論法 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>&lt;&lt;分けることは、分かることへの第一歩>></p>
+
+<h2>対角線論法</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument">Cantor&#8217;s diagonal argument &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%B3%E3%83%88%E3%83%BC%E3%83%AB%E3%81%AE%E5%AF%BE%E8%A7%92%E7%B7%9A%E8%AB%96%E6%B3%95">カントールの対角線論法 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Countable_set">Countable set &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%AF%E7%AE%97%E9%9B%86%E5%90%88">可算集合 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>二つの孤独が生み出すもの</h2>
+
+<h3>同値関係</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Equivalence_relation">Equivalence relation &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%90%8C%E5%80%A4%E9%96%A2%E4%BF%82">同値関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>同値律</li>
+<li>反射律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Reflexive_relation">Reflexive relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84%E9%96%A2%E4%BF%82">反射関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>対象律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Symmetric_relation">Symmetric relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AF%BE%E7%A7%B0%E9%96%A2%E4%BF%82">対称関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>推移律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Transitive_relation">Transitive relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%8E%A8%E7%A7%BB%E9%96%A2%E4%BF%82">推移関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>商集合
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Quotient_set">Equivalence class &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ゲーデルの不完全定理</h2>
+
+<h3>Outline</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Hilbert%27s_program">Hilbert&#8217;s program &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">ヒルベルト・プログラム &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel&#8217;s incompleteness theorems &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86">ゲーデルの不完全性定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>ヒルベルト計画</h3>
+
+<ol>
+<li>形式的体系の導入
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Formal_system">Formal system &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E4%BD%93%E7%B3%BB">形式体系 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>無矛盾性の証明</li>
+<li>完全性の証明</li>
+</ol>
+
+
+<h4>Hilbert</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/David_Hilbert">David Hilbert &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%80%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%BB%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88">ダフィット・ヒルベルト &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h4>Terms</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Axiom">Axiom &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%AC%E7%90%86">公理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Theorem">Theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AE%9A%E7%90%86">定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Well-formed_formula">Well-formed formula &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%AB%96%E7%90%86%E5%BC%8F">論理式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Rule_of_inference">Rule of inference &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%8E%A8%E8%AB%96%E8%A6%8F%E5%89%87">推論規則 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>Gödel</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h4>Terms: Definition</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Definition#Intension_and_extension">Intension, Extension Definition &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AE%9A%E7%BE%A9#.E5.A4.96.E5.BB.B6.E3.81.A8.E5.86.85.E5.8C.85">外延的、内縁的定義 &#8211; Wikipedia</a></li>
+<li><a href="http://bizmakoto.jp/bizid/articles/0809/29/news065_2.html">実践！　専門知識を教えてみよう：第18回　常識的な概念ほど、きっちり定義を考えなければならない (2/3) &#8211; 誠 Biz.ID</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Intension">Intension &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Extension_(semantics)">Extension (semantics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>ゲーデル数</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del_numbering">Gödel numbering &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E6%95%B0">ゲーデル数 &#8211; Wikipedia</a></p></li>
+<li><p>基本記号のゲーデル数として、13以下の奇数を割り当てる</p></li>
+<li><p>素数指数表現で基本記号の列を数で表せる</p></li>
+<li>ゲーデル数のパリティで列か否かを識別できる</li>
+<li><p>記号列か記号列の列かは素因数分解したときの2の個数のパリティで判断できる</p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Primitive_recursive_function">Primitive recursive function &#8211; Wikipedia, the free encyclopedia</a></p></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E5%8E%9F%E5%A7%8B%E5%86%8D%E5%B8%B0%E9%96%A2%E6%95%B0">原始再帰関数 &#8211; Wikipedia</a></p></li>
+</ul>
+
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/wd0/20080815/a">不完全性定理は「現代科学の限界」なるものを示してはいない（その０） &#8211; /dev/wd0a</a></li>
+<li><a href="http://www.research.ibm.com/people/h/hirzel/papers/canon00-goedel.pdf">ゲーデルの論文の英訳:PDF</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった]]></title>
+    <link href="http://haya14busa.com/reading-vim-plugin/"/>
+    <updated>2013-12-13T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vim-plugin</id>
+    <content type="html"><![CDATA[<p>気軽な感じでVim script(plugin)読書会がしたいとつぶやいたら、@osyo-mangaさんが拾ってくれて実際にVim script読書会、開催することになりました。おしょーさんありがとうございます。</p>
+
+<p>読書会は<s>明日</s>今日(12/14)！開催です！気になった方は参加しましょう！詳細は以下！</p>
+
+<p><a href="http://d.hatena.ne.jp/osyo-manga/20131208/1386432636">12月14日（土）21時から Vimプラグイン読書会を行います &#8211; C++でゲームプログラミング</a></p>
+
+<h2>Vim script読書会#1@12/14</h2>
+
+<h3>読むプラギン</h3>
+
+<ol>
+<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>
+
+<ul>
+<li>junkfile.vimの紹介記事:<a href="http://vim-users.jp/2010/11/hack181/">Vim-users.jp &#8211; Hack #181: Vimで使い捨てのファイルを作成する</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/thinca/20091125/1259075486">visualstar.vim 書いた &#8211; 永遠に未完成</a></li>
+<li>時間があればvisualstarよむ(はず)</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>
+
+<ul>
+<li>Lingr知らない人は読むと良さそう。そしてそのノリで参加するといいと思います。-><a href="http://blog.supermomonga.com/articles/neta/lingr.html">プログラミング上達したいならチャットサービスLingrをつかおう（つかおう） | かなりすごいブログ</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>21:00から長くても23:00まで(23:00からvimrc読書会がはじまります)</li>
+</ul>
+
+
+<h2>詳細とか</h2>
+
+<p>第一回は<strong>これからVimプラグイン書きたい</strong>って人の勉強になるように短く、基本的なプラグインとして<a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>を読むことになりました。</p>
+
+<p>暗黒美夢王として有名なShougoさん作のプラグインですが、junkfile.vimは初心者でも読みやすい分量なので、「Vim script怖い」ってかたでも気軽に参加できます(おそらく)。あとjunkfile.vim使ったことない人(僕がそうでした)もVimでメモれる便利プラグインで面白いので、知らないプラグインだからﾅｰって人でもとっつきやすそうです。</p>
+
+<p>またすでにVim scriptできるって方も、もし継続して行うことになれば時によっていろんなレベルのものを読むことになると思うので、参加するといろいろ便利だと思います。みんなでわいわいできたら楽しそうなので興味があったらぜひよろしくおねがいします。</p>
+
+<h2>Vim plugin書くために読んだら便利そうなhelp</h2>
+
+<p>初心者向けとは言っても全く知らないから怖い!予習したい!って場合に読むと良さそうなhelpリストしました(よさそうなだけです)。</p>
+
+<p>usr_41.txtとかeval.txtは全部読むと長いので読むとしたら絞って読むといいかもです。<a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a>あたりが目的に適ってる感じだと思います。</p>
+
+<h3>:h usr_41</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#usr_41.txt">:h usr_41.txt</a></li>
+<li><strong><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a></strong></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27runtimepath%27">:h &#8216;runtimepath&#8217;</a></li>
+</ul>
+
+
+<h3>:h eval.txt</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#eval.txt">:h eval.txt</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#autoload">:h autoload</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Lists">:h Lists</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Dictionaries">:h Dictionaries</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#s%3Avar">:h s:var</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#variables">:h variables</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#functions">:h functions</a></li>
+</ul>
+
+
+<p>などなど</p>
+
+<h2>ブラウザでもVimのヘルプが読みたい!</h2>
+
+<p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<p>ブックマークレットでvimdoc@jaとかがブラウザから手軽に読めるのでおすすめしときます(宣伝)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する]]></title>
+    <link href="http://haya14busa.com/vim-lazymotion-on-speed/"/>
+    <updated>2013-11-28T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vim-lazymotion-on-speed</id>
+    <content type="html"><![CDATA[<p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の363日目の記事です。 昨日はthincaさんの<a href="http://d.hatena.ne.jp/thinca/20131127/1385487671">本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成</a>でした。</p>
+
+<p>あと3日でVAC2013になるということですが、<s>いまさら</s>VAC2012の99人目として記事を書いてみたいと思います。</p>
+
+<p>僕は今年の1月か、2月あたりからVimを使い始めたので、自分のVim歴よりも前に始まったAdvent Calendarに参加すると思うと歴史を感じます。すごい。</p>
+
+<p>Vimで最初に習うのはhjklによるカーソル移動です。<br/>
+その後w,bなどたくさんの移動コマンドを覚えると思います。<br/>
+またVimを使っているとき、その7,8割はカーソル移動してるんじゃないでしょうか???<br/>
+カーソル移動大事。</p>
+
+<p>ということでカーソル移動系プラグインであるvim-easymotionの話をします。</p>
+
+<h2>vim-easymotionとは</h2>
+
+<p>任意の場所や単語の先頭などをハイライト&amp;アルファベットなどの候補キーを出して、その行きたい場所のキーを押すことによってその場所にジャンプするプラグインです。今回、これを一から作ったというわけではなく、フォークして便利にしたという話とおすすめの使い方書くよという話です。その辺よろしくお願いします。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<h2>もっとvim-easymotionしよう</h2>
+
+<p>Github: <strong><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></strong></p>
+
+<p>Install</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-easymotion'
+</code></pre>
+
+<p>本家: <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>なるべく本家Easymotionからの移行時にびっくりしないよう、新規機能は基本的にデフォルトでオフになっていて、オンなのは候補の2キー表示と双方向サーチである<code>&lt;Leader&gt;s</code>の追加、バグフィックスあたりだけなのでぜひ気軽に試してフィードバックorプルリクください。</p>
+
+<p>以下面倒なのでデフォルトのprefixキーである<code>&lt;Leader&gt;&lt;Leader&gt;</code>を<code>&lt;Leader&gt;</code>に変更しているとして解説します。(特に機能名がないので機能をMappingで表したりします)</p>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108">:h easymotion-default-mapping</a></p>
+
+<h2>よくわかる拡張機能</h2>
+
+<ul>
+<li>最初から候補画面で2キー表示する!</li>
+<li>fやFの双方向バージョンが追加され、画面内ならどこでも飛べる!(<code>&lt;Leader&gt;s</code>)</li>
+<li>Smartcase機能でもっと楽々移動!</li>
+<li>1文字migemo実装で日本語でもeasymotion!</li>
+<li>その他もろもろ</li>
+<li>バグフィックス
+
+<ul>
+<li>マルチバイトバグ</li>
+<li>バッファ名バグ(今までuniteやref-vimでバグってました)</li>
+<li>その他いろいろ</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初から2キー表示する!</h2>
+
+<p>おそらくVim-Easymotionを使ったことがある人であれば必ず思うであろう、</p>
+
+<p><strong>「2回キー押すとき面倒くさい&#8230;」</strong></p>
+
+<p>これが改善されています。2回以上押さなければならない場合は最初から2つ分表示されてストレス90％減です(当社比)</p>
+
+<p><img src="../images/misc/wp/2013/11/two-key-motion.gif" alt="easymotion_two_key_combo" /></p>
+
+<h2>双方向サーチでカーソル位置を気にせず使う</h2>
+
+<p>これも使ったことがある人なら面倒くさいと思ったことがあるんじゃないでしょうか？</p>
+
+<p><strong><code>&lt;Leader&gt;f</code>か<code>&lt;Leader&gt;F</code>のどっち使うか決めるの面倒くさい。</strong></p>
+
+<p>飛びたい場所が現在位置の上下近くだったりすると意外とめんどくさくて脳のリソース消費します。これが<code>&lt;Leader&gt;s</code>で双方向サーチするという新機能で解決です。また、ひとつのマッピングでほぼすべての移動を補えるようになるところが見逃せないポイント。</p>
+
+<h2>Smartcaseでもっと楽々移動したい!</h2>
+
+<p>正直Shift押すのも面倒くさい。</p>
+
+<p>vimrc</p>
+
+<pre><code>" smartcase
+let g:EasyMotion_smartcase = 1
+</code></pre>
+
+<p>上記の設定で<code>&lt;Leader&gt;sv</code>で<strong>v</strong>imにも<strong>V</strong>imにもマッチして移動できます。楽。勿論smartcaseなので<code>&lt;Leader&gt;sV</code>だと<strong>V</strong>imだけにマッチします。</p>
+
+<h2>1文字migemo実装で日本語でもeasymotion!</h2>
+
+<p>migemo一回使ってみたら、日本語移動でかなり便利だったのでeasymotionでも実装したいなーと思っていました。そこで探してみると、<a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a>ですでに擬似migemo実装されてる事案があったのでclever-fの作者であるLindanさんに許可とってパク&#8230;参考にして実装しました。</p>
+
+<p>cmigemoなしでも動きます。</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_use_migemo = 1
+</code></pre>
+
+<p>Vimで日本語書くときになかなかいいです。</p>
+
+<p>注意事項として候補が多すぎたりスペック低かったりすると、ちょっと遅くてイラッとするかもしれません&#8230;もうちょっと改善したい。ちなみに<code>&lt;Leader&gt;w</code>など単語移動モーション使うと必ずしも行きたい場所には行けませんが移動はかなりサクッと行きます。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<p>だいたい主な拡張機能はこんな感じです。</p>
+
+<p>以下元からあった機能も適当に解説しながらなんやかんやしていきます。</p>
+
+<h2>Find Motion</h2>
+
+<p>新機能である<code>&lt;Leader&gt;s</code>や<code>&lt;Leader&gt;f</code>などがこのFind Motionに当たります</p>
+
+<ul>
+<li><strong><Leader>s{char}</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>f{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>F{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>t{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}の1文字手前にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>T{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}の1文字後にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>おそらく基本的に使うのは<code>&lt;Leader&gt;s{char}</code>で、オペレーション待機モードで<code>&lt;Leader&gt;t{char}</code>,<code>&lt;Leader&gt;T{char}</code>使うかもといった感じです。</p>
+
+<p>おすすめは<code>&lt;Leader&gt;s{char}</code>が便利すぎるので、<code>s</code>キーをマップして<code>s{char}</code>で動作するようにするとたった<strong>3(or4)キー</strong>(<code>s{char}{target}</code>)で任意の場所に一瞬で移動できるので非常に捗ります。</p>
+
+<p>vimrc</p>
+
+<pre><code>" もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion を`s`に割り当てます"
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) " surround.vimとかぶるので`z`
+</code></pre>
+
+<h2>Word Motion</h2>
+
+<ul>
+<li><strong><Leader>w</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>W</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>b</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>B</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>e</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>E</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>ge</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>gE</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>S</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として単語の先頭にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>好みによりますが、Findモーションよりも移動したいのは基本単語の先頭だし、Wordモーションのほうが好きという方もいると思います。こちらのほうがキー入力が抑えられます。</p>
+
+<p>またもう一つの優位点としてターゲットとして入力できない単語の移動(日本語など)で使えます。</p>
+
+<p>あと堂々と<strong><Leader>S</strong>と書いてありますが、挙動を変えて単語の先頭、後ろ、その他いい感じの場所にマッチさせて、なるべくどこでも移動できるという挙動に変えるかもしれません&#8230;すいません。(本家easymotionのissueでjump-to-anywareみたいなものがあったのでそれを意識。)</p>
+
+<h2>Search Motion</h2>
+
+<ul>
+<li><strong><Leader>n</strong>
+
+<ul>
+<li>カーソルより右側の検索結果にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>N</strong>
+
+<ul>
+<li>カーソルより左側の検索結果にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>意外と使われてないんじゃないかと思われる検索結果にマッチする機能です。<code>/vim&lt;CR&gt;</code>などしてから<code>&lt;Leader&gt;n</code>or<code>&lt;Leader&gt;N</code>を押すと検索結果がハイライトされて移動できます。</p>
+
+<p>検索してからマッチするところが多すぎてn連打つらい！というのが解消できます。僕はあまり使っていませんが</p>
+
+<h2>JK Motion (行移動)</h2>
+
+<p>個人的に<code>&lt;Leader&gt;s</code>の次に気に入っているのが、Easymotion#JKモーションという行移動機能です。</p>
+
+<p>もう一度言います。<strong>JK</strong> Motionです！</p>
+
+<p><code>&lt;Leader&gt;j</code>でカーソルより下の行、<code>&lt;Leader&gt;k</code>で上の行に飛べます。だいたいこれくらいかなーと適当に<code>10j</code>してから違ってたら調節というわずわらしさとはおさらばです。</p>
+
+<p>また個人的に、UniteやVimfiler、Gundo、Gitvなどなどの行によって何かしら行うUIを持つPluginとJKモーションの親和性が高くておすすめです。</p>
+
+<p>Vimfilerでeasymotion <img src="../images/misc/wp/2013/11/easymotion-vimfiler.gif" alt="easymotion-vimfiler" /></p>
+
+<p>ちなみにVimの<code>set relativenumber</code>を使うとデフォルトでも似たようなことができます。</p>
+
+<p>参考: <a href="http://cohama.hateblo.jp/entry/2013/10/07/020453">&#8216;set relativenumber&#8217; で Vim のカーソルの縦移動とかを改善する &#8211; 反省はしても後悔はしない</a></p>
+
+<p>こちらだとデフォルトで使用できるのが強みですが、数字がアルファベットよりも打ちにくいこと、各種プラグインで行番号が表示されていない時に役に立たないのが少し痛いですね。そんなときでも使えるJKモーション。おすすめです。</p>
+
+<p>それと、JK Motionはデフォルトでは行の先頭に移動するのですが、カラムが同じ位置に飛ぶようになるオプションがつきました。(よりデフォルトのj,kの挙動に近づきます)</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_startofline=0
+</code></pre>
+
+<p><code>&lt;C-v&gt;</code>の矩形選択時などにこの設定をしておくと幸せになります</p>
+
+<p>Example: <img src="../images/misc/wp/2013/11/keep_cursor.gif" alt="keep_cursor_motion" /></p>
+
+<h2>まとめvimrcの例</h2>
+
+<p><noscript>
+  <pre><code class="language-viml viml">NeoBundle &lsquo;haya14busa/vim-easymotion&rsquo;</p>
+
+<p>&ldquo; vim-eazymotion
+&rdquo; デフォルトだと&lt;Leader&gt;&lt;Leader&gt;となってるprefixキーを変更
+let g:EasyMotion_leader_key = &lsquo;;&rsquo;</p>
+
+<p>&ldquo; 候補選択: 候補が最初から2キー表示されるので大文字や打ちにくい文字は全面的に消す
+&rdquo; なお、最後の数文字が2キーの時の最初のキーになるので打ちやすいものを選ぶとよさそうです。
+let g:EasyMotion_keys=&lsquo;hklyuiopnm,qwertzxcvbasdgjf;&rsquo;</p>
+
+<p>&ldquo; 拡張版機能</p>
+
+<p>&ldquo; もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion をsに割り当て
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) &rdquo; surround.vimとかぶるのでz</p>
+
+<p>&ldquo; keep cursor column
+let g:EasyMotion_startofline = 0</p>
+
+<p>&ldquo; smartcase
+let g:EasyMotion_smartcase = 1</p>
+
+<p>&ldquo; Migemo
+let g:EasyMotion_use_migemo = 1</p>
+
+<p></code></pre>
+</noscript></p>
+
+<h2>雑感</h2>
+
+<p>まとめると、キーマップすれば <code>s{char}{target}</code>の3キーで任意の場所に飛べる ので捗っておすすめってことです。おそらく、他のプラグインとしても画面内全体を対象として、この数のキーで移動できるのはほぼ最小じゃないでしょうか。</p>
+
+<p>ujihisa.vim#3のderisさんのスライド<a href="http://www.slideshare.net/deris0126/ujihisavim3">How to move cursor more effectively(for Beginner)</a>や<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a>を読んでるとたくさん移動コマンドがありすぎて正直考えるの面倒です。これを画面内移動だけでも一つに集約できるとかなり楽な感じがしませんか?</p>
+
+<p>ただ、勿論easymotion好きじゃないって人もいて欠点として</p>
+
+<ol>
+<li>{target}がVimから提示されるのを待つしかない
+
+<ul>
+<li>(思考の流れを止めてしまう)</li>
+</ul>
+</li>
+<li>デフォルトのVimモーションの挙動と全然違う
+
+<ul>
+<li>clever-fやvim-sneakはデフォルトの挙動を拡張してるという感が強い</li>
+</ul>
+</li>
+<li>リピートめんどい
+
+<ul>
+<li>そもそもリピートせずに飛ぶというのがコンセプトですが</li>
+</ul>
+</li>
+<li>近くに移動する場合に近い割にキー入力多くて特にめんどくさい</li>
+</ol>
+
+
+<p>この辺が考えられます。他のプラグインと併用するなどして自分にあったカーソル移動を考えるとよさそうです。</p>
+
+<p>そしてこのフォークしたeasymotion,実はまだまだ改善途中といったところで、Vim Scriptアンチパターンのようなものに当てはまっている部分もほとんど直せてません。すいません。ぜひぜひ、アドバイスとプルリクお待ちしています。みんなでカーソル移動を考えましょう。</p>
+
+<h2>VAC2012</h2>
+
+<p>明日の<a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の364日目の記事を新規の人が書くと100人目のようです。興味ある方はぜひ書くとみなさん喜ぶと思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VimConf2013に参加してきました!]]></title>
+    <link href="http://haya14busa.com/vimconf2013/"/>
+    <updated>2013-11-19T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/vimconf2013</id>
+    <content type="html"><![CDATA[<h2>VimConf2013!</h2>
+
+<ul>
+<li><a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a></li>
+<li><a href="http://connpass.com/event/3978/">VimConf 2013 &#8211; connpass</a></li>
+</ul>
+
+
+<p>VimConf2013に参加してきました！Vim!</p>
+
+<h2>How to suggest new features for Vim (by <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+</ul>
+
+
+<p>Vim本体に取り込まれるためにはどうやってpatchを投げればいいかという話だったけど、Vimに留まらずいろんなところで応用が効く話だった。ただ便利じゃん、といった思いつきでなく、しっかりストーリーを組み立てるのが大事。</p>
+
+<ol>
+<li><strong>Strategy</strong>を組み立て</li>
+<li><strong>Problem</strong>を共有してきちんと理解してもらい</li>
+<li>シンプルな<strong>Solution</strong>を作って</li>
+<li>やっと<strong>Patch</strong>を書く</li>
+</ol>
+
+
+<p>最近vim-devの1日のabbrev.版のメールを読んだり(読まなかったり)してるのだけど、まさにvim-devのVimのパッチはProblemが何かから始まり、そしてそのSolutionについての文章が続き、その後にPatchの内容が続くという流れになっている。パッチを受け入れられるために、その流れに従うというある意味当たり前のことをちゃんと意識して、実践することが大事。</p>
+
+<p>Vimはテキストエディタ(再確認)なのでエディタに要らない機能は取り込まれないし、Vimの思想(<a href="http://vimdoc.sourceforge.net/htmldoc/develop.html#development">:h development</a>)を理解することが大事とあとの発表で<a href="https://twitter.com/k_takata">@k_takata</a>さんもおっしゃっていた。</p>
+
+<p>ところで、@k_takataさんはHow to <em>write</em> patchという話で、どちらかといえば具体的・実践的な話だとしたら、@koronさんの話は抽象的・理論的なHow to <em>suggest</em>という話だったので、同じPatchの話でもそれぞれ非常におもしろかった。</p>
+
+<h2>Evil is justice (by <a href="https://twitter.com/esehara">@esehara</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+</ul>
+
+
+<p>VimConf2013はインターナショナルなVimカンファレンスを志向するためにスライドは英語推奨だったりしたのだけれど、@eseharaさんのプレゼンは特にインターナショナルだった(エディタ間で)。Vim国とEmacs国の宗教戦争をEvilで終わらせるべく参上したという感じで、ネタを交えつつEmacsでVimのキーバインドを使えるEvilを紹介してくださって、おもしろい発表だった。</p>
+
+<p>Emacsで小指云々は親指Ctrlや特殊な配列のキーボードで解消できるらしい(by <a href="https://mobile.twitter.com/kiwanami">@kiwanami</a>さん)。VimでもCtrlは重要なキーなので親指Ctrlそのうちやってみたい。</p>
+
+<h2>How to use git from vim ＠vim conf2013(by <a href="https://twitter.com/c0hama">@cohama</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+</ul>
+
+
+<p>個人的にGitをVimから便利に使おうとして、何度も挫折して、結局tmuxの別ペインでGitという選択肢を使っていたので、発表前から気になる内容だった。</p>
+
+<p>VimデフォルトのGitの機能が思ったよりも高機能。<code>:DiffGitCache</code>, <code>K</code> etc&#8230;</p>
+
+<p>Pluginではvim-fugitive, vim-gitvを紹介されていて、特に<code>:Gdiff</code>で<code>git add -p</code>のようにインテラクティブにaddできたりするのvim-fugitive入れてるのに全然しらなくてちゃんとドキュメント含め読んどこうと思った。</p>
+
+<p>またAdvancedとしてgitのSHA-1 hashを使えば自由自在にBranchきったりいろんなことができて便利なのでキーマップとか定義して便利そうだった。</p>
+
+<h3>関係ないけど</h3>
+
+<p>git stashとかせず、ReadOnlyでいいから別ブランチやコミットのコードを参照したいってとき結構あるんだけれどどうすればいいかわからないので、誰か教えてください:-)</p>
+
+<p>あと紹介はされてなかったけど、最近git mergetoolをvimdiffで便利にするとなかなかにbenriだったので感動しました。 <a href="http://haya14busa.com/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う » haya14busa</a></p>
+
+<h2>Vital.ProcessManager (by <a href="https://twitter.com/ujm">@ujihisa</a> さん)</h2>
+
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+</ul>
+
+
+<p>vimprocのwrapperとなる(?)Vital.ProcessManagerの話。正直内容についてはVim力低すぎてよく理解できなかった&#8230;勉強しよう</p>
+
+<p>途中で全く別の発表を始めて間を開けたり、周りの人に質問(確認)投げかけながら会場全体を巻き込んでプレゼンしていてujihisaさんの発表力を感じて感極まった。</p>
+
+<h2>Do You Know about Vim Runtime Files?(by <a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h2>
+
+<ul>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+</ul>
+
+
+<p>Vimがデフォルトで提供されてる機能をいろいろ紹介して下さった。正直matchit以外知らなかったと言っても過言じゃないくらいなので、発見が多くておもしろかった。</p>
+
+<p>maze.vimや、hanoiの塔, Lifeゲームなど遊び心もあってそのへんのコード読んでみたい。</p>
+
+<h2>How to write patches for Vim(by <a href="https://twitter.com/k_takata">@k_takata</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+</ul>
+
+
+<p>自称Vim Beginner(年間採用パッチ数75)のパッチ職人、@k_takataさんの発表はその経験を活かしてどのようにVimのパッチを書くかということを実践的・具体的に話していてパッチ職人の世界を垣間見れる興味深い話だった。</p>
+
+<p>お気に入りのパッチとして最近マージされたspelllang-cjkやbreakindentについて紹介をしていた。お気に入りのパッチとか言ってみたい。</p>
+
+<h2>LT</h2>
+
+<h3>iVimConf(by <a href="https://twitter.com/dictav">@dictav</a> さん)</h3>
+
+<p>VimConfのiPhoneアプリ、iVimConfを作ったというお話。Lingrで話題になってから試作するまでめっちゃはやくてすごい。</p>
+
+<h3>duzzle.vim(by <a href="https://twitter.com/deris0126">@deris</a> さん)</h3>
+
+<ul>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim</a></li>
+</ul>
+
+
+<p>Portalに触発されて作ったというVimでできる迷路パズルのお話。Demoを見ていると面白そうだし、確かにカーソル移動の勉強になりそうでよさそうだった。</p>
+
+<h3>Emacsの紹介(by <a href="https://twitter.com/kiwanami">@kiwanami</a> さん)</h3>
+
+<p>タイトルがとってもストレート。Emacsの方とも仲良くしたい。</p>
+
+<h2>About of neocomplete(by <a href="https://twitter.com/ShougoMatsu">@Shougo</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+
+<p>暗黒美夢王さんからのneocompleteについての話。初っ端からダークビムマスターが覚醒してネタを交えて会場を沸かせながらも、しっかりneocompleteを中心として補完やif_luaの効率などためになる話をしていて聞いてて飽きない発表だった。if_luaはかわいい。</p>
+
+<p>そして暗黒美夢王の真髄は懇親会で遺憾なく発揮され、4曲もVim曲を聞くことができて感極まりました。鋼のメンタルは伊達じゃなかった。</p>
+
+<h2>まとめとか</h2>
+
+<p>VimConf2013最高でした！次の機会があったらただ参加するだけでなく、ぜひ発表したりしたいと思った。</p>
+
+<p>主催のujihisaさん、VimConf2013運営の方々、Vim熱をひしひしと感じるカンファレンスでした。<br/>
+会場を提供して下さったCOOKPADの方々、無限コーヒーめっちゃ美味しくて3杯くらい飲みました。おいしい。<br/>
+発表者の方々、どの発表も面白くて勉強になりました。お疲れ様です！<br/>
+参加者の方々、Vimmerがこんなに集まってVimについてわいわいがやがやできて感極まりました。</p>
+
+<p>みなさん本当にお疲れ様でした &amp;&amp; ありがとうございました！</p>
+
+<p><strong>:wqa!</strong></p>
+
+<h2>他の人の感想記事</h2>
+
+<ul>
+<li><a href="http://kashewnuts.bitbucket.org/2013/11/16/vimconf2013.html?utm_content=buffer94494&amp;utm_source=buffer&amp;utm_medium=twitter&amp;utm_campaign=Buffer">#VimConf2013 に参加しました — kashew_nuts-blog</a></li>
+<li><a href="http://bugrammer.hateblo.jp/entry/2013/11/17/003744">Vim Conference 2013とオープンソースの精神 &#8211; Line 1: Error: Invalid Blog(&#8216;by Esehara&#8217; )</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/11/17/015347">VimConf 2013 で発表してきた &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://deris.hatenablog.jp/entry/2013/11/17/010343">VimConf2013に参加しました &#8211; derisの日記</a></li>
+<li><a href="http://daisuzu.hatenablog.com/entry/2013/11/17/192511">VimConf2013に行ってきた &#8211; daisuzu&#8217;s notes</a></li>
+<li><a href="http://vinarian.blogspot.jp/2013/11/vimconf2013-vimconf2013.html">あるVimmerのブログ: 暗黒美夢王が見た VimConf2013(ぼくの VimConf2013のかんそう)</a></li>
+<li><a href="http://ac-mopp.blogspot.jp/2013/11/vimconf2013.html?spref=tw">もぷろぐ: VimConf2013 に行ってきた話</a></li>
+</ul>
+
+
+<h2>発表資料</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数学ガールフェルマーの最終定理読んだメモ]]></title>
+    <link href="http://haya14busa.com/mathematical-girls-fermas-last-theorem-memo/"/>
+    <updated>2013-11-14T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/mathematical-girls-fermas-last-theorem-memo</id>
+    <content type="html"><![CDATA[<p><a href="http://www.hyuki.com/girl/note.html">Web連載『数学ガールの秘密ノート』</a></p>
+
+<h2>プロローグ</h2>
+
+<blockquote><p>「整数は神の作ったものだが、他は人間の作ったものである」(Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist Menschenwerk.)</p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/レオポルト・クロネッカー">レオポルト・クロネッカー &#8211; Wikipedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Leopold_Kronecker">Leopold Kronecker &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Diophantus">Diophantus &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%AC%E3%82%AF%E3%82%B5%E3%83%B3%E3%83%89%E3%83%AA%E3%82%A2%E3%81%AE%E3%83%87%E3%82%A3%E3%82%AA%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%82%B9">アレクサンドリアのディオファントス &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Pythagoras">Pythagoras &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9">ピタゴラス &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Pierre_de_Fermat">Pierre de Fermat &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%89%E3%83%BB%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC">ピエール・ド・フェルマー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>無限の宇宙を手に乗せて</h2>
+
+<h3>時計の巡回</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Number_theory">Number theory &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E8%AB%96">数論 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://aozoragakuen.sakura.ne.jp/suuron/suuron.html">数論初歩</a>
+
+<ul>
+<li>PDFでまとまっている</li>
+</ul>
+</li>
+<li>&lt;&lt;特殊から一般へ>></li>
+</ul>
+
+
+<blockquote><p>「ではみなさんは、そういうふうに川だと云われたり、乳の流れたあとだと云われたりしていたこのぼんやりと白いものがほんとうは何かご承知ですか。」</p>
+
+<p>&#8211; <cite><a href="http://www.aozora.gr.jp/cards/000081/files/456_15050.html">宮沢賢治 銀河鉄道の夜</a></cite></p></blockquote>
+
+<h2>ピタゴラスの定理</h2>
+
+<p><img src="http://livedoor.4.blogimg.jp/ayacnews/imgs/9/2/92af2ab0.gif" alt="pytagorean_proof_by_gif" /></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9%E3%81%AE%E5%AE%9A%E7%90%86">ピタゴラスの定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>Card Tetra: 原始ピタゴラス数は無数に存在するか</li>
+<li>Card Milka: 原点中心の単位円周上に、有理点は無数に存在するか
+
+<ul>
+<li>e.g. (1,0),(0,1),(-1,0),(0,01)</li>
+</ul>
+</li>
+<li>&lt;&lt;例示は理解の試金石>></li>
+<li>&lt;&lt;整数の構造は、素因数が示す>></li>
+<li>&lt;&lt;有理数の構造は、整数の比が示す>></li>
+</ul>
+
+
+<h3>Card: Tetra</h3>
+
+<ol>
+<li>&lt;&lt;例示は理解の試金石>>
+
+<ul>
+<li>具体的に探してみる</li>
+</ul>
+</li>
+<li>偶奇を調べる(パリティチェック)
+
+<ol>
+<li>a,bが偶数の原始ピタゴラス数は存在するか</li>
+<li>a,bが奇数は？</li>
+<li>c<sup>2</sup>は4の倍数</li>
+<li>背理法</li>
+</ol>
+</li>
+<li>&lt;&lt;和の形>>から&lt;&lt;積の形>>へ
+
+<ol>
+<li> &lt;&lt;整数の構造は、素因数が示す>></li>
+<li>b<sup>2</sup> = (c-a)(c+a)とa,b,cの偶奇を組み合わせる</li>
+</ol>
+</li>
+<li>互いに素
+
+<ol>
+<li>&lt;&lt;わかりきっていることでも、きちんとまとめるのがいいんだよ>></li>
+<li>a,c,b、A,B,Cについて互いに素であるか？</li>
+<li>aを奇数として</li>
+<li>2A = c &#8211; a</li>
+<li>2B = b</li>
+<li>2C = c + a</li>
+<li>Pattern: 互いに素の証明は、背理法で同じ倍数になるという矛盾を導く</li>
+</ol>
+</li>
+<li>素因数分解
+
+<ul>
+<li>素因数分解の一意性 -> A,Cは平方数</li>
+</ul>
+</li>
+<li><p>原子ピタゴラス数の一般形</p>
+
+<ul>
+<li>無数にある素数から無数の原子ピタゴラス数を作り上げる</li>
+</ul>
+</li>
+<li><p>&lt;&lt;偶奇を調べる>></p></li>
+<li>&lt;&lt;整数の構造は、素因数が示す>></li>
+<li>&lt;&lt;積の形>></li>
+<li>&lt;&lt;互いに素>></li>
+</ol>
+
+
+<h3>Card: Milka</h3>
+
+<ol>
+<li>&lt;&lt;有理点が無数にある>>という命題は、方程式<code>x^2 + y^2 = 1</code>が&lt;&lt;無数の有理数解を持つ>>という命題と同値</li>
+<li>P(-1,0)を通り、傾きがtの直線<code>l: y = tx + t</code>と単位円<code>x^2+y^2=1</code>のもう一つの交点Qをtで表す</li>
+<li><strong>点Tがy軸上の有理点ならば、点Qも有理点になる</strong></li>
+</ol>
+
+
+<h4>原始ピタゴラス数の問題との関連</h4>
+
+<p>ピタゴラスの定理を変形</p>
+
+<pre><code>a^2 + b^2 = c^2
+(a/c)^2 + (b/c)^2 = 1 -&gt; 単位円
+</code></pre>
+
+<p>&lt;&lt;有理数の構造は、整数の比が示す>></p>
+
+<p><strong>&lt;&lt;原始ピタゴラス数が無数にある>>と&lt;&lt;単位円周上に有理点が無数にある>>は同値</strong></p>
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/tt4cs/20111230/1325218297">原始ピタゴラス数について少し勉強してみるなど &#8211; 自明でない日記</a>   &#8211; 流れが書いてある</li>
+<li><a href="http://www.bonten-yutori.net/mathgirls_F/">学習ノート・数学ガール・フェルマーの最終定理</a>   &#8211; 補足もある&lt;&lt;単位円周上に有理点が無数にある>>ならば&lt;&lt;原始ピタゴラス数が無数にある>></li>
+</ul>
+
+
+<h2>互いに素</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Coprime_integers">Coprime integers &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>relatively prime</li>
+</ul>
+</li>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BA%92%E3%81%84%E3%81%AB%E7%B4%A0">互いに素 &#8211; Wikipedia</a></li>
+<li><a href="http://www.hyuki.com/dig/relprime.html">「互いに素」という概念</a></li>
+<li><a href="http://sigma2011auemath.web.fc2.com/pdf/03kyo1.pdf">互いに素</a>[PDF]</li>
+</ul>
+
+
+<p>自然数a,bの最大公約数をM、最小公倍数をLで表すと、このとき</p>
+
+<pre><code>a \* b = M \* L
+</code></pre>
+
+<p>が成り立つ</p>
+
+<ul>
+<li>a &#42; b : &lt;&lt;aの素因数すべて>>と&lt;&lt;\bの素因数すべて>></li>
+<li>M &#42; L :   &#8211; M : &lt;&lt;aとbでだぶっている素因数すべて>>   &#8211; L : &lt;&lt;aとbでだぶりを除いた素因数すべて>></li>
+</ul>
+
+
+<h3>素数指数表現</h3>
+
+<pre><code>n = 2^n_2 \* 3^n_3 \* 5^n_5 ....
+  = &lt;n_2, n_3, n_5, ....&gt;
+</code></pre>
+
+<ul>
+<li>無限次元のベクトルとみなして考えることができる
+
+<ul>
+<li>互いに素のとき、ベクトルが直交する</li>
+</ul>
+</li>
+<li>mとnが互いに素のとき m⊥nと表す</li>
+</ul>
+
+
+<h2>背理法</h2>
+
+<ul>
+<li>問題を読む&lt;&lt;深さ>></li>
+<li><a href="http://en.wikipedia.org/wiki/Propositional_calculus">Propositional calculus &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%91%BD%E9%A1%8C">命題 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Theorem#Terminology">Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<dl>
+<dt>矛盾</dt>
+<dd>  Pを命題とする。 矛盾とは、&lt;&lt;\Pである>>と&lt;&lt;\Pでない>>の両方が成り立つこと</dd>
+</dl>
+
+<p>√2が有理数でないことを、背理法以外に素因数の個数のパリティで証明できる</p>
+
+<p>&lt;&lt;素因数分解の一意性により、素因数の個数は、素因数ごとに両辺で一致する>></p>
+
+<h2>砕ける素数</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Imaginary_number">Imaginary number &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%99%9A%E6%95%B0">虚数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>虚数iを不自然に感じるのは負数を不自然に感じるのと変わらない
+
+<ul>
+<li><code>x - 1 = 0</code>をx ≥0の世界で考える</li>
+</ul>
+</li>
+<li><strong>方程式の解として&lt;&lt;定義>>した。満たすべき&lt;&lt;公理>>を方程式の形で示した</strong></li>
+</ul>
+
+
+<h3>1次元から2次元への飛躍</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Complex_plane">Complex plane &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%A4%87%E7%B4%A0%E5%B9%B3%E9%9D%A2">複素平面 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Polar_coordinate_system">Polar coordinate system &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%A5%B5%E5%BA%A7%E6%A8%99">極座標系 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>&lt;&lt;二乗して-1になる数>>を幾何の目で見るなら、<br/>
+<strong>二回行うと-1になる拡大・回転は何か?</strong></p>
+
+<p><code>(-1) * (-1) = 1</code>は-1の偏角180度を二倍することに相当する -> 360度の回転</p>
+
+<p>回れ右を二回行えば元の向きに戻る</p>
+
+<p>代数 <-> 幾何 複素数全体の集合 <-> 複素平面 複素数<code>a+bi</code> <-> 複素平面上の点(a,b) 複素数の集合 <-> 複素平面上の図形 複素数の数 <-> 平行四辺形の対角線 複素数の積 <-> 絶対値の積、偏角の和(拡大・回転)</p>
+
+<h3>格子点</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Pigeonhole_principle">Pigeonhole principle &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%B3%A9%E3%81%AE%E5%B7%A3%E5%8E%9F%E7%90%86">鳩の巣原理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt><strong>鳩の巣原理</strong></dt>
+<dd>  n個の鳩ノ巣にn+1羽の鳩が入ったら、<br/>
+  少なくとも1個の巣には、2羽の鳩がいる。<br/>
+  ただし、nは自然数とする。</dd>
+</dl>
+
+<h3>砕ける素数</h3>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8D%98%E6%95%B0">単数 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Gaussian_integer">Gaussian integer &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%82%A6%E3%82%B9%E6%95%B4%E6%95%B0">ガウス整数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>a + biを整数の一種と考えると、素因数分解の一意性が砕ける</p>
+
+<p>整数Ζ&mdash;-ゼロ        (0)
+       |&ndash;単数        (±1)
+       |&ndash;合成数      (±4,±6,±8,&hellip;)
+       <code>--素数----&lt;&lt;砕ける素数&gt;&gt;  Ζ[i]で積に分解可能
+              </code>-&lt;&lt;砕けない素数>> Ζ[i]で積に分解不可能</p></li>
+</ul>
+
+
+<p>砕ける素数を4で割った余りは3にならない。</p>
+
+<pre><code>p = (a + bi)(a - bi)
+</code></pre>
+
+<p>pを奇数の素数にすると、</p>
+
+<pre><code>p = (a + bi)(a - bi) &lt;-&gt; pを4で割ると余りは1
+</code></pre>
+
+<h2>アーベル郡の涙</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7%E3%81%AE%E8%A1%A8">数学記号の表 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<blockquote><p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E7%B4%A0%E6%95%B0" title="素数" class="broken_link">素数</a> (Prime number)の全体、<a href="http://haya14busa.com/wiki/%E5%B0%84%E5%BD%B1%E7%A9%BA%E9%96%93" title="射影空間" class="broken_link">射影空間</a>など
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E8%87%AA%E7%84%B6%E6%95%B0" title="自然数" class="broken_link">自然数</a> (Natural number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E6%95%B4%E6%95%B0" title="整数" class="broken_link">整数</a> (独: Zahlen)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E6%9C%89%E7%90%86%E6%95%B0" title="有理数" class="broken_link">有理数</a> (Quotient)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E5%AE%9F%E6%95%B0" title="実数" class="broken_link">実数</a> (Real number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E8%A4%87%E7%B4%A0%E6%95%B0" title="複素数" class="broken_link">複素数</a> (Complex number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E5%9B%9B%E5%85%83%E6%95%B0" title="四元数" class="broken_link">四元数</a> (Hamilton number)の全体
+</td></p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7#.E4.BB.A3.E6.95.B0.E5.AD.A6.E3.81.AE.E8.A8.98.E5.8F.B7">数学記号の表 &#8211; Wikipedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Set_(mathematics)">Set (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%86%E5%90%88">集合 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Group_(mathematics)">Group (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群 (数学) &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Binary_operation">Binary operation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Element_(mathematics)">Element (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>集合に対して演算を入れる</h3>
+
+<p>集合Gに対して、演算☆が定義されるとは、集合Gのどんな要素a,bに対しても、</p>
+
+<pre><code>a ☆ b ∈ G
+</code></pre>
+
+<p>が成り立つということ。これを&lt;&lt;演算☆に関して集合Gは<strong>閉じている</strong>>>と呼ぶ</p>
+
+<ul>
+<li>a ∈ G
+
+<ul>
+<li>aはGの要素である</li>
+<li>a is an element of G</li>
+<li>a belongs to G</li>
+<li>a is in G</li>
+</ul>
+</li>
+<li>G -> Group</li>
+</ul>
+
+
+<p>結合法則</p>
+
+<pre><code>(a ☆ b) ☆ c = a ☆ (b ☆ c)
+</code></pre>
+
+<dl>
+<dt>単位元の定義(単位元eの公理)</dt>
+<dd><p>  集合Gの任意の要素aに対して、以下の式を満たす集合Gの要素eを、演算☆における<strong>単位元</strong>と呼ぶ。</p>
+
+<p>  a ☆ e = e ☆ a = a</p></dd>
+<dt>&lt;&lt;公理が定義を生み出している>></dt>
+<dd>  最も厳密な言葉である数式を使い、公理という名の命題を使って定義する</dd>
+<dt>逆元の定義(逆元の公理)</dt>
+<dd>  aを集合Gの要素とし、eを単位元とする。aに対して、以下の式を満たすb∈Gを、演算☆に関するaの<strong>逆元</strong>と呼ぶ。 ~~~ a ☆ b = b ☆ a = e ~~~</dd>
+</dl>
+
+<h3>郡の定義(郡の公理)</h3>
+
+<p>以下の公理を満たす集合Gを<strong>郡</strong>と呼ぶ。</p>
+
+<ul>
+<li><strong>演算☆</strong>に関して閉じている</li>
+<li>任意の元に対して、<strong>結合法則</strong>が成り立つ。</li>
+<li><strong>単位元</strong>が存在する。</li>
+<li>任意の元に対して、その元に対する<strong>逆元</strong>が存在する。</li>
+</ul>
+
+
+<p><em>かくのごとき集合を<strong>郡</strong>と呼べ</em></p>
+
+<h3>&lt;&lt;例示は理解の試金石>></h3>
+
+<ul>
+<li>&lt;&lt;整数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;奇数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;偶数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;整数全体の集合Ζは、演算×に関して郡をなすか?>></li>
+</ul>
+
+
+<p>例</p>
+
+<ul>
+<li>最小の郡
+
+<ul>
+<li>{e}</li>
+</ul>
+</li>
+<li>要素が2個の群
+
+<ul>
+<li>{e,a}</li>
+</ul>
+</li>
+</ul>
+
+
+<p>演算表</p>
+
+<pre><code>|☆ | e a|
+|---+----|
+|e  | e a|
+|a  | a e|
+</code></pre>
+
+<ul>
+<li>&lt;&lt;同じ>>郡のことを&lt;&lt;同型>>な郡と呼ぶ</li>
+<li>&lt;&lt;要素が二つの郡は本質的に一つ>>
+
+<ul>
+<li>公理によって与えられる<em>制約が構造を生み出している</em></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>アーベル群</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Abelian_group">Abelian group &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%BC%E3%83%99%E3%83%AB%E7%BE%A4">アーベル群 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>任意の元について<strong>交換法則</strong>を満たす郡を<strong>アーベル郡</strong>という</li>
+</ul>
+
+
+<p>交換法則</p>
+
+<pre><code>a ☆ b = b ☆ a
+</code></pre>
+
+<p>&lt;&lt;無矛盾性は存在の礎>></p>
+
+<h2>ヘアスタイルを法として</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Division_(mathematics)">Division (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99">除法 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Modular_arithmetic">Modular arithmetic &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%90%88%E5%90%8C%E5%BC%8F">合同式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>法 -> modulus</li>
+<li>商 -> quotient</li>
+<li>剰余 -> residue</li>
+</ul>
+
+
+<dl>
+<dt>modの定義(整数)</dt>
+<dd><p>  a,b,q,rは整数で、b≠0とする</p>
+
+<p>  a mod b = r ⇔ a = bq + r (0 ≤r &lt; |b|)</p></dd>
+</dl>
+
+<p>合同(congruent modulo)</p>
+
+<pre><code>a ≡ b (mod m) ⇔ a mod m = b mod m ⇔ (a-b) mod m = 0
+</code></pre>
+
+<h3>郡・環・体</h3>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99%E9%A1%9E%E7%92%B0">剰余類環 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Ring_(mathematics)">Ring (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%92%B0_(%E6%95%B0%E5%AD%A6)">環 (数学) &#8211; Wikipedia</a></li>
+<li>郡では演算が1つだが、環では2種類の演算を入れる</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Commutative_ring">Commutative ring &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%AF%E6%8F%9B%E7%92%B0">可換環 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt>環の定義(環の公理)</dt>
+<dd>  以下の公理を満たす集合を<strong>環</strong>とよぶ</dd>
+</dl>
+
+<ul>
+<li>演算+(加法)に関して
+
+<ul>
+<li>閉じている</li>
+<li>単位元が存在する(0と呼ぶ)</li>
+<li>すべての要素について結合法則が成り立つ</li>
+<li>すべての要素について交換法則が成り立つ</li>
+<li>すべての要素について逆元が存在する</li>
+</ul>
+</li>
+<li>演算×(乗法)に関して
+
+<ul>
+<li>閉じている</li>
+<li>単位元が存在する(1と呼ぶ)</li>
+<li>すべての要素について結合法則が成り立つ</li>
+<li>すべての要素について交換法則が成り立つ</li>
+</ul>
+</li>
+<li>演算+と×に関して
+
+<ul>
+<li>すべての要素について分配法則が成り立つ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>厳密に言えば乗法の単位元が存在する可換環を述べている</p>
+
+<ul>
+<li>環と郡
+
+<ul>
+<li>環は、加法に関してアーベル群である。</li>
+<li>環は、乗法に関してアーベル郡とは限らない。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>整数環と剰余環</p>
+
+<dl>
+<dt>体の定義(体の公理)</dt>
+<dd>  環の定義プラス、演算×に関して<strong>0以外のすべての要素について逆元が存在する</strong></dd>
+</dl>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Field_(mathematics)">Field (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BD%93_(%E6%95%B0%E5%AD%A6)">体 (数学) &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>剰余環Ζ/mΖは、mが素数のとき体になる</strong></p>
+
+<p>pを素数とし、剰余環Ζ/mΖを体と見なすとき、それを<strong>有限体</strong>F_pと呼ぶ</p>
+
+<pre><code>F_p = Ζ/pΖ
+</code></pre>
+
+<p>合同を使って&lt;&lt;無限を折りたたむ>></p>
+
+<h2>無限降下法</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem">Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC%E3%81%AE%E6%9C%80%E7%B5%82%E5%AE%9A%E7%90%86">フェルマーの最終定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Andrew_Wiles">Andrew Wiles &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%BB%E3%83%AF%E3%82%A4%E3%83%AB%E3%82%BA">アンドリュー・ワイルズ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>次の方程式は、n ≥3で自然数解を持たない。</p>
+
+<pre><code>x^n + y^n = z^n
+</code></pre>
+
+<p>私は驚くべき証明を見つけたが、<br/>
+それを書き記すには、この余白は狭すぎる。</p>
+
+<p>FLT -> <strong>F</strong>ermat&#8217;s <strong>L</strong>ast <strong>T</strong>heorem</p>
+
+<h3>Card: Tetra</h3>
+
+<p>三辺が自然数で面積が平方数である直角三角形は存在するか。</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Proof_by_infinite_descent">Proof by infinite descent &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%84%A1%E9%99%90%E9%99%8D%E4%B8%8B%E6%B3%95">無限降下法 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt>無限降下法</dt>
+<dd><ol>
+<li>  自然数に関する数式を作る。</li>
+<li>  その数式を操作して、<em>同じ形をした別の数式を作る</em>
+
+<ul>
+<li>  このとき、小さくなる自然数を含む</li>
+</ul>
+</li>
+<li>  同じ操作を繰り返すと自然数が無限に小さくなる -> 矛盾</li>
+</ol>
+</dd>
+</dl>
+
+<h3>Card: Milka</h3>
+
+<p>FLT(4)の証明</p>
+
+<p>Card: Tetraの解答を使って矛盾を示す</p>
+
+<h2>最も美しい数式</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler%27s_identity">Euler&#8217;s identity &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E7%AD%89%E5%BC%8F">オイラーの等式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Euler&#8217;s identity</p>
+
+<pre><code>e^iπ = -1
+</code></pre>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler%27s_formula">Euler&#8217;s formula &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F">オイラーの公式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Euler&#8217;s formula</p>
+
+<pre><code>e^iθ = cosθ + isinθ
+</code></pre>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Closure_(mathematics)">Closure (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%94%9F%E6%88%90_(%E6%95%B0%E5%AD%A6)">生成 (数学) &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最も美しい数式</h2>
+
+<p>&#8220;Is the term &#8216;well-defines&#8217; well defined?&#8221;</p>
+
+<ol>
+<li>指数を指数法則を満たすものと定義
+
+<ul>
+<li>自然数以外への拡張</li>
+</ul>
+</li>
+<li>e<sup>x</sup>を冪級数で表す</li>
+<li>テイラー展開</li>
+<li>テイラー展開の結果をe<sup>x</sup>と定義
+
+<ul>
+<li>複素数への拡張</li>
+</ul>
+</li>
+<li>e<sup>i</sup>θを&lt;&lt;大胆な代入>></li>
+<li>cosθとsinθのテイラー展開の結果と比較する</li>
+</ol>
+
+
+<h2>フェルマーの最終定理</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Ideal_(ring_theory)">Ideal (ring theory) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%87%E3%82%A2%E3%83%AB">イデアル &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Ernst_Kummer">Ernst Kummer &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%AB%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BB%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC">エルンスト・クンマー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Modularity_theorem">Modularity theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E3%83%BB%E5%BF%97%E6%9D%91%E3%81%AE%E5%AE%9A%E7%90%86">谷山・志村の定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Goro_Shimura">Goro Shimura &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BF%97%E6%9D%91%E4%BA%94%E9%83%8E">志村五郎 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Yutaka_Taniyama">Yutaka Taniyama &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E8%B1%8A">谷山豊 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Gerhard_Frey">Gerhard Frey &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%AB%E3%83%8F%E3%83%AB%E3%83%88%E3%83%BB%E3%83%95%E3%83%A9%E3%82%A4">ゲルハルト・フライ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Wiles'_proof_of_Fermat's_Last_Theorem">Wiles&#8217; proof of Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.27.6567&amp;rep=rep1&amp;type=pdf">The Way to the Proof of Fermat’s Last Theorem</a></li>
+<li><a href="http://math.stanford.edu/~lekheng/flt/wiles.pdf">Modular elliptic curves and Fermat&#8217;s last theorem &#8211; Stanford University</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

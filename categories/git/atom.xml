@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/git/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった]]></title>
+    <link href="http://haya14busa.com/travis_jekyll_gh-pages/"/>
+    <updated>2013-12-27T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/travis_jekyll_gh-pages</id>
+    <content type="html"><![CDATA[<h2>なんどpushしてもTravisが動いてくれなくて非常につらかった</h2>
+
+<p>何度も設定見なおして、何度も更新して、何度も何度もpushしました。</p>
+
+<p>しかし何も起こらなかった。。。</p>
+
+<h2>解決</h2>
+
+<p>ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&#8230;</p>
+
+<blockquote><p>Note that the gh-pages branch will not be built unless you add it to the whitelist (branches.only).</p>
+
+<p>&#8211; <cite><a href="http://about.travis-ci.org/docs/user/build-configuration/">Travis CI: Configuring your build</a></cite></p></blockquote>
+
+<p>書いてあった！！！</p>
+
+<p><code>gh-pages</code>ブランチはデフォルトではテストしてくれなくて、whitelistで明示的に指定しないとダメなようです。</p>
+
+<p>.travis.yml</p>
+
+<pre><code>language: ruby
+rvm:
+  - 2.0.0
+before_script: "bundle show"
+script: "bundle exec jekyll build"
+after_script: "find _site -type f"
+branches:
+  only:
+    - gh-pages
+</code></pre>
+
+<p>よく考えたら、gh-pagesってプロジェクトと全く別の物が置かれているわけだから、デフォルトで無視してくれるっていうのは気が効いてていいかもしれないですね。 <code>gh-pages</code>のテストとか別にローカルで書くときにビルドしてればわかるのでそもそもあんまりテストする必要性がないのかもしれないというのはある。</p>
+
+<p>ちなみに上記のようにwhitelistでgh-pages onlyの設定にしていてもPull Requestにはちゃんと反応してくれるっぽいです。Travisさんさすがです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GitHub導入メモ]]></title>
+    <link href="http://haya14busa.com/github-introductio/"/>
+    <updated>2013-07-16T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/github-introductio</id>
+    <content type="html"><![CDATA[<p>登録しました -> <a href="https://github.com/haya14busa">GitHub/haya14busa</a></p>
+
+<h2>導入</h2>
+
+<p>Permission denied (publickey)で若干困ったので忘備録</p>
+
+<p>SSH用の公開鍵、秘密鍵</p>
+
+<pre><code>% ssh-keygen -t dsa -f ~/.ssh/id_dsa_github
+</code></pre>
+
+<p>~/.ssh/config</p>
+
+<pre><code>Host github.com
+User git
+Hostname github.com
+
+IdentityFile ~/.ssh/id_dsa_github
+</code></pre>
+
+<p><code>~/.ssh/id_dsa_github.pub</code>を<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>に登録。</p>
+
+<p>そして</p>
+
+<pre><code>% ssh -T git@github.com
+</code></pre>
+
+<h2>dotfiles</h2>
+
+<p>GitHubでdotfilesのリポジトリを作っておく。</p>
+
+<pre><code>% cd
+% mkdir dotfiles
+% mv .vimrc dotfiles
+% ln -s dotfiles/.vimrc .vimrc
+% cd dotfiles
+% git init
+% git add .
+% git commit -m'first commit'
+% git remote add origin git@github.com:haya14busa/dotfiles.git
+% git push -u origin master
+</code></pre>
+
+<p>iPad用のブランチ</p>
+
+<pre><code>% git branch ipad
+% git checkout ipad
+% # vimでごにょごにょ
+% git add .
+% git commit -m'ごにょごにょ'
+% git push origin ipad
+</code></pre>
+
+<p>こりゃー便利</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://sho.tdiary.net/20091024.html">「Permission denied (publickey).」と言われてGitHubが使えなくなった場合の対処法 &#8211; ただのにっき(2009-10-24)</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

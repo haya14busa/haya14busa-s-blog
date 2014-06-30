@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tweepy | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/tweepy/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]]]></title>
+    <link href="http://haya14busa.com/tweepy-read-aloud-tl/"/>
+    <updated>2013-07-06T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/tweepy-read-aloud-tl</id>
+    <content type="html"><![CDATA[<h2>作りま……パクりました</h2>
+
+<p>初心者ながらPythonでツイッターのタイムライン読み上げさせたら面白いなーと思って頑張ってました。最初は何も考えず<a href="(https://github.com/bear/python-twitter)">python-twitter</a>で試行錯誤してたんだけど、<a href="(https://github.com/tweepy/tweepy)">tweepy</a>はStreaming APIにも対応しててtweepy使った方が楽なことを発見。んでググってたらそのままターミナルにストリーミングでTL流すスクリプト見つけたので、そこにSayKotoeriコマンドをプラスしてちょっと変えただけのほぼ丸パクリです。頑張って自分で作ったのは別記事のリストを擬似ストリーミングで読み上げさせる方なので、ご了承ください。</p>
+
+<p>リストバージョン -> <a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></p>
+
+<h2>tweepyのインストール</h2>
+
+<p><code>pip install tweepy</code>でおけ。記事執筆現在API1.1にも対応してます。pipならバージョンは2.0でgithubには2.1が上がってるっぽいです。でも現場2.0で良さそう。公式ドキュメントのバージョンが1.4で古かったりして大変なので、バージョンに気を付けてググったり、dir()コマンドとかソース読んで自分で見ていくとわかりやすいっぽいです。</p>
+
+<h2>読み上げコマンド</h2>
+
+<p><a href="(https://sites.google.com/site/nicohemus/home/saykotoeri)">Saykotoeri</a> &amp; <a href="(http://www.a-quest.com/quickware/saykana/)">SayKana</a> , or <a href="(https://sites.google.com/site/nicohemus/home/saykotoeri2)">Saykotoeri2</a>コマンドが必要です。リンク先からインストールしてください。デフォルトのsayコマンドで<a href="(http://stts.hatenablog.com/entry/20110724/1311513263)">Kyoko</a>さんをインストールして使うのもいいけどKyokoさんは漢字全然読めないからお察し。英語を読ませる場合、sayコマンドの発音は凄いと思います。英語用リストではsayコマンド使ってます。</p>
+
+<p>SayKotoeri2の方がいろいろコマンドのオプションがあって使いやすいんだけど、女性1、いわゆるゆっくり(れいむ)の声がSayKotoeriの方でしか使えなかったんでやむなくSayKotoeri使ってます。SayKotoeri2で同じ声使う方法知ってる方がいらしたら教えてほしい。</p>
+
+<p>それとSayKotoeriは英語が全然読めないのでことえり辞書で教育するといいっぽいです。(例: 読み->ついったー, 単語:Twitter)<br/>
+それ用の辞書入れたら良いのだろうけど無料でいいやつは現状ないかも。シェアウェアなら-><a href="http://nadroom.dousetsu.com/download/download_katakana_share.html">NADのカタカナ英語辞書(シェア)</a></p>
+
+<p>一応正規表現でツイートに埋め込まれてるURLを「URL」, RTを「Retweet」に置換などはしてますがもっと置換のパターン増やせばよりストレスなく聞き取れるかも。</p>
+
+<h2>コード</h2>
+
+<p>twAloud.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+#
+# Timelineをストリーミングで読み上げさせる
+# 
+# Author:   haya14busa
+# URL:      http://haya14busa.com
+# require:  SayKotoeri, Saykana or SayKotoeri2
+# OS:       for Mac Only
+# Link:     [twitterをターミナル上で楽しむ(python)](http://www.nari64.com/?p=200)
+
+import tweepy
+from tweepy import  Stream, TweepError
+import logging
+import urllib
+from subprocess import call
+import re
+import sys, codecs
+
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+sys.stdin = codecs.getreader('utf_8')(sys.stdin)
+
+def get_oauth():
+    CONSUMER_KEY='**********'
+    CONSUMER_SECRET='**********'
+    ACCESS_TOKEN_KEY='**********'
+    ACCESS_TOKEN_SECRET='**********'
+
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    return auth
+
+def str_replace(string):
+    string = re.sub('&amp;.+;', ' ', string)
+    # remove URL
+    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
+    # remove quote
+    string = re.sub('"', ' ', string)
+    string = re.sub("'", ' ', string)
+    string = re.sub('\/', ' ', string)
+
+    string = re.sub('RT', 'Retweet', string)
+    return string
+
+class CustomStreamListener(tweepy.StreamListener):
+
+    def on_status(self, status):
+
+        try:
+            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
+                    name = status.author.name,
+                    screen = status.author.screen_name,
+                    text = status.text,
+                    src = status.source,
+                    created = status.created_at)
+            read_text = str_replace(status.text.encode('utf-8'))
+            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
+
+        except Exception, e:
+            print &gt;&gt; sys.stderr, 'Encountered Exception:', e
+            pass
+
+    def on_error(self, status_code):
+        print &gt;&gt; sys.stderr, 'Encountered error with status code:', status_code
+        return True # Don't kill the stream
+
+    def on_timeout(self):
+        print &gt;&gt; sys.stderr, 'Timeout...'
+        return True # Don't kill the stream
+
+
+class UserStream(Stream):
+
+    def user_stream(self, follow=None, track=None, async=False, locations=None):
+        self.parameters = {"delimited": "length", }
+        self.headers['Content-type'] = "application/x-www-form-urlencoded"
+
+        if self.running:
+            raise TweepError('Stream object already connected!')
+
+        self.scheme = "https"
+        self.host = 'userstream.twitter.com'
+        self.url = '/2/user.json'
+
+        if follow:
+           self.parameters['follow'] = ','.join(map(str, follow))
+        if track:
+            self.parameters['track'] = ','.join(map(str, track))
+        if locations and len(locations) &gt; 0:
+            assert len(locations) % 4 == 0
+            self.parameters['locations'] = ','.join(['%.2f' % l for l in locations])
+
+        self.body = urllib.urlencode(self.parameters)
+        logging.debug("[ User Stream URL ]: %s://%s%s" % (self.scheme, self.host, self.url))
+        logging.debug("[ Request Body ] :" + self.body)
+        self._start(async)
+
+def main():
+    auth = get_oauth()
+    stream = UserStream(auth, CustomStreamListener())
+    stream.timeout = None
+    stream.user_stream()
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+
+<h2>使い方</h2>
+
+<p><a href="https://dev.twitter.com/">Twitter Developers</a>に登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。PINコードで認証とかは気が向いたらまた考える。</p>
+
+<p>読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。もちろん読み上げなしにして授業中や会社でばれないようにツイッターするのもよし。</p>
+
+<p>あとはターミナルで<code>python twaloud.py</code> 終了はCtrl-Cで強制終了してください。</p>
+
+<p>それとデフォルトのTerminal.appよりも<a href="(http://www.iterm2.com/#/section/home)">iTerm2</a>だとコマンドクリックでURL開けるのでタイムライン読むのに便利です。</p>
+
+<h2>参考リンク</h2>
+
+<h3>ライブラリ</h3>
+
+<ul>
+<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
+<li><a href="https://github.com/bear/python-twitter">bear/python-twitter · GitHub</a></li>
+</ul>
+
+
+<h3>リストバージョン</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></li>
+</ul>
+
+
+<h3>コード</h3>
+
+<ul>
+<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
+<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
+<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
+</ul>
+
+
+<h3>読み上げ関連</h3>
+
+<ul>
+<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri">SayKotoeri &#8211; Hemus -Macアプリ</a></li>
+<li><a href="http://www.a-quest.com/quickware/saykana/">SayKana &#8211; Mac用音声合成プログラム</a></li>
+<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri2">SayKotoeri2 &#8211; Hemus -Macアプリ</a></li>
+<li><a href="http://stts.hatenablog.com/entry/20110724/1311513263">Mac OSX 10.7 Lion付属のKyokoさんにスピーチしてもらう &#8211; sttsのソースコードMemoブログ</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]]]></title>
+    <link href="http://haya14busa.com/tweepy-read-aloud-list-tl/"/>
+    <updated>2013-07-06T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/tweepy-read-aloud-list-tl</id>
+    <content type="html"><![CDATA[<h2>なかなか便利</h2>
+
+<p><a href="(https://github.com/tweepy/tweepy)">tweepy</a>のソース読んだり、ぐぐったりしながらなんとか形になった。ここで言う擬似ストリーミングはツイッターのStreaming APIではなく、Rest APIを自動で投げて表示させるって意味なので全然Streamingじゃないですね。</p>
+
+<p>リストにStreaming APIが提供されてないことに気づくまでバカみたいに探しててバカみたいだった。バカみたいだった。</p>
+
+<p>記事執筆現在、API1.1のリストタイムラインの取得制限は180回/15分なので、単純計算で5秒に一回投げれます。スクリプトでは読み上げ時間も＋8秒ぐらいで余裕を持たせてます。リストの流速によっては取得漏れが発生すると思いますが、それぐらいだとそもそも読み上げが追いつきません。リスト廃人とかじゃなかったら大丈夫だと思います。</p>
+
+<p>英語用のリストを英語で読ませたり、単に気になるリストを読み上げさせたりと結構おもしろいです。</p>
+
+<p>また、whileの無限ループと引数のsince_idで擬似ストリーミングを実装してるので、同じ手法を使えば特定のidだとかリスト以外でも使えるはずです。サーバーに負担かからない程度の自重は必要だとは思います。</p>
+
+<h2>ホームタイムラインバージョン</h2>
+
+<p><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></p>
+
+<p>tweepyだとか読み上げコマンドだったり仕様について書いてるので参照してください</p>
+
+<h2>コード</h2>
+
+<p>twList.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+#
+# リストのTLを擬似ストリーミングで読み上げさせる
+# 
+# Author:   haya14busa
+# URL:      http://haya14busa.com
+# Require:  SayKotoeri, Saykana or SayKotoeri2
+# License:  MIT License
+# OS:       for Mac Only
+
+import tweepy
+from datetime import timedelta
+import time
+from subprocess import call
+import re
+import sys, codecs
+
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+sys.stdin = codecs.getreader('utf_8')(sys.stdin)
+
+def get_oauth():
+    CONSUMER_KEY='**********'
+    CONSUMER_SECRET='**********'
+    ACCESS_TOKEN_KEY='**********'
+    ACCESS_TOKEN_SECRET='**********'
+     
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    return auth
+
+def str_replace(string):
+    string = re.sub('&amp;.+;', ' ', string)
+    # remove URL
+    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
+    # remove quote
+    string = re.sub('"', ' ', string)
+    string = re.sub("'", ' ', string)
+    string = re.sub('\/', ' ', string)
+
+    string = re.sub('RT', 'Retweet', string)
+    return string
+  
+def showTL(api, read_id):
+    try:
+        tl = api.list_timeline('[owner_name]', '[slug]', count=10, since_id = read_id)
+        tl.reverse()
+        for status in tl:
+            status.created_at += timedelta(hours=9) # add 9 hours for Japanese time
+            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
+                    name = status.author.name,
+                    screen = status.author.screen_name,
+                    text = status.text,
+                    src = status.source,
+                    created = status.created_at)
+            read_text = str_replace(status.text.encode('utf_8'))
+            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
+            # call(['say -v "kyoko" "{text}"'.format(text=read_text)], shell=False) # Kyoko
+            # call(['say  "{text}"'.format(text=read_text)], shell=False) # for English
+        else:
+            global lastSinceId
+            lastSinceId = tl[-1].id
+            
+    except Exception, e:
+        time.sleep(10)
+        pass
+
+def main():
+    auth = get_oauth()
+    api = tweepy.API(auth_handler=auth)
+    lastGetTime = time.time() - 8
+    global lastSinceId
+    lastSinceId = None
+    while True:
+        if time.time() &gt; lastGetTime + 8:
+            lastGetTime = time.time()
+            showTL(api, lastSinceId)
+        else:
+            time.sleep(1)
+
+ 
+if __name__ == "__main__":
+    main()
+</code></pre>
+
+<h2>使い方</h2>
+
+<p>Twitter Developersに登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。また[owner_name]と[slug]をリストの所有者のスクリーンネームと、リストの名前に置き換えてください。</p>
+
+<p>また、読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。英語用リストだとsayコマンドに変更するとなかなかネイティブな発音が聴けて楽しいです。</p>
+
+<p>あとはターミナルでpython twaloud.py 終了はCtrl-Cで強制終了してください。</p>
+
+<h2>参考リンク</h2>
+
+<h3>ホームタイムラインバージョン</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></li>
+</ul>
+
+
+<h3>ライブラリ</h3>
+
+<ul>
+<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
+</ul>
+
+
+<h3>コード</h3>
+
+<ul>
+<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
+<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
+<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

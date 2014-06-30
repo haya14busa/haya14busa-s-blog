@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JBiOSでも自前ビルド/コンパイルがしたい！ - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Attention お決まりですが自己責任でお願いします.割とコアの部分触るので特に.そもそも脱獄自体グレーゾーンだし. JBiOSだとターミナルでプログラミングできたりするけど… Appleの署名かなんかの関係でgccが一発で通らないので今まで、自前でビルド/コンパイルができてませんでした. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/build-or-compile-on-jb-ios/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">JBiOSでも自前ビルド/コンパイルがしたい！</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Attention</h2>
+
+<p>お決まりですが自己責任でお願いします.割とコアの部分触るので特に.そもそも脱獄自体グレーゾーンだし.</p>
+
+<h2>JBiOSだとターミナルでプログラミングできたりするけど…</h2>
+
+<p>Appleの署名かなんかの関係でgccが一発で通らないので今まで、自前でビルド/コンパイルができてませんでした.</p>
+
+<p>iOS4あたりまでは簡単に?回避できてたらしいけど、iOS5からはできなくなってて諦めるしかなかった.</p>
+
+<p>この記事通りにやると,vimとかgitとかをcydiaのリポジトリにかかわらず最新版使えるようになったりする(はず).</p>
+
+<h2>Setup gcc on iOS 5 and maybe iOS6</h2>
+
+<ol>
+<li>リポジトリをcydiaに追加
+
+<ul>
+<li><a href="http://cydia.radare.org">http://cydia.radare.org</a></li>
+</ul>
+</li>
+<li>追加したリポジトリから<strong>libgcc</strong>をインストール
+
+<ul>
+<li>fakegccとかiosgccとかでググってリポジトリ以外から持ってくる手もある</li>
+</ul>
+</li>
+<li>デフォのBigbossなどから基本のコマンドなどなどをインストール
+
+<ul>
+<li>Link Identity Editor (ldid)
+
+<ul>
+<li>署名回避に必要</li>
+</ul>
+</li>
+<li>GNU C Compiler(gcc)
+
+<ul>
+<li>Cコンパイラ</li>
+</ul>
+</li>
+<li>Make</li>
+<li>APT 0.7系</li>
+<li>足りなければBigBoss Recommentded Toolsとか基本系を</li>
+</ul>
+</li>
+<li>MobileTerminalかOpenSSHをインストール
+
+<ul>
+<li>OpenSSHでiSSHとかAppstoreのアプリから操作もできるし、勿論母艦からでもOK</li>
+</ul>
+</li>
+</ol>
+
+
+<p>ここまでの状態だと</p>
+
+<p>on iOS</p>
+
+<pre><code>$ echo 'void main() { printf("Hello, world!\n"); }' &gt; helloworld.c
+$ gcc helloworld.c -o helloworld
+$ ./helloworld
+# ここで署名エラー
+$ ldid -S helloworld
+$ ./helloworld
+Hello, world!
+</code></pre>
+
+<p>このように一度<code>ldid -S</code>を噛ませる必要があるせいで、<code>./configure</code>とかが通らなくなってます.</p>
+
+<p>なので<code>ldid -S</code>を自動化して擬似的に署名を回避する必要があります.</p>
+
+<h2>Bypassing Apple Code signature using ldid -S</h2>
+
+<pre><code>$ git clone git@github.com:haya14busa/ios-build
+$ sudo mv /usr/bin/gcc /usr/bin/realgcc
+$ sudo mv /usr/bin/arch /usr/bin/realarch
+$ cd ios-build
+$ chmod +x gcc arch
+$ sudo cp gcc /usr/bin/
+$ sudo cp arch /usr/bin/
+$ sudo ln -s /usr/bin/gcc /usr/bin/cc
+$ sudo ldid -S /usr/bin/gcc
+$ sudo ldid -S /usr/bin/arch
+</code></pre>
+
+<p>(コマンド自体がkillされた場合は<code>sudo ldid -S {killされたコマンドのpath}</code>で回避できる)</p>
+
+<p>archは確かgitを自前ビルドしたときにエラー吐いただけなので今のところはgccの記述だけでもOK.またgit cloneしなくても普通に持ってきてvimで書くとか、iFileで直接置いてもいい.</p>
+
+<p>gccの中身</p>
+
+<pre><code>#!/bin/bash
+
+output='a.out'
+next=false
+for arg in "$@" ; do
+    if [ "$next" == "true" ]; then
+        output=$arg
+        break
+    elif [ "$arg" == "-o" ]; then
+        next="true"
+    fi
+done
+
+realgcc $*
+
+if [ -f "$output" ]; then
+    ldid -S "$output"
+    echo "Signed with ldid"
+fi
+</code></pre>
+
+<p>シェルスクリプトで、realgccでコンパイルしてできた実行ファイルに自動でldid -Sするようにしてます.</p>
+
+<p>これで<code>./configure</code>が通ってmakeもできるのでiOSで自前でビルドできるようになります.</p>
+
+<h2>成果</h2>
+
+<h3>Git</h3>
+
+<ul>
+<li>2013/08/07現在最新バージョンである1.8.3.4をコンパイル->正常動作</li>
+<li>Cydiaリポのgitは1.5とかのレベルで,radareにある1.7.8.2はうまく動かないのでこれだけでもやったかいがあった</li>
+</ul>
+
+
+<h3>Vim</h3>
+
+<ul>
+<li>999までpatchを当てた7.3.999をコンパイル可能.あとから1000以上のpatchがあることに気づいてやり直したけど、うまく当てれなかった.</li>
+<li>Cydiaリポのvimよりは新しいバージョンを使うことに成功</li>
+<li>しかし、やりたかった+pythonオプションがどうしてもつかなかった</li>
+<li><blockquote><p>PYTHON DISABLED &lt;</p></blockquote></li>
+</ul>
+
+
+<h3>Mercurial</h3>
+
+<ul>
+<li>vimの最新バージョンを楽に取ってくるためにインストールを試みるも失敗</li>
+<li>radareリポジトリにmercurialがあるがインストール出来ない模様</li>
+</ul>
+
+
+<h3>Python</h3>
+
+<ul>
+<li>radareリポジトリのpythonは2.7.3なので,自前で2.7.5のコンパイルを試みるも失敗</li>
+<li>gccオプションが付いていないからかnumpyなどがインストール出来ないので出来れば自前でコンパイルしたかった</li>
+<li>cのヘッダ関係で失敗してるっぽい</li>
+</ul>
+
+
+<h2>結論</h2>
+
+<p><strong>JBiPadでプログラミングなんかしてないで,ノーパソが欲しい.</strong></p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="https://github.com/haya14busa/ios-build">haya14busa/ios-build</a></li>
+<li><a href="http://ininjas.com/forum/index.php?topic=1626.msg46557">Need to disable codesign</a></li>
+<li><a href="https://rc-z.me/blog/archives/2012/02/29/setup-gcc-on-iphone-4s-running-ios-5/" class="broken_link">Setup gcc On iPhone 4S running iOS 5 &#8211; RC.Z</a></li>
+<li><a href="http://n8.io/how-to-set-up-gcc-on-ios-4/">How To: Set up GCC on iOS 4 — n8.io</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/jb/'>jb</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/build-or-compile-on-jb-ios/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/build-or-compile-on-jb-ios/" data-via="haya14busa" data-counturl="http://haya14busa.com/build-or-compile-on-jb-ios/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/python-enumerate-prime/" title="Previous Post: Pythonで素数数え上げスクリプト">&laquo; Pythonで素数数え上げスクリプト</a>
+      
+      
+        <a class="basic-alignment right" href="/edit-vimrc-easily/" title="Next Post: Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/build-or-compile-on-jb-ios/';
+        var disqus_url = 'http://haya14busa.com/build-or-compile-on-jb-ios/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

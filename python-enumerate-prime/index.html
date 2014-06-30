@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pythonで素数数え上げスクリプト - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="書きました Github -> haya14busa/prime-sieve 素数を数える方法の記事読んだ時はそんなやる気なかったのについ手をだしてしまった。エラトステネスの篩って名前は知らなかったけど、そのアルゴリズムは読まなくても使おうと思いながら読んでたよ！ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/python-enumerate-prime/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Pythonで素数数え上げスクリプト</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-28T00:00:00+09:00" pubdate data-updated="true">July 28, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>書きました</h2>
+
+<p>Github -> <a href="https://github.com/haya14busa/prime-sieve">haya14busa/prime-sieve</a></p>
+
+<p><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a>の記事読んだ時はそんなやる気なかったのについ手をだしてしまった。<a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>って名前は知らなかったけど、そのアルゴリズムは読まなくても使おうと思いながら読んでたよ！って言っても記事読んでから書いたからｱﾚ。</p>
+
+<p>まったくもってブログにあげるレベルじゃないけど、意外と<code>set</code>使ったり、<code>iterator</code>意識したりとかのPython記事見つからなかったので一応書いてみた。適当に比較した感じでは速くなってるので満足です。素数ガチ勢じゃないから</p>
+
+<blockquote><p>確率的素数判定法 : 素数判定法の中には確率的アルゴリズムに基づいた、与えられた自然数 n を「合成数である」または「良く分からない」と判別する判定法がある。</p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/素数判定">素数判定 &#8211; Wikipedia</a></cite></p></blockquote>
+
+<p>とか使って高速化とかまでは妥協。</p>
+
+<h2>Code</h2>
+
+<p>prime_sieve.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+''' Enumerate prime numbers upto 10000 '''
+
+import time
+import sys
+
+argvs = sys.argv
+if len(argvs) &lt; 2:
+    MAX = 10000
+else:
+    try:
+        MAX = int(argvs[1])
+    except:
+        MAX = 10000
+
+def sqrt(num):
+    sq = num ** .5
+    return sq
+
+def main():
+    prime_set = set(xrange(2,MAX+1))
+    possible_set = set(xrange(2,int(sqrt(MAX+1))))
+    temp_set = set() # append prime upto sqrt(MAX)
+    while 1:
+        try:
+            prime = sorted(possible_set).pop(0)
+            temp_set.add(prime)
+        except:
+            prime_set = sorted(prime_set | temp_set)
+            print 'List: ', prime_set
+            print 'Count: ', len(prime_set)
+            return
+        prime_set = set(ifilter(lambda x: x % prime, prime_set))
+        possible_set = set(ifilter(lambda x: x % prime, possible_set))
+
+
+if __name__ == '__main__':
+    starttime = time.clock()
+    from itertools import ifilter
+    main()
+    endtime = time.clock()
+    time = endtime - starttime
+    print 'Time: ', time
+</code></pre>
+
+<h3>使用法</h3>
+
+<pre><code>$ git clone git@github.com:haya14busa/prime-sieve.git
+$ python prime_stieve.py [引数]
+</code></pre>
+
+<p>引数なしの場合、デフォルトで10000までの素数列挙します。</p>
+
+<h2>注意点</h2>
+
+<ul>
+<li>xrangeを使って既にソートされてる順番のリストをset変換しても、操作してたり(？)すると少しバラバラになるっぽい</li>
+<li>ので、素数ポップアウトする際は、<code>sorted(set).pop(0)</code>とする必要があります。</li>
+<li>もしやらなかった場合、だいたい15000くらいまでは正しく動くのですが、それ以降で失敗します。この辺の挙動が謎。</li>
+</ul>
+
+
+<h2>感想</h2>
+
+<p>アルゴリズムとコードの書き方の両者とも意識することで、想像してた以上に速くなったのでちょくちょくその辺も意識したい感じ。正しく使われてる気がしないtry、catchの使い方とか書き方がなってないので、<a href="http://www.amazon.co.jp/Python-%E3%82%AF%E3%83%83%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF-%E7%AC%AC2%E7%89%88-Alex-Martelli/dp/4873112761?tag=haya14busa-22">Python クックブック</a>とかちゃんとこなそう。</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41XWUXpgeuL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank">Python クックブック 第2版</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Alex Martelli,Anna Martelli Ravenscroft,David Ascher
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        オライリー・ジャパン 2007-06-26
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 4,410
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩 &#8211; Wikipedia</a></li>
+<li><a href="https://codeiq.jp/">CodeIQ｜ITエンジニアのための実務スキル評価サービス</a></li>
+<li><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a></li>
+<li><a href="http://d.hatena.ne.jp/r_ikeda/20111028/prime">Python で素数を求めるアルゴリズムを書いてみる &#8211; 集中力なら売り切れたよ</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-28T00:00:00+09:00" pubdate data-updated="true">July 28, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/python-enumerate-prime/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/python-enumerate-prime/" data-via="haya14busa" data-counturl="http://haya14busa.com/python-enumerate-prime/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/github-introductio/" title="Previous Post: GitHub導入メモ">&laquo; GitHub導入メモ</a>
+      
+      
+        <a class="basic-alignment right" href="/build-or-compile-on-jb-ios/" title="Next Post: JBiOSでも自前ビルド/コンパイルがしたい！">JBiOSでも自前ビルド/コンパイルがしたい！ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/python-enumerate-prime/';
+        var disqus_url = 'http://haya14busa.com/python-enumerate-prime/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

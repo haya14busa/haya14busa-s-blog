@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/linux/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法]]></title>
+    <link href="http://haya14busa.com/solution-of-sharing-file-between-windows-and-ubuntu-under-vmware/"/>
+    <updated>2013-08-24T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/solution-of-sharing-file-between-windows-and-ubuntu-under-vmware</id>
+    <content type="html"><![CDATA[<h2>VMWareでUbuntu入れました</h2>
+
+<p>その際、vmware-toolsにバグがあるっぽくて(?)<code>/mnt/hgfs</code>下に作ったWindowsから作ったSharedフォルダが表示されませんでした。</p>
+
+<p>いろいろ解決策はありそうでしたが、一番手軽そうなやつをメモ</p>
+
+<p>最初にvmware標準のvmware-toolsをアンインストールする必要あったかも</p>
+
+<blockquote><pre><code>sudo apt-get install open-vm-tools
+sudo mkdir /mnt/hgfs
+sudo mount -t vmhgfs .host:/ /mnt/hgfs
+</code></pre>
+
+<p>&#8211; <cite><a href="http://superuser.com/questions/588304/no-mnt-hgfs-in-ubuntu-guest-under-vmware-fusion">linux &#8211; No /mnt/hgfs in Ubuntu guest under VMWare Fusion &#8211; Super User</a></cite></p></blockquote>
+
+<p><code>sudo mount -t vmhgfs .host:/ /mnt/hgfs</code>は起動するごとにやらなきゃだめなので自動化したほうが良さげ。あとたまに出来ない(?)ので再起動してもっかい打ってみたりすると表示されるかも[要出典]。</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://superuser.com/questions/588304/no-mnt-hgfs-in-ubuntu-guest-under-vmware-fusion">linux &#8211; No /mnt/hgfs in Ubuntu guest under VMWare Fusion &#8211; Super User</a></li>
+<li><a href="http://meta.superuser.com/questions/4836/what-is-the-difference-betweensuper-user-and-stack-overflow">What is the difference between Super User and Stack Overflow? &#8211; Meta Super User</a></li>
+</ul>
+
+
+<p>デザイン見てやっぱStack Overflowって神サイトだなって思ったらSuper Userだったでござる</p>
+
+<p>勉強になったね</p>
+]]></content>
+  </entry>
+  
+</feed>

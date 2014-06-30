@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ブラウザで動くシンプルなエディタ「Darkroom.js」 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="ブラウザで動くシンプルなエディタ「Darkroom.js」 作ったと言うと語弊があるけど、作ったと言えるくらいには根本から作った。   dataURL Schemeと、javascriptで作られていて、拡張性が高くてたのしい。   jQuery、PHP Markdown &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/darkroom-js/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">ブラウザで動くシンプルなエディタ「Darkroom.js」</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-03T00:00:00+09:00" pubdate data-updated="true">May 03, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h1>ブラウザで動くシンプルなエディタ「Darkroom.js」</h1>
+
+<p>作ったと言うと語弊があるけど、作ったと言えるくらいには根本から作った。   dataURL Schemeと、javascriptで作られていて、拡張性が高くてたのしい。   jQuery、PHP Markdown Extra機能を実装するなど各種プラグインの導入。ブラウザ完結で使える保存機能。などなどいろいろやりました。 ブラウザで調べ物しながら編集するときなどに便利。ブックマーク同期でパソコン、モバイル端末と共有もできるので最近メモするときはもっぱらこれ使ってます。   色変えたので全然Darkじゃないのはご愛嬌。</p>
+
+<blockquote><p>とんでもないバケモノを作ってしまったかもしれない。</p>
+
+<p>&#8211; <cite><a href="http://d.hatena.ne.jp/wineroses/20130209/p1">Safari版韋駄天エディタDarkRoomをブックマークレットで拡張する方法 &#8211; W&amp;R : Jazzと読書の日々</a></cite></p></blockquote>
+
+<p>本当に拡張性が高い。javascriptで可能性が無限大。   めっ…目指せDraftPad!</p>
+
+<h2>デモ</h2>
+
+<p>-> <a href="http://tinyurl.com/cpmxfqr">デモ</a></p>
+
+<p>注意: tinyurlで短縮してますがdataURL Schemeを使ってます。また実際にブックマークレットとして動作させるときは、選択範囲の文章をデフォルトで入れておく機能がつきます。</p>
+
+<h2>動作環境</h2>
+
+<p>主にiPadで確認してますがPCでも動きます。 MacのSafariで確認。おそらくdataURL schemeに対応していれば他のブラウザでも動く[要出典]。後述しますがブクマで保存できるのでブクマ同期させると便利。適宜font-familyの記述は変えたほうがいいかも。</p>
+
+<h2>Darkroom.js</h2>
+
+<pre><code>javascript:Selection=encodeURIComponent(document.getSelection());darkroom="data:text/html;charset=UTF-8,&lt;head&gt;&lt;script src=http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js&gt;&lt;/script&gt;&lt;style&gt;body{background:#F7F6EB;}textarea{width:100%;font-size:16px;background:#F7F6EB;color:#0f0f0f;font-family:'Hiragino Kaku Gothic ProN';border:none;}#title{padding:0;margin:0;line-height:1;}#text{height:90%;}&lt;/style&gt;&lt;title&gt;Darkroom&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;textarea id=title rows=1 placeholder=Title tabindex=1 oninput=changeTitle()&gt;&lt;/textarea&gt;&lt;hr&gt;&lt;textarea id=text tabindex=1000&gt;"+Selection+"&lt;/textarea&gt;&lt;script&gt;function changeTitle(){document.title=''+title.value;}function JSSyncLoad(srces){if(srces.length==0){return;}var sc=document.createElement('script');sc.type='text/javascript';sc.src=srces.shift();if(window.ActiveXObject){sc.onreadystatechange=function(){if(sc.readyState=='complete'||sc.readyState=='loaded'){JSSyncLoad(srces);}};}else{sc.onload=function(){JSSyncLoad(srces);};}body=document.getElementsByTagName('body')[0];body.appendChild(sc);}s = 'https://raw.github.com/wjbryant/jquery.taboverride/master/examples/lib/taboverride-3.2.1.min.js';t = 'https://raw.github.com/wjbryant/jquery.taboverride/master/build/jquery.taboverride.min.js';u = 'https://dl.dropboxusercontent.com/u/22782925/basic-example.js';v = 'https://raw.github.com/tanakahisateru/js-markdown-extra/master/js-markdown-extra.js';setTimeout(function(){JSSyncLoad([s,t,u,v]);},10);&lt;/script&gt;&lt;/body&gt;";window.open(darkroom,'_blank');
+</code></pre>
+
+<p>上記コードをコピーしてブックマークに登録して実行。</p>
+
+<p>デフォルトのネット環境での追加機能として以下を実装しています</p>
+
+<ul>
+<li>jQuery2.0</li>
+<li>TAB入力の挙動をインデントに。</li>
+<li>js-markdown-extra.jsの読み込み。(読み込みだけで動作には他のブックマークレットを使用)</li>
+</ul>
+
+
+<p>オフラインでも普通のエディタとしての機能は使えます。   jQueryに関してはGoogle Library APIを使っているので、キャッシュされてオフラインでも使えるかも。   後述するドヤ顔プラグインはさすがにデフォルトで組み込む勇気はなかった。</p>
+
+<h3>使用方法</h3>
+
+<p>シンプルなので説明する必要もない…なんてこともないか。</p>
+
+<p>一番上にタイトル用に1行のtextareaをおいています。javascriptのoninputでブラウザ上でのタイトルも変わります。これで複数Darkroomを開いてる時でもわかりやすい。タイトル領域の変数はそのまま「title」。命名規則とか知らない()</p>
+
+<p>その下は全部メインの編集エリア。rows(行数)は指定せずheightを90%にしています。後述するブックマークレットで2画面にして同時に扱うためにパーセントで指定しています。編集領域の変数もそのまま「text」。………予約語ではなさそうだし大丈夫でしょ()</p>
+
+<p>TABキーの機能はインデント(半角スペース4つ分)。複数行のインデント&amp;アンインデント(Shift TAB)が可能です。 iOS(確認環境 5.1.1)では最後尾にでてくるtextareaにしかインデント機能が効かず、アンインデントができない問題があります。残念。  </p>
+
+<p>TABの細かい挙動についてはプラグインのページ参照 -> <a href="https://github.com/wjbryant/jquery.taboverride">wjbryant/jquery.taboverride</a>   DrobBoxの共有機能でホストさせて自分用の機能を書いているので、各自で変えるといいかも。</p>
+
+<p>その他各種機能についてはブックマークレットを作れば可能性は無限大。   保存方法については以下。</p>
+
+<h2>Saveroom.js</h2>
+
+<pre><code>javascript:function entitizeText(ch){ch = ch.replace(/&amp;/g,"&amp;amp;");ch = ch.replace(/"/g,"&amp;quot;");ch = ch.replace(/'/g,"&amp;#039;");ch = ch.replace(/&lt;/g,"&amp;lt;");ch = ch.replace(/&gt;/g,"&amp;gt;");return ch;}Title=encodeURIComponent(title.value);Text=encodeURIComponent(entitizeText(text.value));darkroom="data:text/html;charset=UTF-8,&lt;head&gt;&lt;script src=http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js&gt;&lt;/script&gt;&lt;style&gt;body{background:#F7F6EB;}textarea{width:100%;font-size:16px;background:#F7F6EB;color:#0f0f0f;font-family:'Hiragino Kaku Gothic ProN';border:none;}#title{padding:0;margin:0;line-height:1;}#text{height:90%;}&lt;/style&gt;&lt;title&gt;"+Title+"&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;textarea id=title rows=1 tabindex=1 oninput=changeTitle()&gt;"+Title+"&lt;/textarea&gt;&lt;hr&gt;&lt;textarea id=text tabindex=1000&gt;"+Text+"&lt;/textarea&gt;&lt;script&gt;function changeTitle(){document.title=''+title.value;}function JSSyncLoad(srces){if(srces.length==0){return;}var sc=document.createElement('script');sc.type='text/javascript';sc.src=srces.shift();if(window.ActiveXObject){sc.onreadystatechange=function(){if(sc.readyState=='complete'||sc.readyState=='loaded'){JSSyncLoad(srces);}};}else{sc.onload=function(){JSSyncLoad(srces);};}body=document.getElementsByTagName('body')[0];body.appendChild(sc);}s = 'https://raw.github.com/wjbryant/jquery.taboverride/master/examples/lib/taboverride-3.2.1.min.js';t = 'https://raw.github.com/wjbryant/jquery.taboverride/master/build/jquery.taboverride.min.js';u = 'https://dl.dropboxusercontent.com/u/22782925/basic-example.js';v = 'https://raw.github.com/tanakahisateru/js-markdown-extra/master/js-markdown-extra.js';setTimeout(function(){JSSyncLoad([s,t,u,v]);},10);&lt;/script&gt;&lt;/body&gt;";window.open(darkroom,'_top');$('textarea').blur(function(){function entitizeText(ch){ch = ch.replace(/&amp;/g,"&amp;amp;");ch = ch.replace(/"/g,"&amp;quot;");ch = ch.replace(/'/g,"&amp;#039;");ch = ch.replace(/&lt;/g,"&amp;lt;");ch = ch.replace(/&gt;/g,"&amp;gt;");return ch;}Title=encodeURIComponent(title.value);Text=encodeURIComponent(entitizeText(text.value));darkroom="data:text/html;charset=UTF-8,&lt;head&gt;&lt;script src=http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js&gt;&lt;/script&gt;&lt;style&gt;body{background:#F7F6EB;}textarea{width:100%;font-size:16px;background:#F7F6EB;color:#0f0f0f;font-family:'Hiragino Kaku Gothic ProN';border:none;}#title{padding:0;margin:0;line-height:1;}#text{height:90%;}&lt;/style&gt;&lt;title&gt;"+Title+"&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;textarea id=title rows=1 tabindex=1 oninput=changeTitle()&gt;"+Title+"&lt;/textarea&gt;&lt;hr&gt;&lt;textarea id=text tabindex=1000&gt;"+Text+"&lt;/textarea&gt;&lt;script&gt;function changeTitle(){document.title=''+title.value;}function JSSyncLoad(srces){if(srces.length==0){return;}var sc=document.createElement('script');sc.type='text/javascript';sc.src=srces.shift();if(window.ActiveXObject){sc.onreadystatechange=function(){if(sc.readyState=='complete'||sc.readyState=='loaded'){JSSyncLoad(srces);}};}else{sc.onload=function(){JSSyncLoad(srces);};}body=document.getElementsByTagName('body')[0];body.appendChild(sc);}s = 'https://raw.github.com/wjbryant/jquery.taboverride/master/examples/lib/taboverride-3.2.1.min.js';t = 'https://raw.github.com/wjbryant/jquery.taboverride/master/build/jquery.taboverride.min.js';u = 'https://dl.dropboxusercontent.com/u/22782925/basic-example.js';v = 'https://raw.github.com/tanakahisateru/js-markdown-extra/master/js-markdown-extra.js';setTimeout(function(){JSSyncLoad([s,t,u,v]);},10);&lt;/script&gt;&lt;/body&gt;";window.open(darkroom,'_top'); });
+</code></pre>
+
+<p>上記コードをブクマして、<strong>Darkroomを開いたページで</strong>実行。   実行時とその後タブが閉じられるまでは自動で保存します。</p>
+
+<p>ブラウザで動くDarkroom。保存はどうしよう？と考えたとき閃いた。dataURL SchemeはURLに情報を埋め込める。つまり、urlに保存してブックマークしちゃえばいい！</p>
+
+<p>具体的に何をしているかというと、textarea内のメモした文章をDarkroom.jsのtextarea内にぶち込んで、もう一度Darkroomを読み込んでいます。   内容がほぼ同じなせいか、保存時に再度読み込んでるとは体感では思えないはず[ブラウザ依存?]。実行時と、その後タブが閉じられるまではtextareaからフォーカスが外れたときに自動で再読み込みさせています。これによって間違ってタブを閉じてしまったり、ブラウザが落ちても復元できます。履歴にも残っているはず。タブの復元やブクマから再び開いた場合はもう一度実行してください。</p>
+
+<p>あとは適当に文章保存用途のブックマークフォルダを作ってそこにブクマすればブラウザ完結で保存できます。</p>
+
+<h3>助けて</h3>
+
+<p>Saveroom.jsのコードをよく見てください……同じこと2回書いてるでしょ？実行時用とjQueryのblurで実行する用の2つ。たぶんローカル変数だとかグローバル変数とかの問題じゃなくて、再帰的に自分を呼び出せるか、みたいな問題なはず。そのせいでDarkroom.js自体に自動保存機能をつけられなかった。locaion.hrefでurl取得してtextarea内を置換する…みたいな方法でもできそうだけどよくわかりません。</p>
+
+<p>誰かわかるひと助けて > &lt;</p>
+
+<h2>iOS向け保存方法</h2>
+
+<p>各種アプリをインストールしておけばURLスキームでアプリに飛ばせます。</p>
+
+<h3>DropRoom</h3>
+
+<pre><code>javascript:function addZero(d){if(d&lt;10){d='0'+d;}return d;}function getDateTime(){var date=new Date();var y=date.getFullYear(),m=addZero(date.getMonth()+1),d=addZero(date.getDate()),h=addZero(date.getHours()),min=addZero(date.getMinutes()),sc=addZero(date.getSeconds());var ret=y+m+d+h+min+sc;return ret;}var datetime=getDateTime();Title=encodeURIComponent(title.value);Text=encodeURIComponent(text.value);url="plaintext://new/"+Title+"_"+datetime+".md?body="+Text+"";window.open(url);
+</code></pre>
+
+<p>参考: <a href="http://yasumoha.com/blog/myscripts_save_dropbox_by_plaintext/">MyScriptsでPlainTextを経由してDropBoxに保存するスクリプトを作ってみた | Rondo</a></p>
+
+<p><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fplaintext-dropbox-text-editing%252Fid391254385%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img width="100" class="alignleft" align="left" src="http://a1795.phobos.apple.com/us/r1000/104/Purple/v4/ca/16/e9/ca16e998-fe07-d096-6abe-322be196649a/mzl.jdivmfzw.100x100-75.png" style="border-radius: 20px 20px 20px 20px;-moz-border-radius: 20px 20px 20px 20px;-webkit-border-radius: 20px 20px 20px 20px;box-shadow: 1px 4px 6px 1px #999999;-moz-box-shadow: 1px 4px 6px 1px #999999;-webkit-box-shadow: 1px 4px 6px 1px #999999;margin: -5px 15px 1px 5px;" /></a><strong> PlainText &#8211; Dropbox text editing 1.7.5（無料）</strong><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fplaintext-dropbox-text-editing%252Fid391254385%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/viewinitunes_jp.png" style="vertical-align:bottom;" width="90" alt="App" /></a><br/>
+カテゴリ: 仕事効率化, ユーティリティ<br/>
+販売元: <a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fartist%252Fhog-bay-software%252Fid284288610%253Fuo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link">Hog Bay Software &#8211; Jesse Grosjean</a>（サイズ: 4.4 MB）<br/>
+全てのバージョンの評価: <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star_half.png" alt="" />（279件の評価）<br/>
+ <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/fat-binary-badge-web.png" alt="+ " /> iPhone/iPadの両方に対応<br style="clear: both;" /></p>
+
+<p>PlainTextを経由してDropboxに自動で同期します。オフラインの場合でも、ローカルに保存してくれるので安全。勿論あとからオンラインになってもアプリ起動で同期してくれます。タイトル末尾に日時を追加してくれるので何度実行しても既存のデータとコンフリクトしません。</p>
+
+<h3>Draftpadへ</h3>
+
+<p><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fdraftpad%252Fid358067114%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img width="100" class="alignleft" align="left" src="http://a350.phobos.apple.com/us/r1000/089/Purple/v4/f5/b2/90/f5b2905d-b945-e856-bb24-57fe83649a3c/mzm.hpqgnsde.100x100-75.png" style="border-radius: 20px 20px 20px 20px;-moz-border-radius: 20px 20px 20px 20px;-webkit-border-radius: 20px 20px 20px 20px;box-shadow: 1px 4px 6px 1px #999999;-moz-box-shadow: 1px 4px 6px 1px #999999;-webkit-box-shadow: 1px 4px 6px 1px #999999;margin: -5px 15px 1px 5px;" /></a><strong> DraftPad 1.6.2（無料）</strong><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fdraftpad%252Fid358067114%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/viewinitunes_jp.png" style="vertical-align:bottom;" width="90" alt="App" /></a><br/>
+カテゴリ: 仕事効率化, ユーティリティ<br/>
+販売元: <a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fartist%252Fmanabu-ueno%252Fid358067117%253Fuo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link">Manabu Ueno &#8211; Manabu Ueno</a>（サイズ: 0.6 MB）<br/>
+全てのバージョンの評価: <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star_half.png" alt="" />（515件の評価）<br/>
+ <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/fat-binary-badge-web.png" alt="+ " /> iPhone/iPadの両方に対応<br style="clear: both;" /></p>
+
+<p><strong>Dark to Draft</strong></p>
+
+<pre><code>javascript:location.href="draftpad://insert?text="+encodeURIComponent(text.value);
+</code></pre>
+
+<p>DraftPadに上書きして飛ばします。</p>
+
+<p><strong>Apend to Draft</strong></p>
+
+<pre><code>javascript:location.href="draftpad://insert?after="+encodeURIComponent(text.value);
+</code></pre>
+
+<p>DraftPadの末尾に追記します。</p>
+
+<h3>MyEditor へ</h3>
+
+<p><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fmyeditor%252Fid575214004%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img width="100" class="alignleft" align="left" src="http://a1382.phobos.apple.com/us/r1000/090/Purple/v4/a6/53/8f/a6538fe4-21c9-beae-3bb3-e0678862af32/mzl.kkdyoduz.100x100-75.png" style="border-radius: 20px 20px 20px 20px;-moz-border-radius: 20px 20px 20px 20px;-webkit-border-radius: 20px 20px 20px 20px;box-shadow: 1px 4px 6px 1px #999999;-moz-box-shadow: 1px 4px 6px 1px #999999;-webkit-box-shadow: 1px 4px 6px 1px #999999;margin: -5px 15px 1px 5px;" /></a><strong> MyEditor 1.6（￥350）</strong><a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fmyeditor%252Fid575214004%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/viewinitunes_jp.png" style="vertical-align:bottom;" width="90" alt="App" /></a><br/>
+カテゴリ: ビジネス, 仕事効率化<br/>
+販売元: <a href="http://click.linksynergy.com/fs-bin/stat?id=rbxP24BI7XI&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fartist%252Ftakeyoshi-nakayama%252Fid309017362%253Fuo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link">Takeyoshi Nakayama &#8211; Takeyoshi Nakayama</a>（サイズ: 0.4 MB）<br/>
+全てのバージョンの評価: <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" />（3件の評価）<br/>
+ <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/fat-binary-badge-web.png" alt="+ " /> iPhone/iPadの両方に対応<br style="clear: both;" /></p>
+
+<p><strong>Dark to MyEditor</strong></p>
+
+<pre><code>javascript:Title=encodeURIComponent(title.value);Text=encodeURIComponent(text.value);location.href="myeditor://add?title="+Title+"&amp;text="+Text;
+</code></pre>
+
+<p>DraftPadと違ってMyEditorへはタイトルつきで保存できる。</p>
+
+<h2>ブックマークレット拡張機能</h2>
+
+<p>DraftPadにおけるアシスト的ななにか。  </p>
+
+<ul>
+<li>タイトル領域の変数は「title」</li>
+<li>編集領域の変数は「text」     &#8211; 例1）<code>javascript:text.style.fontSize=20;</code>//フォントサイズを20pxに     &#8211; 例2）<code>javascript:alert(text.value);</code>//テキストの内容をアラート表示</li>
+<li>jQuery実装なので<code>javascript:$("#text").css("fontSize","18");</code>のようにも使えます。</li>
+<li>ブックマークバーにDarkroom.js用のフォルダを作って管理することを推奨。</li>
+</ul>
+
+
+<h4>fontsizeChange</h4>
+
+<pre><code>javascript:Fontsize=window.prompt("fontsize=", "");text.style.fontSize=Fontsize;
+</code></pre>
+
+<p>-> プロンプトに数値を入力</p>
+
+<h4>DarkCount</h4>
+
+<pre><code>javascript:alert("文字数："+text.value.length);
+</code></pre>
+
+<p>-> 文字数をカウント。(その気になればリアルタイムで表示させるようにも実装できますね)</p>
+
+<h4>Clear</h4>
+
+<pre><code>javascript:text.value="";
+</code></pre>
+
+<p>-> 全文削除。</p>
+
+<h4>Google Search(English)</h4>
+
+<pre><code>javascript:gserchURL="http://www.google.com/search?hl=en&amp;q="+encodeURIComponent(text.value.substr(text.selectionStart,text.selectionEnd-text.selectionStart));window.open(gserchURL,"_blank");
+</code></pre>
+
+<p>-> 選択領域のテキストを新しいタブで検索。英語用にしてますが、日本語なら日本語情報がヒットします。<code>hl=en</code>を弄ると言語を変えれます。</p>
+
+<h4>htmlPreview</h4>
+
+<pre><code>javascript:textValue=encodeURIComponent(text.value);darkHtml="data:text/html;charset=UTF-8,"+textValue;open(darkHtml,'_blank');
+</code></pre>
+
+<p>-> テキストエリアにhtmlを打っておくと、新しいタブでhtmlプレビューできます。ちょっとした確認に便利。styleを埋め込んでおけばブログ用プレビューなども簡単にできそう。</p>
+
+<h4>DecodeText</h4>
+
+<pre><code>javascript:decodetext=decodeURIComponent(text.value);text.value=decodetext;
+</code></pre>
+
+<p>-> 編集領域の文字をデコード。ブックマークレットなど一度ブックマークすると自動でエンコードされて編集しずらいので、登録したブックマークレットを編集するときに便利。</p>
+
+<h4>EncodeText</h4>
+
+<pre><code>javascript:Encodetext=encodeURIComponent(text.value);text.value=Encodetext;
+</code></pre>
+
+<p>-> デコードの逆。あまり使わないかも。単体でエンコードするより他のブックマークレット使用時に組みこんでる。エンコードしておけば安全に扱えるらしい。</p>
+
+<h4>EntitizeText</h4>
+
+<pre><code>javascript: function entitizeText(ch) {   ch = ch.replace(/&amp;/g,"&amp;amp;") ;   ch = ch.replace(/"/g,"&amp;quot;") ;   ch = ch.replace(/'/g,"&amp;#039;") ;   ch = ch.replace(/&lt;/g,"&amp;lt;") ;   ch = ch.replace(/&gt;/g,"&amp;gt;") ;   return ch ; } text.value=entitizeText(text.value);
+</code></pre>
+
+<p>-> 編集領域の文字を実体(entity)参照させる。Entitizeは造語ならしいけど気に入りました。これをSaveroomに組み込んだおかげでテキストに<code>&lt;/textarea&gt;</code> が入っても扱えるようになった。Saveroomでは実体参照して、さらにエンコードしてるけどにわかなもので問題ないのかどうかわからない。教えてエr…偉い人。   参考: <a href="http://serennz.sakura.ne.jp/sb/log/eid73.html">SimpleBoxes | [javascript]文字の実体参照化</a></p>
+
+<h4>MaketinyURL</h4>
+
+<pre><code>javascript:dataURI=encodeURIComponent(location.href);tinyURL="http://tinyurl.com/api-create.php?url="+dataURI;window.open(tinyURL,'_blank');
+</code></pre>
+
+<p>-> tinyURLはdataURIスキームすらも短縮してくれます。これでDarkroomごと保存して呟いたりもできるけど、あんまりそういうのがよくないから他の短縮サービスはdataURIに対応してないのかも。あとこのブックマークレットはDarkroom以外のページでも使えます。 本当はXMLHttpRequest()を使って末尾に挿入とか、ダイアログ表示とかしたかったけどうまくできなかった。   教えてえr(ry</p>
+
+<h4>toggleTitle</h4>
+
+<pre><code>javascript:$("#title,hr").toggle('fast',function(){if($("#title").css("display")=="inline-block"){$("#text").css("height","90%");}else{$("#text").css("height","95%");}});
+</code></pre>
+
+<p>-> たった1行のタイトル領域すら邪魔って時のために。表示<->非表示させます。メインの編集エリアの高さも微妙に変えてます。</p>
+
+<h4>toggleDualroom</h4>
+
+<pre><code>javascript:if($("#text2").size()==0){$("#text").after("&lt;textarea id=text2 tabindex=2&gt;&lt;/textarea&gt;").css({"width":"50%","float":"left"});$("#text2").css({"width":"50%","height":"90%","float":"left","background":"rgba(0,0,0,.02)"});}else{if($("#text2").css("display")=="block"){$("#text2").slideToggle('fast',function(){$("#text").animate({"width":"100%"});});}else{$("#text").animate({"width":"50%"},function(){$("#text2").slideToggle('fast');});}}
+</code></pre>
+
+<p>-> 右側に追加のメモ領域を出し、2画面エディタにします。 トグルなんで実行のたびに表示<->非表示します。無駄にアニメーション付き。Saveroomの保存対象にはしてないので、ちょっと参照しながら書きたいってときの為に。   特にiOSで2画面エディタってのはなかなかないはず。そもそもタブ機能すらついてないことが多いですよね。DarkroomならAppleにリジェクトされる心配もありません。</p>
+
+<h3>PHP Markdown Extraの実装</h3>
+
+<p>javascriptでPHP Markdown Extraが使える。感謝しかない   参考: <a href="https://github.com/tanakahisateru/js-markdown-extra">tanakahisateru/js-markdown-extra</a>  </p>
+
+<p>詳しくは参照先に書いてありますが、完全互換じゃありません。   それに他のブックマークレットよりも格段に時間がかかります。注意…  </p>
+
+<p><strong>しかし、</strong>個人的には十分に使えます。javascriptで変換出来ちゃうなんて本当に凄い。   Markdownerとしては必須プラグインなのでデフォルトでDarkroom.jsに組み込んでます。</p>
+
+<h4>md2HTMLTag</h4>
+
+<pre><code>javascript:var htmlText=Markdown(text.value);darkroom="data:text/html;charset=UTF-8,&lt;head&gt;&lt;script src=http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js&gt;&lt;/script&gt;&lt;style&gt;body{background:#F7F6EB;}textarea{width:100%;font-size:18px;background:#F7F6EB;color:#0f0f0f;font-family:'Hiragino Kaku Gothic ProN';border:none;}#title{padding:0;margin:0;line-height:1;}#text{height:90%;}&lt;/style&gt;&lt;title&gt;Darkroom&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;textarea id=title rows=1 placeholder=Title tabindex=1 oninput=changeTitle()&gt;&lt;/textarea&gt;&lt;hr&gt;&lt;textarea id=text tabindex=1000&gt;"+htmlText+"&lt;/textarea&gt;&lt;script&gt;function changeTitle(){document.title=''+title.value;}function JSSyncLoad(srces){if(srces.length==0){return;}var sc=document.createElement('script');sc.type='text/javascript';sc.src=srces.shift();if(window.ActiveXObject){sc.onreadystatechange=function(){if(sc.readyState=='complete'||sc.readyState=='loaded'){JSSyncLoad(srces);}};}else{sc.onload=function(){JSSyncLoad(srces);};}body=document.getElementsByTagName('body')[0];body.appendChild(sc);}s = 'https://raw.github.com/wjbryant/jquery.taboverride/master/examples/lib/taboverride-3.2.1.min.js';t = 'https://raw.github.com/wjbryant/jquery.taboverride/master/build/jquery.taboverride.min.js';u = 'https://dl.dropboxusercontent.com/u/22782925/basic-example.js';v = 'https://raw.github.com/tanakahisateru/js-markdown-extra/master/js-markdown-extra.js';setTimeout(function(){JSSyncLoad([s,t,u,v]);},10);&lt;/script&gt;&lt;/body&gt;";window.open(darkroom,'_blank');
+</code></pre>
+
+<p>-> 新規タブでMarkdown文書をHTMLタグに変換。文書が長いほど時間も長いので注意。以下Markdown用は基本時間かかります。</p>
+
+<h4>md2HTMLPreview</h4>
+
+<pre><code>javascript:htmlText=Markdown(text.value);darkHtml="data:text/html;charset=UTF-8,&lt;body&gt;"+htmlText+"&lt;/body&gt;";open(darkHtml,'_blank');
+</code></pre>
+
+<p>-> 新規タブでMarkdown文書をHTMLフォーマットに。上記したhtmlPreviewのMarkdown版です。</p>
+
+<h4>mdPreview(Dual)</h4>
+
+<pre><code>javascript: if($("#html").size()==0){ $("#text").after("&lt;div id=html&gt;&lt;/div&gt;").css({"width":"60%","float":"left"}); $("#html").css({"width":"40%","height":"100%","float":"left","background":"rgba(0,0,0,.02)","overflow":"scroll"}); }else{ htmlText=Markdown(text.value);$("#html").html(htmlText);}
+</code></pre>
+
+<p>-> 新規タブではなく、編集エリアの右側に30%の幅でHTMLプレビュー用のdivを追加し、そこに表示させます。重いので1回目の実行は表示領域を作るだけで、2回目以降の実行でHTMLを吐き出します。ちょっとした確認にはいいかも。領域消すだけのためにもう一つブックマークレット作るのも面倒なので消したい時はSaveroomしてから更新すればOK。</p>
+
+<h3>Theme</h3>
+
+<div class="dr-color-scheme" style="width:90%;background:#453933;color:#5ccdb6;padding:0 5px 10px; line-height:1.5">
+  <h5 style="font-size:24px;text-align:center;margin:10px;line-height:1.5;border-bottom:solid 1px #f8f8f8;">
+    ChocoMint
+  </h5>
+  
+  <p style="margin:5px">
+    Font color -> #5ccdb6<br />Background -> #453933<br />Bookmarklet -> <pre><code>javascript:$("textarea,body").css({"color":"#5ccdb6","background":"#453933"});</code></pre>
+  </p>
+</div>
+
+
+<p> </p>
+
+<div class="dr-color-scheme" style="width:90%;background:#453933;color:pink;padding:0 5px 10px; line-height:1.5">
+  <h5 style="font-size:24px;text-align:center;margin:10px;line-height:1.5;border-bottom:solid 1px #f8f8f8;">
+    いちごチョコ
+  </h5>
+  
+  <p style="margin:5px">
+    Font color -> pink<br />Background -> #453933<br />Bookmarklet -> <pre><code>javascript:$("textarea,body").css({"color":"pink","background":"#453933"});</code></pre>
+  </p>
+</div>
+
+
+
+
+<div class="dr-color-scheme" style="width:90%;background:black;color:lime;padding:0 5px 10px; line-height:1.5">
+  <h5 style="font-size:24px;text-align:center;margin:10px;line-height:1.5;border-bottom:solid 1px #f8f8f8;">
+    黒緑
+  </h5>
+  
+  <p style="margin:5px">
+    Font color -> lime<br />Background -> black<br />Bookmarklet -> <pre><code>javascript:$("textarea,body").css({"color":"lime","background":"black"});</code></pre>
+  </p>
+</div>
+
+
+
+
+<div class="dr-color-scheme" style="width:90%;background:#f7f6eb;color:#0f0f0f;padding:0 5px 10px; line-height:1.5">
+  <h5 style="font-size:24px;text-align:center;margin:10px;line-height:1.5;border-bottom:solid 1px #0f0f0f;">
+    生成り色
+  </h5>
+  
+  <p style="margin:5px">
+    Font color -> #0f0f0f<br />Background -> #f7f6eb<br />Bookmarklet -> <pre><code>javascript:$("textarea,body").css({"color":"#0f0f0f","background":"#f7f6eb"});</code></pre>
+  </p>
+</div>
+
+
+<h3>ドヤ顔プラグイン</h3>
+
+<p><a href="../images/misc/wp/2013/05/20130503-135340.jpg"><img src="../images/misc/wp/2013/05/20130503-135340-225x300.jpg" alt="20130503-135340.jpg" width="225" height="300" class="alignnone size-medium wp-image-41" /></a><br/>
+参照:<a href="http://nantokaworks.com/?page_id=700">無駄にエンターを強く押してしまいそうな誰得jQueryプラグイン jdtMdnStrongEnter.js | Re* Programming</a></p>
+
+<h4>Enable DoyagaoEdit</h4>
+
+<pre><code>javascript:function JSSyncLoad(srces){if(srces.length==0){return;}var sc=document.createElement('script');sc.type='text/javascript';sc.src=srces.shift();if(window.ActiveXObject){sc.onreadystatechange=function(){if(sc.readyState=='complete'||sc.readyState=='loaded'){JSSyncLoad(srces);}};}else{sc.onload=function(){JSSyncLoad(srces);};}body=document.getElementsByTagName('body')[0];body.appendChild(sc);}s = 'https://dl.dropboxusercontent.com/u/22782925/jdtmdnstrongenter/js/jdtmdnstrongenter.js';t = 'https://dl.dropboxusercontent.com/u/22782925/jdtmdnstrongenter/js/basic-jdtMdnStrongEnter.js';JSSyncLoad([s,t]);
+</code></pre>
+
+<p>-> これが楽しすぎてやばいです。黒緑の厨二御用達テーマと組み合わせてドヤ顏すると友達増えます[要出典]   このブックマークレットもDarkroomだけでなく、ページにtextareaさえあれば実行できます。ﾄﾞﾔ顏コメントやﾄﾞﾔツイートする時に楽しいかも。</p>
+
+<p><strong>(カチャカチャカチャ…)</strong>   <strong>(ッターン！)</strong></p>
+
+<h2>参考URL</h2>
+
+<h3><a href="http://d.hatena.ne.jp/wineroses/">W&amp;R : Jazzと読書の日々</a>の<a href="https://twitter.com/jazzzz2012">@jazzzz2012</a>さんから</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/wineroses/20130204/p2">iPhone/iPadのSafariにメモ機能を追加するブックマークレット ClipNote &#8211; W&amp;R : Jazzと読書の日々</a></li>
+<li><a href="http://d.hatena.ne.jp/wineroses/20130204/p3">Safariが軽快なエディタに変わる、韋駄天版DarkRoomを移植しました &#8211; W&amp;R : Jazzと読書の日々</a></li>
+<li><a href="http://d.hatena.ne.jp/wineroses/20130209/p1">Safari版韋駄天エディタDarkRoomをブックマークレットで拡張する方法 &#8211; W&amp;R : Jazzと読書の日々</a></li>
+<li><a href="http://d.hatena.ne.jp/wineroses/20130211/p2">Safariで走る韋駄天エディタDarkRoomの「ほぼ完成版」 &#8211; W&amp;R : Jazzと読書の日々</a> -> 一番参考にした。というかここをカスタマイズしただけといっても過言じゃない。</li>
+</ul>
+
+
+<dl>
+<dt>Bookmarkletでスクリプトを追加読み込みする際に動的(ただしい順番)にロードする</dt>
+<dd>     <a href="http://d.hatena.ne.jp/takacyk/20120128/1327756512" class="broken_link">[javascript]Javascriptを順番に動的ロード &#8211; エンジニアのままいきたいです</a></dd>
+<dt>TAB入力をインデントにするプラグイン</dt>
+<dd>     <a href="https://github.com/wjbryant/jquery.taboverride">wjbryant/jquery.taboverride</a></dd>
+<dt>javascriptでPHP Markdown Extraが使える。感謝しかない</dt>
+<dd>     <a href="https://github.com/tanakahisateru/js-markdown-extra">tanakahisateru/js-markdown-extra</a>  </dd>
+<dd>     <a href="https://npmjs.org/package/js-markdown-extra">js-markdown-extra</a></dd>
+<dt>実体参照させることによって<code>&lt;/textarea&gt;</code>がメモ内に存在しても扱えるようになる</dt>
+<dd>     <a href="http://serennz.sakura.ne.jp/sb/log/eid73.html">SimpleBoxes | [javascript]文字の実体参照化</a></dd>
+<dt>これは導入せざるを得なかったドヤ顔プラグイン</dt>
+<dd>     <a href="http://nantokaworks.com/?page_id=700">無駄にエンターを強く押してしまいそうな誰得jQueryプラグイン jdtMdnStrongEnter.js | Re* Programming</a></dd>
+</dl>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-03T00:00:00+09:00" pubdate data-updated="true">May 03, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/darkroom-dot-js/'>darkroom.js</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/darkroom-js/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/darkroom-js/" data-via="haya14busa" data-counturl="http://haya14busa.com/darkroom-js/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/wordpress-jquery-plugin/" title="Previous Post: WordPressでfunctions.phpを使ったjQueryプラグインの導入方法">&laquo; WordPressでfunctions.phpを使ったjQueryプラグインの導入方法</a>
+      
+      
+        <a class="basic-alignment right" href="/googunosy/" title="Next Post: Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット">Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/darkroom-js/';
+        var disqus_url = 'http://haya14busa.com/darkroom-js/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>git mergetoolでvimdiffを便利に使う - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Mergeしんどい 今までConflict起きたら直接コンフリクトしたファイルを編集して完全手動で直してたんですが、mergetoolの存在とかvimdiffとかで出来そうと思って調べました。 Gitの設定 git config &ndash;global merge.tool vimdiff &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/git-mergetool-vimdiff/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Git Mergetoolでvimdiffを便利に使う</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-03T00:00:00+09:00" pubdate data-updated="true">November 03, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Mergeしんどい</h2>
+
+<p>今までConflict起きたら直接コンフリクトしたファイルを編集して完全手動で直してたんですが、mergetoolの存在とかvimdiffとかで出来そうと思って調べました。</p>
+
+<h2>Gitの設定</h2>
+
+<p><noscript>
+  <pre><code class="language- ">git config &ndash;global merge.tool vimdiff
+git config &ndash;global mergetool.prompt false
+git config &ndash;global mergetool.keepBackup false</code></pre>
+</noscript></p>
+
+<p><code>git config --global merge.conflictstyle diff3</code>も紹介されていたけど共通祖先を表示する必要性を感じなかったので無視した。</p>
+
+<p>promptをfalseにすることでmergetoolした時のpromptを省略して編集を始めるようにし、keepBackupをfalseにすることでmergetoolがデフォルトでは自動的に生成する&#42;.origファイルを生成しないように出来る。</p>
+
+<h2>Vimの設定</h2>
+
+<p><noscript>
+  <pre><code class="language-viml viml">&ldquo; Mapping for vimdiff
+&rdquo; for git mergetool
+if &amp;diff
+  map &lt;Leader&gt;1 :diffget LOCAL&lt;CR&gt;
+  map &lt;Leader&gt;2 :diffget BASE&lt;CR&gt;
+  map &lt;Leader&gt;3 :diffget REMOTE&lt;CR&gt;
+  map &lt;Leader&gt;u :&lt;C-u&gt;diffupdate&lt;CR&gt;
+  map u u:&lt;C-u&gt;diffupdate&lt;CR&gt;
+endif</p>
+
+<p></code></pre>
+</noscript> 左から1,2,3って覚え方でよさそう。Local,Base,Remoteの頭文字とかでもKeymapに余裕があるならよさそう。</p>
+
+<p>一度diffgetしたあとUndoするとdiffがうまく効かないのでuにdiffupdateを噛ませてる</p>
+
+<p><code>]c</code>,<code>[c</code>で次/前のConflict箇所にジャンプするので気に入らなければお好みでキーマップ書くとよさげかも。</p>
+
+<p>終了時には<code>:wqa</code> or <code>:qa</code>あたりを使うのでこれもキーマップしたほうがストレス減るかも知れない。</p>
+
+<h2>vimdiff or vimdiff2 or vimdiff3?</h2>
+
+<blockquote><p>$ git config &ndash;global mergetool.gvimdiff3.cmd &lsquo;gvim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;<br/>
+$ git config &ndash;global mergetool.vimdiff3.cmd &lsquo;vim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;</p>
+
+<p>&ndash; <cite><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net - Three-way merging for git using vim</a></cite></p></blockquote>
+
+<p><code>git config --global merge.tool [toolname]</code>で設定</p>
+
+<p>最初はvimdiff3の記事を見つけてやってみたんだけど、共通祖先がない場合にBASEがないだけでなく、diffの挙動がちょっとおかしい。<br/>
+おそらく存在しないBASEと比較してしまうのでファイル全体がdiff1つ分の対象となってしまっている。</p>
+
+<p><a href="https://github.com/git/git/blob/master/mergetools/vimdiff">git/mergetools/vimdiff at master · git/git</a></p>
+
+<p>そこで調べてみるとそもそもデフォルトで提供されているvimdiffが3-way mergingに対応してるっぽい。どっかのタイミングで受け入れられたのかな？</p>
+
+<p>そちらを試してみると、共通祖先(BASE)がある場合は3-way(3-column and MERGE)になって、共通祖先がない場合は2-way view(3-column LOCAL, MERGED, REMOTE)として正しく表示される。</p>
+
+<p>場合によってUIが変わってしまうのは良くないとはいえ、正しくdiffれることが優先なのでvimdiffを標準で使うことにした。</p>
+
+<pre><code>$ git config --global merge.tool vimdiff
+</code></pre>
+
+<p>MERGED、つまりコンフリクトを解消する実際に扱ってるファイル(バッファ)を2-wayの時でも下の段に持って行きたい場合は<code>&lt;C-w&gt;J</code>で出来る。(自動化するためにラッパー書きました↓)</p>
+
+<p>vimdiff2は強制的に2-wayにするっぽいのでとりあえず却下。</p>
+
+<h2>vimdiffのwrapper書こう</h2>
+
+<p>vimdiffのUIが3column(中心がMerged)だったり、3column(LOCAL, BASE, REMOTE) + Marged でBaseの有無で変わってしまうのはどうかと思うので対応したかった。</p>
+
+<p><a href="https://github.com/haya14busa/git-mergetool-vimdiff-wrapper">haya14busa/git-mergetool-vimdiff-wrapper</a></p>
+
+<p>シェルスクリプトよくわかんなくてつらい。 引数で渡されたBASEを<code>test -s</code>で調べて条件分岐させてます。</p>
+
+<p>必ず実際に作業するMERGEDペインが一番下に来るのでよさげ</p>
+
+<h2>git-merge-sandbox</h2>
+
+<p><a href="https://github.com/haya14busa/git-merge-sandbox">haya14busa/git-merge-sandbox</a></p>
+
+<p>調べている間に<a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a>を見つけて便利だった(&amp; 若干の不満があった)ので自分でも作ってみた。</p>
+
+<p>wrapperの(完全手動)テストもこれを使った</p>
+
+<h3>変更点</h3>
+
+<ol>
+<li>Merge後にコミットしてしまっても動く</li>
+<li>BASE(共通祖先のファイル?)の有無でdiffの種類が2つに分かれている</li>
+</ol>
+
+
+<h3>Git tag</h3>
+
+<p>ちょうどgitのtagを使えてないなーと思っていたのでtagを使う練習にもなってよかった。</p>
+
+<p><noscript>
+  <pre><code class="language- ">$ git tag -a [tagname] -m'Comment' (checusum)
+$ git push origin &ndash;tags
+</code></pre>
+</noscript></p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://blog.eiel.info/blog/2013/06/26/git-mergetool/">Mac で使える git mergetool をいろいろ試してみる &#8211; 準備編 &#8211; そんなこと覚えてない</a></li>
+<li><a href="http://blog.eiel.info/blog/2013/07/03/git-mergetool-vimdiff2/">Mac で使える git mergetool をいろいろ試してみる &#8211; Vimdiff2 &#8211; そんなこと覚えてない</a></li>
+<li><a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a></li>
+<li><a href="http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/">Rosipov » Use vimdiff as git mergetool</a></li>
+<li><a href="http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool">A better Vimdiff Git mergetool &#8211; Vim Tips Wiki</a></li>
+<li><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net &#8211; Three-way merging for git using vim</a></li>
+<li><a href="http://stackoverflow.com/questions/1251681/diff-tool-generates-unwanted-orig-files">git &#8211; Diff tool generates unwanted .orig files &#8211; Stack Overflow</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-03T00:00:00+09:00" pubdate data-updated="true">November 03, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/git-mergetool-vimdiff/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/git-mergetool-vimdiff/" data-via="haya14busa" data-counturl="http://haya14busa.com/git-mergetool-vimdiff/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/vim-substitute-multibyte/" title="Previous Post: Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ">&laquo; Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a>
+      
+      
+        <a class="basic-alignment right" href="/vim-strdisplaywidth-col/" title="Next Post: [Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/git-mergetool-vimdiff/';
+        var disqus_url = 'http://haya14busa.com/git-mergetool-vimdiff/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="つくりました Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。 Vimプラグイン読書会
+GitHub: haya14busa/reading-vimplugin 注: URLは変わるかもしれません GitHub公式ドキュメント GitHub Pages &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/jekyll_reading_vimplugin_site/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Jekyll on GitHub Pages With Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-29T00:00:00+09:00" pubdate data-updated="true">December 29, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>つくりました</h2>
+
+<p>Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。</p>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<p>注: URLは変わるかもしれません</p>
+
+<h2>GitHub公式ドキュメント</h2>
+
+<ul>
+<li><a href="http://pages.github.com/#project_pages">GitHub Pages</a></li>
+<li><a href="https://help.github.com/categories/20/articles">GitHub Help</a></li>
+</ul>
+
+
+<p>静的サイトをホストしてくれる。プロジェクトごとに作ったり、ユーザーのブログとして使えたりする。</p>
+
+<h2>Jekyll</h2>
+
+<ul>
+<li><a href="http://jekyllrb.com/">Jekyll • Simple, blog-aware, static sites</a>
+
+<ul>
+<li>静的サイトのジェネレーター。GitHub Pagesで搭載されている。</li>
+</ul>
+</li>
+<li><a href="http://docs.shopify.com/themes/liquid-basics">Liquid basics &#8211; Shopify Themes</a>
+
+<ul>
+<li>Liquidというテンプレートエンジンが使われておりif,for文使ったり、includeしたりといろいろできる。</li>
+</ul>
+</li>
+<li><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyllいつやるの？ジキやルの？今でしょ！</a>
+
+<ul>
+<li>ジキリました。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初に砂場あそびしました</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/gh-page-sandbox/">Happy Vimming!</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/gh-page-sandbox">haya14busa/gh-page-sandbox</a></li>
+</ul>
+
+
+<p>GitHub PagesのAutomatic Generatorを使ってJekyll on GitHub Pagesの仕様をなんとなく把握。適当な流れをリンク先に書きました。</p>
+
+<h2>そしてBootstrapつかってVimプラグイン読書会作成へ</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<h3>参考Link</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/">vim-jp » Vimのユーザーと開発者を結ぶコミュニティサイト</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>どっちもJekyll使ってたので参考にしました。特にvimrc読書会と似たようなサイトにしたほうがいいっぽいので構成とかほぼ同じになってます。参考にしながらやってると明らかな間違いとか割と見つけたりして簡単なPullReq案件が出てくるので便利。Vimプラグイン読書会のナビゲーションヘッダ便利という声からvimrc読書会のサイトのにもナビゲーション実装したりもしました。</p>
+
+<h3>Twitter Bootstrap</h3>
+
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="http://bootswatch.com/">Bootswatch: Free themes for Bootstrap</a></li>
+<li><a href="http://bootswatch.com/simplex/">Bootswatch: Simplex</a></li>
+</ul>
+
+
+<p>ArchiveページでTableゴリゴリ使うっぽいのでTwitter Bootstrap使って楽々ストライプデザインにしたり、簡単にResponsiveなヘッダーを作れて便利でした。配色とか考えてたけどデザイン力なさすぎて途中でBootswatchというBootstrapのテーマサイトからSimplexというテーマをベースに作ることにしました。</p>
+
+<p>そしたらおしゃれっぽくなったんだけど、自分のサイトとめっちゃ似てるデザインになってつらさを感じた。反省してます。</p>
+
+<h2>こっからTips的ななにか</h2>
+
+<h3>ローカルでもCSS,JSを効かせた状態で確認する方法</h3>
+
+<p>&#95;config.yml (いろいろ設定がかける)</p>
+
+<pre><code>baseurl: /{repository-name}
+</code></pre>
+
+<p>default.htmlなどで</p>
+
+<p>Shell</p>
+
+<pre><code>bundle exec jekyll serve -w -b /{repository-name}
+</code></pre>
+
+<p>上記コマンドを叩いて<code>http://localhost:4000/{repository-name}/</code>にアクセスするといい感じにCSS,JSなどすべてのページで効くようになります</p>
+
+<p>詳しくは<code>jekyll serve --help</code>とかするとよい。</p>
+
+<ul>
+<li><a href="http://jekyllrb.com/docs/github-pages/">Jekyll &#8211; GitHub Pages</a>
+
+<ul>
+<li>公式サイトで詳しく書いてあります。英語ですが。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
+
+<p>これは書いてても一応使えるんですが問題があって、<code>/jekyll_reading_vimplugin_site/</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>jekyll_reading_vimplugin_site/</code>)</p>
+
+<p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
+
+<h3>Markdown</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>markdown: rdiscount
+
+rdiscount:
+  extensions:
+    - autolink      # greedily urlify links
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
+</code></pre>
+
+<p>デフォルトのmarkdownエンジンはmarukuになっていて(たぶん)、あんまり良くないのでrdiscountかredcarpetあたりを選ぶと便利なようです。</p>
+
+<ul>
+<li><a href="http://dafoster.net/projects/rdiscount/">RDiscount | Markdown for Ruby | DaFoster</a></li>
+</ul>
+
+
+<p>Markdownファイルをかけば勝手にコンバートしてくれるわけではなく、先頭に記述する必要があります。</p>
+
+<p>index.mdなど</p>
+
+<pre><code>---
+layout: default
+title: なにかタイトル
+---
+
+本文
+</code></pre>
+
+<h3>&#95;layout</h3>
+
+<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの&#8220;にMarkdown内容を出力することになります。</p>
+
+<p><code>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</code>や&#8220;を使用してよさげに作るとよいです</p>
+
+<h3>Gemfile</h3>
+
+<p>Gemfile</p>
+
+<pre><code>source 'https://rubygems.org'
+gem 'github-pages'
+</code></pre>
+
+<p>Rubyとbundlerとか事前にインストールしておくと<code>bundle install</code>とか<code>bundle exec jekyll serve</code>とかできて用意しておくと便利。travis-ciに登録とか気軽にできるのでリポジトリの紹介ページとかでなく、純粋にGitHub Pagesとしてリポジトリを使う場合は便利です。</p>
+
+<p><a href="http://haya14busa.com/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった « haya14busa</a></p>
+
+<h3>ConvertからExcludeする</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>exclude:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+  - 'README.md'
+  - 'scripts'
+</code></pre>
+
+<p>markdownやらhtml以外の物も<code>_site</code>以下にJekyllはコンバートするので、気づかずにREADMEとかをおいておくとサイトからアクセスできちゃったりします。しっかり除外設定しておくと良さげです。</p>
+
+<p><code>find _site -type f</code>とかして確認するとよいです。</p>
+
+<h3>&#95;includeを使う</h3>
+
+<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において`<hgroup>
+  <h1><a href="/">haya14busa</a></h1></p>
+
+<pre><code>&lt;h2&gt;haya14busa's memo&lt;/h2&gt;
+</code></pre>
+
+<p></hgroup></p>
+
+<p>`とレイアウトなどなどから呼び出すことができます。</p>
+
+<h3>&#95;dataとfor loopが便利っぽい</h3>
+
+<p>&#95;data/members.yml</p>
+
+<pre><code>- name: sanaechan
+  github: deco_mori
+  twitter: decochan
+
+- name: haya14busa
+  github: haya14busa
+  twitter: haya14busa
+</code></pre>
+
+<p>とかしておくとMarkdownファイル含め任意のところで</p>
+
+<p>こんなふうに呼び出せて便利そうです。</p>
+
+<p>よんだvimrcとかvim pluginをテーブルに直書きじゃなくてデータに書いてloop回してわっしょいとかもよさそう。</p>
+
+<h3>結局は</h3>
+
+<p>他人のサイトみて良さげな書き方参考にするとすぐできるのではかどります。</p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+
+
+<p>とか</p>
+
+<ul>
+<li><a href="https://github.com/twbs/bootstrap">twbs/bootstrap</a>
+
+<ul>
+<li>Twitter BootstrapのSource版がそのままjekyllで使えて参考になったり</li>
+</ul>
+</li>
+<li><a href="https://github.com/nitoyon/tech.nitoyon.com">nitoyon/tech.nitoyon.com</a>
+
+<ul>
+<li><a href="http://tech.nitoyon.com/ja/blog/2012/09/20/moved-completed/">俺の最強ブログ システムが火を噴くぜ &#8211; てっく煮ブログ</a></li>
+<li>こういうところを参考に熱意をあげたり</li>
+</ul>
+</li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a>
+
+<ul>
+<li>ここを温かい目で眺めたり</li>
+</ul>
+</li>
+</ul>
+
+
+<p>などなど、GitHubにホストされてるものを公式ドキュメントなどと見比べながらやっていくといろいろ発見があったり、ついでにプルリクれたりしてよいです。</p>
+
+<p>ただGitHub PagesはJekyll Pluginなどが使えなくて、Octopressとか使って若干違う構成になっていることもあるので注意です。鵜呑みコピペ怖い。</p>
+
+<h2>結論</h2>
+
+<p>Jekyll on GitHub Pages with Twitter Bootstrap 便利すぎる。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-29T00:00:00+09:00" pubdate data-updated="true">December 29, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/uncategorized/'>uncategorized</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/jekyll_reading_vimplugin_site/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/jekyll_reading_vimplugin_site/" data-via="haya14busa" data-counturl="http://haya14busa.com/jekyll_reading_vimplugin_site/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/travis_jekyll_gh-pages/" title="Previous Post: Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった">&laquo; Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった</a>
+      
+      
+        <a class="basic-alignment right" href="/preparation_of_reading_vim_plugin_02/" title="Next Post: Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!">Vimプラグイン読書会第2回が1/11(土)21:00から開催されます! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/jekyll_reading_vimplugin_site/';
+        var disqus_url = 'http://haya14busa.com/jekyll_reading_vimplugin_site/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

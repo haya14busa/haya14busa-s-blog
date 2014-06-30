@@ -1,0 +1,986 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="第4回Vimプラグイン読書会 日時: 2014/03/15 Sat 21:00 -
+場所: LingrのVim部屋
+読むプラグイン: tpope/vim-pathogen 目的: プラグインマネージャの仕組みを理解する ぜひ気軽に参加してください。 pathogen読みます &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/posts/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vimplugin-04-senden/">Vimプラグイン読書会第4回が3/15(土)21:00から開催されます</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-03-15T00:00:00+09:00" pubdate data-updated="true">March 15, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>第4回Vimプラグイン読書会</h2>
+
+<ul>
+<li>日時: 2014/03/15 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/tpope/vim-pathogen">tpope/vim-pathogen</a></li>
+</ul>
+</li>
+<li>目的: プラグインマネージャの仕組みを理解する</li>
+</ul>
+
+
+<p>ぜひ気軽に参加してください。</p>
+
+<h2>pathogen読みます</h2>
+
+<p>かの有名なtpope先生のプラグインです。first commitが5years agoの(たぶん)一番古株のプラグインマネージャで歴史を感じます。(<a href="https://github.com/c9s/Vimana">c9s/Vimana</a>というのもあったらしいですがperlスクリプトで、かつどっちが先かはよくわかりません)</p>
+
+<p>326行1ファイルなので分量的には気軽に読めそうです。(密度は知らない)</p>
+
+<h3>読みどころ</h3>
+
+<p>Vim触り始めの頃からNeoBundleやVundle,pathogenといったプラグインマネージャが存在して、vimのランタイムパスとかほぼ気にせずプラグインを簡単にインストール、管理できた身としてはそのあたりで何やってるかというのは、しばらく全くわかっていませんでした。(そして今もそこまでわかってないかも&#8230;)</p>
+
+<p>と、いうことでruntimepath周りや、「プラグインマネージャって結局何をどうやってるのよ?」みたいなところが１つの読みどころかなぁと思います。</p>
+
+<p>あとは関連して、ファイルやディレクトリのpathの操作などは他の用途でも汎用的に使えそうです。</p>
+
+<h2>pathogenの命名</h2>
+
+<ul>
+<li><a href="http://eow.alc.co.jp/search?q=pathogen">pathogenの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+<li><a href="http://eow.alc.co.jp/search?q=infect">infectの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+<li><a href="http://eow.alc.co.jp/search?q=incubate">incubateの意味・用例｜英辞郎 on the WEB：アルク</a></li>
+</ul>
+
+
+<p>pathogenってどういう意味かなぁと思って調べると、infectやincubateといった関数が存在することから、 そのまま「病原体」の&#8221;pathogen&#8221;と&#8221;path&#8221;を掛けたっぽいですね。[要出典]</p>
+
+<p>「<code>~/vim/bundle/</code>のディレクトリをvimのruntimepathという病原体(pathogen)でinfect(感染)させるぜ!」と言ったところでしょうか。</p>
+
+<p>結構カッコイイ命名っぽい。</p>
+
+<h2>ということで</h2>
+
+<p>明日、3/15(土)21:00から[LingrのVim部屋]((<a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>)で開催されるのでぜひワイワイ読みましょう！</p>
+
+<p>初見でも初心者でも歓迎ですよ!</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vimplugin-04-senden/">Vimプラグイン読書会第4回が3/15(土)21:00から開催されます</a>
+      <time datetime="2014-03-15T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>15</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-16T00:00:00+09:00" pubdate data-updated="true">February 16, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 78日目の記事になります。私事ですが本日2014/02/16日、Vimmerとして1歳の誕生日(Vim歴換算)を迎えましたので個人的な話題を含むVACの記事を書かせていただきます。そういうものが嫌いな方はブラウザバック推奨です。</p>
+
+<p>この記事によってVimの魅力が少しでも伝われば幸いです</p>
+
+<hr />
+
+<p><a href="https://twitter.com/haya14busa/statuses/302754464400568320?tw_i=302754464400568320&amp;tw_e=details&amp;tw_p=archive">vimtutorを終えた一年前のツイート</a>(ツイートの文面が恥ずかしい&#8230;)</p>
+
+<p>Vim歴1年、めでたいです。</p>
+
+<h2>『Vim駆動学習』</h2>
+
+<p>なぜ『Vim駆動学習』かというと、僕のプログラミング歴自体がVim歴+半年あるかないか程度なので、僕のプログラミング力の大部分は『Vim駆動』で学習し、向上してきたといっても過言ではないからです。Vim駆動バンザイ。</p>
+
+<p>(最近はVim駆動でVim自体を学んでいる割合が高すぎるのでそろそろVim以外の進捗もだしていこうと反省はしています&#8230;)</p>
+
+<h2>『Vim駆動学習』をおすすめしたい</h2>
+
+<h3>Vim駆動学習によってGitHub で Stars over 1000 のリポジトリをメインで開発できるようになった</h3>
+
+<ul>
+<li>vim-easymotionというカーソル移動系のVimプラグインです。</li>
+<li>Repository: <a href="https://github.com/Lokaltog/vim-easymotion">https://github.com/Lokaltog/vim-easymotion</a></li>
+</ul>
+
+
+<p>めでたいです。</p>
+
+<p>Trend入りもしました:)</p>
+
+<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-05-015432.png" alt="trend" /></p>
+
+<p>1からスターover 1000のリポジトリを作り上げたわけでは勿論なく、プログラミング力というより単なる活動量のゴリ押しと些細なアイデアによって、開発が止まっていたプロジェクトを乗っ取った(collaboratorになって開発しませんかと提案された)というのが現実です。 ですので、実は数字に見合うほどのことはできていないですが、これだけユーザー数が多いプラグインを扱えるというのはｸﾞｻｸﾞｻくるissuesがちょっぴりつらいものの、今までに無い経験でとても楽しく、『Vim駆動学習』としてVim プラグインを扱うならではのものだったと思います。 Vimを好きにならなかったらこんな経験はいまの時点の僕にはおそらくできていませんでした。</p>
+
+<p>また海外のユーザーの方もよく使ってくれている、むしろもともと日本人より海外勢のユーザーが多いプラグインなので無い英語力を引っ張りだして無理やり使ういい機会にもなったりもします。</p>
+
+<h3>Vimのコミュニティが面白い</h3>
+
+<p>GitHubでスターover 1000のリポジトリがどうだと言ったことよりも、Vimのコミュニティがおもしろいというところは特筆したいです。スター1000のリポジトリなんていっても、その99%は他のVimmerの人たちの助けを借りて、質問に答えてもらったり、アドバイスやアイデアをもらうことによる賜物でした。本当にみなさんには感謝しています。</p>
+
+<p><a href="https://github.com/vim-jp">vim-jp</a>や<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>、Twitterなどで数々のVimmerが活動しており、</p>
+
+<p>パッチ職人の方たちが数々のパッチをvim&#95;devに送って本体に取り込まれたり、</p>
+
+<p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>がなぜか365日通して続いたり、</p>
+
+<p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>や<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>を毎週/毎月オンラインで開催してわいわいみんなで他人のvimrcやプラグインを読んだり、</p>
+
+<p><a href="http://lingr.com/room/vim/">LingrのVim部屋</a>では絶えず誰かがVim活していて質問すれば答えてくれるし、</p>
+
+<p>いろんなVimmerがVimを便利にしたり、Vimプラグインを作ったりメンテしたり&#8230;</p>
+
+<p>Vimmerたちの活動には見ていて本当に圧巻されます。 Vim自体が好きなのは勿論なのですが、Vimをとりまく多種多様な人たちあってのVimでもあり、僕はその人達も含めてVimが好きです。</p>
+
+<h3>他にもたくさん『Vim駆動』で得られるものがある</h3>
+
+<p>たとえば、Web上の記事よりも公式ドキュメントを読むという大事さはVimの膨大なhelpを目の当たりにすれば自然と気が付きますし、Vimはテキストを効率的にエディットするもの&#8230;<strong>Vimはテキストを効率的にエディットする</strong>ものですから、テキスト編集、プログラミングなどにおいて、Vimを極めればそれ以前と比べて数百倍の生産性(妄想)を得ることができます。決してVim scriptにハマってしまって逆に生産性が低下するなんてことはありません!!!</p>
+
+<p>そして個人的には<strong>プログラミングが楽しい</strong>とVimによってより強く思えるようになりました。Vim駆動最高です。</p>
+
+<h2>vimrcの記録</h2>
+
+<p>ここで1年間のvimrcの軌跡をちょっと振り返ってみます</p>
+
+<p>Vimの戦闘力は単純にvimrcの行数が多ければいいというわけではありませんが１つの指標としては面白いです</p>
+
+<p>一応コメントや空行を無視して正味の行数を測ってくれるScouterの情報も載せます。</p>
+
+<ul>
+<li><a href="https://github.com/thinca/vim-scouter">thinca/vim-scouter</a></li>
+<li><a href="http://vim-users.jp/2009/07/hack-39/">Vim-users.jp &#8211; Hack #39: Vimの戦闘力を計測する</a></li>
+</ul>
+
+
+<h3>一年前のvimrc</h3>
+
+<ul>
+<li>Date: 2013/02/16</li>
+<li>Lines:0</li>
+</ul>
+
+
+<p>厳密にはとある方が公開されていたシンプルな100行未満のvimrcを最初に使用していました。プラグインなし、基本オプション設定のみのものだった気がします。</p>
+
+<h3>git &amp; GitHub 使い始めのvimrc</h3>
+
+<ul>
+<li>Date: 2013/07/16</li>
+<li>Source: <a href="https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc">https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc</a></li>
+<li>Lines:205</li>
+<li>Scouter:156</li>
+</ul>
+
+
+<p>大体半年後ですがあんまり増えてないですね。gitの情報として残っている公式記録としては最古のvimrcです。</p>
+
+<h3>現在のvimrc</h3>
+
+<ul>
+<li>Date: 2014/02/16</li>
+<li>Source: <a href="https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62">https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62</a></li>
+<li>Lines: 2794</li>
+<li>Scouter: 1296</li>
+</ul>
+
+
+<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-16-054350.png" alt="vimrc_3000" /></p>
+
+<p>1年間で約<strong>3000</strong>行になりました!!!</p>
+
+<h2>1年間、どうやってvimrcを成長させたか</h2>
+
+<h3>はじめはコピーやプラグインを使ってもいいかも</h3>
+
+<p>はじめは右も左もわからないし、ただでさえ慣れていないVimで効率がどうしても劣ってしまうので、最初は基本的なオススメ設定のvimrcをそのままコピーしてある程度便利に使うというのはありかなと思います(決してvim distributionとか呼ばれてるプラグインがいっぱい入ったものを勧めているわけではないです)。</p>
+
+<p>また、素Vimで1から順に学んでいくのもいいですが、それだとキリがないし割と早い段階でプラグインつかってVim便利！と感じるのもVimを挫折しないためにはオススメかなと思います。実際僕は<a href="https://github.com/mattn/emmet-vim">mattn/emmet-vim</a>や<a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a>の便利さに感動してVim頑張って使ってたという側面もありました。</p>
+
+<p>注意すべきところは知らないプラグインは入れないということでしょうか。当たり前のように思えますが、NeoBundleを導入したときに紹介されていたプラグインをそのままコピペしてインストールし困るということが僕はありました&#8230;というのもプラグインによっては使わなくてもデフォルトの挙動やマッピングを置き換えてしまうお行儀の悪いものがあり、それに気づかず操作方法を間違って憶えてしまうなんてことがあるからです。</p>
+
+<h3>vimrc読書会に参加する</h3>
+
+<p>毎週土曜日の23時から<a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>という、<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>でオンラインで他の人のvimrcをわいわいみんなで読んで「この設定よさそう」とか「ここの指定のしかたはダメ」だとかをいい合う勉強会があり、これに参加すると格段にvimrc力が上がるのでオススメです。</p>
+
+<p>vimrc読書会は最初はVimmer怖いし、何が書かれているかも、何言ってるかもわからないし、僕は最初はROMっていただけなのですが、それでも参加した時に「hi」、読んでいる間は他の人が言及しているところに絞って読む、終わったら「お疲れ様でした」と言うだけでもきっとVim部屋の方々は喜びますし、最初はそれだけでいいと思います。</p>
+
+<p>勿論基本的なことでも質問すればきっと誰かが答えてくれますし、参加していれば徐々に分かることが増えてきて楽しくなる/vimrc力が上がるのでぜひ参加してみることをオススメします。</p>
+
+<h3>他人のvimrcをパクる</h3>
+
+<p>vimrc読書会ともかぶるのですが、すでにvimrc読書会で読まれたVim力の高い周りのVimmerのvimrcなどを個別に参考にしたりすると、より手っ取り早くvimrc力が上がると思います。また、プラグインの設定などでは、そのプラグインの作者のvimrcがREADMEやhelpよりも参考になるといった事案もあるのでちょっとそのプラグインの設定部分だけ盗み見るとかするのも面白いかなと思います。</p>
+
+<h2>1年間どうやってVimを学んできたか</h2>
+
+<p>vimrcとも関連していますね。</p>
+
+<h3>helpを読む</h3>
+
+<p>参考: <a href="http://haya14busa.com/reading-vim-help/">Vimのhelpを快適に引こう « haya14busa</a></p>
+
+<p>Vimのことはたいていhelpに載っているので、下手にWEB上の記事を読むよりもhelpをスラスラと引けるようになったほうが格段にVim力が上がりやすくなります。なるべく速くhelpの引き方は憶えて使いこなせるようになったほうが後々のためです。</p>
+
+<h3>実践Vimを読む</h3>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim 思考のスピードで編集しよう!</a></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&#038;ASIN=4048916599&#038;Format=_SL110_&#038;ID=AsinImage&#038;MarketPlace=JP&#038;ServiceVersion=20070822&#038;WS=1&#038;tag=haya14busa-22" /></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=haya14busa-22&#038;l=as2&#038;o=9&#038;a=4048916599" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
+
+<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim</a>は本当にオススメです。vimtutorが終わってからすぐ読んでもいいのではないかという話を聞いたことがありますが、本当にそれぐらい初期に読んでも絶対ためになると思います。素のVimについてのいいところを十二分に、体系的に解説してくれている良書です。ドットによるリピートやテキストオブジェクトなどVimの便利な機能をあますことなく解説してくれるし、Vim的な編集の思考法などもこの本によって学ぶことができます。僕は実践VimによってVimへの興味が数段上がりました。</p>
+
+<h3>Vim Advent CalendarなどVim記事を読む/書く</h3>
+
+<p>学んだらアウトプットするとよいというのはVimに限りませんが。Vim Advent Calendarとして書けば間違っていれば指摘が入るし、一定数の人は読んでくれるので気軽にVACとして書いちゃってもいいとおもいます。</p>
+
+<h3>Lingrやvim-jp,TwitterなどなどでVim活する</h3>
+
+<p>上述したように、いろんなところでいろんな方達が活動しているので、そこで割と気軽に質問したりアドバイスをもらったりできるのは強みだと思います。特にLingrだと一番気軽に聞けてよいです。</p>
+
+<h3>Vimの勉強会などに参加する</h3>
+
+<p>僕は<a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a>に参加しただけで、個人的には勉強会にたくさん参加したというわけではありませんが、東京を中心として地方でもVimに関する勉強会がたまに開催されているので参加すると楽しいと思います。(関西圏で開催されないかなー&#8230;ﾁﾗｯ)</p>
+
+<h3>Vim プラグイン開発に手を出してみる</h3>
+
+<p>Vimが好きになってくるとやはりプラグインを自分で作ってみたいと思うようになるかと思います。そういう時は <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に参加するとよいです。</p>
+
+<p>今のところ月に一回のペースでVimプラグイン読書会が開催されており、誰かのプラグインを読んであれこれ言っています。もともと、Vimプラグインを作ってみたい初心者向けに始まったので、なるべく簡単なプラグインを読むことが多く、作ってみたい！と思ったら気軽に参加して読んでみたりあれこれ質問したりすることをオススメします。</p>
+
+<p>自分でプラグインを開発するというだけでなく、vimrcや使っているプラグインへの理解が進んだりするといったメリットもあるので、プラグインとか難しいとか考えずに参加してみてもよいかなと思います。</p>
+
+<h2>まとめ</h2>
+
+<p><strong>『Vim駆動学習』</strong>最高でした。これからもよろしくおねがいします。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい</a>
+      <time datetime="2014-02-16T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>16</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-14T00:00:00+09:00" pubdate data-updated="true">February 14, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事になります。</p>
+
+<h2>Migemoとは</h2>
+
+<ul>
+<li><a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
+<li><a href="http://0xcc.net/unimag/2/">横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索</a></li>
+</ul>
+
+
+<p>「Migemoとはローマ字のまま日本語を検索できるものです」みたいな紹介をしようと思ったら思ったよりも『インクリメンタル』が重要なファクターっぽいですね。今回はインクリメンタル基本的にしない/できないmigemoの紹介です。</p>
+
+<p>vimでもmigemo使いたいですよね。</p>
+
+<h2>+kaoriyaのVimならデフォルトでmigemoが使えるけど</h2>
+
+<p>+kaoriya以外のVimでmigemo使うのは(昔は)結構面倒くさかったように思えます。</p>
+
+<p>-kaoriyaでmigemoを使う方法としては</p>
+
+<ol>
+<li><a href="http://www.kaoriya.net/software/cmigemo/">C/Migemo</a>を端末にインストール</li>
+<li>cmigemoと連携する Vim プラグインをインストール</li>
+</ol>
+
+
+<p>なのですが、1は</p>
+
+<pre><code>apt-get install cmigemo
+brew install cmigemo
+</code></pre>
+
+<p>などなどで割と簡単だったのですが、<a href="https://github.com/koron/cmigemo">koron/cmigemo</a>のVimプラグインの部分がかなり昔から書かれていたこともありその後の2でパス通すのがつらい、プラグインのみで配布されていないのでプラグインマネージャで簡単にインストールできないなどなどちょっとつらい仕様だったので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>がはじまった初期の右も左もわからない時にPull Requestしてkaoriyaさんにレビューしてもらったり、プラグイン部分を独立してGitHubに上げる権限をもらったりしました。</p>
+
+<p><a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a></p>
+
+<p>ということで、昔の他の人の記事とかを見るとちょっと面倒くさいようにみえるcmigemoのVimへの導入も、</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-migemo'
+</code></pre>
+
+<p>このように割と簡単にできるようになりました。あとvimprocが使えたら使うなどちょっとした改善もしたような記憶があります。</p>
+
+<p>使い方は以前と同じで <code>:Migemo</code> コマンドまたはデフォルトで <code>&lt;Leader&gt;mi</code> にマッピングされています。(<code>&lt;Plug&gt;</code>の提供とかプロンプトの文字列の変更とかの追加はそういえばやっていないけれどしたほうがよいかな&#8230;)</p>
+
+<h2>別のプラグインでちょっと便利に(?)つかう</h2>
+
+<p>基本的にどのプラグインも+kaoriyaでmigemoがデフォルトで使えればそれを、cmigemoがインストールされていればcmigemoを、どれも無理なら使えないという仕様になっていたはずです。</p>
+
+<h3><a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a></h3>
+
+<p>つい先日、<a href="http://techracho.bpsinc.jp/yamasita-taisuke/2014_02_06/15331">vim日本語検索をちょっと便利にするmigemo検索 | TechRacho</a>で紹介されていましたがLindanさん ware の<a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a>というプラグインがあります。</p>
+
+<pre><code>NeoBundle 'rhysd/migemo-search.vim'
+if executable('cmigemo')
+    cnoremap &lt;expr&gt;&lt;CR&gt; migemosearch#replace_search_word()."\&lt;CR&gt;"
+endif
+</code></pre>
+
+<p>これは<code>&lt;CR&gt;</code>にマッピングすることで、Vimデフォルトの検索をするときに、検索文字列がローマ字っぽかったらmigemoをよしなに呼んでくれるというものです。こちらの仕様のほうが好きな人はオススメです。個人的にはちょっと試した程度でほぼ使っていないので実は使用感はお伝え出来ません。</p>
+
+<h3>Uniteのmatcherにmigemoを使う</h3>
+
+<p><a href="https://github.com/Shougo/unite.vim">Shougo/unite.vim</a></p>
+
+<p>:h unite-filter-matcher_migemo</p>
+
+<pre><code>NeoBundle 'Shougo/unite.vim'
+nnoremap &lt;silent&gt; g/ :&lt;C-u&gt;Unite -buffer-name=search line -start-insert&lt;CR&gt;
+call unite#custom#source('line', 'matchers', 'matcher_migemo')
+</code></pre>
+
+<p>実はUniteのmatcherの１つにmigemo機能があります。なので、Vimデフォルトの検索とは 操作法が異なりますが、lineソースにmigemoのmatchersを充ててmigemo検索をUniteですることができます。</p>
+
+<h3>EasyMotionのmigemo機能</h3>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>2012年のVAC記事(<a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a>)でEasyMotionで1文字migemoを使えるようにしたと紹介したのですが、最近 n-key motionとして任意の数のキーでEasyMotionできるVimデフォルトの検索の拡張を実装したので、cmigemoがインストールかつ、migemoオプションがオンなら同様にEasyMotionでもmigemo検索できるようになりました。</p>
+
+<pre><code>NeoBundle 'Lokaltog/vim-easymotion'
+map g/ &lt;Plug&gt;(easymotion-sn)
+omap g/ &lt;Plug&gt;(easymotion-tn) " opeartor-pending時にVimデフォルトの検索の仕様に合わせる
+let g:EasyMotion_use_migemo = 1 " Migemo機能ON
+</code></pre>
+
+<p>このあたりは全く別の記事でまた紹介したいのですが、このEasyMotionの検索機能の拡張とも言うべき機能は、インクリメンタルにハイライトしたり、普通のEasyMotionの機能と違って画面外まで飛んだり、<code>&lt;Tab&gt;</code>キーでスクロールできたり、勿論検索履歴やテキストオブジェクト<code>gn</code>とも連携させたりしているので、完璧とは言わないまでもデフォルトの検索をこれに置き換えてもよいかなぁというレベルになっています。</p>
+
+<h4>仕様</h4>
+
+<p>もともとEasyMotionが<strong>スクリーン内</strong>の移動を拡張するというコンセプトなので、仕様としてはmigemo機能がONになっていてもスクリーン上にマルチバイト文字が無ければmigemoを使わないようになっています。なので、普段コードを書くときにmigemoによって遅くならないようになっているともいえるし、画面外に日本語があるとはわかっているんだけど画面内に日本語が無ければ発動しないという残念仕様でもあるとは言えますね&#8230;</p>
+
+<p>またインクリメンタルハイライトにmigemoを対応させていないので、実はMigemoに関してはインクリメンタルハイライトの一貫性がなくなってしまっている状態(インクリメンタルにハイライトはされていなくても<code>&lt;CR&gt;</code>で実行するとマッチする)なのでmigemo機能として使うには実はあんまりオススメはできません()。現状での仕様をわかった上で使ってくれたらいいかなぁと思います。</p>
+
+<p>というのも、システムのcmigemoを呼ぶという性質上、毎回のinputでインクリメンタルにcmigemoを呼ぶと、とてもじゃないけど耐えらたものじゃない速度になってしまい、実装してみましたが敢え無く断念しました。このためにProcessManagerも使ってみたんですがやっぱりダメでした&#8230;無念。</p>
+
+<p>そのうち要望 or 気が向いたら、インクリメンタル検索中のキーマッピングとしてmigemo使って一時的にハイライトさせるみたいな機能を実装するかもしれません。(それでも不便感は拭えないですが&#8230;)</p>
+
+<h3>まとめ</h3>
+
+<p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
+
+<p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a>
+      <time datetime="2014-02-14T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>14</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim_highlight_search/">Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-12T00:00:00+09:00" pubdate data-updated="true">February 12, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 73日目の記事になります。</p>
+
+<p>普段何気なくvimrcに書いている<code>set hlsearch</code>や<code>:nohlsearch</code>。実はこれ、結構ややこしいです。</p>
+
+<h2>まずはhelp!</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27hlsearch%27">:h &#8216;hlsearch&#8217;</a> &lt;- オプション</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a> &lt;- コマンド</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#v:hlsearch">:h v:hlsearch</a> &lt;- 新たなる変数(最近入った)</li>
+</ul>
+
+
+<p>そして他に注意すべきものとして</p>
+
+<ul>
+<li><code>set nohlsearch</code> &lt;- <code>set hlsearch</code>の逆。<strong><code>:nohlsearch</code>とは違う</strong></li>
+<li><code>&amp;hlsearch</code> &lt;- オプションhlsearchの値の変数。<code>set hlsearch</code>なら1,<code>set nohlsearchなら0</code></li>
+</ul>
+
+
+<p>ややこしいですね。</p>
+
+<h2>v:hlsearchを解説しながら全体的に説明するよ</h2>
+
+<p>最近縁があったのでv:hlsearchの日本語訳を書かせて頂きましたが、ぶっちゃけ元の英語の説明もわかりづらいのでここで解説します。</p>
+
+<p><noscript>
+  <pre><code class="language- ">                    <em>v:hlsearch</em> <em>hlsearch-variable</em>
+v:hlsearch  検索による強調表示がオンになっているかどうかを決定する変数。
+        |+extra_search| 機能が必要である &lsquo;hlsearch&rsquo; が有効になっている
+        時のみ意味をなす。この変数を0に設定することは、 |:nohlsearch|
+        コマンドを実行することと同様に働き、1に設定することは以下と同様に働く &gt;
+            let &amp;hlsearch = &amp;hlsearch</code></pre>
+</noscript></p>
+
+<p>まず仕様ですが、この変数は<strong>実際に現在</strong>検索によるハイライトが行われているかどうかを判定、決定できます。</p>
+
+<h3>判定</h3>
+
+<p><code>echo v:hlsearch</code></p>
+
+<ul>
+<li>ハイライトが行われている -> 1</li>
+<li>ハイライトが行われていない -> 0</li>
+</ul>
+
+
+<h3>決定(ハイライトをON or OFFにする)</h3>
+
+<blockquote><p>この変数を0に設定することは、 |:nohlsearch| コマンドを実行することと同様に働き、 1に設定することは以下と同様に働く let &amp;hlsearch = &amp;hlsearch</p></blockquote>
+
+<p>わかりずらい!!!</p>
+
+<h4>let v:hlsearch = 0</h4>
+
+<p>これは、helpによると<code>:nohlsearch</code>コマンドを実行することと同様に働きます。</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a></li>
+</ul>
+
+
+<blockquote><p>|:nohlsearch| コマンドを使うと、<strong>一時的に</strong>強調表示をやめさせることができます。</p></blockquote>
+
+<p><strong>一時的に</strong> というのがミソです。この<code>:nohlsearch</code>コマンドは<code>hlsearch</code>オプションの変数である、<code>&amp;hlsearch</code>を変更しないのです。つまり<code>set hlsearch</code>している場合<code>&amp;hlsearch</code>変数の値は1ですが、<code>:nohlsearch</code>を実行しても<code>&amp;hlsearch</code>の値は1のままでハイライトを一時的にオフにします。</p>
+
+<h4>let v:hlsearch = 1</h4>
+
+<p>helpによると1に設定することは</p>
+
+<p><code>let &amp;hlsearch = &amp;hlsearch</code></p>
+
+<p>をすることと同様に働くようです。ここがかなりわかりずらい。</p>
+
+<p>前提として、</p>
+
+<ol>
+<li>基本的に<code>v:hlsearch</code>は実際にハイライトを行っているかどうかを決定するのですが<code>set nohlsearch</code>が設定されていた場合は<code>set nohlsearch</code>が優先されます。</li>
+<li>コマンド<code>:nohlsearch</code>によって一時的にハイライトをオフにした場合、再び検索するなどしたときにハイライトが有効になるのですが、<code>set hlsearch</code>,つまりは<strong><code>let &amp;hlsearch = 1</code></strong>を設定した場合も同様にトリガーとなってハイライトが有効になります(実装は見ていないので予測含む。動作確認はしています)</li>
+</ol>
+
+
+<p>よって、もし<code>set nohlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は0なので<code>let &amp;hlsearch = 0</code>と同様の動作となり何も起こりません。</p>
+
+<p>反対に、<code>set hlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は1で、<code>let &amp;hlsearch = 1</code>と同様になり、前提の2からこの動作がトリガーとなって再びハイライトがONになります。</p>
+
+<p>はぁ、ややこしかった。わからなかった方は直接@haya14busaまで質問とかしてください。また間違ってたらご指摘よろしくおねがいします。</p>
+
+<p>ここから<code>v:hlsearch</code>から得られたTipsを2つ紹介します</p>
+
+<h2>Reloadableなvimrcの設定</h2>
+
+<p>一般的には下記のような設定をしている方が多いと思います</p>
+
+<p><noscript>
+  <pre><code class="language- ">set hlsearch
+nnoremap &lt;silent&gt;&lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code></pre>
+</noscript></p>
+
+<p>が、リローダブルなvimrcを目指している方はこの問題に少なからず気づいているかもしれません。</p>
+
+<p>つまり、<code>set hlsearch</code>を記述しているとリロード時に問答無用でハイライトされてしまうのです。(ｳｻﾞｲ</p>
+
+<p>これを改善しましょう</p>
+
+<h3>1. 簡単かつv:hlsearchがなくてもOK</h3>
+
+<p><noscript>
+  <pre><code class="language- ">&ldquo; hlsearchは使うがvimrcを読み込んだ時にハイライトしないようにする
+set hlsearch | nohlsearch</code></pre>
+</noscript></p>
+
+<p>上記のようにすると<code>&amp;hlsearch</code>の値は1で検索のハイライトは有効になっていますが、<code>:nohlsearch</code>コマンドによりそれを一時的にOFFにします。</p>
+
+<p>欠点: ハイライトしている状態でリロードするとハイライトが消えてしまう。</p>
+
+<h3>2. v:hlsearchを使って1の欠点をなくす</h3>
+
+<p><noscript>
+  <pre><code class="language- ">if exists(&lsquo;v:hlsearch&rsquo;)
+  let v_hl_save = v:hlsearch
+endif
+set hlsearch
+execute exists(&lsquo;v:hlsearch&rsquo;) ? &lsquo;let v:hlsearch = v_hl_save&rsquo; : &lsquo;nohlsearch&rsquo;</code></pre>
+</noscript></p>
+
+<p>欠点: 書き方が悪いということを除いてもわざわざそこまでしたくない&#8230;</p>
+
+<h2>スクリプトから扱う</h2>
+
+<h3>ハイライトを確認する</h3>
+
+<p><code>v:hlsearch</code>が登場する以前では<code>&amp;hlsearch</code>の値を見ることしかできず、ハイライトの設定がされているかどうかは分かるけれども、実際にハイライトされているかどうかがわかりませんでした。(<code>:nohlsearch</code>で一時的にハイライトしていなくても<code>set hlsearch</code>していれば一貫して<code>&amp;hlsearch</code>の値は1です)</p>
+
+<p><code>v:hlsearch</code>の登場によって改善されたのはほぼこの一点といってもいいでしょう。</p>
+
+<h3>実際に関数からハイライトさせる</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131021/1382346459">Vim の関数内で set hlsearch しても反映されない場合の対処方法 &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>上記の記事の問題は<code>v:hlsearch</code>でも同じなようで、関数内で<code>let v:hlsearch = 1</code>にしても実行が終わると勝手に元の値に戻されてしまいます。これを回避するには記事にあるように<a href="http://vim-jp.org/vimdoc-ja/eval.html#feedkeys%28%29">:h feedkeys()</a>を使うしかないようです。残念&#8230;</p>
+
+<h4>ちょっと改善</h4>
+
+<p>上記の記事の関数だと<code>set nohlsearch</code>のオプションを無視してしまうので下記のように<code>:let &amp;hlsearch=&amp;hlsearch\&lt;CR&gt;</code>を使うとよりお行儀よくハイライトさせることができます。</p>
+
+<p><noscript>
+  <pre><code class="language-viml viml">function! HLsearch()
+    call feedkeys(&ldquo;:let &amp;hlsearch=&amp;hlsearch&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+    &ldquo; または
+    &rdquo; call feedkeys(&ldquo;:let v:hlsearch=1&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+endfunction</code></pre>
+</noscript></p>
+
+<h2>最後に</h2>
+
+<p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
+
+<p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim_highlight_search/">Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい</a>
+      <time datetime="2014-02-12T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>12</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vimplugin-03-senden/">第3回 Vim Plugin読書会が開催されます!!!</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-08T00:00:00+09:00" pubdate data-updated="true">February 08, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>日時: 2014/02/08 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim/">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
+<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unite-fold</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>投稿時点で30分前です!!!怠慢!</p>
+
+<p>ぜひわいわい参加しましょう。</p>
+
+<h2>unite sourceの作り方</h2>
+
+<p>:h unite-create-source</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/thinca/20101105/1288896674">簡単な unite の source の作り方 &#8211; 永遠に未完成</a></li>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20130520/1369049201">unite-source を作成する流れをまとめてみた &#8211; C++でゲームプログラミング</a></li>
+<li><a href="http://vim-users.jp/2011/01/hack197/">Vim-users.jp &#8211; Hack #197: unite.vim の source を作成する</a></li>
+</ul>
+
+
+<h2>読むプラグインの紹介</h2>
+
+<h3>unite-mcdonalds-vim</h3>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
+</ul>
+
+
+<p>unite-sourceの作り方とweb-api.vimの使い方を両方同時に学べて,お腹もいい感じにすく一石三鳥なプラグインです。</p>
+
+<p><a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>もあるのでこちらもオススメです</p>
+
+<h3>unite-fold</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>製作者のおしょーさん曰く、魔改造されていて自分でも難しいとのこと[要出典]なので、気合を入れて読む必要があるかもしれません。Vim script力の高まりを感じましょう。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vimplugin-03-senden/">第3回 Vim Plugin読書会が開催されます!!!</a>
+      <time datetime="2014-02-08T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>08</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="3">&larr; Older</a>
+    
+    <a href="/archives">Blog Archives</a>
+    
+    <a class="next" href="1">Newer &rarr;</a>
+    
+  </div><!-- /div.pagination -->
+</div><!-- /div.blog-index -->
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

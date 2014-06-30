@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python,NLTKで自然言語処理 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Install nltk $ pip install nltk wordnetのコーパスをPythonインタプリタからダウンロード $ python
+Python 2.7.5 (default, Jul 19 2013, 19:37:30)
+[GCC 4.2.1 Compatible Apple &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/python-nltk-natural-language-processing/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Python,NLTKで自然言語処理</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true">August 16, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Install nltk</h2>
+
+<pre><code>$ pip install nltk
+</code></pre>
+
+<p>wordnetのコーパスをPythonインタプリタからダウンロード</p>
+
+<pre><code>$ python
+Python 2.7.5 (default, Jul 19 2013, 19:37:30)
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import nltk
+&gt;&gt;&gt; nltk.download()
+</code></pre>
+
+<p>MacならGUIの画面が起動するので適当に従ってダウンロード。</p>
+
+<p>書き終わってから気づいたけど以下ナチュラルに<code>see()</code>使ってます。代わりに<code>dir()</code>使うか、そもそも飛ばすか、便利なので<code>see</code>をインストールしましょう。</p>
+
+<pre><code>$ pip install see
+</code></pre>
+
+<p>~/.pythonstartup に</p>
+
+<pre><code>from see import see
+</code></pre>
+
+<p>を記述しておくと便利</p>
+
+<p><a href="https://github.com/haya14busa/dotfiles/blob/master/.pythonstartup">dotfiles/.pythonstartup at master · haya14busa/dotfiles</a></p>
+
+<h2>Stemming and Lemmatisation</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Stemming">Stemming &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>語幹化</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Lemmatisation">Lemmatisation &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>見出し語化, レンマ化</li>
+</ul>
+</li>
+</ul>
+
+
+<p>語幹化、見出し語化の前に、大文字・小文字を正規化しておく。(語幹化は大文字小文字混ざってても動くっぽいけどレンマ化は動かない)</p>
+
+<pre><code>&gt;&gt;&gt; print 'Python'.lower()
+python
+</code></pre>
+
+<h3>Stemming</h3>
+
+<pre><code>&gt;&gt;&gt; from nltk import stem
+&gt;&gt;&gt; see(stem)
+    help()                 .ISRIStemmer()         .LancasterStemmer()
+    .PorterStemmer()       .RSLPStemmer()         .RegexpStemmer()
+    .SnowballStemmer()     .StemmerI()            .WordNetLemmatizer()   .api
+    .isri                  .lancaster             .porter
+    .regexp                .rslp                  .snowball
+    .wordnet
+&gt;&gt;&gt; stemmer = stem.PorterStemmer()
+&gt;&gt;&gt; stemmer.stem('dialogue')
+'dialogu'
+&gt;&gt;&gt; stemmer2 = stem.LancasterStemmer()
+&gt;&gt;&gt; stemmer2.stem('dialogue')
+'dialog'
+</code></pre>
+
+<p>PorterStemmerとLancasterStemmerでアルゴリズムが違うっぽい。</p>
+
+<p>Lancasterのほうがアグレッシブ。</p>
+
+<blockquote><p>Porter: Most commonly used stemmer without a doubt, also one of the most gentle stemmers. One of the few stemmers that actually has Java support which is a plus, though it is also the most computationally intensive of the algorithms(Granted not by a very significant margin). It is also the oldest stemming algorithm by a large margin.</p>
+
+<p>Lancaster: Very aggressive stemming algorithm, sometimes to a fault. With porter and snowball, the stemmed representations are usually fairly intuitive to a reader, not so with Lancaster, as many shorter words will become totally obfuscated. The fastest algorithm here, and will reduce your working set of words hugely, but if you want more distinction, not the tool you would want.</p>
+
+<p>&#8211; <cite><a href="http://stackoverflow.com/questions/10554052/what-are-the-major-differences-and-benefits-of-porter-and-lancaster-stemming-alg">java &#8211; What are the major differences and benefits of Porter and Lancaster Stemming algorithms? &#8211; Stack Overflow</a></cite></p></blockquote>
+
+<p>個人的にdialogueとdialogでstemが違うとつらいのでLancaster使ってみて、ミスが多いようならPorter使う予定。</p>
+
+<p>他にもSnowballとかあるけど割愛</p>
+
+<h3>Lemmatisation</h3>
+
+<pre><code>&gt;&gt;&gt; from nltk import stem
+&gt;&gt;&gt; lemmatizer = stem.WordNetLemmatizer()
+&gt;&gt;&gt; lemmatizer.lemmatize('dialogs')
+'dialog'
+&gt;&gt;&gt; lemmatizer.lemmatize('dialogues')
+'dialogue'
+&gt;&gt;&gt; lemmatizer.lemmatize('cookings')
+'cooking'
+&gt;&gt;&gt; lemmatizer.lemmatize('cooking', pos='v')
+'cook'
+</code></pre>
+
+<h2>Tokenization</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Tokenization">Tokenization &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<pre><code>&gt;&gt;&gt; from nltk import tokenize
+&gt;&gt;&gt; see(tokenize)
+    help()                    .BlanklineTokenizer()     .LineTokenizer()
+    .PunktSentenceTokenizer()                           .PunktWordTokenizer()
+    .RegexpTokenizer()        .SExprTokenizer()         .SpaceTokenizer()
+    .TabTokenizer()           .TreebankWordTokenizer()  .WhitespaceTokenizer()
+    .WordPunctTokenizer()     .api                      .blankline_tokenize()
+    .line_tokenize()          .load()                   .punkt
+    .regexp                   .regexp_tokenize()        .sent_tokenize()
+    .sexpr                    .sexpr_tokenize()         .simple
+    .treebank                 .util                     .word_tokenize()
+    .wordpunct_tokenize()
+&gt;&gt;&gt; aio1 = 'He grinned and said, "I make lots of money.  On weekdays I receive
+an average of 50 orders a day from all over the globe via the Internet."'
+</code></pre>
+
+<h3>Sentence Tokenization</h3>
+
+<pre><code>&gt;&gt;&gt; tokenize.sent_tokenize(aio1)
+['He grinned and said, "I make lots of money.', 'On weekdays I receive an average of 50 orders a day from all over the globe via the Internet.', '"']
+</code></pre>
+
+<h3>Word Tokenization</h3>
+
+<pre><code>&gt;&gt;&gt; tokenize.word_tokenize(aio1)
+['He', 'grinned', 'and', 'said', ',', '``', 'I', 'make', 'lots', 'of', 'money.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '.', "''"]
+&gt;&gt;&gt; tokenize.wordpunct_tokenize(aio1)
+['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
+</code></pre>
+
+<h2>Delete Stopwords</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Stop_words">Stop words &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<pre><code>&gt;&gt;&gt; from nltk.corpus import stopwords
+&gt;&gt;&gt; stopset = set(stopwords.words('english')
+... )
+&gt;&gt;&gt; stopset
+set(['all', 'just', 'being', 'over', 'both', 'through', 'yourselves', 'its', 'before', 'herself', 'had', 'should', 'to', 'only', 'under', 'ours', 'has', 'do', 'them', 'his', 'very', 'they', 'not', 'during', 'now', 'him', 'nor', 'did', 'this', 'she', 'each', 'further', 'where', 'few', 'because', 'doing', 'some', 'are', 'our', 'ourselves', 'out', 'what', 'for', 'while', 'does', 'above', 'between', 't', 'be', 'we', 'who', 'were', 'here', 'hers', 'by', 'on', 'about', 'of', 'against', 's', 'or', 'own', 'into', 'yourself', 'down', 'your', 'from', 'her', 'their', 'there', 'been', 'whom', 'too', 'themselves', 'was', 'until', 'more', 'himself', 'that', 'but', 'don', 'with', 'than', 'those', 'he', 'me', 'myself', 'these', 'up', 'will', 'below', 'can', 'theirs', 'my', 'and', 'then', 'is', 'am', 'it', 'an', 'as', 'itself', 'at', 'have', 'in', 'any', 'if', 'again', 'no', 'when', 'same', 'how', 'other', 'which', 'you', 'after', 'most', 'such', 'why', 'a', 'off', 'i', 'yours', 'so', 'the', 'having', 'once'])
+&gt;&gt;&gt; aio1words = tokenize.wordpunct_tokenize(aio1)
+&gt;&gt;&gt; aio1words
+['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
+&gt;&gt;&gt; for word in aio1words:
+...  if len(word) &lt; 3 or word in stopset:
+...   continue
+...  print word
+...
+grinned
+said
+make
+lots
+money
+weekdays
+receive
+average
+orders
+day
+globe
+via
+Internet
+====================
+filter で
+====================
+&gt;&gt;&gt; print filter(lambda w: len(w) &gt; 2 and w not in stopset, aio1words)
+['grinned', 'said', 'make', 'lots', 'money', 'weekdays', 'receive', 'average', 'orders', 'day', 'globe', 'via', 'Internet']
+</code></pre>
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://nltk.org/">Natural Language Toolkit — NLTK 2.0 documentation</a></li>
+<li><a href="https://github.com/japerk/PyCon-NLTK-Tutorial">japerk/PyCon-NLTK-Tutorial</a></li>
+<li><a href="http://petitviolet.hatenablog.com/entry/20120523/1337760714">正規表現・自然言語処理 &#8211; I/O Error : My Knowledge</a></li>
+<li><a href="https://github.com/pika-shi/sphinx_information_retrieval/blob/master/natural_language_processing.rst">sphinx_information_retrieval/natural_language_processing.rst at master · pika-shi/sphinx_information_retrieval</a></li>
+</ul>
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51EoFqAGo1L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">入門 自然言語処理</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Steven Bird,Ewan Klein,Edward Loper
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        オライリージャパン 2010-11-11
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,990
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51QhcSlOO4L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">Natural Language Processing with Python</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Steven Bird,Ewan Klein,Edward Loper
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        Oreilly & Associates Inc 2009-06-30
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,724
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true">August 16, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/python-nltk-natural-language-processing/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/python-nltk-natural-language-processing/" data-via="haya14busa" data-counturl="http://haya14busa.com/python-nltk-natural-language-processing/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/change-vim-easymotion-from-lokaltog-to-forked/" title="Previous Post: Vim-EasyMotionをforkされた拡張バージョンに変更する">&laquo; Vim-EasyMotionをforkされた拡張バージョンに変更する</a>
+      
+      
+        <a class="basic-alignment right" href="/solution-of-sharing-file-between-windows-and-ubuntu-under-vmware/" title="Next Post: VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法">VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/python-nltk-natural-language-processing/';
+        var disqus_url = 'http://haya14busa.com/python-nltk-natural-language-processing/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

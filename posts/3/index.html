@@ -1,0 +1,1312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="この記事はVim Advent Calendar 2013 : ATNDの58日目の記事です。 57日目は@deris0126さんによるVimのタブで開いているバッファのdiffを簡単に表示するpluginを書いたでした。 Vimのhelpを自由自在に引けることは、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/posts/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vim-help/">Vimのhelpを快適に引こう</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-01-26T00:00:00+09:00" pubdate data-updated="true">January 26, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の58日目の記事です。 57日目は<a href="https://twitter.com/deris0126">@deris0126</a>さんによる<a href="http://deris.hatenablog.jp/entry/2014/01/26/124336">Vimのタブで開いているバッファのdiffを簡単に表示するpluginを書いた</a>でした。</p>
+
+<p>Vimのhelpを自由自在に引けることは、真のvimmerになるための第一歩。</p>
+
+<blockquote><p>:helpを使いこなす = Vimを極めるための一歩</p>
+
+<p>&#8211; <cite><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></cite></p></blockquote>
+
+<p>ということで、数多くのVimmerがVimのhelpの使い方を解説したり、おすすめのhelpを紹介したりしています。しかし、helpを読むための設定、カスタマイズ方法を紹介するものがあまりないように思えたので、今回は既存のhelpに関する記事のまとめと、設定/カスタマイズ方法を中心に書いていきます。</p>
+
+<h2>help記事のまとめ</h2>
+
+<h3>Helpの使い方全般</h3>
+
+<ul>
+<li><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></li>
+<li><a href="http://vim-users.jp/2009/07/hack45/">Vim-users.jp &#8211; Hack #45: help を引く</a></li>
+<li><a href="http://vim-users.jp/2011/02/hack199/">Vim-users.jp &#8211; Hack #199: :helpに慣れ親しむ</a></li>
+<li><a href="http://nanasi.jp/articles/howto/help/vim_help.html">vimエディタの「help」コマンドの使い方 — 名無しのvim使い</a></li>
+</ul>
+
+
+<p>まずは上記の記事や<a href="http://vim-jp.org/vimdoc-ja/helphelp.html">:h helphelp.txt</a>で使い方を覚えましょう。さらっと流し見するだけでも未だに使いこなせてないものがたくさん見つかったりなどすることがあり、今一度読んでみるのもいいのではないでしょうか。</p>
+
+<p>詳しい使い方については上記の記事でほぼ解説されているのでここでは割愛します。</p>
+
+<h3>おすすめのhelp</h3>
+
+<ul>
+<li><a href="http://cohama.hateblo.jp/entry/2013/07/28/235823">おすすめの :help まとめ &#8211; 反省はしても後悔はしない</a></li>
+</ul>
+
+
+<p>覚えておくor読むと良さげなhelpがたくさん紹介されています。</p>
+
+<p>ここに載ってるものを除いて独断でおすすめすると</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a>
+
+<ul>
+<li>(motion.txtの一部)</li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/cmdline.html#cmdwin">:h cmdwin</a></li>
+</ul>
+
+
+<p>このあたりですね。</p>
+
+<p>motion.txtはhjklからtext-objects,inclusive/exclusiveのような普段あまり意識しない概念など、詳しくmotionについて書かれているので時間があるときに読むと面白いです。</p>
+
+<p>cmdwinについてはちょっとした思い入れがあるという個人的な紹介です。</p>
+
+<p>Vimの設定/操作法を大きく変更するときは、何かとVACの記事などでおすすめされているものをみて設定するということが多いのですが、通常のcommandlineからcommandline-windowに乗り換えたきっかけは僕の場合helpを読んでいて便利そう！と感じたからでした。</p>
+
+<p>よりよい設定方法を模索するためにその後コマンドラインウィンドウに関する記事を読んだりはしましたが、「記事を読む->便利かも?」という流れより「help読んで便利そう-> もっといい設定法ないか探す」という流れのほうが愛着が沸くのでオススメです。</p>
+
+<h2>ここから設定Tips</h2>
+
+<h3><strong>K</strong>でカーソル下の単語のhelpを引く</h3>
+
+<pre><code>set keywordprg=:help " Open Vim internal help by K command
+</code></pre>
+
+<p>デフォルトでKはmanを引く設定になっていますが、上記の設定でvimのhelpを引けるようになります。visualモードで選択した範囲を引くこともできます。引きたいものが関数だと括弧を含めるかどうかで結果が変わるので<code>(</code>を含めて選択して引くといったことができるのでいい感じです。K押しやすい。</p>
+
+<h3>helpがちょっと読みにくい</h3>
+
+<pre><code>nnoremap &lt;Space&gt;t :&lt;C-u&gt;tab help&lt;Space&gt;
+nnoremap &lt;Space&gt;v :&lt;C-u&gt;vertical belowright help&lt;Space&gt;
+" MoveToNewTab
+nnoremap &lt;silent&gt; tm :&lt;C-u&gt;call &lt;SID&gt;MoveToNewTab()&lt;CR&gt;
+function! s:MoveToNewTab()
+    tab split
+    tabprevious
+
+    if winnr('$') &gt; 1
+        close
+    elseif bufnr('$') &gt; 1
+        buffer #
+    endif
+
+    tabnext
+endfunction
+</code></pre>
+
+<p>参考: <a href="http://www.sopht.jp/blog/index.php?/archives/445-vim.html">あにゃログ &#8211; vim でタブを使う</a></p>
+
+<p>直接helpとは関係ありませんが、使い始めの頃helpのウィンドウが読みづらくて仕方なかった覚えがあります。特に開いた後ちまちまwindowのサイズを大きくするのは面倒くさい。</p>
+
+<p>ということで、最初からtab/vsplitで開く設定や、カレントウィンドウを別のタブに開き直すキーマップを使うといいと思います。MoveToNewTabの設定によって「気軽にKで開く->本格的に読みたいからタブページで開き直す」という流れなどがスムーズになっておすすめです。</p>
+
+<p>カレントウィンドウを別のタブに開き直すMoveToNewTabの設定は最初の頃設定してライフチェンジングした覚えがあり、今でもかなり使ってます。help以外でも使えますね。</p>
+
+<h3>help用の設定をする</h3>
+
+<pre><code>augroup MyVimrc
+  autocmd!
+augroup END
+
+" qでhelpを閉じる
+autocmd MyVimrc help nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+
+" 一気に複数設定する場合
+function! s:init_help()
+  nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+  nnoremap &lt;buffer&gt; &lt;Space&gt;&lt;Space&gt; &lt;C-]&gt;
+  " etc ...
+endfunction
+autocmd MyVimrc help call s:init_help()
+</code></pre>
+
+<p>個人的にはqで閉じるくらいしか設定していませんが、もっと便利な設定とかきっとあるので自分好みにしていきたい。</p>
+
+<h3>日本語でも読みたい</h3>
+
+<ul>
+<li><p><a href="https://github.com/vim-jp/vimdoc-ja">vim-jp/vimdoc-ja</a></p>
+
+<p>set helplang&amp; helplang=en,ja &ldquo; If true Vim master, use English help file.
+NeoBundle &lsquo;vim-jp/vimdoc-ja&rsquo;</p></li>
+</ul>
+
+
+<p>僕の場合最初は英語だけを設定しており、なんとか頑張ってhelpを読むといった状態でした。</p>
+
+<p>それはそれでいいことだとも言えるのですが、なんだかんだ日本語だとよりわかりやすかったり、英語でわからなかったら日本語で読めばいいという安心感からhelpを読む抵抗が減るので、英語環境でvimを使っていてまだ使っていない方はインストールしておくと良いと思います。</p>
+
+<p>上記の設定だとkeywordの後に@jaをつけることで日本語helpが読め、デフォルトでは英語になります。</p>
+
+<h3>自動でhelpを折りたたんでほしい</h3>
+
+<ul>
+<li><p><a href="https://github.com/thinca/vim-ft-help_fold">thinca/vim-ft-help_fold</a></p>
+
+<p>NeoBundleLazy &lsquo;thinca/vim-ft-help_fold&rsquo;, {
+      \ &lsquo;filetypes&rsquo; : &lsquo;help&rsquo;
+      \ }</p></li>
+</ul>
+
+
+<p>これは、前々から思っていて、無ければ自分で作ってみようかと思っていた時期が僕にもありました。</p>
+
+<p>が、調べてみるとthincaさんがすでに作ってた。試してみたところfoldtextも含めいい感じに折りたたんでくれます。</p>
+
+<p>折りたたみ好きはぜひ</p>
+
+<h3>Uniteでhelpを引く</h3>
+
+<ul>
+<li><a href="https://github.com/tsukkee/unite-help">tsukkee/unite-help</a></li>
+<li><p><a href="https://github.com/Shougo/unite-help">Shougo/unite-help</a></p>
+
+<p>&ldquo; NeoBundleLazy &lsquo;tsukkee/unite-help&rsquo;
+NeoBundleLazy &lsquo;Shougo/unite-help&rsquo;, {
+      \ &lsquo;unite_sources&rsquo; : &lsquo;help&rsquo;
+      \ }</p>
+
+<p>&ldquo; Execute help.
+nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+&rdquo; Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
+</ul>
+
+
+<p>書いている時に気づいたのですがShougoさんのfork版が存在してメンテナンスされてるっぽいです。中身の差分みてないので何が改善されてるかは知らない(怠慢)</p>
+
+<p>追記: 主にキャッシュ周りが改善されているようです</p>
+
+<p>Uniteでインクリメンタルに検索できてhelpが格段にひきやすくなるので良さげです。</p>
+
+<h2>ブラウザでもhelpを引く</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a>(日本語)</li>
+<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>(英語)</li>
+</ul>
+
+
+<p>Vim記事を呼んでいるとき、LingrのVim部屋で気になるものがあったけど、botに検索してもらうほどでもないかな..というとき、手元のタブレットでvimのヘルプが読みたいときなどなど、ブラウザでvimのhelpを読めると便利な場面がきっとあるとおもいます。</p>
+
+<p>そんな時は上記の日本語版ヘルプ or Sourceforgeの本家のヘルプを読むといいんですが、日本語版は検索がGoogleカスタム検索で少し不便、英語版は検索機能は高いけどレイアウトが見づらい&#8230;両方わざわざアクセスするの面倒くさい&#8230;</p>
+
+<p>そういった不満を改善する(かもしれない)ブックマークレット、作りました。</p>
+
+<p>GitHub: <a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<ul>
+<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
+<li><a href="javascript:(function(){var">vimdoc@en</a></li>
+<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
+</ul>
+
+
+<p>ブックマークバーにドラッグ&amp;ドロップで登録できます。</p>
+
+<p>上から日本語版ヘルプを検索、英語版ヘルプを検索、どちらかを開いているときにもう片方の言語で開くブックマークレットです。(en-to-jaとかネーミングおかしいのは目を瞑りましょう)</p>
+
+<p>vimdoc@ja,@enは事前に選択しておくとそのワードで検索します。これでVim記事読む時もhelpが手軽に読めて便利。</p>
+
+<p>日本語版ヘルプの検索機能は、Googleカスタム検索ではなく、おしょーさんにつけてもらったLingrのbotが使っている方法のリダイレクトバージョンを使っているので、ほとんどvimの検索ワードと同じように使えるはずです。おしょーさんありがとうございます。</p>
+
+<h2>まとめ</h2>
+
+<p>ここまで個人的に有用だと思うhelpに関する設定やプラグインを紹介しましたが、もっと便利な設定や知見がきっとたくさんあります。それを上級Vimmerに教えてもらう&#8230;のもいいですが、それだけでなく自分でhelpを読み込んで使いこなせるようになりましょう!(自戒)</p>
+
+<p><strong>Let&#8217;s :help!</strong></p>
+
+<p><strong>Don&#8217;t panic!</strong></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vim-help/">Vimのhelpを快適に引こう</a>
+      <time datetime="2014-01-26T00:00:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/preparation_of_reading_vim_plugin_02/">Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-01-10T00:00:00+09:00" pubdate data-updated="true">January 10, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>第2回 Vimプラグイン読書会 案内</h2>
+
+<ul>
+<li>日時: 2014年 1/11(土) 21:00-</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン: <a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ul>
+
+
+<p>このページでVimプラグイン読書会の情報をまとめています。-> <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></p>
+
+<h2>clever-fの紹介</h2>
+
+<ul>
+<li><a href="https://github.com/rhysd/clever-f.vim">GitHub:rhysd/clever-f</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fはその名の通り<code>f{char}</code> による移動を強力にするプラグインです。</p>
+
+<p><code>f</code>で移動したあと<code>;</code>、<code>,</code>の代わりに<code>f</code> , <code>F</code>でそれそれ順方向、逆方向に移動できるのでキーマップを節約できたり、オプションを設定すれば、行をまたいで移動、smartcase機能、migemo機能などを使うことができます。</p>
+
+<p>使ったことない人は、少しだけ試してから読書会にくると、より見るべき部分がわかって面白いと思うので使ってみるとよさそうです。</p>
+
+<p><code>;</code>や<code>,</code>はあまり頻繁に使用しないせいで何かしらのprefixキーとして潰されてたり、そうでなくてもこれから使えると便利な位置にあるので、オプション設定無しで単に<code>f</code> or <code>F</code>でリピートさせるという使い方だけでも地味に助かるプラグインだと思います。</p>
+
+<p>個人的には簡単なマクロ使うときにとても重宝しています。(そういう意味では行を跨ぐ機能はOFFにしたほうがいいかなーと最近思ってる。オプションでちゃんと設定できます)</p>
+
+<h2>見どころ(個人的に)</h2>
+
+<p>前回のjunkfile.vimやvisualstar.vimよりも少し大きくなってちょっと実践度があがるのかなと思います。(helperスクリプトようにファイルを分けたりも前回はしていなかった気もするし)</p>
+
+<h3>カーソルキーの位置、状態によってキーの挙動をかえてる</h3>
+
+<p>どうやって実装してるのか、こういうところは<a href="https://github.com/kana/vim-submode">kana/vim-submode</a>と似たようなところがあるのかな？ないのかな？とか他にも応用できないかとか、いろいろ考えられそう。(これはvim-submode読まないとわからないけど。あとたぶん違う実装方な気がする)</p>
+
+<p>他にも行跨ぐ機能とか気になるところを重点的によんだりすると良さげ</p>
+
+<h3><code>.</code>によるオペレーションのリピート対応</h3>
+
+<p>カーソル移動系プラグインではこれがあるのとないのとではランクがひとつ、ふたつ違うってほど重要事項だとおもうのでこのへんのノウハウはぜひ読みたい。</p>
+
+<p>ちなみにeasymotionでは対応できていないし、同じくfを拡張して2キー対応しているvim-sneakは2キーの場合はリピートできるけど1キーだとできないという現状だったりします。(あと<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>依存だったり)</p>
+
+<h3>migemo対応時のマルチバイト対応など</h3>
+
+<p>clever-fとかあんまり使わないというひとでもこういう細かいところは他の場面でも使えるので、汎用的な部分があれば積極的にみていくと良さげ感あります。clever-fに限った話じゃないですが。</p>
+
+<h3>Vim scriptでもテストを書きたい</h3>
+
+<ul>
+<li><a href="https://github.com/kana/vim-vspec">kana/vim-vspec</a></li>
+<li><a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-plugins-vs-travis-ci.html">Vim プラグイン開発でも継続的インテグレーションがしたい! (Travis CI 編) &#8211; TIM Labs</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-vspec-introduction.html">Vim プラグイン開発でもユニットテストがしたい! (vim-vspec 編) &#8211; TIM Labs</a></li>
+<li>他のテストフレームワーク: <a href="https://github.com/Shougo/vesting/wiki/Test-framework-for-Vim-scripts">Shougo/vesting/wiki/Test-framework-for-Vim-scripts</a></li>
+</ul>
+
+
+<p>テストの書き方とか参考にしたいなとか個人的に思ってるけど、clever-fの場合はvim-vspecだけでなく、<a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a>を使っててさらに拡張していたりするので、そのへん見たり見なかったりするのもよさげ。</p>
+
+<h3>2キー対応拡張したい</h3>
+
+<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>のように2キー(or 複数キー)対応ができれば更に便利になるので余裕があれば複数キーに対応するにはどうやって実装すればいいかなーとか考えると面白いと思います。</p>
+
+<h2>最後に</h2>
+
+<p>ぜひ参加してわいわい読みましょう。</p>
+
+<p>今回参加できなくてもまだゆるゆると続くと思うので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に更新情報を載せたりしますので時間あるときに参加しましょう。日時もなんとなく土曜21:00となっているけど、他の時間帯がいいという人が多ければ変えれると思うので意見していくときっといいです。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/preparation_of_reading_vim_plugin_02/">Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!</a>
+      <time datetime="2014-01-10T00:00:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>10</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages With Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-29T00:00:00+09:00" pubdate data-updated="true">December 29, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>つくりました</h2>
+
+<p>Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。</p>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<p>注: URLは変わるかもしれません</p>
+
+<h2>GitHub公式ドキュメント</h2>
+
+<ul>
+<li><a href="http://pages.github.com/#project_pages">GitHub Pages</a></li>
+<li><a href="https://help.github.com/categories/20/articles">GitHub Help</a></li>
+</ul>
+
+
+<p>静的サイトをホストしてくれる。プロジェクトごとに作ったり、ユーザーのブログとして使えたりする。</p>
+
+<h2>Jekyll</h2>
+
+<ul>
+<li><a href="http://jekyllrb.com/">Jekyll • Simple, blog-aware, static sites</a>
+
+<ul>
+<li>静的サイトのジェネレーター。GitHub Pagesで搭載されている。</li>
+</ul>
+</li>
+<li><a href="http://docs.shopify.com/themes/liquid-basics">Liquid basics &#8211; Shopify Themes</a>
+
+<ul>
+<li>Liquidというテンプレートエンジンが使われておりif,for文使ったり、includeしたりといろいろできる。</li>
+</ul>
+</li>
+<li><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyllいつやるの？ジキやルの？今でしょ！</a>
+
+<ul>
+<li>ジキリました。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初に砂場あそびしました</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/gh-page-sandbox/">Happy Vimming!</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/gh-page-sandbox">haya14busa/gh-page-sandbox</a></li>
+</ul>
+
+
+<p>GitHub PagesのAutomatic Generatorを使ってJekyll on GitHub Pagesの仕様をなんとなく把握。適当な流れをリンク先に書きました。</p>
+
+<h2>そしてBootstrapつかってVimプラグイン読書会作成へ</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<h3>参考Link</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/">vim-jp » Vimのユーザーと開発者を結ぶコミュニティサイト</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>どっちもJekyll使ってたので参考にしました。特にvimrc読書会と似たようなサイトにしたほうがいいっぽいので構成とかほぼ同じになってます。参考にしながらやってると明らかな間違いとか割と見つけたりして簡単なPullReq案件が出てくるので便利。Vimプラグイン読書会のナビゲーションヘッダ便利という声からvimrc読書会のサイトのにもナビゲーション実装したりもしました。</p>
+
+<h3>Twitter Bootstrap</h3>
+
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="http://bootswatch.com/">Bootswatch: Free themes for Bootstrap</a></li>
+<li><a href="http://bootswatch.com/simplex/">Bootswatch: Simplex</a></li>
+</ul>
+
+
+<p>ArchiveページでTableゴリゴリ使うっぽいのでTwitter Bootstrap使って楽々ストライプデザインにしたり、簡単にResponsiveなヘッダーを作れて便利でした。配色とか考えてたけどデザイン力なさすぎて途中でBootswatchというBootstrapのテーマサイトからSimplexというテーマをベースに作ることにしました。</p>
+
+<p>そしたらおしゃれっぽくなったんだけど、自分のサイトとめっちゃ似てるデザインになってつらさを感じた。反省してます。</p>
+
+<h2>こっからTips的ななにか</h2>
+
+<h3>ローカルでもCSS,JSを効かせた状態で確認する方法</h3>
+
+<p>&#95;config.yml (いろいろ設定がかける)</p>
+
+<pre><code>baseurl: /{repository-name}
+</code></pre>
+
+<p>default.htmlなどで</p>
+
+<p>Shell</p>
+
+<pre><code>bundle exec jekyll serve -w -b /{repository-name}
+</code></pre>
+
+<p>上記コマンドを叩いて<code>http://localhost:4000/{repository-name}/</code>にアクセスするといい感じにCSS,JSなどすべてのページで効くようになります</p>
+
+<p>詳しくは<code>jekyll serve --help</code>とかするとよい。</p>
+
+<ul>
+<li><a href="http://jekyllrb.com/docs/github-pages/">Jekyll &#8211; GitHub Pages</a>
+
+<ul>
+<li>公式サイトで詳しく書いてあります。英語ですが。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
+
+<p>これは書いてても一応使えるんですが問題があって、<code>/jekyll_reading_vimplugin_site/</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>jekyll_reading_vimplugin_site/</code>)</p>
+
+<p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
+
+<h3>Markdown</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>markdown: rdiscount
+
+rdiscount:
+  extensions:
+    - autolink      # greedily urlify links
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
+</code></pre>
+
+<p>デフォルトのmarkdownエンジンはmarukuになっていて(たぶん)、あんまり良くないのでrdiscountかredcarpetあたりを選ぶと便利なようです。</p>
+
+<ul>
+<li><a href="http://dafoster.net/projects/rdiscount/">RDiscount | Markdown for Ruby | DaFoster</a></li>
+</ul>
+
+
+<p>Markdownファイルをかけば勝手にコンバートしてくれるわけではなく、先頭に記述する必要があります。</p>
+
+<p>index.mdなど</p>
+
+<pre><code>---
+layout: default
+title: なにかタイトル
+---
+
+本文
+</code></pre>
+
+<h3>&#95;layout</h3>
+
+<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの&#8220;にMarkdown内容を出力することになります。</p>
+
+<p><code>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</code>や&#8220;を使用してよさげに作るとよいです</p>
+
+<h3>Gemfile</h3>
+
+<p>Gemfile</p>
+
+<pre><code>source 'https://rubygems.org'
+gem 'github-pages'
+</code></pre>
+
+<p>Rubyとbundlerとか事前にインストールしておくと<code>bundle install</code>とか<code>bundle exec jekyll serve</code>とかできて用意しておくと便利。travis-ciに登録とか気軽にできるのでリポジトリの紹介ページとかでなく、純粋にGitHub Pagesとしてリポジトリを使う場合は便利です。</p>
+
+<p><a href="http://haya14busa.com/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった « haya14busa</a></p>
+
+<h3>ConvertからExcludeする</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>exclude:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+  - 'README.md'
+  - 'scripts'
+</code></pre>
+
+<p>markdownやらhtml以外の物も<code>_site</code>以下にJekyllはコンバートするので、気づかずにREADMEとかをおいておくとサイトからアクセスできちゃったりします。しっかり除外設定しておくと良さげです。</p>
+
+<p><code>find _site -type f</code>とかして確認するとよいです。</p>
+
+<h3>&#95;includeを使う</h3>
+
+<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において`<hgroup>
+  <h1><a href="/">haya14busa</a></h1></p>
+
+<pre><code>&lt;h2&gt;haya14busa's memo&lt;/h2&gt;
+</code></pre>
+
+<p></hgroup></p>
+
+<p>`とレイアウトなどなどから呼び出すことができます。</p>
+
+<h3>&#95;dataとfor loopが便利っぽい</h3>
+
+<p>&#95;data/members.yml</p>
+
+<pre><code>- name: sanaechan
+  github: deco_mori
+  twitter: decochan
+
+- name: haya14busa
+  github: haya14busa
+  twitter: haya14busa
+</code></pre>
+
+<p>とかしておくとMarkdownファイル含め任意のところで</p>
+
+<p>こんなふうに呼び出せて便利そうです。</p>
+
+<p>よんだvimrcとかvim pluginをテーブルに直書きじゃなくてデータに書いてloop回してわっしょいとかもよさそう。</p>
+
+<h3>結局は</h3>
+
+<p>他人のサイトみて良さげな書き方参考にするとすぐできるのではかどります。</p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+
+
+<p>とか</p>
+
+<ul>
+<li><a href="https://github.com/twbs/bootstrap">twbs/bootstrap</a>
+
+<ul>
+<li>Twitter BootstrapのSource版がそのままjekyllで使えて参考になったり</li>
+</ul>
+</li>
+<li><a href="https://github.com/nitoyon/tech.nitoyon.com">nitoyon/tech.nitoyon.com</a>
+
+<ul>
+<li><a href="http://tech.nitoyon.com/ja/blog/2012/09/20/moved-completed/">俺の最強ブログ システムが火を噴くぜ &#8211; てっく煮ブログ</a></li>
+<li>こういうところを参考に熱意をあげたり</li>
+</ul>
+</li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a>
+
+<ul>
+<li>ここを温かい目で眺めたり</li>
+</ul>
+</li>
+</ul>
+
+
+<p>などなど、GitHubにホストされてるものを公式ドキュメントなどと見比べながらやっていくといろいろ発見があったり、ついでにプルリクれたりしてよいです。</p>
+
+<p>ただGitHub PagesはJekyll Pluginなどが使えなくて、Octopressとか使って若干違う構成になっていることもあるので注意です。鵜呑みコピペ怖い。</p>
+
+<h2>結論</h2>
+
+<p>Jekyll on GitHub Pages with Twitter Bootstrap 便利すぎる。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a>
+      <time datetime="2013-12-29T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>29</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/uncategorized/'>uncategorized</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages Branch)のテストをするときにハマった</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-27T00:00:00+09:00" pubdate data-updated="true">December 27, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>なんどpushしてもTravisが動いてくれなくて非常につらかった</h2>
+
+<p>何度も設定見なおして、何度も更新して、何度も何度もpushしました。</p>
+
+<p>しかし何も起こらなかった。。。</p>
+
+<h2>解決</h2>
+
+<p>ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&#8230;</p>
+
+<blockquote><p>Note that the gh-pages branch will not be built unless you add it to the whitelist (branches.only).</p>
+
+<p>&#8211; <cite><a href="http://about.travis-ci.org/docs/user/build-configuration/">Travis CI: Configuring your build</a></cite></p></blockquote>
+
+<p>書いてあった！！！</p>
+
+<p><code>gh-pages</code>ブランチはデフォルトではテストしてくれなくて、whitelistで明示的に指定しないとダメなようです。</p>
+
+<p>.travis.yml</p>
+
+<pre><code>language: ruby
+rvm:
+  - 2.0.0
+before_script: "bundle show"
+script: "bundle exec jekyll build"
+after_script: "find _site -type f"
+branches:
+  only:
+    - gh-pages
+</code></pre>
+
+<p>よく考えたら、gh-pagesってプロジェクトと全く別の物が置かれているわけだから、デフォルトで無視してくれるっていうのは気が効いてていいかもしれないですね。 <code>gh-pages</code>のテストとか別にローカルで書くときにビルドしてればわかるのでそもそもあんまりテストする必要性がないのかもしれないというのはある。</p>
+
+<p>ちなみに上記のようにwhitelistでgh-pages onlyの設定にしていてもPull Requestにはちゃんと反応してくれるっぽいです。Travisさんさすがです。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった</a>
+      <time datetime="2013-12-27T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vim-plugin-01/">Vimプラグイン読書会やりましたー</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-18T00:00:00+09:00" pubdate data-updated="true">December 18, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Vim script読書会 #01</h2>
+
+<h3>読んだプラグイン</h3>
+
+<ol>
+<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></li>
+</ol>
+
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>12/14(土) 21:00-23:00</li>
+</ul>
+
+
+<h3>ログ</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822571">Logです</a></li>
+</ul>
+
+
+<h3>Pull Request</h3>
+
+<ul>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/4">Use negative value and doesn&#8217;t use reverse() by thinca · Pull Request #4 · Shougo/junkfile.vim</a></li>
+<li>thincaさんチェック便利</li>
+</ul>
+
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<h2>感想とか</h2>
+
+<p>やりたいとか言っておきながら読みたいプラギンとか決めるのぐだぐだだったり、僕自信に拡散力のようなものが備わっていなかったりで色々と不安だったけど、蓋を開けてみると割と参加者も集まってくれて、「勉強になる」とかいい反応もあったりしてよかった。参加者の皆さん、ありがとうございます。</p>
+
+<p>特におしょーさんはいろいろ取り仕切ってくれてありがとうございます。</p>
+
+<h2>junkfile.vim</h2>
+
+<p><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></p>
+
+<p>plugin/とautoload/の使い分け方とかプラグインの基本的な作り方を読んだり訊いたりして今回の「プラグインの基本的な構成や作り方について学ぶ」という目的に適ってとてもいい感じでした。</p>
+
+<h3>おまじない</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#use-cpo-save">:help use-cpo-save</a></li>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822765">そのへんのログ</a></li>
+</ul>
+
+
+<p><noscript>
+  <pre><code class="language-viml viml">&ldquo; おまじない
+&rdquo; Load Once
+if exists(&lsquo;g:loaded_helloworld&rsquo;) &amp;&amp; g:loaded_helloworld
+  finish
+endif
+let g:loaded_helloworld = 1</p>
+
+<p>&ldquo; Saving &lsquo;cpoptions&rsquo;
+let s:save_cpo = &amp;cpo
+set cpo&amp;vim</p>
+
+<p>&ldquo; Restore &lsquo;cpoptions&rsquo;
+let &amp;cpo = s:save_cpo
+unlet s:save_cpo
+</code></pre>
+</noscript></p>
+
+<p>行連結・副作用の回避をしましょう。おまじないレベルなのでとりあえずhelp読んである程度理解したら、なにも考えず書いておくといいっぽいです。</p>
+
+<h3>autoload変数とか</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822792">そのへんのログ</a></li>
+<li>プルリク: <a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><p><a href="http://vim-jp.org/vimdoc-ja/eval.html#internal-variables">:h internal-variables</a></p>
+
+<p>hoge#foo -> autoload
+hoge_foo -> plugin</p></li>
+</ul>
+
+
+<p>値をセットするだけなら<code>let g:hoge#foo='hoge'</code>しても、autoloadが呼ばれてしまうというわけではないはずだけど、やはりautoload変数はautoloadで定義するといいっぽい。</p>
+
+<p>plugin下では<code>g:hoge_foo</code>とかを使うのがよくあるけど<code>b:</code>とかいろいろあって難しい</p>
+
+<h3>autoloadとpluginの違い</h3>
+
+<p>C でいう、</p>
+
+<pre><code>plugin -&gt; .h
+autoload -&gt; .c
+</code></pre>
+
+<blockquote><p>実装を autoload に書いて、それを呼び出すコマンドなどを plugin で定義するのが最近の流行りですね<br/>
+と、いうのも plugin は起動時に読み込まれるため、plugin に全部の実装を書いてしまうと起動時間に影響するため</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822953">vim-users.jp &#8211; Lingr</a></cite></p></blockquote>
+
+<p>せっかく分けているのにpluginでautoloadの関数を直接呼ぶとVim起動時にautoload以下も呼ばれてしまうのでそのへんを注意して残念プラグインにならないように注意すべき。</p>
+
+<p>必然的に<Plug>マッピングの提供などはplugin下でやるべきということになる。</p>
+
+<h2>vim-visualstar</h2>
+
+<p><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></p>
+
+<p>plugin下に100行程度で簡単そうかと思いきや、実装が結構難しくてVim script力の高まりを感じたり感じなかったりした。</p>
+
+<blockquote><p>itchyny<br/>
+@/とか&#8217;>とかの勉強になるとは思う</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823713">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>この辺は初心者でも便利ってかんじでcountの話とかはなかなか難しかった。というか僕は<code>line("'&lt;")</code>を<code>line("v")</code>の違いでハマったみたいなこといってからその再現しようとしてたりしてvim-visualstarを完璧に理解することを諦めたりしていた。</p>
+
+<p>最近<a href="https://github.com/koron/cmigemo">cmigemo</a>のvimプラグイン部分をプルリクったり、個別に管理させてもらったり(<a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a>)してた関係もあって検索する部分とか参考になった。</p>
+
+<blockquote><p>raa0121<br/>
+(&#8220;v&#8221;) と (&#8220;`v&#8221;) が顔文字に見える</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823525">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>かわいい(&#8220;`v&#8221;)</p>
+
+<h2>Vim script読書会 #02</h2>
+
+<p>結構反応もよかったのでめでたく第2回も開催しようという流れになりました。</p>
+
+<ol>
+<li>毎週21時からやるやる</li>
+<li>隔週で行う</li>
+<li>月1で行う</li>
+<li>不定期、気が向いたら</li>
+</ol>
+
+
+<p>2か3あたりかなーという感じですが、年末年始なので次回は年明けの1/11(土曜日)です。</p>
+
+<p>この辺反応良かったりして人が安定していると隔週になったりすると思うのでぜひぜひ参加したりしてわいわい読みましょう。</p>
+
+<h3>読むプラグイン(予定)</h3>
+
+<ol>
+<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ol>
+
+
+<p>または</p>
+
+<ol>
+<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
+<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unit-fold</a></li>
+</ol>
+
+
+<p>clever-fの製作者であるりんだんさん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>)が参加できそうならclever-f,無理そうならunite-sourceを読もうということでunite-mcdonalds-vimとunite-fold読みます(たぶん)。</p>
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>2014/01/11(土) 21:00-23:00</li>
+</ul>
+
+
+<h2>各プラギン紹介記事Link</h2>
+
+<h3>clever-f</h3>
+
+<ul>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fは<a href="https://github.com/haya14busa/vim-easymotion">vim-easymotion</a>にmigemo組み込むときの参考に軽く読んでいたり、人によってはライフチェンジングプラグインでclever-f面白いし、作者のりんだんさんすごい!みたいな感じでかなり個人的に提案しました() -> <a href="http://rhysd.hatenablog.com/entry/2013/12/13/011420">（進捗あります！✧＼\٩(‘ω’)و /／✧）o 。(&#8216;､3)_ヽ)＿ &#8211; sorry, unimplemented:</a></p>
+
+<p>ただthincaさんが魔改造していてthincaさん説明も期待できそうだし、1回で1つのプラグインを集中的に読む場合、分量的にいい感じっぽいので目的にもよりますが面白そうだと思います。</p>
+
+<h3>unite-mcdonalds-vim</h3>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
+</ul>
+
+
+<p>これがいわゆる人々の生活を豊かにするプラグインの内のひとつ! -> <a href="http://mattn.kaoriya.net/software/vim/20131206144325.htm">Big Sky :: Vim script は人々の生活を豊かにしなければならないッ！</a></p>
+
+<p>unite-sourceかつ<a href="https://github.com/mattn/webapi-vim">mattn/webapi-vim</a>を使っているのでウェブ上のソースを使った便利unite-sourceが作れるようになるかもですね。</p>
+
+<p>またマクドナルドのページの構造変わってて動かなくなっていたのをmattnさんに直して頂きました。ありがとうございます。<a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>も直して頂いたので、時間あったら一緒に読むとお腹すきそうでよさそう。</p>
+
+<h3>unite-fold</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120802/1343888407">unite-fold を github に上げた &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>おしょーさんwareなので作者本人の説明も期待できます。個人的にはunite-foldは特にvimrc編集するときに便利</p>
+
+<p>どれもいい感じのプラグインなのでみなさん参加しましょう。</p>
+
+<p>unite-sourceになる場合unite予習事案が発生するので予習によさそうなリンクとか別にまとめる予定(あくまでも予定)</p>
+
+<h2>今後についてとか</h2>
+
+<blockquote><p>[今後の課題]</p>
+
+<ul>
+<li>会ごとに具体的な目的を決めたい</li>
+<li>読んでみたいプラグインをまとめる</li>
+<li>まとめサイトほしい</li>
+<li>23時から vimrc読書会があるので延長するのが厳しい</li>
+</ul>
+
+
+<p>&#8211; <cite><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></cite></p></blockquote>
+
+<h3>目的について</h3>
+
+<ol>
+<li>Vim script 力を身につけたい、高めたい</li>
+<li>プラグイン構成を理解する、 プラグインを作ってみたい</li>
+<li>プラグインのある部分の実装を読んでみたい(そして取り込みたいor作りたい)</li>
+<li>unite-source作りたい、vim-textobj-hogeなどなど作りたい</li>
+<li>作ったから添削してもらいたい</li>
+<li>便利だけどちょっと実装が&#8230;というプラグインを読んで怒涛のプルリクを行いたい</li>
+<li>単純におもしろそうだからみんなでわいわい読もう<a href="https://github.com/google/maktaba">google/mactaba</a>とか(?)</li>
+<li>etc&#8230;</li>
+</ol>
+
+
+<p>Vim scriptに限らずプログラミング力も高めたいとかもあるかもしれない。気軽にみんなでわいわいコードをオンラインで読めるというのはおもしろいし、vimrc読書会などそういうことができるVimのコミュニティー力はすごいなーと見ていて思う。</p>
+
+<p>なんにせよ、おしょーさんが言うように漫然と読まずに目的を決めて読むというのは大事だし得るものもその分大きくなるので決めていきたいですね。</p>
+
+<p>3.などは目的が絞られる分、参加者層にささるかが未知数だけど、こういうプラグイン作りたくて似たような部分があるプラグインを参照する事案は実際にあるのでおもしろそう。</p>
+
+<p>例えばずっと2の目的とかだと続かないので、やっぱり回ごとに決めるという流れをもっとサクサクできるようになるとよさそう。次回の例で言えば、clever-fなら「Vimのカーソル移動を拡張するプラグインを作りたい」(3に近い)、unite-sourceならそのまま「unite-sourceの構成を理解して作ってみたい」(2)みたいな目的をもってそれを参加者が共有できていると実りのある読書会ができるんじゃないかなーと思う。</p>
+
+<h3>まとめさいととか</h3>
+
+<p>vimrc読書会みたいにまとめページと、リクエストできるページあったら便利そうなのでGithub Pagesとかで(?)適当に作ろうと思って何もせず3日くらい経ってるので次回始まるまでに適当に作りたい。</p>
+
+<p>時間とかvimrc読書会の関係上もっとゆっくり読みたかったり、予想外に盛り上がっても続けれないとかあって難しい。日曜日だと次の日が月よう&#8230;ｳｯ</p>
+
+<p>いろいろ懸念事項はありますが、わいわい読めておもしろかったので興味出てきた人は1/11日に<a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>を覗いて見るときっといい感じです。</p>
+
+<p>あと今回のプラグイン構成を理解しよーという目的だったので<a href="https://github.com/haya14busa/vim-helloworld">haya14busa/vim-helloworld</a>という本当にhello worldするだけのプラグイン作って復習しました。本当は予習として作るつもりだった。読むと良さそうなhelp書いたりgitのコミットログを追っていけば勉強になるようにと意識したので、本当にこれから作るってひとは見るといいかもしれないけど、やっぱりそうでもなかったりします。ﾊｲ</p>
+
+<p>こーゆーの作りたいなーというのはあったりなかったりするので、やっぱり作りたいものを作っていきたい</p>
+
+<p>そんな時に便利なVimプラグイン読書会。次回は来年の1/11(土)です。よろしくおねがいします。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vim-plugin-01/">Vimプラグイン読書会やりましたー</a>
+      <time datetime="2013-12-18T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>18</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="4">&larr; Older</a>
+    
+    <a href="/archives">Blog Archives</a>
+    
+    <a class="next" href="2">Newer &rarr;</a>
+    
+  </div><!-- /div.pagination -->
+</div><!-- /div.blog-index -->
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

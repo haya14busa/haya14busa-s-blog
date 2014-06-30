@@ -1,0 +1,821 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="JavaScript でグローバル領域を汚染しているプロパティを見つける &#8211; Null.ly 上記記事のコードをブックマークレット化しました。おもしろい！ 元記事のコードはこちら -> javascript global leak detector &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/posts/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/js-global-leak-detector-marklet/">JavaScriptでグローバル領域を汚染しているプロパティを見つけるブックマークレット</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-11T00:00:00+09:00" pubdate data-updated="true">November 11, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://null.ly/post/66672290942/javascript-gloabl-leak">JavaScript でグローバル領域を汚染しているプロパティを見つける &#8211; Null.ly</a></p>
+
+<p>上記記事のコードをブックマークレット化しました。おもしろい！</p>
+
+<p>元記事のコードはこちら -> <a href="https://gist.github.com/nulltask/7412711#file-index-js">javascript global leak detector</a></p>
+
+<h2>jsGlobalLeakDetector</h2>
+
+<p><a href="javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a></p>
+
+<p>上記リンクをブックマークバーにドラックなどして登録して好きなサイトで実行してください。</p>
+
+<p>iOS登録用: <a href="http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a></p>
+
+<p>上記リンクをクリックしてから、ページをブックマークして、?以前の文字を消去してください。</p>
+
+<p>手軽に見れて楽しい。</p>
+
+<p>Google,Amazon,楽天,Twitter,自分のサイト,クッキークリッカーなどなど試してみると面白いかも?</p>
+
+<p>(クッキークリッカーはJavaScriptでチート出来るっていっても基本Global領域の関数使わずにGame.なんちゃらでアクセスするはずなのであんまり面白くなかった。)</p>
+
+<h2>コード</h2>
+
+<p><noscript>
+  <pre><code class="language-javascript javascript">// <a href="https://gist.github.com/nulltask/7412711#file-index-js">https://gist.github.com/nulltask/7412711#file-index-js</a>
+javascript:(function() {</p>
+
+<p>  var leak = [];
+  var iframe = document.createElement(&lsquo;iframe&rsquo;);</p>
+
+<p>  iframe.style = &lsquo;display: none;&rsquo;;
+  document.body.appendChild(iframe);</p>
+
+<p>  var window = iframe.contentWindow;</p>
+
+<p>  for (var p in this) {
+    if (void 0 === window[p]) leak.push(p);
+  }</p>
+
+<p>  document.body.removeChild(iframe);</p>
+
+<p>  alert(leak);</p>
+
+<p>}).call(this);</code></pre>
+</noscript></p>
+
+<p>見たらわかるけど無圧縮版で既存のコードをブックマークレットで楽に使えるようにしただけです。(冒頭のリンクは圧縮してます)</p>
+
+<p>一応GitHubにもあげてて変更もあるかも知れないのでGitHubリンク↓</p>
+
+<p><a href="https://github.com/haya14busa/misc/blob/master/JavaScript/detect-global-properties.js">misc/JavaScript/detect-global-properties.js at master · haya14busa/misc</a></p>
+
+<p>iframeってこんな使い方があるんですね。iframe作って、display:none;してごにょごにょしてremoveしてる。</p>
+
+<p>発見だ。</p>
+
+<p>全く関係ないけど、iframeを普通に使ったブックマークレットの例↓</p>
+
+<p><a href="http://blog.tanarky.com/2010/07/12-iframe.html#">Aggressive Engineer: 便利ブックマークレット その12: Iframeで外部ページを表示させる</a></p>
+
+<p>クリックで消す動作とかちゃんと実装すれば面白そう。サイトにiframe埋め込むなんてしたら今じゃﾌﾟｷﾞｬｰされるはずだけど、ブックマークレットとして使うなら問題ないよね♡</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/js-global-leak-detector-marklet/">JavaScriptでグローバル領域を汚染しているプロパティを見つけるブックマークレット</a>
+      <time datetime="2013-11-11T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>11</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vimdoc-marklet/">Vimのhelpをブラウザで見るときのためのブックマークレット作った</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-08T00:00:00+09:00" pubdate data-updated="true">November 08, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Vimのhelpをブラウザで見るときのためのブックマークレット作った</h1>
+
+<h2>vimdoc便利</h2>
+
+<p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<ol>
+<li><a href="javascript:(function(){var">vimdoc@en</a></li>
+<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
+<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
+</ol>
+
+
+<p>リンクをドラックするなどしてブックマークに登録してください。</p>
+
+<h3>iOS用</h3>
+
+<ol>
+<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc@en</a></li>
+<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc@ja</a></li>
+<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc-en-to-ja</a></li>
+</ol>
+
+
+<p>iOSなど直接登録できない場合はリンク先をブックマークして&#8221;?&#8221;以前を削除してください。</p>
+
+<h2>つかいかた</h2>
+
+<p>vimdoc@enとvimdoc@jaは実行してプロンプトに検索文字列を入力するか、事前に検索したい文字列を選択してから実行するとその文字列を検索文字列として検索します。</p>
+
+<p>vimdoc-en-to-jaはsourceforgeの英語版vimdocを読んでる時に実行すると日本語版の同一のhelpを新規タブで開きます。日->英も対応してます。</p>
+
+<h2>It&#8217;s so benri</h2>
+
+<p>ブラウザでもvimのhelpみれて便利。vim記事を見る時やvim記事を書くときにhelpへのリンク貼りたいな〜ってときに使えそうです。</p>
+
+<p>vimdoc@jaの方が構成が見やすくていいけど、検索は英語版のsourceforgeの方が自前で検索対応していて(日本語版はGoogleカスタム検索)検索精度はvimdoc@enのほうが良さげ。</p>
+
+<p>vimdoc@enを最初に使って、日本語版はvimdoc-en-to-jaを使って開くなどするとスムーズかもしれない。</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://vimdoc.sourceforge.net/">Vimdoc : the online source for Vim documentation</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a></li>
+<li><a href="https://github.com/vim-jp/vimdoc-ja/">vim-jp/vimdoc-ja</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vimdoc-marklet/">Vimのhelpをブラウザで見るときのためのブックマークレット作った</a>
+      <time datetime="2013-11-08T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>08</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-07T00:00:00+09:00" pubdate data-updated="true">November 07, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>strdisplaywidthのhelpよくわからん</h2>
+
+<p>{col}が何を指しているのか、どういう作用を及ぼすのかhelp読んでもいまいちわかりずらく実際に調べてみました。</p>
+
+<h2>準備</h2>
+
+<pre><code>set noexpandtab
+set softtabstop=8
+set shiftwidth=8
+set tabstop=8
+</code></pre>
+
+<h2>結果の見方の説明</h2>
+
+<p><code>.</code> -> col_numをドット(<code>.</code>)で擬似的に表す <code>.</code>から<code>:</code>まで -> TAB文字 <code>:</code>の次 -> <code>:echo strdisplay("\t", {col})</code>の結果</p>
+
+<h2>結果</h2>
+
+<pre><code>&lt;br /&gt;        :8
+.       :7
+..      :6
+...     :5
+....    :4
+.....   :3
+......  :2
+....... :1
+........        :8
+.........       :7
+..........      :6
+...........     :5
+............    :4
+.............   :3
+..............  :2
+............... :1
+................        :8
+.................       :7
+..................      :6
+...................     :5
+....................    :4
+.....................   :3
+......................  :2
+....................... :1
+</code></pre>
+
+<h3>colを指定しない別の結果</h3>
+
+<pre><code>:echo strdisplaywidth("\t") -&gt; 8
+:echo strdisplaywidth(".\t") -&gt; 8
+:echo strdisplaywidth("..\t") -&gt; 8
+:echo strdisplaywidth("...\t") -&gt; 8
+:echo strdisplaywidth("....\t") -&gt; 8
+:echo strdisplaywidth(".....\t") -&gt; 8
+:echo strdisplaywidth("......\t") -&gt; 8
+:echo strdisplaywidth(".......\t") -&gt; 8
+:echo strdisplaywidth("........\t") -&gt; 16
+</code></pre>
+
+<h2>つまり&#8230;?</h2>
+
+<p><code>strdisplaywidth({expr}[, {col}])</code>のcolは{expr}の{col}文字目以降を返すという意味<strong>ではなく</strong>、スタートするスクリーン上のカラムの位置を表す。</p>
+
+<p>完全にTAB文字専用の引数って感じでした。</p>
+
+<p>Helpに書いてあることがイメージできなかったっぽいのでHelp解読力あげたい。</p>
+
+<p>vimdoc</p>
+
+<blockquote><p>strdisplaywidth({expr}[, {col}]) <em>strdisplaywidth()</em><br/>
+The result is a Number, which is the number of display cells<br/>
+String {expr} occupies on the screen.<br/>
+When {col} is omitted zero is used. Otherwise it is the<br/>
+screen column where to start. This matters for Tab<br/>
+characters.<br/>
+The option settings of the current window are used. This<br/>
+matters for anything that&#8217;s displayed differently, such as<br/>
+&#8216;tabstop&#8217; and &#8216;display&#8217;.<br/>
+When {expr} contains characters with East Asian Width Class<br/>
+Ambiguous, this function&#8217;s return value depends on &#8216;ambiwidth&#8217;.<br/>
+Also see |strlen()|, |strwidth()| and |strchars()|.</p>
+
+<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#strdisplaywidth()">:h strdisplaywidth()</a></cite></p></blockquote>
+
+<p>vimdoc-ja</p>
+
+<blockquote><p>strdisplaywidth({expr}[, {col}])                        <em>strdisplaywidth()</em><br/>
+                文字列 {expr} のスクリーン上での表示セル幅を返す。<br/>
+                {col} が省略されたときはゼロが使われる。{col} には計算を開始す<br/>
+                るスクリーン上の列の位置を指定する。これはタブ文字の幅の計算に<br/>
+                影響する。<br/>
+                計算にはカレントウィンドウのオプションが使用される。&#8217;tabstop&#8217;<br/>
+                や &#8217;display&#8217; のような表示を変更するようなオプションが影響す<br/>
+                る。<br/>
+                {expr} に幅が曖昧 (Ambiguous) な東アジアの文字が含まれていると<br/>
+                きは、文字幅は &#8217;ambiwidth&#8217; の設定に依存する。<br/>
+                |strlen()|, |strwidth()|, |strchars()| も参照。</p>
+
+<p>&#8211; <cite><a href="http://vim-jp.org/vimdoc-ja/eval.html#strdisplaywidth()">:h strdisplaywidth@ja</a></cite></p></blockquote>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a>
+      <time datetime="2013-11-07T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>07</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/git-mergetool-vimdiff/">Git Mergetoolでvimdiffを便利に使う</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-03T00:00:00+09:00" pubdate data-updated="true">November 03, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Mergeしんどい</h2>
+
+<p>今までConflict起きたら直接コンフリクトしたファイルを編集して完全手動で直してたんですが、mergetoolの存在とかvimdiffとかで出来そうと思って調べました。</p>
+
+<h2>Gitの設定</h2>
+
+<p><noscript>
+  <pre><code class="language- ">git config &ndash;global merge.tool vimdiff
+git config &ndash;global mergetool.prompt false
+git config &ndash;global mergetool.keepBackup false</code></pre>
+</noscript></p>
+
+<p><code>git config --global merge.conflictstyle diff3</code>も紹介されていたけど共通祖先を表示する必要性を感じなかったので無視した。</p>
+
+<p>promptをfalseにすることでmergetoolした時のpromptを省略して編集を始めるようにし、keepBackupをfalseにすることでmergetoolがデフォルトでは自動的に生成する&#42;.origファイルを生成しないように出来る。</p>
+
+<h2>Vimの設定</h2>
+
+<p><noscript>
+  <pre><code class="language-viml viml">&ldquo; Mapping for vimdiff
+&rdquo; for git mergetool
+if &amp;diff
+  map &lt;Leader&gt;1 :diffget LOCAL&lt;CR&gt;
+  map &lt;Leader&gt;2 :diffget BASE&lt;CR&gt;
+  map &lt;Leader&gt;3 :diffget REMOTE&lt;CR&gt;
+  map &lt;Leader&gt;u :&lt;C-u&gt;diffupdate&lt;CR&gt;
+  map u u:&lt;C-u&gt;diffupdate&lt;CR&gt;
+endif</p>
+
+<p></code></pre>
+</noscript> 左から1,2,3って覚え方でよさそう。Local,Base,Remoteの頭文字とかでもKeymapに余裕があるならよさそう。</p>
+
+<p>一度diffgetしたあとUndoするとdiffがうまく効かないのでuにdiffupdateを噛ませてる</p>
+
+<p><code>]c</code>,<code>[c</code>で次/前のConflict箇所にジャンプするので気に入らなければお好みでキーマップ書くとよさげかも。</p>
+
+<p>終了時には<code>:wqa</code> or <code>:qa</code>あたりを使うのでこれもキーマップしたほうがストレス減るかも知れない。</p>
+
+<h2>vimdiff or vimdiff2 or vimdiff3?</h2>
+
+<blockquote><p>$ git config &ndash;global mergetool.gvimdiff3.cmd &lsquo;gvim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;<br/>
+$ git config &ndash;global mergetool.vimdiff3.cmd &lsquo;vim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;</p>
+
+<p>&ndash; <cite><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net - Three-way merging for git using vim</a></cite></p></blockquote>
+
+<p><code>git config --global merge.tool [toolname]</code>で設定</p>
+
+<p>最初はvimdiff3の記事を見つけてやってみたんだけど、共通祖先がない場合にBASEがないだけでなく、diffの挙動がちょっとおかしい。<br/>
+おそらく存在しないBASEと比較してしまうのでファイル全体がdiff1つ分の対象となってしまっている。</p>
+
+<p><a href="https://github.com/git/git/blob/master/mergetools/vimdiff">git/mergetools/vimdiff at master · git/git</a></p>
+
+<p>そこで調べてみるとそもそもデフォルトで提供されているvimdiffが3-way mergingに対応してるっぽい。どっかのタイミングで受け入れられたのかな？</p>
+
+<p>そちらを試してみると、共通祖先(BASE)がある場合は3-way(3-column and MERGE)になって、共通祖先がない場合は2-way view(3-column LOCAL, MERGED, REMOTE)として正しく表示される。</p>
+
+<p>場合によってUIが変わってしまうのは良くないとはいえ、正しくdiffれることが優先なのでvimdiffを標準で使うことにした。</p>
+
+<pre><code>$ git config --global merge.tool vimdiff
+</code></pre>
+
+<p>MERGED、つまりコンフリクトを解消する実際に扱ってるファイル(バッファ)を2-wayの時でも下の段に持って行きたい場合は<code>&lt;C-w&gt;J</code>で出来る。(自動化するためにラッパー書きました↓)</p>
+
+<p>vimdiff2は強制的に2-wayにするっぽいのでとりあえず却下。</p>
+
+<h2>vimdiffのwrapper書こう</h2>
+
+<p>vimdiffのUIが3column(中心がMerged)だったり、3column(LOCAL, BASE, REMOTE) + Marged でBaseの有無で変わってしまうのはどうかと思うので対応したかった。</p>
+
+<p><a href="https://github.com/haya14busa/git-mergetool-vimdiff-wrapper">haya14busa/git-mergetool-vimdiff-wrapper</a></p>
+
+<p>シェルスクリプトよくわかんなくてつらい。 引数で渡されたBASEを<code>test -s</code>で調べて条件分岐させてます。</p>
+
+<p>必ず実際に作業するMERGEDペインが一番下に来るのでよさげ</p>
+
+<h2>git-merge-sandbox</h2>
+
+<p><a href="https://github.com/haya14busa/git-merge-sandbox">haya14busa/git-merge-sandbox</a></p>
+
+<p>調べている間に<a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a>を見つけて便利だった(&amp; 若干の不満があった)ので自分でも作ってみた。</p>
+
+<p>wrapperの(完全手動)テストもこれを使った</p>
+
+<h3>変更点</h3>
+
+<ol>
+<li>Merge後にコミットしてしまっても動く</li>
+<li>BASE(共通祖先のファイル?)の有無でdiffの種類が2つに分かれている</li>
+</ol>
+
+
+<h3>Git tag</h3>
+
+<p>ちょうどgitのtagを使えてないなーと思っていたのでtagを使う練習にもなってよかった。</p>
+
+<p><noscript>
+  <pre><code class="language- ">$ git tag -a [tagname] -m'Comment' (checusum)
+$ git push origin &ndash;tags
+</code></pre>
+</noscript></p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://blog.eiel.info/blog/2013/06/26/git-mergetool/">Mac で使える git mergetool をいろいろ試してみる &#8211; 準備編 &#8211; そんなこと覚えてない</a></li>
+<li><a href="http://blog.eiel.info/blog/2013/07/03/git-mergetool-vimdiff2/">Mac で使える git mergetool をいろいろ試してみる &#8211; Vimdiff2 &#8211; そんなこと覚えてない</a></li>
+<li><a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a></li>
+<li><a href="http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/">Rosipov » Use vimdiff as git mergetool</a></li>
+<li><a href="http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool">A better Vimdiff Git mergetool &#8211; Vim Tips Wiki</a></li>
+<li><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net &#8211; Three-way merging for git using vim</a></li>
+<li><a href="http://stackoverflow.com/questions/1251681/diff-tool-generates-unwanted-orig-files">git &#8211; Diff tool generates unwanted .orig files &#8211; Stack Overflow</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う</a>
+      <time datetime="2013-11-03T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>03</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-01T00:00:00+09:00" pubdate data-updated="true">November 01, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</h1>
+
+<h2>Vim-easymotionのマルチバイト文字対応でハマってた</h2>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></p>
+
+<p>Vim-easymotionの動作は基本的に正規表現でマッチする文字列を探して、その座標(cooridinate)としてline番号とcolumn番号をリストに追加し、それをあとからターゲット文字列に一括置換してHighlightさせるという手順を取ります。</p>
+
+<p>Multibyte文字を扱わないときはこれで一切問題ないのですが、日本語の文字列やTab文字など、column番号に使われるbyte数と、実際に表示される文字列の長さが違う場合にバグが起こります。</p>
+
+<h2>表示位置がずれる</h2>
+
+<p>設定にもよりますが、Tab文字列は4文字分表示させていますが、1byteです。これをターゲットである&#8221;f&#8221;や&#8221;j&#8221;といった1byteで置換してしまうと3byte分表示列がずれてしまいます。</p>
+
+<h3>解決法</h3>
+
+<p>表示がずれる問題は置換した時の文字列の差分の分だけスペースを足せばいいということになります。</p>
+
+<p><code>strdisplaywidth()</code>関数を使い文字列の長さを取り、<code>repeat(' ', target_char_len -1)</code>を置換する文字に足します</p>
+
+<h2>Byte数のズレによって置換、ハイライトができなくなる</h2>
+
+<p>日本語はもっと厄介で、表示される1文字の長さは2byte分でさらに実際のbyte数は3byteです。vimで一括置換するといっても、ターゲットにマッチする座標のリストをループしながら置換していくだけなので、行ごとに最初のmultibyte文字を置換した瞬間、その後のbyte数がずれてしまい(日本語の3byte -> 1byte + 日本語の長さ2byte分を埋め合わせるためのスペース1byte)で1byteずつずれてしまいます。</p>
+
+<p>これによって次の3byteの日本語文字列の2byte目がターゲットになってしまい、置換もできなければ、highlightも動かなくなってしまいます。</p>
+
+<h3>Example</h3>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果
+</code></pre>
+
+<p>このように座標が置換するごとにずれてしまい、うまく動かなくなります</p>
+
+<h3>解決</h3>
+
+<p>Loopごとに置換前と置換後の行全体の文字列のbyteの長さの差を記憶しておき、そのぶん指定するcolumnに足して置換していく</p>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果。
+残りの[5,9,13,17,21]はそれぞれ差分の1を引いて[4,8,12,16,20]になる
+</code></pre>
+
+<h2>結論</h2>
+
+<p>すごいわかりづらい感じになったし、わかりやすく書く努力すらできていないけど、何が言いたいかってvim-easymotionにmigemo機能を実装して日本語でもeasymotionするのなかなか捗りを感じる。</p>
+
+<p>ちょっと重いけどおすすめ。</p>
+
+<p>(もとから実装されてた単語移動などによってずれる問題も解決ってことなのでmigemoなしでも便利)</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a>
+      <time datetime="2013-11-01T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>01</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="6">&larr; Older</a>
+    
+    <a href="/archives">Blog Archives</a>
+    
+    <a class="next" href="4">Newer &rarr;</a>
+    
+  </div><!-- /div.pagination -->
+</div><!-- /div.blog-index -->
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

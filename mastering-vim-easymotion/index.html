@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>haya14busa</title>
+  <title>Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</title>
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Osaka.vim #1 - connpass
-Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会! 関西圏のVim勉強会! 過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、 &hellip;">
+  <meta name="description" content="この記事はVim Advent Calendar 2013 : ATNDの 113 日目の記事になります。 また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 Happy Vimming to me. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 �
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://haya14busa.com/">
+  <link rel="canonical" href="http://haya14busa.com/mastering-vim-easymotion/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
@@ -75,542 +74,12 @@ Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 �
 </nav>
     <div id="main">
       <div id="content">
-        <div class="blog-index">
+        <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-30T19:09:21+09:00" pubdate data-updated="true">June 30, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
-<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
-</ul>
-
-
-<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
-
-<h2>関西圏のVim勉強会!</h2>
-
-<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
-
-<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
-
-<h4>2014/04/05</h4>
-
-<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
-
-<p>manga_osyo: やると聞いて
-              haya14busa.vim</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
-
-<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
-
-<h4>2014/05/17</h4>
-
-<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
-          iyuuya.vimやってもいいんですけどねー</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
-
-<p><strong>やりたい!!!</strong></p>
-
-<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
-一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
-という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
-</span><span class='line'>  @iyuuya<span class="p">++</span>
-</span><span class='line'><span class="k">endfor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
-
-<h2>Osaka.vim #1</h2>
-
-<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
-
-<h3>@thinca さんによるライブコーディング</h3>
-
-<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
-個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
-
-<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
-さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
-デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
-これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
-
-<ul>
-<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
-<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
-</ul>
-
-
-<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
-
-<h3>フリータイム</h3>
-
-<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
-
-<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
-
-<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
-
-<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
-聞いてみると興味をそそられました。
-<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
-いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
-コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
-使い方がとても良さそうでした。</p>
-
-<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
-
-<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
-
-<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
-<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
-
-<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
-
-<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
-この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
-それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
-周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
-
-<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
-
-<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
-
-<p>がんばりたい</p>
-
-<h3>発表した</h3>
-
-<ul>
-<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
-</ul>
-
-
-<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
-
-<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
-と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
-拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
-
-<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
-あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
-結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
-ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
-
-<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
-
-<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
-かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
-に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
-
-<p>反応はイマイチわからなかった()</p>
-
-<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
-しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
-
-<h2>懇親会&hellip;そしてカラオケオールへ</h2>
-
-<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
-アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
-
-<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
-初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
-
-<ul>
-<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
-</ul>
-
-
-<p>更新便利になって満足。</p>
-
-<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
-
-<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
-
-<h2>次回&hellip;?</h2>
-
-<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
-
-<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
-
-<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
-
-<p><strong><code>:wq Osaka.vim_01</code></strong></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a>
-      <time datetime="2014-06-30T19:09:21+09:00" pubdate><span class='month'>Jun</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-04-12T12:57:25+09:00" pubdate data-updated="true">April 12, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>第5回 Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/04/12 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a></li>
-</ul>
-</li>
-<li>目的: Vim scriptでリスト、文字列、辞書の効率的かつ汎用的な扱い方を学ぶ</li>
-</ul>
-
-
-<p><strong>!!!本日(4/12)の21:00から開催です!!!</strong> <del>また宣伝記事が当日になってしまった&hellip;</del></p>
-
-<p><strong>初心者でも歓迎ですよ</strong></p>
-
-<p><a href="https://github.com/vim-jp/vital.vim/issues/80">昔開催されたvital.vim読書会</a>では、<code>Data.String</code>を読んだらしいので、今回は<code>Data.List</code>と<code>Data.Dictionary</code>のどちらか1つ,または両方を読むと思います。</p>
-
-<h2>読みどころ</h2>
-
-<p><a href="https://github.com/vim-jp/vital.vim">vital.vim</a>は主にvim-jpのVim script超詳しいマンのかっくいい方々が開発している Vim プラグインのためのライブラリです。これまでVimプラグイン読書会で読んだプラグインは何かしらVimの機能自体を拡張していたのに対し、vital.vimはあくまでも<em>ライブラリ</em>であり、Vim scriptによる汎用的かつ効率的なリストやディクショナリなどなどの操作の仕方を学べるので、「まだVim独自の仕様とかよくわからない&hellip;」という方にとっても読みやすくてよいかもしれません。Vim scriptまだ良くわからないという方も含め、ぜひぜひ気軽に参加してください!</p>
-
-<p>また、vital.vimでなにが出来るのかも外から見ただけではイマイチよくわからなかったりするので、どういう関数が提供されていて、どういう仕様なのかなぁーとさらっと見ていくだけでも面白いんじゃないかと思います。</p>
-
-<h2>vitalの使い方サンプル</h2>
-
-<p>インストールした後適当なスクラッチバッファでQuickrunとかして動作確認しながら読むとよいかもしれない(かも)。vimrcに書いて自作vimrc関数で使ってもOKです。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'vim-jp/vital.vim'
-</span><span class='line'>
-</span><span class='line'>" vital.vimを単体で使う場合は`vital#of('vital')`
-</span><span class='line'>" プラグインに組み込む場合は引数の'vital'の代わりにプラグインの名前(Vitalize --name で指定した値)
-</span><span class='line'>let s:V = vital#of('vital')
-</span><span class='line'>
-</span><span class='line'>" vitalのData.Listをimportする。
-</span><span class='line'>" 基本的に s:List.&lt;utility_function&gt;(arguments) という使い方をする
-</span><span class='line'>" :h vital-data-list.txt
-</span><span class='line'>let s:List = s:V.import('Data.List')
-</span><span class='line'>
-</span><span class='line'>echo '= flatten =========='
-</span><span class='line'>
-</span><span class='line'>" リストをフラットに
-</span><span class='line'>echo s:List.flatten([[1],[2,[3,4]]])
-</span><span class='line'>" -&gt; [1,2,3,4]
-</span><span class='line'>
-</span><span class='line'>echo '= push & pop ======='
-</span><span class='line'>
-</span><span class='line'>" スタックスタック
-</span><span class='line'>let s = []
-</span><span class='line'>echo s:List.push(s, 1)
-</span><span class='line'>" [1]
-</span><span class='line'>echo s:List.push(s, 2)
-</span><span class='line'>" [1, 2]
-</span><span class='line'>echo s:List.push(s, 3)
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 3
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 2
-</span><span class='line'>echo s
-</span><span class='line'>" [1]
-</span><span class='line'>
-</span><span class='line'>echo '= uniq ============='
-</span><span class='line'>
-</span><span class='line'>" ユニークな値だけを残す。最近vim本体にも組み込まれたはずだけど仕様は異なる
-</span><span class='line'>echo s:List.uniq(['vim', 'emacs', 'vim', 'vim'])
-</span><span class='line'>" ['vim', 'emacs']
-</span><span class='line'>
-</span><span class='line'>" 条件つけたりも
-</span><span class='line'>echo s:List.uniq_by(
-</span><span class='line'>\ ['vim', 'Vim', 'VIM', 'emacs', 'Emacs', 'EMACS', 'gVim', 'GVIM'],
-</span><span class='line'>\ 'tolower(v:val)')
-</span><span class='line'>" ['vim', 'emacs', 'gVim']
-</span><span class='line'>
-</span><span class='line'>echo '= zip =============='
-</span><span class='line'>
-</span><span class='line'>" Vim girlイラスト、zipでください
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6])
-</span><span class='line'>" [[1, 4], [2, 5], [3, 6]]
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
-</span><span class='line'>" [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-</span><span class='line'>
-</span><span class='line'>" etc...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Vimプラグインに組み込む方法の詳しい日本語記事とか意外と無いし、アップデートは<code>Vitalize .</code>だけでOKとかはhelpにも書いていないような気がするのでそのうち記事を誰かが書いてくれるはず。</p>
-
-<p>僕はまだvital自体をそんなに使ってないですが、<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>というvitalの外部モジュール機能を使った<code>vim-over</code>のライブラリを使わせてもらったりしてます。vitalとても便利なのでｵｽｽﾒです。</p>
-
-<h2>過去のVim Advent Calendar の vital に関する記事</h2>
-
-<ul>
-<li><a href="http://qiita.com/rbtnn/items/deb569ebc94d5172a5e5">vital.vimをどんどん使っていこう。 - Qiita</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-6/">vitalのData.List.take_whileを例にvital開発の指南書</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-8/">構文解析器kp19ppと字句解析器Vital.Lexerを用いた超簡単な処理系作成方法</a></li>
-<li><a href="https://gist.github.com/ujihisa/5761509">Vital.ProcessManagerとその無限の可能性について</a></li>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/11/08/224821">コマンドオプションを解析するライブラリ Vital.OptionParser を書いた - sorry, uninuplemented:</a></li>
-</ul>
-
-
-<p>適当にVACで検索しただけだったりする。<code>OptionParser</code>とか使ってみたいかも。</p>
-
-<h2>本日21:00開催のVimプラグイン読書会に参加しよう!!!</h2>
-
-<p>と、言うことでVimプラグイン読書会に参加してvitalを読んで実際に使ってみたり、バグとか改善点を見つけ本体にｺﾝﾄﾘﾋﾞｭｯｼｮﾝしたりしましょう！初心者でも歓迎ですし質問すれば詳しい方が解説してくれるはずです。「hi」と発言して読んでることを宣言してもらえるだけでも少なくとも僕は喜びます。 <del>人数少なすぎると読書会の存続自体が危うくなるのでhiだけでも便利</del></p>
-
-<p>本日21:00から、<a href="http://lingr.com/room/vim">LingrのVim部屋</a>で開催です！ぜひ参加してください。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a>
-      <time datetime="2014-04-12T12:57:25+09:00" pubdate><span class='month'>Apr</span> <span class='day'>12</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/improve-x-with-vim-submode/">かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-03-24T09:10:46+09:00" pubdate data-updated="true">March 24, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Vim Advent Calendarです</h2>
-
-<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 108 日目の記事になります。日付がおかしいとか細かいことは気にしてはいけません。Vim Advent CalendarはVim記事を書きたいという人がいるかぎり続きます。しかしいったい、いつまで続くんでしょう&hellip;気になります!</p>
-
-<p>Vimに関することであれば基本的に何を書いてもよいはずなので、興味がある方は気軽に書いてみるとよいのではないでしょうか。</p>
-
-<h2>vim-submodeで x の挙動をカイゼンする</h2>
-
-<p><a href="https://github.com/kana/vim-submode">kana/vim-submode</a></p>
-
-<p>Lingrで発言したときに若干反応があったのでVAC Tipsとして簡単なものですが紹介します。</p>
-
-<p>Vimデフォルトの<code>x</code>はカーソル下の文字を消すという機能です。</p>
-
-<p><code>x</code>の挙動のちょっとした不満点として1文字消すためだけにレジスタを汚してしまうというものがあり、それをカイゼンするために<code>nnoremap x "_x</code>を設定しているvimrcをたまに見かけます。</p>
-
-<p>しかし、よくみるレジスタの問題の他にも不満点がありました。それは<code>x</code>後の<strong><code>u</code>ndo</strong>の挙動です。</p>
-
-<p><code>x</code>で1文字消すごとにundo履歴が区切られてしまい、いざ<code>x</code>を連打した後に間違っていると判明して、<code>u</code>ndoしたい!と思っても、<code>x</code>を押した分だけ何回も何回も<code>u</code>を押さなくてはいけません。</p>
-
-<p>連続した<code>x</code>で一気に消した分は、1回のundoで戻せたら素敵じゃないでしょうか?</p>
-
-<p>そんな機能を実現できる、かゆいところに手が届くプラグインが<a href="https://github.com/kana/vim-submode">vim-submode</a>です。</p>
-
-<h3>コード</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;kana/vim-submode&#39;</span>
-</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:my_x<span class="p">()</span>
-</span><span class='line'>    <span class="k">undojoin</span>
-</span><span class='line'>    normal<span class="p">!</span> <span class="c">&quot;_x</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'><span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span><span class="k">x</span><span class="p">)</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>my_x<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
-</span><span class='line'><span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;_x&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">call</span> submode#map<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Plug&gt;(my-x)&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>簡単に解説すると、最初に<code>x</code>を押した時に<code>"_x</code>でブラックホールレジスタに放り込んで1文字消すと同時に<code>my_x</code>という<code>submode</code>に入るようにし、この<code>my_x</code>という<code>submode</code>下での<code>x</code>は事前に定義した<code>&lt;Plug&gt;(my-x)</code>を呼んで、<a href="http://vim-jp.org/vimdoc-ja/undo.html#%3Aundojoin">undojoin</a>を使用することによりundo履歴を1つにまとめています。</p>
-
-<blockquote><p>:undoj[oin] 以降の変更を直前の undo ブロックにつなげる。</p>
-
-<p>&ndash; <cite><a href="http://vim-jp.org/vimdoc-ja/undo.html">Vim documentation: undo</a></p></blockquote>
-
-<h3>欠点</h3>
-
-<p><code>x</code>連打してここまで消したい！というときに1〜2カラム分行きすぎてしまったなどといった場合、<code>u</code>ndoすると初めから全部戻ってしまいます。一長一短ですね&hellip;</p>
-
-<p>しかし、undo履歴が汚れ無いようになるし、結構気に入っています。ﾋﾟﾝと来た方は使ってみてはいかがでしょうか?</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/improve-x-with-vim-submode/">かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする</a>
-      <time datetime="2014-03-24T09:10:46+09:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる</a></h1>
+      <h1 class="entry-title"><a href="">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる</a></h1>
     
     
       <div class="post-meta">
@@ -636,7 +105,7 @@ Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 �
   </header>
 
 
-  <div class="entry-content"><p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 113 日目の記事になります。</p>
+<div class="entry-content"><p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 113 日目の記事になります。</p>
 
 <p>また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 <em>Happy Vimming to me</em>.</p>
 
@@ -1159,31 +628,16 @@ Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 �
 
 <p><del>結局思考が追いつかないし、進捗力ある人 with メモ帳に負ける</del></p>
 </div>
-  
-  
 
 
-      <footer>
+  <footer>
+    <p class="meta">
       
-      - <a href="/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる</a>
-      <time datetime="2014-03-23T21:34:54+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
   
-  
-    <article>
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/move-to-octopress-from-wordpress/">WordPressからOctopressに移行した</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
 
 
 
@@ -1196,85 +650,53 @@ Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 �
 
 
 
-<time datetime="2014-03-23T18:30:56+09:00" pubdate data-updated="true">March 23, 2014</time> -</span>
-          
-        </p>
-      </div>
+<time datetime="2014-03-23T21:34:54+09:00" pubdate data-updated="true">March 23, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>Octopressに移行しました</h2>
-
-<p>常々、WordPressからOctopressに移行したいなぁーと考えていたんですが、とうとう実行に移して完全移行を実現しました。</p>
-
-<p>理由としては</p>
-
-<ul>
-<li>WordPressの管理画面にいってどうこうするとか、面倒になってきたし、VimRepressというプラグインも使いづらかった</li>
-<li>ブログ記事をgitで管理したかった</li>
-<li>CUIで簡潔する。ｱﾂｲ。VimやGitとの相性が抜群</li>
-<li>Jekyllを使ってある程度慣れていた。</li>
-<li>Programmer向けの静的サイトジェネレータで、プラグインなども公開していたり、自分で作れちゃったりする</li>
-<li><del>GitHub Pagesで管理すればCurrent Streakを伸ばすための1つの選択肢になる</del></li>
-<li>etc&hellip;</li>
-</ul>
-
-
-<p>移行しない理由がなかった。</p>
-
-<h2>Octopressのテーマを作りました</h2>
-
-<p><a href="https://github.com/haya14busa/mjolvim-octotheme">haya14busa/mjolvim-octotheme</a></p>
-
-<p>基本的に移行前のブログのデザインをベースにして、いろいろ改善しました。</p>
-
-<p>個人的にはシンプルでいい感じになったと思います。
-WordPressの時と違って手元で変更してFTPでアップロードなどせずとも、
-普通に編集してgit push出来るので何か気になったら気軽に改善できるところが嬉しいですね。</p>
-
-<h2>WordPress1年間ありがとう</h2>
-
-<p>実はWordPressでサイトを公開してからちょうど1年になります。</p>
-
-<p>1年前のポスト: <a href="http://haya14busa.com/first-post/">ブログ作った。 - haya14busa</a></p>
-
-<p>WordPressでウェブサイト作ってみよう！とHTML, CSSから初めて,そこで
-Vimを使い出したり,プログラミングに興味を持つ1つのきっかけになったりしたので、
-とても感慨深いです。</p>
-
-<p>WordPressさんありがとうございました。</p>
-
-<h2>Octopress楽しい!</h2>
-
-<p>Octopress使って間もないですが、弄り甲斐があってとても楽しく、これからもっと
-ブログ執筆環境を改善して、楽々ブログ更新したいなぁーと思います。</p>
-
-<p>テーマの作り方とか、GitHub pagesでユーザーページではなくプロジェクトページを使う、
-DNS設定の仕方などの記事も気が向いたら書いていこうかなと思います。</p>
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/mastering-vim-easymotion/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/mastering-vim-easymotion/" data-via="haya14busa" data-counturl="http://haya14busa.com/mastering-vim-easymotion/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/move-to-octopress-from-wordpress/" title="Previous Post: WordPressからOctopressに移行した">&laquo; WordPressからOctopressに移行した</a>
+      
+      
+        <a class="basic-alignment right" href="/improve-x-with-vim-submode/" title="Next Post: かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする">かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 
-      <footer>
-      
-      - <a href="/move-to-octopress-from-wordpress/">WordPressからOctopressに移行した</a>
-      <time datetime="2014-03-23T18:30:56+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/octopress/'>octopress</a></span>
-      
-      </footer>
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="2">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div><!-- /div.pagination -->
-</div><!-- /div.blog-index -->
+</div>
 
       </div><!-- /div#content -->
     </div><!-- /div#main -->
@@ -1350,7 +772,10 @@ DNS設定の仕方などの記事も気が向いたら書いていこうかな�
       var disqus_shortname = 'haya14busa-s-memo';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/mastering-vim-easymotion/';
+        var disqus_url = 'http://haya14busa.com/mastering-vim-easymotion/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

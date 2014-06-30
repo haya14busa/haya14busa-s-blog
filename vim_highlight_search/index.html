@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="この記事は Vim Advent Calendar 2013 73日目の記事になります。 普段何気なくvimrcに書いているset hlsearchや:nohlsearch。実はこれ、結構ややこしいです。 まずはhelp! :h &#8216;hlsearch&#8217; &lt;- オプション &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vim_highlight_search/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-12T00:00:00+09:00" pubdate data-updated="true">February 12, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 73日目の記事になります。</p>
+
+<p>普段何気なくvimrcに書いている<code>set hlsearch</code>や<code>:nohlsearch</code>。実はこれ、結構ややこしいです。</p>
+
+<h2>まずはhelp!</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27hlsearch%27">:h &#8216;hlsearch&#8217;</a> &lt;- オプション</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a> &lt;- コマンド</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#v:hlsearch">:h v:hlsearch</a> &lt;- 新たなる変数(最近入った)</li>
+</ul>
+
+
+<p>そして他に注意すべきものとして</p>
+
+<ul>
+<li><code>set nohlsearch</code> &lt;- <code>set hlsearch</code>の逆。<strong><code>:nohlsearch</code>とは違う</strong></li>
+<li><code>&amp;hlsearch</code> &lt;- オプションhlsearchの値の変数。<code>set hlsearch</code>なら1,<code>set nohlsearchなら0</code></li>
+</ul>
+
+
+<p>ややこしいですね。</p>
+
+<h2>v:hlsearchを解説しながら全体的に説明するよ</h2>
+
+<p>最近縁があったのでv:hlsearchの日本語訳を書かせて頂きましたが、ぶっちゃけ元の英語の説明もわかりづらいのでここで解説します。</p>
+
+<p><noscript>
+  <pre><code class="language- ">                    <em>v:hlsearch</em> <em>hlsearch-variable</em>
+v:hlsearch  検索による強調表示がオンになっているかどうかを決定する変数。
+        |+extra_search| 機能が必要である &lsquo;hlsearch&rsquo; が有効になっている
+        時のみ意味をなす。この変数を0に設定することは、 |:nohlsearch|
+        コマンドを実行することと同様に働き、1に設定することは以下と同様に働く &gt;
+            let &amp;hlsearch = &amp;hlsearch</code></pre>
+</noscript></p>
+
+<p>まず仕様ですが、この変数は<strong>実際に現在</strong>検索によるハイライトが行われているかどうかを判定、決定できます。</p>
+
+<h3>判定</h3>
+
+<p><code>echo v:hlsearch</code></p>
+
+<ul>
+<li>ハイライトが行われている -> 1</li>
+<li>ハイライトが行われていない -> 0</li>
+</ul>
+
+
+<h3>決定(ハイライトをON or OFFにする)</h3>
+
+<blockquote><p>この変数を0に設定することは、 |:nohlsearch| コマンドを実行することと同様に働き、 1に設定することは以下と同様に働く let &amp;hlsearch = &amp;hlsearch</p></blockquote>
+
+<p>わかりずらい!!!</p>
+
+<h4>let v:hlsearch = 0</h4>
+
+<p>これは、helpによると<code>:nohlsearch</code>コマンドを実行することと同様に働きます。</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a></li>
+</ul>
+
+
+<blockquote><p>|:nohlsearch| コマンドを使うと、<strong>一時的に</strong>強調表示をやめさせることができます。</p></blockquote>
+
+<p><strong>一時的に</strong> というのがミソです。この<code>:nohlsearch</code>コマンドは<code>hlsearch</code>オプションの変数である、<code>&amp;hlsearch</code>を変更しないのです。つまり<code>set hlsearch</code>している場合<code>&amp;hlsearch</code>変数の値は1ですが、<code>:nohlsearch</code>を実行しても<code>&amp;hlsearch</code>の値は1のままでハイライトを一時的にオフにします。</p>
+
+<h4>let v:hlsearch = 1</h4>
+
+<p>helpによると1に設定することは</p>
+
+<p><code>let &amp;hlsearch = &amp;hlsearch</code></p>
+
+<p>をすることと同様に働くようです。ここがかなりわかりずらい。</p>
+
+<p>前提として、</p>
+
+<ol>
+<li>基本的に<code>v:hlsearch</code>は実際にハイライトを行っているかどうかを決定するのですが<code>set nohlsearch</code>が設定されていた場合は<code>set nohlsearch</code>が優先されます。</li>
+<li>コマンド<code>:nohlsearch</code>によって一時的にハイライトをオフにした場合、再び検索するなどしたときにハイライトが有効になるのですが、<code>set hlsearch</code>,つまりは<strong><code>let &amp;hlsearch = 1</code></strong>を設定した場合も同様にトリガーとなってハイライトが有効になります(実装は見ていないので予測含む。動作確認はしています)</li>
+</ol>
+
+
+<p>よって、もし<code>set nohlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は0なので<code>let &amp;hlsearch = 0</code>と同様の動作となり何も起こりません。</p>
+
+<p>反対に、<code>set hlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は1で、<code>let &amp;hlsearch = 1</code>と同様になり、前提の2からこの動作がトリガーとなって再びハイライトがONになります。</p>
+
+<p>はぁ、ややこしかった。わからなかった方は直接@haya14busaまで質問とかしてください。また間違ってたらご指摘よろしくおねがいします。</p>
+
+<p>ここから<code>v:hlsearch</code>から得られたTipsを2つ紹介します</p>
+
+<h2>Reloadableなvimrcの設定</h2>
+
+<p>一般的には下記のような設定をしている方が多いと思います</p>
+
+<p><noscript>
+  <pre><code class="language- ">set hlsearch
+nnoremap &lt;silent&gt;&lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code></pre>
+</noscript></p>
+
+<p>が、リローダブルなvimrcを目指している方はこの問題に少なからず気づいているかもしれません。</p>
+
+<p>つまり、<code>set hlsearch</code>を記述しているとリロード時に問答無用でハイライトされてしまうのです。(ｳｻﾞｲ</p>
+
+<p>これを改善しましょう</p>
+
+<h3>1. 簡単かつv:hlsearchがなくてもOK</h3>
+
+<p><noscript>
+  <pre><code class="language- ">&ldquo; hlsearchは使うがvimrcを読み込んだ時にハイライトしないようにする
+set hlsearch | nohlsearch</code></pre>
+</noscript></p>
+
+<p>上記のようにすると<code>&amp;hlsearch</code>の値は1で検索のハイライトは有効になっていますが、<code>:nohlsearch</code>コマンドによりそれを一時的にOFFにします。</p>
+
+<p>欠点: ハイライトしている状態でリロードするとハイライトが消えてしまう。</p>
+
+<h3>2. v:hlsearchを使って1の欠点をなくす</h3>
+
+<p><noscript>
+  <pre><code class="language- ">if exists(&lsquo;v:hlsearch&rsquo;)
+  let v_hl_save = v:hlsearch
+endif
+set hlsearch
+execute exists(&lsquo;v:hlsearch&rsquo;) ? &lsquo;let v:hlsearch = v_hl_save&rsquo; : &lsquo;nohlsearch&rsquo;</code></pre>
+</noscript></p>
+
+<p>欠点: 書き方が悪いということを除いてもわざわざそこまでしたくない&#8230;</p>
+
+<h2>スクリプトから扱う</h2>
+
+<h3>ハイライトを確認する</h3>
+
+<p><code>v:hlsearch</code>が登場する以前では<code>&amp;hlsearch</code>の値を見ることしかできず、ハイライトの設定がされているかどうかは分かるけれども、実際にハイライトされているかどうかがわかりませんでした。(<code>:nohlsearch</code>で一時的にハイライトしていなくても<code>set hlsearch</code>していれば一貫して<code>&amp;hlsearch</code>の値は1です)</p>
+
+<p><code>v:hlsearch</code>の登場によって改善されたのはほぼこの一点といってもいいでしょう。</p>
+
+<h3>実際に関数からハイライトさせる</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131021/1382346459">Vim の関数内で set hlsearch しても反映されない場合の対処方法 &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>上記の記事の問題は<code>v:hlsearch</code>でも同じなようで、関数内で<code>let v:hlsearch = 1</code>にしても実行が終わると勝手に元の値に戻されてしまいます。これを回避するには記事にあるように<a href="http://vim-jp.org/vimdoc-ja/eval.html#feedkeys%28%29">:h feedkeys()</a>を使うしかないようです。残念&#8230;</p>
+
+<h4>ちょっと改善</h4>
+
+<p>上記の記事の関数だと<code>set nohlsearch</code>のオプションを無視してしまうので下記のように<code>:let &amp;hlsearch=&amp;hlsearch\&lt;CR&gt;</code>を使うとよりお行儀よくハイライトさせることができます。</p>
+
+<p><noscript>
+  <pre><code class="language-viml viml">function! HLsearch()
+    call feedkeys(&ldquo;:let &amp;hlsearch=&amp;hlsearch&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+    &ldquo; または
+    &rdquo; call feedkeys(&ldquo;:let v:hlsearch=1&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
+endfunction</code></pre>
+</noscript></p>
+
+<h2>最後に</h2>
+
+<p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
+
+<p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-12T00:00:00+09:00" pubdate data-updated="true">February 12, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vim_highlight_search/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vim_highlight_search/" data-via="haya14busa" data-counturl="http://haya14busa.com/vim_highlight_search/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/reading-vimplugin-03-senden/" title="Previous Post: 第3回 Vim Plugin読書会が開催されます!!!">&laquo; 第3回 Vim Plugin読書会が開催されます!!!</a>
+      
+      
+        <a class="basic-alignment right" href="/vim_migemo_search/" title="Next Post: Vimでmigemoを使って日本語でもローマ字のまま検索がしたい">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vim_highlight_search/';
+        var disqus_url = 'http://haya14busa.com/vim_highlight_search/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

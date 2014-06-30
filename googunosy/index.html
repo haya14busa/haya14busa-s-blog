@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Googunosy GooGunosy javascript:(function(){var text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt(' &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/googunosy/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-06T00:00:00+09:00" pubdate data-updated="true">May 06, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Googunosy</h2>
+
+<dl>
+<dt><strong>GooGunosy</strong></dt>
+<dd><pre><code>  javascript:(function(){var text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt('GooGunosy')):text;if(text=='null'||text=='')return;gsearchURL="http://www.google.com/search?hl=en&amp;q="+text;gunosyURL="http://www.google.com/search?q="+text+" site:gunosy.com";window.open(gsearchURL,"_blank");window.open(gunosyURL,"_blank");})();
+</code></pre></dd>
+</dl>
+
+<p>上記コードをコピー&amp;ブックマークして実行。</p>
+
+<p>追記: <a href="javascript:(function(){var">GooGunosy</a> &lt;- ブックマークバーにドラック&amp;ドロップで登録できます。</p>
+
+<p>または下記URLをブックマークして、「?」以前を削除してください。</p>
+
+<p><a href="http://haya14busa.com/googunosy/?javascript:(function(){var%20text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt('GooGunosy')):text;if(text=='null'||text=='')return;gsearchURL=%22http://www.google.com/search?hl=en&amp;q=%22+text;gunosyURL=%22http://www.google.com/search?q=%22+text+%22%20site:gunosy.com%22;window.open(gsearchURL,%22_blank%22);window.open(gunosyURL,%22_blank%22);})();">GooGunosy</a></p>
+
+<p>Google検索(英語版)と同時に「キーワード site:gunosy.com」でも検索するブックマークレットです。同時に2つタブが開きます。検索キーワードは、何か選択した状態ならそのワード、何も選択していない状態ならpromptで検索ワードを打ち込んでください。</p>
+
+<p>普通のGoogle検索のほうは個人的に強制的に英語版で検索するようにしてるので嫌だったら変えてください(怠慢)。と言っても「hl=en&amp;」を消すだけでいけます。</p>
+
+<p>だいたいモバイル端末含め、どのブラウザでも動くはず[要出典]</p>
+
+<h2>雑感</h2>
+
+<p>Gunosy批判がぜんぜん的を得てなくてぐんにょりするし、僕はGunosyには期待してます。ということで勢いでGunosyの精度を高めるかもしれないブックマークレット作った。効果についてはまだ未検証だし、わざわざこんなことしなくてもよくなっていくのがGunosyさんのあるべき姿なはずなので、正直何がしたいんだかわからないブックマークレットに。ただsite:gunosy.comの検索結果から数記事眺めてタブを消すぐらいならそこまで苦ではないし、GoogleからGunosyフィルターを通った記事が厳選されてるので意外とおもしろい記事が見つかりやすいかも。もっとも、さすがにそれで調べ物が完結するとは思えないので普通のGoogle検索も同時にしちゃうぜっていうブックマークレットです。</p>
+
+<p>そこまでGunosyのヘビーユーザーではないけど、スマートフォンでGunosyからのメールみて、共有機能でPocketに送ってPCやiPadからあとから見るって習慣は最近ついてきた。はてぶとか見てるだけじゃ見つからないような記事も普通に来て嬉しい。ただできればキュレーションだけに頼らず自分で積極的に見つけてにいく姿勢も大事にしたいし、頼るにしても自分で探せる情報収集能力はあげておきたいなー。</p>
+
+<p>アルゴリズムに支配されないように<br/>
+-> <a href="http://www.ted.com/talks/lang/ja/eli_pariser_beware_online_filter_bubbles.html">イーライ・パリザー：危険なインターネット上の「フィルターに囲まれた世界」 | Video on TED.com</a></p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://gunosy.com">Gunosy</a></li>
+<li><a href="http://d.hatena.ne.jp/yamaz/20130310">TLを汚すことなくGunosyに自分好みの記事を紹介して貰う方法 &#8211; 最速配信研究会</a></li>
+<li><a href="http://qlay.jp/archives/11600">Gunosyをより一層自分好みにする為のリンク集を作ったよ | Qlay</a></li>
+<li><a href="http://www.ted.com/talks/lang/ja/eli_pariser_beware_online_filter_bubbles.html">イーライ・パリザー：危険なインターネット上の「フィルターに囲まれた世界」 | Video on TED.com</a></li>
+</ul>
+
+
+<p><a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fpasonarunyusu-gunosy-anataniattanyusuwo%252Fid590384791%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img width="100" class="alignleft" align="left" src="http://a456.phobos.apple.com/us/r1000/093/Purple2/v4/15/ce/0d/15ce0d6b-aaf2-a55b-9632-88014a3d3c23/mzl.vnmvrjkd.100x100-75.png" style="border-radius: 20px 20px 20px 20px;-moz-border-radius: 20px 20px 20px 20px;-webkit-border-radius: 20px 20px 20px 20px;box-shadow: 1px 4px 6px 1px #999999;-moz-box-shadow: 1px 4px 6px 1px #999999;-webkit-box-shadow: 1px 4px 6px 1px #999999;margin: -5px 15px 1px 5px;" /></a><strong> パーソナルニュース Gunosy 〜あなたにあったニュースを推薦するスマートなPersonal News Reader〜 1.2.4（無料）</strong><a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fpasonarunyusu-gunosy-anataniattanyusuwo%252Fid590384791%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/viewinitunes_jp.png" style="vertical-align:bottom;" width="90" alt="App" /></a><br/>
+カテゴリ: ニュース, 仕事効率化<br/>
+販売元: <a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fartist%252Fgunosy-inc.%252Fid590384794%253Fuo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link">Gunosy Inc. &#8211; Gunosy Inc.</a>（サイズ: 7.1 MB）<br/>
+全てのバージョンの評価: <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" />（259件の評価）<br/>
+<br style="clear: both;" /></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-06T00:00:00+09:00" pubdate data-updated="true">May 06, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/bookmarklet/'>bookmarklet</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/googunosy/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/googunosy/" data-via="haya14busa" data-counturl="http://haya14busa.com/googunosy/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/darkroom-js/" title="Previous Post: ブラウザで動くシンプルなエディタ「Darkroom.js」">&laquo; ブラウザで動くシンプルなエディタ「Darkroom.js」</a>
+      
+      
+        <a class="basic-alignment right" href="/markdownurl2draftpad-2/" title="Next Post: MarkdownURL->DraftPad">MarkdownURL->DraftPad &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/googunosy/';
+        var disqus_url = 'http://haya14busa.com/googunosy/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

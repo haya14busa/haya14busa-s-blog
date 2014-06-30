@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VimConf2013に参加してきました! - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="VimConf2013! VimConf2013
+VimConf 2013 &#8211; connpass VimConf2013に参加してきました！Vim! How to suggest new features for Vim (by @kaoriya さん) How to suggest &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vimconf2013/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">VimConf2013に参加してきました!</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-19T00:00:00+09:00" pubdate data-updated="true">November 19, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>VimConf2013!</h2>
+
+<ul>
+<li><a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a></li>
+<li><a href="http://connpass.com/event/3978/">VimConf 2013 &#8211; connpass</a></li>
+</ul>
+
+
+<p>VimConf2013に参加してきました！Vim!</p>
+
+<h2>How to suggest new features for Vim (by <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+</ul>
+
+
+<p>Vim本体に取り込まれるためにはどうやってpatchを投げればいいかという話だったけど、Vimに留まらずいろんなところで応用が効く話だった。ただ便利じゃん、といった思いつきでなく、しっかりストーリーを組み立てるのが大事。</p>
+
+<ol>
+<li><strong>Strategy</strong>を組み立て</li>
+<li><strong>Problem</strong>を共有してきちんと理解してもらい</li>
+<li>シンプルな<strong>Solution</strong>を作って</li>
+<li>やっと<strong>Patch</strong>を書く</li>
+</ol>
+
+
+<p>最近vim-devの1日のabbrev.版のメールを読んだり(読まなかったり)してるのだけど、まさにvim-devのVimのパッチはProblemが何かから始まり、そしてそのSolutionについての文章が続き、その後にPatchの内容が続くという流れになっている。パッチを受け入れられるために、その流れに従うというある意味当たり前のことをちゃんと意識して、実践することが大事。</p>
+
+<p>Vimはテキストエディタ(再確認)なのでエディタに要らない機能は取り込まれないし、Vimの思想(<a href="http://vimdoc.sourceforge.net/htmldoc/develop.html#development">:h development</a>)を理解することが大事とあとの発表で<a href="https://twitter.com/k_takata">@k_takata</a>さんもおっしゃっていた。</p>
+
+<p>ところで、@k_takataさんはHow to <em>write</em> patchという話で、どちらかといえば具体的・実践的な話だとしたら、@koronさんの話は抽象的・理論的なHow to <em>suggest</em>という話だったので、同じPatchの話でもそれぞれ非常におもしろかった。</p>
+
+<h2>Evil is justice (by <a href="https://twitter.com/esehara">@esehara</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+</ul>
+
+
+<p>VimConf2013はインターナショナルなVimカンファレンスを志向するためにスライドは英語推奨だったりしたのだけれど、@eseharaさんのプレゼンは特にインターナショナルだった(エディタ間で)。Vim国とEmacs国の宗教戦争をEvilで終わらせるべく参上したという感じで、ネタを交えつつEmacsでVimのキーバインドを使えるEvilを紹介してくださって、おもしろい発表だった。</p>
+
+<p>Emacsで小指云々は親指Ctrlや特殊な配列のキーボードで解消できるらしい(by <a href="https://mobile.twitter.com/kiwanami">@kiwanami</a>さん)。VimでもCtrlは重要なキーなので親指Ctrlそのうちやってみたい。</p>
+
+<h2>How to use git from vim ＠vim conf2013(by <a href="https://twitter.com/c0hama">@cohama</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+</ul>
+
+
+<p>個人的にGitをVimから便利に使おうとして、何度も挫折して、結局tmuxの別ペインでGitという選択肢を使っていたので、発表前から気になる内容だった。</p>
+
+<p>VimデフォルトのGitの機能が思ったよりも高機能。<code>:DiffGitCache</code>, <code>K</code> etc&#8230;</p>
+
+<p>Pluginではvim-fugitive, vim-gitvを紹介されていて、特に<code>:Gdiff</code>で<code>git add -p</code>のようにインテラクティブにaddできたりするのvim-fugitive入れてるのに全然しらなくてちゃんとドキュメント含め読んどこうと思った。</p>
+
+<p>またAdvancedとしてgitのSHA-1 hashを使えば自由自在にBranchきったりいろんなことができて便利なのでキーマップとか定義して便利そうだった。</p>
+
+<h3>関係ないけど</h3>
+
+<p>git stashとかせず、ReadOnlyでいいから別ブランチやコミットのコードを参照したいってとき結構あるんだけれどどうすればいいかわからないので、誰か教えてください:-)</p>
+
+<p>あと紹介はされてなかったけど、最近git mergetoolをvimdiffで便利にするとなかなかにbenriだったので感動しました。 <a href="http://haya14busa.com/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う » haya14busa</a></p>
+
+<h2>Vital.ProcessManager (by <a href="https://twitter.com/ujm">@ujihisa</a> さん)</h2>
+
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+</ul>
+
+
+<p>vimprocのwrapperとなる(?)Vital.ProcessManagerの話。正直内容についてはVim力低すぎてよく理解できなかった&#8230;勉強しよう</p>
+
+<p>途中で全く別の発表を始めて間を開けたり、周りの人に質問(確認)投げかけながら会場全体を巻き込んでプレゼンしていてujihisaさんの発表力を感じて感極まった。</p>
+
+<h2>Do You Know about Vim Runtime Files?(by <a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h2>
+
+<ul>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+</ul>
+
+
+<p>Vimがデフォルトで提供されてる機能をいろいろ紹介して下さった。正直matchit以外知らなかったと言っても過言じゃないくらいなので、発見が多くておもしろかった。</p>
+
+<p>maze.vimや、hanoiの塔, Lifeゲームなど遊び心もあってそのへんのコード読んでみたい。</p>
+
+<h2>How to write patches for Vim(by <a href="https://twitter.com/k_takata">@k_takata</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+</ul>
+
+
+<p>自称Vim Beginner(年間採用パッチ数75)のパッチ職人、@k_takataさんの発表はその経験を活かしてどのようにVimのパッチを書くかということを実践的・具体的に話していてパッチ職人の世界を垣間見れる興味深い話だった。</p>
+
+<p>お気に入りのパッチとして最近マージされたspelllang-cjkやbreakindentについて紹介をしていた。お気に入りのパッチとか言ってみたい。</p>
+
+<h2>LT</h2>
+
+<h3>iVimConf(by <a href="https://twitter.com/dictav">@dictav</a> さん)</h3>
+
+<p>VimConfのiPhoneアプリ、iVimConfを作ったというお話。Lingrで話題になってから試作するまでめっちゃはやくてすごい。</p>
+
+<h3>duzzle.vim(by <a href="https://twitter.com/deris0126">@deris</a> さん)</h3>
+
+<ul>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim</a></li>
+</ul>
+
+
+<p>Portalに触発されて作ったというVimでできる迷路パズルのお話。Demoを見ていると面白そうだし、確かにカーソル移動の勉強になりそうでよさそうだった。</p>
+
+<h3>Emacsの紹介(by <a href="https://twitter.com/kiwanami">@kiwanami</a> さん)</h3>
+
+<p>タイトルがとってもストレート。Emacsの方とも仲良くしたい。</p>
+
+<h2>About of neocomplete(by <a href="https://twitter.com/ShougoMatsu">@Shougo</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+
+<p>暗黒美夢王さんからのneocompleteについての話。初っ端からダークビムマスターが覚醒してネタを交えて会場を沸かせながらも、しっかりneocompleteを中心として補完やif_luaの効率などためになる話をしていて聞いてて飽きない発表だった。if_luaはかわいい。</p>
+
+<p>そして暗黒美夢王の真髄は懇親会で遺憾なく発揮され、4曲もVim曲を聞くことができて感極まりました。鋼のメンタルは伊達じゃなかった。</p>
+
+<h2>まとめとか</h2>
+
+<p>VimConf2013最高でした！次の機会があったらただ参加するだけでなく、ぜひ発表したりしたいと思った。</p>
+
+<p>主催のujihisaさん、VimConf2013運営の方々、Vim熱をひしひしと感じるカンファレンスでした。<br/>
+会場を提供して下さったCOOKPADの方々、無限コーヒーめっちゃ美味しくて3杯くらい飲みました。おいしい。<br/>
+発表者の方々、どの発表も面白くて勉強になりました。お疲れ様です！<br/>
+参加者の方々、Vimmerがこんなに集まってVimについてわいわいがやがやできて感極まりました。</p>
+
+<p>みなさん本当にお疲れ様でした &amp;&amp; ありがとうございました！</p>
+
+<p><strong>:wqa!</strong></p>
+
+<h2>他の人の感想記事</h2>
+
+<ul>
+<li><a href="http://kashewnuts.bitbucket.org/2013/11/16/vimconf2013.html?utm_content=buffer94494&amp;utm_source=buffer&amp;utm_medium=twitter&amp;utm_campaign=Buffer">#VimConf2013 に参加しました — kashew_nuts-blog</a></li>
+<li><a href="http://bugrammer.hateblo.jp/entry/2013/11/17/003744">Vim Conference 2013とオープンソースの精神 &#8211; Line 1: Error: Invalid Blog(&#8216;by Esehara&#8217; )</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/11/17/015347">VimConf 2013 で発表してきた &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://deris.hatenablog.jp/entry/2013/11/17/010343">VimConf2013に参加しました &#8211; derisの日記</a></li>
+<li><a href="http://daisuzu.hatenablog.com/entry/2013/11/17/192511">VimConf2013に行ってきた &#8211; daisuzu&#8217;s notes</a></li>
+<li><a href="http://vinarian.blogspot.jp/2013/11/vimconf2013-vimconf2013.html">あるVimmerのブログ: 暗黒美夢王が見た VimConf2013(ぼくの VimConf2013のかんそう)</a></li>
+<li><a href="http://ac-mopp.blogspot.jp/2013/11/vimconf2013.html?spref=tw">もぷろぐ: VimConf2013 に行ってきた話</a></li>
+</ul>
+
+
+<h2>発表資料</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-19T00:00:00+09:00" pubdate data-updated="true">November 19, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vimconf2013/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vimconf2013/" data-via="haya14busa" data-counturl="http://haya14busa.com/vimconf2013/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/mathematical-girls-fermas-last-theorem-memo/" title="Previous Post: 数学ガールフェルマーの最終定理読んだメモ">&laquo; 数学ガールフェルマーの最終定理読んだメモ</a>
+      
+      
+        <a class="basic-alignment right" href="/vim-lazymotion-on-speed/" title="Next Post: Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vimconf2013/';
+        var disqus_url = 'http://haya14busa.com/vimconf2013/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

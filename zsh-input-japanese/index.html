@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>zsh5.0.2に変えたら日本語打てなくなった問題と解決法 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="なんか勘違いしてたので書き直しました 2013/07/08。(記事投稿の翌日) 日本語入力できなかった MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ « haya14busaで便利だーーーーと思ったのもつかの間、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/zsh-input-japanese/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">zsh5.0.2に変えたら日本語打てなくなった問題と解決法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>なんか勘違いしてたので書き直しました 2013/07/08。(記事投稿の翌日)</p>
+
+<h2>日本語入力できなかった</h2>
+
+<p><a href="http://haya14busa.com/homebrew-zsh-to-zsh/">MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ « haya14busa</a>で便利だーーーーと思ったのもつかの間、まさかの日本語入力すると多分ascii?コードに変換されちゃって、echoとかで実行させると普通の日本語に戻るって問題になった。<code>LANG=ja_JP.UTF-8</code>だし、<code>setopt print_eight_bit</code>は記述してたので詰んだかとおもい、やむなくバージョン戻そうかなーとおもったら解決法見つけました。</p>
+
+<p><s>.zshrc</s>.inputrc</p>
+
+<blockquote><p>set kanji-code utf-8 set convert-meta off #必須 set meta-flag on #必須 set output-meta on #必須 set input-meta on set enable-keypad on</p>
+
+<p>&#8211; <cite><a href="http://www.hasta-pronto.org/2006/10/02/mac-osx-x-zsh.html">Mac OSX x zsh で日本語表示 &amp; 入力</a></cite></p></blockquote>
+
+<p><s><code>set convert-meta off</code>が解決策です。これがデフォルトでonっぽいのが原因でした。</s></p>
+
+<p>いろいろ間違ってました。まず記述するファイルは.zshrcでなく.inputrcであるということ。これは調べると.zshrcに記述している例もたまに見かけるのですが、おそらく読み込んでないと思います。そもそもがこれらのコマンドは.inputrcに記述するもので、これはreadlineが読みにくるファイルなようです。そしてzshはreadlineではなくzleという独自の機能で履歴機能などを実装してるからです。</p>
+
+<blockquote><p>Note that unlike bash&#8217;s line editor, readline, which is an entirely separate library, zle is an integral part of the shell.</p>
+
+<p>&#8211; <cite><a href="http://zsh.sourceforge.net/Guide/zshguide04.html">A User&#8217;s Guide to the Z-Shell</a></cite></p></blockquote>
+
+<p>実際にon/off変えてみましたが(僕が見た限りでは)変化ありませんでした。</p>
+
+<p>ここで怪我の功名で.inputrcがreadlineをある程度制御するファイルだと知れたことは幸いでした。なんてったってPythonで日本語入力できなかった問題が部分的には解決したわけですから。これはまた別の記事で。</p>
+
+<h2>これで心置きなく使え……る?ほんとに？</h2>
+
+<p><s>補完で表示される日本語ファイルはちゃんと&#8221;日本語.txt&#8221;と表示されるのに、lsコマンドでは&#8221;?????????.txt&#8221;に化けます。これは以前からの問題で、むしろ補完時はちゃんと表示される分より改善したんですが、正直ファイル名に日本語使うこと滅多に無いんで妥協してます。多分解決策あるんだろうけど………それよりもPythonのインタプリタで日本語使いたい…はぁ</s></p>
+
+<p>lsで&#8221;?????????.txt&#8221;に化けるのは<code>ls -v</code>のように-vオプションをつけると表示できました。</p>
+
+<h2>実際の解決法</h2>
+
+<p>実際の解決法………それは………versionを下げる！！！</p>
+
+<p>はい、正直いい解決法とはいえません。でもしょうがない。そこまで思い入れもないし。ということでHomebrewで古いバージョンをインストールする方法です。</p>
+
+<p><a href="http://qiita.com/semind/items/f8f647e757842f08b9ec">Mac &#8211; homebrewでバージョンを指定してインストールする &#8211; Qiita [キータ]</a></p>
+
+<p>まずはバージョンを確認</p>
+
+<pre><code>% brew versions zsh
+5.0.2    git checkout 4392eba /usr/local/Library/Formula/zsh.rb
+5.0.1    git checkout 9d0b1be /usr/local/Library/Formula/zsh.rb
+5.0.0    git checkout 9928fbb /usr/local/Library/Formula/zsh.rb
+4.3.17   git checkout 8022bf4 /usr/local/Library/Formula/zsh.rb
+4.3.16   git checkout 94841e1 /usr/local/Library/Formula/zsh.rb
+4.3.15   git checkout 0c7ed4d /usr/local/Library/Formula/zsh.rb
+4.3.12   git checkout d8c1bd1 /usr/local/Library/Formula/zsh.rb
+4.3.11   git checkout 0476235 /usr/local/Library/Formula/zsh.rb
+4.3.10   git checkout d0efd9e /usr/local/Library/Formula/zsh.rb
+</code></pre>
+
+<p>ディレクトリ移動して先ほどの確認で出てきた該当バージョンのgitコマンドをコピペ。ここでは4.13.15</p>
+
+<pre><code>% cd /usr/local/Library/Formula
+% git checkout 0c7ed4d /usr/local/Library/Formula/zsh.rb
+</code></pre>
+
+<p>一応バージョンが変わってるか確認。5.0.2とかはbrew unlinkしただけなのでファイル残ってるみたいな記述ありますが無視で。</p>
+
+<pre><code>% brew info zsh                                                 (git)-[master]
+zsh: stable 4.3.15
+
+http://www.zsh.org/
+
+/usr/local/Cellar/zsh/4.3.15 (932 files, 8.3M) *
+  Built from source
+/usr/local/Cellar/zsh/5.0.0 (957 files, 8.5M)
+  Built from source with: --disable-etcdir
+/usr/local/Cellar/zsh/5.0.2 (1053 files, 8.5M)
+  Built from source
+From: https://github.com/mxcl/homebrew/commits/master/Library/Formula/zsh.rb
+==&gt; Dependencies
+Optional: gdbm
+==&gt; Options
+--with-gdbm
+    Build with gdbm support
+==&gt; Caveats
+In order to use this build of zsh as your login shell,
+it must be added to /etc/shells.
+</code></pre>
+
+<p>最後に現在Homebrewでzshがインストールされている場合は、<code>brew rm zsh</code> or<code>brew unlink zsh</code>してからインストール</p>
+
+<pre><code>% brew install zsh
+</code></pre>
+
+<p>一応シェル扱ってるので、アンインストールする前にbashにログインして作業するとかMacデフォルトのzshにログインするとかしたほうがいいと思います。(全然別の件ですが一度シェルのPATH設定とか間違えて痛い目見ました)</p>
+
+<p>バージョンに関しては僕が調べた限り、変な変換をかませず日本語入力できる最新のバージョンが4.3.15でした。4.3.16はエラー吐いて、4.3.17から挙動が変わります。Macデフォルトの/bin/zshのバージョンは4.13.11なのでHomebrewに移行する価値はあると思います。zsh-completionsをHomebrewから入れてるのなら尚更ですね。</p>
+
+<p>なお、バージョンによってDependenciesなどが変わったりして、使用モジュール？が古いから変えるようにみたいなWarningでたりしますが、現状普通に動くと思います。</p>
+
+<h2>晴れて解決？</h2>
+
+<p>ただバージョン5.0.2などでもシェルのプロンプトで日本語がかってに変換されてしまうだけで、日本語の使用自体はできますし、vimなどでは普通に入力できるところを見ると、最新バージョンでも使える解決策があるんじゃないかなーとおもいます。ただ僕のぐぐり力では見つかりませんでした。それどころか自分の環境だけ問題おこってるという可能性すらありますよね。そう考えると、根本的な原因を知っときたい…</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/zsh/'>zsh</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/zsh-input-japanese/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/zsh-input-japanese/" data-via="haya14busa" data-counturl="http://haya14busa.com/zsh-input-japanese/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/mac-python-readline-input-japanese/" title="Previous Post: 解決:Mac OSXのPythonのインタプリタで日本語入力する方法">&laquo; 解決:Mac OSXのPythonのインタプリタで日本語入力する方法</a>
+      
+      
+        <a class="basic-alignment right" href="/github-introductio/" title="Next Post: GitHub導入メモ">GitHub導入メモ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/zsh-input-japanese/';
+        var disqus_url = 'http://haya14busa.com/zsh-input-japanese/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Edit &amp; Automatically Reload .vimrc .vimrc "------------------------------------
+" Open &amp; Reload .vimrc
+"------------------------------------ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/edit-vimrc-easily/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Edit &amp; Automatically Reload .vimrc</h2>
+
+<p>.vimrc</p>
+
+<pre><code>"------------------------------------
+" Open &amp; Reload .vimrc
+"------------------------------------
+set foldmethod=expr
+set modeline
+command! Evimrc  e $MYVIMRC
+
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
+"------------------------------------
+" Lokaltog/vim-easymotion
+"------------------------------------
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+"------------------------------------
+"vim: foldmethod=marker
+</code></pre>
+
+<p>.vimrcを編集するときは<code>:Evimrc</code>(:ev<TAB>で補完させる).<br/>
+.vimrcを編集後のリロードは最初はコマンドを使おうと思ったけど保存時の自動実行のほうが手軽で良さげ.ただ,関数とか途中まで記述してる状態で保存しちゃうと困りそうでもあるかも？</p>
+
+<h2>問題点</h2>
+
+<p>なるべく最小構成の環境で試したから自分だけではないとおもうのだけど,</p>
+
+<ol>
+<li>vimrcの<code>set foldmethod=expr</code>とvimのモードラインの<code>"vim: foldmethod=marker</code>の記述で違うものを設定してる場合,リロード時にvimrcの方の記述の設定に変わってしまう.
+
+<ul>
+<li>しかも最小構成では発生しなかったけど,使ってるvimrcでは一度閉じてから読み込み直してもそのままモードライン記述が無視された.</li>
+<li>最小構成の方でも試したからloadviewの問題ではないっぽい.</li>
+</ul>
+</li>
+<li>なぜかEasymotionのターゲットのハイライトが消えて,超絶読みにくくなる問題も発生</li>
+</ol>
+
+
+<h2>解決策</h2>
+
+<p>上記vimrcに記述したとおり</p>
+
+<ol>
+<li>普通は<code>autocmd BufWritePost *vimrc source $MYVIMRC</code>と記述するところを<code>autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker</code>として無理やり変える.</li>
+<li>今まで設定してなかったけど上記vimrcのようにEasymotionのハイライト設定してしまう.</li>
+</ol>
+
+
+<h2>というか</h2>
+
+<p>vimrcの編集とリロードをしやすくする設定を未だしてなかったあたりVimmerを名乗れるない感じですね…今までわざわざ<code>:source ~/.vimrc</code>するかvim再起動させてた.</p>
+
+<p>出来るのは知ってたけど後回しにしてた結果がこれだよ.でも自動で再読み込みさせることも出来るのは収穫だった.有名どころの記述はコマンドかキーマッピングで実装してる気がする.オートロードさせるとかなり捗りますね.ただfoldの状態がリセットされるので,折りたたみを閉じてる状態でやるとちょっとびっくりする.</p>
+
+<p>Easymotionのハイライトに関しては原因が全くわからなかった…検索とかのハイライトは機能していたのでハイライト機能自体がおかしくなったわけじゃないっぽい</p>
+
+<p>リロード時にモードラインの記述が無視されるのは,最初はバグ的な何かだと思ったけど,<code>source ~/.vimrc</code>の場合,そもそもコメントであるモードラインの記述は読み込まない仕様かも.</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://c4se.hatenablog.com/entry/2013/05/15/115205">vimrcを編集し、保存時に自動で再読み込みする &#8211; c4se記：さっちゃんですよ☆</a></li>
+<li><a href="http://vim-users.jp/2009/09/hack74/">Vim-users.jp &#8211; Hack #74: 簡単にvimrcを編集する</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/edit-vimrc-easily/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/edit-vimrc-easily/" data-via="haya14busa" data-counturl="http://haya14busa.com/edit-vimrc-easily/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/build-or-compile-on-jb-ios/" title="Previous Post: JBiOSでも自前ビルド/コンパイルがしたい！">&laquo; JBiOSでも自前ビルド/コンパイルがしたい！</a>
+      
+      
+        <a class="basic-alignment right" href="/install-stylus-nib-and-vim-auto-compile/" title="Next Post: Stylus,nibのインストールとVimで自動コンパイル">Stylus,nibのインストールとVimで自動コンパイル &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/edit-vimrc-easily/';
+        var disqus_url = 'http://haya14busa.com/edit-vimrc-easily/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

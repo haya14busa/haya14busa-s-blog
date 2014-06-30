@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VimのインサートモードでUndo履歴を区切る(改行、削除コマンド) - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Undo履歴区切ろう 実践Vimにて アンドゥコマンドの粒度 &#8211; 実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）] 実践Vim 思考のスピードで編集しよう! Drew Neil アスキー・メディアワークス 2013-08-29 ￥ 2,940 Amazon.co. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vim-break-undo-sequence-in-insertmode/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-10-11T00:00:00+09:00" pubdate data-updated="true">October 11, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Undo履歴区切ろう</h2>
+
+<h3>実践Vimにて</h3>
+
+<blockquote><p><strong>アンドゥコマンドの粒度</strong></p>
+
+<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51xLKL7w92L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">実践Vim 思考のスピードで編集しよう!</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Drew Neil
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        アスキー・メディアワークス 2013-08-29
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 2,940
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>実践Vim読んでるときって基本Vimちゃんすごい!Vimちゃんこんなこともできたの!?Vimちゃん大好き！なのですが、ここまでするものなのかと、若干DrewNeilさんに<s>引いて</s>感動してしまった部分が1つだけありました。</p>
+
+<blockquote><p>(略) 行を挿入する一番簡単な方法は<code>&lt;CR&gt;</code>を押すことだ。だけど、筆者がよく使うのは<code>&lt;Esc&gt;o</code>。これは単に、アンドゥする単位を新規に作りたいからだ。ハードコアすぎるって？いやいや心配はいらない。Vimに慣れてくれば、モードの切り替えなんてちょちょいのちょいになるから。</p>
+
+<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
+
+<p><s>流石にハードコアすぎる&#8230;</s>Vim意識高すぎる！</p>
+
+<p>と、言うことで(Pure)Vim力低いし、<code>&lt;CR&gt;</code>と<code>&lt;Esc&gt;o</code>使い分ける必要も無さそうなのでvimrcでカスタマイズ。</p>
+
+<h2>vimrc書き書き</h2>
+
+<p>vimrc <noscript>
+  <pre><code class="language-viml viml">&ldquo; For Undo Revision, Break Undo Sequence
+inoremap &lt;CR&gt; &lt;C-]&gt;&lt;C-G&gt;u&lt;CR&gt;</p>
+
+<p>inoremap &lt;C-h&gt; &lt;C-g&gt;u&lt;C-h&gt;
+inoremap &lt;BS&gt; &lt;C-g&gt;u&lt;BS&gt;
+inoremap &lt;Del&gt; &lt;C-g&gt;u&lt;Del&gt;
+inoremap &lt;C-d&gt; &lt;C-g&gt;u&lt;Del&gt;
+inoremap &lt;C-w&gt; &lt;C-g&gt;u&lt;C-w&gt;
+inoremap &lt;C-u&gt; &lt;C-g&gt;u&lt;C-u&gt;
+</code></pre>
+</noscript></p>
+
+<p>helpる。helpる。さまよう&#8230;あった!</p>
+
+<blockquote><p>CTRL-G u break undo sequence, start new change <em>i_CTRL-G_u</em></p>
+
+<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#i_CTRL-G_u">:h i_CTRL-G_u</a></cite></p></blockquote>
+
+<p><code>&lt;C-o&gt;</code>の一時コマンドモードで副作用的にUndoを区切るのではなく、まさにやりたいことそのまんまのコマンド(<code>i_CTRL-G_u</code>)が用意されていたようです。知らなかった&#8230;</p>
+
+<p>改行ついでに削除系インサートコマンドでも<code>&lt;C-g&gt;u</code>噛ませることに。便利。<code>&lt;C-h&gt;</code>に限って言えば区切りすぎウザイ感あるのでいらないかも。</p>
+
+<p><code>&lt;C-d&gt;</code>だけデフォルトのキーマップじゃないですが、デフォルトの動作はインサートモードでインデント下げるという<s>誰得</s>機能なので変えても良さそう。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-10-11T00:00:00+09:00" pubdate data-updated="true">October 11, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vim-break-undo-sequence-in-insertmode/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vim-break-undo-sequence-in-insertmode/" data-via="haya14busa" data-counturl="http://haya14busa.com/vim-break-undo-sequence-in-insertmode/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/learn-statistical-regularity-and-memory/" title="Previous Post: 統計的規則性の学習と記憶の関連性">&laquo; 統計的規則性の学習と記憶の関連性</a>
+      
+      
+        <a class="basic-alignment right" href="/cognitive-neuroscience-definitions-themes-and-approaches01/" title="Next Post: Cognitive Neuroscience: Definitions, Themes, and Approaches#01">Cognitive Neuroscience: Definitions, Themes, and Approaches#01 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2014 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vim-break-undo-sequence-in-insertmode/';
+        var disqus_url = 'http://haya14busa.com/vim-break-undo-sequence-in-insertmode/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

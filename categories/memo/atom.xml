@@ -1,0 +1,2037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: memo | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/memo/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2014-06-30T22:10:40+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[数学ガールゲーデルの不完全性定理読んだメモ]]></title>
+    <link href="http://haya14busa.com/mathematical_girls_godels_incompleteness_theorems/"/>
+    <updated>2013-12-18T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/mathematical_girls_godels_incompleteness_theorems</id>
+    <content type="html"><![CDATA[<h2>ペアノ・アリスメティック</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Peano_axioms">Peano axioms &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%9A%E3%82%A2%E3%83%8E%E3%81%AE%E5%85%AC%E7%90%86">ペアノの公理 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>ペアノ算術</p>
+
+<dl>
+<dt>公理</dt>
+<dd>  証明がなくても成り立つとみなす命題</dd>
+<dt>命題</dt>
+<dd>  真偽が定まる数学的主張</dd>
+</dl>
+
+<h2>ガリレオのためらい</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%86%E5%90%88">集合 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Set_(mathematics)">Set (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<dl>
+<dt>外延的定義</dt>
+<dd>  {2,4,6,8,&#8230;}</dd>
+<dt>内包的定義</dt>
+<dd>  {n | nは2の倍数}</dd>
+<dd><p>  -> 無限集合を扱える!</p></dd>
+</dl>
+
+<h3>ラッセルのパラドクス</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Russell%27s_paradox">Russell&#8217;s paradox &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%A9%E3%83%83%E3%82%BB%E3%83%AB%E3%81%AE%E3%83%91%E3%83%A9%E3%83%89%E3%83%83%E3%82%AF%E3%82%B9">ラッセルのパラドックス &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Barber_paradox">Barber paradox &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BA%8A%E5%B1%8B%E3%81%AE%E3%83%91%E3%83%A9%E3%83%89%E3%83%83%E3%82%AF%E3%82%B9">床屋のパラドックス &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>集合 <-> 論理</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan&#8217;s laws &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%BB%E3%83%A2%E3%83%AB%E3%82%AC%E3%83%B3%E3%81%AE%E6%B3%95%E5%89%87">ド・モルガンの法則 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>写像</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Map_(mathematics)">Map (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%86%99%E5%83%8F">写像 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Surjective_function">Surjective function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%A8%E5%B0%84">全射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Injective_function">Injective function &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8D%98%E5%B0%84">単射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Bijection">Bijection &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%A8%E5%8D%98%E5%B0%84">全単射 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>ガリレオ</p>
+
+<ul>
+<li>&lt;&lt;無限では、全単射で個数が等しいとは言えない>></li>
+</ul>
+</li>
+<li><p>デテキント</p>
+
+<ul>
+<li>&lt;&lt;無限とは、全体と部分との間に全単射が存在するものである>></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Galileo_Galilei">Galileo Galilei &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%83%AA%E3%83%AC%E3%82%AA%E3%83%BB%E3%82%AC%E3%83%AA%E3%83%AC%E3%82%A4">ガリレオ・ガリレイ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Richard_Dedekind">Richard Dedekind &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%92%E3%83%A3%E3%83%AB%E3%83%88%E3%83%BB%E3%83%87%E3%83%BC%E3%83%87%E3%82%AD%E3%83%B3%E3%83%88">リヒャルト・デーデキント &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p><a href="http://en.wikipedia.org/wiki/Georg_Cantor">Georg Cantor &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%82%AA%E3%83%AB%E3%82%AF%E3%83%BB%E3%82%AB%E3%83%B3%E3%83%88%E3%83%BC%E3%83%AB">ゲオルク・カントール &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>&lt;&lt;飛躍前の停滞>></p></li>
+<li><p>&lt;&lt;わからなくなる最前線>></p></li>
+<li>&lt;&lt;自分はどこがわかってないんだろう>></li>
+</ul>
+
+
+<h2>限りなく近づく目標地点</h2>
+
+<dl>
+<dt>発散</dt>
+<dd>  divergence</dd>
+<dt>収斂</dt>
+<dd>  convergence</dd>
+</dl>
+
+<p><a href="http://home.alc.co.jp/db/owa/etm_rsch?er_sn_in=585">L.vergere = to incline(傾く) </a></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Augustin-Louis_Cauchy">Augustin-Louis Cauchy &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%83%BC%E3%82%AE%E3%83%A5%E3%82%B9%E3%82%BF%E3%83%B3%EF%BC%9D%E3%83%AB%E3%82%A4%E3%83%BB%E3%82%B3%E3%83%BC%E3%82%B7%E3%83%BC">オーギュスタン＝ルイ・コーシー &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Karl_Weierstrass">Karl Weierstrass &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%AF%E3%82%A4%E3%82%A8%E3%83%AB%E3%82%B7%E3%83%A5%E3%83%88%E3%83%A9%E3%82%B9">カール・ワイエルシュトラス &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p><strong>極限値は収束する、「行き先」を指しているだけであって、けっしてけっしてその行き先に到達するとは言っていない</strong></p>
+
+<h2>ライプニッツの夢</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz">Gottfried Wilhelm Leibniz &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B4%E3%83%83%E3%83%88%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%97%E3%83%8B%E3%83%83%E3%83%84">ゴットフリート・ライプニッツ &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>ゲーデルの不完全性定理</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel&#8217;s incompleteness theorems &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86">ゲーデルの不完全性定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3><a href="http://ja.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E4%BD%93%E7%B3%BB">形式体系 &#8211; Wikipedia</a></h3>
+
+<dl>
+<dt>&lt;&lt;意味論的方法>></dt>
+<dd>  semantics</dd>
+<dd><p>  真偽値を使う</p></dd>
+<dt>&lt;&lt;構文的方法>></dt>
+<dd>  syntax</dd>
+<dd><p>  真偽値を使わない</p></dd>
+</dl>
+
+<ol>
+<li>論理式</li>
+<li>公理と推論規則</li>
+<li>証明と定理</li>
+</ol>
+
+
+<p>&lt;&lt;数学を数学する>></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/David_Hilbert">David Hilbert &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%83%80%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%BB%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88">ダフィット・ヒルベルト &#8211; Wikipedia</a></p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Modus_ponens">Modus ponens &#8211; Wikipedia, the free encyclopedia</a></p></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%BC%E3%83%80%E3%82%B9%E3%83%9D%E3%83%8D%E3%83%B3%E3%82%B9">モーダスポネンス &#8211; Wikipedia</a></p></li>
+</ul>
+
+
+<h2>イプシロン・デルタ</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/(%CE%B5,_%CE%B4)-definition_of_limit">(ε, δ)-definition of limit &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%97%E3%82%B7%E3%83%AD%E3%83%B3-%E3%83%87%E3%83%AB%E3%82%BF%E8%AB%96%E6%B3%95">イプシロン-デルタ論法 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>&lt;&lt;分けることは、分かることへの第一歩>></p>
+
+<h2>対角線論法</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument">Cantor&#8217;s diagonal argument &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%B3%E3%83%88%E3%83%BC%E3%83%AB%E3%81%AE%E5%AF%BE%E8%A7%92%E7%B7%9A%E8%AB%96%E6%B3%95">カントールの対角線論法 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Countable_set">Countable set &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%AF%E7%AE%97%E9%9B%86%E5%90%88">可算集合 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>二つの孤独が生み出すもの</h2>
+
+<h3>同値関係</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Equivalence_relation">Equivalence relation &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%90%8C%E5%80%A4%E9%96%A2%E4%BF%82">同値関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>同値律</li>
+<li>反射律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Reflexive_relation">Reflexive relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84%E9%96%A2%E4%BF%82">反射関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>対象律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Symmetric_relation">Symmetric relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AF%BE%E7%A7%B0%E9%96%A2%E4%BF%82">対称関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>推移律
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Transitive_relation">Transitive relation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%8E%A8%E7%A7%BB%E9%96%A2%E4%BF%82">推移関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>商集合
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Quotient_set">Equivalence class &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ゲーデルの不完全定理</h2>
+
+<h3>Outline</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Hilbert%27s_program">Hilbert&#8217;s program &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0">ヒルベルト・プログラム &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems">Gödel&#8217;s incompleteness theorems &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E3%81%AE%E4%B8%8D%E5%AE%8C%E5%85%A8%E6%80%A7%E5%AE%9A%E7%90%86">ゲーデルの不完全性定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h3>ヒルベルト計画</h3>
+
+<ol>
+<li>形式的体系の導入
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Formal_system">Formal system &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BD%A2%E5%BC%8F%E4%BD%93%E7%B3%BB">形式体系 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>無矛盾性の証明</li>
+<li>完全性の証明</li>
+</ol>
+
+
+<h4>Hilbert</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/David_Hilbert">David Hilbert &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%80%E3%83%95%E3%82%A3%E3%83%83%E3%83%88%E3%83%BB%E3%83%92%E3%83%AB%E3%83%99%E3%83%AB%E3%83%88">ダフィット・ヒルベルト &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h4>Terms</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Axiom">Axiom &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%85%AC%E7%90%86">公理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Theorem">Theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AE%9A%E7%90%86">定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Well-formed_formula">Well-formed formula &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%AB%96%E7%90%86%E5%BC%8F">論理式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Rule_of_inference">Rule of inference &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%8E%A8%E8%AB%96%E8%A6%8F%E5%89%87">推論規則 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>Gödel</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Kurt_G%C3%B6del">Kurt Gödel &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AB%E3%83%88%E3%83%BB%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB">クルト・ゲーデル &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h4>Terms: Definition</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Definition#Intension_and_extension">Intension, Extension Definition &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%AE%9A%E7%BE%A9#.E5.A4.96.E5.BB.B6.E3.81.A8.E5.86.85.E5.8C.85">外延的、内縁的定義 &#8211; Wikipedia</a></li>
+<li><a href="http://bizmakoto.jp/bizid/articles/0809/29/news065_2.html">実践！　専門知識を教えてみよう：第18回　常識的な概念ほど、きっちり定義を考えなければならない (2/3) &#8211; 誠 Biz.ID</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Intension">Intension &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Extension_(semantics)">Extension (semantics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>ゲーデル数</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/G%C3%B6del_numbering">Gödel numbering &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%BC%E3%83%87%E3%83%AB%E6%95%B0">ゲーデル数 &#8211; Wikipedia</a></p></li>
+<li><p>基本記号のゲーデル数として、13以下の奇数を割り当てる</p></li>
+<li><p>素数指数表現で基本記号の列を数で表せる</p></li>
+<li>ゲーデル数のパリティで列か否かを識別できる</li>
+<li><p>記号列か記号列の列かは素因数分解したときの2の個数のパリティで判断できる</p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Primitive_recursive_function">Primitive recursive function &#8211; Wikipedia, the free encyclopedia</a></p></li>
+<li><p><a href="http://ja.wikipedia.org/wiki/%E5%8E%9F%E5%A7%8B%E5%86%8D%E5%B8%B0%E9%96%A2%E6%95%B0">原始再帰関数 &#8211; Wikipedia</a></p></li>
+</ul>
+
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/wd0/20080815/a">不完全性定理は「現代科学の限界」なるものを示してはいない（その０） &#8211; /dev/wd0a</a></li>
+<li><a href="http://www.research.ibm.com/people/h/hirzel/papers/canon00-goedel.pdf">ゲーデルの論文の英訳:PDF</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数学ガールフェルマーの最終定理読んだメモ]]></title>
+    <link href="http://haya14busa.com/mathematical-girls-fermas-last-theorem-memo/"/>
+    <updated>2013-11-14T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/mathematical-girls-fermas-last-theorem-memo</id>
+    <content type="html"><![CDATA[<p><a href="http://www.hyuki.com/girl/note.html">Web連載『数学ガールの秘密ノート』</a></p>
+
+<h2>プロローグ</h2>
+
+<blockquote><p>「整数は神の作ったものだが、他は人間の作ったものである」(Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist Menschenwerk.)</p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/レオポルト・クロネッカー">レオポルト・クロネッカー &#8211; Wikipedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Leopold_Kronecker">Leopold Kronecker &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Diophantus">Diophantus &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%AC%E3%82%AF%E3%82%B5%E3%83%B3%E3%83%89%E3%83%AA%E3%82%A2%E3%81%AE%E3%83%87%E3%82%A3%E3%82%AA%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%82%B9">アレクサンドリアのディオファントス &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Pythagoras">Pythagoras &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9">ピタゴラス &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Pierre_de_Fermat">Pierre de Fermat &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%89%E3%83%BB%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC">ピエール・ド・フェルマー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>無限の宇宙を手に乗せて</h2>
+
+<h3>時計の巡回</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Number_theory">Number theory &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E8%AB%96">数論 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://aozoragakuen.sakura.ne.jp/suuron/suuron.html">数論初歩</a>
+
+<ul>
+<li>PDFでまとまっている</li>
+</ul>
+</li>
+<li>&lt;&lt;特殊から一般へ>></li>
+</ul>
+
+
+<blockquote><p>「ではみなさんは、そういうふうに川だと云われたり、乳の流れたあとだと云われたりしていたこのぼんやりと白いものがほんとうは何かご承知ですか。」</p>
+
+<p>&#8211; <cite><a href="http://www.aozora.gr.jp/cards/000081/files/456_15050.html">宮沢賢治 銀河鉄道の夜</a></cite></p></blockquote>
+
+<h2>ピタゴラスの定理</h2>
+
+<p><img src="http://livedoor.4.blogimg.jp/ayacnews/imgs/9/2/92af2ab0.gif" alt="pytagorean_proof_by_gif" /></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9%E3%81%AE%E5%AE%9A%E7%90%86">ピタゴラスの定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>Card Tetra: 原始ピタゴラス数は無数に存在するか</li>
+<li>Card Milka: 原点中心の単位円周上に、有理点は無数に存在するか
+
+<ul>
+<li>e.g. (1,0),(0,1),(-1,0),(0,01)</li>
+</ul>
+</li>
+<li>&lt;&lt;例示は理解の試金石>></li>
+<li>&lt;&lt;整数の構造は、素因数が示す>></li>
+<li>&lt;&lt;有理数の構造は、整数の比が示す>></li>
+</ul>
+
+
+<h3>Card: Tetra</h3>
+
+<ol>
+<li>&lt;&lt;例示は理解の試金石>>
+
+<ul>
+<li>具体的に探してみる</li>
+</ul>
+</li>
+<li>偶奇を調べる(パリティチェック)
+
+<ol>
+<li>a,bが偶数の原始ピタゴラス数は存在するか</li>
+<li>a,bが奇数は？</li>
+<li>c<sup>2</sup>は4の倍数</li>
+<li>背理法</li>
+</ol>
+</li>
+<li>&lt;&lt;和の形>>から&lt;&lt;積の形>>へ
+
+<ol>
+<li> &lt;&lt;整数の構造は、素因数が示す>></li>
+<li>b<sup>2</sup> = (c-a)(c+a)とa,b,cの偶奇を組み合わせる</li>
+</ol>
+</li>
+<li>互いに素
+
+<ol>
+<li>&lt;&lt;わかりきっていることでも、きちんとまとめるのがいいんだよ>></li>
+<li>a,c,b、A,B,Cについて互いに素であるか？</li>
+<li>aを奇数として</li>
+<li>2A = c &#8211; a</li>
+<li>2B = b</li>
+<li>2C = c + a</li>
+<li>Pattern: 互いに素の証明は、背理法で同じ倍数になるという矛盾を導く</li>
+</ol>
+</li>
+<li>素因数分解
+
+<ul>
+<li>素因数分解の一意性 -> A,Cは平方数</li>
+</ul>
+</li>
+<li><p>原子ピタゴラス数の一般形</p>
+
+<ul>
+<li>無数にある素数から無数の原子ピタゴラス数を作り上げる</li>
+</ul>
+</li>
+<li><p>&lt;&lt;偶奇を調べる>></p></li>
+<li>&lt;&lt;整数の構造は、素因数が示す>></li>
+<li>&lt;&lt;積の形>></li>
+<li>&lt;&lt;互いに素>></li>
+</ol>
+
+
+<h3>Card: Milka</h3>
+
+<ol>
+<li>&lt;&lt;有理点が無数にある>>という命題は、方程式<code>x^2 + y^2 = 1</code>が&lt;&lt;無数の有理数解を持つ>>という命題と同値</li>
+<li>P(-1,0)を通り、傾きがtの直線<code>l: y = tx + t</code>と単位円<code>x^2+y^2=1</code>のもう一つの交点Qをtで表す</li>
+<li><strong>点Tがy軸上の有理点ならば、点Qも有理点になる</strong></li>
+</ol>
+
+
+<h4>原始ピタゴラス数の問題との関連</h4>
+
+<p>ピタゴラスの定理を変形</p>
+
+<pre><code>a^2 + b^2 = c^2
+(a/c)^2 + (b/c)^2 = 1 -&gt; 単位円
+</code></pre>
+
+<p>&lt;&lt;有理数の構造は、整数の比が示す>></p>
+
+<p><strong>&lt;&lt;原始ピタゴラス数が無数にある>>と&lt;&lt;単位円周上に有理点が無数にある>>は同値</strong></p>
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/tt4cs/20111230/1325218297">原始ピタゴラス数について少し勉強してみるなど &#8211; 自明でない日記</a>   &#8211; 流れが書いてある</li>
+<li><a href="http://www.bonten-yutori.net/mathgirls_F/">学習ノート・数学ガール・フェルマーの最終定理</a>   &#8211; 補足もある&lt;&lt;単位円周上に有理点が無数にある>>ならば&lt;&lt;原始ピタゴラス数が無数にある>></li>
+</ul>
+
+
+<h2>互いに素</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Coprime_integers">Coprime integers &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>relatively prime</li>
+</ul>
+</li>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BA%92%E3%81%84%E3%81%AB%E7%B4%A0">互いに素 &#8211; Wikipedia</a></li>
+<li><a href="http://www.hyuki.com/dig/relprime.html">「互いに素」という概念</a></li>
+<li><a href="http://sigma2011auemath.web.fc2.com/pdf/03kyo1.pdf">互いに素</a>[PDF]</li>
+</ul>
+
+
+<p>自然数a,bの最大公約数をM、最小公倍数をLで表すと、このとき</p>
+
+<pre><code>a \* b = M \* L
+</code></pre>
+
+<p>が成り立つ</p>
+
+<ul>
+<li>a &#42; b : &lt;&lt;aの素因数すべて>>と&lt;&lt;\bの素因数すべて>></li>
+<li>M &#42; L :   &#8211; M : &lt;&lt;aとbでだぶっている素因数すべて>>   &#8211; L : &lt;&lt;aとbでだぶりを除いた素因数すべて>></li>
+</ul>
+
+
+<h3>素数指数表現</h3>
+
+<pre><code>n = 2^n_2 \* 3^n_3 \* 5^n_5 ....
+  = &lt;n_2, n_3, n_5, ....&gt;
+</code></pre>
+
+<ul>
+<li>無限次元のベクトルとみなして考えることができる
+
+<ul>
+<li>互いに素のとき、ベクトルが直交する</li>
+</ul>
+</li>
+<li>mとnが互いに素のとき m⊥nと表す</li>
+</ul>
+
+
+<h2>背理法</h2>
+
+<ul>
+<li>問題を読む&lt;&lt;深さ>></li>
+<li><a href="http://en.wikipedia.org/wiki/Propositional_calculus">Propositional calculus &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%91%BD%E9%A1%8C">命題 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Theorem#Terminology">Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<dl>
+<dt>矛盾</dt>
+<dd>  Pを命題とする。 矛盾とは、&lt;&lt;\Pである>>と&lt;&lt;\Pでない>>の両方が成り立つこと</dd>
+</dl>
+
+<p>√2が有理数でないことを、背理法以外に素因数の個数のパリティで証明できる</p>
+
+<p>&lt;&lt;素因数分解の一意性により、素因数の個数は、素因数ごとに両辺で一致する>></p>
+
+<h2>砕ける素数</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Imaginary_number">Imaginary number &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%99%9A%E6%95%B0">虚数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>虚数iを不自然に感じるのは負数を不自然に感じるのと変わらない
+
+<ul>
+<li><code>x - 1 = 0</code>をx ≥0の世界で考える</li>
+</ul>
+</li>
+<li><strong>方程式の解として&lt;&lt;定義>>した。満たすべき&lt;&lt;公理>>を方程式の形で示した</strong></li>
+</ul>
+
+
+<h3>1次元から2次元への飛躍</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Complex_plane">Complex plane &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%A4%87%E7%B4%A0%E5%B9%B3%E9%9D%A2">複素平面 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Polar_coordinate_system">Polar coordinate system &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%A5%B5%E5%BA%A7%E6%A8%99">極座標系 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>&lt;&lt;二乗して-1になる数>>を幾何の目で見るなら、<br/>
+<strong>二回行うと-1になる拡大・回転は何か?</strong></p>
+
+<p><code>(-1) * (-1) = 1</code>は-1の偏角180度を二倍することに相当する -> 360度の回転</p>
+
+<p>回れ右を二回行えば元の向きに戻る</p>
+
+<p>代数 <-> 幾何 複素数全体の集合 <-> 複素平面 複素数<code>a+bi</code> <-> 複素平面上の点(a,b) 複素数の集合 <-> 複素平面上の図形 複素数の数 <-> 平行四辺形の対角線 複素数の積 <-> 絶対値の積、偏角の和(拡大・回転)</p>
+
+<h3>格子点</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Pigeonhole_principle">Pigeonhole principle &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%B3%A9%E3%81%AE%E5%B7%A3%E5%8E%9F%E7%90%86">鳩の巣原理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt><strong>鳩の巣原理</strong></dt>
+<dd>  n個の鳩ノ巣にn+1羽の鳩が入ったら、<br/>
+  少なくとも1個の巣には、2羽の鳩がいる。<br/>
+  ただし、nは自然数とする。</dd>
+</dl>
+
+<h3>砕ける素数</h3>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8D%98%E6%95%B0">単数 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Gaussian_integer">Gaussian integer &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%82%A6%E3%82%B9%E6%95%B4%E6%95%B0">ガウス整数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><p>a + biを整数の一種と考えると、素因数分解の一意性が砕ける</p>
+
+<p>整数Ζ&mdash;-ゼロ        (0)
+       |&ndash;単数        (±1)
+       |&ndash;合成数      (±4,±6,±8,&hellip;)
+       <code>--素数----&lt;&lt;砕ける素数&gt;&gt;  Ζ[i]で積に分解可能
+              </code>-&lt;&lt;砕けない素数>> Ζ[i]で積に分解不可能</p></li>
+</ul>
+
+
+<p>砕ける素数を4で割った余りは3にならない。</p>
+
+<pre><code>p = (a + bi)(a - bi)
+</code></pre>
+
+<p>pを奇数の素数にすると、</p>
+
+<pre><code>p = (a + bi)(a - bi) &lt;-&gt; pを4で割ると余りは1
+</code></pre>
+
+<h2>アーベル郡の涙</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7%E3%81%AE%E8%A1%A8">数学記号の表 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<blockquote><p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E7%B4%A0%E6%95%B0" title="素数" class="broken_link">素数</a> (Prime number)の全体、<a href="http://haya14busa.com/wiki/%E5%B0%84%E5%BD%B1%E7%A9%BA%E9%96%93" title="射影空間" class="broken_link">射影空間</a>など
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E8%87%AA%E7%84%B6%E6%95%B0" title="自然数" class="broken_link">自然数</a> (Natural number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E6%95%B4%E6%95%B0" title="整数" class="broken_link">整数</a> (独: Zahlen)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E6%9C%89%E7%90%86%E6%95%B0" title="有理数" class="broken_link">有理数</a> (Quotient)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E5%AE%9F%E6%95%B0" title="実数" class="broken_link">実数</a> (Real number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E8%A4%87%E7%B4%A0%E6%95%B0" title="複素数" class="broken_link">複素数</a> (Complex number)の全体
+</td></p>
+
+<p><td rowspan="2">
+  <a href="http://haya14busa.com/wiki/%E5%9B%9B%E5%85%83%E6%95%B0" title="四元数" class="broken_link">四元数</a> (Hamilton number)の全体
+</td></p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7#.E4.BB.A3.E6.95.B0.E5.AD.A6.E3.81.AE.E8.A8.98.E5.8F.B7">数学記号の表 &#8211; Wikipedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Set_(mathematics)">Set (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%86%E5%90%88">集合 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Group_(mathematics)">Group (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群 (数学) &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Binary_operation">Binary operation &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Element_(mathematics)">Element (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>集合に対して演算を入れる</h3>
+
+<p>集合Gに対して、演算☆が定義されるとは、集合Gのどんな要素a,bに対しても、</p>
+
+<pre><code>a ☆ b ∈ G
+</code></pre>
+
+<p>が成り立つということ。これを&lt;&lt;演算☆に関して集合Gは<strong>閉じている</strong>>>と呼ぶ</p>
+
+<ul>
+<li>a ∈ G
+
+<ul>
+<li>aはGの要素である</li>
+<li>a is an element of G</li>
+<li>a belongs to G</li>
+<li>a is in G</li>
+</ul>
+</li>
+<li>G -> Group</li>
+</ul>
+
+
+<p>結合法則</p>
+
+<pre><code>(a ☆ b) ☆ c = a ☆ (b ☆ c)
+</code></pre>
+
+<dl>
+<dt>単位元の定義(単位元eの公理)</dt>
+<dd><p>  集合Gの任意の要素aに対して、以下の式を満たす集合Gの要素eを、演算☆における<strong>単位元</strong>と呼ぶ。</p>
+
+<p>  a ☆ e = e ☆ a = a</p></dd>
+<dt>&lt;&lt;公理が定義を生み出している>></dt>
+<dd>  最も厳密な言葉である数式を使い、公理という名の命題を使って定義する</dd>
+<dt>逆元の定義(逆元の公理)</dt>
+<dd>  aを集合Gの要素とし、eを単位元とする。aに対して、以下の式を満たすb∈Gを、演算☆に関するaの<strong>逆元</strong>と呼ぶ。 ~~~ a ☆ b = b ☆ a = e ~~~</dd>
+</dl>
+
+<h3>郡の定義(郡の公理)</h3>
+
+<p>以下の公理を満たす集合Gを<strong>郡</strong>と呼ぶ。</p>
+
+<ul>
+<li><strong>演算☆</strong>に関して閉じている</li>
+<li>任意の元に対して、<strong>結合法則</strong>が成り立つ。</li>
+<li><strong>単位元</strong>が存在する。</li>
+<li>任意の元に対して、その元に対する<strong>逆元</strong>が存在する。</li>
+</ul>
+
+
+<p><em>かくのごとき集合を<strong>郡</strong>と呼べ</em></p>
+
+<h3>&lt;&lt;例示は理解の試金石>></h3>
+
+<ul>
+<li>&lt;&lt;整数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;奇数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;偶数全体の集合Ζは、演算+に関して郡をなすか?>></li>
+<li>&lt;&lt;整数全体の集合Ζは、演算×に関して郡をなすか?>></li>
+</ul>
+
+
+<p>例</p>
+
+<ul>
+<li>最小の郡
+
+<ul>
+<li>{e}</li>
+</ul>
+</li>
+<li>要素が2個の群
+
+<ul>
+<li>{e,a}</li>
+</ul>
+</li>
+</ul>
+
+
+<p>演算表</p>
+
+<pre><code>|☆ | e a|
+|---+----|
+|e  | e a|
+|a  | a e|
+</code></pre>
+
+<ul>
+<li>&lt;&lt;同じ>>郡のことを&lt;&lt;同型>>な郡と呼ぶ</li>
+<li>&lt;&lt;要素が二つの郡は本質的に一つ>>
+
+<ul>
+<li>公理によって与えられる<em>制約が構造を生み出している</em></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>アーベル群</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Abelian_group">Abelian group &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%BC%E3%83%99%E3%83%AB%E7%BE%A4">アーベル群 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>任意の元について<strong>交換法則</strong>を満たす郡を<strong>アーベル郡</strong>という</li>
+</ul>
+
+
+<p>交換法則</p>
+
+<pre><code>a ☆ b = b ☆ a
+</code></pre>
+
+<p>&lt;&lt;無矛盾性は存在の礎>></p>
+
+<h2>ヘアスタイルを法として</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Division_(mathematics)">Division (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99">除法 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Modular_arithmetic">Modular arithmetic &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%90%88%E5%90%8C%E5%BC%8F">合同式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>法 -> modulus</li>
+<li>商 -> quotient</li>
+<li>剰余 -> residue</li>
+</ul>
+
+
+<dl>
+<dt>modの定義(整数)</dt>
+<dd><p>  a,b,q,rは整数で、b≠0とする</p>
+
+<p>  a mod b = r ⇔ a = bq + r (0 ≤r &lt; |b|)</p></dd>
+</dl>
+
+<p>合同(congruent modulo)</p>
+
+<pre><code>a ≡ b (mod m) ⇔ a mod m = b mod m ⇔ (a-b) mod m = 0
+</code></pre>
+
+<h3>郡・環・体</h3>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99%E9%A1%9E%E7%92%B0">剰余類環 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Ring_(mathematics)">Ring (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%92%B0_(%E6%95%B0%E5%AD%A6)">環 (数学) &#8211; Wikipedia</a></li>
+<li>郡では演算が1つだが、環では2種類の演算を入れる</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Commutative_ring">Commutative ring &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%AF%E6%8F%9B%E7%92%B0">可換環 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt>環の定義(環の公理)</dt>
+<dd>  以下の公理を満たす集合を<strong>環</strong>とよぶ</dd>
+</dl>
+
+<ul>
+<li>演算+(加法)に関して
+
+<ul>
+<li>閉じている</li>
+<li>単位元が存在する(0と呼ぶ)</li>
+<li>すべての要素について結合法則が成り立つ</li>
+<li>すべての要素について交換法則が成り立つ</li>
+<li>すべての要素について逆元が存在する</li>
+</ul>
+</li>
+<li>演算×(乗法)に関して
+
+<ul>
+<li>閉じている</li>
+<li>単位元が存在する(1と呼ぶ)</li>
+<li>すべての要素について結合法則が成り立つ</li>
+<li>すべての要素について交換法則が成り立つ</li>
+</ul>
+</li>
+<li>演算+と×に関して
+
+<ul>
+<li>すべての要素について分配法則が成り立つ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>厳密に言えば乗法の単位元が存在する可換環を述べている</p>
+
+<ul>
+<li>環と郡
+
+<ul>
+<li>環は、加法に関してアーベル群である。</li>
+<li>環は、乗法に関してアーベル郡とは限らない。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>整数環と剰余環</p>
+
+<dl>
+<dt>体の定義(体の公理)</dt>
+<dd>  環の定義プラス、演算×に関して<strong>0以外のすべての要素について逆元が存在する</strong></dd>
+</dl>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Field_(mathematics)">Field (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BD%93_(%E6%95%B0%E5%AD%A6)">体 (数学) &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>剰余環Ζ/mΖは、mが素数のとき体になる</strong></p>
+
+<p>pを素数とし、剰余環Ζ/mΖを体と見なすとき、それを<strong>有限体</strong>F_pと呼ぶ</p>
+
+<pre><code>F_p = Ζ/pΖ
+</code></pre>
+
+<p>合同を使って&lt;&lt;無限を折りたたむ>></p>
+
+<h2>無限降下法</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem">Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC%E3%81%AE%E6%9C%80%E7%B5%82%E5%AE%9A%E7%90%86">フェルマーの最終定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Andrew_Wiles">Andrew Wiles &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%BB%E3%83%AF%E3%82%A4%E3%83%AB%E3%82%BA">アンドリュー・ワイルズ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>次の方程式は、n ≥3で自然数解を持たない。</p>
+
+<pre><code>x^n + y^n = z^n
+</code></pre>
+
+<p>私は驚くべき証明を見つけたが、<br/>
+それを書き記すには、この余白は狭すぎる。</p>
+
+<p>FLT -> <strong>F</strong>ermat&#8217;s <strong>L</strong>ast <strong>T</strong>heorem</p>
+
+<h3>Card: Tetra</h3>
+
+<p>三辺が自然数で面積が平方数である直角三角形は存在するか。</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Proof_by_infinite_descent">Proof by infinite descent &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%84%A1%E9%99%90%E9%99%8D%E4%B8%8B%E6%B3%95">無限降下法 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<dl>
+<dt>無限降下法</dt>
+<dd><ol>
+<li>  自然数に関する数式を作る。</li>
+<li>  その数式を操作して、<em>同じ形をした別の数式を作る</em>
+
+<ul>
+<li>  このとき、小さくなる自然数を含む</li>
+</ul>
+</li>
+<li>  同じ操作を繰り返すと自然数が無限に小さくなる -> 矛盾</li>
+</ol>
+</dd>
+</dl>
+
+<h3>Card: Milka</h3>
+
+<p>FLT(4)の証明</p>
+
+<p>Card: Tetraの解答を使って矛盾を示す</p>
+
+<h2>最も美しい数式</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler%27s_identity">Euler&#8217;s identity &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E7%AD%89%E5%BC%8F">オイラーの等式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Euler&#8217;s identity</p>
+
+<pre><code>e^iπ = -1
+</code></pre>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler%27s_formula">Euler&#8217;s formula &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F">オイラーの公式 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Euler&#8217;s formula</p>
+
+<pre><code>e^iθ = cosθ + isinθ
+</code></pre>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Closure_(mathematics)">Closure (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%94%9F%E6%88%90_(%E6%95%B0%E5%AD%A6)">生成 (数学) &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最も美しい数式</h2>
+
+<p>&#8220;Is the term &#8216;well-defines&#8217; well defined?&#8221;</p>
+
+<ol>
+<li>指数を指数法則を満たすものと定義
+
+<ul>
+<li>自然数以外への拡張</li>
+</ul>
+</li>
+<li>e<sup>x</sup>を冪級数で表す</li>
+<li>テイラー展開</li>
+<li>テイラー展開の結果をe<sup>x</sup>と定義
+
+<ul>
+<li>複素数への拡張</li>
+</ul>
+</li>
+<li>e<sup>i</sup>θを&lt;&lt;大胆な代入>></li>
+<li>cosθとsinθのテイラー展開の結果と比較する</li>
+</ol>
+
+
+<h2>フェルマーの最終定理</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Ideal_(ring_theory)">Ideal (ring theory) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%87%E3%82%A2%E3%83%AB">イデアル &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Ernst_Kummer">Ernst Kummer &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%AB%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BB%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC">エルンスト・クンマー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Modularity_theorem">Modularity theorem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E3%83%BB%E5%BF%97%E6%9D%91%E3%81%AE%E5%AE%9A%E7%90%86">谷山・志村の定理 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Goro_Shimura">Goro Shimura &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%BF%97%E6%9D%91%E4%BA%94%E9%83%8E">志村五郎 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Yutaka_Taniyama">Yutaka Taniyama &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E8%B1%8A">谷山豊 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Gerhard_Frey">Gerhard Frey &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%AB%E3%83%8F%E3%83%AB%E3%83%88%E3%83%BB%E3%83%95%E3%83%A9%E3%82%A4">ゲルハルト・フライ &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Wiles'_proof_of_Fermat's_Last_Theorem">Wiles&#8217; proof of Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.27.6567&amp;rep=rep1&amp;type=pdf">The Way to the Proof of Fermat’s Last Theorem</a></li>
+<li><a href="http://math.stanford.edu/~lekheng/flt/wiles.pdf">Modular elliptic curves and Fermat&#8217;s last theorem &#8211; Stanford University</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数学ガール第1巻読んだメモなど]]></title>
+    <link href="http://haya14busa.com/mathematics-girls-01/"/>
+    <updated>2013-10-16T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/mathematics-girls-01</id>
+    <content type="html"><![CDATA[<h2>数学ガール</h2>
+
+<ul>
+<li><a href="http://www.hyuki.com/girl/">『数学ガール』シリーズ</a></li>
+<li><a href="http://www.hyuki.com/girl/web.html">Web版「数学ガール」</a></li>
+</ul>
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41xPYoL7N8L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">数学ガール (数学ガールシリーズ 1)</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        結城 浩
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        ソフトバンククリエイティブ 2007-06-27
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 1,890
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Notation</h2>
+
+<h3>Π(Product)</h3>
+
+<p>積(Product)の頭文字Pをギリシャ文字にしたものがΠ</p>
+
+<blockquote><p>The upper-case letter Π is used as a symbol for: The product operator in mathematics, indicated with capital pi notation ∏ (in analogy to the use of the capital Sigma Σ as summation symbol).</p>
+
+<p>&#8211; <cite><a href="http://en.wikipedia.org/wiki/Pi_(letter)">Pi (letter) &#8211; Wikipedia, the free encyclopedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Infinite_product">Infinite product &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%B7%8F%E4%B9%97">総乗 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Σ(Sum)</h3>
+
+<p>和(Sum)の頭文字Sをギリシャ文字にしたものがΣ</p>
+
+<blockquote><p>Upper case Σ is used as a symbol for: the summation operator</p>
+
+<p>&#8211; <cite><a href="http://en.wikipedia.org/wiki/Sigma">Sigma &#8211; Wikipedia, the free encyclopedia</a></cite></p></blockquote>
+
+<p>MathisFun</p>
+
+<blockquote><p>Sigma is the upper case letter S in Greek. And S stands for Sum.</p>
+
+<p>&#8211; <cite><a href="http://www.mathsisfun.com/algebra/sigma-notation.html">Sigma Notation</a></cite></p></blockquote>
+
+<p>Discrete mathematics(離散数学)におけるギリシャ文字のΣと、Continuous(連続)的な世界におけるローマ字のS、「∫」が対応する</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Discrete_mathematics">Discrete mathematics &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E6%95%B0%E5%AD%A6">離散数学 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ωのワルツ</h2>
+
+<p><a href="http://ja.wikipedia.org/wiki/%CE%A9">Ω &#8211; Wikipedia</a></p>
+
+<p><strong>振動</strong> -> <strong>回転</strong></p>
+
+<h3>ド・モアブルの定理</h3>
+
+<p>(cos θ + i sin θ)n = cos nθ + i sin nθ</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/De_Moivre's_formula">De Moivre&#8217;s formula &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%BB%E3%83%A2%E3%82%A2%E3%83%96%E3%83%AB%E3%81%AE%E5%AE%9A%E7%90%86">ド・モアブルの定理 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>フィボナッチ数列と母関数</h2>
+
+<p>フィボナッチ数列の一般項を母関数を使って捕まえる</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Generating_function">Generating function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%AF%8D%E9%96%A2%E6%95%B0">母関数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>級数 -> Series 無限級数 -> Infinit Series</p>
+
+<p>無限級数を使って無限に続く数式をxの閉じた式で表せる</p>
+
+<p>数列 -> 母関数 -> 母関数の閉じた式 -> 数列の一般項</p>
+
+<h2>相加相乗平均</h2>
+
+<ul>
+<li>相加平均 <a href="http://ja.wikipedia.org/wiki/%E7%AE%97%E8%A1%93%E5%B9%B3%E5%9D%87">算術平均 &#8211; Wikipedia</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Arithmetic_mean">Arithmetic mean &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+<li>相乗平均 <a href="http://ja.wikipedia.org/wiki/%E5%B9%BE%E4%BD%95%E5%B9%B3%E5%9D%87">幾何平均 &#8211; Wikipedia</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Geometric_mean">Geometric mean &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>実数r(real number)の2乗から相加相乗平均の関係を導く</p>
+
+<h2>連続(continuous)と離散(discrete)</h2>
+
+<p>微分演算子D <-> 差分演算子Δ<br/>
+冪 <-> 下降階乗冪(falling factorial)<br/>
+e<sup>x</sup> <-> 2<sup>x</sup><br/>
+積分∫ <-> 和文Σ</p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9A%8E%E4%B9%97#.E9.9A.8E.E4.B9.97.E5.86.AA">階乗 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Pochhammer_symbol">Pochhammer symbol &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<h2>コンボリューション</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Catalan_number">Catalan number &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%82%BF%E3%83%A9%E3%83%B3%E6%95%B0">カタラン数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Convolution">Convolution &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF">畳み込み &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ハーモニックナンバー</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">Harmonic series (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%AA%BF%E5%92%8C%E7%B4%9A%E6%95%B0">調和級数 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann zeta function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%BC%E3%82%BF%E9%96%A2%E6%95%B0">リーマンゼータ関数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>いくらでも大きくなる -> M (Magnitude)</p>
+
+<p>連続 <-> 離散<br/>
+logx = ∫1/tdt <-> Σ1/kδk</p>
+
+<h3>ゼータ関数とオイラー積</h3>
+
+<p>調和級数の発散が、素数の無限性の証明に結び付けられる</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler_product">Euler product &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E7%A9%8D">オイラー積 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>テイラー展開とバーゼル問題</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Taylor_series">Taylor series &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%86%E3%82%A4%E3%83%A9%E3%83%BC%E5%B1%95%E9%96%8B">テイラー展開 &#8211; Wikipedia</a></li>
+<li>冪級数展開</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Basel_problem">Basel problem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%BC%E3%83%AB%E5%95%8F%E9%A1%8C">バーゼル問題 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%8F%E3%83%AB%E3%83%88%E3%83%BB%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC">レオンハルト・オイラー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>sinxのテイラー展開を使って、バーゼル問題(ζ(2)の値を求める)を解く</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra">Fundamental theorem of algebra &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BB%A3%E6%95%B0%E5%AD%A6%E3%81%AE%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86">代数学の基本定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>n次方程式の解と係数の関係</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Vieta's_formulas">Vieta&#8217;s formulas &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%A0%B9%E3%81%A8%E4%BF%82%E6%95%B0%E3%81%AE%E9%96%A2%E4%BF%82">根と係数の関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>解(根) -> root</li>
+<li>係数 -> coefficient</li>
+<li>項 -> term</li>
+</ul>
+
+
+<h2>分割数</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Partition_(number_theory)">Partition (number theory) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%88%86%E5%89%B2%E6%95%B0">分割数 &#8211; Wikipedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%87%AA%E7%84%B6%E6%95%B0%E3%81%AE%E5%88%86%E5%89%B2">自然数の分割 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ついでにNumdot問題</h2>
+
+<ul>
+<li><a href="https://codeiq.jp/ace/yuki_hiroshi/q468">挑戦者求む！【アルゴリズム】古代文献を復元しよう！ by The Essence of Programming 結城 浩│CodeIQ</a></li>
+<li><a href="http://matome.naver.jp/odai/2138012200810917201">【CodeIQ】ナムドット問題答案 &#8211; NAVER まとめ</a></li>
+</ul>
+
+
+<p>ちょっと前にCodeIQで開催されていたNumdot問題。締め切り前日にはじめて見てちょっと考えたけど時間なくて挫折した。解説もらえるのは挑戦者だけのようだったのでわからなくても出せば良かったか…</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Bell_number">Bell number &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%99%E3%83%AB%E6%95%B0">ベル数 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>参考文献・読書案内のうち読みたいものPick up</h2>
+
+<p><a href="http://www.gakushuin.ac.jp/~881791/mathbook/">数学：物理を学び楽しむために</a>[Web Page]</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51XGP8AFX2L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">いかにして問題をとくか</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        G. ポリア
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        丸善 1975-04-01
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 1,575
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p><a href="http://www.hyuki.com/math/">『プログラマの数学』</a></p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51YsvP5o-fL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">プログラマの数学</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        結城 浩
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        ソフトバンククリエイティブ 2005-03-24
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 2,310
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51MiA0NYVKL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">コンピュータの数学</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        ロナルド・L. グレアム,オーレン パタシュニク,ドナルド・E. クヌース
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        共立出版 1993-08
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 9,975
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p><a href="http://www-cs-faculty.stanford.edu/~knuth/taocp.html">The Art of Computer Programming</a></p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41Jh58C%2BZOL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">[改訂第5版] LaTeX2e 美文書作成入門</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        奥村 晴彦
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        技術評論社 2010-07-07
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,339
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Phrase</h2>
+
+<ul>
+<li>&lt;&lt;当たり前のところから出発するのはいいこと>></li>
+<li>&lt;&lt;例示は理解は試金石>></li>
+<li>&lt;&lt;変数の導入による一般化>></li>
+<li>&lt;&lt;分けっこ>></li>
+<li>&lt;&lt;数式は言葉>></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cognitive Neuroscience: Definitions, Themes, and Approaches#01]]></title>
+    <link href="http://haya14busa.com/cognitive-neuroscience-definitions-themes-and-approaches01/"/>
+    <updated>2013-10-16T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/cognitive-neuroscience-definitions-themes-and-approaches01</id>
+    <content type="html"><![CDATA[<h1>Cognitive Neuroscience: Definitions, Themes, and Approaches#01</h1>
+
+<h2>Introduction</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cognitive_neuroscience">Cognitive neuroscience &#8211; Wikipedia, the free encyclopedia</a>   1. Neuroscience   2. Cognitive science</li>
+<li>Questions?   &#8211; Why do we remember some events but not others?   &#8211; How do we understand the minds of others in social interactions?   &#8211; How do our brains represent different goals when faced with a complex decision?</li>
+<li>Method</li>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%B5%8C%E9%A0%AD%E8%93%8B%E7%A3%81%E6%B0%97%E5%88%BA%E6%BF%80%E6%B3%95">経頭蓋磁気刺激法 &#8211; Wikipedia</a></li>
+<li>fMRI</li>
+<li>PET</li>
+<li>etc&#8230;</li>
+</ul>
+
+
+<p>Cognitive neuroscience seeks to build on its parent fields by developing new models of cognitive functions that integrate ideas from both neuroscience and cognitive science.</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0393111369/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41reiLKymgL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0393111369/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">Cognitive Neuroscience</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Michael S. Gazzaniga,Geoffrey Davies,Richard B. Ivry,George R. Mangun
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        WW Norton & Co 2008-09-05
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 6,713
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0393111369/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Cognition</h2>
+
+<h3>Cognition</h3>
+
+<dl>
+<dt><strong>Cognition</strong></dt>
+<dd>  a Latin term that means &#8220;the faculty of knowing&#8221;</dd>
+<dd><p>  set of processes(cognitive functions) that allow humans and animals      1. to perceive external stimuli   2. to extract key information and hold it in memory   3. to generate thoughts and actions that help reach desired goals</p></dd>
+<dt><strong>Mind</strong></dt>
+<dd>   the subjective sense of self</dd>
+<dd>  (近年ではCognitive NeuroscienceでもMindの方面にも手を伸ばしている)</dd>
+<dt><strong>Cognition, Cognitive functions</strong></dt>
+<dd>  to describe the specific sorts of information processing studied by cognitive neuroscientists</dd>
+</dl>
+
+<h3>Natural philosophy and early psychology</h3>
+
+<p>The phenomenology of cognition</p>
+
+<ul>
+<li>philosophical -> psychopysical (19th)</li>
+<li>intorospection, reasoning -> behavioral observation, experimental manipulation</li>
+</ul>
+
+
+<h4>Pioneer</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Wilhelm_Wundt">Wilhelm Wundt &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%B4%E3%82%A3%E3%83%AB%E3%83%98%E3%83%AB%E3%83%A0%E3%83%BB%E3%83%B4%E3%83%B3%E3%83%88">ヴィルヘルム・ヴント &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Hermann_von_Helmholtz">Hermann von Helmholtz &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%98%E3%83%AB%E3%83%9E%E3%83%B3%E3%83%BB%E3%83%95%E3%82%A9%E3%83%B3%E3%83%BB%E3%83%98%E3%83%AB%E3%83%A0%E3%83%9B%E3%83%AB%E3%83%84">ヘルマン・フォン・ヘルムホルツ &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/William_James">William James &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%82%A6%E3%82%A3%E3%83%AA%E3%82%A2%E3%83%A0%E3%83%BB%E3%82%B8%E3%82%A7%E3%83%BC%E3%83%A0%E3%82%BA">ウィリアム・ジェームズ &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>なぜCognitive Scienceが科学たり得るか。主観(subjective)ではなく客観(objective)</p>
+
+<h3>Behaviorism</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Behaviorism">Behaviorism &#8211; Wikipedia, the free encyclopedia</a>  - <a href="http://ja.wikipedia.org/wiki/%E8%A1%8C%E5%8B%95%E4%B8%BB%E7%BE%A9%E5%BF%83%E7%90%86%E5%AD%A6">行動主義心理学 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>Psychology came to be dominated by a new emphasis on highly controlled experiments that matched objective external stimuli to measurable behavior</p>
+
+<h4>Behaviorists</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/John_B._Watson">John B. Watson &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%B3%E3%83%BB%E3%83%AF%E3%83%88%E3%82%BD%E3%83%B3_(%E5%BF%83%E7%90%86%E5%AD%A6)">ジョン・ワトソン (心理学) &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/B._F._Skinner">B. F. Skinner &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%A9%E3%82%B9%E3%83%BB%E3%82%B9%E3%82%AD%E3%83%8A%E3%83%BC">バラス・スキナー &#8211; Wikipedia</a>   &#8211; &#8220;operant conditioning&#8221;</li>
+</ul>
+
+
+<p>How changes in stimulus presentation could shape How individuals adapt their behavior to the demants of the environment(Subsequent behavior)</p>
+
+<p><strong>Behaviorists extended or applied basic processes of learing from non-human animals to human</strong></p>
+
+<p>including</p>
+
+<ul>
+<li>education</li>
+<li>treatment of addiction</li>
+<li>criminal rehabilitation</li>
+</ul>
+
+
+<p>and grounded Psychology firmly in an objective experimental approach</p>
+
+<h3>Behaviorismの限界</h3>
+
+<p>The focus of behaviorists on learning from rewards let them to <strong>ignore other cognitive functions</strong></p>
+
+<dl>
+<dt><strong>operationism</strong></dt>
+<dd>  Psychological concepts could be discussed only in terms of the experimental manipulations that evoked them</dd>
+</dl>
+
+<p>Ignoring complex mental states made experiments more tractable <strong>But</strong> needlessly reduced the scope of psychology by excluding the study of cognitive functions other than learning</p>
+
+<h2>Cognitive science</h2>
+
+<ul>
+<li>in the mid-twentieth century</li>
+</ul>
+
+
+<p>A confluence of factors revived the legitimacy of psychological research on cognitive functions</p>
+
+<h3>One factor: The advent of computational science</h3>
+
+<p>Information theory gave new insights into perception, memory, and motor performance</p>
+
+<h4>George Miller</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/George_Armitage_Miller">George Armitage Miller &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%B8%E3%83%BB%E3%83%9F%E3%83%A9%E3%83%BC">ジョージ・ミラー &#8211; Wikipedia</a></li>
+<li>Magical number ± 7</li>
+<li>The research focused on basic perceptual tasks (<em>psychophysics</em>)   &#8211; <a href="http://en.wikipedia.org/wiki/Psychophysics">Psychophysics &#8211; Wikipedia, the free encyclopedia</a>     &#8211; <a href="http://ja.wikipedia.org/wiki/%E7%B2%BE%E7%A5%9E%E7%89%A9%E7%90%86%E5%AD%A6">精神物理学 &#8211; Wikipedia</a></li>
+<li>Memory processes was not a passive representation of sensory stimuli, but an <strong>active</strong> recoding of the <em>information</em> the stimuli carried</li>
+</ul>
+
+
+<p>情報処理という観点から認知プロセスをみる</p>
+
+<h4>Information theory</h4>
+
+<p>Computers provided a new model for mental processes</p>
+
+<p>The metaphor of <em>&#8220;mind as computer&#8221;</em> became a staple in psychology</p>
+
+<h3>Explore more complex aspects of mental life</h3>
+
+<p>behaviorism was too simple. Open the Blackbox(Cognitive function)!</p>
+
+<dl>
+<dt>Behaviorism</dt>
+<dd>  Stimulus -> Black box -> Response</dd>
+<dt>Cognitivism</dt>
+<dd>  Stimulus -> Cognitive functions -> Response</dd>
+</dl>
+
+<p><a href="http://en.wikipedia.org/wiki/Cognitivism_(psychology)">Cognitivism (psychology) &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<h4>Noam Chomsky</h4>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Noam_Chomsky">Noam Chomsky &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%8E%E3%83%BC%E3%83%A0%E3%83%BB%E3%83%81%E3%83%A7%E3%83%A0%E3%82%B9%E3%82%AD%E3%83%BC">ノーム・チョムスキー &#8211; Wikipedia</a>   &#8211; criticize Behaviorism</li>
+</ul>
+
+
+<p><strong>Cognitive Science</strong> unifies research on mental process regardless of</p>
+
+<ul>
+<li>the specific topic</li>
+<li>experimental approach</li>
+<li>method</li>
+<li>discipline</li>
+</ul>
+
+
+<p>intersted in </p>
+
+<ul>
+<li>characterizing the phenomena and behavior associated with specific cognitive functions </li>
+<li>creating <strong>cognitive models</strong> that describe the underlying psychological processes</li>
+</ul>
+
+
+<h3>Cognitive model</h3>
+
+<ul>
+<li>make some sense of complex cognitive phenomena</li>
+<li>provide insights into the common outcomes</li>
+<li>facilitate generalizations about experimental results</li>
+<li>Cognitive models nealy equal <strong>Psychological constructs</strong></li>
+<li>内部モデル</li>
+<li><strong>brain mappingをしようと思っているわけではない</strong>(それを通して人間の認知過程を理解するところに重点を置いている)</li>
+<li>Neuro biology との関連</li>
+<li>認知過程がprimilyで、あとからbrainとintegrateする試み</li>
+</ul>
+
+
+<h2>Neuroscience</h2>
+
+<h3>Nervous systems</h3>
+
+<dl>
+<dt>Neuroscience</dt>
+<dd>   how the nervous systems of humans and other animals are organized and function</dd>
+</dl>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Galen">Galen &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%83%AC%E3%83%8E%E3%82%B9">ガレノス &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Ventricular_system">Ventricular system &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Pineal_gland">Pineal gland &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E6%9D%BE%E6%9E%9C%E4%BD%93">松果体 &#8211; Wikipedia</a></li>
+<li><a href="http://bsd.neuroinf.jp/wiki/%E8%84%B3%E5%AE%A4">脳室 &#8211; 脳科学辞典</a></li>
+</ul>
+
+
+<h3>Cerebral cortex</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cerebral_cortex">Cerebral cortex &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E5%A4%A7%E8%84%B3%E7%9A%AE%E8%B3%AA">大脳皮質 &#8211; Wikipedia</a>   &#8211; <a href="http://bsd.neuroinf.jp/wiki/%E5%A4%A7%E8%84%B3%E7%9A%AE%E8%B3%AA%E3%81%AE%E7%99%BA%E7%94%9F">大脳皮質の発生 &#8211; 脳科学辞典</a></li>
+</ul>
+
+
+<h3>Phrenology</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Franz_Joseph_Gall">Franz Joseph Gall &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%83%84%E3%83%BB%E3%82%AC%E3%83%AB">フランツ・ガル &#8211; Wikipedia</a>   &#8211; <a href="http://en.wikipedia.org/wiki/Phrenology">Phrenology &#8211; Wikipedia, the free encyclopedia</a>     &#8211; <a href="http://ja.wikipedia.org/wiki/%E9%AA%A8%E7%9B%B8%E5%AD%A6">骨相学 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<p>Phrenology made an important contribution to modern neuroscience: it introduced the idea that different parts of the brain contribute to different sorts of information processing.</p>
+
+<p>phrenology -> <strong>localization of function</strong></p>
+
+<h3>The identification of <strong>neurons</strong></h3>
+
+<ul>
+<li>developed technique   &#8211; microscopy   &#8211; cell staining</li>
+<li><a href="http://en.wikipedia.org/wiki/Santiago_Ram%C3%B3n_y_Cajal">Santiago Ramón y Cajal &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%B3%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B4%E3%83%BB%E3%83%A9%E3%83%A2%E3%83%B3%E3%83%BB%E3%82%A4%E3%83%BB%E3%82%AB%E3%83%8F%E3%83%BC%E3%83%AB">サンティアゴ・ラモン・イ・カハール &#8211; Wikipedia</a>   &#8211; <a href="http://www.scholarpedia.org/article/Santiago_Ram%C3%B3n_y_Cajal">Santiago Ramón y Cajal &#8211; Scholarpedia</a></li>
+</ul>
+
+
+<dl>
+<dt><strong>The neuron</strong></dt>
+<dd>   a cell body</dd>
+<dd>   an axon</dd>
+<dd>   multiple dendrites</dd>
+</dl>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Neuron">Neuron &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E7%A5%9E%E7%B5%8C%E7%B4%B0%E8%83%9E">神経細胞 &#8211; Wikipedia</a></li>
+<li>action potentials</li>
+<li><a href="http://en.wikipedia.org/wiki/Neurotransmitter">Neurotransmitter &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E7%A5%9E%E7%B5%8C%E4%BC%9D%E9%81%94%E7%89%A9%E8%B3%AA">神経伝達物質 &#8211; Wikipedia</a></li>
+<li><p>synapses</p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Charles_Scott_Sherrington">Charles Scott Sherrington &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%BB%E3%82%B7%E3%82%A7%E3%83%AA%E3%83%B3%E3%83%88%E3%83%B3">チャールズ・シェリントン &#8211; Wikipedia</a>   &#8211; シナプスの命名者</p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Wilder_Penfield">Wilder Penfield &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E3%83%AF%E3%82%A4%E3%83%AB%E3%83%80%E3%83%BC%E3%83%BB%E3%83%9A%E3%83%B3%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89">ワイルダー・ペンフィールド &#8211; Wikipedia</a>   &#8211; <a href="http://en.wikipedia.org/wiki/Somatosensory_system">Somatosensory system &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E4%BD%93%E6%80%A7%E6%84%9F%E8%A6%9A">体性感覚 &#8211; Wikipedia</a></p></li>
+</ul>
+
+
+<h2>Cognitive Neuroscience: The Neurobiological Approach to Cognition</h2>
+
+<h3>Cognitive neuroscience</h3>
+
+<p>The Intersection of cognitive science and neuroscience</p>
+
+<p>Cognitive neuroscience combines all the difficulties of measuring brain function with all the problems of trying to accurately assess cognition and behavior as well as the complexities of trying to link them together.</p>
+
+<p>Cognitive neuroscience&#8217;s goal is distinguished from</p>
+
+<ul>
+<li>chemistry</li>
+<li>physics</li>
+<li>molecular biology   &#8211; whose boundaries are better defined</li>
+</ul>
+
+
+<h3>Misconception about Cognitive neuroscience research</h3>
+
+<p>Misconception: cognitive neuroscience simply maps the brain regions -> Neural correlate</p>
+
+<p><strong>Neural correlate</strong> - <a href="http://en.wikipedia.org/wiki/Neural_correlate">Neural correlate &#8211; Wikipedia, the free encyclopedia</a> - <a href="http://www.scholarpedia.org/article/Neural_correlates_of_consciousness">Neural correlates of consciousness &#8211; Scholarpedia</a> - <a href="http://en.wikipedia.org/wiki/Neural_correlates_of_consciousness">Neural correlates of consciousness &#8211; Wikipedia, the free encyclopedia</a>   &#8211; <a href="http://ja.wikipedia.org/wiki/%E6%84%8F%E8%AD%98%E3%81%AB%E7%9B%B8%E9%96%A2%E3%81%97%E3%81%9F%E8%84%B3%E6%B4%BB%E5%8B%95">意識に相関した脳活動 &#8211; Wikipedia</a> - <a href="http://pooneil.sakura.ne.jp/archives/permalink/000176.php">pooneilの脳科学論文コメント: Neural correlate</a> - <a href="http://d.hatena.ne.jp/y_yossarian/20121201/1354374033">What is a Neural Correlate of Consciousness? (前半) &#8211; y_yossarianの日記</a> - <a href="http://d.hatena.ne.jp/y_yossarian/20121202/1354423961">What is a Neural Correlate of Consciousness? (後半) &#8211; y_yossarianの日記</a></p>
+
+<p>Nonetheless, understanding the neural correlates of a function plays an important role.   The ambitions of cognitive neuroscience go beyond creating maps of brain function.</p>
+
+<p>ブレインマップを作るのが目的ではなく、認知過程(cognitive process)がどのように機能しているかに重きを置いている(といってもマッピングが重要じゃないというわけではない)</p>
+
+<p>Cognitive research combines information about brain structure and function to create neurobiologically grounded models of cognition</p>
+
+<p><strong>Indivisual differences</strong></p>
+
+<h3>Summary</h3>
+
+<p>Cognitive neuroscience seeks to create biologically grounded models of cognitive function</p>
+
+<h2>Methods: Convergence and Complementarity</h2>
+
+<p>Using multiple methods provides two critical advantages:</p>
+
+<ol>
+<li><strong>Convergence</strong>(収斂性or統合)</li>
+<li><strong>Complementarity</strong>(相補性)   &#8211; <a href="http://ja.wikipedia.org/wiki/%E7%9B%B8%E8%A3%9C%E6%80%A7">相補性 &#8211; Wikipedia</a></li>
+</ol>
+
+
+<h3>Convergence</h3>
+
+<dl>
+<dt>Convergence</dt>
+<dd>  the approach of combining results from multiple experimental paradigms to illuminate a single theoretical concept</dd>
+</dl>
+
+<p>Convergenceによってbehaviorithmからshiftできた</p>
+
+<p><strong>Convergence</strong> made it possible to demonstrate the existence of internal mental states that could not be measured directly.</p>
+
+<p>別々のstimuliとmethodsでそれぞれ似たような結果がでれば、一つ一つは疑問符がつくようなものでも、合わせて(Convergence)考えれば信頼性の高いものになる。</p>
+
+<h3>Complementarity</h3>
+
+<h2>Conclusions</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[統計的規則性の学習と記憶の関連性]]></title>
+    <link href="http://haya14busa.com/learn-statistical-regularity-and-memory/"/>
+    <updated>2013-10-09T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/learn-statistical-regularity-and-memory</id>
+    <content type="html"><![CDATA[<h2>統計学習</h2>
+
+<ul>
+<li>新規な環境から規則性を抽出</li>
+<li><p>推論をして行動をするために必要</p></li>
+<li><p>Saffran, Aslin, Newport(1996, Science)</p></li>
+</ul>
+
+
+<h3>視覚的統計学習(VSL)</h3>
+
+<ul>
+<li>トリプレット</li>
+<li>学習された表象の柔軟性
+
+<ul>
+<li>ABC -> CBA</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>目的</h3>
+
+<ul>
+<li>統計的規則性 -> 自動的に注意を捕捉</li>
+<li>統計的規則性の学習 -> 記憶を促進？</li>
+</ul>
+
+
+<h2>結果</h2>
+
+<ul>
+<li>統計的規則性の学習が、個々のオブジェクト自体の記憶成績を高めた</li>
+</ul>
+
+
+<h2>考察</h2>
+
+<ul>
+<li>統計的規則性の学習が、<strong>項目の符号化</strong>を促進</li>
+<li>検索時における手がかりの利用？</li>
+<li>文脈反復によって、予測される刺激の記憶成績が高まる。</li>
+</ul>
+
+
+<h2>まとめ</h2>
+
+<ul>
+<li>統計的規則性の学習が(規則性を有する)個々のオブジェクトの記憶を高める</li>
+</ul>
+
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=Brandy+Oliva+2008+psychol+Sci">Statistical learning using real-world scenes: ex&#8230; [Psychol Sci. 2008] &#8211; PubMed &#8211; NCBI</a>
+
+<ul>
+<li>Brandy Oliva 2008 psychol Sci</li>
+</ul>
+</li>
+<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=zhao+et+al+2013+psychol+sci">Attention is spontaneously biased toward regular&#8230; [Psychol Sci. 2013] &#8211; PubMed &#8211; NCBI</a>
+
+<ul>
+<li>zhao et al 2013 psychol sci</li>
+</ul>
+</li>
+<li><a href="http://cortex.csse.muroran-it.ac.jp/papers/abe_bs_resume.pdf">相関がある複合時系列パターンの視覚統計学習</a> [PDF]</li>
+<li><a href="http://cortex.csse.muroran-it.ac.jp/papers/nc2011-131.pdf">空間・形状情報の統合と視覚統計学習</a> [PDF]</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
