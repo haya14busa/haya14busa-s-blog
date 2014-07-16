@@ -9,9 +9,8 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="ペアノ・アリスメティック Peano axioms &#8211; Wikipedia, the free encyclopedia
-ペアノの公理 &#8211; Wikipedia ペアノ算術 公理 証明がなくても成り立つとみなす命題
-命題 真偽が定まる数学的主張 ガリレオのためらい 集合 &# &hellip;">
+  <meta name="description" content="Vim script読書会 #01 読んだプラグイン Shougo/junkfile.vim
+thinca/vim-visualstar 場所 vim-users.jp – Lingr 時間 12/14(土) 21:00-23:00 ログ Logです Pull Request Autoload &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,331 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vim-plugin-01/">Vimプラグイン読書会やりましたー</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-18T00:00:00+09:00" pubdate data-updated="true">December 18, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Vim script読書会 #01</h2>
+
+<h3>読んだプラグイン</h3>
+
+<ol>
+<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></li>
+</ol>
+
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>12/14(土) 21:00-23:00</li>
+</ul>
+
+
+<h3>ログ</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822571">Logです</a></li>
+</ul>
+
+
+<h3>Pull Request</h3>
+
+<ul>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><a href="https://github.com/Shougo/junkfile.vim/pull/4">Use negative value and doesn&#8217;t use reverse() by thinca · Pull Request #4 · Shougo/junkfile.vim</a></li>
+<li>thincaさんチェック便利</li>
+</ul>
+
+
+<h3>Link</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<h2>感想とか</h2>
+
+<p>やりたいとか言っておきながら読みたいプラギンとか決めるのぐだぐだだったり、僕自信に拡散力のようなものが備わっていなかったりで色々と不安だったけど、蓋を開けてみると割と参加者も集まってくれて、「勉強になる」とかいい反応もあったりしてよかった。参加者の皆さん、ありがとうございます。</p>
+
+<p>特におしょーさんはいろいろ取り仕切ってくれてありがとうございます。</p>
+
+<h2>junkfile.vim</h2>
+
+<p><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></p>
+
+<p>plugin/とautoload/の使い分け方とかプラグインの基本的な作り方を読んだり訊いたりして今回の「プラグインの基本的な構成や作り方について学ぶ」という目的に適ってとてもいい感じでした。</p>
+
+<h3>おまじない</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#use-cpo-save">:help use-cpo-save</a></li>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822765">そのへんのログ</a></li>
+</ul>
+
+
+<p><noscript>
+  <pre><code class="language-viml viml">&ldquo; おまじない
+&rdquo; Load Once
+if exists(&lsquo;g:loaded_helloworld&rsquo;) &amp;&amp; g:loaded_helloworld
+  finish
+endif
+let g:loaded_helloworld = 1</p>
+
+<p>&ldquo; Saving &lsquo;cpoptions&rsquo;
+let s:save_cpo = &amp;cpo
+set cpo&amp;vim</p>
+
+<p>&ldquo; Restore &lsquo;cpoptions&rsquo;
+let &amp;cpo = s:save_cpo
+unlet s:save_cpo
+</code></pre>
+</noscript></p>
+
+<p>行連結・副作用の回避をしましょう。おまじないレベルなのでとりあえずhelp読んである程度理解したら、なにも考えず書いておくといいっぽいです。</p>
+
+<h3>autoload変数とか</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822792">そのへんのログ</a></li>
+<li>プルリク: <a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
+<li><p><a href="http://vim-jp.org/vimdoc-ja/eval.html#internal-variables">:h internal-variables</a></p>
+
+<p>hoge#foo -> autoload
+hoge_foo -> plugin</p></li>
+</ul>
+
+
+<p>値をセットするだけなら<code>let g:hoge#foo='hoge'</code>しても、autoloadが呼ばれてしまうというわけではないはずだけど、やはりautoload変数はautoloadで定義するといいっぽい。</p>
+
+<p>plugin下では<code>g:hoge_foo</code>とかを使うのがよくあるけど<code>b:</code>とかいろいろあって難しい</p>
+
+<h3>autoloadとpluginの違い</h3>
+
+<p>C でいう、</p>
+
+<pre><code>plugin -&gt; .h
+autoload -&gt; .c
+</code></pre>
+
+<blockquote><p>実装を autoload に書いて、それを呼び出すコマンドなどを plugin で定義するのが最近の流行りですね<br/>
+と、いうのも plugin は起動時に読み込まれるため、plugin に全部の実装を書いてしまうと起動時間に影響するため</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822953">vim-users.jp &#8211; Lingr</a></cite></p></blockquote>
+
+<p>せっかく分けているのにpluginでautoloadの関数を直接呼ぶとVim起動時にautoload以下も呼ばれてしまうのでそのへんを注意して残念プラグインにならないように注意すべき。</p>
+
+<p>必然的に<Plug>マッピングの提供などはplugin下でやるべきということになる。</p>
+
+<h2>vim-visualstar</h2>
+
+<p><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></p>
+
+<p>plugin下に100行程度で簡単そうかと思いきや、実装が結構難しくてVim script力の高まりを感じたり感じなかったりした。</p>
+
+<blockquote><p>itchyny<br/>
+@/とか&#8217;>とかの勉強になるとは思う</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823713">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>この辺は初心者でも便利ってかんじでcountの話とかはなかなか難しかった。というか僕は<code>line("'&lt;")</code>を<code>line("v")</code>の違いでハマったみたいなこといってからその再現しようとしてたりしてvim-visualstarを完璧に理解することを諦めたりしていた。</p>
+
+<p>最近<a href="https://github.com/koron/cmigemo">cmigemo</a>のvimプラグイン部分をプルリクったり、個別に管理させてもらったり(<a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a>)してた関係もあって検索する部分とか参考になった。</p>
+
+<blockquote><p>raa0121<br/>
+(&#8220;v&#8221;) と (&#8220;`v&#8221;) が顔文字に見える</p>
+
+<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823525">vim-users.jp Lingr</a></cite></p></blockquote>
+
+<p>かわいい(&#8220;`v&#8221;)</p>
+
+<h2>Vim script読書会 #02</h2>
+
+<p>結構反応もよかったのでめでたく第2回も開催しようという流れになりました。</p>
+
+<ol>
+<li>毎週21時からやるやる</li>
+<li>隔週で行う</li>
+<li>月1で行う</li>
+<li>不定期、気が向いたら</li>
+</ol>
+
+
+<p>2か3あたりかなーという感じですが、年末年始なので次回は年明けの1/11(土曜日)です。</p>
+
+<p>この辺反応良かったりして人が安定していると隔週になったりすると思うのでぜひぜひ参加したりしてわいわい読みましょう。</p>
+
+<h3>読むプラグイン(予定)</h3>
+
+<ol>
+<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ol>
+
+
+<p>または</p>
+
+<ol>
+<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
+<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unit-fold</a></li>
+</ol>
+
+
+<p>clever-fの製作者であるりんだんさん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>)が参加できそうならclever-f,無理そうならunite-sourceを読もうということでunite-mcdonalds-vimとunite-fold読みます(たぶん)。</p>
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>2014/01/11(土) 21:00-23:00</li>
+</ul>
+
+
+<h2>各プラギン紹介記事Link</h2>
+
+<h3>clever-f</h3>
+
+<ul>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fは<a href="https://github.com/haya14busa/vim-easymotion">vim-easymotion</a>にmigemo組み込むときの参考に軽く読んでいたり、人によってはライフチェンジングプラグインでclever-f面白いし、作者のりんだんさんすごい!みたいな感じでかなり個人的に提案しました() -> <a href="http://rhysd.hatenablog.com/entry/2013/12/13/011420">（進捗あります！✧＼\٩(‘ω’)و /／✧）o 。(&#8216;､3)_ヽ)＿ &#8211; sorry, unimplemented:</a></p>
+
+<p>ただthincaさんが魔改造していてthincaさん説明も期待できそうだし、1回で1つのプラグインを集中的に読む場合、分量的にいい感じっぽいので目的にもよりますが面白そうだと思います。</p>
+
+<h3>unite-mcdonalds-vim</h3>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
+</ul>
+
+
+<p>これがいわゆる人々の生活を豊かにするプラグインの内のひとつ! -> <a href="http://mattn.kaoriya.net/software/vim/20131206144325.htm">Big Sky :: Vim script は人々の生活を豊かにしなければならないッ！</a></p>
+
+<p>unite-sourceかつ<a href="https://github.com/mattn/webapi-vim">mattn/webapi-vim</a>を使っているのでウェブ上のソースを使った便利unite-sourceが作れるようになるかもですね。</p>
+
+<p>またマクドナルドのページの構造変わってて動かなくなっていたのをmattnさんに直して頂きました。ありがとうございます。<a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>も直して頂いたので、時間あったら一緒に読むとお腹すきそうでよさそう。</p>
+
+<h3>unite-fold</h3>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
+<li><a href="http://d.hatena.ne.jp/osyo-manga/20120802/1343888407">unite-fold を github に上げた &#8211; C++でゲームプログラミング</a></li>
+</ul>
+
+
+<p>おしょーさんwareなので作者本人の説明も期待できます。個人的にはunite-foldは特にvimrc編集するときに便利</p>
+
+<p>どれもいい感じのプラグインなのでみなさん参加しましょう。</p>
+
+<p>unite-sourceになる場合unite予習事案が発生するので予習によさそうなリンクとか別にまとめる予定(あくまでも予定)</p>
+
+<h2>今後についてとか</h2>
+
+<blockquote><p>[今後の課題]</p>
+
+<ul>
+<li>会ごとに具体的な目的を決めたい</li>
+<li>読んでみたいプラグインをまとめる</li>
+<li>まとめサイトほしい</li>
+<li>23時から vimrc読書会があるので延長するのが厳しい</li>
+</ul>
+
+
+<p>&#8211; <cite><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></cite></p></blockquote>
+
+<h3>目的について</h3>
+
+<ol>
+<li>Vim script 力を身につけたい、高めたい</li>
+<li>プラグイン構成を理解する、 プラグインを作ってみたい</li>
+<li>プラグインのある部分の実装を読んでみたい(そして取り込みたいor作りたい)</li>
+<li>unite-source作りたい、vim-textobj-hogeなどなど作りたい</li>
+<li>作ったから添削してもらいたい</li>
+<li>便利だけどちょっと実装が&#8230;というプラグインを読んで怒涛のプルリクを行いたい</li>
+<li>単純におもしろそうだからみんなでわいわい読もう<a href="https://github.com/google/maktaba">google/mactaba</a>とか(?)</li>
+<li>etc&#8230;</li>
+</ol>
+
+
+<p>Vim scriptに限らずプログラミング力も高めたいとかもあるかもしれない。気軽にみんなでわいわいコードをオンラインで読めるというのはおもしろいし、vimrc読書会などそういうことができるVimのコミュニティー力はすごいなーと見ていて思う。</p>
+
+<p>なんにせよ、おしょーさんが言うように漫然と読まずに目的を決めて読むというのは大事だし得るものもその分大きくなるので決めていきたいですね。</p>
+
+<p>3.などは目的が絞られる分、参加者層にささるかが未知数だけど、こういうプラグイン作りたくて似たような部分があるプラグインを参照する事案は実際にあるのでおもしろそう。</p>
+
+<p>例えばずっと2の目的とかだと続かないので、やっぱり回ごとに決めるという流れをもっとサクサクできるようになるとよさそう。次回の例で言えば、clever-fなら「Vimのカーソル移動を拡張するプラグインを作りたい」(3に近い)、unite-sourceならそのまま「unite-sourceの構成を理解して作ってみたい」(2)みたいな目的をもってそれを参加者が共有できていると実りのある読書会ができるんじゃないかなーと思う。</p>
+
+<h3>まとめさいととか</h3>
+
+<p>vimrc読書会みたいにまとめページと、リクエストできるページあったら便利そうなのでGithub Pagesとかで(?)適当に作ろうと思って何もせず3日くらい経ってるので次回始まるまでに適当に作りたい。</p>
+
+<p>時間とかvimrc読書会の関係上もっとゆっくり読みたかったり、予想外に盛り上がっても続けれないとかあって難しい。日曜日だと次の日が月よう&#8230;ｳｯ</p>
+
+<p>いろいろ懸念事項はありますが、わいわい読めておもしろかったので興味出てきた人は1/11日に<a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>を覗いて見るときっといい感じです。</p>
+
+<p>あと今回のプラグイン構成を理解しよーという目的だったので<a href="https://github.com/haya14busa/vim-helloworld">haya14busa/vim-helloworld</a>という本当にhello worldするだけのプラグイン作って復習しました。本当は予習として作るつもりだった。読むと良さそうなhelp書いたりgitのコミットログを追っていけば勉強になるようにと意識したので、本当にこれから作るってひとは見るといいかもしれないけど、やっぱりそうでもなかったりします。ﾊｲ</p>
+
+<p>こーゆーの作りたいなーというのはあったりなかったりするので、やっぱり作りたいものを作っていきたい</p>
+
+<p>そんな時に便利なVimプラグイン読書会。次回は来年の1/11(土)です。よろしくおねがいします。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vim-plugin-01/">Vimプラグイン読書会やりましたー</a>
+      <time datetime="2013-12-18T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>18</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1214,846 +1538,6 @@ let g:EasyMotion_use_migemo = 1</p>
       <time datetime="2013-11-19T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>19</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/mathematical-girls-fermas-last-theorem-memo/">数学ガールフェルマーの最終定理読んだメモ</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-14T00:00:00+09:00" pubdate data-updated="true">November 14, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.hyuki.com/girl/note.html">Web連載『数学ガールの秘密ノート』</a></p>
-
-<h2>プロローグ</h2>
-
-<blockquote><p>「整数は神の作ったものだが、他は人間の作ったものである」(Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist Menschenwerk.)</p>
-
-<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/レオポルト・クロネッカー">レオポルト・クロネッカー &#8211; Wikipedia</a></cite></p></blockquote>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Leopold_Kronecker">Leopold Kronecker &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Diophantus">Diophantus &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%AC%E3%82%AF%E3%82%B5%E3%83%B3%E3%83%89%E3%83%AA%E3%82%A2%E3%81%AE%E3%83%87%E3%82%A3%E3%82%AA%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%82%B9">アレクサンドリアのディオファントス &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Pythagoras">Pythagoras &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9">ピタゴラス &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Pierre_de_Fermat">Pierre de Fermat &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%A8%E3%83%BC%E3%83%AB%E3%83%BB%E3%83%89%E3%83%BB%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC">ピエール・ド・フェルマー &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>無限の宇宙を手に乗せて</h2>
-
-<h3>時計の巡回</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Number_theory">Number theory &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E8%AB%96">数論 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://aozoragakuen.sakura.ne.jp/suuron/suuron.html">数論初歩</a>
-
-<ul>
-<li>PDFでまとまっている</li>
-</ul>
-</li>
-<li>&lt;&lt;特殊から一般へ>></li>
-</ul>
-
-
-<blockquote><p>「ではみなさんは、そういうふうに川だと云われたり、乳の流れたあとだと云われたりしていたこのぼんやりと白いものがほんとうは何かご承知ですか。」</p>
-
-<p>&#8211; <cite><a href="http://www.aozora.gr.jp/cards/000081/files/456_15050.html">宮沢賢治 銀河鉄道の夜</a></cite></p></blockquote>
-
-<h2>ピタゴラスの定理</h2>
-
-<p><img src="http://livedoor.4.blogimg.jp/ayacnews/imgs/9/2/92af2ab0.gif" alt="pytagorean_proof_by_gif" /></p>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean theorem &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%83%94%E3%82%BF%E3%82%B4%E3%83%A9%E3%82%B9%E3%81%AE%E5%AE%9A%E7%90%86">ピタゴラスの定理 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li>Card Tetra: 原始ピタゴラス数は無数に存在するか</li>
-<li>Card Milka: 原点中心の単位円周上に、有理点は無数に存在するか
-
-<ul>
-<li>e.g. (1,0),(0,1),(-1,0),(0,01)</li>
-</ul>
-</li>
-<li>&lt;&lt;例示は理解の試金石>></li>
-<li>&lt;&lt;整数の構造は、素因数が示す>></li>
-<li>&lt;&lt;有理数の構造は、整数の比が示す>></li>
-</ul>
-
-
-<h3>Card: Tetra</h3>
-
-<ol>
-<li>&lt;&lt;例示は理解の試金石>>
-
-<ul>
-<li>具体的に探してみる</li>
-</ul>
-</li>
-<li>偶奇を調べる(パリティチェック)
-
-<ol>
-<li>a,bが偶数の原始ピタゴラス数は存在するか</li>
-<li>a,bが奇数は？</li>
-<li>c<sup>2</sup>は4の倍数</li>
-<li>背理法</li>
-</ol>
-</li>
-<li>&lt;&lt;和の形>>から&lt;&lt;積の形>>へ
-
-<ol>
-<li> &lt;&lt;整数の構造は、素因数が示す>></li>
-<li>b<sup>2</sup> = (c-a)(c+a)とa,b,cの偶奇を組み合わせる</li>
-</ol>
-</li>
-<li>互いに素
-
-<ol>
-<li>&lt;&lt;わかりきっていることでも、きちんとまとめるのがいいんだよ>></li>
-<li>a,c,b、A,B,Cについて互いに素であるか？</li>
-<li>aを奇数として</li>
-<li>2A = c &#8211; a</li>
-<li>2B = b</li>
-<li>2C = c + a</li>
-<li>Pattern: 互いに素の証明は、背理法で同じ倍数になるという矛盾を導く</li>
-</ol>
-</li>
-<li>素因数分解
-
-<ul>
-<li>素因数分解の一意性 -> A,Cは平方数</li>
-</ul>
-</li>
-<li><p>原子ピタゴラス数の一般形</p>
-
-<ul>
-<li>無数にある素数から無数の原子ピタゴラス数を作り上げる</li>
-</ul>
-</li>
-<li><p>&lt;&lt;偶奇を調べる>></p></li>
-<li>&lt;&lt;整数の構造は、素因数が示す>></li>
-<li>&lt;&lt;積の形>></li>
-<li>&lt;&lt;互いに素>></li>
-</ol>
-
-
-<h3>Card: Milka</h3>
-
-<ol>
-<li>&lt;&lt;有理点が無数にある>>という命題は、方程式<code>x^2 + y^2 = 1</code>が&lt;&lt;無数の有理数解を持つ>>という命題と同値</li>
-<li>P(-1,0)を通り、傾きがtの直線<code>l: y = tx + t</code>と単位円<code>x^2+y^2=1</code>のもう一つの交点Qをtで表す</li>
-<li><strong>点Tがy軸上の有理点ならば、点Qも有理点になる</strong></li>
-</ol>
-
-
-<h4>原始ピタゴラス数の問題との関連</h4>
-
-<p>ピタゴラスの定理を変形</p>
-
-<pre><code>a^2 + b^2 = c^2
-(a/c)^2 + (b/c)^2 = 1 -&gt; 単位円
-</code></pre>
-
-<p>&lt;&lt;有理数の構造は、整数の比が示す>></p>
-
-<p><strong>&lt;&lt;原始ピタゴラス数が無数にある>>と&lt;&lt;単位円周上に有理点が無数にある>>は同値</strong></p>
-
-<h3>Link</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/tt4cs/20111230/1325218297">原始ピタゴラス数について少し勉強してみるなど &#8211; 自明でない日記</a>   &#8211; 流れが書いてある</li>
-<li><a href="http://www.bonten-yutori.net/mathgirls_F/">学習ノート・数学ガール・フェルマーの最終定理</a>   &#8211; 補足もある&lt;&lt;単位円周上に有理点が無数にある>>ならば&lt;&lt;原始ピタゴラス数が無数にある>></li>
-</ul>
-
-
-<h2>互いに素</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Coprime_integers">Coprime integers &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li>relatively prime</li>
-</ul>
-</li>
-<li><a href="http://ja.wikipedia.org/wiki/%E4%BA%92%E3%81%84%E3%81%AB%E7%B4%A0">互いに素 &#8211; Wikipedia</a></li>
-<li><a href="http://www.hyuki.com/dig/relprime.html">「互いに素」という概念</a></li>
-<li><a href="http://sigma2011auemath.web.fc2.com/pdf/03kyo1.pdf">互いに素</a>[PDF]</li>
-</ul>
-
-
-<p>自然数a,bの最大公約数をM、最小公倍数をLで表すと、このとき</p>
-
-<pre><code>a \* b = M \* L
-</code></pre>
-
-<p>が成り立つ</p>
-
-<ul>
-<li>a &#42; b : &lt;&lt;aの素因数すべて>>と&lt;&lt;\bの素因数すべて>></li>
-<li>M &#42; L :   &#8211; M : &lt;&lt;aとbでだぶっている素因数すべて>>   &#8211; L : &lt;&lt;aとbでだぶりを除いた素因数すべて>></li>
-</ul>
-
-
-<h3>素数指数表現</h3>
-
-<pre><code>n = 2^n_2 \* 3^n_3 \* 5^n_5 ....
-  = &lt;n_2, n_3, n_5, ....&gt;
-</code></pre>
-
-<ul>
-<li>無限次元のベクトルとみなして考えることができる
-
-<ul>
-<li>互いに素のとき、ベクトルが直交する</li>
-</ul>
-</li>
-<li>mとnが互いに素のとき m⊥nと表す</li>
-</ul>
-
-
-<h2>背理法</h2>
-
-<ul>
-<li>問題を読む&lt;&lt;深さ>></li>
-<li><a href="http://en.wikipedia.org/wiki/Propositional_calculus">Propositional calculus &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%91%BD%E9%A1%8C">命題 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Theorem#Terminology">Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-
-
-<dl>
-<dt>矛盾</dt>
-<dd>  Pを命題とする。 矛盾とは、&lt;&lt;\Pである>>と&lt;&lt;\Pでない>>の両方が成り立つこと</dd>
-</dl>
-
-<p>√2が有理数でないことを、背理法以外に素因数の個数のパリティで証明できる</p>
-
-<p>&lt;&lt;素因数分解の一意性により、素因数の個数は、素因数ごとに両辺で一致する>></p>
-
-<h2>砕ける素数</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Imaginary_number">Imaginary number &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E8%99%9A%E6%95%B0">虚数 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li>虚数iを不自然に感じるのは負数を不自然に感じるのと変わらない
-
-<ul>
-<li><code>x - 1 = 0</code>をx ≥0の世界で考える</li>
-</ul>
-</li>
-<li><strong>方程式の解として&lt;&lt;定義>>した。満たすべき&lt;&lt;公理>>を方程式の形で示した</strong></li>
-</ul>
-
-
-<h3>1次元から2次元への飛躍</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Complex_plane">Complex plane &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E8%A4%87%E7%B4%A0%E5%B9%B3%E9%9D%A2">複素平面 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Polar_coordinate_system">Polar coordinate system &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E6%A5%B5%E5%BA%A7%E6%A8%99">極座標系 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>&lt;&lt;二乗して-1になる数>>を幾何の目で見るなら、<br/>
-<strong>二回行うと-1になる拡大・回転は何か?</strong></p>
-
-<p><code>(-1) * (-1) = 1</code>は-1の偏角180度を二倍することに相当する -> 360度の回転</p>
-
-<p>回れ右を二回行えば元の向きに戻る</p>
-
-<p>代数 <-> 幾何 複素数全体の集合 <-> 複素平面 複素数<code>a+bi</code> <-> 複素平面上の点(a,b) 複素数の集合 <-> 複素平面上の図形 複素数の数 <-> 平行四辺形の対角線 複素数の積 <-> 絶対値の積、偏角の和(拡大・回転)</p>
-
-<h3>格子点</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Pigeonhole_principle">Pigeonhole principle &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E9%B3%A9%E3%81%AE%E5%B7%A3%E5%8E%9F%E7%90%86">鳩の巣原理 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<dl>
-<dt><strong>鳩の巣原理</strong></dt>
-<dd>  n個の鳩ノ巣にn+1羽の鳩が入ったら、<br/>
-  少なくとも1個の巣には、2羽の鳩がいる。<br/>
-  ただし、nは自然数とする。</dd>
-</dl>
-
-<h3>砕ける素数</h3>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%8D%98%E6%95%B0">単数 &#8211; Wikipedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Gaussian_integer">Gaussian integer &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AC%E3%82%A6%E3%82%B9%E6%95%B4%E6%95%B0">ガウス整数 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><p>a + biを整数の一種と考えると、素因数分解の一意性が砕ける</p>
-
-<p>整数Ζ&mdash;-ゼロ        (0)
-       |&ndash;単数        (±1)
-       |&ndash;合成数      (±4,±6,±8,&hellip;)
-       <code>--素数----&lt;&lt;砕ける素数&gt;&gt;  Ζ[i]で積に分解可能
-              </code>-&lt;&lt;砕けない素数>> Ζ[i]で積に分解不可能</p></li>
-</ul>
-
-
-<p>砕ける素数を4で割った余りは3にならない。</p>
-
-<pre><code>p = (a + bi)(a - bi)
-</code></pre>
-
-<p>pを奇数の素数にすると、</p>
-
-<pre><code>p = (a + bi)(a - bi) &lt;-&gt; pを4で割ると余りは1
-</code></pre>
-
-<h2>アーベル郡の涙</h2>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7%E3%81%AE%E8%A1%A8">数学記号の表 &#8211; Wikipedia</a></li>
-</ul>
-
-
-<blockquote><p><td rowspan="2">
-  <a href="/wiki/%E7%B4%A0%E6%95%B0" title="素数" class="broken_link">素数</a> (Prime number)の全体、<a href="/wiki/%E5%B0%84%E5%BD%B1%E7%A9%BA%E9%96%93" title="射影空間" class="broken_link">射影空間</a>など
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E8%87%AA%E7%84%B6%E6%95%B0" title="自然数" class="broken_link">自然数</a> (Natural number)の全体
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E6%95%B4%E6%95%B0" title="整数" class="broken_link">整数</a> (独: Zahlen)の全体
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E6%9C%89%E7%90%86%E6%95%B0" title="有理数" class="broken_link">有理数</a> (Quotient)の全体
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E5%AE%9F%E6%95%B0" title="実数" class="broken_link">実数</a> (Real number)の全体
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E8%A4%87%E7%B4%A0%E6%95%B0" title="複素数" class="broken_link">複素数</a> (Complex number)の全体
-</td></p>
-
-<p><td rowspan="2">
-  <a href="/wiki/%E5%9B%9B%E5%85%83%E6%95%B0" title="四元数" class="broken_link">四元数</a> (Hamilton number)の全体
-</td></p>
-
-<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E8%A8%98%E5%8F%B7#.E4.BB.A3.E6.95.B0.E5.AD.A6.E3.81.AE.E8.A8.98.E5.8F.B7">数学記号の表 &#8211; Wikipedia</a></cite></p></blockquote>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Set_(mathematics)">Set (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%86%E5%90%88">集合 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Group_(mathematics)">Group (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E7%BE%A4_(%E6%95%B0%E5%AD%A6)">群 (数学) &#8211; Wikipedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Binary_operation">Binary operation &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Element_(mathematics)">Element (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h3>集合に対して演算を入れる</h3>
-
-<p>集合Gに対して、演算☆が定義されるとは、集合Gのどんな要素a,bに対しても、</p>
-
-<pre><code>a ☆ b ∈ G
-</code></pre>
-
-<p>が成り立つということ。これを&lt;&lt;演算☆に関して集合Gは<strong>閉じている</strong>>>と呼ぶ</p>
-
-<ul>
-<li>a ∈ G
-
-<ul>
-<li>aはGの要素である</li>
-<li>a is an element of G</li>
-<li>a belongs to G</li>
-<li>a is in G</li>
-</ul>
-</li>
-<li>G -> Group</li>
-</ul>
-
-
-<p>結合法則</p>
-
-<pre><code>(a ☆ b) ☆ c = a ☆ (b ☆ c)
-</code></pre>
-
-<dl>
-<dt>単位元の定義(単位元eの公理)</dt>
-<dd><p>  集合Gの任意の要素aに対して、以下の式を満たす集合Gの要素eを、演算☆における<strong>単位元</strong>と呼ぶ。</p>
-
-<p>  a ☆ e = e ☆ a = a</p></dd>
-<dt>&lt;&lt;公理が定義を生み出している>></dt>
-<dd>  最も厳密な言葉である数式を使い、公理という名の命題を使って定義する</dd>
-<dt>逆元の定義(逆元の公理)</dt>
-<dd>  aを集合Gの要素とし、eを単位元とする。aに対して、以下の式を満たすb∈Gを、演算☆に関するaの<strong>逆元</strong>と呼ぶ。 ~~~ a ☆ b = b ☆ a = e ~~~</dd>
-</dl>
-
-<h3>郡の定義(郡の公理)</h3>
-
-<p>以下の公理を満たす集合Gを<strong>郡</strong>と呼ぶ。</p>
-
-<ul>
-<li><strong>演算☆</strong>に関して閉じている</li>
-<li>任意の元に対して、<strong>結合法則</strong>が成り立つ。</li>
-<li><strong>単位元</strong>が存在する。</li>
-<li>任意の元に対して、その元に対する<strong>逆元</strong>が存在する。</li>
-</ul>
-
-
-<p><em>かくのごとき集合を<strong>郡</strong>と呼べ</em></p>
-
-<h3>&lt;&lt;例示は理解の試金石>></h3>
-
-<ul>
-<li>&lt;&lt;整数全体の集合Ζは、演算+に関して郡をなすか?>></li>
-<li>&lt;&lt;奇数全体の集合Ζは、演算+に関して郡をなすか?>></li>
-<li>&lt;&lt;偶数全体の集合Ζは、演算+に関して郡をなすか?>></li>
-<li>&lt;&lt;整数全体の集合Ζは、演算×に関して郡をなすか?>></li>
-</ul>
-
-
-<p>例</p>
-
-<ul>
-<li>最小の郡
-
-<ul>
-<li>{e}</li>
-</ul>
-</li>
-<li>要素が2個の群
-
-<ul>
-<li>{e,a}</li>
-</ul>
-</li>
-</ul>
-
-
-<p>演算表</p>
-
-<pre><code>|☆ | e a|
-|---+----|
-|e  | e a|
-|a  | a e|
-</code></pre>
-
-<ul>
-<li>&lt;&lt;同じ>>郡のことを&lt;&lt;同型>>な郡と呼ぶ</li>
-<li>&lt;&lt;要素が二つの郡は本質的に一つ>>
-
-<ul>
-<li>公理によって与えられる<em>制約が構造を生み出している</em></li>
-</ul>
-</li>
-</ul>
-
-
-<h3>アーベル群</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Abelian_group">Abelian group &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%BC%E3%83%99%E3%83%AB%E7%BE%A4">アーベル群 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li>任意の元について<strong>交換法則</strong>を満たす郡を<strong>アーベル郡</strong>という</li>
-</ul>
-
-
-<p>交換法則</p>
-
-<pre><code>a ☆ b = b ☆ a
-</code></pre>
-
-<p>&lt;&lt;無矛盾性は存在の礎>></p>
-
-<h2>ヘアスタイルを法として</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Division_(mathematics)">Division (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99">除法 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Modular_arithmetic">Modular arithmetic &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%90%88%E5%90%8C%E5%BC%8F">合同式 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li>法 -> modulus</li>
-<li>商 -> quotient</li>
-<li>剰余 -> residue</li>
-</ul>
-
-
-<dl>
-<dt>modの定義(整数)</dt>
-<dd><p>  a,b,q,rは整数で、b≠0とする</p>
-
-<p>  a mod b = r ⇔ a = bq + r (0 ≤r &lt; |b|)</p></dd>
-</dl>
-
-<p>合同(congruent modulo)</p>
-
-<pre><code>a ≡ b (mod m) ⇔ a mod m = b mod m ⇔ (a-b) mod m = 0
-</code></pre>
-
-<h3>郡・環・体</h3>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99%E9%A1%9E%E7%92%B0">剰余類環 &#8211; Wikipedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Ring_(mathematics)">Ring (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E7%92%B0_(%E6%95%B0%E5%AD%A6)">環 (数学) &#8211; Wikipedia</a></li>
-<li>郡では演算が1つだが、環では2種類の演算を入れる</li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Commutative_ring">Commutative ring &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%8F%AF%E6%8F%9B%E7%92%B0">可換環 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<dl>
-<dt>環の定義(環の公理)</dt>
-<dd>  以下の公理を満たす集合を<strong>環</strong>とよぶ</dd>
-</dl>
-
-<ul>
-<li>演算+(加法)に関して
-
-<ul>
-<li>閉じている</li>
-<li>単位元が存在する(0と呼ぶ)</li>
-<li>すべての要素について結合法則が成り立つ</li>
-<li>すべての要素について交換法則が成り立つ</li>
-<li>すべての要素について逆元が存在する</li>
-</ul>
-</li>
-<li>演算×(乗法)に関して
-
-<ul>
-<li>閉じている</li>
-<li>単位元が存在する(1と呼ぶ)</li>
-<li>すべての要素について結合法則が成り立つ</li>
-<li>すべての要素について交換法則が成り立つ</li>
-</ul>
-</li>
-<li>演算+と×に関して
-
-<ul>
-<li>すべての要素について分配法則が成り立つ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>厳密に言えば乗法の単位元が存在する可換環を述べている</p>
-
-<ul>
-<li>環と郡
-
-<ul>
-<li>環は、加法に関してアーベル群である。</li>
-<li>環は、乗法に関してアーベル郡とは限らない。</li>
-</ul>
-</li>
-</ul>
-
-
-<p>整数環と剰余環</p>
-
-<dl>
-<dt>体の定義(体の公理)</dt>
-<dd>  環の定義プラス、演算×に関して<strong>0以外のすべての要素について逆元が存在する</strong></dd>
-</dl>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Field_(mathematics)">Field (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E4%BD%93_(%E6%95%B0%E5%AD%A6)">体 (数学) &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p><strong>剰余環Ζ/mΖは、mが素数のとき体になる</strong></p>
-
-<p>pを素数とし、剰余環Ζ/mΖを体と見なすとき、それを<strong>有限体</strong>F_pと呼ぶ</p>
-
-<pre><code>F_p = Ζ/pΖ
-</code></pre>
-
-<p>合同を使って&lt;&lt;無限を折りたたむ>></p>
-
-<h2>無限降下法</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem">Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%AB%E3%83%9E%E3%83%BC%E3%81%AE%E6%9C%80%E7%B5%82%E5%AE%9A%E7%90%86">フェルマーの最終定理 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Andrew_Wiles">Andrew Wiles &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%89%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%BB%E3%83%AF%E3%82%A4%E3%83%AB%E3%82%BA">アンドリュー・ワイルズ &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>次の方程式は、n ≥3で自然数解を持たない。</p>
-
-<pre><code>x^n + y^n = z^n
-</code></pre>
-
-<p>私は驚くべき証明を見つけたが、<br/>
-それを書き記すには、この余白は狭すぎる。</p>
-
-<p>FLT -> <strong>F</strong>ermat&#8217;s <strong>L</strong>ast <strong>T</strong>heorem</p>
-
-<h3>Card: Tetra</h3>
-
-<p>三辺が自然数で面積が平方数である直角三角形は存在するか。</p>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Proof_by_infinite_descent">Proof by infinite descent &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E7%84%A1%E9%99%90%E9%99%8D%E4%B8%8B%E6%B3%95">無限降下法 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<dl>
-<dt>無限降下法</dt>
-<dd><ol>
-<li>  自然数に関する数式を作る。</li>
-<li>  その数式を操作して、<em>同じ形をした別の数式を作る</em>
-
-<ul>
-<li>  このとき、小さくなる自然数を含む</li>
-</ul>
-</li>
-<li>  同じ操作を繰り返すと自然数が無限に小さくなる -> 矛盾</li>
-</ol>
-</dd>
-</dl>
-
-<h3>Card: Milka</h3>
-
-<p>FLT(4)の証明</p>
-
-<p>Card: Tetraの解答を使って矛盾を示す</p>
-
-<h2>最も美しい数式</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Euler%27s_identity">Euler&#8217;s identity &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E7%AD%89%E5%BC%8F">オイラーの等式 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>Euler&#8217;s identity</p>
-
-<pre><code>e^iπ = -1
-</code></pre>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Euler%27s_formula">Euler&#8217;s formula &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E3%81%AE%E5%85%AC%E5%BC%8F">オイラーの公式 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>Euler&#8217;s formula</p>
-
-<pre><code>e^iθ = cosθ + isinθ
-</code></pre>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Closure_(mathematics)">Closure (mathematics) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E7%94%9F%E6%88%90_(%E6%95%B0%E5%AD%A6)">生成 (数学) &#8211; Wikipedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>最も美しい数式</h2>
-
-<p>&#8220;Is the term &#8216;well-defines&#8217; well defined?&#8221;</p>
-
-<ol>
-<li>指数を指数法則を満たすものと定義
-
-<ul>
-<li>自然数以外への拡張</li>
-</ul>
-</li>
-<li>e<sup>x</sup>を冪級数で表す</li>
-<li>テイラー展開</li>
-<li>テイラー展開の結果をe<sup>x</sup>と定義
-
-<ul>
-<li>複素数への拡張</li>
-</ul>
-</li>
-<li>e<sup>i</sup>θを&lt;&lt;大胆な代入>></li>
-<li>cosθとsinθのテイラー展開の結果と比較する</li>
-</ol>
-
-
-<h2>フェルマーの最終定理</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Ideal_(ring_theory)">Ideal (ring theory) &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%87%E3%82%A2%E3%83%AB">イデアル &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Ernst_Kummer">Ernst Kummer &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%AB%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BB%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC">エルンスト・クンマー &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Modularity_theorem">Modularity theorem &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E3%83%BB%E5%BF%97%E6%9D%91%E3%81%AE%E5%AE%9A%E7%90%86">谷山・志村の定理 &#8211; Wikipedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Goro_Shimura">Goro Shimura &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://ja.wikipedia.org/wiki/%E5%BF%97%E6%9D%91%E4%BA%94%E9%83%8E">志村五郎 &#8211; Wikipedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Yutaka_Taniyama">Yutaka Taniyama &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://ja.wikipedia.org/wiki/%E8%B0%B7%E5%B1%B1%E8%B1%8A">谷山豊 &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Gerhard_Frey">Gerhard Frey &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%AB%E3%83%8F%E3%83%AB%E3%83%88%E3%83%BB%E3%83%95%E3%83%A9%E3%82%A4">ゲルハルト・フライ &#8211; Wikipedia</a></li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Wiles'_proof_of_Fermat's_Last_Theorem">Wiles&#8217; proof of Fermat&#8217;s Last Theorem &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.27.6567&amp;rep=rep1&amp;type=pdf">The Way to the Proof of Fermat’s Last Theorem</a></li>
-<li><a href="http://math.stanford.edu/~lekheng/flt/wiles.pdf">Modular elliptic curves and Fermat&#8217;s last theorem &#8211; Stanford University</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/mathematical-girls-fermas-last-theorem-memo/">数学ガールフェルマーの最終定理読んだメモ</a>
-      <time datetime="2013-11-14T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
       
       </footer>
     </article>

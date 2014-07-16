@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="ブラウザで動くシンプルなエディタ「Darkroom.js」 作ったと言うと語弊があるけど、作ったと言えるくらいには根本から作った。   dataURL Schemeと、javascriptで作られていて、拡張性が高くてたのしい。   jQuery、PHP Markdown &hellip;">
+  <meta name="description" content="Googunosy GooGunosy javascript:(function(){var text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt(' &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,98 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/googunosy/">Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-06T00:00:00+09:00" pubdate data-updated="true">May 06, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Googunosy</h2>
+
+<dl>
+<dt><strong>GooGunosy</strong></dt>
+<dd><pre><code>  javascript:(function(){var text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt('GooGunosy')):text;if(text=='null'||text=='')return;gsearchURL="http://www.google.com/search?hl=en&amp;q="+text;gunosyURL="http://www.google.com/search?q="+text+" site:gunosy.com";window.open(gsearchURL,"_blank");window.open(gunosyURL,"_blank");})();
+</code></pre></dd>
+</dl>
+
+<p>上記コードをコピー&amp;ブックマークして実行。</p>
+
+<p>追記: <a href="javascript:(function(){var">GooGunosy</a> &lt;- ブックマークバーにドラック&amp;ドロップで登録できます。</p>
+
+<p>または下記URLをブックマークして、「?」以前を削除してください。</p>
+
+<p><a href="http://haya14busa.com/googunosy/?javascript:(function(){var%20text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt('GooGunosy')):text;if(text=='null'||text=='')return;gsearchURL=%22http://www.google.com/search?hl=en&amp;q=%22+text;gunosyURL=%22http://www.google.com/search?q=%22+text+%22%20site:gunosy.com%22;window.open(gsearchURL,%22_blank%22);window.open(gunosyURL,%22_blank%22);})();">GooGunosy</a></p>
+
+<p>Google検索(英語版)と同時に「キーワード site:gunosy.com」でも検索するブックマークレットです。同時に2つタブが開きます。検索キーワードは、何か選択した状態ならそのワード、何も選択していない状態ならpromptで検索ワードを打ち込んでください。</p>
+
+<p>普通のGoogle検索のほうは個人的に強制的に英語版で検索するようにしてるので嫌だったら変えてください(怠慢)。と言っても「hl=en&amp;」を消すだけでいけます。</p>
+
+<p>だいたいモバイル端末含め、どのブラウザでも動くはず[要出典]</p>
+
+<h2>雑感</h2>
+
+<p>Gunosy批判がぜんぜん的を得てなくてぐんにょりするし、僕はGunosyには期待してます。ということで勢いでGunosyの精度を高めるかもしれないブックマークレット作った。効果についてはまだ未検証だし、わざわざこんなことしなくてもよくなっていくのがGunosyさんのあるべき姿なはずなので、正直何がしたいんだかわからないブックマークレットに。ただsite:gunosy.comの検索結果から数記事眺めてタブを消すぐらいならそこまで苦ではないし、GoogleからGunosyフィルターを通った記事が厳選されてるので意外とおもしろい記事が見つかりやすいかも。もっとも、さすがにそれで調べ物が完結するとは思えないので普通のGoogle検索も同時にしちゃうぜっていうブックマークレットです。</p>
+
+<p>そこまでGunosyのヘビーユーザーではないけど、スマートフォンでGunosyからのメールみて、共有機能でPocketに送ってPCやiPadからあとから見るって習慣は最近ついてきた。はてぶとか見てるだけじゃ見つからないような記事も普通に来て嬉しい。ただできればキュレーションだけに頼らず自分で積極的に見つけてにいく姿勢も大事にしたいし、頼るにしても自分で探せる情報収集能力はあげておきたいなー。</p>
+
+<p>アルゴリズムに支配されないように<br/>
+-> <a href="http://www.ted.com/talks/lang/ja/eli_pariser_beware_online_filter_bubbles.html">イーライ・パリザー：危険なインターネット上の「フィルターに囲まれた世界」 | Video on TED.com</a></p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://gunosy.com">Gunosy</a></li>
+<li><a href="http://d.hatena.ne.jp/yamaz/20130310">TLを汚すことなくGunosyに自分好みの記事を紹介して貰う方法 &#8211; 最速配信研究会</a></li>
+<li><a href="http://qlay.jp/archives/11600">Gunosyをより一層自分好みにする為のリンク集を作ったよ | Qlay</a></li>
+<li><a href="http://www.ted.com/talks/lang/ja/eli_pariser_beware_online_filter_bubbles.html">イーライ・パリザー：危険なインターネット上の「フィルターに囲まれた世界」 | Video on TED.com</a></li>
+</ul>
+
+
+<p><a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fpasonarunyusu-gunosy-anataniattanyusuwo%252Fid590384791%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img width="100" class="alignleft" align="left" src="http://a456.phobos.apple.com/us/r1000/093/Purple2/v4/15/ce/0d/15ce0d6b-aaf2-a55b-9632-88014a3d3c23/mzl.vnmvrjkd.100x100-75.png" style="border-radius: 20px 20px 20px 20px;-moz-border-radius: 20px 20px 20px 20px;-webkit-border-radius: 20px 20px 20px 20px;box-shadow: 1px 4px 6px 1px #999999;-moz-box-shadow: 1px 4px 6px 1px #999999;-webkit-box-shadow: 1px 4px 6px 1px #999999;margin: -5px 15px 1px 5px;" /></a><strong> パーソナルニュース Gunosy 〜あなたにあったニュースを推薦するスマートなPersonal News Reader〜 1.2.4（無料）</strong><a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fpasonarunyusu-gunosy-anataniattanyusuwo%252Fid590384791%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link"><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/viewinitunes_jp.png" style="vertical-align:bottom;" width="90" alt="App" /></a><br/>
+カテゴリ: ニュース, 仕事効率化<br/>
+販売元: <a href="http://click.linksynergy.com/fs-bin/stat?id=Rfg6nizvNEs&offerid=94348&type=3&subid=0&tmpid=2192&RD_PARM1=https%253A%252F%252Fitunes.apple.com%252Fjp%252Fartist%252Fgunosy-inc.%252Fid590384794%253Fuo%253D4%2526partnerId%253D30" target="_blank" rel="nofollow" class="broken_link">Gunosy Inc. &#8211; Gunosy Inc.</a>（サイズ: 7.1 MB）<br/>
+全てのバージョンの評価: <img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" /><img src="http://s.mzstatic.com/htmlResources/E6C6/web-storefront/images/rating_star.png" alt="" />（259件の評価）<br/>
+<br style="clear: both;" /></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/googunosy/">Google検索と同時にGunosyの精度を高める「GooGunosy」ブックマークレット</a>
+      <time datetime="2013-05-06T00:00:00+09:00" pubdate><span class='month'>May</span> <span class='day'>06</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -835,81 +927,6 @@ Safariで走るエディタ DarkRoom。ブラウザ上で動いているので�
       
       - <a href="/markdownquote-amazonquote/">MarkdownQuote &#038; AmazonQuote</a>
       <time datetime="2013-03-27T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-03-24T00:00:00+09:00" pubdate data-updated="true">March 24, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>作りました。</h3>
-
-<p>ぐぐっても見つからなかったので。（需要ないだけ？）</p>
-
-<p>Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。</p>
-
-<dl>
-<dt>MarkdownURL->DraftPad</dt>
-<dd><pre><code>  javascript:location.href='draftpad:///insert?after='+encodeURIComponent('\n['+document.title+']('+location.href+')\n');
-</code></pre></dd>
-</dl>
-
-<p>Markdown記法の中でHTMLのリンクで書いても差し支えないですが、統一したかったのでちょっと既存のブックマークレットを編集しただけです。</p>
-
-<h3>Example</h3>
-
-<p>例えばこのページで実行すると下記のコードをDraftPadに吐き出します。</p>
-
-<pre><code>[MarkdownURL-&gt;DraftPad « haya14busa](http://haya14busa.com/markdownurl2draftpad/)
-</code></pre>
-
-<h3>Memo</h3>
-
-<dl>
-<dt><code>location.href</code></dt>
-<dd>  ページのURLを取得</dd>
-<dt><code>document.title</code></dt>
-<dd>  ページのタイトルを取得</dd>
-</dl>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a>
-      <time datetime="2013-03-24T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
       

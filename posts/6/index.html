@@ -9,8 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="数学ガール 『数学ガール』シリーズ
-Web版「数学ガール」 数学ガール (数学ガールシリーズ 1) 結城 浩 ソフトバンククリエイティブ 2007-06-27 ￥ 1,890 Amazon.co.jp で詳細を見る Notation Π(Product) 積(Product) &hellip;">
+  <meta name="description" content="Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ Vim-easymotionのマルチバイト文字対応でハマってた haya14busa/vim-easymotion Vim-easymotionの動作は基本的に正規表現でマッチする文字列を探して、その座標( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,108 @@ Web版「数学ガール」 数学ガール (数学ガールシリーズ 1) 結�
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-01T00:00:00+09:00" pubdate data-updated="true">November 01, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</h1>
+
+<h2>Vim-easymotionのマルチバイト文字対応でハマってた</h2>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></p>
+
+<p>Vim-easymotionの動作は基本的に正規表現でマッチする文字列を探して、その座標(cooridinate)としてline番号とcolumn番号をリストに追加し、それをあとからターゲット文字列に一括置換してHighlightさせるという手順を取ります。</p>
+
+<p>Multibyte文字を扱わないときはこれで一切問題ないのですが、日本語の文字列やTab文字など、column番号に使われるbyte数と、実際に表示される文字列の長さが違う場合にバグが起こります。</p>
+
+<h2>表示位置がずれる</h2>
+
+<p>設定にもよりますが、Tab文字列は4文字分表示させていますが、1byteです。これをターゲットである&#8221;f&#8221;や&#8221;j&#8221;といった1byteで置換してしまうと3byte分表示列がずれてしまいます。</p>
+
+<h3>解決法</h3>
+
+<p>表示がずれる問題は置換した時の文字列の差分の分だけスペースを足せばいいということになります。</p>
+
+<p><code>strdisplaywidth()</code>関数を使い文字列の長さを取り、<code>repeat(' ', target_char_len -1)</code>を置換する文字に足します</p>
+
+<h2>Byte数のズレによって置換、ハイライトができなくなる</h2>
+
+<p>日本語はもっと厄介で、表示される1文字の長さは2byte分でさらに実際のbyte数は3byteです。vimで一括置換するといっても、ターゲットにマッチする座標のリストをループしながら置換していくだけなので、行ごとに最初のmultibyte文字を置換した瞬間、その後のbyte数がずれてしまい(日本語の3byte -> 1byte + 日本語の長さ2byte分を埋め合わせるためのスペース1byte)で1byteずつずれてしまいます。</p>
+
+<p>これによって次の3byteの日本語文字列の2byte目がターゲットになってしまい、置換もできなければ、highlightも動かなくなってしまいます。</p>
+
+<h3>Example</h3>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果
+</code></pre>
+
+<p>このように座標が置換するごとにずれてしまい、うまく動かなくなります</p>
+
+<h3>解決</h3>
+
+<p>Loopごとに置換前と置換後の行全体の文字列のbyteの長さの差を記憶しておき、そのぶん指定するcolumnに足して置換していく</p>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果。
+残りの[5,9,13,17,21]はそれぞれ差分の1を引いて[4,8,12,16,20]になる
+</code></pre>
+
+<h2>結論</h2>
+
+<p>すごいわかりづらい感じになったし、わかりやすく書く努力すらできていないけど、何が言いたいかってvim-easymotionにmigemo機能を実装して日本語でもeasymotionするのなかなか捗りを感じる。</p>
+
+<p>ちょっと重いけどおすすめ。</p>
+
+<p>(もとから実装されてた単語移動などによってずれる問題も解決ってことなのでmigemoなしでも便利)</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a>
+      <time datetime="2013-11-01T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>01</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1163,101 +1264,6 @@ inoremap &lt;C-u&gt; &lt;C-g&gt;u&lt;C-u&gt;
       <footer>
       
       - <a href="/learn-statistical-regularity-and-memory/">統計的規則性の学習と記憶の関連性</a>
-      <time datetime="2013-10-09T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-10-09T00:00:00+09:00" pubdate data-updated="true">October 09, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>記憶の歪み・バイアス</h2>
-
-<ul>
-<li>記憶の七癖(Achacter, 1999)
-
-<ul>
-<li>環境による影響</li>
-<li>事後情報による誤誘導</li>
-<li>感情や精神状態による影響</li>
-<li>認知地図の歪み</li>
-<li>シーン記憶における境界拡張</li>
-</ul>
-</li>
-<li>短期記憶において視覚イメージが歪むという報告は少ない
-
-<ul>
-<li>統計的平均へのバイアス</li>
-<li>既有知識への回帰</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>身体の部位の位置にかんする短期記憶実験</h2>
-
-<ul>
-<li>どの程度記憶できるか？</li>
-<li>バイアスは？</li>
-</ul>
-
-
-<h2>考察</h2>
-
-<ul>
-<li>歪みの原因
-
-<ul>
-<li>原型回帰・プロトタイプ仮説</li>
-<li>身体スキーマ仮説</li>
-</ul>
-</li>
-<li>今後
-
-<ul>
-<li>身体スキーマ(長期記憶)との関連</li>
-</ul>
-</li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a>
       <time datetime="2013-10-09T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>

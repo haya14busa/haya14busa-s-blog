@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/vim/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-06-30T22:10:40+09:00</updated>
+  <updated>2014-07-17T01:21:10+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vimrc読書会Stat作った]]></title>
+    <link href="http://haya14busa.com/reading-vimrc-stat/"/>
+    <updated>2014-07-17T01:18:34+09:00</updated>
+    <id>http://haya14busa.com/reading-vimrc-stat</id>
+    <content type="html"><![CDATA[<h2>vimrc読書会Statを作りました!</h2>
+
+<h4><a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></h4>
+
+<p><img src="../images/post/2014-07-14-reading-vimrc-line-chart.png" alt="" /></p>
+
+<h4>参加者Stats: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">vimrc読書会 Stat - haya14busa</a></h4>
+
+<p><img src="../images/post/2014-07-14-reading-vimrc-stat-haya14busa.png" alt="" /></p>
+
+<h4>GitHub Contributionグラフのイミテーション</h4>
+
+<p><img src="../images/post/2014-07-14-reading-vimrc-streak.png" alt="" /></p>
+
+<h2>vimrc読書会2周年</h2>
+
+<p>先日の 2014/07/12(土) に開催された<a href="http://vim-jp.org/reading-vimrc/archive/106.html">第106回 vimrc読書会</a>ですが、
+なんと 2012/07/10(火) に開催された<a href="http://vim-jp.org/reading-vimrc/archive/001.html">第1回 vimrc読書会</a>から数えて
+<strong>2周年</strong> の回でした。 めでたい!</p>
+
+<p>と、まぁそういうめでたい節目(最近100回越えもあった)でもあり、vimrc読書会のアーカイブデータは現在データ化されていて利用しやすい形にもなっていたので、せっかくなので<a href="http://d3js.org/">d3.js</a>と<a href="https://angularjs.org/">AngularJS</a>で遊んでみました。</p>
+
+<p>両方全く触ったことがなかったのでいろいろと改善したいところがそれはもうたくさんありますが、今までのデータの視覚化、ついでにこれからvimrc読書会に参加するのがチョット楽しくなるようなGitHubの草(Contributions graph)のイミテーションも作ったりして楽しかったです。</p>
+
+<h2>実装したStatについて</h2>
+
+<p>大きく分けると3つです。</p>
+
+<h3>1. vimrc読書会参加者数推移グラフ</h3>
+
+<p><img src="../images/post/2014-07-14-reading-vimrc-line-chart.png" alt="" /></p>
+
+<ul>
+<li>使用ライブラリ: <a href="http://d3js.org/">D3.js - Data-Driven Documents</a></li>
+<li>参考: d3 sampleの <a href="http://bl.ocks.org/mbostock/3883245">Line Chart</a></li>
+<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
+</ul>
+
+
+<p>Statページの一番上にどーんと参加者数推移のグラフを載せるようにしました。
+ちょっと悪目立ちしてるレベルなくせにベースの<a href="http://bl.ocks.org/mbostock/3883245">Line Chart</a>にちょっと機能を加えただけという代物です。
+縦軸が参加人数、横軸が開催数になっていて、ドットにマウスオーバーすると情報が見えたり、クリックするとアーカイブページに飛べます。
+(実は横幅が全部表示するにはギリギリで、あまりスケールしないようになっているのでそのうち改善できたらしたいです)</p>
+
+<p>第2回が最高の27人参加だということが可視化されたり、最近の第105回で20人と結構な記録を出してるなーとわかったりしてちょっとおもしろい。
+みんなでﾜｲﾜｲ参加して最高記録を塗りかえれるとアツイですね&hellip;!</p>
+
+<p>d3に関しては、最初はbar chartでやろうと迷走していたりとグラフの選択とか結構難しかったけど、なかなかd3面白いなぁという印象を受けました。ただd3の知識はd3でしか生かせないようなつぶしが効かない印象も&hellip;? とはいっても,<code>svg</code>周りとかは汎用性高いし、視覚的に面白いものがつくれるのでd3やってみてよかったです。</p>
+
+<h3>2. vimrc読書会参加数ランキング</h3>
+
+<ul>
+<li>使用ライブラリ: <a href="https://angularjs.org/">AngularJS</a></li>
+<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
+</ul>
+
+
+<p><code>1</code>の<code>vimrc読書会参加者数推移グラフ</code>の下に、ずらずらーっとこれまでの全vimrc読書会参加者の参加者数ランキングを出しています。
+初期の頃からvimrc読書会を支えてきた/参加してきた上位陣が圧倒的で<a href="https://twitter.com/thinca">@thinca</a>さんに至っては脅威の皆勤賞で堂々の1位です。すごすぎる&hellip;</p>
+
+<p>現状、参加者名が<code>3</code>の<code>参加者ごとのStatページ</code>へのリンクになっているという関係上,参加者全員分を表示していますが、今後StatのTopページはサマリーだけだして、ランキングとか別のページに分けるという仕様に変更するかもしれません。</p>
+
+<p>Angularに関してはここでは単にデータをDOMに結び付けてるだけです。ベーシックに<code>ng-repeat</code>とか使ってみてデータバインディングの便利さを痛感しました。jQueryで頑張るとは何だったのか。</p>
+
+<h3>3. 参加者毎のStatページ</h3>
+
+<p><img src="../images/post/2014-07-14-reading-vimrc-stat-haya14busa.png" alt="" /></p>
+
+<ul>
+<li>使用ライブラリ: <a href="https://angularjs.org/">AngularJS</a> &amp; <a href="http://d3js.org/">D3.js - Data-Driven Documents</a></li>
+<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/">http://vim-jp.org/reading-vimrc/stat/#/u/</a>
+
+<ul>
+<li>sample: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>Angularのrouting機能を使って、参加者毎の統計ページを作ってみました。
+単純なこれまでの参加数などに加えて、GitHubの草をリスペクトした Current streak, Longest streakの情報や, streakのグラフをd3で作ってみました。例によって、それぞれのマスにマウスオーバーで情報表示とクリックでアーカイブページに飛ぶようになってます。</p>
+
+<p>あと、自分が参加してない過去の読書会とか振り返りたいという要望がきっとあるみたいな妄想から、参加/参加してない読書会ごとのアーカイブを表示させてます。</p>
+
+<p>グラフが見るからに手抜きでしょぼい感が拭いきれてないのが明白なんですが、機能的には割とよさ気な感じになったかなぁと思います。
+というか個人的にGitHubの草を生やしたり、何かしら記録して頑張った感を可視化できるのが好きなんです。<del>肝心の中身はあとからついてくると信じてる</del></p>
+
+<p>連続参加とか参加率が可視化されて、すこしでもvimrc読書会に参加したいなーという助けになればそれはとっても嬉しいですね。ぜひぜひ連続参加を目指してみてください。
+一回「hi」と発言するだけでも参加扱いになるのでROM勢の方もぜひ発言してみてください。かくいう僕も最初はROMばっかりしてましたが、やっぱり会話できるとベンリです。</p>
+
+<p>この辺も後々改善できればしていくと思います。一応右上の検索ボックスで他の参加者のページに飛べる(補完も効くはず)ようになってたりするのですが、もっといいUI絶対あるよね&hellip;</p>
+
+<h2>Jekyll on GitHub pages</h2>
+
+<p>Jekyll on GitHub pages と クライアントサイドMVなんちゃらで動的っぽいサイトがつくれて面白かったです。</p>
+
+<h3>Template</h3>
+
+<p>注意点としてテンプレートのシンボルがJekyllのLiquidと、AngularでかぶるのでAngular側でテンプレートのシンボルを変更しておく必要があります。
+今回は角括弧でこのように使えるようにしてみました。<code>[[ vimmutable ]]</code></p>
+
+<pre><code class="javascript">var app = angular.module('myapp', []);
+app.config([ '$interpolateProvider', function($interpolateProvider) {
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
+  }
+]);
+</code></pre>
+
+<ul>
+<li>参考: <a href="http://alwayscoding.ca/momentos/2013/10/09/angular-and-liquid-expressions-in-jekyll/">Angular and Liquid expressions in Jekyll - { always: &lsquo;coding&rsquo; }</a></li>
+</ul>
+
+
+<h3>yamlデータをjsonでホスト</h3>
+
+<p>Jekyllは、特にGitHub Pagesなどのプラグインがない状態ではjsonのデータは基本つかえず、yamlでいろいろデータを書いておいて、そのデータを簡単に記事などに埋め込めるようになっているのですが、その性質をハックして無理やりjson形式に出力することができます。</p>
+
+<p>やり方はjsonファイル作って、その先頭に空の Front-matter をおいて、あとはjsonをLiquid記法と交えてよしなに書いていくだけです。(自動化したい&hellip;)</p>
+
+<p>Jekyllに検索機能を持たすという文脈で紹介されることが多いっぽいですが、yamlでデータをガンガンおいてる場合はjsonホストすると使いやすくなっておすすめです。</p>
+
+<ul>
+<li>実例: <a href="https://github.com/vim-jp/reading-vimrc/blob/77c5570aefb2274ffcd846728f8d2deedd3bb4e6/json/archives.json">https://github.com/vim-jp/reading-vimrc/blob/77c5570aefb2274ffcd846728f8d2deedd3bb4e6/json/archives.json</a></li>
+<li>参考: <a href="https://alexpearce.me/2012/04/simple-jekyll-searching/">Simple Jekyll Searching - Alex Pearce</a></li>
+</ul>
+
+
+<h2>JSONデータ</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/json/archives.json">http://vim-jp.org/reading-vimrc/json/archives.json</a></li>
+<li><a href="http://vim-jp.org/reading-vimrc/json/next.json">http://vim-jp.org/reading-vimrc/json/next.json</a></li>
+</ul>
+
+
+<p>アーカイブと、次回読むvimrcについてのjsonが上記URLで公開されているので使いたい方は使ってもいいと思います(たぶん)。
+一応このJSONで<a href="https://github.com/haya14busa/unite-reading-vimrc">haya14busa/unite-reading-vimrc</a>とか作ってみたりしました。</p>
+
+<h2>まとめ</h2>
+
+<p>d3もangularも初めてで未熟な部分が多々あったものの、割といいレスポンスをもらえて嬉しかったです&hellip;! <a href="http://lingr.com/room/vim">Lingrのvim部屋</a>で <code>!vimrc-stat {username}</code> と打つと参加者統計ページへのリンクが返ってくるようになって便利。</p>
+
+<p>最後になりましたが、宣伝です!!!</p>
+
+<p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>は毎週土曜日23:00から<a href="http://lingr.com/room/vim">LingrのVim部屋</a>でオンラインでやっています。
+参加すると、vim力がめちゃめちゃ上がるのでぜひぜひ参加して参加記録を伸ばしたりしましょう!お待ちしておりますよっ</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Osaka.vim #1 に行ってきた]]></title>
@@ -758,65 +912,6 @@ omap g/ <Plug>(easymotion-tn)
 <p><strong>Boost your productivity with EasyMotion!</strong></p>
 
 <p><del>結局思考が追いつかないし、進捗力ある人 with メモ帳に負ける</del></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimプラグイン読書会第4回が3/15(土)21:00から開催されます]]></title>
-    <link href="http://haya14busa.com/reading-vimplugin-04-senden/"/>
-    <updated>2014-03-15T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vimplugin-04-senden</id>
-    <content type="html"><![CDATA[<h2>第4回Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/03/15 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/tpope/vim-pathogen">tpope/vim-pathogen</a></li>
-</ul>
-</li>
-<li>目的: プラグインマネージャの仕組みを理解する</li>
-</ul>
-
-
-<p>ぜひ気軽に参加してください。</p>
-
-<h2>pathogen読みます</h2>
-
-<p>かの有名なtpope先生のプラグインです。first commitが5years agoの(たぶん)一番古株のプラグインマネージャで歴史を感じます。(<a href="https://github.com/c9s/Vimana">c9s/Vimana</a>というのもあったらしいですがperlスクリプトで、かつどっちが先かはよくわかりません)</p>
-
-<p>326行1ファイルなので分量的には気軽に読めそうです。(密度は知らない)</p>
-
-<h3>読みどころ</h3>
-
-<p>Vim触り始めの頃からNeoBundleやVundle,pathogenといったプラグインマネージャが存在して、vimのランタイムパスとかほぼ気にせずプラグインを簡単にインストール、管理できた身としてはそのあたりで何やってるかというのは、しばらく全くわかっていませんでした。(そして今もそこまでわかってないかも&#8230;)</p>
-
-<p>と、いうことでruntimepath周りや、「プラグインマネージャって結局何をどうやってるのよ?」みたいなところが１つの読みどころかなぁと思います。</p>
-
-<p>あとは関連して、ファイルやディレクトリのpathの操作などは他の用途でも汎用的に使えそうです。</p>
-
-<h2>pathogenの命名</h2>
-
-<ul>
-<li><a href="http://eow.alc.co.jp/search?q=pathogen">pathogenの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=infect">infectの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=incubate">incubateの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-</ul>
-
-
-<p>pathogenってどういう意味かなぁと思って調べると、infectやincubateといった関数が存在することから、 そのまま「病原体」の&#8221;pathogen&#8221;と&#8221;path&#8221;を掛けたっぽいですね。[要出典]</p>
-
-<p>「<code>~/vim/bundle/</code>のディレクトリをvimのruntimepathという病原体(pathogen)でinfect(感染)させるぜ!」と言ったところでしょうか。</p>
-
-<p>結構カッコイイ命名っぽい。</p>
-
-<h2>ということで</h2>
-
-<p>明日、3/15(土)21:00から[LingrのVim部屋]((<a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>)で開催されるのでぜひワイワイ読みましょう！</p>
-
-<p>初見でも初心者でも歓迎ですよ!</p>
 ]]></content>
   </entry>
   

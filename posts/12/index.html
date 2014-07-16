@@ -9,8 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="動機 前に一回WordPressでサイトを作った時、もう一つ個人的なWebサイト欲しいなって考えてたこともあって勢いで作った。作ったといってもWPのレスポンシブテーマを改造しただけ。あとまだ完成してない。
-日記的に日々の出来事を書くっていうよりは、 &hellip;">
+  <meta name="description" content="作りました。 ぐぐっても見つからなかったので。（需要ないだけ？） Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。 MarkdownURL->DraftPad javascript:location.href='draftpad &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,81 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-03-24T00:00:00+09:00" pubdate data-updated="true">March 24, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>作りました。</h3>
+
+<p>ぐぐっても見つからなかったので。（需要ないだけ？）</p>
+
+<p>Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。</p>
+
+<dl>
+<dt>MarkdownURL->DraftPad</dt>
+<dd><pre><code>  javascript:location.href='draftpad:///insert?after='+encodeURIComponent('\n['+document.title+']('+location.href+')\n');
+</code></pre></dd>
+</dl>
+
+<p>Markdown記法の中でHTMLのリンクで書いても差し支えないですが、統一したかったのでちょっと既存のブックマークレットを編集しただけです。</p>
+
+<h3>Example</h3>
+
+<p>例えばこのページで実行すると下記のコードをDraftPadに吐き出します。</p>
+
+<pre><code>[MarkdownURL-&gt;DraftPad « haya14busa](http://haya14busa.com/markdownurl2draftpad/)
+</code></pre>
+
+<h3>Memo</h3>
+
+<dl>
+<dt><code>location.href</code></dt>
+<dd>  ページのURLを取得</dd>
+<dt><code>document.title</code></dt>
+<dd>  ページのタイトルを取得</dd>
+</dl>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a>
+      <time datetime="2013-03-24T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
