@@ -9,7 +9,8 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Web連載『数学ガールの秘密ノート』 プロローグ 「整数は神の作ったものだが、他は人間の作ったものである」(Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist Menschenwerk.) &#8211; レオポルト・ &hellip;">
+  <meta name="description" content="VimConf2013! VimConf2013
+VimConf 2013 &#8211; connpass VimConf2013に参加してきました！Vim! How to suggest new features for Vim (by @kaoriya さん) How to suggest &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,221 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vimconf2013/">VimConf2013に参加してきました!</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-19T00:00:00+09:00" pubdate data-updated="true">November 19, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>VimConf2013!</h2>
+
+<ul>
+<li><a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a></li>
+<li><a href="http://connpass.com/event/3978/">VimConf 2013 &#8211; connpass</a></li>
+</ul>
+
+
+<p>VimConf2013に参加してきました！Vim!</p>
+
+<h2>How to suggest new features for Vim (by <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+</ul>
+
+
+<p>Vim本体に取り込まれるためにはどうやってpatchを投げればいいかという話だったけど、Vimに留まらずいろんなところで応用が効く話だった。ただ便利じゃん、といった思いつきでなく、しっかりストーリーを組み立てるのが大事。</p>
+
+<ol>
+<li><strong>Strategy</strong>を組み立て</li>
+<li><strong>Problem</strong>を共有してきちんと理解してもらい</li>
+<li>シンプルな<strong>Solution</strong>を作って</li>
+<li>やっと<strong>Patch</strong>を書く</li>
+</ol>
+
+
+<p>最近vim-devの1日のabbrev.版のメールを読んだり(読まなかったり)してるのだけど、まさにvim-devのVimのパッチはProblemが何かから始まり、そしてそのSolutionについての文章が続き、その後にPatchの内容が続くという流れになっている。パッチを受け入れられるために、その流れに従うというある意味当たり前のことをちゃんと意識して、実践することが大事。</p>
+
+<p>Vimはテキストエディタ(再確認)なのでエディタに要らない機能は取り込まれないし、Vimの思想(<a href="http://vimdoc.sourceforge.net/htmldoc/develop.html#development">:h development</a>)を理解することが大事とあとの発表で<a href="https://twitter.com/k_takata">@k_takata</a>さんもおっしゃっていた。</p>
+
+<p>ところで、@k_takataさんはHow to <em>write</em> patchという話で、どちらかといえば具体的・実践的な話だとしたら、@koronさんの話は抽象的・理論的なHow to <em>suggest</em>という話だったので、同じPatchの話でもそれぞれ非常におもしろかった。</p>
+
+<h2>Evil is justice (by <a href="https://twitter.com/esehara">@esehara</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+</ul>
+
+
+<p>VimConf2013はインターナショナルなVimカンファレンスを志向するためにスライドは英語推奨だったりしたのだけれど、@eseharaさんのプレゼンは特にインターナショナルだった(エディタ間で)。Vim国とEmacs国の宗教戦争をEvilで終わらせるべく参上したという感じで、ネタを交えつつEmacsでVimのキーバインドを使えるEvilを紹介してくださって、おもしろい発表だった。</p>
+
+<p>Emacsで小指云々は親指Ctrlや特殊な配列のキーボードで解消できるらしい(by <a href="https://mobile.twitter.com/kiwanami">@kiwanami</a>さん)。VimでもCtrlは重要なキーなので親指Ctrlそのうちやってみたい。</p>
+
+<h2>How to use git from vim ＠vim conf2013(by <a href="https://twitter.com/c0hama">@cohama</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+</ul>
+
+
+<p>個人的にGitをVimから便利に使おうとして、何度も挫折して、結局tmuxの別ペインでGitという選択肢を使っていたので、発表前から気になる内容だった。</p>
+
+<p>VimデフォルトのGitの機能が思ったよりも高機能。<code>:DiffGitCache</code>, <code>K</code> etc&#8230;</p>
+
+<p>Pluginではvim-fugitive, vim-gitvを紹介されていて、特に<code>:Gdiff</code>で<code>git add -p</code>のようにインテラクティブにaddできたりするのvim-fugitive入れてるのに全然しらなくてちゃんとドキュメント含め読んどこうと思った。</p>
+
+<p>またAdvancedとしてgitのSHA-1 hashを使えば自由自在にBranchきったりいろんなことができて便利なのでキーマップとか定義して便利そうだった。</p>
+
+<h3>関係ないけど</h3>
+
+<p>git stashとかせず、ReadOnlyでいいから別ブランチやコミットのコードを参照したいってとき結構あるんだけれどどうすればいいかわからないので、誰か教えてください:-)</p>
+
+<p>あと紹介はされてなかったけど、最近git mergetoolをvimdiffで便利にするとなかなかにbenriだったので感動しました。 <a href="http://haya14busa.com/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う » haya14busa</a></p>
+
+<h2>Vital.ProcessManager (by <a href="https://twitter.com/ujm">@ujihisa</a> さん)</h2>
+
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+</ul>
+
+
+<p>vimprocのwrapperとなる(?)Vital.ProcessManagerの話。正直内容についてはVim力低すぎてよく理解できなかった&#8230;勉強しよう</p>
+
+<p>途中で全く別の発表を始めて間を開けたり、周りの人に質問(確認)投げかけながら会場全体を巻き込んでプレゼンしていてujihisaさんの発表力を感じて感極まった。</p>
+
+<h2>Do You Know about Vim Runtime Files?(by <a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h2>
+
+<ul>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+</ul>
+
+
+<p>Vimがデフォルトで提供されてる機能をいろいろ紹介して下さった。正直matchit以外知らなかったと言っても過言じゃないくらいなので、発見が多くておもしろかった。</p>
+
+<p>maze.vimや、hanoiの塔, Lifeゲームなど遊び心もあってそのへんのコード読んでみたい。</p>
+
+<h2>How to write patches for Vim(by <a href="https://twitter.com/k_takata">@k_takata</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+</ul>
+
+
+<p>自称Vim Beginner(年間採用パッチ数75)のパッチ職人、@k_takataさんの発表はその経験を活かしてどのようにVimのパッチを書くかということを実践的・具体的に話していてパッチ職人の世界を垣間見れる興味深い話だった。</p>
+
+<p>お気に入りのパッチとして最近マージされたspelllang-cjkやbreakindentについて紹介をしていた。お気に入りのパッチとか言ってみたい。</p>
+
+<h2>LT</h2>
+
+<h3>iVimConf(by <a href="https://twitter.com/dictav">@dictav</a> さん)</h3>
+
+<p>VimConfのiPhoneアプリ、iVimConfを作ったというお話。Lingrで話題になってから試作するまでめっちゃはやくてすごい。</p>
+
+<h3>duzzle.vim(by <a href="https://twitter.com/deris0126">@deris</a> さん)</h3>
+
+<ul>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim</a></li>
+</ul>
+
+
+<p>Portalに触発されて作ったというVimでできる迷路パズルのお話。Demoを見ていると面白そうだし、確かにカーソル移動の勉強になりそうでよさそうだった。</p>
+
+<h3>Emacsの紹介(by <a href="https://twitter.com/kiwanami">@kiwanami</a> さん)</h3>
+
+<p>タイトルがとってもストレート。Emacsの方とも仲良くしたい。</p>
+
+<h2>About of neocomplete(by <a href="https://twitter.com/ShougoMatsu">@Shougo</a> さん)</h2>
+
+<ul>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+
+<p>暗黒美夢王さんからのneocompleteについての話。初っ端からダークビムマスターが覚醒してネタを交えて会場を沸かせながらも、しっかりneocompleteを中心として補完やif_luaの効率などためになる話をしていて聞いてて飽きない発表だった。if_luaはかわいい。</p>
+
+<p>そして暗黒美夢王の真髄は懇親会で遺憾なく発揮され、4曲もVim曲を聞くことができて感極まりました。鋼のメンタルは伊達じゃなかった。</p>
+
+<h2>まとめとか</h2>
+
+<p>VimConf2013最高でした！次の機会があったらただ参加するだけでなく、ぜひ発表したりしたいと思った。</p>
+
+<p>主催のujihisaさん、VimConf2013運営の方々、Vim熱をひしひしと感じるカンファレンスでした。<br/>
+会場を提供して下さったCOOKPADの方々、無限コーヒーめっちゃ美味しくて3杯くらい飲みました。おいしい。<br/>
+発表者の方々、どの発表も面白くて勉強になりました。お疲れ様です！<br/>
+参加者の方々、Vimmerがこんなに集まってVimについてわいわいがやがやできて感極まりました。</p>
+
+<p>みなさん本当にお疲れ様でした &amp;&amp; ありがとうございました！</p>
+
+<p><strong>:wqa!</strong></p>
+
+<h2>他の人の感想記事</h2>
+
+<ul>
+<li><a href="http://kashewnuts.bitbucket.org/2013/11/16/vimconf2013.html?utm_content=buffer94494&amp;utm_source=buffer&amp;utm_medium=twitter&amp;utm_campaign=Buffer">#VimConf2013 に参加しました — kashew_nuts-blog</a></li>
+<li><a href="http://bugrammer.hateblo.jp/entry/2013/11/17/003744">Vim Conference 2013とオープンソースの精神 &#8211; Line 1: Error: Invalid Blog(&#8216;by Esehara&#8217; )</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/11/17/015347">VimConf 2013 で発表してきた &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://deris.hatenablog.jp/entry/2013/11/17/010343">VimConf2013に参加しました &#8211; derisの日記</a></li>
+<li><a href="http://daisuzu.hatenablog.com/entry/2013/11/17/192511">VimConf2013に行ってきた &#8211; daisuzu&#8217;s notes</a></li>
+<li><a href="http://vinarian.blogspot.jp/2013/11/vimconf2013-vimconf2013.html">あるVimmerのブログ: 暗黒美夢王が見た VimConf2013(ぼくの VimConf2013のかんそう)</a></li>
+<li><a href="http://ac-mopp.blogspot.jp/2013/11/vimconf2013.html?spref=tw">もぷろぐ: VimConf2013 に行ってきた話</a></li>
+</ul>
+
+
+<h2>発表資料</h2>
+
+<ul>
+<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
+<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
+<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
+<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
+<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
+<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
+<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim // Speaker Deck</a></li>
+<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vimconf2013/">VimConf2013に参加してきました!</a>
+      <time datetime="2013-11-19T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>19</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1256,165 +1472,6 @@ Also see |strlen()|, |strwidth()| and |strchars()|.</p>
       
       - <a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a>
       <time datetime="2013-11-07T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>07</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/git-mergetool-vimdiff/">Git Mergetoolでvimdiffを便利に使う</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-03T00:00:00+09:00" pubdate data-updated="true">November 03, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Mergeしんどい</h2>
-
-<p>今までConflict起きたら直接コンフリクトしたファイルを編集して完全手動で直してたんですが、mergetoolの存在とかvimdiffとかで出来そうと思って調べました。</p>
-
-<h2>Gitの設定</h2>
-
-<p><noscript>
-  <pre><code class="language- ">git config &ndash;global merge.tool vimdiff
-git config &ndash;global mergetool.prompt false
-git config &ndash;global mergetool.keepBackup false</code></pre>
-</noscript></p>
-
-<p><code>git config --global merge.conflictstyle diff3</code>も紹介されていたけど共通祖先を表示する必要性を感じなかったので無視した。</p>
-
-<p>promptをfalseにすることでmergetoolした時のpromptを省略して編集を始めるようにし、keepBackupをfalseにすることでmergetoolがデフォルトでは自動的に生成する&#42;.origファイルを生成しないように出来る。</p>
-
-<h2>Vimの設定</h2>
-
-<p><noscript>
-  <pre><code class="language-viml viml">&ldquo; Mapping for vimdiff
-&rdquo; for git mergetool
-if &amp;diff
-  map &lt;Leader&gt;1 :diffget LOCAL&lt;CR&gt;
-  map &lt;Leader&gt;2 :diffget BASE&lt;CR&gt;
-  map &lt;Leader&gt;3 :diffget REMOTE&lt;CR&gt;
-  map &lt;Leader&gt;u :&lt;C-u&gt;diffupdate&lt;CR&gt;
-  map u u:&lt;C-u&gt;diffupdate&lt;CR&gt;
-endif</p>
-
-<p></code></pre>
-</noscript> 左から1,2,3って覚え方でよさそう。Local,Base,Remoteの頭文字とかでもKeymapに余裕があるならよさそう。</p>
-
-<p>一度diffgetしたあとUndoするとdiffがうまく効かないのでuにdiffupdateを噛ませてる</p>
-
-<p><code>]c</code>,<code>[c</code>で次/前のConflict箇所にジャンプするので気に入らなければお好みでキーマップ書くとよさげかも。</p>
-
-<p>終了時には<code>:wqa</code> or <code>:qa</code>あたりを使うのでこれもキーマップしたほうがストレス減るかも知れない。</p>
-
-<h2>vimdiff or vimdiff2 or vimdiff3?</h2>
-
-<blockquote><p>$ git config &ndash;global mergetool.gvimdiff3.cmd &lsquo;gvim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;<br/>
-$ git config &ndash;global mergetool.vimdiff3.cmd &lsquo;vim -f -d -c &ldquo;wincmd J&rdquo; &ldquo;$MERGED&rdquo; &ldquo;$LOCAL&rdquo; &ldquo;$BASE&rdquo; &ldquo;$REMOTE&rdquo;&rsquo;</p>
-
-<p>&ndash; <cite><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net - Three-way merging for git using vim</a></cite></p></blockquote>
-
-<p><code>git config --global merge.tool [toolname]</code>で設定</p>
-
-<p>最初はvimdiff3の記事を見つけてやってみたんだけど、共通祖先がない場合にBASEがないだけでなく、diffの挙動がちょっとおかしい。<br/>
-おそらく存在しないBASEと比較してしまうのでファイル全体がdiff1つ分の対象となってしまっている。</p>
-
-<p><a href="https://github.com/git/git/blob/master/mergetools/vimdiff">git/mergetools/vimdiff at master · git/git</a></p>
-
-<p>そこで調べてみるとそもそもデフォルトで提供されているvimdiffが3-way mergingに対応してるっぽい。どっかのタイミングで受け入れられたのかな？</p>
-
-<p>そちらを試してみると、共通祖先(BASE)がある場合は3-way(3-column and MERGE)になって、共通祖先がない場合は2-way view(3-column LOCAL, MERGED, REMOTE)として正しく表示される。</p>
-
-<p>場合によってUIが変わってしまうのは良くないとはいえ、正しくdiffれることが優先なのでvimdiffを標準で使うことにした。</p>
-
-<pre><code>$ git config --global merge.tool vimdiff
-</code></pre>
-
-<p>MERGED、つまりコンフリクトを解消する実際に扱ってるファイル(バッファ)を2-wayの時でも下の段に持って行きたい場合は<code>&lt;C-w&gt;J</code>で出来る。(自動化するためにラッパー書きました↓)</p>
-
-<p>vimdiff2は強制的に2-wayにするっぽいのでとりあえず却下。</p>
-
-<h2>vimdiffのwrapper書こう</h2>
-
-<p>vimdiffのUIが3column(中心がMerged)だったり、3column(LOCAL, BASE, REMOTE) + Marged でBaseの有無で変わってしまうのはどうかと思うので対応したかった。</p>
-
-<p><a href="https://github.com/haya14busa/git-mergetool-vimdiff-wrapper">haya14busa/git-mergetool-vimdiff-wrapper</a></p>
-
-<p>シェルスクリプトよくわかんなくてつらい。 引数で渡されたBASEを<code>test -s</code>で調べて条件分岐させてます。</p>
-
-<p>必ず実際に作業するMERGEDペインが一番下に来るのでよさげ</p>
-
-<h2>git-merge-sandbox</h2>
-
-<p><a href="https://github.com/haya14busa/git-merge-sandbox">haya14busa/git-merge-sandbox</a></p>
-
-<p>調べている間に<a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a>を見つけて便利だった(&amp; 若干の不満があった)ので自分でも作ってみた。</p>
-
-<p>wrapperの(完全手動)テストもこれを使った</p>
-
-<h3>変更点</h3>
-
-<ol>
-<li>Merge後にコミットしてしまっても動く</li>
-<li>BASE(共通祖先のファイル?)の有無でdiffの種類が2つに分かれている</li>
-</ol>
-
-
-<h3>Git tag</h3>
-
-<p>ちょうどgitのtagを使えてないなーと思っていたのでtagを使う練習にもなってよかった。</p>
-
-<p><noscript>
-  <pre><code class="language- ">$ git tag -a [tagname] -m'Comment' (checusum)
-$ git push origin &ndash;tags
-</code></pre>
-</noscript></p>
-
-<h2>Link</h2>
-
-<ul>
-<li><a href="http://blog.eiel.info/blog/2013/06/26/git-mergetool/">Mac で使える git mergetool をいろいろ試してみる &#8211; 準備編 &#8211; そんなこと覚えてない</a></li>
-<li><a href="http://blog.eiel.info/blog/2013/07/03/git-mergetool-vimdiff2/">Mac で使える git mergetool をいろいろ試してみる &#8211; Vimdiff2 &#8211; そんなこと覚えてない</a></li>
-<li><a href="https://github.com/eiel/git-merge-sandbox">eiel/git-merge-sandbox</a></li>
-<li><a href="http://www.rosipov.com/blog/use-vimdiff-as-git-mergetool/">Rosipov » Use vimdiff as git mergetool</a></li>
-<li><a href="http://vim.wikia.com/wiki/A_better_Vimdiff_Git_mergetool">A better Vimdiff Git mergetool &#8211; Vim Tips Wiki</a></li>
-<li><a href="http://www.toofishes.net/blog/three-way-merging-git-using-vim/">toofishes.net &#8211; Three-way merging for git using vim</a></li>
-<li><a href="http://stackoverflow.com/questions/1251681/diff-tool-generates-unwanted-orig-files">git &#8211; Diff tool generates unwanted .orig files &#8211; Stack Overflow</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う</a>
-      <time datetime="2013-11-03T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>03</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       

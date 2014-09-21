@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Octopressに移行しました 常々、WordPressからOctopressに移行したいなぁーと考えていたんですが、とうとう実行に移して完全移行を実現しました。 理由としては WordPressの管理画面にいってどうこうするとか、面倒になってきたし、 &hellip;">
+  <meta name="description" content="この記事はVim Advent Calendar 2013 : ATNDの 113 日目の記事になります。 また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 Happy Vimming to me. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,574 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-03-23T21:34:54+09:00" pubdate data-updated="true">March 23, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 113 日目の記事になります。</p>
+
+<p>また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 <em>Happy Vimming to me</em>.</p>
+
+<h2>カーソル移動がエディット時間の80%を占める</h2>
+
+<p>Vimでエディットしている時間の中で、カーソル移動の割合は恐らく80%以上を占めてます[当社比][要出典]</p>
+
+<p>何をするにしても基本的にはカーソルを移動させ、それからVimの強力な<code>operator</code>や<code>textobject</code>を駆使してテキストをエディットしたり、<code>Insert</code>モードに入って文字を入力するでしょう。また<code>tag</code>ジャンプや、<code>*</code>,<code>#</code>などでカーソル下の単語を検索して移動するために、そこまでカーソルを移動させるという『カーソル移動のためのカーソル移動』をするケースだってあります。</p>
+
+<p>多くのVimmerは方向キーの代わりにホームポジションにある<code>hjkl</code>でカーソル移動をすることによって無駄な手の移動をなくし、スムーズなカーソルを実現することによって生産性を高めることからはじまります。</p>
+
+<p>しかし、すべての移動を<code>hjkl</code>で行うには数字キーのカウントで一気に行えるということを差し引いても非常に無駄が多く、<strong><code>hjkl</code>の先</strong>のモーションを覚える必要があります。</p>
+
+<ul>
+<li><code>w</code>,<code>b</code>といった<code>Word</code>単位での移動</li>
+<li><code>f</code>,<code>F</code>を使った行内の文字を<code>Find</code>する移動</li>
+<li><code>)</code>,<code>(</code>の文単位の移動や,<code>}</code>,<code>{</code>のパラグラフ単位の移動</li>
+<li><code>/</code>,<code>?</code>,<code>*</code>,<code>#</code>を使った検索による移動</li>
+<li><code>H</code>,<code>M</code>,<code>L</code>による画面内移動</li>
+<li><code>&lt;C-o&gt;</code>,<code>&lt;C-i&gt;</code>,<code>gi</code>,<code>g;</code>,<code>[(</code>, etc&hellip;といった特殊なJumpモーション</li>
+<li><code>vimgrep</code>や外部の<code>grep</code>機能を使った<code>grep</code>によるファイルを横断する移動</li>
+<li>etc&hellip; 詳しくは<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
+</ul>
+
+
+<p>また、単純な移動ではなく<code>operator</code>と組み合わせることによって真価を発揮する<code>textobject</code>もモーションの一種で、一部のJumpや上記したgrepによる移動などを除いた多くの<code>Motion</code>は<code>d</code>elete,<code>y</code>ank,<code>c</code>hangeといった<code>Operator</code>と組み合わせることができ、<code>Motion</code>は単純に移動だけを補助する仕組みにとどまらない、非常に重要な概念です。</p>
+
+<p>しかし、これらモーションの種類はあまりにも多くて適切に使い分けるのが難しかったり、これだけあってもかゆいところに手が届かなかったりします。</p>
+
+<p>そこで、そのモーション機能に一石を投じるプラグインの1つが<strong><a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a></strong>です</p>
+
+<h2>Vim Motions on Speed!</h2>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p><img src="../images/gif/easymotion_on_speed_ex.gif" alt="easymotion_on_speed_ex" /></p>
+
+<h3>How to Install</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'Lokaltog/vim-easymotion'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>EasyMotionは主に<em>スクリーン内の見えている範囲の移動</em>において<strong>最小</strong>のキーストロークで<strong>爆速</strong>にカーソルを移動させることを目指したカーソル移動系プラグインです。</p>
+
+<h3>TL;DR</h3>
+
+<p>主観で1つだけイチオシ機能を紹介するなら</p>
+
+<p><code>nmap s &lt;Plug&gt;(easymotion-s2)</code>によって<code>s{char}{char}{label}</code>のわずか<strong>4</strong>キーストロークで画面内のどこへでも<strong>素早く</strong>移動できる</p>
+
+<p>という機能です。詳しくは下記で説明しますが、個人的にはこれが現在一番はやく、スムーズに移動できる汎用的な手段だと思っています。</p>
+
+<h3>EasyMotionのついて</h3>
+
+<p>もともとは<a href="https://github.com/Lokaltog/">Lokaltog</a>氏が開発していたのですが、本人がEmacsに移行するなど長らく開発が止まっており、せっかくコンセプトがよいのに惜しいところがたくさんありました。</p>
+
+<p>そこで僕がforkして活動量のゴリ押しで改善,開発していたところ、コラボレータとして開発を引き継がないか？と提案され、現在は僕がメインで開発を行っています。</p>
+
+<p>実は<a href="http://haya14busa.com/vim-lazymotion-on-speed/">VAC2012の記事</a>でもEasyMotionについて紹介したのですが、その時点ではfork状態で、開発もまだまだ途中だったので、晴れて開発を引き継いで安定もしてきた今、もう一度前回の記事以降に追加された機能などをメインに紹介します。</p>
+
+<p>ということで、ある程度基本のコンセプトは知っているという前提でここから書いていきます。が、知らなくてもgifや<a href="https://github.com/Lokaltog/vim-easymotion">README</a>を軽くみればなんとなくわかっていただけるかなぁとも思います。EasyMotion,オススメですよ!</p>
+
+<h2>Now, EasyMotion is Completely Well-behaved</h2>
+
+<p>EasyMotionは前回紹介させていただいた時点では<code>&lt;Plug&gt;</code>マッピングすらちゃんと提供できていなかったり、いろいろな制約上好ましくない挙動を示していたりもしたのですが、<code>&lt;Plug&gt;</code>マッピングの提供やバグフィックスなどなどを行って、晴れて<em>お行儀の良い</em>プラグインになったと思います。</p>
+
+<p>確かに、後方互換性のためにデフォルトのキーバインドは設定されるという点はありますが、<code>let g:EasyMotion_do_mapping = 0</code>とすることで回避できます。</p>
+
+<p>『お行儀のいい』なんて当たり前のようなことですが、これはプラグインにとっては重要なことですし、<code>normal</code>,<code>visual</code>,<code>operator-pending</code> modeのすべてのモードで正しく動作し、<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>を追加でインストールすれば<code>.</code>によるドットリピートも有効にするなどと、地味に苦労はしました&hellip;</p>
+
+<h2>Now, EasyMotion is Completely Configurable</h2>
+
+<p><code>&lt;Plug&gt;</code>マッピングによって、デフォルトで紹介されている機能に加えて様々なモーションを提供しており、自分好みの機能を選択して快適に使うことができます。</p>
+
+<p>こう聞くと機能追加しすぎて遅くなってるんじゃ..みたいなことも考えられますが、ほとんどはコードを加えたというよりも引数などオプションで挙動を変えただけなので、機能追加を目指して肥大化しているということは(おそらく)ないです。逆にハイライト周りの速度改善を行ったりなどしたのでそのへんはここで明記しておきます。</p>
+
+<p><code>nmap</code>,<code>omap</code>,<code>xmap</code>などで柔軟にマップできるのは勿論、画面の背景を灰色にする<code>shade</code>オプションなど、たいていの機能は<code>Configurable</code>、柔軟に設定可能になりました。</p>
+
+<p>例えば新たに追加された機能として<code>Within Line Motion</code>という、ターゲットの対象をカーソル行だけに絞ったモーションがあります。</p>
+
+<p>一見対象を絞るなんてバカげているアイデアのようにも思えますが、EasyMotionはターゲットが1つしかない場合はラベルを選択するフェーズを飛ばして自動的にジャンプしてくれるので以下のような設定をすると便利になったりします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>fl<span class="p">)</span>
+</span><span class='line'>map <span class="k">t</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tl</span><span class="p">)</span>
+</span><span class='line'>map F <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>Fl<span class="p">)</span>
+</span><span class='line'>map T <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>Tl<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだと、例えば<code>df{char}</code>とした時にカーソル行に<code>{char}</code>が1つであればVimデフォルトの<code>f</code>の機能、2つ以上あればラベルで選択するという挙動が可能です。対象の<code>{char}</code>が1つしかないというケースは多いですし、逆に2つ以上あった時にはVimデフォルトの<code>f</code>だと数値を正しくカウントすることは面倒だし、1つ目だと思っていたのにその途中に存在していた同じ<code>{char}</code>を見落としていて、思っていた部分まで<code>delete</code>できないなどといったケースを回避することができます。</p>
+
+<p>url内のスラッシュ(<code>/</code>)やLispの<code>()</code>の連続、Vimのautoload関数の<code>#</code>などなどの1行に同じ文字がたくさんあるけど<code>f</code>や<code>t</code>で<code>d</code>や<code>c</code>したい!というケースで特に有用だったりします。</p>
+
+<p>勿論<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>があれば<code>.</code>リピートも可能です。</p>
+
+<p>また基本的にすべてのモーションは<code>bidirection</code>機能、つまり対象とする範囲を<code>forward</code>/<code>backward</code>の両方向にできるモーションも提供しているので</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>fl<span class="p">)</span>
+</span><span class='line'>map <span class="k">t</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">tl</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このようにマップして、<code>F</code>と<code>T</code>の挙動をまかなったり、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>omap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>wl<span class="p">)</span>
+</span><span class='line'>omap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">e</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">el</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このようにoperator-pending時だけ指定する、などなど好きなようにマッピングすることができるようになっています。</p>
+
+<h2>Now, EasyMotion is Completely Sophisticated</h2>
+
+<p><a href="http://haya14busa.com/vim-lazymotion-on-speed/">前回</a>から追加された特に便利な機能としては2つあります。</p>
+
+<h3>2-key Find Motion</h3>
+
+<p>1つ目は以前までの<code>&lt;Leader&gt;f{char}</code>(<code>&lt;Plug&gt;(easymotion-f)</code>)のfind motionを拡張した2つ<code>{char}</code>を指定できる機能です。</p>
+
+<p><a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>/<a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>がデフォルトの<code>f</code>で<code>{char}</code>を2つ指定できるという機能にインスパイアされて実装し、最近はこのモーションが以前まで常用していた<code>s{char}</code>(<code>nmap s &lt;Plug&gt;(easymotion-s)</code>)の<code>{char}</code>が1つのモーションよりも快適で、慣れれば最高のカーソル移動手段になると思います。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>xmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; surround.vimと被らないように</span>
+</span><span class='line'>omap z <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot;もしくはこんな感じがオススメ</span>
+</span><span class='line'>map <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>最小のキーストロークで、スムーズに、素早く移動できる</h3>
+
+<p>最初に述べましたがこれによって<code>s{char}{char}{label}</code>というわずか<strong>4</strong>キーストロークで画面内の(主にmiddleからlong range)の移動をたった<strong>1つ</strong>のキーバインド(<code>s</code>)でまかなうことができます。</p>
+
+<p>以前の<code>s{char}{label}</code>だと、多くのターゲットにマッチしすぎて<code>{label}</code>を2回押す必要があるケースが多々ありました。一度に押すべきラベルを2つ提示する機能を前回までに実装していてある程度楽になっていたとはいえ、<code>{char}</code>は最初から押すべきキーがわかっているのに対し、<code>{label}</code>は基本的に何が出るかわからず『ラベルを視認してから押す』という段階を踏む必要があって押しにくいのです。</p>
+
+<p>今回の2-key find motionであれば、まず押すべきラベルが2つになることはないですし、<code>{char}{char}</code>の部分は最初から押すべきキーがわかっているので素早く押すことが出来ます。</p>
+
+<p>また<code>{char}{char}</code>と2つの組み合わせで指定するので、最初から画面内にマッチするものが1つだけで、ラベルを押さずに一瞬で移動できるということも多々あってよいです。(例: 冒頭で提示したgif画像は<code>fi</code>にマッチするものが1つしかなく、一瞬でジャンプしています。)</p>
+
+<p>単に最小限のキーストロークという観点でいえば<code>&lt;Plug&gt;(easymotion-s)</code>で<code>s{char}{label}</code>という3キーストロークのほうが少ないのですが、平均すると<code>s{char}{char}{label}</code>とした方が全体としては快適に移動できるので、慣れるまで使ってみる価値はあると思います。</p>
+
+<h3>Minimumにこの機能だけつかいたい</h3>
+
+<p>この機能は特にイチオシなので</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;Lokaltog/vim-easymotion&#39;</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span> <span class="c">&quot;Disable default mappings</span>
+</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>というミニマムな構成で使うのもよいと思います。また実際にこのような使い方をしている方も見かけました。</p>
+
+<h3>補足とか。</h3>
+
+<h4><code>s{char}&lt;CR&gt;</code></h4>
+
+<p><code>s{char}&lt;CR&gt;</code>と<code>{char}</code>を1つの状態でエンターキーを押すとそのまま1つの<code>{char}</code>で検索されます。</p>
+
+<h4><code>s&lt;CR&gt;</code></h4>
+
+<p><code>s&lt;CR&gt;</code>と<code>{char}</code>を1つも押さずにエンターキーを押すと、前回の<code>s{char}{char}</code>というモーションをリピートすることができます。便利。</p>
+
+<h4>Jump to first match</h4>
+
+<p>1つ目のマッチに飛びたいというケースが多々あり、その都度ラベルのキーを押すのは面倒です。</p>
+
+<p>そこで下記の設定をするとラベル選択時に<code>&lt;Space&gt;</code>か<code>&lt;CR&gt;</code>を押すことによって最初のマッチに飛ぶことが出来ます。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Jump to first match with enter &amp; space</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_enter_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_space_jump_first <span class="p">=</span> <span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>初めから1つ目のマッチに飛びたいという場合に<code>s{char}{char}&lt;Space&gt;</code>と事前に押すべきキーがわかるので便利です。</p>
+
+<h3>n-key Find Motion</h3>
+
+<p>2つ目の大きな機能としては<code>{char}</code>としてn-keyの任意のキーを指定できるVimデフォルトの検索の拡張とも言えるべき機能です。</p>
+
+<p>設定例:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Search Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Extend search motions with vital-over command line interface</span>
+</span><span class='line'><span class="c">&quot; Incremental highlight of all the matches</span>
+</span><span class='line'><span class="c">&quot; Now, you don&#39;t need to repetitively press `n` or `N` with EasyMotion feature</span>
+</span><span class='line'><span class="c">&quot; `&lt;Tab&gt;` &amp; `&lt;S-Tab&gt;` to scroll up/down a page of next match</span>
+</span><span class='line'><span class="c">&quot; :h easymotion-command-line</span>
+</span><span class='line'>nmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>xmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; Support mappings feature</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap ; <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>C<span class="p">-</span><span class="k">j</span><span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>冒頭のgifで最後にお見せしたモーションです。Vimデフォルトの<code>incsearch</code>が最初のマッチだけインクリメンタルにハイライトするのに対して、こちらはすべてのマッチをインクリメンタルにハイライトします。また<code>&lt;CR&gt;</code>でEasyMotionの機能が起動されてラベルを選択できるので、<code>n</code>や<code>N</code>などを何回も押して移動するという必要がなくなります。</p>
+
+<p>またこのモーションは対象の範囲を画面内にとどまらずに画面外まで探してくれるので、入力している最中にスクリーン内に対象がなくなればVimデフォルトの<code>/</code>と同じように自動でスクロールしますし、飛びたい目的のマッチが画面内にない場合は<code>&lt;Tab&gt;</code>キーを押すことによってスクロールし、また単に次のページに飛んだのではなく、その先の検索した文字列に最初にマッチするページまで飛んでくれます。逆に前方向にスクロールする場合は<code>&lt;S-Tab&gt;</code>です。</p>
+
+<p>正直、文章だとわかりずらいし、gifを見てもまだわかりずらいかもしれませんが、バッファのテキストを検索して移動する場合、デフォルトの<code>/</code>だと何回も何回も<code>n</code>を押す必要があったりして面倒くさい!というつらみを解消することができます。</p>
+
+<p>このfind motionのコマンドラインインターフェースはおしょーさん作で<a href="https://github.com/osyo-manga/vim-over">osyo-manga/vim-over</a>で使われていたものをvitalのライブラリ,<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>として作ってもらい、これを使用させていただいています。おしょーさんいろいろ本当にありがとうございました。</p>
+
+<p>この<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>のコマンドラインのおかげで、Vimデフォルトの履歴やレジスタ挿入といった機能やマッピングといったほとんどの機能が擬似的に実装されており、さらにバッファのテキストの補完(EasyMotionではデフォルトで<code>&lt;C-l&gt;</code>)が使えたりと、デフォルトの<code>/</code>を置き換えれるレベルのものになっていると思います。</p>
+
+<p>この機能と似ている(というかもともと先に実装されていた)<a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a>では、<code>&lt;CR&gt;</code>でexcursionモード、<code>;</code>でラベルの表示となっています。</p>
+
+<p>実際に使ってみると<code>;</code>をターゲットとして選択できない代わりに<code>;</code>で起動するのがとても押しやすくて便利なのですが、これもマッピングをつかえばEasyMotionでも可能となります。個人的には<code>&lt;Space&gt;</code>が押しやすくていいし、<code>\s</code>などで代替できるので<code>EMCommandLineNoreMap &lt;Space&gt; &lt;CR&gt;</code>を設定しています。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>EMCommandLineNoreMap ; <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>EMCommandLineNoreMap <span class="p">&lt;</span>Space<span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実はこのコマンドラインインターフェースの機能は<code>&lt;Plug&gt;(easymotion-s2)</code>、<code>&lt;Plug&gt;(easymoton-s)</code>といった1文字や2文字のfind motionでも使うように変更しているので、2-key findmotionでのエンター代わりに<code>&lt;Space&gt;</code>をつかうといったことが可能だったりします。</p>
+
+<h2>その他の追加機能</h2>
+
+<h3>Repeat Motion</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;&lt;</span>Leader<span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>repeat<span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>C<span class="p">-</span><span class="k">n</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>next<span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>C<span class="p">-</span><span class="k">p</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">prev</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; map ; &lt;Plug&gt;(easymotion-next)</span>
+</span><span class='line'><span class="c">&quot; map , &lt;Plug&gt;(easymotion-prev)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>&lt;Plug&gt;(easymotion-repeat)</code>で前回のモーションをリピートしたり、<code>&lt;Plug&gt;(easymotion-next)</code>,<code>&lt;Plug&gt;(easymotion-prev)</code>で<code>;</code> &amp; <code>,</code>のように次/前のマッチに飛ぶことができます。</p>
+
+<p>最初にジャンプしたところと似たところにジャンプして<code>.</code>リピートしたいといったケースなどで、最初に移動して編集したあとは<code>&lt;Plug&gt;(easymotion-next)</code>で次のマッチに移動して、<code>.</code>リピート!といったことが出来ます。</p>
+
+<p>またハイライトがカーソル移動などで自動で消えるという実装なので、この挙動が好みならば下記のように設定すればよくある<code>:nohlsearch</code>コマンドでわざわざハイライトを消すという作業をしなくて済むようになります。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span> <span class="k">nohlsearch</span>
+</span><span class='line'>map  / <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap / <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span><span class='line'>map  <span class="k">n</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>next<span class="p">)</span>
+</span><span class='line'>map  <span class="k">N</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">prev</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; いらなくなる</span>
+</span><span class='line'><span class="c">&quot; nmap &lt;silent&gt; &lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Migemoの改善</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_use_migemo <span class="p">=</span> <span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>migemo機能をONにすると結構時間がかかってしまうという欠点があったのですが、画面内にマルチバイト文字がない場合に自動的にOFFにすることにより、普通にコードを書いているときはmigemoの遅さを気にせず使えるようになりました。</p>
+
+<p>また、<code>cmigemo</code>がインストールされていた場合は上述した2-key &amp; n-key find motionでもmigemo機能が有効になります。</p>
+
+<h3>その他いろいろ</h3>
+
+<p><strong>その他いろいろです!!!!!</strong></p>
+
+<h2>他のカーソル移動系プラグインとか素Vimとかと比較</h2>
+
+<ul>
+<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a></li>
+<li><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a> (<a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>)</li>
+<li><a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a></li>
+</ul>
+
+
+<h3>clever-f</h3>
+
+<p><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a></p>
+
+<p>行を跨いで移動するという機能を<code>f</code>につけ、<code>;</code>の代わりに<code>f</code>でリピートできるので中距離(数行程度)までならclever-fで移動するとスムーズかもしれない。しかし、どちらかといえば<code>;</code>&amp;<code>,</code>マッピングを節約できる、migemoやsmartcaseといった追加機能が美味しいという感じで<code>f</code>に足りない痒いところに手が届く機能を提供しているというところがいいところだと思っている。</p>
+
+<h3>vim-sneak</h3>
+
+<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a></p>
+
+<p><code>f</code>の機能を拡張して2つ<code>{char}</code>として指定できる。<a href="https://github.com/goldfeld/vim-seek">goldfeld/vim-seek</a>のほうが先に出ていたけどsneakのほうが活発に開発されていて(たぶん) 基本的には上位互換。</p>
+
+<p>sneakは最近clever-f機能を取り込んで、EasyMotionのラベルで意図していないものを押すのが思考の妨げになってどうしても慣れない or 嫌、でもモーション拡張プラグイン使ってみたいという人に一番いいと思います。<code>f</code>と違って対象として2つ<code>{char}</code>を指定すればマッチが格段に減るので<code>s{char}{char}ssss...</code>でスムーズかつラベルの考慮など何も考えずに移動できます。また2 charsだとハイライトしてくれるのも地味に嬉しい。</p>
+
+<p><code>s</code>,<code>S</code>を勝手に書き換えるという挙動以外のつらみがあった実装は最近直ってきているので良いと思います。</p>
+
+<p>ただ、同時に最近は<code>streak</code>モードというEasyMotionライクな機能を実装していて、これは主観とか差し引いてもEasyMotionの下位互換機能、劣化となっているのでこの機能はあまりオススメしません。</p>
+
+<h3>vim-smalls</h3>
+
+<p><a href="https://github.com/t9md/vim-smalls">t9md/vim-smalls</a></p>
+
+<p>もともと任意のキーストロークでEasyMotionライクに移動できるというのはvim-smallsが最初に実装していて、それにインスパイア &amp; 2-keyを実装するなら任意のキーもついでに実装できるという理由でEasyMotionもついでに<code>&lt;Plug&gt;(easymotion-sn)</code>として実装しました。</p>
+
+<p>vim-smallsの売りは良くも悪くもexcursion-modeだと思っているのですが、単に移動するにはToo much感がなきにしもあらず、なんとなく常用にいたらないという印象です。移動先を決めてから<code>delete</code>や<code>yank</code>を出来たりと正直全機能は把握していませんが便利に使える方法もあるとはおもいます。</p>
+
+<p>vim-smallsの劣化になるなぁーと考えて、EasyMotionの検索拡張機能にスクロールなどを追加したりしたのですが、逆に言えばexcursion-modeが画面外も対象に移動できるようになったりすると、もっと便利になる可能性あるなぁと思ったりもします。</p>
+
+<p>上記の3つともEasyMotionを拡張するにあたって多かれ少なかられ参考にさせてもらったりしたので、非常に感謝しています。</p>
+
+<p>しかし、自分のなかで一番なのはEasyMotion,つまりはそのラベルによってキーストロークを最小限にして移動するというコンセプトで、自分の知る限りのバグはfixしてお行儀もよくなり、各種便利機能などを実装した今、EasyMotionがベストだと自分で思ってます。</p>
+
+<p>自分で開発しておいて自分で言うのもなんですが、ベースはLokaltogさんが作ったというリスペクトも含めてやっぱり好きです。そもそもこう思っていなかったらCollaboratorとして開発を引き継ぐまでには至らないし、言うまでもないかもしれないですね。</p>
+
+<h3>素Vim</h3>
+
+<p>おそらく、EasyMotionを使うであろうというケースの移動では<code>set incsearch</code>,<code>set nohlsearch</code>で<code>/</code>,<code>*</code>などを駆使して検索して移動していると勝手に思ってます。&hellip;というか<code>HML</code>とか<code>tag</code>,<code>grep</code>だとか<code>)</code>,<code>]]</code>,<code>}</code>だとか<code>relativenumber</code>などなどそれぞれ使い分けてるというのが正解かな。</p>
+
+<p>検索に関しては<code>n</code>の連打をする必要がなくなったり、検索履歴を汚さないなどいろいろあるのですが、そもそもプラグイン使わないよ派だったり、やはりEasyMotionの長所でもあり欠点でもある<em>ラベル</em>を選択するという事前にわからない不確定の要素で思考を妨げられるのがいやだったりと、やっぱり素Vimだよねというのも良い(というか尊敬しています)ですよね。</p>
+
+<p>EasyMotionを使っていても、徐々にいろんな移動の仕方を覚えて、それらを使い分けていきたいですね。</p>
+
+<h2>まとめたvimrcの設定例</h2>
+
+<p>個人的には</p>
+
+<ul>
+<li><code>&lt;Plug&gt;(easymotion-s2)</code> or <code>&lt;Plug&gt;(easymotion-s)</code>のFind motion</li>
+<li><code>&lt;Plug&gt;(easymotion-j)</code> &amp; <code>&lt;Plug&gt;(easymotion-k)</code>の行移動を拡張するJK motion</li>
+<li>今回紹介した<code>&lt;Plug&gt;(easymotion-sn)</code>機能</li>
+</ul>
+
+
+<p>などが便利で、<code>Word</code>の拡張モーションなんかは使わない人もいるなぁーと思うので主に上記の3点を中心にした設定例を適当なコメントと共に載せておきます。勿論もっとミニマムに設定したり、もっと変態的に設定しまくってもいいんですよっ//</p>
+
+<p>またEasyMotionのデフォルトのprefixキーが<code>&lt;Leader&gt;&lt;Leader&gt;</code>で使いづらいのはLokaltogさんが他のプラグインと競合しないために配慮した過去があるというだけで、デフォルトで使っても絶対面倒です。ぜひインストールしただけで終わらずに、下記の設定を真似するか、少なくとも<code>map &lt;Leader&gt; &lt;Plug&gt;(easymotion-prefix)</code>するなどして使うと使いやすくなります。</p>
+
+<p>そもそも後方互換さえ無ければデフォルトのキーバインドは無くしたいというレベルなのでデフォルトに頼らず好きなものを必要なだけ使ってください。
+特殊バッファを使ったアプリケーション的なプラグイン以外は、デフォルトのキーバインドに頼らずに自分で設定するのがベターだと思います。</p>
+
+<p>vimrc</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; Vim motions on speed!</span>
+</span><span class='line'>NeoBundle <span class="s1">&#39;Lokaltog/vim-easymotion&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Boost your productivity with EasyMotion</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Disable default mappings</span>
+</span><span class='line'><span class="c">&quot; If you are true vimmer, you should explicitly map keys by yourself.</span>
+</span><span class='line'><span class="c">&quot; Do not rely on default bidings.</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Or map prefix key at least(Default: &lt;Leader&gt;&lt;Leader&gt;)</span>
+</span><span class='line'><span class="c">&quot; map &lt;Leader&gt; &lt;Plug&gt;(easymotion-prefix)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Find Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Jump to anywhere you want by just `4` or `3` key strokes without thinking!</span>
+</span><span class='line'><span class="c">&quot; `s{char}{char}{target}`</span>
+</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>xmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'>omap z <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>s2<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; Of course, you can map to any key you want such as `&lt;Space&gt;`</span>
+</span><span class='line'><span class="c">&quot; map &lt;Space&gt;(easymotion-s2)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Turn on case sensitive feature</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_smartcase <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Line Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; `JK` Motions: Extend line motions</span>
+</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">j</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">j</span><span class="p">)</span>
+</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">k</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">k</span><span class="p">)</span>
+</span><span class='line'><span class="c">&quot; keep cursor column with `JK` motions</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_startofline <span class="p">=</span> <span class="m">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; General Configuration</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_keys <span class="p">=</span> <span class="s1">&#39;;HKLYUIOPNM,QWERTASDGZXCVBJF&#39;</span>
+</span><span class='line'><span class="c">&quot; Show target key with upper case to improve readability</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_use_upper <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="c">&quot; Jump to first match with enter &amp; space</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_enter_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_space_jump_first <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Search Motions</span>
+</span><span class='line'><span class="c">&quot; =======================================</span>
+</span><span class='line'><span class="c">&quot; Extend search motions with vital-over command line interface</span>
+</span><span class='line'><span class="c">&quot; Incremental highlight of all the matches</span>
+</span><span class='line'><span class="c">&quot; Now, you don&#39;t need to repetitively press `n` or `N` with EasyMotion feature</span>
+</span><span class='line'><span class="c">&quot; `&lt;Tab&gt;` &amp; `&lt;S-Tab&gt;` to scroll up/down a page with next match</span>
+</span><span class='line'><span class="c">&quot; :h easymotion-command-line</span>
+</span><span class='line'>nmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>xmap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">sn</span><span class="p">)</span>
+</span><span class='line'>omap <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">tn</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>最後に</h2>
+
+<p>もっと詳しく知りたい場合はぜひhelpを読んでください。<a href="https://github.com/Lokaltog/vim-easymotion/blob/master/doc/easymotion.txt">:h easymotion.txt</a></p>
+
+<p>普段なにげなく使っているカーソル移動を爆速にして、生産性を向上させましょう!</p>
+
+<p><strong>Boost your productivity with EasyMotion!</strong></p>
+
+<p><del>結局思考が追いつかないし、進捗力ある人 with メモ帳に負ける</del></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる</a>
+      <time datetime="2014-03-23T21:34:54+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -630,215 +1198,6 @@ let g:EasyMotion_use_migemo = 1 " Migemo機能ON
       
       - <a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a>
       <time datetime="2014-02-14T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>14</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim_highlight_search/">Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-02-12T00:00:00+09:00" pubdate data-updated="true">February 12, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 73日目の記事になります。</p>
-
-<p>普段何気なくvimrcに書いている<code>set hlsearch</code>や<code>:nohlsearch</code>。実はこれ、結構ややこしいです。</p>
-
-<h2>まずはhelp!</h2>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27hlsearch%27">:h &#8216;hlsearch&#8217;</a> &lt;- オプション</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a> &lt;- コマンド</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#v:hlsearch">:h v:hlsearch</a> &lt;- 新たなる変数(最近入った)</li>
-</ul>
-
-
-<p>そして他に注意すべきものとして</p>
-
-<ul>
-<li><code>set nohlsearch</code> &lt;- <code>set hlsearch</code>の逆。<strong><code>:nohlsearch</code>とは違う</strong></li>
-<li><code>&amp;hlsearch</code> &lt;- オプションhlsearchの値の変数。<code>set hlsearch</code>なら1,<code>set nohlsearchなら0</code></li>
-</ul>
-
-
-<p>ややこしいですね。</p>
-
-<h2>v:hlsearchを解説しながら全体的に説明するよ</h2>
-
-<p>最近縁があったのでv:hlsearchの日本語訳を書かせて頂きましたが、ぶっちゃけ元の英語の説明もわかりづらいのでここで解説します。</p>
-
-<p><noscript>
-  <pre><code class="language- ">                    <em>v:hlsearch</em> <em>hlsearch-variable</em>
-v:hlsearch  検索による強調表示がオンになっているかどうかを決定する変数。
-        |+extra_search| 機能が必要である &lsquo;hlsearch&rsquo; が有効になっている
-        時のみ意味をなす。この変数を0に設定することは、 |:nohlsearch|
-        コマンドを実行することと同様に働き、1に設定することは以下と同様に働く &gt;
-            let &amp;hlsearch = &amp;hlsearch</code></pre>
-</noscript></p>
-
-<p>まず仕様ですが、この変数は<strong>実際に現在</strong>検索によるハイライトが行われているかどうかを判定、決定できます。</p>
-
-<h3>判定</h3>
-
-<p><code>echo v:hlsearch</code></p>
-
-<ul>
-<li>ハイライトが行われている -> 1</li>
-<li>ハイライトが行われていない -> 0</li>
-</ul>
-
-
-<h3>決定(ハイライトをON or OFFにする)</h3>
-
-<blockquote><p>この変数を0に設定することは、 |:nohlsearch| コマンドを実行することと同様に働き、 1に設定することは以下と同様に働く let &amp;hlsearch = &amp;hlsearch</p></blockquote>
-
-<p>わかりずらい!!!</p>
-
-<h4>let v:hlsearch = 0</h4>
-
-<p>これは、helpによると<code>:nohlsearch</code>コマンドを実行することと同様に働きます。</p>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a></li>
-</ul>
-
-
-<blockquote><p>|:nohlsearch| コマンドを使うと、<strong>一時的に</strong>強調表示をやめさせることができます。</p></blockquote>
-
-<p><strong>一時的に</strong> というのがミソです。この<code>:nohlsearch</code>コマンドは<code>hlsearch</code>オプションの変数である、<code>&amp;hlsearch</code>を変更しないのです。つまり<code>set hlsearch</code>している場合<code>&amp;hlsearch</code>変数の値は1ですが、<code>:nohlsearch</code>を実行しても<code>&amp;hlsearch</code>の値は1のままでハイライトを一時的にオフにします。</p>
-
-<h4>let v:hlsearch = 1</h4>
-
-<p>helpによると1に設定することは</p>
-
-<p><code>let &amp;hlsearch = &amp;hlsearch</code></p>
-
-<p>をすることと同様に働くようです。ここがかなりわかりずらい。</p>
-
-<p>前提として、</p>
-
-<ol>
-<li>基本的に<code>v:hlsearch</code>は実際にハイライトを行っているかどうかを決定するのですが<code>set nohlsearch</code>が設定されていた場合は<code>set nohlsearch</code>が優先されます。</li>
-<li>コマンド<code>:nohlsearch</code>によって一時的にハイライトをオフにした場合、再び検索するなどしたときにハイライトが有効になるのですが、<code>set hlsearch</code>,つまりは<strong><code>let &amp;hlsearch = 1</code></strong>を設定した場合も同様にトリガーとなってハイライトが有効になります(実装は見ていないので予測含む。動作確認はしています)</li>
-</ol>
-
-
-<p>よって、もし<code>set nohlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は0なので<code>let &amp;hlsearch = 0</code>と同様の動作となり何も起こりません。</p>
-
-<p>反対に、<code>set hlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は1で、<code>let &amp;hlsearch = 1</code>と同様になり、前提の2からこの動作がトリガーとなって再びハイライトがONになります。</p>
-
-<p>はぁ、ややこしかった。わからなかった方は直接@haya14busaまで質問とかしてください。また間違ってたらご指摘よろしくおねがいします。</p>
-
-<p>ここから<code>v:hlsearch</code>から得られたTipsを2つ紹介します</p>
-
-<h2>Reloadableなvimrcの設定</h2>
-
-<p>一般的には下記のような設定をしている方が多いと思います</p>
-
-<p><noscript>
-  <pre><code class="language- ">set hlsearch
-nnoremap &lt;silent&gt;&lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code></pre>
-</noscript></p>
-
-<p>が、リローダブルなvimrcを目指している方はこの問題に少なからず気づいているかもしれません。</p>
-
-<p>つまり、<code>set hlsearch</code>を記述しているとリロード時に問答無用でハイライトされてしまうのです。(ｳｻﾞｲ</p>
-
-<p>これを改善しましょう</p>
-
-<h3>1. 簡単かつv:hlsearchがなくてもOK</h3>
-
-<p><noscript>
-  <pre><code class="language- ">&ldquo; hlsearchは使うがvimrcを読み込んだ時にハイライトしないようにする
-set hlsearch | nohlsearch</code></pre>
-</noscript></p>
-
-<p>上記のようにすると<code>&amp;hlsearch</code>の値は1で検索のハイライトは有効になっていますが、<code>:nohlsearch</code>コマンドによりそれを一時的にOFFにします。</p>
-
-<p>欠点: ハイライトしている状態でリロードするとハイライトが消えてしまう。</p>
-
-<h3>2. v:hlsearchを使って1の欠点をなくす</h3>
-
-<p><noscript>
-  <pre><code class="language- ">if exists(&lsquo;v:hlsearch&rsquo;)
-  let v_hl_save = v:hlsearch
-endif
-set hlsearch
-execute exists(&lsquo;v:hlsearch&rsquo;) ? &lsquo;let v:hlsearch = v_hl_save&rsquo; : &lsquo;nohlsearch&rsquo;</code></pre>
-</noscript></p>
-
-<p>欠点: 書き方が悪いということを除いてもわざわざそこまでしたくない&#8230;</p>
-
-<h2>スクリプトから扱う</h2>
-
-<h3>ハイライトを確認する</h3>
-
-<p><code>v:hlsearch</code>が登場する以前では<code>&amp;hlsearch</code>の値を見ることしかできず、ハイライトの設定がされているかどうかは分かるけれども、実際にハイライトされているかどうかがわかりませんでした。(<code>:nohlsearch</code>で一時的にハイライトしていなくても<code>set hlsearch</code>していれば一貫して<code>&amp;hlsearch</code>の値は1です)</p>
-
-<p><code>v:hlsearch</code>の登場によって改善されたのはほぼこの一点といってもいいでしょう。</p>
-
-<h3>実際に関数からハイライトさせる</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20131021/1382346459">Vim の関数内で set hlsearch しても反映されない場合の対処方法 &#8211; C++でゲームプログラミング</a></li>
-</ul>
-
-
-<p>上記の記事の問題は<code>v:hlsearch</code>でも同じなようで、関数内で<code>let v:hlsearch = 1</code>にしても実行が終わると勝手に元の値に戻されてしまいます。これを回避するには記事にあるように<a href="http://vim-jp.org/vimdoc-ja/eval.html#feedkeys%28%29">:h feedkeys()</a>を使うしかないようです。残念&#8230;</p>
-
-<h4>ちょっと改善</h4>
-
-<p>上記の記事の関数だと<code>set nohlsearch</code>のオプションを無視してしまうので下記のように<code>:let &amp;hlsearch=&amp;hlsearch\&lt;CR&gt;</code>を使うとよりお行儀よくハイライトさせることができます。</p>
-
-<p><noscript>
-  <pre><code class="language-viml viml">function! HLsearch()
-    call feedkeys(&ldquo;:let &amp;hlsearch=&amp;hlsearch&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
-    &ldquo; または
-    &rdquo; call feedkeys(&ldquo;:let v:hlsearch=1&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
-endfunction</code></pre>
-</noscript></p>
-
-<h2>最後に</h2>
-
-<p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
-
-<p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim_highlight_search/">Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい</a>
-      <time datetime="2014-02-12T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>12</span> <span class='year'>2014</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       

@@ -9,7 +9,9 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Attention お決まりですが自己責任でお願いします.割とコアの部分触るので特に.そもそも脱獄自体グレーゾーンだし. JBiOSだとターミナルでプログラミングできたりするけど… Appleの署名かなんかの関係でgccが一発で通らないので今まで、自前でビルド/コンパイルができてませんでした. &hellip;">
+  <meta name="description" content="Edit &amp; Automatically Reload .vimrc .vimrc "------------------------------------
+" Open &amp; Reload .vimrc
+"------------------------------------ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,125 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/edit-vimrc-easily/">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Edit &amp; Automatically Reload .vimrc</h2>
+
+<p>.vimrc</p>
+
+<pre><code>"------------------------------------
+" Open &amp; Reload .vimrc
+"------------------------------------
+set foldmethod=expr
+set modeline
+command! Evimrc  e $MYVIMRC
+
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
+"------------------------------------
+" Lokaltog/vim-easymotion
+"------------------------------------
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+"------------------------------------
+"vim: foldmethod=marker
+</code></pre>
+
+<p>.vimrcを編集するときは<code>:Evimrc</code>(:ev<TAB>で補完させる).<br/>
+.vimrcを編集後のリロードは最初はコマンドを使おうと思ったけど保存時の自動実行のほうが手軽で良さげ.ただ,関数とか途中まで記述してる状態で保存しちゃうと困りそうでもあるかも？</p>
+
+<h2>問題点</h2>
+
+<p>なるべく最小構成の環境で試したから自分だけではないとおもうのだけど,</p>
+
+<ol>
+<li>vimrcの<code>set foldmethod=expr</code>とvimのモードラインの<code>"vim: foldmethod=marker</code>の記述で違うものを設定してる場合,リロード時にvimrcの方の記述の設定に変わってしまう.
+
+<ul>
+<li>しかも最小構成では発生しなかったけど,使ってるvimrcでは一度閉じてから読み込み直してもそのままモードライン記述が無視された.</li>
+<li>最小構成の方でも試したからloadviewの問題ではないっぽい.</li>
+</ul>
+</li>
+<li>なぜかEasymotionのターゲットのハイライトが消えて,超絶読みにくくなる問題も発生</li>
+</ol>
+
+
+<h2>解決策</h2>
+
+<p>上記vimrcに記述したとおり</p>
+
+<ol>
+<li>普通は<code>autocmd BufWritePost *vimrc source $MYVIMRC</code>と記述するところを<code>autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker</code>として無理やり変える.</li>
+<li>今まで設定してなかったけど上記vimrcのようにEasymotionのハイライト設定してしまう.</li>
+</ol>
+
+
+<h2>というか</h2>
+
+<p>vimrcの編集とリロードをしやすくする設定を未だしてなかったあたりVimmerを名乗れるない感じですね…今までわざわざ<code>:source ~/.vimrc</code>するかvim再起動させてた.</p>
+
+<p>出来るのは知ってたけど後回しにしてた結果がこれだよ.でも自動で再読み込みさせることも出来るのは収穫だった.有名どころの記述はコマンドかキーマッピングで実装してる気がする.オートロードさせるとかなり捗りますね.ただfoldの状態がリセットされるので,折りたたみを閉じてる状態でやるとちょっとびっくりする.</p>
+
+<p>Easymotionのハイライトに関しては原因が全くわからなかった…検索とかのハイライトは機能していたのでハイライト機能自体がおかしくなったわけじゃないっぽい</p>
+
+<p>リロード時にモードラインの記述が無視されるのは,最初はバグ的な何かだと思ったけど,<code>source ~/.vimrc</code>の場合,そもそもコメントであるモードラインの記述は読み込まない仕様かも.</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://c4se.hatenablog.com/entry/2013/05/15/115205">vimrcを編集し、保存時に自動で再読み込みする &#8211; c4se記：さっちゃんですよ☆</a></li>
+<li><a href="http://vim-users.jp/2009/09/hack74/">Vim-users.jp &#8211; Hack #74: 簡単にvimrcを編集する</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/edit-vimrc-easily/">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題</a>
+      <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -707,179 +828,6 @@ it must be added to /etc/shells.
       <time datetime="2013-07-08T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>08</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/zsh/'>zsh</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/mac-python-readline-input-japanese/">解決:Mac OSXのPythonのインタプリタで日本語入力する方法</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>環境</h2>
-
-<ul>
-<li>Mac OSX 10.8.4</li>
-<li>Python 2.7.5 (Homebrewでインストール)</li>
-<li>Python 3.3.2でも確認</li>
-<li>readline 6.2.4(Homebrew)</li>
-</ul>
-
-
-<p><a href="http://haya14busa.com/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « haya14busa</a></p>
-
-<p>やっと解決しました。まさかzsh調べてる過程でPythonの問題を解決できるとは思わなかった。</p>
-
-<h2>解決法</h2>
-
-<p>やっぱりreadline / GNU readlineの問題でした。readlineは~/.inputrcを読み込むようで、そこに下記の記述でPythonのインタプリタで(一応)日本語が打てるようになります。</p>
-
-<p>~/.inputrc</p>
-
-<pre><code>kanji-code utf-8
-
-# Enable 8bit input
-set meta-flag on
-set input-meta on
-
-# Turns off 8th bit stripping
-set convert-meta off
-
-# Keep the 8th bit for display
-set output-meta on
-
-set enable-keypad on
-</code></pre>
-
-<p>いまいち.inputrcの再読み込みのやり方わからなかったんで、シェルごと再起動させて調べてました。</p>
-
-<p>readlineの環境としてはHomebrewでインストールしたreadline6.2.4。PythonのDependenciesに含まれてるので、普通にbrew install pythonしてれば入ってますeasy_install readlineやpip install readlineはしてもしなくても変わりませんでした。特に後者はディレクトリの配置が優先されないのかそもそも機能してるか怪しいです。readlineをpipのみで入れるとimportでエラー吐くので。</p>
-
-<p>とにかく、~/.inputrcに上記の記述でひとまず日本語を打つときに「ガッガッ」と警告音ならされて文字が消えることなく、入力できるはずです。</p>
-
-<h2>バグ挙動</h2>
-
-<blockquote><p>訳注: IDLE をはじめ、ほとんどの Python 2 用のインタラクティブシェルは、非ASCII 文字を含む Unicode リテラルを利用することができません。このサンプルを実行するには、インタプリタ内蔵のインタラクティブシェルを利用する必要があります。 この問題は Python 3 では解決されています。</p>
-
-<p>&#8211; <cite><a href="http://docs.python.jp/2/tutorial/introduction.html#unicode">3. 形式ばらない Python の紹介 — Python 2.7ja1 documentation</a></cite></p></blockquote>
-
-<p>そもそも公式ドキュメントで書いてある通り、インタプリタでの日本語の使用はあまりできないっぽいです。今回解決した結果も例に漏れずバクがあります。</p>
-
-<p>まず最初に書いたURL -> <a href="http://haya14busa.com/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « haya14busa</a> の記述と同様Pythonインタプリタで使用される文字エンコーディングをすべて&#8217;utf-8&#8242;に変えます。</p>
-
-<p>~/.zshrc</p>
-
-<pre><code>export PYTHONSTARTUP=~/.pythonstartup
-export PYTHONIOENCODING='utf-8'
-</code></pre>
-
-<p>~/.pythonstartup</p>
-
-<pre><code>import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-import codecs
-
-sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
-sys.stdin = codecs.getreader('utf_8')(sys.stdin)
-</code></pre>
-
-<p>エンコーディングを変えた環境で開発するのは配布の際などに不具合をきたす可能性があがってよくないですが、日本語扱うためにはある程度しかたないです。そもそもインタプリタってちょっと気軽に確認したいってときに使うことが多いと思うので。また普通にスクリプトを実行する際は上記の記述はまったく関係ないはずなので問題ないと思います。</p>
-
-<h3>で…実行すると</h3>
-
-<pre><code>% python
-Python 2.7.5 (default, Jul  8 2013, 03:25:24) 
-[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; a = 'こんにちは'
-&gt;&gt;&gt; type(a)
-&lt;type 'str'&gt;
-&gt;&gt;&gt; len(a)
-15
-&gt;&gt;&gt; print a
-こんにちは
-&gt;&gt;&gt; b = u'こんにちは'
-&gt;&gt;&gt; type(b)
-&lt;type 'unicode'&gt;
-&gt;&gt;&gt; len(b)
-15
-&gt;&gt;&gt; print b
-ããã«ã¡ã¯
-</code></pre>
-
-<p>aに関してはいいですよ………問題は<strong>b</strong>です。len(b)が15ってなんだよ！ぉこだよ！？printで文字化けしてんじゃねーよ！！！</p>
-
-<p>これじゃあ日本語入力できても結局確認にすら使えないですよね。そこでちょっと強引な解決法として</p>
-
-<pre><code>&gt;&gt;&gt; c = unicode(a,'utf-8')
-&gt;&gt;&gt; type(c)
-&lt;type 'unicode'&gt;
-&gt;&gt;&gt; len(c)
-5
-&gt;&gt;&gt; print c
-こんにちは
-&gt;&gt;&gt; c[1:3]
-u'\u3093\u306b'
-&gt;&gt;&gt; print c[1:3]
-んに
-</code></pre>
-
-<p>これだと文字列のスライスもできてますし、ちょっと日本語関係のコードを確認するときは一旦str型で入力したものをunicode(text,&#8217;utf-8&#8242;)すればちゃんと動くってことですね。これでひとまず解決！！！</p>
-
-<p>ところでu&#8221;テキスト&#8221;とunicode(&#8220;テキスト&#8221;,&#8217;utf-8&#8242;)の違いってなんなんだろうか。</p>
-
-<p>u_quote_and_unicode.py</p>
-
-<pre><code># coding:utf-8
-print u"てきすと" == unicode("てきすと",'utf-8') # True
-</code></pre>
-
-<p>シェルでなくスクリプトファイルで確認するとTrueだったので違いはないのかな？</p>
-
-<p>ちなみにPython3のインタプリタで試した所、無駄なこと一切せず動きます。文字コードに関しては3に移行したいと思った。ついでに言うとPyrhon2.6から実装されたfrom <strong>future</strong> import unicode_literalsすると全部u&#8221;てきすと&#8221;の扱いになるので今回は逆効果です。</p>
-
-<p>あとインタプリタ上で日本語入力ができてるように見えますけど、内部？では1文字の「あ」ではなくカーソル3つ分くらいの長さを持ってるので、カーソルを移動させたり、消去すると表示がバグります。いったん何文字か売ってカーソルを左に移動させてからもう一度右にするとわかりやすいです。……ということで日本語部分を書き直すなら文頭から全部書きなおすようにしたほうがいいですね。<div class=clearfix> 最初に数文字打って………</p>
-
-<p><a href="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM.png"><img src="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.08.49-AM-300x128.png" alt="Screen Shot 2013-07-08 at 9.08.49 AM" width="300" height="128" class="aligncenter size-medium wp-image-61 clearfix" /></a> カーソルを左右に移動させると……… <a href="../images/misc/wp/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM.png"><img src="http://haya14busa.com/wp-content/uploads/2013/07/Screen-Shot-2013-07-08-at-9.09.36-AM-300x119.png" alt="Screen Shot 2013-07-08 at 9.09.36 AM" width="300" height="119" class="alignnone size-medium wp-image-62 clearfix" /></a> </div></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/mac-python-readline-input-japanese/">解決:Mac OSXのPythonのインタプリタで日本語入力する方法</a>
-      <time datetime="2013-07-08T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>08</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
       
       </footer>
     </article>
