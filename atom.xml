@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-09-22T01:14:00+09:00</updated>
+  <updated>2014-09-22T01:17:43+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -60,7 +60,7 @@
 
 <h2>反省, あと進捗とか</h2>
 
-<p>久々に時間取ってVim活できる機会だったので<a href="https://twitter.com/thinca">@thinca</a> さんのライブコーディングを見ながらも上述したような<a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の改善を行なって, 最後に成果発表させていただきましたがあまり目に見える進捗ではなかったという反省が1点。そのあとに実は以前&hellip;.(ｺﾞﾎッ&hellip;) 作った Vim系オンライン読書会 の宣伝LTみたいなものをしたのですが, 全くしゃべる内容とか準備せずにスライドだけ作ってグダッた発表したとう反省が2点目, そして極めつけは最後に撤収しないといけない時間に始めてしまってそもそも時間を押してしまったという反省の1点を合わせ, だいたい計3点くらいの反省がありました。皆さん申し訳ありませんでした。</p>
+<p>久々に時間取ってVim活できる機会だったので<a href="https://twitter.com/thinca">@thinca</a> さんのライブコーディングを見ながらも上述したような<a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の改善を行なって, 最後に成果発表させていただきましたがあまり目に見える進捗ではなかったという反省が1点。そのあとに実は以前&hellip;.(ｺﾞﾎッ&hellip;) 作った Vim系オンライン読書会 の宣伝LTみたいなものをしたのですが, 全くしゃべる内容とか準備せずにスライドだけ作ってグダッた発表したという反省が2点目。 そして極めつけは最後に撤収しないといけない時間に始めてしまってそもそも時間を押してしまったという反省の1点を合わせ, だいたい計3点くらいの反省がありました。皆さん申し訳ありませんでした。</p>
 
 <p>ということで(?) 一応発表に使ったスライドを少々手直して上げてました。</p>
 
