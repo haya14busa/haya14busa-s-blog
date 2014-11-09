@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="作りました。 ぐぐっても見つからなかったので。（需要ないだけ？） Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。 MarkdownURL->DraftPad javascript:location.href='draftpad &hellip;">
+  <meta name="description" content="なかなか便利 tweepyのソース読んだり、ぐぐったりしながらなんとか形になった。ここで言う擬似ストリーミングはツイッターのStreaming APIではなく、Rest APIを自動で投げて表示させるって意味なので全然Streamingじゃないですね。 リストにStreaming &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,191 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-06T00:00:00+09:00" pubdate data-updated="true">July 06, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>なかなか便利</h2>
+
+<p><a href="(https://github.com/tweepy/tweepy)">tweepy</a>のソース読んだり、ぐぐったりしながらなんとか形になった。ここで言う擬似ストリーミングはツイッターのStreaming APIではなく、Rest APIを自動で投げて表示させるって意味なので全然Streamingじゃないですね。</p>
+
+<p>リストにStreaming APIが提供されてないことに気づくまでバカみたいに探しててバカみたいだった。バカみたいだった。</p>
+
+<p>記事執筆現在、API1.1のリストタイムラインの取得制限は180回/15分なので、単純計算で5秒に一回投げれます。スクリプトでは読み上げ時間も＋8秒ぐらいで余裕を持たせてます。リストの流速によっては取得漏れが発生すると思いますが、それぐらいだとそもそも読み上げが追いつきません。リスト廃人とかじゃなかったら大丈夫だと思います。</p>
+
+<p>英語用のリストを英語で読ませたり、単に気になるリストを読み上げさせたりと結構おもしろいです。</p>
+
+<p>また、whileの無限ループと引数のsince_idで擬似ストリーミングを実装してるので、同じ手法を使えば特定のidだとかリスト以外でも使えるはずです。サーバーに負担かからない程度の自重は必要だとは思います。</p>
+
+<h2>ホームタイムラインバージョン</h2>
+
+<p><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></p>
+
+<p>tweepyだとか読み上げコマンドだったり仕様について書いてるので参照してください</p>
+
+<h2>コード</h2>
+
+<p>twList.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+#
+# リストのTLを擬似ストリーミングで読み上げさせる
+# 
+# Author:   haya14busa
+# URL:      http://haya14busa.com
+# Require:  SayKotoeri, Saykana or SayKotoeri2
+# License:  MIT License
+# OS:       for Mac Only
+
+import tweepy
+from datetime import timedelta
+import time
+from subprocess import call
+import re
+import sys, codecs
+
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+sys.stdin = codecs.getreader('utf_8')(sys.stdin)
+
+def get_oauth():
+    CONSUMER_KEY='**********'
+    CONSUMER_SECRET='**********'
+    ACCESS_TOKEN_KEY='**********'
+    ACCESS_TOKEN_SECRET='**********'
+     
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    return auth
+
+def str_replace(string):
+    string = re.sub('&amp;.+;', ' ', string)
+    # remove URL
+    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
+    # remove quote
+    string = re.sub('"', ' ', string)
+    string = re.sub("'", ' ', string)
+    string = re.sub('\/', ' ', string)
+
+    string = re.sub('RT', 'Retweet', string)
+    return string
+  
+def showTL(api, read_id):
+    try:
+        tl = api.list_timeline('[owner_name]', '[slug]', count=10, since_id = read_id)
+        tl.reverse()
+        for status in tl:
+            status.created_at += timedelta(hours=9) # add 9 hours for Japanese time
+            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
+                    name = status.author.name,
+                    screen = status.author.screen_name,
+                    text = status.text,
+                    src = status.source,
+                    created = status.created_at)
+            read_text = str_replace(status.text.encode('utf_8'))
+            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
+            # call(['say -v "kyoko" "{text}"'.format(text=read_text)], shell=False) # Kyoko
+            # call(['say  "{text}"'.format(text=read_text)], shell=False) # for English
+        else:
+            global lastSinceId
+            lastSinceId = tl[-1].id
+            
+    except Exception, e:
+        time.sleep(10)
+        pass
+
+def main():
+    auth = get_oauth()
+    api = tweepy.API(auth_handler=auth)
+    lastGetTime = time.time() - 8
+    global lastSinceId
+    lastSinceId = None
+    while True:
+        if time.time() &gt; lastGetTime + 8:
+            lastGetTime = time.time()
+            showTL(api, lastSinceId)
+        else:
+            time.sleep(1)
+
+ 
+if __name__ == "__main__":
+    main()
+</code></pre>
+
+<h2>使い方</h2>
+
+<p>Twitter Developersに登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。また[owner_name]と[slug]をリストの所有者のスクリーンネームと、リストの名前に置き換えてください。</p>
+
+<p>また、読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。英語用リストだとsayコマンドに変更するとなかなかネイティブな発音が聴けて楽しいです。</p>
+
+<p>あとはターミナルでpython twaloud.py 終了はCtrl-Cで強制終了してください。</p>
+
+<h2>参考リンク</h2>
+
+<h3>ホームタイムラインバージョン</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></li>
+</ul>
+
+
+<h3>ライブラリ</h3>
+
+<ul>
+<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
+</ul>
+
+
+<h3>コード</h3>
+
+<ul>
+<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
+<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
+<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]</a>
+      <time datetime="2013-07-06T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/tweepy/'>tweepy</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -802,118 +987,6 @@
       
       - <a href="/wordpress-jquery-plugin/">WordPressでfunctions.phpを使ったjQueryプラグインの導入方法</a>
       <time datetime="2013-04-06T00:00:00+09:00" pubdate><span class='month'>Apr</span> <span class='day'>06</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/wordpress/'>wordpress</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-03-29T00:00:00+09:00" pubdate data-updated="true">March 29, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>プラグインに頼ってもいいじゃない。</h3>
-
-<p>結論から言うとmobbleというプラグインを使います。</p>
-
-<p><a href="http://wordpress.org/extend/plugins/mobble/">WordPress › mobble « WordPress Plugins</a></p>
-
-<blockquote><dl>
-<dt>What functions are available?The most useful ones are:</dt>
-<dd><pre><code>  &lt;?php 
-  is_handheld(); // any handheld device (phone, tablet, Nintendo)
-  is_mobile(); // any type of mobile phone (iPhone, Android, etc)
-  is_tablet(); // any tablet device
-  is_ios(); // any Apple device (iPhone, iPad, iPod)
-  ?&gt;
-     
-</code></pre></dd>
-</dl>
-
-<p>&#8211; <cite><a href="http://wordpress.org/extend/plugins/mobble/faq/">WordPress › mobble « WordPress Plugins</a></cite></p></blockquote>
-
-<dl>
-<dt>使用例</dt>
-<dd><pre><code>  &lt;?php if (( !function_exists(’is_mobile’)) || !is_mobile()) :?&gt;
-  /* for PC */
-  &lt;?php else :?&gt;
-  /* for Mobile */
-  &lt;?php endif; ?&gt;
-</code></pre></dd>
-</dl>
-
-<p><a href="http://wordpress.org/extend/plugins/mobble/">mobble</a>をインストール後、上記コードを好きなところに記述すれば動きます。<br/>
-（関数名がis_mobile()でfunctions.phpで対応する場合と一緒なのでプラグイン使わない場合も上記コードで OK。）</p>
-
-<h3>なぜプラグインか？</h3>
-
-<p>WordPressには<a href="http://codex.wordpress.org/Function_Reference/wp_is_mobile">wp_is_mobile « WordPress Codex</a>というUAを判別する関数がバージョン3.4から存在しますが、iPadなどのタブレットもモバイルと判定してしまいます。それはダメ。ということで却下。</p>
-
-<p>そこでis_mobile関数をfunctions.phpで実装するという選択肢が浮上します。これは下記サイトが参考になります。</p>
-
-<blockquote><p> 
-これはどこからどう見てもスマートフォン判別用の文字列 (の配列)。どうやらこれを HTTP ヘッダの User-Agent と突き合わせて、スマートフォンからのアクセスを判別しているらしい。そうとわかればあとは簡単で、自作テーマの functions.php にこんな関数を書いてみました:     </p>
-
-<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
-
-<p>おそらくこれが賢い選択肢だと思うのですが、このサイトでも言われてるように欠点がある気がします。</p>
-
-<blockquote><p> 
-判別のために文字列のリストを用意するっていう部分が、どうもいまいちなんじゃないかって気がするんですよね。たとえば、今後出てくるであろう新しいスマートフォンに対応しようとすると、このリストを永遠にメンテナンスし続けなきゃなんないじゃないですか。     </p>
-
-<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
-
-<p>調べてはいませんが参考サイトの記事が書かれた年が2010年。それから新しいスマートフォンはたくさんでていますし、これから出てくるたくさんの端末にその都度対応するのはしんどい。</p>
-
-<p><em>じゃあメンテナンスを何かに任せればいいじゃない。何に任せるか？プラグインでしょ？</em></p>
-
-<p>他人任せですがちゃんとアップデートされてるプラグインを選べば自分で書くよりも上手く対応してくれると思います。</p>
-
-<p>一応僕はfunctions.phpにもis_mobile関数を記述してコメントアウトする形をとりました。これならいざという時すぐ対応できるかなと…</p>
-
-<h3>Media Queryでよくない？</h3>
-
-<p>Media Query使ってdisplay:none;で対応すればユーザーエージェントに関係なくviewportで一括管理できます。しかし、これだとモバイルでアクセスした時、PC用のコンテンツを読み込んでCSSで隠すという無駄な読み込みが発生します。</p>
-
-<p>また、レスポンシブデザイン対応する時に困るのがGoogleAdsense。Googleさん、レスポンシブデザイン推してるのにレスポンシブ用の広告はありません。もちろんCSS弄ったら<em>BAN</em>!</p>
-
-<p>このときMedia Queryで対応するよりis_mobile関数でそもそも読み込ませない方法のほうが安全かも？[要出典]</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】</a>
-      <time datetime="2013-03-29T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>29</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/wordpress/'>wordpress</a></span>
       

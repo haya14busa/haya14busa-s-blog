@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-09-22T01:17:43+09:00</updated>
+  <updated>2014-11-09T18:19:57+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,149 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[VimConf2014 で検索とその拡張について発表した]]></title>
+    <link href="http://haya14busa.com/vimconf2014/"/>
+    <updated>2014-11-09T11:07:22+09:00</updated>
+    <id>http://haya14busa.com/vimconf2014</id>
+    <content type="html"><![CDATA[<h2>VimConf2014 にいってきました</h2>
+
+<p>2014/11/08(Sat)に開催された <a href="http://vimconf.vim-jp.org/2014/">VimConf 2014</a> に参戦して「/-improved」という発表をしてきました</p>
+
+<h2>TL;DR</h2>
+
+<p>初めてVimConfで約80人の前でLTをしたり, 他の方のおもしろい発表を聞いたり, 懇親会などなどで Vimmer のみなさんとお話出来て感極まりました.</p>
+
+<h2>発表した</h2>
+
+<h3>/-improved</h3>
+
+<iframe src="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<p><br>
+Vimデフォルトの検索をもっと使いこなそう! という内容と, 最近開発している検索拡張プラグイン, <a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a> についての発表を行いました.</p>
+
+<p>VimConf, 一応国際的なものを目指すという声があるような話をしていたと思うので拙いですが基本全編英語で書いてみました. (gifアニメーションがあるので英語壊れててもある程度わかると信じている.) また incsearch.vim の README にも <a href="https://github.com/haya14busa/incsearch.vim#vimconf2014">リンク</a> を貼ってみました (そのうちwikiとかに移動させるかもですが)</p>
+
+<p>incsearch.vimについてはスライドを&hellip;と思いましたが, 英語がたぶんダメダメで(特に最初の2-3コの発表を聞いてからエクストリーム加筆修正した最後の部分), LT10分間に合わなくて最後駆け足で喋ったので少し. 詳しくはスライド or いづれ書かれるであろう(?) incsearch.vim の解説記事を参照していただきたいです.</p>
+
+<h4>Design</h4>
+
+<blockquote class="twitter-tweet" lang="en"><p>incsearch.vim、完成度高すぎて空気のような存在になっている</p>&mdash; トデス子 (@todesking) <a href="https://twitter.com/todesking/status/525937969308262401">October 25, 2014</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>incsearch.vim の目指すデザインとしては基本的にシンプルな検索の拡張を提供し, Vim デフォルトの <code>/</code> を置き換えても違和感なく移行できるというところを１つの重要なポイントとしています. この @todesking さんのツイートはVimConfのコンテキストでつぶやかれたツイートではないのですがまさに「空気のように」に使えるよう目指していてスライドでも似たようなことをすこし話していました (あとこのツイートが本当に嬉しくてどこかに書いておきたかった. ありがとうございます)</p>
+
+<h4>後半話してたこと</h4>
+
+<p>この incsearch.vim というプラグインは決して自分だけの力で開発したわけでなく, いろんな人に協力があって作ることができました(という部分がエクストリーム加筆部分なので相当に雑なスライドになっている).</p>
+
+<p>もとは<a href="https://github.com/osyo-manga/vim-over">osyo-manga/vim-over</a>に使われていたカスタムコマンドラインを
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> というライブラリとしてをおしょーさんに要望投げまくって作ってもらったり,
+ドットリピートの対応法とかは <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a> などで教えてもらったり,
+正規表現をderisさんに教えて頂いたり, 使っていただいた方に不具合を報告してもらったりアイデアをもらったりと,
+開発時にぶつかったVim本体のバグを<a href="https://github.com/vim-jp/issues/issues">vim-jp/issues</a>に報告して修正してもらったりと,
+たくさんの人に協力していただいてこそincsearch.vimはここまでできたと思ってます. みなさん本当に感謝しています. ありがとうございます！</p>
+
+<p>kaoriyaさんの話にあった(kaoriyaさんのスライド参照) Vim のよさ, 「らしさ」の１つには確かに「Vim のユーザー」があると僕も思って,
+incsearch.vim はそのよさがなければ絶対に作れなかったプラグインの1つとして <strong>Vim のよさ</strong> としても話したいなーと思い,
+もともと開発のバックグラウンドの部分はもともと入れてなかったのですが急遽スライドを追加して話させていただきました.</p>
+
+<p>Vim のよさがより伝わるといいなーと思いましたが, そのせいで完全にLTの10分制限を越えてしまったので同時に反省もしています&hellip;</p>
+
+<p>正直緊張しすぎで全然聴衆の方がどういうふうに聞いてくれてるか反応を見れてなかったのですが, twitter とかを見る限り便利さは伝わったようなので嬉しかったです. みなさん興味が出たらぜひ使ってみてください&hellip;!</p>
+
+<h2>それぞれの発表, あと感想とか</h2>
+
+<h3><a href="http://koron.github.io/vimconf-2014-koron/">Identity of the Vim</a> <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h3>
+
+<p>「Vimのらしさ」について. テキストオブジェクトが便利とかも勿論Vimの強みで「らしさ」の1つ.
+でも, それだけではなく Vimを使うならIDEとは違い複数の言語をやって視野を広げることができることも1つのメリット.
+これは逆に言えば多種多様なバックグラウンドを持つ人がVimを触っているということで, <a href="https://github.com/vim-jp/">vim-jp</a> や <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a>, twitterで他の Vimmer の方々達と交流すると Vim を通していろいろな考え方に触れることができ, Vim の強みの一つに「vim-jp = ユーザー」 というのは本当にそうだなと感じました.</p>
+
+<p>またVimをやる意義として, 得たものを還元してvim本体をよくしたり, 思いがけず他の人にとっても便利にできたり, マッチポンプ式に Vim を便利にできるという点もとても共感しました. この辺の話や後のujihisaさんの発表を聞いていると変にテンションがあがってしまい, エクストリーム資料追加を実行しました. (そしてLTが時間内に間に合わなくなりました.)</p>
+
+<h3><a href="https://docs.google.com/presentation/d/1u5A7F3Kd4XwJlIUQZAVmrwWfLcoLf9NURtqAEafi_oo/edit#slide=id.p">PM2</a> (<a href="https://twitter.com/ujm">@ujm</a> さん)</h3>
+
+<p>Process Manager 2 の話. 個人的には以前 cmigemo のプロセスを Process Manager で使いまわそうと現在のPMは使ってみたことがあるのですがうまくいかず断念していた(自分の使い方の問題っぽかった)という経緯があるのですが, PM2はかなり使いやすそうになっていそうだったので再挑戦したいと思いました.</p>
+
+<p>後半全くVimと関係ない話(!?)だったり随所に挟まれる一番笑った発表でした. PM2だけでなく命名やタイムアウトの大事さも学べて「べんり」</p>
+
+<h3><a href="https://speakerdeck.com/rhysd/vimconf-2014-f">f</a> (<a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h3>
+
+<p>f の解説と f 拡張プラグインの解説でした. <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a> の便利機能も解説していただいてありがたみがありました.
+clever-f はfで繰り返して移動できるというそれ自体の機能の便利さも勿論メリットなのですが, <code>;</code> と <code>,</code> キーという押しやすい2つものマッピングをフリーにして他のマッピングにできるという部分がとても嬉しい機能です. Lindan さんの場合は <code>,</code> を<code>&lt;Leader&gt;</code> に, <code>;</code> を <code>&lt;Plug&gt;(easymotion-s2)</code>にしており, このあたりをどのマップに置き換えるかは人それぞれの好みだとは思うのですが, かなり便利そうだと感じました.</p>
+
+<p>スライドのfの説明の図がわかりやすかったり, 最後にはオチも付いているのでぜひスライドを見てみてください</p>
+
+<h3><a href="https://docs.google.com/presentation/d/1zaPy82NJ6A3Iw1llKqU-lX88AJNt1EKy5O15nOp085c/edit#slide=id.p">Hey, Java! Vim is coming.</a> (<a href="https://twitter.com/kamichidu">@kamichidu</a> さん)</h3>
+
+<p>Javaを書く機会がないですが, もしJavaを書くことになったら間違いなくVimで書きたい側の人間なので参考にしたい.
+Lingrなどでkamichiduさんの活動をみてると, 他の人ではすぐにはできないようなことを平然とサクッとこなしている印象がいつもあるのでぜひ見習っていきたい&hellip;!</p>
+
+<h3><a href="http://www.slideshare.net/cohama/auto-closing-parenthesis-vim-conf2014-41290298">auto closing parenthesis</a> (<a href="https://twitter.com/c0hama">@c0hama</a> さん)</h3>
+
+<p>dot repeatable になっている <a href="https://github.com/cohama/lexima.vim">cohama/lexima.vim</a> の仕組みとか, あまり自動括弧入力系は使ったことがないのですが試してみたいという思いもあったので個人的に気になる発表の1つでした.</p>
+
+<p>あとで懇親会やその後のカラオケなどなどで聞いた話によると,コマンドラインのマッピングなど 想像以上にいろいろな機能を leximaでカスタマイズすることができるらしく汎用性の高さを感じたました. リピータブルな自動括弧入力ってだけでは全く無いようです. すごい.</p>
+
+<h3><a href="http://www.slideshare.net/deris0126/vimconf4">怖くないマクロ入門</a> (<a href="https://twitter.com/deris0126">@deris0126</a> さん)</h3>
+
+<p><code>:h q</code> のマクロ入門についての発表. 決して<a href="http://togetter.com/li/401111">マクロ漁船</a>のようなコワイ話ではなく初心者から使える解説でよかったと思います.
+Vimを使っていて, そこに繰り返し操作があればマクロを使うチャンスなので使っていけるようになるとVimがもっと好きになること間違いなしです.
+時間があれば実演とか, 途中でマクロ間違えた時や, マクロが少し間違っててにちょっとだけ操作足したい/修正したいといった時にどうすればいいかといった対処法もあるとより便利さがあると思いました.</p>
+
+<h3><a href="https://gist.github.com/thinca/2cf4ae0df88a99423c9d">Test for Vim script</a> (<a href="https://twitter.com/thinca">@thinca</a> さん)</h3>
+
+<p>最近 <a href="https://github.com/thinca/vim-themis">thinca/vim-themis</a> をベンリに使わせて頂いているんですが, 改めて発表を聞いてもベンリすぎる&hellip;という印象でした.
+themis便利なんですが自分が使いこなせてないのでテストもっとかけるようになって使いこなしたいという思いがあります.</p>
+
+<h3><a href="http://www.slideshare.net/Shougo/lets-talk-about-neovim">Let&rsquo;s talk about neovim</a> (<a href="https://twitter.com/ShougoMatsu">(@ShougoMatsu</a> さん)</h3>
+
+<p>暗黒美夢王の NeoVim についての発表. 全編英語で書かれておりNeoVim newsletterにも載るらしくVimConfの国際感がでてよさそう.
+内容についてもさすがShougoさんと言うべきかエディタの未来とかOSSのforkの話とかも含めてとても考えられているなぁと感じました.</p>
+
+<p>NeoVim のissueを動向を追うの, かなり大変なので殆ど追えてないのですが面白いことをやっているハズなのでもっと追っていきたい&hellip;</p>
+
+<h3><a href="http://www.slideshare.net/supermomonga/super-cool-presentation-at-vimconf2014">かなりすごい発表（かなり）</a> (<a href="https://twitter.com/supermomonga">@supermomonga</a> さん)</h3>
+
+<p>かなりすごくておもしろい発表でした(かなり). <a href="https://github.com/supermomonga/thingspast.vim">supermomonga/thingspast.vim</a> は統一的に使うようになるととても便利(とても)になりそうなので使ってみたい. Vim, しゃべれるらしいのでVimと会話したい(とても)</p>
+
+<h3><a href="http://www.slideshare.net/pebble8888/using-xvim-with-macvim">XVim with MacVim and smartgrep</a> (<a href="https://twitter.com/pebble8888">@pebble8888</a> さん)</h3>
+
+<p>とても申し訳ないんですがXcodeつかったことがなく, 自分の発表の直前だったので緊張していたこともあってあまりまともに話を聴けてなかった&hellip;悔やまれる&hellip;
+単なる紹介とかでなくforkして改善したとかいう話をしていた気もするのでお話聞いてみればよかった. コメントを飛ばしてgrepできる, smartgrep も便利そう.</p>
+
+<h3><a href="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g4e7add63c_05">/-improved</a>  (<a href="https://twitter.com/haya14busa">@haya14busa</a>)</h3>
+
+<p>自分の発表, 上述した.</p>
+
+<h3><a href="https://speakerdeck.com/orgachem/zhuan-banuxian-falsezhang-vint">vim script初心者に使ってもらいたい、転ばぬ先の杖「Vint」</a> (<a href="https://twitter.com/orga_chem">@orga_chem</a> さん)</h3>
+
+<p>個人的には今後の発展が期待できる &amp; 使いたいプラグイン No.1 でした.  スライドはオシャレでみやすいし, lint の仕組みも詳しく解説されていて勉強にもなりました. lint, 奥が深い&hellip;!</p>
+
+<p>@orga_chem さんは発表者であると同時に会場の設営やUstream, 録画などの管理も行なって頂いており, 本当にお疲れ様でした. あと Vim の壁紙を使わせて頂いており改めて感謝できてよかった.</p>
+
+<h3><a href="http://www.slideshare.net/raa0121/jenkinsvimenv-vim-vimconf2014">Jenkins + vimenv で 最新のVimを使おう！</a> (<a href="https://twitter.com/raa0121">@raa0121</a> さん)</h3>
+
+<p>vimenv, anyenvに入って欲しい. git の log からパッチ番号取得していつも最近のVimをbuildできる. make test とかも行なって不具合検知ができてよさそうでした.</p>
+
+<h2>懇親会, あとまとめとか</h2>
+
+<p>去年の VimConf 2013 では発表なんてもってのほかで, Twitter や Lingr でみていた Vimmer のみなさんとお話すること自体殆ど出来なくて, 楽しかったけど悔いは残るものになってしまっていました. しかし今年の VimConf 2014 では発表もできて, 皆さんとリアルで対面してお話することができてとても楽しかったです. 感極まりました.</p>
+
+<p>来年も是非参加したいし, もっと運営のお手伝いとかもできたらなーと思います.</p>
+
+<p>当日これなかったり, Ustream の配信も見ていなかった方は Togetter に 当日のTwitterの様子をまとめた(<a href="http://togetter.com/li/742963">VimConf2014まとめ - Togetterまとめ</a>)ので, 発表者のスライドや他の方の感想記事, これから<a href="http://vimconf.vim-jp.org/2014/">公式ページ</a>にからリンクが貼られるであろう録画とかを見て, 興味がでたら是非是非来年のVimConfは参加してみると楽しいと思います!</p>
+
+<p>それでは Happy Vim&#8217;ing ! ♥</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Nagoya.vim 第2回に行ってきた]]></title>
@@ -3187,357 +3330,6 @@ autoload -&gt; .c
 <p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
 
 <p>ブックマークレットでvimdoc@jaとかがブラウザから手軽に読めるのでおすすめしときます(宣伝)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する]]></title>
-    <link href="http://haya14busa.com/vim-lazymotion-on-speed/"/>
-    <updated>2013-11-28T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/vim-lazymotion-on-speed</id>
-    <content type="html"><![CDATA[<p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の363日目の記事です。 昨日はthincaさんの<a href="http://d.hatena.ne.jp/thinca/20131127/1385487671">本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成</a>でした。</p>
-
-<p>あと3日でVAC2013になるということですが、<s>いまさら</s>VAC2012の99人目として記事を書いてみたいと思います。</p>
-
-<p>僕は今年の1月か、2月あたりからVimを使い始めたので、自分のVim歴よりも前に始まったAdvent Calendarに参加すると思うと歴史を感じます。すごい。</p>
-
-<p>Vimで最初に習うのはhjklによるカーソル移動です。<br/>
-その後w,bなどたくさんの移動コマンドを覚えると思います。<br/>
-またVimを使っているとき、その7,8割はカーソル移動してるんじゃないでしょうか???<br/>
-カーソル移動大事。</p>
-
-<p>ということでカーソル移動系プラグインであるvim-easymotionの話をします。</p>
-
-<h2>vim-easymotionとは</h2>
-
-<p>任意の場所や単語の先頭などをハイライト&amp;アルファベットなどの候補キーを出して、その行きたい場所のキーを押すことによってその場所にジャンプするプラグインです。今回、これを一から作ったというわけではなく、フォークして便利にしたという話とおすすめの使い方書くよという話です。その辺よろしくお願いします。</p>
-
-<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
-
-<h2>もっとvim-easymotionしよう</h2>
-
-<p>Github: <strong><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></strong></p>
-
-<p>Install</p>
-
-<pre><code>NeoBundle 'haya14busa/vim-easymotion'
-</code></pre>
-
-<p>本家: <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
-
-<p>なるべく本家Easymotionからの移行時にびっくりしないよう、新規機能は基本的にデフォルトでオフになっていて、オンなのは候補の2キー表示と双方向サーチである<code>&lt;Leader&gt;s</code>の追加、バグフィックスあたりだけなのでぜひ気軽に試してフィードバックorプルリクください。</p>
-
-<p>以下面倒なのでデフォルトのprefixキーである<code>&lt;Leader&gt;&lt;Leader&gt;</code>を<code>&lt;Leader&gt;</code>に変更しているとして解説します。(特に機能名がないので機能をMappingで表したりします)</p>
-
-<p><a href="https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108">:h easymotion-default-mapping</a></p>
-
-<h2>よくわかる拡張機能</h2>
-
-<ul>
-<li>最初から候補画面で2キー表示する!</li>
-<li>fやFの双方向バージョンが追加され、画面内ならどこでも飛べる!(<code>&lt;Leader&gt;s</code>)</li>
-<li>Smartcase機能でもっと楽々移動!</li>
-<li>1文字migemo実装で日本語でもeasymotion!</li>
-<li>その他もろもろ</li>
-<li>バグフィックス
-
-<ul>
-<li>マルチバイトバグ</li>
-<li>バッファ名バグ(今までuniteやref-vimでバグってました)</li>
-<li>その他いろいろ</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>最初から2キー表示する!</h2>
-
-<p>おそらくVim-Easymotionを使ったことがある人であれば必ず思うであろう、</p>
-
-<p><strong>「2回キー押すとき面倒くさい&#8230;」</strong></p>
-
-<p>これが改善されています。2回以上押さなければならない場合は最初から2つ分表示されてストレス90％減です(当社比)</p>
-
-<p><img src="../images/misc/wp/2013/11/two-key-motion.gif" alt="easymotion_two_key_combo" /></p>
-
-<h2>双方向サーチでカーソル位置を気にせず使う</h2>
-
-<p>これも使ったことがある人なら面倒くさいと思ったことがあるんじゃないでしょうか？</p>
-
-<p><strong><code>&lt;Leader&gt;f</code>か<code>&lt;Leader&gt;F</code>のどっち使うか決めるの面倒くさい。</strong></p>
-
-<p>飛びたい場所が現在位置の上下近くだったりすると意外とめんどくさくて脳のリソース消費します。これが<code>&lt;Leader&gt;s</code>で双方向サーチするという新機能で解決です。また、ひとつのマッピングでほぼすべての移動を補えるようになるところが見逃せないポイント。</p>
-
-<h2>Smartcaseでもっと楽々移動したい!</h2>
-
-<p>正直Shift押すのも面倒くさい。</p>
-
-<p>vimrc</p>
-
-<pre><code>" smartcase
-let g:EasyMotion_smartcase = 1
-</code></pre>
-
-<p>上記の設定で<code>&lt;Leader&gt;sv</code>で<strong>v</strong>imにも<strong>V</strong>imにもマッチして移動できます。楽。勿論smartcaseなので<code>&lt;Leader&gt;sV</code>だと<strong>V</strong>imだけにマッチします。</p>
-
-<h2>1文字migemo実装で日本語でもeasymotion!</h2>
-
-<p>migemo一回使ってみたら、日本語移動でかなり便利だったのでeasymotionでも実装したいなーと思っていました。そこで探してみると、<a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a>ですでに擬似migemo実装されてる事案があったのでclever-fの作者であるLindanさんに許可とってパク&#8230;参考にして実装しました。</p>
-
-<p>cmigemoなしでも動きます。</p>
-
-<p>vimrc</p>
-
-<pre><code>let g:EasyMotion_use_migemo = 1
-</code></pre>
-
-<p>Vimで日本語書くときになかなかいいです。</p>
-
-<p>注意事項として候補が多すぎたりスペック低かったりすると、ちょっと遅くてイラッとするかもしれません&#8230;もうちょっと改善したい。ちなみに<code>&lt;Leader&gt;w</code>など単語移動モーション使うと必ずしも行きたい場所には行けませんが移動はかなりサクッと行きます。</p>
-
-<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
-
-<p>だいたい主な拡張機能はこんな感じです。</p>
-
-<p>以下元からあった機能も適当に解説しながらなんやかんやしていきます。</p>
-
-<h2>Find Motion</h2>
-
-<p>新機能である<code>&lt;Leader&gt;s</code>や<code>&lt;Leader&gt;f</code>などがこのFind Motionに当たります</p>
-
-<ul>
-<li><strong><Leader>s{char}</strong>
-
-<ul>
-<li>新機能: 画面内すべてを対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>f{char}</strong>
-
-<ul>
-<li>カーソルより右側を対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>F{char}</strong>
-
-<ul>
-<li>カーソルより左側を対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>t{char}</strong>
-
-<ul>
-<li>カーソルより右側を対象として{char}の1文字手前にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>T{char}</strong>
-
-<ul>
-<li>カーソルより左側を対象として{char}の1文字後にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>おそらく基本的に使うのは<code>&lt;Leader&gt;s{char}</code>で、オペレーション待機モードで<code>&lt;Leader&gt;t{char}</code>,<code>&lt;Leader&gt;T{char}</code>使うかもといった感じです。</p>
-
-<p>おすすめは<code>&lt;Leader&gt;s{char}</code>が便利すぎるので、<code>s</code>キーをマップして<code>s{char}</code>で動作するようにするとたった<strong>3(or4)キー</strong>(<code>s{char}{target}</code>)で任意の場所に一瞬で移動できるので非常に捗ります。</p>
-
-<p>vimrc</p>
-
-<pre><code>" もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion を`s`に割り当てます"
-nmap s &lt;Plug&gt;(easymotion-s)
-vmap s &lt;Plug&gt;(easymotion-s)
-omap z &lt;Plug&gt;(easymotion-s) " surround.vimとかぶるので`z`
-</code></pre>
-
-<h2>Word Motion</h2>
-
-<ul>
-<li><strong><Leader>w</strong>
-
-<ul>
-<li>カーソルより右側の単語(word)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>W</strong>
-
-<ul>
-<li>カーソルより右側の単語(WORD)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>b</strong>
-
-<ul>
-<li>カーソルより左側の単語(word)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>B</strong>
-
-<ul>
-<li>カーソルより左側の単語(WORD)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>e</strong>
-
-<ul>
-<li>カーソルより右側の単語(word)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>E</strong>
-
-<ul>
-<li>カーソルより右側の単語(WORD)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>ge</strong>
-
-<ul>
-<li>カーソルより左側の単語(word)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>gE</strong>
-
-<ul>
-<li>カーソルより左側の単語(WORD)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>S</strong>
-
-<ul>
-<li>新機能: 画面内すべてを対象として単語の先頭にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>好みによりますが、Findモーションよりも移動したいのは基本単語の先頭だし、Wordモーションのほうが好きという方もいると思います。こちらのほうがキー入力が抑えられます。</p>
-
-<p>またもう一つの優位点としてターゲットとして入力できない単語の移動(日本語など)で使えます。</p>
-
-<p>あと堂々と<strong><Leader>S</strong>と書いてありますが、挙動を変えて単語の先頭、後ろ、その他いい感じの場所にマッチさせて、なるべくどこでも移動できるという挙動に変えるかもしれません&#8230;すいません。(本家easymotionのissueでjump-to-anywareみたいなものがあったのでそれを意識。)</p>
-
-<h2>Search Motion</h2>
-
-<ul>
-<li><strong><Leader>n</strong>
-
-<ul>
-<li>カーソルより右側の検索結果にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>N</strong>
-
-<ul>
-<li>カーソルより左側の検索結果にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>意外と使われてないんじゃないかと思われる検索結果にマッチする機能です。<code>/vim&lt;CR&gt;</code>などしてから<code>&lt;Leader&gt;n</code>or<code>&lt;Leader&gt;N</code>を押すと検索結果がハイライトされて移動できます。</p>
-
-<p>検索してからマッチするところが多すぎてn連打つらい！というのが解消できます。僕はあまり使っていませんが</p>
-
-<h2>JK Motion (行移動)</h2>
-
-<p>個人的に<code>&lt;Leader&gt;s</code>の次に気に入っているのが、Easymotion#JKモーションという行移動機能です。</p>
-
-<p>もう一度言います。<strong>JK</strong> Motionです！</p>
-
-<p><code>&lt;Leader&gt;j</code>でカーソルより下の行、<code>&lt;Leader&gt;k</code>で上の行に飛べます。だいたいこれくらいかなーと適当に<code>10j</code>してから違ってたら調節というわずわらしさとはおさらばです。</p>
-
-<p>また個人的に、UniteやVimfiler、Gundo、Gitvなどなどの行によって何かしら行うUIを持つPluginとJKモーションの親和性が高くておすすめです。</p>
-
-<p>Vimfilerでeasymotion <img src="../images/misc/wp/2013/11/easymotion-vimfiler.gif" alt="easymotion-vimfiler" /></p>
-
-<p>ちなみにVimの<code>set relativenumber</code>を使うとデフォルトでも似たようなことができます。</p>
-
-<p>参考: <a href="http://cohama.hateblo.jp/entry/2013/10/07/020453">&#8216;set relativenumber&#8217; で Vim のカーソルの縦移動とかを改善する &#8211; 反省はしても後悔はしない</a></p>
-
-<p>こちらだとデフォルトで使用できるのが強みですが、数字がアルファベットよりも打ちにくいこと、各種プラグインで行番号が表示されていない時に役に立たないのが少し痛いですね。そんなときでも使えるJKモーション。おすすめです。</p>
-
-<p>それと、JK Motionはデフォルトでは行の先頭に移動するのですが、カラムが同じ位置に飛ぶようになるオプションがつきました。(よりデフォルトのj,kの挙動に近づきます)</p>
-
-<p>vimrc</p>
-
-<pre><code>let g:EasyMotion_startofline=0
-</code></pre>
-
-<p><code>&lt;C-v&gt;</code>の矩形選択時などにこの設定をしておくと幸せになります</p>
-
-<p>Example: <img src="../images/misc/wp/2013/11/keep_cursor.gif" alt="keep_cursor_motion" /></p>
-
-<h2>まとめvimrcの例</h2>
-
-<p><noscript>
-  <pre><code class="language-viml viml">NeoBundle &lsquo;haya14busa/vim-easymotion&rsquo;</p>
-
-<p>&ldquo; vim-eazymotion
-&rdquo; デフォルトだと&lt;Leader&gt;&lt;Leader&gt;となってるprefixキーを変更
-let g:EasyMotion_leader_key = &lsquo;;&rsquo;</p>
-
-<p>&ldquo; 候補選択: 候補が最初から2キー表示されるので大文字や打ちにくい文字は全面的に消す
-&rdquo; なお、最後の数文字が2キーの時の最初のキーになるので打ちやすいものを選ぶとよさそうです。
-let g:EasyMotion_keys=&lsquo;hklyuiopnm,qwertzxcvbasdgjf;&rsquo;</p>
-
-<p>&ldquo; 拡張版機能</p>
-
-<p>&ldquo; もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion をsに割り当て
-nmap s &lt;Plug&gt;(easymotion-s)
-vmap s &lt;Plug&gt;(easymotion-s)
-omap z &lt;Plug&gt;(easymotion-s) &rdquo; surround.vimとかぶるのでz</p>
-
-<p>&ldquo; keep cursor column
-let g:EasyMotion_startofline = 0</p>
-
-<p>&ldquo; smartcase
-let g:EasyMotion_smartcase = 1</p>
-
-<p>&ldquo; Migemo
-let g:EasyMotion_use_migemo = 1</p>
-
-<p></code></pre>
-</noscript></p>
-
-<h2>雑感</h2>
-
-<p>まとめると、キーマップすれば <code>s{char}{target}</code>の3キーで任意の場所に飛べる ので捗っておすすめってことです。おそらく、他のプラグインとしても画面内全体を対象として、この数のキーで移動できるのはほぼ最小じゃないでしょうか。</p>
-
-<p>ujihisa.vim#3のderisさんのスライド<a href="http://www.slideshare.net/deris0126/ujihisavim3">How to move cursor more effectively(for Beginner)</a>や<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a>を読んでるとたくさん移動コマンドがありすぎて正直考えるの面倒です。これを画面内移動だけでも一つに集約できるとかなり楽な感じがしませんか?</p>
-
-<p>ただ、勿論easymotion好きじゃないって人もいて欠点として</p>
-
-<ol>
-<li>{target}がVimから提示されるのを待つしかない
-
-<ul>
-<li>(思考の流れを止めてしまう)</li>
-</ul>
-</li>
-<li>デフォルトのVimモーションの挙動と全然違う
-
-<ul>
-<li>clever-fやvim-sneakはデフォルトの挙動を拡張してるという感が強い</li>
-</ul>
-</li>
-<li>リピートめんどい
-
-<ul>
-<li>そもそもリピートせずに飛ぶというのがコンセプトですが</li>
-</ul>
-</li>
-<li>近くに移動する場合に近い割にキー入力多くて特にめんどくさい</li>
-</ol>
-
-
-<p>この辺が考えられます。他のプラグインと併用するなどして自分にあったカーソル移動を考えるとよさそうです。</p>
-
-<p>そしてこのフォークしたeasymotion,実はまだまだ改善途中といったところで、Vim Scriptアンチパターンのようなものに当てはまっている部分もほとんど直せてません。すいません。ぜひぜひ、アドバイスとプルリクお待ちしています。みんなでカーソル移動を考えましょう。</p>
-
-<h2>VAC2012</h2>
-
-<p>明日の<a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の364日目の記事を新規の人が書くと100人目のようです。興味ある方はぜひ書くとみなさん喜ぶと思います。</p>
 ]]></content>
   </entry>
   

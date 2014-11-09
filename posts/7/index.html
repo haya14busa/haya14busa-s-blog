@@ -9,11 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="統計学習 新規な環境から規則性を抽出
-推論をして行動をするために必要
-Saffran, Aslin, Newport(1996, Science) 視覚的統計学習(VSL) トリプレット
-学習された表象の柔軟性 ABC -> CBA 目的 統計的規則性 -> 自動的に注意を捕捉
-統計的規則性の学習 &hellip;">
+  <meta name="description" content="Undo履歴区切ろう 実践Vimにて アンドゥコマンドの粒度 &#8211; 実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）] 実践Vim 思考のスピードで編集しよう! Drew Neil アスキー・メディアワークス 2013-08-29 ￥ 2,940 Amazon.co. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +76,127 @@ Saffran, Aslin, Newport(1996, Science) 視覚的統計学習(VSL) トリプレ�
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-break-undo-sequence-in-insertmode/">VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-10-11T00:00:00+09:00" pubdate data-updated="true">October 11, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Undo履歴区切ろう</h2>
+
+<h3>実践Vimにて</h3>
+
+<blockquote><p><strong>アンドゥコマンドの粒度</strong></p>
+
+<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51xLKL7w92L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">実践Vim 思考のスピードで編集しよう!</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Drew Neil
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        アスキー・メディアワークス 2013-08-29
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 2,940
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p>実践Vim読んでるときって基本Vimちゃんすごい!Vimちゃんこんなこともできたの!?Vimちゃん大好き！なのですが、ここまでするものなのかと、若干DrewNeilさんに<s>引いて</s>感動してしまった部分が1つだけありました。</p>
+
+<blockquote><p>(略) 行を挿入する一番簡単な方法は<code>&lt;CR&gt;</code>を押すことだ。だけど、筆者がよく使うのは<code>&lt;Esc&gt;o</code>。これは単に、アンドゥする単位を新規に作りたいからだ。ハードコアすぎるって？いやいや心配はいらない。Vimに慣れてくれば、モードの切り替えなんてちょちょいのちょいになるから。</p>
+
+<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
+
+<p><s>流石にハードコアすぎる&#8230;</s>Vim意識高すぎる！</p>
+
+<p>と、言うことで(Pure)Vim力低いし、<code>&lt;CR&gt;</code>と<code>&lt;Esc&gt;o</code>使い分ける必要も無さそうなのでvimrcでカスタマイズ。</p>
+
+<h2>vimrc書き書き</h2>
+
+<p>vimrc <noscript>
+  <pre><code class="language-viml viml">&ldquo; For Undo Revision, Break Undo Sequence
+inoremap &lt;CR&gt; &lt;C-]&gt;&lt;C-G&gt;u&lt;CR&gt;</p>
+
+<p>inoremap &lt;C-h&gt; &lt;C-g&gt;u&lt;C-h&gt;
+inoremap &lt;BS&gt; &lt;C-g&gt;u&lt;BS&gt;
+inoremap &lt;Del&gt; &lt;C-g&gt;u&lt;Del&gt;
+inoremap &lt;C-d&gt; &lt;C-g&gt;u&lt;Del&gt;
+inoremap &lt;C-w&gt; &lt;C-g&gt;u&lt;C-w&gt;
+inoremap &lt;C-u&gt; &lt;C-g&gt;u&lt;C-u&gt;
+</code></pre>
+</noscript></p>
+
+<p>helpる。helpる。さまよう&#8230;あった!</p>
+
+<blockquote><p>CTRL-G u break undo sequence, start new change <em>i_CTRL-G_u</em></p>
+
+<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#i_CTRL-G_u">:h i_CTRL-G_u</a></cite></p></blockquote>
+
+<p><code>&lt;C-o&gt;</code>の一時コマンドモードで副作用的にUndoを区切るのではなく、まさにやりたいことそのまんまのコマンド(<code>i_CTRL-G_u</code>)が用意されていたようです。知らなかった&#8230;</p>
+
+<p>改行ついでに削除系インサートコマンドでも<code>&lt;C-g&gt;u</code>噛ませることに。便利。<code>&lt;C-h&gt;</code>に限って言えば区切りすぎウザイ感あるのでいらないかも。</p>
+
+<p><code>&lt;C-d&gt;</code>だけデフォルトのキーマップじゃないですが、デフォルトの動作はインサートモードでインデント下げるという<s>誰得</s>機能なので変えても良さそう。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-break-undo-sequence-in-insertmode/">VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)</a>
+      <time datetime="2013-10-11T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>11</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -682,163 +799,6 @@ Saffran, Aslin, Newport(1996, Science) 視覚的統計学習(VSL) トリプレ�
       
       - <a href="/mathematics-and-its-history-01/">Mathematics and its History #01</a>
       <time datetime="2013-10-08T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>08</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/155/">Implicit Learning 10/2</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-10-03T00:00:00+09:00" pubdate data-updated="true">October 03, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>潜在学習(implicit learning)</h1>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Implicit_learning">Implicit learning &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://openweb.chukyo-u.ac.jp/~jkawa/AandC/15/8_Higuchi.pdf">系列の潜在学習における課題依存性</a></li>
-</ul>
-
-
-<h2>Index</h2>
-
-<ul>
-<li>課題依存性</li>
-<li>眼球運動の役割</li>
-<li>統計的規則性の潜在学習</li>
-</ul>
-
-
-<h2>課題依存性</h2>
-
-<h3>実験1</h3>
-
-<p>女性(1こだけ性別の違う)の顔を見つけてもらい、向きを反応させる(アイデンティティー課題)</p>
-
-<ul>
-<li>条件
-
-<ul>
-<li>位置変化条件</li>
-<li>アイデンティティー変化条件</li>
-</ul>
-</li>
-</ul>
-
-
-<p>ランダム系列 -> パターン系列 -> ターゲット -> 刺激</p>
-
-<h4>予想結果</h4>
-
-<ul>
-<li>学習が起きた場合 -> RTがテストで遅くなる</li>
-<li>起きなかった場合 -> RTはテストで変わらない</li>
-</ul>
-
-
-<h4>結果</h4>
-
-<ul>
-<li>位置は学習されない</li>
-<li>アイデンティティーが学習されていた</li>
-</ul>
-
-
-<h3>実験2</h3>
-
-<p>位置関連課題</p>
-
-<h4>結果</h4>
-
-<ul>
-<li>位置は学習</li>
-<li>アイデンティティーは学習されない</li>
-</ul>
-
-
-<h3>考察</h3>
-
-<ul>
-<li>○ 課題に関連した情報のみが学習される</li>
-</ul>
-
-
-<h2>眼球運動の役割</h2>
-
-<p>Zhao et al., 2012 反復条件、ランダム条件</p>
-
-<ul>
-<li>attentional guidance</li>
-<li><p>internal selection</p></li>
-<li><p>TL視覚探索</p></li>
-<li><p>スパイダーウェブ</p></li>
-</ul>
-
-
-<h3>潜在学習におけるRTの短縮の原因</h3>
-
-<ul>
-<li>眼球運動総距離は変わらない</li>
-<li>サッカード数に差があり</li>
-</ul>
-
-
-<h3>目的</h3>
-
-<ul>
-<li>潜在学習の生起に眼球運動が必要？</li>
-</ul>
-
-
-<h3>結果</h3>
-
-<p>眼球運動なしでも潜在学習は起きた</p>
-
-<p>再認課題 眼球運動ありなしともにFalse alarmは減少,Hit率はチャンスレベル</p>
-
-<h2>c.f.</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Implicit_memory">Implicit memory &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Implicit_cognition">Implicit cognition &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/155/">Implicit Learning 10/2</a>
-      <time datetime="2013-10-03T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>03</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
       

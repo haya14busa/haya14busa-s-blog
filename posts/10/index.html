@@ -9,10 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="環境 Mac OSX 10.8.4
-Python 2.7.5 (Homebrewでインストール)
-Python 3.3.2でも確認
-readline 6.2.4(Homebrew) Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい « &hellip;">
+  <meta name="description" content="なんか勘違いしてたので書き直しました 2013/07/08。(記事投稿の翌日) 日本語入力できなかった MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ « haya14busaで便利だーーーーと思ったのもつかの間、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +76,148 @@ readline 6.2.4(Homebrew) Mac OSXのPythonのインタラクティブシェルor�
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/zsh-input-japanese/">zsh5.0.2に変えたら日本語打てなくなった問題と解決法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-08T00:00:00+09:00" pubdate data-updated="true">July 08, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>なんか勘違いしてたので書き直しました 2013/07/08。(記事投稿の翌日)</p>
+
+<h2>日本語入力できなかった</h2>
+
+<p><a href="http://haya14busa.com/homebrew-zsh-to-zsh/">MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ « haya14busa</a>で便利だーーーーと思ったのもつかの間、まさかの日本語入力すると多分ascii?コードに変換されちゃって、echoとかで実行させると普通の日本語に戻るって問題になった。<code>LANG=ja_JP.UTF-8</code>だし、<code>setopt print_eight_bit</code>は記述してたので詰んだかとおもい、やむなくバージョン戻そうかなーとおもったら解決法見つけました。</p>
+
+<p><s>.zshrc</s>.inputrc</p>
+
+<blockquote><p>set kanji-code utf-8 set convert-meta off #必須 set meta-flag on #必須 set output-meta on #必須 set input-meta on set enable-keypad on</p>
+
+<p>&#8211; <cite><a href="http://www.hasta-pronto.org/2006/10/02/mac-osx-x-zsh.html">Mac OSX x zsh で日本語表示 &amp; 入力</a></cite></p></blockquote>
+
+<p><s><code>set convert-meta off</code>が解決策です。これがデフォルトでonっぽいのが原因でした。</s></p>
+
+<p>いろいろ間違ってました。まず記述するファイルは.zshrcでなく.inputrcであるということ。これは調べると.zshrcに記述している例もたまに見かけるのですが、おそらく読み込んでないと思います。そもそもがこれらのコマンドは.inputrcに記述するもので、これはreadlineが読みにくるファイルなようです。そしてzshはreadlineではなくzleという独自の機能で履歴機能などを実装してるからです。</p>
+
+<blockquote><p>Note that unlike bash&#8217;s line editor, readline, which is an entirely separate library, zle is an integral part of the shell.</p>
+
+<p>&#8211; <cite><a href="http://zsh.sourceforge.net/Guide/zshguide04.html">A User&#8217;s Guide to the Z-Shell</a></cite></p></blockquote>
+
+<p>実際にon/off変えてみましたが(僕が見た限りでは)変化ありませんでした。</p>
+
+<p>ここで怪我の功名で.inputrcがreadlineをある程度制御するファイルだと知れたことは幸いでした。なんてったってPythonで日本語入力できなかった問題が部分的には解決したわけですから。これはまた別の記事で。</p>
+
+<h2>これで心置きなく使え……る?ほんとに？</h2>
+
+<p><s>補完で表示される日本語ファイルはちゃんと&#8221;日本語.txt&#8221;と表示されるのに、lsコマンドでは&#8221;?????????.txt&#8221;に化けます。これは以前からの問題で、むしろ補完時はちゃんと表示される分より改善したんですが、正直ファイル名に日本語使うこと滅多に無いんで妥協してます。多分解決策あるんだろうけど………それよりもPythonのインタプリタで日本語使いたい…はぁ</s></p>
+
+<p>lsで&#8221;?????????.txt&#8221;に化けるのは<code>ls -v</code>のように-vオプションをつけると表示できました。</p>
+
+<h2>実際の解決法</h2>
+
+<p>実際の解決法………それは………versionを下げる！！！</p>
+
+<p>はい、正直いい解決法とはいえません。でもしょうがない。そこまで思い入れもないし。ということでHomebrewで古いバージョンをインストールする方法です。</p>
+
+<p><a href="http://qiita.com/semind/items/f8f647e757842f08b9ec">Mac &#8211; homebrewでバージョンを指定してインストールする &#8211; Qiita [キータ]</a></p>
+
+<p>まずはバージョンを確認</p>
+
+<pre><code>% brew versions zsh
+5.0.2    git checkout 4392eba /usr/local/Library/Formula/zsh.rb
+5.0.1    git checkout 9d0b1be /usr/local/Library/Formula/zsh.rb
+5.0.0    git checkout 9928fbb /usr/local/Library/Formula/zsh.rb
+4.3.17   git checkout 8022bf4 /usr/local/Library/Formula/zsh.rb
+4.3.16   git checkout 94841e1 /usr/local/Library/Formula/zsh.rb
+4.3.15   git checkout 0c7ed4d /usr/local/Library/Formula/zsh.rb
+4.3.12   git checkout d8c1bd1 /usr/local/Library/Formula/zsh.rb
+4.3.11   git checkout 0476235 /usr/local/Library/Formula/zsh.rb
+4.3.10   git checkout d0efd9e /usr/local/Library/Formula/zsh.rb
+</code></pre>
+
+<p>ディレクトリ移動して先ほどの確認で出てきた該当バージョンのgitコマンドをコピペ。ここでは4.13.15</p>
+
+<pre><code>% cd /usr/local/Library/Formula
+% git checkout 0c7ed4d /usr/local/Library/Formula/zsh.rb
+</code></pre>
+
+<p>一応バージョンが変わってるか確認。5.0.2とかはbrew unlinkしただけなのでファイル残ってるみたいな記述ありますが無視で。</p>
+
+<pre><code>% brew info zsh                                                 (git)-[master]
+zsh: stable 4.3.15
+
+http://www.zsh.org/
+
+/usr/local/Cellar/zsh/4.3.15 (932 files, 8.3M) *
+  Built from source
+/usr/local/Cellar/zsh/5.0.0 (957 files, 8.5M)
+  Built from source with: --disable-etcdir
+/usr/local/Cellar/zsh/5.0.2 (1053 files, 8.5M)
+  Built from source
+From: https://github.com/mxcl/homebrew/commits/master/Library/Formula/zsh.rb
+==&gt; Dependencies
+Optional: gdbm
+==&gt; Options
+--with-gdbm
+    Build with gdbm support
+==&gt; Caveats
+In order to use this build of zsh as your login shell,
+it must be added to /etc/shells.
+</code></pre>
+
+<p>最後に現在Homebrewでzshがインストールされている場合は、<code>brew rm zsh</code> or<code>brew unlink zsh</code>してからインストール</p>
+
+<pre><code>% brew install zsh
+</code></pre>
+
+<p>一応シェル扱ってるので、アンインストールする前にbashにログインして作業するとかMacデフォルトのzshにログインするとかしたほうがいいと思います。(全然別の件ですが一度シェルのPATH設定とか間違えて痛い目見ました)</p>
+
+<p>バージョンに関しては僕が調べた限り、変な変換をかませず日本語入力できる最新のバージョンが4.3.15でした。4.3.16はエラー吐いて、4.3.17から挙動が変わります。Macデフォルトの/bin/zshのバージョンは4.13.11なのでHomebrewに移行する価値はあると思います。zsh-completionsをHomebrewから入れてるのなら尚更ですね。</p>
+
+<p>なお、バージョンによってDependenciesなどが変わったりして、使用モジュール？が古いから変えるようにみたいなWarningでたりしますが、現状普通に動くと思います。</p>
+
+<h2>晴れて解決？</h2>
+
+<p>ただバージョン5.0.2などでもシェルのプロンプトで日本語がかってに変換されてしまうだけで、日本語の使用自体はできますし、vimなどでは普通に入力できるところを見ると、最新バージョンでも使える解決策があるんじゃないかなーとおもいます。ただ僕のぐぐり力では見つかりませんでした。それどころか自分の環境だけ問題おこってるという可能性すらありますよね。そう考えると、根本的な原因を知っときたい…</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/zsh-input-japanese/">zsh5.0.2に変えたら日本語打てなくなった問題と解決法</a>
+      <time datetime="2013-07-08T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>08</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/zsh/'>zsh</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -694,191 +833,6 @@ if __name__ == "__main__":
       <footer>
       
       - <a href="/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]</a>
-      <time datetime="2013-07-06T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/tweepy/'>tweepy</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-07-06T00:00:00+09:00" pubdate data-updated="true">July 06, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>なかなか便利</h2>
-
-<p><a href="(https://github.com/tweepy/tweepy)">tweepy</a>のソース読んだり、ぐぐったりしながらなんとか形になった。ここで言う擬似ストリーミングはツイッターのStreaming APIではなく、Rest APIを自動で投げて表示させるって意味なので全然Streamingじゃないですね。</p>
-
-<p>リストにStreaming APIが提供されてないことに気づくまでバカみたいに探しててバカみたいだった。バカみたいだった。</p>
-
-<p>記事執筆現在、API1.1のリストタイムラインの取得制限は180回/15分なので、単純計算で5秒に一回投げれます。スクリプトでは読み上げ時間も＋8秒ぐらいで余裕を持たせてます。リストの流速によっては取得漏れが発生すると思いますが、それぐらいだとそもそも読み上げが追いつきません。リスト廃人とかじゃなかったら大丈夫だと思います。</p>
-
-<p>英語用のリストを英語で読ませたり、単に気になるリストを読み上げさせたりと結構おもしろいです。</p>
-
-<p>また、whileの無限ループと引数のsince_idで擬似ストリーミングを実装してるので、同じ手法を使えば特定のidだとかリスト以外でも使えるはずです。サーバーに負担かからない程度の自重は必要だとは思います。</p>
-
-<h2>ホームタイムラインバージョン</h2>
-
-<p><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></p>
-
-<p>tweepyだとか読み上げコマンドだったり仕様について書いてるので参照してください</p>
-
-<h2>コード</h2>
-
-<p>twList.py</p>
-
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-#
-# リストのTLを擬似ストリーミングで読み上げさせる
-# 
-# Author:   haya14busa
-# URL:      http://haya14busa.com
-# Require:  SayKotoeri, Saykana or SayKotoeri2
-# License:  MIT License
-# OS:       for Mac Only
-
-import tweepy
-from datetime import timedelta
-import time
-from subprocess import call
-import re
-import sys, codecs
-
-sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
-sys.stdin = codecs.getreader('utf_8')(sys.stdin)
-
-def get_oauth():
-    CONSUMER_KEY='**********'
-    CONSUMER_SECRET='**********'
-    ACCESS_TOKEN_KEY='**********'
-    ACCESS_TOKEN_SECRET='**********'
-     
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
-    return auth
-
-def str_replace(string):
-    string = re.sub('&amp;.+;', ' ', string)
-    # remove URL
-    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
-    # remove quote
-    string = re.sub('"', ' ', string)
-    string = re.sub("'", ' ', string)
-    string = re.sub('\/', ' ', string)
-
-    string = re.sub('RT', 'Retweet', string)
-    return string
-  
-def showTL(api, read_id):
-    try:
-        tl = api.list_timeline('[owner_name]', '[slug]', count=10, since_id = read_id)
-        tl.reverse()
-        for status in tl:
-            status.created_at += timedelta(hours=9) # add 9 hours for Japanese time
-            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
-                    name = status.author.name,
-                    screen = status.author.screen_name,
-                    text = status.text,
-                    src = status.source,
-                    created = status.created_at)
-            read_text = str_replace(status.text.encode('utf_8'))
-            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
-            # call(['say -v "kyoko" "{text}"'.format(text=read_text)], shell=False) # Kyoko
-            # call(['say  "{text}"'.format(text=read_text)], shell=False) # for English
-        else:
-            global lastSinceId
-            lastSinceId = tl[-1].id
-            
-    except Exception, e:
-        time.sleep(10)
-        pass
-
-def main():
-    auth = get_oauth()
-    api = tweepy.API(auth_handler=auth)
-    lastGetTime = time.time() - 8
-    global lastSinceId
-    lastSinceId = None
-    while True:
-        if time.time() &gt; lastGetTime + 8:
-            lastGetTime = time.time()
-            showTL(api, lastSinceId)
-        else:
-            time.sleep(1)
-
- 
-if __name__ == "__main__":
-    main()
-</code></pre>
-
-<h2>使い方</h2>
-
-<p>Twitter Developersに登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。また[owner_name]と[slug]をリストの所有者のスクリーンネームと、リストの名前に置き換えてください。</p>
-
-<p>また、読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。英語用リストだとsayコマンドに変更するとなかなかネイティブな発音が聴けて楽しいです。</p>
-
-<p>あとはターミナルでpython twaloud.py 終了はCtrl-Cで強制終了してください。</p>
-
-<h2>参考リンク</h2>
-
-<h3>ホームタイムラインバージョン</h3>
-
-<ul>
-<li><a href="http://haya14busa.com/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy] « haya14busa</a></li>
-</ul>
-
-
-<h3>ライブラリ</h3>
-
-<ul>
-<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
-</ul>
-
-
-<h3>コード</h3>
-
-<ul>
-<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
-<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
-<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy]</a>
       <time datetime="2013-07-06T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/tweepy/'>tweepy</a></span>

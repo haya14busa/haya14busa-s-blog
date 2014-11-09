@@ -9,7 +9,8 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="なんどpushしてもTravisが動いてくれなくて非常につらかった 何度も設定見なおして、何度も更新して、何度も何度もpushしました。 しかし何も起こらなかった。。。 解決 ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&# &hellip;">
+  <meta name="description" content="つくりました Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。 Vimプラグイン読書会
+GitHub: haya14busa/reading-vimplugin 注: URLは変わるかもしれません GitHub公式ドキュメント GitHub Pages &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,323 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages With Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-29T00:00:00+09:00" pubdate data-updated="true">December 29, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>つくりました</h2>
+
+<p>Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。</p>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<p>注: URLは変わるかもしれません</p>
+
+<h2>GitHub公式ドキュメント</h2>
+
+<ul>
+<li><a href="http://pages.github.com/#project_pages">GitHub Pages</a></li>
+<li><a href="https://help.github.com/categories/20/articles">GitHub Help</a></li>
+</ul>
+
+
+<p>静的サイトをホストしてくれる。プロジェクトごとに作ったり、ユーザーのブログとして使えたりする。</p>
+
+<h2>Jekyll</h2>
+
+<ul>
+<li><a href="http://jekyllrb.com/">Jekyll • Simple, blog-aware, static sites</a>
+
+<ul>
+<li>静的サイトのジェネレーター。GitHub Pagesで搭載されている。</li>
+</ul>
+</li>
+<li><a href="http://docs.shopify.com/themes/liquid-basics">Liquid basics &#8211; Shopify Themes</a>
+
+<ul>
+<li>Liquidというテンプレートエンジンが使われておりif,for文使ったり、includeしたりといろいろできる。</li>
+</ul>
+</li>
+<li><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyllいつやるの？ジキやルの？今でしょ！</a>
+
+<ul>
+<li>ジキリました。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初に砂場あそびしました</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/gh-page-sandbox/">Happy Vimming!</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/gh-page-sandbox">haya14busa/gh-page-sandbox</a></li>
+</ul>
+
+
+<p>GitHub PagesのAutomatic Generatorを使ってJekyll on GitHub Pagesの仕様をなんとなく把握。適当な流れをリンク先に書きました。</p>
+
+<h2>そしてBootstrapつかってVimプラグイン読書会作成へ</h2>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
+</ul>
+
+
+<h3>参考Link</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/">vim-jp » Vimのユーザーと開発者を結ぶコミュニティサイト</a>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>どっちもJekyll使ってたので参考にしました。特にvimrc読書会と似たようなサイトにしたほうがいいっぽいので構成とかほぼ同じになってます。参考にしながらやってると明らかな間違いとか割と見つけたりして簡単なPullReq案件が出てくるので便利。Vimプラグイン読書会のナビゲーションヘッダ便利という声からvimrc読書会のサイトのにもナビゲーション実装したりもしました。</p>
+
+<h3>Twitter Bootstrap</h3>
+
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="http://bootswatch.com/">Bootswatch: Free themes for Bootstrap</a></li>
+<li><a href="http://bootswatch.com/simplex/">Bootswatch: Simplex</a></li>
+</ul>
+
+
+<p>ArchiveページでTableゴリゴリ使うっぽいのでTwitter Bootstrap使って楽々ストライプデザインにしたり、簡単にResponsiveなヘッダーを作れて便利でした。配色とか考えてたけどデザイン力なさすぎて途中でBootswatchというBootstrapのテーマサイトからSimplexというテーマをベースに作ることにしました。</p>
+
+<p>そしたらおしゃれっぽくなったんだけど、自分のサイトとめっちゃ似てるデザインになってつらさを感じた。反省してます。</p>
+
+<h2>こっからTips的ななにか</h2>
+
+<h3>ローカルでもCSS,JSを効かせた状態で確認する方法</h3>
+
+<p>&#95;config.yml (いろいろ設定がかける)</p>
+
+<pre><code>baseurl: /{repository-name}
+</code></pre>
+
+<p>default.htmlなどで</p>
+
+<p>Shell</p>
+
+<pre><code>bundle exec jekyll serve -w -b /{repository-name}
+</code></pre>
+
+<p>上記コマンドを叩いて<code>http://localhost:4000/{repository-name}/</code>にアクセスするといい感じにCSS,JSなどすべてのページで効くようになります</p>
+
+<p>詳しくは<code>jekyll serve --help</code>とかするとよい。</p>
+
+<ul>
+<li><a href="http://jekyllrb.com/docs/github-pages/">Jekyll &#8211; GitHub Pages</a>
+
+<ul>
+<li>公式サイトで詳しく書いてあります。英語ですが。</li>
+</ul>
+</li>
+</ul>
+
+
+<p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
+
+<p>これは書いてても一応使えるんですが問題があって、<code>/jekyll_reading_vimplugin_site/</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>jekyll_reading_vimplugin_site/</code>)</p>
+
+<p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
+
+<h3>Markdown</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>markdown: rdiscount
+
+rdiscount:
+  extensions:
+    - autolink      # greedily urlify links
+    - footnotes     # footnotes
+    - smart         # typographic substitutions with SmartyPants
+</code></pre>
+
+<p>デフォルトのmarkdownエンジンはmarukuになっていて(たぶん)、あんまり良くないのでrdiscountかredcarpetあたりを選ぶと便利なようです。</p>
+
+<ul>
+<li><a href="http://dafoster.net/projects/rdiscount/">RDiscount | Markdown for Ruby | DaFoster</a></li>
+</ul>
+
+
+<p>Markdownファイルをかけば勝手にコンバートしてくれるわけではなく、先頭に記述する必要があります。</p>
+
+<p>index.mdなど</p>
+
+<pre><code>---
+layout: default
+title: なにかタイトル
+---
+
+本文
+</code></pre>
+
+<h3>&#95;layout</h3>
+
+<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの&#8220;にMarkdown内容を出力することになります。</p>
+
+<p><code>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</code>や&#8220;を使用してよさげに作るとよいです</p>
+
+<h3>Gemfile</h3>
+
+<p>Gemfile</p>
+
+<pre><code>source 'https://rubygems.org'
+gem 'github-pages'
+</code></pre>
+
+<p>Rubyとbundlerとか事前にインストールしておくと<code>bundle install</code>とか<code>bundle exec jekyll serve</code>とかできて用意しておくと便利。travis-ciに登録とか気軽にできるのでリポジトリの紹介ページとかでなく、純粋にGitHub Pagesとしてリポジトリを使う場合は便利です。</p>
+
+<p><a href="http://haya14busa.com/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった « haya14busa</a></p>
+
+<h3>ConvertからExcludeする</h3>
+
+<p>&#95;config.yml</p>
+
+<pre><code>exclude:
+  - 'Gemfile'
+  - 'Gemfile.lock'
+  - 'README.md'
+  - 'scripts'
+</code></pre>
+
+<p>markdownやらhtml以外の物も<code>_site</code>以下にJekyllはコンバートするので、気づかずにREADMEとかをおいておくとサイトからアクセスできちゃったりします。しっかり除外設定しておくと良さげです。</p>
+
+<p><code>find _site -type f</code>とかして確認するとよいです。</p>
+
+<h3>&#95;includeを使う</h3>
+
+<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において`<hgroup>
+  <h1><a href="/">haya14busa</a></h1></p>
+
+<pre><code>&lt;h2&gt;haya14busa's memo&lt;/h2&gt;
+</code></pre>
+
+<p></hgroup></p>
+
+<p>`とレイアウトなどなどから呼び出すことができます。</p>
+
+<h3>&#95;dataとfor loopが便利っぽい</h3>
+
+<p>&#95;data/members.yml</p>
+
+<pre><code>- name: sanaechan
+  github: deco_mori
+  twitter: decochan
+
+- name: haya14busa
+  github: haya14busa
+  twitter: haya14busa
+</code></pre>
+
+<p>とかしておくとMarkdownファイル含め任意のところで</p>
+
+<p>こんなふうに呼び出せて便利そうです。</p>
+
+<p>よんだvimrcとかvim pluginをテーブルに直書きじゃなくてデータに書いてloop回してわっしょいとかもよさそう。</p>
+
+<h3>結局は</h3>
+
+<p>他人のサイトみて良さげな書き方参考にするとすぐできるのではかどります。</p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
+<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
+</ul>
+
+
+<p>とか</p>
+
+<ul>
+<li><a href="https://github.com/twbs/bootstrap">twbs/bootstrap</a>
+
+<ul>
+<li>Twitter BootstrapのSource版がそのままjekyllで使えて参考になったり</li>
+</ul>
+</li>
+<li><a href="https://github.com/nitoyon/tech.nitoyon.com">nitoyon/tech.nitoyon.com</a>
+
+<ul>
+<li><a href="http://tech.nitoyon.com/ja/blog/2012/09/20/moved-completed/">俺の最強ブログ システムが火を噴くぜ &#8211; てっく煮ブログ</a></li>
+<li>こういうところを参考に熱意をあげたり</li>
+</ul>
+</li>
+<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a>
+
+<ul>
+<li>ここを温かい目で眺めたり</li>
+</ul>
+</li>
+</ul>
+
+
+<p>などなど、GitHubにホストされてるものを公式ドキュメントなどと見比べながらやっていくといろいろ発見があったり、ついでにプルリクれたりしてよいです。</p>
+
+<p>ただGitHub PagesはJekyll Pluginなどが使えなくて、Octopressとか使って若干違う構成になっていることもあるので注意です。鵜呑みコピペ怖い。</p>
+
+<h2>結論</h2>
+
+<p>Jekyll on GitHub Pages with Twitter Bootstrap 便利すぎる。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a>
+      <time datetime="2013-12-29T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>29</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/uncategorized/'>uncategorized</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1011,395 +1329,6 @@ autoload -&gt; .c
       
       - <a href="/reading-vim-plugin/">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった</a>
       <time datetime="2013-12-13T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>13</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-28T00:00:00+09:00" pubdate data-updated="true">November 28, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の363日目の記事です。 昨日はthincaさんの<a href="http://d.hatena.ne.jp/thinca/20131127/1385487671">本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成</a>でした。</p>
-
-<p>あと3日でVAC2013になるということですが、<s>いまさら</s>VAC2012の99人目として記事を書いてみたいと思います。</p>
-
-<p>僕は今年の1月か、2月あたりからVimを使い始めたので、自分のVim歴よりも前に始まったAdvent Calendarに参加すると思うと歴史を感じます。すごい。</p>
-
-<p>Vimで最初に習うのはhjklによるカーソル移動です。<br/>
-その後w,bなどたくさんの移動コマンドを覚えると思います。<br/>
-またVimを使っているとき、その7,8割はカーソル移動してるんじゃないでしょうか???<br/>
-カーソル移動大事。</p>
-
-<p>ということでカーソル移動系プラグインであるvim-easymotionの話をします。</p>
-
-<h2>vim-easymotionとは</h2>
-
-<p>任意の場所や単語の先頭などをハイライト&amp;アルファベットなどの候補キーを出して、その行きたい場所のキーを押すことによってその場所にジャンプするプラグインです。今回、これを一から作ったというわけではなく、フォークして便利にしたという話とおすすめの使い方書くよという話です。その辺よろしくお願いします。</p>
-
-<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
-
-<h2>もっとvim-easymotionしよう</h2>
-
-<p>Github: <strong><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></strong></p>
-
-<p>Install</p>
-
-<pre><code>NeoBundle 'haya14busa/vim-easymotion'
-</code></pre>
-
-<p>本家: <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
-
-<p>なるべく本家Easymotionからの移行時にびっくりしないよう、新規機能は基本的にデフォルトでオフになっていて、オンなのは候補の2キー表示と双方向サーチである<code>&lt;Leader&gt;s</code>の追加、バグフィックスあたりだけなのでぜひ気軽に試してフィードバックorプルリクください。</p>
-
-<p>以下面倒なのでデフォルトのprefixキーである<code>&lt;Leader&gt;&lt;Leader&gt;</code>を<code>&lt;Leader&gt;</code>に変更しているとして解説します。(特に機能名がないので機能をMappingで表したりします)</p>
-
-<p><a href="https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108">:h easymotion-default-mapping</a></p>
-
-<h2>よくわかる拡張機能</h2>
-
-<ul>
-<li>最初から候補画面で2キー表示する!</li>
-<li>fやFの双方向バージョンが追加され、画面内ならどこでも飛べる!(<code>&lt;Leader&gt;s</code>)</li>
-<li>Smartcase機能でもっと楽々移動!</li>
-<li>1文字migemo実装で日本語でもeasymotion!</li>
-<li>その他もろもろ</li>
-<li>バグフィックス
-
-<ul>
-<li>マルチバイトバグ</li>
-<li>バッファ名バグ(今までuniteやref-vimでバグってました)</li>
-<li>その他いろいろ</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>最初から2キー表示する!</h2>
-
-<p>おそらくVim-Easymotionを使ったことがある人であれば必ず思うであろう、</p>
-
-<p><strong>「2回キー押すとき面倒くさい&#8230;」</strong></p>
-
-<p>これが改善されています。2回以上押さなければならない場合は最初から2つ分表示されてストレス90％減です(当社比)</p>
-
-<p><img src="../images/misc/wp/2013/11/two-key-motion.gif" alt="easymotion_two_key_combo" /></p>
-
-<h2>双方向サーチでカーソル位置を気にせず使う</h2>
-
-<p>これも使ったことがある人なら面倒くさいと思ったことがあるんじゃないでしょうか？</p>
-
-<p><strong><code>&lt;Leader&gt;f</code>か<code>&lt;Leader&gt;F</code>のどっち使うか決めるの面倒くさい。</strong></p>
-
-<p>飛びたい場所が現在位置の上下近くだったりすると意外とめんどくさくて脳のリソース消費します。これが<code>&lt;Leader&gt;s</code>で双方向サーチするという新機能で解決です。また、ひとつのマッピングでほぼすべての移動を補えるようになるところが見逃せないポイント。</p>
-
-<h2>Smartcaseでもっと楽々移動したい!</h2>
-
-<p>正直Shift押すのも面倒くさい。</p>
-
-<p>vimrc</p>
-
-<pre><code>" smartcase
-let g:EasyMotion_smartcase = 1
-</code></pre>
-
-<p>上記の設定で<code>&lt;Leader&gt;sv</code>で<strong>v</strong>imにも<strong>V</strong>imにもマッチして移動できます。楽。勿論smartcaseなので<code>&lt;Leader&gt;sV</code>だと<strong>V</strong>imだけにマッチします。</p>
-
-<h2>1文字migemo実装で日本語でもeasymotion!</h2>
-
-<p>migemo一回使ってみたら、日本語移動でかなり便利だったのでeasymotionでも実装したいなーと思っていました。そこで探してみると、<a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a>ですでに擬似migemo実装されてる事案があったのでclever-fの作者であるLindanさんに許可とってパク&#8230;参考にして実装しました。</p>
-
-<p>cmigemoなしでも動きます。</p>
-
-<p>vimrc</p>
-
-<pre><code>let g:EasyMotion_use_migemo = 1
-</code></pre>
-
-<p>Vimで日本語書くときになかなかいいです。</p>
-
-<p>注意事項として候補が多すぎたりスペック低かったりすると、ちょっと遅くてイラッとするかもしれません&#8230;もうちょっと改善したい。ちなみに<code>&lt;Leader&gt;w</code>など単語移動モーション使うと必ずしも行きたい場所には行けませんが移動はかなりサクッと行きます。</p>
-
-<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
-
-<p>だいたい主な拡張機能はこんな感じです。</p>
-
-<p>以下元からあった機能も適当に解説しながらなんやかんやしていきます。</p>
-
-<h2>Find Motion</h2>
-
-<p>新機能である<code>&lt;Leader&gt;s</code>や<code>&lt;Leader&gt;f</code>などがこのFind Motionに当たります</p>
-
-<ul>
-<li><strong><Leader>s{char}</strong>
-
-<ul>
-<li>新機能: 画面内すべてを対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>f{char}</strong>
-
-<ul>
-<li>カーソルより右側を対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>F{char}</strong>
-
-<ul>
-<li>カーソルより左側を対象として{char}にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>t{char}</strong>
-
-<ul>
-<li>カーソルより右側を対象として{char}の1文字手前にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>T{char}</strong>
-
-<ul>
-<li>カーソルより左側を対象として{char}の1文字後にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>おそらく基本的に使うのは<code>&lt;Leader&gt;s{char}</code>で、オペレーション待機モードで<code>&lt;Leader&gt;t{char}</code>,<code>&lt;Leader&gt;T{char}</code>使うかもといった感じです。</p>
-
-<p>おすすめは<code>&lt;Leader&gt;s{char}</code>が便利すぎるので、<code>s</code>キーをマップして<code>s{char}</code>で動作するようにするとたった<strong>3(or4)キー</strong>(<code>s{char}{target}</code>)で任意の場所に一瞬で移動できるので非常に捗ります。</p>
-
-<p>vimrc</p>
-
-<pre><code>" もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion を`s`に割り当てます"
-nmap s &lt;Plug&gt;(easymotion-s)
-vmap s &lt;Plug&gt;(easymotion-s)
-omap z &lt;Plug&gt;(easymotion-s) " surround.vimとかぶるので`z`
-</code></pre>
-
-<h2>Word Motion</h2>
-
-<ul>
-<li><strong><Leader>w</strong>
-
-<ul>
-<li>カーソルより右側の単語(word)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>W</strong>
-
-<ul>
-<li>カーソルより右側の単語(WORD)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>b</strong>
-
-<ul>
-<li>カーソルより左側の単語(word)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>B</strong>
-
-<ul>
-<li>カーソルより左側の単語(WORD)の先頭にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>e</strong>
-
-<ul>
-<li>カーソルより右側の単語(word)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>E</strong>
-
-<ul>
-<li>カーソルより右側の単語(WORD)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>ge</strong>
-
-<ul>
-<li>カーソルより左側の単語(word)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>gE</strong>
-
-<ul>
-<li>カーソルより左側の単語(WORD)の後ろにマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>S</strong>
-
-<ul>
-<li>新機能: 画面内すべてを対象として単語の先頭にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>好みによりますが、Findモーションよりも移動したいのは基本単語の先頭だし、Wordモーションのほうが好きという方もいると思います。こちらのほうがキー入力が抑えられます。</p>
-
-<p>またもう一つの優位点としてターゲットとして入力できない単語の移動(日本語など)で使えます。</p>
-
-<p>あと堂々と<strong><Leader>S</strong>と書いてありますが、挙動を変えて単語の先頭、後ろ、その他いい感じの場所にマッチさせて、なるべくどこでも移動できるという挙動に変えるかもしれません&#8230;すいません。(本家easymotionのissueでjump-to-anywareみたいなものがあったのでそれを意識。)</p>
-
-<h2>Search Motion</h2>
-
-<ul>
-<li><strong><Leader>n</strong>
-
-<ul>
-<li>カーソルより右側の検索結果にマッチ</li>
-</ul>
-</li>
-<li><strong><Leader>N</strong>
-
-<ul>
-<li>カーソルより左側の検索結果にマッチ</li>
-</ul>
-</li>
-</ul>
-
-
-<p>意外と使われてないんじゃないかと思われる検索結果にマッチする機能です。<code>/vim&lt;CR&gt;</code>などしてから<code>&lt;Leader&gt;n</code>or<code>&lt;Leader&gt;N</code>を押すと検索結果がハイライトされて移動できます。</p>
-
-<p>検索してからマッチするところが多すぎてn連打つらい！というのが解消できます。僕はあまり使っていませんが</p>
-
-<h2>JK Motion (行移動)</h2>
-
-<p>個人的に<code>&lt;Leader&gt;s</code>の次に気に入っているのが、Easymotion#JKモーションという行移動機能です。</p>
-
-<p>もう一度言います。<strong>JK</strong> Motionです！</p>
-
-<p><code>&lt;Leader&gt;j</code>でカーソルより下の行、<code>&lt;Leader&gt;k</code>で上の行に飛べます。だいたいこれくらいかなーと適当に<code>10j</code>してから違ってたら調節というわずわらしさとはおさらばです。</p>
-
-<p>また個人的に、UniteやVimfiler、Gundo、Gitvなどなどの行によって何かしら行うUIを持つPluginとJKモーションの親和性が高くておすすめです。</p>
-
-<p>Vimfilerでeasymotion <img src="../images/misc/wp/2013/11/easymotion-vimfiler.gif" alt="easymotion-vimfiler" /></p>
-
-<p>ちなみにVimの<code>set relativenumber</code>を使うとデフォルトでも似たようなことができます。</p>
-
-<p>参考: <a href="http://cohama.hateblo.jp/entry/2013/10/07/020453">&#8216;set relativenumber&#8217; で Vim のカーソルの縦移動とかを改善する &#8211; 反省はしても後悔はしない</a></p>
-
-<p>こちらだとデフォルトで使用できるのが強みですが、数字がアルファベットよりも打ちにくいこと、各種プラグインで行番号が表示されていない時に役に立たないのが少し痛いですね。そんなときでも使えるJKモーション。おすすめです。</p>
-
-<p>それと、JK Motionはデフォルトでは行の先頭に移動するのですが、カラムが同じ位置に飛ぶようになるオプションがつきました。(よりデフォルトのj,kの挙動に近づきます)</p>
-
-<p>vimrc</p>
-
-<pre><code>let g:EasyMotion_startofline=0
-</code></pre>
-
-<p><code>&lt;C-v&gt;</code>の矩形選択時などにこの設定をしておくと幸せになります</p>
-
-<p>Example: <img src="../images/misc/wp/2013/11/keep_cursor.gif" alt="keep_cursor_motion" /></p>
-
-<h2>まとめvimrcの例</h2>
-
-<p><noscript>
-  <pre><code class="language-viml viml">NeoBundle &lsquo;haya14busa/vim-easymotion&rsquo;</p>
-
-<p>&ldquo; vim-eazymotion
-&rdquo; デフォルトだと&lt;Leader&gt;&lt;Leader&gt;となってるprefixキーを変更
-let g:EasyMotion_leader_key = &lsquo;;&rsquo;</p>
-
-<p>&ldquo; 候補選択: 候補が最初から2キー表示されるので大文字や打ちにくい文字は全面的に消す
-&rdquo; なお、最後の数文字が2キーの時の最初のキーになるので打ちやすいものを選ぶとよさそうです。
-let g:EasyMotion_keys=&lsquo;hklyuiopnm,qwertzxcvbasdgjf;&rsquo;</p>
-
-<p>&ldquo; 拡張版機能</p>
-
-<p>&ldquo; もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion をsに割り当て
-nmap s &lt;Plug&gt;(easymotion-s)
-vmap s &lt;Plug&gt;(easymotion-s)
-omap z &lt;Plug&gt;(easymotion-s) &rdquo; surround.vimとかぶるのでz</p>
-
-<p>&ldquo; keep cursor column
-let g:EasyMotion_startofline = 0</p>
-
-<p>&ldquo; smartcase
-let g:EasyMotion_smartcase = 1</p>
-
-<p>&ldquo; Migemo
-let g:EasyMotion_use_migemo = 1</p>
-
-<p></code></pre>
-</noscript></p>
-
-<h2>雑感</h2>
-
-<p>まとめると、キーマップすれば <code>s{char}{target}</code>の3キーで任意の場所に飛べる ので捗っておすすめってことです。おそらく、他のプラグインとしても画面内全体を対象として、この数のキーで移動できるのはほぼ最小じゃないでしょうか。</p>
-
-<p>ujihisa.vim#3のderisさんのスライド<a href="http://www.slideshare.net/deris0126/ujihisavim3">How to move cursor more effectively(for Beginner)</a>や<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a>を読んでるとたくさん移動コマンドがありすぎて正直考えるの面倒です。これを画面内移動だけでも一つに集約できるとかなり楽な感じがしませんか?</p>
-
-<p>ただ、勿論easymotion好きじゃないって人もいて欠点として</p>
-
-<ol>
-<li>{target}がVimから提示されるのを待つしかない
-
-<ul>
-<li>(思考の流れを止めてしまう)</li>
-</ul>
-</li>
-<li>デフォルトのVimモーションの挙動と全然違う
-
-<ul>
-<li>clever-fやvim-sneakはデフォルトの挙動を拡張してるという感が強い</li>
-</ul>
-</li>
-<li>リピートめんどい
-
-<ul>
-<li>そもそもリピートせずに飛ぶというのがコンセプトですが</li>
-</ul>
-</li>
-<li>近くに移動する場合に近い割にキー入力多くて特にめんどくさい</li>
-</ol>
-
-
-<p>この辺が考えられます。他のプラグインと併用するなどして自分にあったカーソル移動を考えるとよさそうです。</p>
-
-<p>そしてこのフォークしたeasymotion,実はまだまだ改善途中といったところで、Vim Scriptアンチパターンのようなものに当てはまっている部分もほとんど直せてません。すいません。ぜひぜひ、アドバイスとプルリクお待ちしています。みんなでカーソル移動を考えましょう。</p>
-
-<h2>VAC2012</h2>
-
-<p>明日の<a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の364日目の記事を新規の人が書くと100人目のようです。興味ある方はぜひ書くとみなさん喜ぶと思います。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a>
-      <time datetime="2013-11-28T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       

@@ -9,7 +9,8 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="この記事は Vim Advent Calendar 2013 73日目の記事になります。 普段何気なくvimrcに書いているset hlsearchや:nohlsearch。実はこれ、結構ややこしいです。 まずはhelp! :h &#8216;hlsearch&#8217; &lt;- オプション &hellip;">
+  <meta name="description" content="この記事は Vim Advent Calendar 2013 75日目の記事になります。 Migemoとは Migemo: ローマ字のまま日本語をインクリメンタル検索
+横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索 「 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,155 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-02-14T00:00:00+09:00" pubdate data-updated="true">February 14, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事になります。</p>
+
+<h2>Migemoとは</h2>
+
+<ul>
+<li><a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
+<li><a href="http://0xcc.net/unimag/2/">横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索</a></li>
+</ul>
+
+
+<p>「Migemoとはローマ字のまま日本語を検索できるものです」みたいな紹介をしようと思ったら思ったよりも『インクリメンタル』が重要なファクターっぽいですね。今回はインクリメンタル基本的にしない/できないmigemoの紹介です。</p>
+
+<p>vimでもmigemo使いたいですよね。</p>
+
+<h2>+kaoriyaのVimならデフォルトでmigemoが使えるけど</h2>
+
+<p>+kaoriya以外のVimでmigemo使うのは(昔は)結構面倒くさかったように思えます。</p>
+
+<p>-kaoriyaでmigemoを使う方法としては</p>
+
+<ol>
+<li><a href="http://www.kaoriya.net/software/cmigemo/">C/Migemo</a>を端末にインストール</li>
+<li>cmigemoと連携する Vim プラグインをインストール</li>
+</ol>
+
+
+<p>なのですが、1は</p>
+
+<pre><code>apt-get install cmigemo
+brew install cmigemo
+</code></pre>
+
+<p>などなどで割と簡単だったのですが、<a href="https://github.com/koron/cmigemo">koron/cmigemo</a>のVimプラグインの部分がかなり昔から書かれていたこともありその後の2でパス通すのがつらい、プラグインのみで配布されていないのでプラグインマネージャで簡単にインストールできないなどなどちょっとつらい仕様だったので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>がはじまった初期の右も左もわからない時にPull Requestしてkaoriyaさんにレビューしてもらったり、プラグイン部分を独立してGitHubに上げる権限をもらったりしました。</p>
+
+<p><a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a></p>
+
+<p>ということで、昔の他の人の記事とかを見るとちょっと面倒くさいようにみえるcmigemoのVimへの導入も、</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-migemo'
+</code></pre>
+
+<p>このように割と簡単にできるようになりました。あとvimprocが使えたら使うなどちょっとした改善もしたような記憶があります。</p>
+
+<p>使い方は以前と同じで <code>:Migemo</code> コマンドまたはデフォルトで <code>&lt;Leader&gt;mi</code> にマッピングされています。(<code>&lt;Plug&gt;</code>の提供とかプロンプトの文字列の変更とかの追加はそういえばやっていないけれどしたほうがよいかな&#8230;)</p>
+
+<h2>別のプラグインでちょっと便利に(?)つかう</h2>
+
+<p>基本的にどのプラグインも+kaoriyaでmigemoがデフォルトで使えればそれを、cmigemoがインストールされていればcmigemoを、どれも無理なら使えないという仕様になっていたはずです。</p>
+
+<h3><a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a></h3>
+
+<p>つい先日、<a href="http://techracho.bpsinc.jp/yamasita-taisuke/2014_02_06/15331">vim日本語検索をちょっと便利にするmigemo検索 | TechRacho</a>で紹介されていましたがLindanさん ware の<a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a>というプラグインがあります。</p>
+
+<pre><code>NeoBundle 'rhysd/migemo-search.vim'
+if executable('cmigemo')
+    cnoremap &lt;expr&gt;&lt;CR&gt; migemosearch#replace_search_word()."\&lt;CR&gt;"
+endif
+</code></pre>
+
+<p>これは<code>&lt;CR&gt;</code>にマッピングすることで、Vimデフォルトの検索をするときに、検索文字列がローマ字っぽかったらmigemoをよしなに呼んでくれるというものです。こちらの仕様のほうが好きな人はオススメです。個人的にはちょっと試した程度でほぼ使っていないので実は使用感はお伝え出来ません。</p>
+
+<h3>Uniteのmatcherにmigemoを使う</h3>
+
+<p><a href="https://github.com/Shougo/unite.vim">Shougo/unite.vim</a></p>
+
+<p>:h unite-filter-matcher_migemo</p>
+
+<pre><code>NeoBundle 'Shougo/unite.vim'
+nnoremap &lt;silent&gt; g/ :&lt;C-u&gt;Unite -buffer-name=search line -start-insert&lt;CR&gt;
+call unite#custom#source('line', 'matchers', 'matcher_migemo')
+</code></pre>
+
+<p>実はUniteのmatcherの１つにmigemo機能があります。なので、Vimデフォルトの検索とは 操作法が異なりますが、lineソースにmigemoのmatchersを充ててmigemo検索をUniteですることができます。</p>
+
+<h3>EasyMotionのmigemo機能</h3>
+
+<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>2012年のVAC記事(<a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a>)でEasyMotionで1文字migemoを使えるようにしたと紹介したのですが、最近 n-key motionとして任意の数のキーでEasyMotionできるVimデフォルトの検索の拡張を実装したので、cmigemoがインストールかつ、migemoオプションがオンなら同様にEasyMotionでもmigemo検索できるようになりました。</p>
+
+<pre><code>NeoBundle 'Lokaltog/vim-easymotion'
+map g/ &lt;Plug&gt;(easymotion-sn)
+omap g/ &lt;Plug&gt;(easymotion-tn) " opeartor-pending時にVimデフォルトの検索の仕様に合わせる
+let g:EasyMotion_use_migemo = 1 " Migemo機能ON
+</code></pre>
+
+<p>このあたりは全く別の記事でまた紹介したいのですが、このEasyMotionの検索機能の拡張とも言うべき機能は、インクリメンタルにハイライトしたり、普通のEasyMotionの機能と違って画面外まで飛んだり、<code>&lt;Tab&gt;</code>キーでスクロールできたり、勿論検索履歴やテキストオブジェクト<code>gn</code>とも連携させたりしているので、完璧とは言わないまでもデフォルトの検索をこれに置き換えてもよいかなぁというレベルになっています。</p>
+
+<h4>仕様</h4>
+
+<p>もともとEasyMotionが<strong>スクリーン内</strong>の移動を拡張するというコンセプトなので、仕様としてはmigemo機能がONになっていてもスクリーン上にマルチバイト文字が無ければmigemoを使わないようになっています。なので、普段コードを書くときにmigemoによって遅くならないようになっているともいえるし、画面外に日本語があるとはわかっているんだけど画面内に日本語が無ければ発動しないという残念仕様でもあるとは言えますね&#8230;</p>
+
+<p>またインクリメンタルハイライトにmigemoを対応させていないので、実はMigemoに関してはインクリメンタルハイライトの一貫性がなくなってしまっている状態(インクリメンタルにハイライトはされていなくても<code>&lt;CR&gt;</code>で実行するとマッチする)なのでmigemo機能として使うには実はあんまりオススメはできません()。現状での仕様をわかった上で使ってくれたらいいかなぁと思います。</p>
+
+<p>というのも、システムのcmigemoを呼ぶという性質上、毎回のinputでインクリメンタルにcmigemoを呼ぶと、とてもじゃないけど耐えらたものじゃない速度になってしまい、実装してみましたが敢え無く断念しました。このためにProcessManagerも使ってみたんですがやっぱりダメでした&#8230;無念。</p>
+
+<p>そのうち要望 or 気が向いたら、インクリメンタル検索中のキーマッピングとしてmigemo使って一時的にハイライトさせるみたいな機能を実装するかもしれません。(それでも不便感は拭えないですが&#8230;)</p>
+
+<h3>まとめ</h3>
+
+<p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
+
+<p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a>
+      <time datetime="2014-02-14T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>14</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -752,323 +902,6 @@ nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
       <time datetime="2014-01-10T00:00:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>10</span> <span class='year'>2014</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages With Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-12-29T00:00:00+09:00" pubdate data-updated="true">December 29, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>つくりました</h2>
-
-<p>Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。</p>
-
-<ul>
-<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
-<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
-</ul>
-
-
-<p>注: URLは変わるかもしれません</p>
-
-<h2>GitHub公式ドキュメント</h2>
-
-<ul>
-<li><a href="http://pages.github.com/#project_pages">GitHub Pages</a></li>
-<li><a href="https://help.github.com/categories/20/articles">GitHub Help</a></li>
-</ul>
-
-
-<p>静的サイトをホストしてくれる。プロジェクトごとに作ったり、ユーザーのブログとして使えたりする。</p>
-
-<h2>Jekyll</h2>
-
-<ul>
-<li><a href="http://jekyllrb.com/">Jekyll • Simple, blog-aware, static sites</a>
-
-<ul>
-<li>静的サイトのジェネレーター。GitHub Pagesで搭載されている。</li>
-</ul>
-</li>
-<li><a href="http://docs.shopify.com/themes/liquid-basics">Liquid basics &#8211; Shopify Themes</a>
-
-<ul>
-<li>Liquidというテンプレートエンジンが使われておりif,for文使ったり、includeしたりといろいろできる。</li>
-</ul>
-</li>
-<li><a href="http://melborne.github.io/2013/05/20/now-the-time-to-start-jekyll/">Jekyllいつやるの？ジキやルの？今でしょ！</a>
-
-<ul>
-<li>ジキリました。</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>最初に砂場あそびしました</h2>
-
-<ul>
-<li><a href="http://haya14busa.github.io/gh-page-sandbox/">Happy Vimming!</a></li>
-<li>GitHub: <a href="https://github.com/haya14busa/gh-page-sandbox">haya14busa/gh-page-sandbox</a></li>
-</ul>
-
-
-<p>GitHub PagesのAutomatic Generatorを使ってJekyll on GitHub Pagesの仕様をなんとなく把握。適当な流れをリンク先に書きました。</p>
-
-<h2>そしてBootstrapつかってVimプラグイン読書会作成へ</h2>
-
-<ul>
-<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
-<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a></li>
-</ul>
-
-
-<h3>参考Link</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>
-
-<ul>
-<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
-</ul>
-</li>
-<li><a href="http://vim-jp.org/">vim-jp » Vimのユーザーと開発者を結ぶコミュニティサイト</a>
-
-<ul>
-<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>どっちもJekyll使ってたので参考にしました。特にvimrc読書会と似たようなサイトにしたほうがいいっぽいので構成とかほぼ同じになってます。参考にしながらやってると明らかな間違いとか割と見つけたりして簡単なPullReq案件が出てくるので便利。Vimプラグイン読書会のナビゲーションヘッダ便利という声からvimrc読書会のサイトのにもナビゲーション実装したりもしました。</p>
-
-<h3>Twitter Bootstrap</h3>
-
-<ul>
-<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
-<li><a href="http://bootswatch.com/">Bootswatch: Free themes for Bootstrap</a></li>
-<li><a href="http://bootswatch.com/simplex/">Bootswatch: Simplex</a></li>
-</ul>
-
-
-<p>ArchiveページでTableゴリゴリ使うっぽいのでTwitter Bootstrap使って楽々ストライプデザインにしたり、簡単にResponsiveなヘッダーを作れて便利でした。配色とか考えてたけどデザイン力なさすぎて途中でBootswatchというBootstrapのテーマサイトからSimplexというテーマをベースに作ることにしました。</p>
-
-<p>そしたらおしゃれっぽくなったんだけど、自分のサイトとめっちゃ似てるデザインになってつらさを感じた。反省してます。</p>
-
-<h2>こっからTips的ななにか</h2>
-
-<h3>ローカルでもCSS,JSを効かせた状態で確認する方法</h3>
-
-<p>&#95;config.yml (いろいろ設定がかける)</p>
-
-<pre><code>baseurl: /{repository-name}
-</code></pre>
-
-<p>default.htmlなどで</p>
-
-<p>Shell</p>
-
-<pre><code>bundle exec jekyll serve -w -b /{repository-name}
-</code></pre>
-
-<p>上記コマンドを叩いて<code>http://localhost:4000/{repository-name}/</code>にアクセスするといい感じにCSS,JSなどすべてのページで効くようになります</p>
-
-<p>詳しくは<code>jekyll serve --help</code>とかするとよい。</p>
-
-<ul>
-<li><a href="http://jekyllrb.com/docs/github-pages/">Jekyll &#8211; GitHub Pages</a>
-
-<ul>
-<li>公式サイトで詳しく書いてあります。英語ですが。</li>
-</ul>
-</li>
-</ul>
-
-
-<p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
-
-<p>これは書いてても一応使えるんですが問題があって、<code>/jekyll_reading_vimplugin_site/</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>jekyll_reading_vimplugin_site/</code>)</p>
-
-<p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
-
-<h3>Markdown</h3>
-
-<p>&#95;config.yml</p>
-
-<pre><code>markdown: rdiscount
-
-rdiscount:
-  extensions:
-    - autolink      # greedily urlify links
-    - footnotes     # footnotes
-    - smart         # typographic substitutions with SmartyPants
-</code></pre>
-
-<p>デフォルトのmarkdownエンジンはmarukuになっていて(たぶん)、あんまり良くないのでrdiscountかredcarpetあたりを選ぶと便利なようです。</p>
-
-<ul>
-<li><a href="http://dafoster.net/projects/rdiscount/">RDiscount | Markdown for Ruby | DaFoster</a></li>
-</ul>
-
-
-<p>Markdownファイルをかけば勝手にコンバートしてくれるわけではなく、先頭に記述する必要があります。</p>
-
-<p>index.mdなど</p>
-
-<pre><code>---
-layout: default
-title: なにかタイトル
----
-
-本文
-</code></pre>
-
-<h3>&#95;layout</h3>
-
-<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの&#8220;にMarkdown内容を出力することになります。</p>
-
-<p><code>Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</code>や&#8220;を使用してよさげに作るとよいです</p>
-
-<h3>Gemfile</h3>
-
-<p>Gemfile</p>
-
-<pre><code>source 'https://rubygems.org'
-gem 'github-pages'
-</code></pre>
-
-<p>Rubyとbundlerとか事前にインストールしておくと<code>bundle install</code>とか<code>bundle exec jekyll serve</code>とかできて用意しておくと便利。travis-ciに登録とか気軽にできるのでリポジトリの紹介ページとかでなく、純粋にGitHub Pagesとしてリポジトリを使う場合は便利です。</p>
-
-<p><a href="http://haya14busa.com/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった « haya14busa</a></p>
-
-<h3>ConvertからExcludeする</h3>
-
-<p>&#95;config.yml</p>
-
-<pre><code>exclude:
-  - 'Gemfile'
-  - 'Gemfile.lock'
-  - 'README.md'
-  - 'scripts'
-</code></pre>
-
-<p>markdownやらhtml以外の物も<code>_site</code>以下にJekyllはコンバートするので、気づかずにREADMEとかをおいておくとサイトからアクセスできちゃったりします。しっかり除外設定しておくと良さげです。</p>
-
-<p><code>find _site -type f</code>とかして確認するとよいです。</p>
-
-<h3>&#95;includeを使う</h3>
-
-<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において`<hgroup>
-  <h1><a href="/">haya14busa</a></h1></p>
-
-<pre><code>&lt;h2&gt;haya14busa's memo&lt;/h2&gt;
-</code></pre>
-
-<p></hgroup></p>
-
-<p>`とレイアウトなどなどから呼び出すことができます。</p>
-
-<h3>&#95;dataとfor loopが便利っぽい</h3>
-
-<p>&#95;data/members.yml</p>
-
-<pre><code>- name: sanaechan
-  github: deco_mori
-  twitter: decochan
-
-- name: haya14busa
-  github: haya14busa
-  twitter: haya14busa
-</code></pre>
-
-<p>とかしておくとMarkdownファイル含め任意のところで</p>
-
-<p>こんなふうに呼び出せて便利そうです。</p>
-
-<p>よんだvimrcとかvim pluginをテーブルに直書きじゃなくてデータに書いてloop回してわっしょいとかもよさそう。</p>
-
-<h3>結局は</h3>
-
-<p>他人のサイトみて良さげな書き方参考にするとすぐできるのではかどります。</p>
-
-<ul>
-<li>GitHub: <a href="https://github.com/vim-jp/reading-vimrc">vim-jp/reading-vimrc</a></li>
-<li>GitHub: <a href="https://github.com/vim-jp/vim-jp.github.com">vim-jp/vim-jp.github.com</a></li>
-</ul>
-
-
-<p>とか</p>
-
-<ul>
-<li><a href="https://github.com/twbs/bootstrap">twbs/bootstrap</a>
-
-<ul>
-<li>Twitter BootstrapのSource版がそのままjekyllで使えて参考になったり</li>
-</ul>
-</li>
-<li><a href="https://github.com/nitoyon/tech.nitoyon.com">nitoyon/tech.nitoyon.com</a>
-
-<ul>
-<li><a href="http://tech.nitoyon.com/ja/blog/2012/09/20/moved-completed/">俺の最強ブログ システムが火を噴くぜ &#8211; てっく煮ブログ</a></li>
-<li>こういうところを参考に熱意をあげたり</li>
-</ul>
-</li>
-<li>GitHub: <a href="https://github.com/haya14busa/reading-vimplugin">haya14busa/reading-vimplugin</a>
-
-<ul>
-<li>ここを温かい目で眺めたり</li>
-</ul>
-</li>
-</ul>
-
-
-<p>などなど、GitHubにホストされてるものを公式ドキュメントなどと見比べながらやっていくといろいろ発見があったり、ついでにプルリクれたりしてよいです。</p>
-
-<p>ただGitHub PagesはJekyll Pluginなどが使えなくて、Octopressとか使って若干違う構成になっていることもあるので注意です。鵜呑みコピペ怖い。</p>
-
-<h2>結論</h2>
-
-<p>Jekyll on GitHub Pages with Twitter Bootstrap 便利すぎる。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/jekyll_reading_vimplugin_site/">Jekyll on GitHub Pages with Twitter BootstrapでVimプラグイン読書会のサイトを作りました</a>
-      <time datetime="2013-12-29T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>29</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/uncategorized/'>uncategorized</a></span>
       
       </footer>
     </article>

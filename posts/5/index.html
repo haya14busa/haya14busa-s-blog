@@ -9,8 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="VimConf2013! VimConf2013
-VimConf 2013 &#8211; connpass VimConf2013に参加してきました！Vim! How to suggest new features for Vim (by @kaoriya さん) How to suggest &hellip;">
+  <meta name="description" content="Vim Advent Calendar 2012の363日目の記事です。 昨日はthincaさんの本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成でした。 あと3日でVAC2013になるということですが、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,395 @@ VimConf 2013 &#8211; connpass VimConf2013に参加してきました！Vim! How 
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-28T00:00:00+09:00" pubdate data-updated="true">November 28, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の363日目の記事です。 昨日はthincaさんの<a href="http://d.hatena.ne.jp/thinca/20131127/1385487671">本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成</a>でした。</p>
+
+<p>あと3日でVAC2013になるということですが、<s>いまさら</s>VAC2012の99人目として記事を書いてみたいと思います。</p>
+
+<p>僕は今年の1月か、2月あたりからVimを使い始めたので、自分のVim歴よりも前に始まったAdvent Calendarに参加すると思うと歴史を感じます。すごい。</p>
+
+<p>Vimで最初に習うのはhjklによるカーソル移動です。<br/>
+その後w,bなどたくさんの移動コマンドを覚えると思います。<br/>
+またVimを使っているとき、その7,8割はカーソル移動してるんじゃないでしょうか???<br/>
+カーソル移動大事。</p>
+
+<p>ということでカーソル移動系プラグインであるvim-easymotionの話をします。</p>
+
+<h2>vim-easymotionとは</h2>
+
+<p>任意の場所や単語の先頭などをハイライト&amp;アルファベットなどの候補キーを出して、その行きたい場所のキーを押すことによってその場所にジャンプするプラグインです。今回、これを一から作ったというわけではなく、フォークして便利にしたという話とおすすめの使い方書くよという話です。その辺よろしくお願いします。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<h2>もっとvim-easymotionしよう</h2>
+
+<p>Github: <strong><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></strong></p>
+
+<p>Install</p>
+
+<pre><code>NeoBundle 'haya14busa/vim-easymotion'
+</code></pre>
+
+<p>本家: <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
+
+<p>なるべく本家Easymotionからの移行時にびっくりしないよう、新規機能は基本的にデフォルトでオフになっていて、オンなのは候補の2キー表示と双方向サーチである<code>&lt;Leader&gt;s</code>の追加、バグフィックスあたりだけなのでぜひ気軽に試してフィードバックorプルリクください。</p>
+
+<p>以下面倒なのでデフォルトのprefixキーである<code>&lt;Leader&gt;&lt;Leader&gt;</code>を<code>&lt;Leader&gt;</code>に変更しているとして解説します。(特に機能名がないので機能をMappingで表したりします)</p>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion/blob/master/doc/easymotion.txt#L84-L108">:h easymotion-default-mapping</a></p>
+
+<h2>よくわかる拡張機能</h2>
+
+<ul>
+<li>最初から候補画面で2キー表示する!</li>
+<li>fやFの双方向バージョンが追加され、画面内ならどこでも飛べる!(<code>&lt;Leader&gt;s</code>)</li>
+<li>Smartcase機能でもっと楽々移動!</li>
+<li>1文字migemo実装で日本語でもeasymotion!</li>
+<li>その他もろもろ</li>
+<li>バグフィックス
+
+<ul>
+<li>マルチバイトバグ</li>
+<li>バッファ名バグ(今までuniteやref-vimでバグってました)</li>
+<li>その他いろいろ</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>最初から2キー表示する!</h2>
+
+<p>おそらくVim-Easymotionを使ったことがある人であれば必ず思うであろう、</p>
+
+<p><strong>「2回キー押すとき面倒くさい&#8230;」</strong></p>
+
+<p>これが改善されています。2回以上押さなければならない場合は最初から2つ分表示されてストレス90％減です(当社比)</p>
+
+<p><img src="../images/misc/wp/2013/11/two-key-motion.gif" alt="easymotion_two_key_combo" /></p>
+
+<h2>双方向サーチでカーソル位置を気にせず使う</h2>
+
+<p>これも使ったことがある人なら面倒くさいと思ったことがあるんじゃないでしょうか？</p>
+
+<p><strong><code>&lt;Leader&gt;f</code>か<code>&lt;Leader&gt;F</code>のどっち使うか決めるの面倒くさい。</strong></p>
+
+<p>飛びたい場所が現在位置の上下近くだったりすると意外とめんどくさくて脳のリソース消費します。これが<code>&lt;Leader&gt;s</code>で双方向サーチするという新機能で解決です。また、ひとつのマッピングでほぼすべての移動を補えるようになるところが見逃せないポイント。</p>
+
+<h2>Smartcaseでもっと楽々移動したい!</h2>
+
+<p>正直Shift押すのも面倒くさい。</p>
+
+<p>vimrc</p>
+
+<pre><code>" smartcase
+let g:EasyMotion_smartcase = 1
+</code></pre>
+
+<p>上記の設定で<code>&lt;Leader&gt;sv</code>で<strong>v</strong>imにも<strong>V</strong>imにもマッチして移動できます。楽。勿論smartcaseなので<code>&lt;Leader&gt;sV</code>だと<strong>V</strong>imだけにマッチします。</p>
+
+<h2>1文字migemo実装で日本語でもeasymotion!</h2>
+
+<p>migemo一回使ってみたら、日本語移動でかなり便利だったのでeasymotionでも実装したいなーと思っていました。そこで探してみると、<a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a>ですでに擬似migemo実装されてる事案があったのでclever-fの作者であるLindanさんに許可とってパク&#8230;参考にして実装しました。</p>
+
+<p>cmigemoなしでも動きます。</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_use_migemo = 1
+</code></pre>
+
+<p>Vimで日本語書くときになかなかいいです。</p>
+
+<p>注意事項として候補が多すぎたりスペック低かったりすると、ちょっと遅くてイラッとするかもしれません&#8230;もうちょっと改善したい。ちなみに<code>&lt;Leader&gt;w</code>など単語移動モーション使うと必ずしも行きたい場所には行けませんが移動はかなりサクッと行きます。</p>
+
+<p><img src="../images/misc/wp/2013/11/top-demo.gif" alt="easymotion_demo" /></p>
+
+<p>だいたい主な拡張機能はこんな感じです。</p>
+
+<p>以下元からあった機能も適当に解説しながらなんやかんやしていきます。</p>
+
+<h2>Find Motion</h2>
+
+<p>新機能である<code>&lt;Leader&gt;s</code>や<code>&lt;Leader&gt;f</code>などがこのFind Motionに当たります</p>
+
+<ul>
+<li><strong><Leader>s{char}</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>f{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>F{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>t{char}</strong>
+
+<ul>
+<li>カーソルより右側を対象として{char}の1文字手前にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>T{char}</strong>
+
+<ul>
+<li>カーソルより左側を対象として{char}の1文字後にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>おそらく基本的に使うのは<code>&lt;Leader&gt;s{char}</code>で、オペレーション待機モードで<code>&lt;Leader&gt;t{char}</code>,<code>&lt;Leader&gt;T{char}</code>使うかもといった感じです。</p>
+
+<p>おすすめは<code>&lt;Leader&gt;s{char}</code>が便利すぎるので、<code>s</code>キーをマップして<code>s{char}</code>で動作するようにするとたった<strong>3(or4)キー</strong>(<code>s{char}{target}</code>)で任意の場所に一瞬で移動できるので非常に捗ります。</p>
+
+<p>vimrc</p>
+
+<pre><code>" もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion を`s`に割り当てます"
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) " surround.vimとかぶるので`z`
+</code></pre>
+
+<h2>Word Motion</h2>
+
+<ul>
+<li><strong><Leader>w</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>W</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>b</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>B</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の先頭にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>e</strong>
+
+<ul>
+<li>カーソルより右側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>E</strong>
+
+<ul>
+<li>カーソルより右側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>ge</strong>
+
+<ul>
+<li>カーソルより左側の単語(word)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>gE</strong>
+
+<ul>
+<li>カーソルより左側の単語(WORD)の後ろにマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>S</strong>
+
+<ul>
+<li>新機能: 画面内すべてを対象として単語の先頭にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>好みによりますが、Findモーションよりも移動したいのは基本単語の先頭だし、Wordモーションのほうが好きという方もいると思います。こちらのほうがキー入力が抑えられます。</p>
+
+<p>またもう一つの優位点としてターゲットとして入力できない単語の移動(日本語など)で使えます。</p>
+
+<p>あと堂々と<strong><Leader>S</strong>と書いてありますが、挙動を変えて単語の先頭、後ろ、その他いい感じの場所にマッチさせて、なるべくどこでも移動できるという挙動に変えるかもしれません&#8230;すいません。(本家easymotionのissueでjump-to-anywareみたいなものがあったのでそれを意識。)</p>
+
+<h2>Search Motion</h2>
+
+<ul>
+<li><strong><Leader>n</strong>
+
+<ul>
+<li>カーソルより右側の検索結果にマッチ</li>
+</ul>
+</li>
+<li><strong><Leader>N</strong>
+
+<ul>
+<li>カーソルより左側の検索結果にマッチ</li>
+</ul>
+</li>
+</ul>
+
+
+<p>意外と使われてないんじゃないかと思われる検索結果にマッチする機能です。<code>/vim&lt;CR&gt;</code>などしてから<code>&lt;Leader&gt;n</code>or<code>&lt;Leader&gt;N</code>を押すと検索結果がハイライトされて移動できます。</p>
+
+<p>検索してからマッチするところが多すぎてn連打つらい！というのが解消できます。僕はあまり使っていませんが</p>
+
+<h2>JK Motion (行移動)</h2>
+
+<p>個人的に<code>&lt;Leader&gt;s</code>の次に気に入っているのが、Easymotion#JKモーションという行移動機能です。</p>
+
+<p>もう一度言います。<strong>JK</strong> Motionです！</p>
+
+<p><code>&lt;Leader&gt;j</code>でカーソルより下の行、<code>&lt;Leader&gt;k</code>で上の行に飛べます。だいたいこれくらいかなーと適当に<code>10j</code>してから違ってたら調節というわずわらしさとはおさらばです。</p>
+
+<p>また個人的に、UniteやVimfiler、Gundo、Gitvなどなどの行によって何かしら行うUIを持つPluginとJKモーションの親和性が高くておすすめです。</p>
+
+<p>Vimfilerでeasymotion <img src="../images/misc/wp/2013/11/easymotion-vimfiler.gif" alt="easymotion-vimfiler" /></p>
+
+<p>ちなみにVimの<code>set relativenumber</code>を使うとデフォルトでも似たようなことができます。</p>
+
+<p>参考: <a href="http://cohama.hateblo.jp/entry/2013/10/07/020453">&#8216;set relativenumber&#8217; で Vim のカーソルの縦移動とかを改善する &#8211; 反省はしても後悔はしない</a></p>
+
+<p>こちらだとデフォルトで使用できるのが強みですが、数字がアルファベットよりも打ちにくいこと、各種プラグインで行番号が表示されていない時に役に立たないのが少し痛いですね。そんなときでも使えるJKモーション。おすすめです。</p>
+
+<p>それと、JK Motionはデフォルトでは行の先頭に移動するのですが、カラムが同じ位置に飛ぶようになるオプションがつきました。(よりデフォルトのj,kの挙動に近づきます)</p>
+
+<p>vimrc</p>
+
+<pre><code>let g:EasyMotion_startofline=0
+</code></pre>
+
+<p><code>&lt;C-v&gt;</code>の矩形選択時などにこの設定をしておくと幸せになります</p>
+
+<p>Example: <img src="../images/misc/wp/2013/11/keep_cursor.gif" alt="keep_cursor_motion" /></p>
+
+<h2>まとめvimrcの例</h2>
+
+<p><noscript>
+  <pre><code class="language-viml viml">NeoBundle &lsquo;haya14busa/vim-easymotion&rsquo;</p>
+
+<p>&ldquo; vim-eazymotion
+&rdquo; デフォルトだと&lt;Leader&gt;&lt;Leader&gt;となってるprefixキーを変更
+let g:EasyMotion_leader_key = &lsquo;;&rsquo;</p>
+
+<p>&ldquo; 候補選択: 候補が最初から2キー表示されるので大文字や打ちにくい文字は全面的に消す
+&rdquo; なお、最後の数文字が2キーの時の最初のキーになるので打ちやすいものを選ぶとよさそうです。
+let g:EasyMotion_keys=&lsquo;hklyuiopnm,qwertzxcvbasdgjf;&rsquo;</p>
+
+<p>&ldquo; 拡張版機能</p>
+
+<p>&ldquo; もっともよく使うであろう'&lt;Leadr&gt;&lt;Leader&gt;s'motion をsに割り当て
+nmap s &lt;Plug&gt;(easymotion-s)
+vmap s &lt;Plug&gt;(easymotion-s)
+omap z &lt;Plug&gt;(easymotion-s) &rdquo; surround.vimとかぶるのでz</p>
+
+<p>&ldquo; keep cursor column
+let g:EasyMotion_startofline = 0</p>
+
+<p>&ldquo; smartcase
+let g:EasyMotion_smartcase = 1</p>
+
+<p>&ldquo; Migemo
+let g:EasyMotion_use_migemo = 1</p>
+
+<p></code></pre>
+</noscript></p>
+
+<h2>雑感</h2>
+
+<p>まとめると、キーマップすれば <code>s{char}{target}</code>の3キーで任意の場所に飛べる ので捗っておすすめってことです。おそらく、他のプラグインとしても画面内全体を対象として、この数のキーで移動できるのはほぼ最小じゃないでしょうか。</p>
+
+<p>ujihisa.vim#3のderisさんのスライド<a href="http://www.slideshare.net/deris0126/ujihisavim3">How to move cursor more effectively(for Beginner)</a>や<a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a>を読んでるとたくさん移動コマンドがありすぎて正直考えるの面倒です。これを画面内移動だけでも一つに集約できるとかなり楽な感じがしませんか?</p>
+
+<p>ただ、勿論easymotion好きじゃないって人もいて欠点として</p>
+
+<ol>
+<li>{target}がVimから提示されるのを待つしかない
+
+<ul>
+<li>(思考の流れを止めてしまう)</li>
+</ul>
+</li>
+<li>デフォルトのVimモーションの挙動と全然違う
+
+<ul>
+<li>clever-fやvim-sneakはデフォルトの挙動を拡張してるという感が強い</li>
+</ul>
+</li>
+<li>リピートめんどい
+
+<ul>
+<li>そもそもリピートせずに飛ぶというのがコンセプトですが</li>
+</ul>
+</li>
+<li>近くに移動する場合に近い割にキー入力多くて特にめんどくさい</li>
+</ol>
+
+
+<p>この辺が考えられます。他のプラグインと併用するなどして自分にあったカーソル移動を考えるとよさそうです。</p>
+
+<p>そしてこのフォークしたeasymotion,実はまだまだ改善途中といったところで、Vim Scriptアンチパターンのようなものに当てはまっている部分もほとんど直せてません。すいません。ぜひぜひ、アドバイスとプルリクお待ちしています。みんなでカーソル移動を考えましょう。</p>
+
+<h2>VAC2012</h2>
+
+<p>明日の<a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>の364日目の記事を新規の人が書くと100人目のようです。興味ある方はぜひ書くとみなさん喜ぶと思います。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a>
+      <time datetime="2013-11-28T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1329,149 +1717,6 @@ javascript:(function() {</p>
       
       - <a href="/vimdoc-marklet/">Vimのhelpをブラウザで見るときのためのブックマークレット作った</a>
       <time datetime="2013-11-08T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>08</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-07T00:00:00+09:00" pubdate data-updated="true">November 07, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>strdisplaywidthのhelpよくわからん</h2>
-
-<p>{col}が何を指しているのか、どういう作用を及ぼすのかhelp読んでもいまいちわかりずらく実際に調べてみました。</p>
-
-<h2>準備</h2>
-
-<pre><code>set noexpandtab
-set softtabstop=8
-set shiftwidth=8
-set tabstop=8
-</code></pre>
-
-<h2>結果の見方の説明</h2>
-
-<p><code>.</code> -> col_numをドット(<code>.</code>)で擬似的に表す <code>.</code>から<code>:</code>まで -> TAB文字 <code>:</code>の次 -> <code>:echo strdisplay("\t", {col})</code>の結果</p>
-
-<h2>結果</h2>
-
-<pre><code>&lt;br /&gt;        :8
-.       :7
-..      :6
-...     :5
-....    :4
-.....   :3
-......  :2
-....... :1
-........        :8
-.........       :7
-..........      :6
-...........     :5
-............    :4
-.............   :3
-..............  :2
-............... :1
-................        :8
-.................       :7
-..................      :6
-...................     :5
-....................    :4
-.....................   :3
-......................  :2
-....................... :1
-</code></pre>
-
-<h3>colを指定しない別の結果</h3>
-
-<pre><code>:echo strdisplaywidth("\t") -&gt; 8
-:echo strdisplaywidth(".\t") -&gt; 8
-:echo strdisplaywidth("..\t") -&gt; 8
-:echo strdisplaywidth("...\t") -&gt; 8
-:echo strdisplaywidth("....\t") -&gt; 8
-:echo strdisplaywidth(".....\t") -&gt; 8
-:echo strdisplaywidth("......\t") -&gt; 8
-:echo strdisplaywidth(".......\t") -&gt; 8
-:echo strdisplaywidth("........\t") -&gt; 16
-</code></pre>
-
-<h2>つまり&#8230;?</h2>
-
-<p><code>strdisplaywidth({expr}[, {col}])</code>のcolは{expr}の{col}文字目以降を返すという意味<strong>ではなく</strong>、スタートするスクリーン上のカラムの位置を表す。</p>
-
-<p>完全にTAB文字専用の引数って感じでした。</p>
-
-<p>Helpに書いてあることがイメージできなかったっぽいのでHelp解読力あげたい。</p>
-
-<p>vimdoc</p>
-
-<blockquote><p>strdisplaywidth({expr}[, {col}]) <em>strdisplaywidth()</em><br/>
-The result is a Number, which is the number of display cells<br/>
-String {expr} occupies on the screen.<br/>
-When {col} is omitted zero is used. Otherwise it is the<br/>
-screen column where to start. This matters for Tab<br/>
-characters.<br/>
-The option settings of the current window are used. This<br/>
-matters for anything that&#8217;s displayed differently, such as<br/>
-&#8216;tabstop&#8217; and &#8216;display&#8217;.<br/>
-When {expr} contains characters with East Asian Width Class<br/>
-Ambiguous, this function&#8217;s return value depends on &#8216;ambiwidth&#8217;.<br/>
-Also see |strlen()|, |strwidth()| and |strchars()|.</p>
-
-<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#strdisplaywidth()">:h strdisplaywidth()</a></cite></p></blockquote>
-
-<p>vimdoc-ja</p>
-
-<blockquote><p>strdisplaywidth({expr}[, {col}])                        <em>strdisplaywidth()</em><br/>
-                文字列 {expr} のスクリーン上での表示セル幅を返す。<br/>
-                {col} が省略されたときはゼロが使われる。{col} には計算を開始す<br/>
-                るスクリーン上の列の位置を指定する。これはタブ文字の幅の計算に<br/>
-                影響する。<br/>
-                計算にはカレントウィンドウのオプションが使用される。&#8217;tabstop&#8217;<br/>
-                や &#8217;display&#8217; のような表示を変更するようなオプションが影響す<br/>
-                る。<br/>
-                {expr} に幅が曖昧 (Ambiguous) な東アジアの文字が含まれていると<br/>
-                きは、文字幅は &#8217;ambiwidth&#8217; の設定に依存する。<br/>
-                |strlen()|, |strwidth()|, |strchars()| も参照。</p>
-
-<p>&#8211; <cite><a href="http://vim-jp.org/vimdoc-ja/eval.html#strdisplaywidth()">:h strdisplaywidth@ja</a></cite></p></blockquote>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a>
-      <time datetime="2013-11-07T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>07</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       

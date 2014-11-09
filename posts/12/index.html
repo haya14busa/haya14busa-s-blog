@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="これで君も引用厨。 MarkdownQuote Markdown記法で、選択部分を引用し、引用元リンクをciteタグで囲むブックマークレットです。 今回の転送先はDraftPadではなく新規タブでSafariで走る韋駄天エディタDarkRoomの「ほぼ完成版」 &#8211; W&amp;R : &hellip;">
+  <meta name="description" content="プラグインに頼ってもいいじゃない。 結論から言うとmobbleというプラグインを使います。 WordPress › mobble « WordPress Plugins What functions are available?The most useful ones are: &lt;?php &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,118 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-03-29T00:00:00+09:00" pubdate data-updated="true">March 29, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>プラグインに頼ってもいいじゃない。</h3>
+
+<p>結論から言うとmobbleというプラグインを使います。</p>
+
+<p><a href="http://wordpress.org/extend/plugins/mobble/">WordPress › mobble « WordPress Plugins</a></p>
+
+<blockquote><dl>
+<dt>What functions are available?The most useful ones are:</dt>
+<dd><pre><code>  &lt;?php 
+  is_handheld(); // any handheld device (phone, tablet, Nintendo)
+  is_mobile(); // any type of mobile phone (iPhone, Android, etc)
+  is_tablet(); // any tablet device
+  is_ios(); // any Apple device (iPhone, iPad, iPod)
+  ?&gt;
+     
+</code></pre></dd>
+</dl>
+
+<p>&#8211; <cite><a href="http://wordpress.org/extend/plugins/mobble/faq/">WordPress › mobble « WordPress Plugins</a></cite></p></blockquote>
+
+<dl>
+<dt>使用例</dt>
+<dd><pre><code>  &lt;?php if (( !function_exists(’is_mobile’)) || !is_mobile()) :?&gt;
+  /* for PC */
+  &lt;?php else :?&gt;
+  /* for Mobile */
+  &lt;?php endif; ?&gt;
+</code></pre></dd>
+</dl>
+
+<p><a href="http://wordpress.org/extend/plugins/mobble/">mobble</a>をインストール後、上記コードを好きなところに記述すれば動きます。<br/>
+（関数名がis_mobile()でfunctions.phpで対応する場合と一緒なのでプラグイン使わない場合も上記コードで OK。）</p>
+
+<h3>なぜプラグインか？</h3>
+
+<p>WordPressには<a href="http://codex.wordpress.org/Function_Reference/wp_is_mobile">wp_is_mobile « WordPress Codex</a>というUAを判別する関数がバージョン3.4から存在しますが、iPadなどのタブレットもモバイルと判定してしまいます。それはダメ。ということで却下。</p>
+
+<p>そこでis_mobile関数をfunctions.phpで実装するという選択肢が浮上します。これは下記サイトが参考になります。</p>
+
+<blockquote><p> 
+これはどこからどう見てもスマートフォン判別用の文字列 (の配列)。どうやらこれを HTTP ヘッダの User-Agent と突き合わせて、スマートフォンからのアクセスを判別しているらしい。そうとわかればあとは簡単で、自作テーマの functions.php にこんな関数を書いてみました:     </p>
+
+<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
+
+<p>おそらくこれが賢い選択肢だと思うのですが、このサイトでも言われてるように欠点がある気がします。</p>
+
+<blockquote><p> 
+判別のために文字列のリストを用意するっていう部分が、どうもいまいちなんじゃないかって気がするんですよね。たとえば、今後出てくるであろう新しいスマートフォンに対応しようとすると、このリストを永遠にメンテナンスし続けなきゃなんないじゃないですか。     </p>
+
+<p>&#8211; <cite><a href="http://terkel.jp/archives/2010/08/optimizing-websites-for-smartphones-with-ua-detection/">Web サイトのスマートフォン最適化: UA 判別篇 – terkel.jp</a></cite></p></blockquote>
+
+<p>調べてはいませんが参考サイトの記事が書かれた年が2010年。それから新しいスマートフォンはたくさんでていますし、これから出てくるたくさんの端末にその都度対応するのはしんどい。</p>
+
+<p><em>じゃあメンテナンスを何かに任せればいいじゃない。何に任せるか？プラグインでしょ？</em></p>
+
+<p>他人任せですがちゃんとアップデートされてるプラグインを選べば自分で書くよりも上手く対応してくれると思います。</p>
+
+<p>一応僕はfunctions.phpにもis_mobile関数を記述してコメントアウトする形をとりました。これならいざという時すぐ対応できるかなと…</p>
+
+<h3>Media Queryでよくない？</h3>
+
+<p>Media Query使ってdisplay:none;で対応すればユーザーエージェントに関係なくviewportで一括管理できます。しかし、これだとモバイルでアクセスした時、PC用のコンテンツを読み込んでCSSで隠すという無駄な読み込みが発生します。</p>
+
+<p>また、レスポンシブデザイン対応する時に困るのがGoogleAdsense。Googleさん、レスポンシブデザイン推してるのにレスポンシブ用の広告はありません。もちろんCSS弄ったら<em>BAN</em>!</p>
+
+<p>このときMedia Queryで対応するよりis_mobile関数でそもそも読み込ませない方法のほうが安全かも？[要出典]</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【WordPress】</a>
+      <time datetime="2013-03-29T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>29</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/wordpress/'>wordpress</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>

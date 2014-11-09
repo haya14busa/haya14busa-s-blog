@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="この記事はVim Advent Calendar 2013 : ATNDの 113 日目の記事になります。 また『EasyMotionか!』と思う方も中にはいるかもしれませんが、実は誕生日VACだったりするので許してください。 Happy Vimming to me. &hellip;">
+  <meta name="description" content="Vim Advent Calendarです この記事はVim Advent Calendar 2013 : ATNDの 108 日目の記事になります。日付がおかしいとか細かいことは気にしてはいけません。Vim Advent CalendarはVim記事を書きたいという人がいるかぎり続きます。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,108 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/improve-x-with-vim-submode/">かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-03-24T09:10:46+09:00" pubdate data-updated="true">March 24, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Vim Advent Calendarです</h2>
+
+<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の 108 日目の記事になります。日付がおかしいとか細かいことは気にしてはいけません。Vim Advent CalendarはVim記事を書きたいという人がいるかぎり続きます。しかしいったい、いつまで続くんでしょう&hellip;気になります!</p>
+
+<p>Vimに関することであれば基本的に何を書いてもよいはずなので、興味がある方は気軽に書いてみるとよいのではないでしょうか。</p>
+
+<h2>vim-submodeで x の挙動をカイゼンする</h2>
+
+<p><a href="https://github.com/kana/vim-submode">kana/vim-submode</a></p>
+
+<p>Lingrで発言したときに若干反応があったのでVAC Tipsとして簡単なものですが紹介します。</p>
+
+<p>Vimデフォルトの<code>x</code>はカーソル下の文字を消すという機能です。</p>
+
+<p><code>x</code>の挙動のちょっとした不満点として1文字消すためだけにレジスタを汚してしまうというものがあり、それをカイゼンするために<code>nnoremap x "_x</code>を設定しているvimrcをたまに見かけます。</p>
+
+<p>しかし、よくみるレジスタの問題の他にも不満点がありました。それは<code>x</code>後の<strong><code>u</code>ndo</strong>の挙動です。</p>
+
+<p><code>x</code>で1文字消すごとにundo履歴が区切られてしまい、いざ<code>x</code>を連打した後に間違っていると判明して、<code>u</code>ndoしたい!と思っても、<code>x</code>を押した分だけ何回も何回も<code>u</code>を押さなくてはいけません。</p>
+
+<p>連続した<code>x</code>で一気に消した分は、1回のundoで戻せたら素敵じゃないでしょうか?</p>
+
+<p>そんな機能を実現できる、かゆいところに手が届くプラグインが<a href="https://github.com/kana/vim-submode">vim-submode</a>です。</p>
+
+<h3>コード</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;kana/vim-submode&#39;</span>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:my_x<span class="p">()</span>
+</span><span class='line'>    <span class="k">undojoin</span>
+</span><span class='line'>    normal<span class="p">!</span> <span class="c">&quot;_x</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'><span class="nb">nnoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span><span class="k">x</span><span class="p">)</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>my_x<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'><span class="k">call</span> submode#enter_with<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;_x&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">call</span> submode#map<span class="p">(</span><span class="s1">&#39;my_x&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Plug&gt;(my-x)&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>簡単に解説すると、最初に<code>x</code>を押した時に<code>"_x</code>でブラックホールレジスタに放り込んで1文字消すと同時に<code>my_x</code>という<code>submode</code>に入るようにし、この<code>my_x</code>という<code>submode</code>下での<code>x</code>は事前に定義した<code>&lt;Plug&gt;(my-x)</code>を呼んで、<a href="http://vim-jp.org/vimdoc-ja/undo.html#%3Aundojoin">undojoin</a>を使用することによりundo履歴を1つにまとめています。</p>
+
+<blockquote><p>:undoj[oin] 以降の変更を直前の undo ブロックにつなげる。</p>
+
+<p>&ndash; <cite><a href="http://vim-jp.org/vimdoc-ja/undo.html">Vim documentation: undo</a></p></blockquote>
+
+<h3>欠点</h3>
+
+<p><code>x</code>連打してここまで消したい！というときに1〜2カラム分行きすぎてしまったなどといった場合、<code>u</code>ndoすると初めから全部戻ってしまいます。一長一短ですね&hellip;</p>
+
+<p>しかし、undo履歴が汚れ無いようになるし、結構気に入っています。ﾋﾟﾝと来た方は使ってみてはいかがでしょうか?</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/improve-x-with-vim-submode/">かゆいところに手が届く、vim-submodeでxの挙動をカイゼンする</a>
+      <time datetime="2014-03-24T09:10:46+09:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1049,155 +1151,6 @@ DNS設定の仕方などの記事も気が向いたら書いていこうかな�
       
       - <a href="/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい</a>
       <time datetime="2014-02-16T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>16</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-02-14T00:00:00+09:00" pubdate data-updated="true">February 14, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事になります。</p>
-
-<h2>Migemoとは</h2>
-
-<ul>
-<li><a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
-<li><a href="http://0xcc.net/unimag/2/">横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索</a></li>
-</ul>
-
-
-<p>「Migemoとはローマ字のまま日本語を検索できるものです」みたいな紹介をしようと思ったら思ったよりも『インクリメンタル』が重要なファクターっぽいですね。今回はインクリメンタル基本的にしない/できないmigemoの紹介です。</p>
-
-<p>vimでもmigemo使いたいですよね。</p>
-
-<h2>+kaoriyaのVimならデフォルトでmigemoが使えるけど</h2>
-
-<p>+kaoriya以外のVimでmigemo使うのは(昔は)結構面倒くさかったように思えます。</p>
-
-<p>-kaoriyaでmigemoを使う方法としては</p>
-
-<ol>
-<li><a href="http://www.kaoriya.net/software/cmigemo/">C/Migemo</a>を端末にインストール</li>
-<li>cmigemoと連携する Vim プラグインをインストール</li>
-</ol>
-
-
-<p>なのですが、1は</p>
-
-<pre><code>apt-get install cmigemo
-brew install cmigemo
-</code></pre>
-
-<p>などなどで割と簡単だったのですが、<a href="https://github.com/koron/cmigemo">koron/cmigemo</a>のVimプラグインの部分がかなり昔から書かれていたこともありその後の2でパス通すのがつらい、プラグインのみで配布されていないのでプラグインマネージャで簡単にインストールできないなどなどちょっとつらい仕様だったので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>がはじまった初期の右も左もわからない時にPull Requestしてkaoriyaさんにレビューしてもらったり、プラグイン部分を独立してGitHubに上げる権限をもらったりしました。</p>
-
-<p><a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a></p>
-
-<p>ということで、昔の他の人の記事とかを見るとちょっと面倒くさいようにみえるcmigemoのVimへの導入も、</p>
-
-<pre><code>NeoBundle 'haya14busa/vim-migemo'
-</code></pre>
-
-<p>このように割と簡単にできるようになりました。あとvimprocが使えたら使うなどちょっとした改善もしたような記憶があります。</p>
-
-<p>使い方は以前と同じで <code>:Migemo</code> コマンドまたはデフォルトで <code>&lt;Leader&gt;mi</code> にマッピングされています。(<code>&lt;Plug&gt;</code>の提供とかプロンプトの文字列の変更とかの追加はそういえばやっていないけれどしたほうがよいかな&#8230;)</p>
-
-<h2>別のプラグインでちょっと便利に(?)つかう</h2>
-
-<p>基本的にどのプラグインも+kaoriyaでmigemoがデフォルトで使えればそれを、cmigemoがインストールされていればcmigemoを、どれも無理なら使えないという仕様になっていたはずです。</p>
-
-<h3><a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a></h3>
-
-<p>つい先日、<a href="http://techracho.bpsinc.jp/yamasita-taisuke/2014_02_06/15331">vim日本語検索をちょっと便利にするmigemo検索 | TechRacho</a>で紹介されていましたがLindanさん ware の<a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a>というプラグインがあります。</p>
-
-<pre><code>NeoBundle 'rhysd/migemo-search.vim'
-if executable('cmigemo')
-    cnoremap &lt;expr&gt;&lt;CR&gt; migemosearch#replace_search_word()."\&lt;CR&gt;"
-endif
-</code></pre>
-
-<p>これは<code>&lt;CR&gt;</code>にマッピングすることで、Vimデフォルトの検索をするときに、検索文字列がローマ字っぽかったらmigemoをよしなに呼んでくれるというものです。こちらの仕様のほうが好きな人はオススメです。個人的にはちょっと試した程度でほぼ使っていないので実は使用感はお伝え出来ません。</p>
-
-<h3>Uniteのmatcherにmigemoを使う</h3>
-
-<p><a href="https://github.com/Shougo/unite.vim">Shougo/unite.vim</a></p>
-
-<p>:h unite-filter-matcher_migemo</p>
-
-<pre><code>NeoBundle 'Shougo/unite.vim'
-nnoremap &lt;silent&gt; g/ :&lt;C-u&gt;Unite -buffer-name=search line -start-insert&lt;CR&gt;
-call unite#custom#source('line', 'matchers', 'matcher_migemo')
-</code></pre>
-
-<p>実はUniteのmatcherの１つにmigemo機能があります。なので、Vimデフォルトの検索とは 操作法が異なりますが、lineソースにmigemoのmatchersを充ててmigemo検索をUniteですることができます。</p>
-
-<h3>EasyMotionのmigemo機能</h3>
-
-<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
-
-<p>2012年のVAC記事(<a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a>)でEasyMotionで1文字migemoを使えるようにしたと紹介したのですが、最近 n-key motionとして任意の数のキーでEasyMotionできるVimデフォルトの検索の拡張を実装したので、cmigemoがインストールかつ、migemoオプションがオンなら同様にEasyMotionでもmigemo検索できるようになりました。</p>
-
-<pre><code>NeoBundle 'Lokaltog/vim-easymotion'
-map g/ &lt;Plug&gt;(easymotion-sn)
-omap g/ &lt;Plug&gt;(easymotion-tn) " opeartor-pending時にVimデフォルトの検索の仕様に合わせる
-let g:EasyMotion_use_migemo = 1 " Migemo機能ON
-</code></pre>
-
-<p>このあたりは全く別の記事でまた紹介したいのですが、このEasyMotionの検索機能の拡張とも言うべき機能は、インクリメンタルにハイライトしたり、普通のEasyMotionの機能と違って画面外まで飛んだり、<code>&lt;Tab&gt;</code>キーでスクロールできたり、勿論検索履歴やテキストオブジェクト<code>gn</code>とも連携させたりしているので、完璧とは言わないまでもデフォルトの検索をこれに置き換えてもよいかなぁというレベルになっています。</p>
-
-<h4>仕様</h4>
-
-<p>もともとEasyMotionが<strong>スクリーン内</strong>の移動を拡張するというコンセプトなので、仕様としてはmigemo機能がONになっていてもスクリーン上にマルチバイト文字が無ければmigemoを使わないようになっています。なので、普段コードを書くときにmigemoによって遅くならないようになっているともいえるし、画面外に日本語があるとはわかっているんだけど画面内に日本語が無ければ発動しないという残念仕様でもあるとは言えますね&#8230;</p>
-
-<p>またインクリメンタルハイライトにmigemoを対応させていないので、実はMigemoに関してはインクリメンタルハイライトの一貫性がなくなってしまっている状態(インクリメンタルにハイライトはされていなくても<code>&lt;CR&gt;</code>で実行するとマッチする)なのでmigemo機能として使うには実はあんまりオススメはできません()。現状での仕様をわかった上で使ってくれたらいいかなぁと思います。</p>
-
-<p>というのも、システムのcmigemoを呼ぶという性質上、毎回のinputでインクリメンタルにcmigemoを呼ぶと、とてもじゃないけど耐えらたものじゃない速度になってしまい、実装してみましたが敢え無く断念しました。このためにProcessManagerも使ってみたんですがやっぱりダメでした&#8230;無念。</p>
-
-<p>そのうち要望 or 気が向いたら、インクリメンタル検索中のキーマッピングとしてmigemo使って一時的にハイライトさせるみたいな機能を実装するかもしれません。(それでも不便感は拭えないですが&#8230;)</p>
-
-<h3>まとめ</h3>
-
-<p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
-
-<p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim_migemo_search/">Vimでmigemoを使って日本語でもローマ字のまま検索がしたい</a>
-      <time datetime="2014-02-14T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>14</span> <span class='year'>2014</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
