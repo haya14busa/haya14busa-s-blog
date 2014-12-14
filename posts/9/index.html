@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Install まずはnode.js $ brew install node Stylusとnibのインストール $ npm install -g stylus nib これでOK Vimで自動コンパイル .vimrc autocmd BufWritePost,FileWritePost *. &hellip;">
+  <meta name="description" content="GitでWPにPostしたくなった 最近Git使い出して、GitHubに気軽にコードとREADMEをpushしたりできて、こんなに便利だと記事をGitで管理して、出来ればgit push,または簡単なコマンドを打てばWordPressに投稿できるようにしたい！と思うのは必然ですよね？. git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,239 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vimrepress-and-wordpress-using-git/">GitでWordPressにPostしたいと思ったけど結局VimRepress導入した</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true">August 07, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>GitでWPにPostしたくなった</h2>
+
+<p>最近Git使い出して、GitHubに気軽にコードとREADMEをpushしたりできて、こんなに便利だと記事をGitで管理して、出来れば<code>git push</code>,または簡単なコマンドを打てばWordPressに投稿できるようにしたい！と思うのは必然ですよね？.</p>
+
+<p><code>git push</code>はWordPress運用してるサーバーにgitがないとだめだし、そのままpushとかはできなさそうなのでXML_RPCプロトコルが使えそう</p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/XML-RPC">XML-RPC &#8211; Wikipedia</a></li>
+<li><a href="http://codex.wordpress.org/XML-RPC_WordPress_API">XML-RPC WordPress API « WordPress Codex</a></li>
+</ul>
+
+
+<p>一応そもそもGitで作れるブログにするとかいう選択肢もあるのだけど、すでにWordPress使ってるし、テーマとかプラグイン便利なのであまり移行する気が起こらないのでとりあえず却下。</p>
+
+<h2>GitでWPにポスト?</h2>
+
+<p>「Git WordPress」で検索するとWordPressのテーマかプラグイン、またはそもそもWordPress本体をGitで管理する話ばっかりでノイズが酷かったけど一応なんとなくそれっぽいのは見つけました.</p>
+
+<p><a href="http://www.brool.com/index.php/posting-to-wordpress-from-git">Posting To WordPress From Git | brool</a></p>
+
+<p>ただ考えてみればタイトルやらタグやらつけるのも大変そうで、そもそも手を付ける前に次の策に移行しました…一応今からor今度やってみるかも(フラグ)</p>
+
+<p>なぜそんな手を付ける前に移行したかというと、そういえばVimでWordPressにPostするとかいう記事をどっかで記憶があったから。ということでそっちを試してみる.</p>
+
+<h2>VimRepress</h2>
+
+<h3>Install</h3>
+
+<p>.vimrc</p>
+
+<pre><code>NeoBundle 'pentie/VimRepress'
+</code></pre>
+
+<p><a href="https://github.com/vim-scripts/VimRepress">vim-scripts/VimRepress</a>が公式だけど、開発止まっててforkされてるやつを導入.</p>
+
+<p>記事書きながら,<a href="https://github.com/sousu/VimRepress">sousu/VimRepress</a>もいいかもしれないと読んでて思ったけど、試してはいません.ローカルに一時保存出来る機能とかあるらしくて良さそう.</p>
+
+<h3>Settings</h3>
+
+<p>~/.vimpressrc</p>
+
+<pre><code>[Blog0]
+blog_url = http://haya14busa.com
+username = haya14busa
+password = password
+store_markdown = n
+
+[Blog1]
+blog_url = http://hogehoge.com
+username = hogehoge
+</code></pre>
+
+<p><code>~/.vimpressrc</code>にブログURLなどを保存.passwordはオプションで書かなかった場合その都度入力できる.</p>
+
+<h3>Markdown</h3>
+
+<p>VimRepressはMarkdownをサポートしてて</p>
+
+<pre><code>$ easy_install python-markdown2
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ pip install markdown2
+</code></pre>
+
+<p>すれば有効になる</p>
+
+<p>ただ僕は<a href="http://wordpress.org/plugins/markdown-on-save-improved/">WordPress › Markdown on Save Improved « WordPress Plugins</a>をすでに使ってました.こっちだと<a href="http://michelf.ca/projects/php-markdown/extra/">PHP Markdown Extra</a>が使えること、また<code>"EditFormat : HTML</code>かつMarkdown On Save Improvedをインストールした状態でMarkdown形式で書くと、ちゃんと変換されてPostできることを確認したことから、VimRepressのMarkdownは使ってません.</p>
+
+<h2>使い方</h2>
+
+<p>詳しくは<code>:h vimpress</code>か記事末尾のリンクがわかりやすい</p>
+
+<p>余談だけど<code>:h vimrepress</code>じゃないところが辛かった.なぜプラグイン名と違うのか.</p>
+
+<h3>起動</h3>
+
+<ul>
+<li><code>:BlogList</code>で記事一覧を見てEnterで編集画面
+
+<ul>
+<li>デフォルトでは最新の10記事表示.でもMoreでどんどん読める.</li>
+</ul>
+</li>
+<li><code>:BlogNew</code>で新記事の編集画面</li>
+</ul>
+
+
+<p><code>:BlogOpen</code>もあるけどあまり使わなさそう.記事が大量にあって,昔の記事をurlから起動する時とかに使えそう?.</p>
+
+<h3>Edit</h3>
+
+<p>編集画面</p>
+
+<pre><code>"=========== Meta ============
+"StrID : 
+"Title : GitでWordPressにPostしたいと思ったけど結局VimRepress導入した
+"Slug  : install-vimrepress
+"Cats  : WordPress
+"Tags  : wordpress, git, vim
+"=============================
+"EditType   : post
+"EditFormat : HTML
+"BlogAddr   : http://haya14busa.com
+</code></pre>
+
+<p>StrIDは自動で挿入されるので空白でOK.Slugも一応いらない.Cats(Category)はすでにカテゴリーが作られていないとダメっぽいです.Tagsは新しいものでもOK.VimRepressのMarkdown機能を使う場合はEditFormatをMarkdownに.</p>
+
+<h3>Preview</h3>
+
+<ul>
+<li><code>:BlogPreviw draft</code>でブラウザが起動し、WordPressの下書きプレビュー
+
+<ul>
+<li>デフォルトの<code>:BlogPreviw (local)</code>だとローカルプレビューでCSS効いてなかったり、Markdown on save ImprovedでMarkdown対応している場合使い物にならない.</li>
+</ul>
+</li>
+<li><code>:BlogPreviw publish</code>だと投稿してプレビューだけどそれプレビューじゃなくね？</li>
+</ul>
+
+
+<h3>Post and Save</h3>
+
+<ul>
+<li><code>:BlogSave (draft)</code>で下書き保存
+
+<ul>
+<li>なお<code>:w</code>しても意味なし。癖でやっちゃうからVimRepressの編集画面ではaliasするとかしたい.Vimscript勉強したらできるかな?</li>
+</ul>
+</li>
+<li><code>:BlogSave publish</code>で投稿！
+
+<ul>
+<li>または<code>:BlogPreview publish</code></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>コンフリクトしてうざったい</h3>
+
+<p>.vimrc</p>
+
+<pre><code>nnoremap &lt;CR&gt; o&lt;ESC&gt;
+</code></pre>
+
+<p>インサートモードに入らずにEnterキーで改行を挿入出来るようにキーマップしてるとVimRePressの<code>:BlogList</code>から編集画面に飛ぶエンターの挙動とコンフリクトしてエラーがいっぱいでちゃう。一応動くけど。</p>
+
+<p>VimRepress側の設定でなんとかしたいけどわからなかった.Help見る限り,keymap用の変数とかも用意されてないっぽいし[要出典]</p>
+
+<h3>結論:捗る</h3>
+
+<p>既存記事の編集とかも含め、管理画面にアクセスせずに投稿できるのがとても捗る.</p>
+
+<p>ただ今までは<a href="http://haya14busa.com/darkroom-js/">ブラウザで動くシンプルなエディタ「Darkroom.js」 « haya14busa</a>を使ってブラウザ完結で記事書いたりして、アプリ間の移動がいらなかったり、iPadでも全く同じ方法で使えたりと、Darkroom-jsも捨てがたい.そもそもiPadではVimRepress使えないし、時と場合によって使い分ける所存.</p>
+
+<p>(Darkroom-jsに対するアクションなくて寂しいのでぜひ見てやってください.)</p>
+
+<h2>Link</h2>
+
+<h3>Repository</h3>
+
+<ul>
+<li><a href="https://github.com/pentie/VimRepress">pentie/VimRepress</a></li>
+<li><a href="https://github.com/vim-scripts/VimRepress">vim-scripts/VimRepress</a></li>
+<li><a href="https://github.com/sousu/VimRepress">sousu/VimRepress</a></li>
+</ul>
+
+
+<h3>VimRepress</h3>
+
+<ul>
+<li><a href="http://tsuchikazu.net/vim_markdown_wordpress/">Vimを使ってMarkdown形式でWordPressに投稿してみる | tsuchikazu blog</a></li>
+<li><a href="http://akakyouryuu.com/blog/vim%E3%81%8B%E3%82%89vimrepress%E3%81%A7wordpress%E3%81%AB%E6%8A%95%E7%A8%BF%E3%81%99%E3%82%8B/">vimからVimRepressでWordPressに投稿する | 赤恐竜</a></li>
+<li><a href="http://sousu.jp/wp/tool/wordpress-vim-markdown/">WordPress+Vim+Markdownでメモ環境の構築</a></li>
+</ul>
+
+
+<h3>Other</h3>
+
+<ul>
+<li><a href="http://www.brool.com/index.php/posting-to-wordpress-from-git">Posting To WordPress From Git | brool</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/XML-RPC">XML-RPC &#8211; Wikipedia</a></li>
+<li><a href="http://codex.wordpress.org/XML-RPC_WordPress_API">XML-RPC WordPress API « WordPress Codex</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vimrepress-and-wordpress-using-git/">GitでWordPressにPostしたいと思ったけど結局VimRepress導入した</a>
+      <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/wordpress/'>wordpress</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -697,113 +930,6 @@ $ python prime_stieve.py [引数]
       <time datetime="2013-07-28T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>28</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/github-introductio/">GitHub導入メモ</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-07-16T00:00:00+09:00" pubdate data-updated="true">July 16, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>登録しました -> <a href="https://github.com/haya14busa">GitHub/haya14busa</a></p>
-
-<h2>導入</h2>
-
-<p>Permission denied (publickey)で若干困ったので忘備録</p>
-
-<p>SSH用の公開鍵、秘密鍵</p>
-
-<pre><code>% ssh-keygen -t dsa -f ~/.ssh/id_dsa_github
-</code></pre>
-
-<p>~/.ssh/config</p>
-
-<pre><code>Host github.com
-User git
-Hostname github.com
-
-IdentityFile ~/.ssh/id_dsa_github
-</code></pre>
-
-<p><code>~/.ssh/id_dsa_github.pub</code>を<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>に登録。</p>
-
-<p>そして</p>
-
-<pre><code>% ssh -T git@github.com
-</code></pre>
-
-<h2>dotfiles</h2>
-
-<p>GitHubでdotfilesのリポジトリを作っておく。</p>
-
-<pre><code>% cd
-% mkdir dotfiles
-% mv .vimrc dotfiles
-% ln -s dotfiles/.vimrc .vimrc
-% cd dotfiles
-% git init
-% git add .
-% git commit -m'first commit'
-% git remote add origin git@github.com:haya14busa/dotfiles.git
-% git push -u origin master
-</code></pre>
-
-<p>iPad用のブランチ</p>
-
-<pre><code>% git branch ipad
-% git checkout ipad
-% # vimでごにょごにょ
-% git add .
-% git commit -m'ごにょごにょ'
-% git push origin ipad
-</code></pre>
-
-<p>こりゃー便利</p>
-
-<h2>Link</h2>
-
-<ul>
-<li><a href="http://sho.tdiary.net/20091024.html">「Permission denied (publickey).」と言われてGitHubが使えなくなった場合の対処法 &#8211; ただのにっき(2009-10-24)</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/github-introductio/">GitHub導入メモ</a>
-      <time datetime="2013-07-16T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
       
       </footer>
     </article>

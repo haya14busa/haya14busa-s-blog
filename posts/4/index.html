@@ -9,8 +9,9 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="つくりました Jekyll, GitHub Pages, Twitter Bootstrap全部便利だった。 Vimプラグイン読書会
-GitHub: haya14busa/reading-vimplugin 注: URLは変わるかもしれません GitHub公式ドキュメント GitHub Pages &hellip;">
+  <meta name="description" content="第2回 Vimプラグイン読書会 案内 日時: 2014年 1/11(土) 21:00-
+場所: LingrのVim部屋
+読むプラグイン: rhysd/clever-f このページでVimプラグイン読書会の情報をまとめています。-> Vimプラグイン読書会 clever-fの紹介 GitHub: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,124 @@ GitHub: haya14busa/reading-vimplugin 注: URLは変わるかもしれません G
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/preparation_of_reading_vim_plugin_02/">Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-01-10T00:00:00+09:00" pubdate data-updated="true">January 10, 2014</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>第2回 Vimプラグイン読書会 案内</h2>
+
+<ul>
+<li>日時: 2014年 1/11(土) 21:00-</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン: <a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
+</ul>
+
+
+<p>このページでVimプラグイン読書会の情報をまとめています。-> <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></p>
+
+<h2>clever-fの紹介</h2>
+
+<ul>
+<li><a href="https://github.com/rhysd/clever-f.vim">GitHub:rhysd/clever-f</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
+<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
+</ul>
+
+
+<p>clever-fはその名の通り<code>f{char}</code> による移動を強力にするプラグインです。</p>
+
+<p><code>f</code>で移動したあと<code>;</code>、<code>,</code>の代わりに<code>f</code> , <code>F</code>でそれそれ順方向、逆方向に移動できるのでキーマップを節約できたり、オプションを設定すれば、行をまたいで移動、smartcase機能、migemo機能などを使うことができます。</p>
+
+<p>使ったことない人は、少しだけ試してから読書会にくると、より見るべき部分がわかって面白いと思うので使ってみるとよさそうです。</p>
+
+<p><code>;</code>や<code>,</code>はあまり頻繁に使用しないせいで何かしらのprefixキーとして潰されてたり、そうでなくてもこれから使えると便利な位置にあるので、オプション設定無しで単に<code>f</code> or <code>F</code>でリピートさせるという使い方だけでも地味に助かるプラグインだと思います。</p>
+
+<p>個人的には簡単なマクロ使うときにとても重宝しています。(そういう意味では行を跨ぐ機能はOFFにしたほうがいいかなーと最近思ってる。オプションでちゃんと設定できます)</p>
+
+<h2>見どころ(個人的に)</h2>
+
+<p>前回のjunkfile.vimやvisualstar.vimよりも少し大きくなってちょっと実践度があがるのかなと思います。(helperスクリプトようにファイルを分けたりも前回はしていなかった気もするし)</p>
+
+<h3>カーソルキーの位置、状態によってキーの挙動をかえてる</h3>
+
+<p>どうやって実装してるのか、こういうところは<a href="https://github.com/kana/vim-submode">kana/vim-submode</a>と似たようなところがあるのかな？ないのかな？とか他にも応用できないかとか、いろいろ考えられそう。(これはvim-submode読まないとわからないけど。あとたぶん違う実装方な気がする)</p>
+
+<p>他にも行跨ぐ機能とか気になるところを重点的によんだりすると良さげ</p>
+
+<h3><code>.</code>によるオペレーションのリピート対応</h3>
+
+<p>カーソル移動系プラグインではこれがあるのとないのとではランクがひとつ、ふたつ違うってほど重要事項だとおもうのでこのへんのノウハウはぜひ読みたい。</p>
+
+<p>ちなみにeasymotionでは対応できていないし、同じくfを拡張して2キー対応しているvim-sneakは2キーの場合はリピートできるけど1キーだとできないという現状だったりします。(あと<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>依存だったり)</p>
+
+<h3>migemo対応時のマルチバイト対応など</h3>
+
+<p>clever-fとかあんまり使わないというひとでもこういう細かいところは他の場面でも使えるので、汎用的な部分があれば積極的にみていくと良さげ感あります。clever-fに限った話じゃないですが。</p>
+
+<h3>Vim scriptでもテストを書きたい</h3>
+
+<ul>
+<li><a href="https://github.com/kana/vim-vspec">kana/vim-vspec</a></li>
+<li><a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-plugins-vs-travis-ci.html">Vim プラグイン開発でも継続的インテグレーションがしたい! (Travis CI 編) &#8211; TIM Labs</a></li>
+<li><a href="http://labs.timedia.co.jp/2013/02/vim-vspec-introduction.html">Vim プラグイン開発でもユニットテストがしたい! (vim-vspec 編) &#8211; TIM Labs</a></li>
+<li>他のテストフレームワーク: <a href="https://github.com/Shougo/vesting/wiki/Test-framework-for-Vim-scripts">Shougo/vesting/wiki/Test-framework-for-Vim-scripts</a></li>
+</ul>
+
+
+<p>テストの書き方とか参考にしたいなとか個人的に思ってるけど、clever-fの場合はvim-vspecだけでなく、<a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a>を使っててさらに拡張していたりするので、そのへん見たり見なかったりするのもよさげ。</p>
+
+<h3>2キー対応拡張したい</h3>
+
+<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>のように2キー(or 複数キー)対応ができれば更に便利になるので余裕があれば複数キーに対応するにはどうやって実装すればいいかなーとか考えると面白いと思います。</p>
+
+<h2>最後に</h2>
+
+<p>ぜひ参加してわいわい読みましょう。</p>
+
+<p>今回参加できなくてもまだゆるゆると続くと思うので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に更新情報を載せたりしますので時間あるときに参加しましょう。日時もなんとなく土曜21:00となっているけど、他の時間帯がいいという人が多ければ変えれると思うので意見していくときっといいです。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/preparation_of_reading_vim_plugin_02/">Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!</a>
+      <time datetime="2014-01-10T00:00:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>10</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1196,141 +1315,6 @@ autoload -&gt; .c
       <time datetime="2013-12-18T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>18</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reading-vim-plugin/">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-12-13T00:00:00+09:00" pubdate data-updated="true">December 13, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>気軽な感じでVim script(plugin)読書会がしたいとつぶやいたら、@osyo-mangaさんが拾ってくれて実際にVim script読書会、開催することになりました。おしょーさんありがとうございます。</p>
-
-<p>読書会は<s>明日</s>今日(12/14)！開催です！気になった方は参加しましょう！詳細は以下！</p>
-
-<p><a href="http://d.hatena.ne.jp/osyo-manga/20131208/1386432636">12月14日（土）21時から Vimプラグイン読書会を行います &#8211; C++でゲームプログラミング</a></p>
-
-<h2>Vim script読書会#1@12/14</h2>
-
-<h3>読むプラギン</h3>
-
-<ol>
-<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>
-
-<ul>
-<li>junkfile.vimの紹介記事:<a href="http://vim-users.jp/2010/11/hack181/">Vim-users.jp &#8211; Hack #181: Vimで使い捨てのファイルを作成する</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/thinca/20091125/1259075486">visualstar.vim 書いた &#8211; 永遠に未完成</a></li>
-<li>時間があればvisualstarよむ(はず)</li>
-</ul>
-</li>
-</ol>
-
-
-<h3>場所</h3>
-
-<ul>
-<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>
-
-<ul>
-<li>Lingr知らない人は読むと良さそう。そしてそのノリで参加するといいと思います。-><a href="http://blog.supermomonga.com/articles/neta/lingr.html">プログラミング上達したいならチャットサービスLingrをつかおう（つかおう） | かなりすごいブログ</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h3>時間</h3>
-
-<ul>
-<li>21:00から長くても23:00まで(23:00からvimrc読書会がはじまります)</li>
-</ul>
-
-
-<h2>詳細とか</h2>
-
-<p>第一回は<strong>これからVimプラグイン書きたい</strong>って人の勉強になるように短く、基本的なプラグインとして<a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>を読むことになりました。</p>
-
-<p>暗黒美夢王として有名なShougoさん作のプラグインですが、junkfile.vimは初心者でも読みやすい分量なので、「Vim script怖い」ってかたでも気軽に参加できます(おそらく)。あとjunkfile.vim使ったことない人(僕がそうでした)もVimでメモれる便利プラグインで面白いので、知らないプラグインだからﾅｰって人でもとっつきやすそうです。</p>
-
-<p>またすでにVim scriptできるって方も、もし継続して行うことになれば時によっていろんなレベルのものを読むことになると思うので、参加するといろいろ便利だと思います。みんなでわいわいできたら楽しそうなので興味があったらぜひよろしくおねがいします。</p>
-
-<h2>Vim plugin書くために読んだら便利そうなhelp</h2>
-
-<p>初心者向けとは言っても全く知らないから怖い!予習したい!って場合に読むと良さそうなhelpリストしました(よさそうなだけです)。</p>
-
-<p>usr_41.txtとかeval.txtは全部読むと長いので読むとしたら絞って読むといいかもです。<a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a>あたりが目的に適ってる感じだと思います。</p>
-
-<h3>:h usr_41</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#usr_41.txt">:h usr_41.txt</a></li>
-<li><strong><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a></strong></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27runtimepath%27">:h &#8216;runtimepath&#8217;</a></li>
-</ul>
-
-
-<h3>:h eval.txt</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#eval.txt">:h eval.txt</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#autoload">:h autoload</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Lists">:h Lists</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Dictionaries">:h Dictionaries</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#s%3Avar">:h s:var</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#variables">:h variables</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#functions">:h functions</a></li>
-</ul>
-
-
-<p>などなど</p>
-
-<h2>ブラウザでもVimのヘルプが読みたい!</h2>
-
-<p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
-
-<p>ブックマークレットでvimdoc@jaとかがブラウザから手軽に読めるのでおすすめしときます(宣伝)</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/reading-vim-plugin/">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった</a>
-      <time datetime="2013-12-13T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>13</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
       </footer>
     </article>

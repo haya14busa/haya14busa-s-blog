@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>haya14busa</title>
+  <title>incsearch.vimでVimの検索体験をリッチにする - haya14busa</title>
   <meta name="author" content="haya14busa">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://haya14busa.com/">
+  <link rel="canonical" href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
@@ -75,15 +75,12 @@
 </nav>
     <div id="main">
       <div id="content">
-        <div class="blog-index">
+        <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする</a></h1>
+      <h1 class="entry-title"><a href="">incsearch.vimでVimの検索体験をリッチにする</a></h1>
     
     
       <div class="post-meta">
@@ -109,7 +106,7 @@
   </header>
 
 
-  <div class="entry-content"><p>この記事は<a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a>の14日目の記事です。
+<div class="entry-content"><p>この記事は<a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a>の14日目の記事です。
 13日目は deris さんによる<a href="http://deris.hatenablog.jp/entry/2014/12/13/173125">スマートフォンでVimを操作するためにやっておいたほうがいいこと - derisの日記</a> でした。</p>
 
 <h2>1. incsearch.vim つくった</h2>
@@ -712,31 +709,16 @@ Vim を使って開発できる Vim script を書くのは楽しいです&hellip
 <script src="http://lab.lepture.com/github-cards/widget.js"></script>
 
 </div>
-  
-  
 
 
-      <footer>
+  <footer>
+    <p class="meta">
       
-      - <a href="/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする</a>
-      <time datetime="2014-12-11T22:38:41+09:00" pubdate><span class='month'>Dec</span> <span class='day'>11</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
   
-  
-    <article>
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/vimconf2014/">VimConf2014 で検索とその拡張について発表した</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
 
 
 
@@ -749,691 +731,51 @@ Vim を使って開発できる Vim script を書くのは楽しいです&hellip
 
 
 
-<time datetime="2014-11-09T11:07:22+09:00" pubdate data-updated="true">November 09, 2014</time> -</span>
-          
-        </p>
-      </div>
+<time datetime="2014-12-11T22:38:41+09:00" pubdate data-updated="true">December 11, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>VimConf2014 にいってきました</h2>
-
-<p>2014/11/08(Sat)に開催された <a href="http://vimconf.vim-jp.org/2014/">VimConf 2014</a> に参戦して「/-improved」という発表をしてきました</p>
-
-<h2>TL;DR</h2>
-
-<p>初めてVimConfで約80人の前でLTをしたり, 他の方のおもしろい発表を聞いたり, 懇親会などなどで Vimmer のみなさんとお話出来て感極まりました.</p>
-
-<h2>発表した</h2>
-
-<h3>/-improved</h3>
-
-<iframe src="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-
-<p><br>
-Vimデフォルトの検索をもっと使いこなそう! という内容と, 最近開発している検索拡張プラグイン, <a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a> についての発表を行いました.</p>
-
-<p>VimConf, 一応国際的なものを目指すという声があるような話をしていたと思うので拙いですが基本全編英語で書いてみました. (gifアニメーションがあるので英語壊れててもある程度わかると信じている.) また incsearch.vim の README にも <a href="https://github.com/haya14busa/incsearch.vim#vimconf2014">リンク</a> を貼ってみました (そのうちwikiとかに移動させるかもですが)</p>
-
-<p>incsearch.vimについてはスライドを&hellip;と思いましたが, 英語がたぶんダメダメで(特に最初の2-3コの発表を聞いてからエクストリーム加筆修正した最後の部分), LT10分間に合わなくて最後駆け足で喋ったので少し. 詳しくはスライド or いづれ書かれるであろう(?) incsearch.vim の解説記事を参照していただきたいです.</p>
-
-<h4>Design</h4>
-
-<blockquote class="twitter-tweet" lang="en"><p>incsearch.vim、完成度高すぎて空気のような存在になっている</p>&mdash; トデス子 (@todesking) <a href="https://twitter.com/todesking/status/525937969308262401">October 25, 2014</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>incsearch.vim の目指すデザインとしては基本的にシンプルな検索の拡張を提供し, Vim デフォルトの <code>/</code> を置き換えても違和感なく移行できるというところを１つの重要なポイントとしています. この @todesking さんのツイートはVimConfのコンテキストでつぶやかれたツイートではないのですがまさに「空気のように」に使えるよう目指していてスライドでも似たようなことをすこし話していました (あとこのツイートが本当に嬉しくてどこかに書いておきたかった. ありがとうございます)</p>
-
-<h4>後半話してたこと</h4>
-
-<p>この incsearch.vim というプラグインは決して自分だけの力で開発したわけでなく, いろんな人に協力があって作ることができました(という部分がエクストリーム加筆部分なので相当に雑なスライドになっている).</p>
-
-<p>もとは<a href="https://github.com/osyo-manga/vim-over">osyo-manga/vim-over</a>に使われていたカスタムコマンドラインを
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> というライブラリとしてをおしょーさんに要望投げまくって作ってもらったり,
-ドットリピートの対応法とかは <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a> などで教えてもらったり,
-正規表現をderisさんに教えて頂いたり, 使っていただいた方に不具合を報告してもらったりアイデアをもらったり,
-開発時にぶつかったVim本体のバグを<a href="https://github.com/vim-jp/issues/issues">vim-jp/issues</a>に報告して修正してもらったりと,
-たくさんの人に協力していただいてこそincsearch.vimはここまでできたと思ってます. みなさん本当に感謝しています. ありがとうございます！</p>
-
-<p>kaoriyaさんの話にあった(kaoriyaさんのスライド参照) Vim のよさ, 「らしさ」の１つには確かに「Vim のユーザー」があると僕も思って,
-incsearch.vim はそのよさがなければ絶対に作れなかったプラグインの1つとして <strong>Vim のよさ</strong> としても話したいなーと思い,
-もともと開発のバックグラウンドの部分は入れてなかったのですが急遽スライドを追加して話させていただきました.</p>
-
-<p>Vim のよさがより伝わるといいなーと思いましたが, そのせいで完全にLTの10分制限を越えてしまったので同時に反省もしています&hellip;</p>
-
-<p>正直緊張しすぎで全然聴衆の方がどういうふうに聞いてくれてるか反応を見れてなかったのですが, twitter とかを見る限り便利さは伝わったようなので嬉しかったです. みなさん興味が出たらぜひ使ってみてください&hellip;!</p>
-
-<h2>それぞれの発表, あと感想とか</h2>
-
-<h3><a href="http://koron.github.io/vimconf-2014-koron/">Identity of the Vim</a> <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h3>
-
-<p>「Vimのらしさ」について. テキストオブジェクトが便利とかも勿論Vimの強みで「らしさ」の1つ.
-でも, それだけではなく Vimを使うならIDEとは違い複数の言語をやって視野を広げることができることも1つのメリット.
-これは逆に言えば多種多様なバックグラウンドを持つ人がVimを触っているということで, <a href="https://github.com/vim-jp/">vim-jp</a> や <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a>, twitterで他の Vimmer の方々達と交流すると Vim を通していろいろな考え方に触れることができ, Vim の強みの一つに「vim-jp = ユーザー」 というのは本当にそうだなと感じました.</p>
-
-<p>またVimをやる意義として, 得たものを還元してvim本体をよくしたり, 思いがけず他の人にとっても便利にできたり, マッチポンプ式に Vim を便利にできるという点もとても共感しました. この辺の話や後のujihisaさんの発表を聞いていると変にテンションがあがってしまい, エクストリーム資料追加を実行しました. (そしてLTが時間内に間に合わなくなりました.)</p>
-
-<h3><a href="https://docs.google.com/presentation/d/1u5A7F3Kd4XwJlIUQZAVmrwWfLcoLf9NURtqAEafi_oo/edit#slide=id.p">PM2</a> (<a href="https://twitter.com/ujm">@ujm</a> さん)</h3>
-
-<p>Process Manager 2 の話. 個人的には以前 cmigemo のプロセスを Process Manager で使いまわそうと現在のPMは使ってみたことがあるのですがうまくいかず断念していた(自分の使い方の問題っぽかった)という経緯あります. ですがPM2はかなり使いやすそうになっていそうだったので再挑戦したいと思いました.</p>
-
-<p>後半全くVimと関係ない話(!?)だったり随所に挟まれる笑いどころがあって一番笑った発表でした. PM2だけでなく命名やタイムアウトの大事さも学べて「べんり」</p>
-
-<h3><a href="https://speakerdeck.com/rhysd/vimconf-2014-f">f</a> (<a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h3>
-
-<p>f の解説と f 拡張プラグインの解説でした. <a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a> の便利機能も解説していただいてありがたみがありました.
-clever-f はfで繰り返して移動できるというそれ自体の機能の便利さも勿論メリットなのですが, <code>;</code> と <code>,</code> キーという押しやすい2つものマッピングをフリーにして他のマッピングにできるという部分がとても嬉しい機能です. Lindan さんの場合は <code>,</code> を<code>&lt;Leader&gt;</code> に, <code>;</code> を <code>&lt;Plug&gt;(easymotion-s2)</code>にしており, このあたりをどのマップに置き換えるかは人それぞれの好みだとは思うのですが, かなり便利そうだと感じました.</p>
-
-<p>スライドのfの説明の図がわかりやすかったり, 最後にはオチも付いているのでぜひスライドを見てみてください</p>
-
-<h3><a href="https://docs.google.com/presentation/d/1zaPy82NJ6A3Iw1llKqU-lX88AJNt1EKy5O15nOp085c/edit#slide=id.p">Hey, Java! Vim is coming.</a> (<a href="https://twitter.com/kamichidu">@kamichidu</a> さん)</h3>
-
-<p>Javaを書く機会がないですが, もしJavaを書くことになったら間違いなくVimで書きたい側の人間なので参考にしたい.
-Lingrなどでkamichiduさんの活動をみてると, 他の人ではすぐにはできないようなことを平然とサクッとこなしている印象がいつもあるのでぜひ見習っていきたい&hellip;!</p>
-
-<h3><a href="http://www.slideshare.net/cohama/auto-closing-parenthesis-vim-conf2014-41290298">auto closing parenthesis</a> (<a href="https://twitter.com/c0hama">@c0hama</a> さん)</h3>
-
-<p>dot repeatable になっている <a href="https://github.com/cohama/lexima.vim">cohama/lexima.vim</a> の仕組みとか, あまり自動括弧入力系は使ったことがないのですが試してみたいという思いもあったので個人的に気になる発表の1つでした.</p>
-
-<p>あとで懇親会やその後のカラオケなどなどで聞いた話によると,コマンドラインのマッピングなど想像以上にいろいろな機能を leximaでカスタマイズすることができるらしく汎用性の高さを感じたました. リピータブルな自動括弧入力ってだけでは全く無いようです. すごい.</p>
-
-<h3><a href="http://www.slideshare.net/deris0126/vimconf4">怖くないマクロ入門</a> (<a href="https://twitter.com/deris0126">@deris0126</a> さん)</h3>
-
-<p><code>:h q</code> のマクロ入門についての発表. 決して<a href="http://togetter.com/li/401111">マクロ漁船</a>のようなコワイ話ではなく初心者から使える解説でよかったと思います.
-Vimを使っていて, そこに繰り返し操作があればマクロを使うチャンスなので使っていけるようになるとVimがもっと好きになること間違いなしです.
-時間があれば実演とか, 途中でマクロ間違えた時や, マクロが少し間違っててた場合にちょっとだけ操作足したい/修正したいといった時にどうすればいいかといった対処法もあるとより便利さがあると思いました.</p>
-
-<h3><a href="https://gist.github.com/thinca/2cf4ae0df88a99423c9d">Test for Vim script</a> (<a href="https://twitter.com/thinca">@thinca</a> さん)</h3>
-
-<p>最近 <a href="https://github.com/thinca/vim-themis">thinca/vim-themis</a> をベンリに使わせて頂いているんですが, 改めて発表を聞いてもベンリすぎる&hellip;という印象でした.
-themis便利なんですが自分が使いこなせてないのでテストもっとかけるようになって使いこなしたいという思いがあります.</p>
-
-<h3><a href="http://www.slideshare.net/Shougo/lets-talk-about-neovim">Let&rsquo;s talk about neovim</a> (<a href="https://twitter.com/ShougoMatsu">(@ShougoMatsu</a> さん)</h3>
-
-<p>暗黒美夢王の NeoVim についての発表. 全編英語で書かれておりNeoVim newsletterにも載るらしくVimConfの国際感がでてよさそう.
-内容についてもさすがShougoさんと言うべきかエディタの未来とかOSSのforkの話とかも含めてとても考えられているなぁと感じました.</p>
-
-<p>NeoVim のissueを動向を追うの, かなり大変なので殆ど追えてないのですが面白いことをやっているハズなのでもっと追っていきたい&hellip;</p>
-
-<h3><a href="http://www.slideshare.net/supermomonga/super-cool-presentation-at-vimconf2014">かなりすごい発表（かなり）</a> (<a href="https://twitter.com/supermomonga">@supermomonga</a> さん)</h3>
-
-<p>かなりすごくておもしろい発表でした(かなり). <a href="https://github.com/supermomonga/thingspast.vim">supermomonga/thingspast.vim</a> は統一的に使うようになるととても便利(とても)になりそうなので使ってみたい. Vim, しゃべれるらしいのでVimと会話したい(とても)</p>
-
-<h3><a href="http://www.slideshare.net/pebble8888/using-xvim-with-macvim">XVim with MacVim and smartgrep</a> (<a href="https://twitter.com/pebble8888">@pebble8888</a> さん)</h3>
-
-<p>とても申し訳ないんですがXcodeつかったことがなく, 自分の発表の直前だったので緊張していたこともあってあまりまともに話を聴けてなかった&hellip;悔やまれる&hellip;
-単なる紹介とかでなくforkして改善したとかいう話をしていた気もするのでお話聞いてみればよかった. コメントを飛ばしてgrepできる, smartgrep も便利そう.</p>
-
-<h3><a href="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/pub?start=false&amp;loop=false&amp;delayms=3000&amp;slide=id.g4e7add63c_05">/-improved</a>  (<a href="https://twitter.com/haya14busa">@haya14busa</a>)</h3>
-
-<p>自分の発表, 上述した.</p>
-
-<h3><a href="https://speakerdeck.com/orgachem/zhuan-banuxian-falsezhang-vint">vim script初心者に使ってもらいたい、転ばぬ先の杖「Vint」</a> (<a href="https://twitter.com/orga_chem">@orga_chem</a> さん)</h3>
-
-<p>個人的には今後の発展が期待できる &amp; 使いたいプラグイン No.1 でした.  スライドはオシャレでみやすいし, lint の仕組みも詳しく解説されていて勉強にもなりました. lint, 奥が深い&hellip;!</p>
-
-<p>@orga_chem さんは発表者であると同時に会場の設営やUstream, 録画などの管理も行なって頂いており, 本当にお疲れ様でした. あと Vim の壁紙を使わせて頂いており改めて感謝できてよかった.</p>
-
-<h3><a href="http://www.slideshare.net/raa0121/jenkinsvimenv-vim-vimconf2014">Jenkins + vimenv で 最新のVimを使おう！</a> (<a href="https://twitter.com/raa0121">@raa0121</a> さん)</h3>
-
-<p>vimenv, anyenvに入って欲しい. git の log からパッチ番号取得していつも最近のVimをbuildできる. make test とかも行なって不具合検知ができてよさそうでした.</p>
-
-<h2>懇親会, あとまとめとか</h2>
-
-<p>去年の VimConf 2013 では発表なんてもってのほかで, Twitter や Lingr でみていた Vimmer のみなさんとお話すること自体殆ど出来なくて, 楽しかったけど悔いは残るものになってしまっていました. しかし今年の VimConf 2014 では発表もできて, 皆さんとリアルで対面してお話することができてとても楽しかったです. 感極まりました.</p>
-
-<p>来年も是非参加したいし, もっと運営のお手伝いとかもできたらなーと思いますj</p>
-
-<p>当日これなかったり, Ustream の配信も見ていなかった方は Togetter に 当日のTwitterの様子をまとめた(<a href="http://togetter.com/li/742963">VimConf2014まとめ - Togetterまとめ</a>)ので, 発表者のスライドや他の方の感想記事, これから<a href="http://vimconf.vim-jp.org/2014/">公式ページ</a>にリンクが貼られるであろう録画とかを見て, 興味がでたら是非是非来年のVimConfは参加してみると楽しいと思います!</p>
-
-<p>それでは Happy Vim&#8217;ing ! ♥</p>
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/" data-via="haya14busa" data-counturl="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-      <footer>
-      
-      - <a href="/vimconf2014/">VimConf2014 で検索とその拡張について発表した</a>
-      <time datetime="2014-11-09T11:07:22+09:00" pubdate><span class='month'>Nov</span> <span class='day'>09</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
     
-      <h1 class="entry-title"><a href="/nagoya-vim-2/">Nagoya.vim 第2回に行ってきた</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/vimconf2014/" title="Previous Post: VimConf2014 で検索とその拡張について発表した">&laquo; VimConf2014 で検索とその拡張について発表した</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-09-22T00:00:12+09:00" pubdate data-updated="true">September 22, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Nagoya.vimに参戦!</h2>
-
-<p>9/20(Sat)に開催された, <a href="http://nagoyavim.connpass.com/event/8299/">Nagoya.vim #2</a> に京都から参戦しに行きました!</p>
-
-<p><img src="../images/post/haya14busa_nagoya_vim_sansen.png" alt="" /></p>
-
-<h3>TL;DR</h3>
-
-<p><a href="https://twitter.com/thinca">@thinca</a>さんと <a href="https://twitter.com/Linda_pp">@Linda_pp</a>さんと一緒にスマブラできて楽しかった</p>
-
-<h2>Nagoya.vim #2</h2>
-
-<ul>
-<li><a href="http://nagoyavim.connpass.com/event/8299/">Nagoya.vim #2 - connpass</a></li>
-</ul>
-
-
-<p>いわゆるもくもく回として久々(らしい)に開催された Nagoya.vim に初参加してきました。 connpassページにある目的を振り返ってみると</p>
-
-<blockquote><p>目的</p>
-
-<p>Vim script でなんか書く
-なごやの Vim 使いと交流する</p></blockquote>
-
-<h3>1. Vim script でなんか書く -> ○</h3>
-
-<p><a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の進捗を出していました(進捗がでたとは言ってない).</p>
-
-<p>主に内容としては <code>TODO:</code>, <code>FIXME:</code> がとっても増えたこと、テストをちょっとだけ拡充したことの2点です。 一応すでに実用段階にはあると思っているんですが、もう少しだけ足りない機能足して、テストちゃんとして早くバージョン1.0にしたさがあるのでまた頑張っておく予定です。</p>
-
-<p>気になった方は是非使ってみてください&hellip;!</p>
-
-<h3>2. なごやの Vim 使いと交流する -> ○()しかし◎の余地あり)</h3>
-
-<p>東京勢の犬さん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>さん) と初対面出来たことを初めとして, TwitterやLingrのVim部屋, GitHubで見かける なごやの Vimmer の方々(<a href="http://nagoyavim.connpass.com/event/8299/participation/#participants">Nagoya.vim #2 - Attendee List - connpass</a>) と懇親会含めてお話できてとてもよかったです。 みなさんありがとうございました! またよろしくお願いします。</p>
-
-<p>ただ、最初の自己紹介タイムだけでは自分の記憶力的にあまり覚えられなかったり、懇親会でもほとんど一緒に喋れなかった人がたくさんいたのでもうちょっと自分から話しかけて行きたい感が強まりました。 特にせっかく, なごやの関数型とか型界隈こわい勢 の方々がいらっしゃったのに、あんまり話さずじまいだったので、機会があれば関数型プログラミングとか教えてもらいたい(あわよくば)</p>
-
-<p>ぜひ、又の機会によろしくお願いします.</p>
-
-<h2>反省, あと進捗とか</h2>
-
-<p>久々に時間取ってVim活できる機会だったので<a href="https://twitter.com/thinca">@thinca</a> さんのライブコーディングを見ながらも上述したような<a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の改善を行なって, 最後に成果発表させていただきましたがあまり目に見える進捗ではなかったという反省が1点。そのあとに実は以前&hellip;.(ｺﾞﾎッ&hellip;) 作った Vim系オンライン読書会 の宣伝LTみたいなものをしたのですが, 全くしゃべる内容とか準備せずにスライドだけ作ってグダッた発表したという反省が2点目。 そして極めつけは最後に撤収しないといけない時間に始めてしまってそもそも時間を押してしまったという反省の1点を合わせ, だいたい計3点くらいの反省がありました。皆さん申し訳ありませんでした。</p>
-
-<p>ということで(?) 一応発表に使ったスライドを少々手直して上げてました。</p>
-
-<p><a href="http://haya14busa.github.io/slide/2014-09-20-nagoya-vim-2/#/">オンラインVim系読書会でVim力を高めよう</a></p>
-
-<p>Nagoya.vimに参加した人も, 参加してないけどこの記事を読んで頂いてる人も, ぜひぜひvimrc読書会やvimプラグイン読書会に参加してくれると嬉しいです。</p>
-
-<p>特にvimヘルプ読書会やると絶対ベンリだと思っているのでプッシュしてくれるかたを常に募集しています。よろしくお願いします。</p>
-
-<h2>観光</h2>
-
-<p>翌日の21(日)は名古屋観光しながら進捗を出したりスマブラをやったり, グルメ楽しんだりしました</p>
-
-<p>一緒に観光した <a href="https://twitter.com/thinca">@thinca</a>さん, <a href="https://twitter.com/Linda_pp">@Linda_pp</a>さん, <a href="https://twitter.com/If_I_were_boxp">(@If_I_were_boxp</a> さん, 名古屋観光一緒にできて楽しかったです, ありがとうございました&hellip;! またぜひよろしくお願いします.</p>
-
-<p><img src="../images/post/nagoya/2014-09-21%2011.45.47.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2014.44.26.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2015.03.44.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2015.12.12.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2018.49.17.jpg" alt="" /></p>
-
-<p>ひつまぶし超ウマイ〜</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
+  </section>
 
 
-      <footer>
-      
-      - <a href="/nagoya-vim-2/">Nagoya.vim 第2回に行ってきた</a>
-      <time datetime="2014-09-22T00:00:12+09:00" pubdate><span class='month'>Sep</span> <span class='day'>22</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reading-vimrc-stat/">vimrc読書会Stat作った</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-07-17T01:18:34+09:00" pubdate data-updated="true">July 17, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>vimrc読書会Statを作りました!</h2>
-
-<h4><a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></h4>
-
-<p><img src="../images/post/2014-07-14-reading-vimrc-line-chart.png" alt="" /></p>
-
-<h4>参加者Stats: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">vimrc読書会 Stat - haya14busa</a></h4>
-
-<p><img src="../images/post/2014-07-14-reading-vimrc-stat-haya14busa.png" alt="" /></p>
-
-<h4>GitHub Contributionグラフのイミテーション</h4>
-
-<p><img src="../images/post/2014-07-14-reading-vimrc-streak.png" alt="" /></p>
-
-<h2>vimrc読書会2周年</h2>
-
-<p>先日の 2014/07/12(土) に開催された<a href="http://vim-jp.org/reading-vimrc/archive/106.html">第106回 vimrc読書会</a>ですが、
-なんと 2012/07/10(火) に開催された<a href="http://vim-jp.org/reading-vimrc/archive/001.html">第1回 vimrc読書会</a>から数えて
-<strong>2周年</strong> の回でした。 めでたい!</p>
-
-<p>と、まぁそういうめでたい節目(最近100回越えもあった)でもあり、vimrc読書会のアーカイブデータは現在データ化されていて利用しやすい形にもなっていたので、せっかくなので<a href="http://d3js.org/">d3.js</a>と<a href="https://angularjs.org/">AngularJS</a>で遊んでみました。</p>
-
-<p>両方全く触ったことがなかったのでいろいろと改善したいところがそれはもうたくさんありますが、今までのデータの視覚化、ついでにこれからvimrc読書会に参加するのがチョット楽しくなるようなGitHubの草(Contributions graph)のイミテーションも作ったりして楽しかったです。</p>
-
-<h2>実装したStatについて</h2>
-
-<p>大きく分けると3つです。</p>
-
-<h3>1. vimrc読書会参加者数推移グラフ</h3>
-
-<p><img src="../images/post/2014-07-14-reading-vimrc-line-chart.png" alt="" /></p>
-
-<ul>
-<li>使用ライブラリ: <a href="http://d3js.org/">D3.js - Data-Driven Documents</a></li>
-<li>参考: d3 sampleの <a href="http://bl.ocks.org/mbostock/3883245">Line Chart</a></li>
-<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
-</ul>
-
-
-<p>Statページの一番上にどーんと参加者数推移のグラフを載せるようにしました。
-ちょっと悪目立ちしてるレベルなくせにベースの<a href="http://bl.ocks.org/mbostock/3883245">Line Chart</a>にちょっと機能を加えただけという代物です。
-縦軸が参加人数、横軸が開催数になっていて、ドットにマウスオーバーすると情報が見えたり、クリックするとアーカイブページに飛べます。
-(実は横幅が全部表示するにはギリギリで、あまりスケールしないようになっているのでそのうち改善できたらしたいです)</p>
-
-<p>第2回が最高の27人参加だということが可視化されたり、最近の第105回で20人と結構な記録を出してるなーとわかったりしてちょっとおもしろい。
-みんなでﾜｲﾜｲ参加して最高記録を塗りかえれるとアツイですね&hellip;!</p>
-
-<p>d3に関しては、最初はbar chartでやろうと迷走していたりとグラフの選択とか結構難しかったけど、なかなかd3面白いなぁという印象を受けました。ただd3の知識はd3でしか生かせないようなつぶしが効かない印象も&hellip;? とはいっても,<code>svg</code>周りとかは汎用性高いし、視覚的に面白いものがつくれるのでd3やってみてよかったです。</p>
-
-<h3>2. vimrc読書会参加数ランキング</h3>
-
-<ul>
-<li>使用ライブラリ: <a href="https://angularjs.org/">AngularJS</a></li>
-<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
-</ul>
-
-
-<p><code>1</code>の<code>vimrc読書会参加者数推移グラフ</code>の下に、ずらずらーっとこれまでの全vimrc読書会参加者の参加者数ランキングを出しています。
-初期の頃からvimrc読書会を支えてきた/参加してきた上位陣が圧倒的で<a href="https://twitter.com/thinca">@thinca</a>さんに至っては脅威の皆勤賞で堂々の1位です。すごすぎる&hellip;</p>
-
-<p>現状、参加者名が<code>3</code>の<code>参加者ごとのStatページ</code>へのリンクになっているという関係上,参加者全員分を表示していますが、今後StatのTopページはサマリーだけだして、ランキングとか別のページに分けるという仕様に変更するかもしれません。</p>
-
-<p>Angularに関してはここでは単にデータをDOMに結び付けてるだけです。ベーシックに<code>ng-repeat</code>とか使ってみてデータバインディングの便利さを痛感しました。jQueryで頑張るとは何だったのか。</p>
-
-<h3>3. 参加者毎のStatページ</h3>
-
-<p><img src="../images/post/2014-07-14-reading-vimrc-stat-haya14busa.png" alt="" /></p>
-
-<ul>
-<li>使用ライブラリ: <a href="https://angularjs.org/">AngularJS</a> &amp; <a href="http://d3js.org/">D3.js - Data-Driven Documents</a></li>
-<li>URL: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/">http://vim-jp.org/reading-vimrc/stat/#/u/</a>
-
-<ul>
-<li>sample: <a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>Angularのrouting機能を使って、参加者毎の統計ページを作ってみました。
-単純なこれまでの参加数などに加えて、GitHubの草をリスペクトした Current streak, Longest streakの情報や, streakのグラフをd3で作ってみました。例によって、それぞれのマスにマウスオーバーで情報表示とクリックでアーカイブページに飛ぶようになってます。</p>
-
-<p>あと、自分が参加してない過去の読書会とか振り返りたいという要望がきっとあるみたいな妄想から、参加/参加してない読書会ごとのアーカイブを表示させてます。</p>
-
-<p>グラフが見るからに手抜きでしょぼい感が拭いきれてないのが明白なんですが、機能的には割とよさ気な感じになったかなぁと思います。
-というか個人的にGitHubの草を生やしたり、何かしら記録して頑張った感を可視化できるのが好きなんです。<del>肝心の中身はあとからついてくると信じてる</del></p>
-
-<p>連続参加とか参加率が可視化されて、すこしでもvimrc読書会に参加したいなーという助けになればそれはとっても嬉しいですね。ぜひぜひ連続参加を目指してみてください。
-一回「hi」と発言するだけでも参加扱いになるのでROM勢の方もぜひ発言してみてください。かくいう僕も最初はROMばっかりしてましたが、やっぱり会話できるとベンリです。</p>
-
-<p>この辺も後々改善できればしていくと思います。一応右上の検索ボックスで他の参加者のページに飛べる(補完も効くはず)ようになってたりするのですが、もっといいUI絶対あるよね&hellip;</p>
-
-<h2>Jekyll on GitHub pages</h2>
-
-<p>Jekyll on GitHub pages と クライアントサイドMVなんちゃらで動的っぽいサイトがつくれて面白かったです。</p>
-
-<h3>Template</h3>
-
-<p>注意点としてテンプレートのシンボルがJekyllのLiquidと、AngularでかぶるのでAngular側でテンプレートのシンボルを変更しておく必要があります。
-今回は角括弧でこのように使えるようにしてみました。<code>[[ vimmutable ]]</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">&#39;myapp&#39;</span><span class="p">,</span> <span class="p">[]);</span>
-</span><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">([</span> <span class="s1">&#39;$interpolateProvider&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$interpolateProvider</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">$interpolateProvider</span><span class="p">.</span><span class="nx">startSymbol</span><span class="p">(</span><span class="s1">&#39;[[&#39;</span><span class="p">).</span><span class="nx">endSymbol</span><span class="p">(</span><span class="s1">&#39;]]&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">]);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>参考: <a href="http://alwayscoding.ca/momentos/2013/10/09/angular-and-liquid-expressions-in-jekyll/">Angular and Liquid expressions in Jekyll - { always: &lsquo;coding&rsquo; }</a></li>
-</ul>
-
-
-<h3>yamlデータをjsonでホスト</h3>
-
-<p>Jekyllは、特にGitHub Pagesなどのプラグインがない状態ではjsonのデータは基本つかえず、yamlでいろいろデータを書いておいて、そのデータを簡単に記事などに埋め込めるようになっているのですが、その性質をハックして無理やりjson形式に出力することができます。</p>
-
-<p>やり方はjsonファイル作って、その先頭に空の Front-matter をおいて、あとはjsonをLiquid記法と交えてよしなに書いていくだけです。(自動化したい&hellip;)</p>
-
-<p>Jekyllに検索機能を持たすという文脈で紹介されることが多いっぽいですが、yamlでデータをガンガンおいてる場合はjsonホストすると使いやすくなっておすすめです。</p>
-
-<ul>
-<li>実例: <a href="https://github.com/vim-jp/reading-vimrc/blob/77c5570aefb2274ffcd846728f8d2deedd3bb4e6/json/archives.json">https://github.com/vim-jp/reading-vimrc/blob/77c5570aefb2274ffcd846728f8d2deedd3bb4e6/json/archives.json</a></li>
-<li>参考: <a href="https://alexpearce.me/2012/04/simple-jekyll-searching/">Simple Jekyll Searching - Alex Pearce</a></li>
-</ul>
-
-
-<h2>JSONデータ</h2>
-
-<ul>
-<li><a href="http://vim-jp.org/reading-vimrc/json/archives.json">http://vim-jp.org/reading-vimrc/json/archives.json</a></li>
-<li><a href="http://vim-jp.org/reading-vimrc/json/next.json">http://vim-jp.org/reading-vimrc/json/next.json</a></li>
-</ul>
-
-
-<p>アーカイブと、次回読むvimrcについてのjsonが上記URLで公開されているので使いたい方は使ってもいいと思います(たぶん)。
-一応このJSONで<a href="https://github.com/haya14busa/unite-reading-vimrc">haya14busa/unite-reading-vimrc</a>とか作ってみたりしました。</p>
-
-<h2>まとめ</h2>
-
-<p>d3もangularも初めてで未熟な部分が多々あったものの、割といいレスポンスをもらえて嬉しかったです&hellip;! <a href="http://lingr.com/room/vim">Lingrのvim部屋</a>で <code>!vimrc-stat {username}</code> と打つと参加者統計ページへのリンクが返ってくるようになって便利。</p>
-
-<p>最後になりましたが、宣伝です!!!</p>
-
-<p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>は毎週土曜日23:00から<a href="http://lingr.com/room/vim">LingrのVim部屋</a>でオンラインでやっています。
-参加すると、vim力がめちゃめちゃ上がるのでぜひぜひ参加して参加記録を伸ばしたりしましょう!お待ちしておりますよっ</p>
 </div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/reading-vimrc-stat/">vimrc読書会Stat作った</a>
-      <time datetime="2014-07-17T01:18:34+09:00" pubdate><span class='month'>Jul</span> <span class='day'>17</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-30T19:09:21+09:00" pubdate data-updated="true">June 30, 2014</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
-<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
-</ul>
-
-
-<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
-
-<h2>関西圏のVim勉強会!</h2>
-
-<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
-
-<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
-
-<h4>2014/04/05</h4>
-
-<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
-
-<p>manga_osyo: やると聞いて
-              haya14busa.vim</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
-
-<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
-
-<h4>2014/05/17</h4>
-
-<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
-          iyuuya.vimやってもいいんですけどねー</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
-
-<p><strong>やりたい!!!</strong></p>
-
-<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
-一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
-という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
-</span><span class='line'>  @iyuuya<span class="p">++</span>
-</span><span class='line'><span class="k">endfor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
-
-<h2>Osaka.vim #1</h2>
-
-<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
-
-<h3>@thinca さんによるライブコーディング</h3>
-
-<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
-個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
-
-<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
-さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
-デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
-これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
-
-<ul>
-<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
-<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
-</ul>
-
-
-<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
-
-<h3>フリータイム</h3>
-
-<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
-
-<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
-
-<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
-
-<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
-聞いてみると興味をそそられました。
-<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
-いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
-コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
-使い方がとても良さそうでした。</p>
-
-<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
-
-<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
-
-<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
-<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
-
-<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
-
-<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
-この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
-それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
-周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
-
-<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
-
-<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
-
-<p>がんばりたい</p>
-
-<h3>発表した</h3>
-
-<ul>
-<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
-</ul>
-
-
-<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
-
-<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
-と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
-拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
-
-<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
-あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
-結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
-ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
-
-<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
-
-<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
-かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
-に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
-
-<p>反応はイマイチわからなかった()</p>
-
-<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
-しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
-
-<h2>懇親会&hellip;そしてカラオケオールへ</h2>
-
-<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
-アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
-
-<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
-初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
-
-<ul>
-<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
-</ul>
-
-
-<p>更新便利になって満足。</p>
-
-<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
-
-<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
-
-<h2>次回&hellip;?</h2>
-
-<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
-
-<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
-
-<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
-
-<p><strong><code>:wq Osaka.vim_01</code></strong></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a>
-      <time datetime="2014-06-30T19:09:21+09:00" pubdate><span class='month'>Jun</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="2">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div><!-- /div.pagination -->
-</div><!-- /div.blog-index -->
 
       </div><!-- /div#content -->
     </div><!-- /div#main -->
@@ -1509,7 +851,10 @@ themis便利なんですが自分が使いこなせてないのでテストも�
       var disqus_shortname = 'haya14busa-s-memo';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/';
+        var disqus_url = 'http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

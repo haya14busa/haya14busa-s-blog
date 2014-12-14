@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Vim Advent Calendar 2012の363日目の記事です。 昨日はthincaさんの本当にキモい Vim script &#8211; . 演算子編 &#8211; 永遠に未完成でした。 あと3日でVAC2013になるということですが、 &hellip;">
+  <meta name="description" content="気軽な感じでVim script(plugin)読書会がしたいとつぶやいたら、@osyo-mangaさんが拾ってくれて実際にVim script読書会、開催することになりました。おしょーさんありがとうございます。 読書会は明日今日(12/14)！開催です！気になった方は参加しましょう！詳細は以下 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,141 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vim-plugin/">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-13T00:00:00+09:00" pubdate data-updated="true">December 13, 2013</time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>気軽な感じでVim script(plugin)読書会がしたいとつぶやいたら、@osyo-mangaさんが拾ってくれて実際にVim script読書会、開催することになりました。おしょーさんありがとうございます。</p>
+
+<p>読書会は<s>明日</s>今日(12/14)！開催です！気になった方は参加しましょう！詳細は以下！</p>
+
+<p><a href="http://d.hatena.ne.jp/osyo-manga/20131208/1386432636">12月14日（土）21時から Vimプラグイン読書会を行います &#8211; C++でゲームプログラミング</a></p>
+
+<h2>Vim script読書会#1@12/14</h2>
+
+<h3>読むプラギン</h3>
+
+<ol>
+<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>
+
+<ul>
+<li>junkfile.vimの紹介記事:<a href="http://vim-users.jp/2010/11/hack181/">Vim-users.jp &#8211; Hack #181: Vimで使い捨てのファイルを作成する</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/thinca/20091125/1259075486">visualstar.vim 書いた &#8211; 永遠に未完成</a></li>
+<li>時間があればvisualstarよむ(はず)</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>場所</h3>
+
+<ul>
+<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>
+
+<ul>
+<li>Lingr知らない人は読むと良さそう。そしてそのノリで参加するといいと思います。-><a href="http://blog.supermomonga.com/articles/neta/lingr.html">プログラミング上達したいならチャットサービスLingrをつかおう（つかおう） | かなりすごいブログ</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>時間</h3>
+
+<ul>
+<li>21:00から長くても23:00まで(23:00からvimrc読書会がはじまります)</li>
+</ul>
+
+
+<h2>詳細とか</h2>
+
+<p>第一回は<strong>これからVimプラグイン書きたい</strong>って人の勉強になるように短く、基本的なプラグインとして<a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a>を読むことになりました。</p>
+
+<p>暗黒美夢王として有名なShougoさん作のプラグインですが、junkfile.vimは初心者でも読みやすい分量なので、「Vim script怖い」ってかたでも気軽に参加できます(おそらく)。あとjunkfile.vim使ったことない人(僕がそうでした)もVimでメモれる便利プラグインで面白いので、知らないプラグインだからﾅｰって人でもとっつきやすそうです。</p>
+
+<p>またすでにVim scriptできるって方も、もし継続して行うことになれば時によっていろんなレベルのものを読むことになると思うので、参加するといろいろ便利だと思います。みんなでわいわいできたら楽しそうなので興味があったらぜひよろしくおねがいします。</p>
+
+<h2>Vim plugin書くために読んだら便利そうなhelp</h2>
+
+<p>初心者向けとは言っても全く知らないから怖い!予習したい!って場合に読むと良さそうなhelpリストしました(よさそうなだけです)。</p>
+
+<p>usr_41.txtとかeval.txtは全部読むと長いので読むとしたら絞って読むといいかもです。<a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a>あたりが目的に適ってる感じだと思います。</p>
+
+<h3>:h usr_41</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#usr_41.txt">:h usr_41.txt</a></li>
+<li><strong><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#write-plugin">:h write-plugin</a></strong></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27runtimepath%27">:h &#8216;runtimepath&#8217;</a></li>
+</ul>
+
+
+<h3>:h eval.txt</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#eval.txt">:h eval.txt</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#autoload">:h autoload</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Lists">:h Lists</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#Dictionaries">:h Dictionaries</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#s%3Avar">:h s:var</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#variables">:h variables</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#functions">:h functions</a></li>
+</ul>
+
+
+<p>などなど</p>
+
+<h2>ブラウザでもVimのヘルプが読みたい!</h2>
+
+<p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<p>ブックマークレットでvimdoc@jaとかがブラウザから手軽に読めるのでおすすめしときます(宣伝)</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vim-plugin/">Vim script読書会開催します！または予習としてPlugin作るときに読むとよさそうなhelpのリストメモった</a>
+      <time datetime="2013-12-13T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>13</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1625,100 +1760,6 @@ javascript:(function() {</p>
       <time datetime="2013-11-11T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>11</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vimdoc-marklet/">Vimのhelpをブラウザで見るときのためのブックマークレット作った</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-08T00:00:00+09:00" pubdate data-updated="true">November 08, 2013</time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>Vimのhelpをブラウザで見るときのためのブックマークレット作った</h1>
-
-<h2>vimdoc便利</h2>
-
-<p><a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
-
-<ol>
-<li><a href="javascript:(function(){var">vimdoc@en</a></li>
-<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
-<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
-</ol>
-
-
-<p>リンクをドラックするなどしてブックマークに登録してください。</p>
-
-<h3>iOS用</h3>
-
-<ol>
-<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc@en</a></li>
-<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc@ja</a></li>
-<li><a href="http://haya14busa.com/vimdoc-marklet/?javascript:(function(){var">vimdoc-en-to-ja</a></li>
-</ol>
-
-
-<p>iOSなど直接登録できない場合はリンク先をブックマークして&#8221;?&#8221;以前を削除してください。</p>
-
-<h2>つかいかた</h2>
-
-<p>vimdoc@enとvimdoc@jaは実行してプロンプトに検索文字列を入力するか、事前に検索したい文字列を選択してから実行するとその文字列を検索文字列として検索します。</p>
-
-<p>vimdoc-en-to-jaはsourceforgeの英語版vimdocを読んでる時に実行すると日本語版の同一のhelpを新規タブで開きます。日->英も対応してます。</p>
-
-<h2>It&#8217;s so benri</h2>
-
-<p>ブラウザでもvimのhelpみれて便利。vim記事を見る時やvim記事を書くときにhelpへのリンク貼りたいな〜ってときに使えそうです。</p>
-
-<p>vimdoc@jaの方が構成が見やすくていいけど、検索は英語版のsourceforgeの方が自前で検索対応していて(日本語版はGoogleカスタム検索)検索精度はvimdoc@enのほうが良さげ。</p>
-
-<p>vimdoc@enを最初に使って、日本語版はvimdoc-en-to-jaを使って開くなどするとスムーズかもしれない。</p>
-
-<h2>Link</h2>
-
-<ul>
-<li><a href="http://vimdoc.sourceforge.net/">Vimdoc : the online source for Vim documentation</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a></li>
-<li><a href="https://github.com/vim-jp/vimdoc-ja/">vim-jp/vimdoc-ja</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vimdoc-marklet/">Vimのhelpをブラウザで見るときのためのブックマークレット作った</a>
-      <time datetime="2013-11-08T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>08</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
       </footer>
     </article>

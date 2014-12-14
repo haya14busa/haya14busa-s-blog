@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/</loc>
+    <lastmod>2014-12-11T22:38:41+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://haya14busa.com/vimconf2014/</loc>
     <lastmod>2014-11-09T11:07:22+09:00</lastmod>
     <priority>0.8</priority>
@@ -359,35 +365,35 @@
   
   <url>
     <loc>http://haya14busa.com/blog/</loc>
-    <lastmod>2014-11-09T23:43:10+09:00</lastmod>
+    <lastmod>2014-12-14T22:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://haya14busa.com/blog/archives/</loc>
-    <lastmod>2014-11-09T23:43:10+09:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http://haya14busa.com/archives/</loc>
-    <lastmod>2014-11-09T23:43:10+09:00</lastmod>
+    <lastmod>2014-12-14T22:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://haya14busa.com/</loc>
-    <lastmod>2014-11-09T23:43:10+09:00</lastmod>
+    <lastmod>2014-12-14T22:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
+    <loc>http://haya14busa.com/archives/</loc>
+    <lastmod>2014-12-14T22:19:14+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
     <loc>http://haya14busa.com/about/</loc>
-    <lastmod>2014-11-09T23:43:10+09:00</lastmod>
+    <lastmod>2014-12-14T22:19:14+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
