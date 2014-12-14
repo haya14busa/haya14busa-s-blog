@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-12-14T22:35:15+09:00</updated>
+  <updated>2014-12-15T08:16:55+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -118,7 +118,7 @@
 </ul>
 </li>
 <li>incsearch.vim はデフォルトでは <code>&lt;Tab&gt;</code>/<code>&lt;S-Tab&gt;</code>で前後のマッチに移動できる</li>
-<li>Emacsや他のエディタでは見ない機能としてスクロール機能を提供しており, 画面内に目的地がないと判断すれば一気にスキップして画面内の次のマッチに飛べる(デフォルトでは<code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code>)</li>
+<li>Emacsや他のエディタでは見ない機能としてスクロール機能を提供しており, 画面内に目的地がないと判断すれば一気にスキップして画面外の次のマッチに飛べる(デフォルトでは<code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code>)</li>
 </ol>
 
 
