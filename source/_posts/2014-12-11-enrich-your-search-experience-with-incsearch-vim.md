@@ -6,46 +6,8 @@ comments: true
 categories: vim
 ---
 
-1. incsearch.vim
-    - gif
-    - github link
-    - TL;DR
-2. Introduction
-    1. Why
-    2. Inconvenience
-    3. Solution (Installation)
-3. Usage
-    1. Simple: Incrementally highlight all matched patterns
-    2. Building up regular expressions interactively
-        - Building up regex matching "Command 'author/plugin'"
-    3. Incremental cursor moving
-    4. Automatic :nohlsearch
-    5. Improved default behavior
-        - Improved magic
-        - Improved word completion & deletion
-4. Working with other plugins
-    - with vim-anzu ( n enhancement plugin)
-    - with vim-asterisk ( * enhancement plugin)
-    - with various plugins using User autocmd
-5. Development
-    1. Special thanks
-    2. Compatibility
-    3. Extendable
-    4. Testing with vim-themis
-        - travis
-        - app veyor
-        - drone.io
-6. Future
-    1. More extendable
-        - fuzzy search
-        - migemo
-        - abolish?
-    2. Robust
-7. Reference
-    - document (:h incsearch.vim)
-    - issue
-    - twitter
-    - Vimconf 2014
+この記事は[Vim Advent Calendar 2014](http://qiita.com/advent-calendar/2014/vim)の14日目の記事です。
+13日目は deris さんによる[スマートフォンでVimを操作するためにやっておいたほうがいいこと - derisの日記](http://deris.hatenablog.jp/entry/2014/12/13/173125) でした。
 
 1. incsearch.vim つくった
 -------------------------
@@ -75,6 +37,8 @@ map g/ <Plug>(incsearch-stay)
 4. 本日バージョン1.0としてリリースしました
 5. ぜひ使ってみてください...!
 
+※ ホントにToo long になった感があるので記事は長くて嫌いになってもincsearch.vimはシンプルに使えるので嫌いにならないでくださいっ...!
+
 2. Introduction
 -------------------------
 
@@ -93,6 +57,7 @@ Vimの検索を便利にする. incsearch.vim を バージョン 1.0 として�
 2. 別ウィンドウのハイライトも対応できる(オプションで変更可, version 1.0 で追加されました)
 
 一番シンプルかつメインの機能としてマッチしたパターンをすべてハイライトします.
+便利さ, 自明っぽいので説明を省きます!
 
 ![incsearch_window](../images/gif/incsearch/incsearch_window.gif)
 
@@ -112,7 +77,7 @@ map g/ <Plug>(incsearch-stay)
 
 (冒頭のgifと同じ)
 
-これは vimrc によく書かれているプラグインマネージャが提供してるインストールコマンドから, インストールされているプラグインの部分とマッチする正規表現を作ってます(簡易版ですが). 普段の検索時にも勿論便利なのですが, 正規表現作る際の便利さは1つしかマッチを確認できないデフォルトの挙動と比べると段違いです. もしも incsearch.vim があまり気にいらなくてデフォルトの検索を置き換えるまでもないかなーという人でも, 正規表現による検索の際のために`g/`など好みのマッピングに定義しておくと便利かと思われます.
+これは vimrc によく書かれているプラグインマネージャが提供してるインストールコマンドから, インストールされているプラグインの部分とマッチする正規表現を作ってます(簡易版ですが). 普段の検索時にも勿論便利なのですが, 正規表現作る際の便利さは1つしかマッチを確認できないデフォルトの挙動と比べると段違いに捗ります. もしも incsearch.vim でデフォルトの検索を置き換えるまでもないかなーという人でも, 正規表現による検索の際のために`g/`など好みのマッピングに定義しておくとこういうケースでは便利に使えると思われます.
 
 
 ### 3.3 検索中のインクリメンタルカーソル移動とスクロールで快適ファイル内検索
@@ -123,37 +88,35 @@ map g/ <Plug>(incsearch-stay)
 
 ![incremental_move_and_scroll](../images/gif/incsearch/incremental_move_and_scroll.gif)
 
+*なにが便利か?*
 
 #### a) オペレータ待機モード時のモーションとドットリピート
 
-ノーマルモードではそうでもないですが, `d/{pattern}` といった オペレータ待機モード
+ノーマルモードでは問題でもないですが, `d/{pattern}` といった オペレータ待機モード
 で使う場合, 決定したあとに `n`/`N` を使うことはできません. しかし,
-最初に目測でマッチを確認してからカウントをつけて `3d/{pattern}` とするのはとても
-しんどい上に間違う可能性もあり, 生産的ではありません...
+最初に目測でマッチを確認してからカウントをつけて `3d/{pattern}` とするのはとてもしんどい上に間違う可能性もあり, 生産的ではありません...
 
-また1回だけの場合は ビジュアルモード を使えば上記の問題は回避できますが, これだと
-ドットリピート が効きません.
+また1回だけの場合は ビジュアルモード を使えば上記の問題は回避できますが, これだとドットリピート が効きません.
 
 そこで, incsearch.vim の `<Tab>`/`<S-Tab>` (`:h <Over>(incsearch-next)`) を使って
 検索中にカーソルを移動させれば一目で目的地まであとどれくらいかもわかるし,
-オペレータと組み合わせるモーションとしての使用もその後のドットリピートも解消できます.
+オペレータと組み合わせるモーションとしての使用も, その後のドットリピートの問題も解消できます.
 
 #### b) `:h jumplist` の更新が1回で済む
-a) ではノーマルモードではそうでもないといいましたが, 実はそんなことはありません.
+ノーマルモードでは問題でもないといったな? あれは嘘だ!
 
 Vimには `:h jump-motions` というモーションの種類があり, これに属するモーションを
-行うとそのジャンプ前のカーソル位置が記憶され, `<C-o>`/`<C-i>` でそれらのカーソル位置を
+行うとジャンプ前のカーソル位置が記憶され, `<C-o>`/`<C-i>` でそれらのカーソル位置を
 行ったり来たりできる超便利機能が存在します. 検索系のモーション(`/`,`?`,`n`,`N`, etc..)
 はこの jump-motions に属しており incsearch.vim でも勿論対応しているのでその機能を
 バリバリ使うことができます.
 
-ここで問題なのは `n`や`N` も jump-motions なので, 検索後に `n`/`N`で移動したあと
-やっぱり検索した元の位置に戻りたいな〜という時に`n`/`N` を押した回数分`<C-o>`を押す
-(またはカウントを前置する)必要があって地味に不便です.
+ここで問題なのは `n`や`N` も jump-motions ということです. 検索後に `n`/`N`で移動したあとやっぱり検索した元の位置に戻りたいな〜という時に
+`n`/`N` を押した回数分`<C-o>`を押す(またはカウントを前置する)必要があって地味に不便です.
 
 incsearch.vim で検索中に`<Tab>`を押して移動してから検索を決定すれば勿論 `jumplist`
-の更新は1回で済むので`jumplist`を汚すことなく十二分にそのジャンプ機能の便利さを
-享受することができます. 地味なよさがありますね.
+の更新は1回で済むので`jumplist`を汚すことなく十二分にそのジャンプ機能の便利さを享受することができます.
+地味なよさがありますね.
 
 #### c) スクロール機能で `n` 連打せずファイル内をサクっと検索
 a), b) は1つ1つ前後に移動する機能の紹介でしたが, スクロール機能(デフォルトでは
@@ -174,12 +137,13 @@ a), b) は1つ1つ前後に移動する機能の紹介でしたが, スクロー
 1. 「あーファイル内の{pattern}って部分に用があるな〜」
 2. 「よーし`/{pattern}`で incsearch.vim を起動しよう」
 3. 「あー画面内にいっぱい`{pattern}`がある...よし`<C-j>` で次の画面へ」
-4. 「`<C-j>`を何回か押してたら目的地発見! 任意で`<Tab>`/`<S-Tab>`で前後に移動してから`<CR>`!」
+4. 「`<C-j>`を数回押して目的地発見. 任意で`<Tab>`/`<S-Tab>`で前後に移動してから`<CR>`!」
 5. => _幸せ便利_
 
 勿論, そもそもファイル内にたくさん存在しないようなキーワードを使って検索したり, タグが存在するなら
-ctagsを使ったほうが断然よいですが, いつでもユニークなキーワードが思い浮かんだり, タグが存在するわけでは
-ないので個人的には超多用してる機能になってます.
+ctagsなどを使用してタグジャンプしたほうが断然よいですが,
+いつでもユニークなキーワードが思い浮かんだり, タグが存在するわけではないので万能ではありません.
+検索だとかなり汎用性が高いので個人的にはとても多用してる機能の１つになってます.
 
 また他にもファイルの横断検索を補助するような機能を提供しているVimの機能や
 プラグインなどなどはあるとは思いますが, 以下のようなメリットがあります
@@ -193,10 +157,10 @@ ctagsを使ったほうが断然よいですが, いつでもユニークなキ�
       などは複数のファイルを扱える大きなメリットがあるので使い分けれるようになるのが一番よさそうです.
 
 ### 3.4 オート:nohlsearch
-- `:set hlsearch`って便利でもあるけどだいたいウザイ
-    - `nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>` と言ったマッピングで検索後に消す人が多いと思う
-- incsearch.vim の `オート:nohlsearch` 機能を使えば検索後カーソル移動したらハイライトが消えるようになります.
-- 地味に便利
+1. `:set hlsearch`って便利でもあるけどだいたいウザイ
+    - `nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>` と言ったマッピングで検索後に消す人が多いと思います.
+2. incsearch.vim の `オート:nohlsearch` 機能を使えば検索後カーソル移動したらハイライトが消えるようになります.
+3. 地味に便利
 
 ![incsearch_auto_nohlsearch](../images/gif/incsearch/incsearch_auto_nohlsearch.gif)
 
@@ -259,18 +223,17 @@ vim-asterisk は僕が最近作った `*` をカイゼンするプラグイン�
 1. カーソルを動かさない `*` 機能の提供(マッピングにzのprefixがついてる)
     - 動かさずに `*` や `g*` でカーソル位置の単語を検索レジスタ(`@/`)に入れたあとに
       `gn` などを組み合わせて編集したいというケースでは次のマッチに飛ぶ必要がないので
-      カーソル動かないバージョンの `*` が欲しかった. どうせ `n`/`N` ですぐ動かせるし
+      カーソル動かないバージョンの `*` が欲しかった. どうせ `n`/`N` ですぐ動かせる
     - `noremap * *N` という解決法はダサいしウィンドウが一時的に動くので不便
 2. ビジュアルモードで選択したテキストを検索するvisual-star 機能
     - サクッと勢いで作ったので [thinca/vim-visualstar](https://github.com/thinca/vim-visualstar)
       のマルチバイトや `keyword` の扱いの部分のコードをお借りしています. ありがとうございます
-    - visual-star 機能かつ カーソルが動かない機能も別に提供したかったのでかぶってるのは申し訳無さがある
     - visual-star は `CursorMoved` イベントが2回発生してしまうという問題があり,
       incsearch.vim の オート:nohlsearch 機能と併用できなかった.
       なので visual-star機能と同時に使いたい場合はvim-asteriskのvim-asterisk機能を使うと便利
 3. ignorecase だけでなく smartcase の値も一緒にみてくれる
     - デフォルトはなぜか `ignorecase` の値しかみてくれず, `smartcase` を設定していても`ignorecase`状態で検索される
-    - 非直感的すぎるので vim-asterisk は `:set ignorecase`の値も`set smartcase`をみるようになっています
+    - 非直感的すぎるので vim-asterisk は `:set ignorecase`の値も`:set smartcase`をみるようになっています
 
 ### 3.6 Vim のデフォルトからちょっとカイゼン
 #### a) magic オプションカイゼン
@@ -299,8 +262,200 @@ Vimは`set incsearch`状態で検索中に`<C-r><C-w>`を押すとコマンド�
 `<C-w>` によるカーソル前の単語の削除も同様の問題がありこれもカイゼンして,
 `/\vword`状態で`<C-w>`を押すとデフォルトだと`/\`となるところを`\v`となるようにしています
 
+![incsearch_smart_backward_word](../images/gif/incsearch/incsearch_smart_backward_word.gif)
 
-- [haya14busa/incsearch.vim](https://github.com/haya14busa/incsearch.vim)
-- [incsearch.vim](https://github.com/haya14busa/incsearch.vim)
+見た目はとっても地味で聞いてもピンとこないかもしれないですが, 挙動が直感的になるとても気に入ってる機能のひとつです. ｼﾞｯｻｲﾍﾞﾝﾘ
+
+### 3.6 マッピングについて
+1. `:cnoremap` や `:cmap` に設定されているマッピングは自動で適用される
+2. incsearch.vim が提供する機能へのマッピングや, `:cnoremap` の設定の上書き,
+   incsearch.vim でのみマッピングしたいという場合は `:h IncSearchNoreMap` コマンド
+   を使います
+
+*設定例*
+
+```vim
+augroup incsearch-keymap
+    autocmd!
+    autocmd VimEnter * call s:incsearch_keymap()
+augroup END
+function! s:incsearch_keymap()
+    IncSearchNoreMap <Right> <Over>(incsearch-next)
+    IncSearchNoreMap <Left>  <Over>(incsearch-prev)
+    IncSearchNoreMap <Down>  <Over>(incsearch-scroll-f)
+    IncSearchNoreMap <Up>    <Over>(incsearch-scroll-b)
+endfunction
+```
+
+### 3.7 autocmd で拡張できる
+
+参照: `:h incsearch-autocmd`
+
+incsearch.vim は Vim デフォルトのコマンドラインのと違い独自の autocmd イベントを発行しているので, それをつかってincsearch.vimを拡張することができます. 以下は [inside/vim-search-pulse](https://github.com/inside/vim-search-pulse) というプラグインの機能を簡単に組み込んでみた例です. 個人的には要らないけどなんかカッコイイ...!?
+
+![incsearch_autocmd_flash](../images/gif/incsearch/incsearch_autocmd_flash.gif)
+
+```vim
+function! s:flash()
+  for _ in range(1, 3)
+    set cursorline!
+    redraw
+    sleep 50m
+  endfor
+  set cursorline!
+endfunction
+
+augroup incsearch-pulse
+    autocmd!
+    autocmd User IncSearchExecute call s:flash()
+augroup END
+
+noremap <silent> <Plug>(my-flash) :<C-u>call <SID>flash()<CR>
+map n <Plug>(incsearch-nohl-n)<Plug>(my-flash)
+map N <Plug>(incsearch-nohl-N)<Plug>(my-flash)
+" デフォルトの場合
+" map n n<Plug>(my-flash)
+" map N N<Plug>(my-flash)
+```
+
+4. Development
+--------------
+
+開発の話とか.
+
+### 4.1 Design
+
+ここまでいろいろと紹介しておいてどうかという話なのですが, incsearch.vim は
+*シンプル*に機能を提供し , デフォルトのコマンドラインと高い*互換性*を保ちつつ,
+それでいて*拡張性*の高いものにしようというコンセプトでつくっています(実際そうなっているとは言ってない)
+
+特に一番苦心したのはデフォルトのコマンドラインとの互換性を保つように開発するところでした.
+現在はVimのデフォルトの`/`でできるほとんどのことはできますが,
+
+ビジュアルモードでのハイライトだったり, vim-repeat といった別のプラグインに依存せず
+ドットリピートを可能にしたり, 逆にそれを可能にした `<expr>` マッピングによる `textlock` という
+Vimの制限を解消するために, 必要でない部分は`<expr>` マッピングを使わないようにするといった回り道を
+しながら, 現在はほぼデフォルトと互換性のある状態にできたと思います.
+
+#### `<expr>` についてちょっと解説したりする
+1. `:h :map-<expr>`
+2. ドットリピート対応できる
+3. `:h function-search-undo` とかの制限をかいくぐれる
+4. いろいろいじった上で最終的にデフォルトのマッピングを返して実行! ということができるのでデフォルトのモーションを拡張する際にとても便利
+5. しかし問題点もある
+
+`<expr>` とは expression mapping の略で, `{rhs}`(right-hand-side) を評価した値を返してくれます.
+
+```vim
+noremap <expr> g/ printf("/%s\<CR>", input('>'))
+```
+
+上記のマッピング例では, `{rhs}` の `input('>')` が評価され, そこで入力した値を`{pattern}`とすると
+それが`printf()`によって最終的には `/{pattern}<CR>` になります.
+
+何がいいのかというと, 実際に `dg/pattern` などと使った際に, `{rhs}` が評価されて `d/pattern` になります.
+これはそもそも最初から `d/pattern` と打った時と同様の挙動になるので, あたかもデフォルトの`/`を使ったような挙動を簡単に実装できるのです!
+これによって ドットリピート や `:function-search-undo` に対応することが可能となります.
+
+とは行ってもイマイチわかりにくいと思うので `<expr>` を使わないマッピングを見てみましょう.
+
+```vim
+function! s:non_expr_search()
+    execute 'normal!' printf("/%s\<CR>", input('>'))
+endfunction
+noremap z/ :<C-u>call <SID>non_expr_search()<CR>
+```
+
+単に検索という意味では動いているように見えるのですが, `function-search-undo`の制限により
+ハイライトされず, また `dz/pattern` は `d:<C-u>call <SID>non_expr_search()<CR>` となるので,
+ドットリピート時にも `s:non_expr_search` 関数が呼ばれてしまします. これによってその中の
+`input()`がドットリピートでも呼ばれてしまい入力待ちになってしまいます.
+これでは以前に入力した値をつかって検索してくれるデフォルトのドットリピートの挙動が再現出来ていません...不便...
+
+普通のマッピングだとこういう問題があるのでそれを解消ができる `<expr>`
+はデフォルトのモーションの拡張にとてもあっているのですが,
+`<expr>` は`<expr>`で上述した副作用として `:normal` が使えないといった問題もあるので
+これから`<expr>`を使ってプラグイン作りたいっという方は注意して使ってみてください.
+
+incsearch.vim や先ほど紹介した vim-asterisk も`<expr>`を活用して便利にしたりしています.
+他にも [rhysd/clever-f.vim](https://github.com/rhysd/clever-f.vim) や [deris/vim-shot-f](https://github.com/deris/vim-shot-f)
+といった `f` を拡張するプラグインでも `<expr>` が使用されており, もともとこの`<expr>`でドットリピートに対応するという方法は
+僕は clever-f で初めてみました. スゴイ.
+
+### 4.2 vital-over, または incsearch.vim のカスタムコマンドラインインターフェースについて
+<div class="github-card" data-github="osyo-manga/vital-over" data-width="400" data-height="150" data-theme="default"></div>
+
+incsearch.vim は vital-over というカスタムコマンドラインインターフェースを提供するライブラリを使わせていただいてます.
+incsearch.vim のデザインとしてVimデフォルトとの互換性を目指していると先ほど書いたのですが,
+実はincsearch.vimがやっている部分は検索だけで,
+コマンドラインインターフェースがVimのデフォルトと同じように使えるのはこの vital-over というライブラリのおかげです.
+本当にアツイプラグインなので興味あるVim プラグイン開発者は是非使ってみてください!
+
+モジュール性が高いのでガッツリとしたコマンドラインとしてではなく, ちょっと便利な `input()` や
+`getchar()` として使えるかなーと思います. そのうち何かまた作ってみたい...!
+
+
+### 4.3 テストとかLintとか
+1. themis.vim でテスト書いた
+2. vim-lint / vint (期待)
+3. テストって便利って改めて気づいた...!
+4. themis のテスト書き方自体は [vim-jp/vital.vim](https://github.com/vim-jp/vital.vim) など他のものを参考にするとよいと思う
+
+<div class="github-card" data-github="thinca/vim-themis" data-width="400" data-height="150" data-theme="default"></div>
+<div class="github-card" data-github="syngan/vim-vimlint" data-width="400" data-height="153" data-theme="default"></div>
+
+![incsearch_dot_reporter_test.png](../images/gif/incsearch/incsearch_dot_reporter_test.png)
+![incsearch_badges.png](../images/gif/incsearch/incsearch_badges.png)
+
+今回incsearch.vim は(現在が開発&メンテしてるvim-easymotionでもちょっとずつやってはいましたが)割と初めてスクラッチでテストやlintをしながら
+書いたものだったのですが Vim script の開発周りの環境はかなり便利です. 特に __Vim__ を使えるところが開発しやすくてよいです.
+
+CI も travis で 最新に近い Vim と travis.org の Vim のバージョンの両方でテスト
+([Test on the latest Vim by crazymaster · Pull Request #241 · vim-jp/vital.vim](https://github.com/vim-jp/vital.vim/pull/241)) したり,
+[Vim プラグインを Windows 環境でテストする - 永遠に未完成](http://d.hatena.ne.jp/thinca/20140812/1407775202)
+を参考に Windows 環境 でもテストがしてみたりしてなかなかよかったです. (~~Windows環境だけで違う挙動になるのヤメローッ!~~)
+
+Lint に関しては [Kuniwak/vint](https://github.com/Kuniwak/vint) という python 製ツールも気になっているので期待ですね.
+
+### 4.4 Vim script 楽しいっ
+
+テストやLintツールもあるし,
+[vim-jp/vital.vim](https://github.com/vim-jp/vital.vim) や
+[osyo-manga/vital-over](https://github.com/osyo-manga/vital-over)
+といったライブラリ, Vim から引ける膨大な`:help`, 困ったら [vim-jp – Lingr](http://lingr.com/room/vim/archives#message-20835831)
+や [Issues · vim-jp/issues](https://github.com/vim-jp/issues/issues) に相談, バグ報告できる環境,
+Vim を使って開発できる Vim script を書くのは楽しいです...!
+
+<br>
+........
+<br>
+<br>
+**....ほんとうですよっ!?** (言語仕様は寛容な心でカバー)
+<br>
+<br>
+
+ぜひぜひみなさんVim プラグイン開発やっていって開発効率を上げたり快適でリッチなエディタ環境を作ってみましょう...!
+
+(※ 用法, 用量を守ってただしくVimしましょう)
+
+5. 最後に
+---------
+話が逸れてる感をひしひしと感じますが, あくまで incsearch.vim を紹介・解説する記事だったはずなので話を戻しましょう.
+
+incsearch.vim, 今でもとても便利だと思っているのですが, まだまだ開発していく余地があります. (後方互換性を壊すことはしないと思います)
+
+autocmd の拡張例を上述しましたが, まだコマンドラインの中身をいじれるようなインターフェースは実は提供できていません.
+どこまでオープンにしていけばいいのか, オープンにしたら本当に便利になるのか,
+などなど僕にとっては難しくゆっくり考えながら決めて行きたいです.  意見頂けたりとかコントリビューションお待ちしています...!
+
+
+Vim Advent Calendar でテンションあがってちょっと長くなってしまいました. ここまで読んでくださった方ありがとうございます.
+
+incsearch.vim 是非1度使ってみてください. 気に入って頂けるとそれはとっても嬉しいです!
+
+
+それではVim Advent Calendar 2014の14日目の記事でした.
+
+Happy Vimming!
 
 <script src="http://lab.lepture.com/github-cards/widget.js"></script>
