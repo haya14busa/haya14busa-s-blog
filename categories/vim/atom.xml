@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/vim/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-12-14T22:32:41+09:00</updated>
+  <updated>2014-12-14T22:35:15+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -237,7 +237,7 @@ map g# &lt;Plug&gt;(incsearch-nohl-g#)
 
 <p>(3.4のつづき)</p>
 
-<p><code>incsearch.vim</code> は <code>/</code> とそれにまつわる検索の便利機能を提供するようにシンプルにしようとデザイン(後者がある時点でシンプルではないとか言わない)してるつもりです. なので <code>n</code> や <code>*</code> を拡張したい場合に備え別の拡張プラグインと同時に扱える用に設計しています.</p>
+<p><code>incsearch.vim</code> は <code>/</code> とそれにまつわる検索の便利機能を提供するようにシンプルにしようとデザインしてるつもりです(そこっ!検索にまつわる〜とか言ってる時点でシンプルではないとか言わない!). なので <code>n</code> や <code>*</code> を拡張したい場合に備え別の拡張プラグインと同時に扱える用に設計しています.</p>
 
 <p>普通に一緒に使う分には何も考えなくとも併用できますが, incsearch.vim の オート :nohlsearch 機能 を使いたい場合はマッピングをちょっといじる必要があるので自分が使ってる例を出してみます</p>
 
