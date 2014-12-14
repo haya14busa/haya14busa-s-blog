@@ -84,7 +84,7 @@ map g/ <Plug>(incsearch-stay)
 1. Emacsは検索中にカーソルを前後に動かせるけどVimにはない...
     - ※ Vim には `n`/`N` があるので別になくてもよい
 2. incsearch.vim はデフォルトでは `<Tab>`/`<S-Tab>`で前後のマッチに移動できる
-3. Emacsや他のエディタでは見ない機能としてスクロール機能を提供しており, 画面内に目的地がないと判断すれば一気にスキップして画面内の次のマッチに飛べる(デフォルトでは`<C-j>`/`<C-k>`)
+3. Emacsや他のエディタでは見ない機能としてスクロール機能を提供しており, 画面内に目的地がないと判断すれば一気にスキップして画面外の次のマッチに飛べる(デフォルトでは`<C-j>`/`<C-k>`)
 
 ![incremental_move_and_scroll](../images/gif/incsearch/incremental_move_and_scroll.gif)
 
