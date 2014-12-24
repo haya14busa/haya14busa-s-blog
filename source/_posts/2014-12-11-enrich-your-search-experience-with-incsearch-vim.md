@@ -14,6 +14,7 @@ categories: vim
 ### Vimの検索体験をリッチにする, incsearch.vim を作りました
 
 <div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+[haya14busa/incsearch.vim](https://github.com/haya14busa/incsearch.vim)
 
 ![incremental_regex_building](../images/gif/incsearch/incremental_regex_building.gif)
 
@@ -451,7 +452,7 @@ autocmd の拡張例を上述しましたが, まだコマンドラインの中�
 
 Vim Advent Calendar でテンションあがってちょっと長くなってしまいました. ここまで読んでくださった方ありがとうございます.
 
-incsearch.vim 是非1度使ってみてください. 気に入って頂けるとそれはとっても嬉しいです!
+[incsearch.vim](https://github.com/haya14busa/incsearch.vim) 是非1度使ってみてください. 気に入って頂けるとそれはとっても嬉しいです!
 
 
 それではVim Advent Calendar 2014の14日目の記事でした.
