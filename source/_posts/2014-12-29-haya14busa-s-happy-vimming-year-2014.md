@@ -64,6 +64,11 @@ GitHub Star 500+ めでたい.
 
 便利さの9割は vital-over のおかげなのですが, 自分が1から開発してるリポジトリーでスター数3桁を達成してこれもまた非常に嬉しいです. これもめでたい.
 
+GitHubの VimL trending で Repositories & Developers の両方で1位も獲得できました...! 嬉しさ.
+
+![github-trending-viml-today-incsearch](../images/github/github-trending-viml-today-incsearch-2014-10-21 09:26:33.png)
+![github-developer-today-vimL-2014-10-22 22:51:58](../images/github/github-developer-today-vimL-2014-10-22 22:51:58.png)
+
 ### VimConf 2014 で発表した
 - [VimConf 2014](http://vimconf.vim-jp.org/2014/)
 - 皆さんの発表などなど: [Reports - VimConf 2014](http://vimconf.vim-jp.org/2014/reports/)
