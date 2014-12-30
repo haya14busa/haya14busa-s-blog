@@ -3,7 +3,7 @@ layout: post
 title: "2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話"
 date: 2014-12-30 00:00:00 +0900
 comments: true
-categories: vim, diary
+categories: vim, diary, ポエム
 ---
 
 
