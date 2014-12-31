@@ -4,7 +4,7 @@
   <title><![CDATA[Category: diary, | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/diary/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2014-12-30T10:28:58+09:00</updated>
+  <updated>2014-12-31T15:05:46+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -261,6 +261,18 @@ Jekyll を覚えて 読書会のデータを yaml でデータ化したり,
 
 <p>dotfile 1行変更といったものがたくさんあるので全く大したことはしてないのですが, 日によってはそのついでにちゃんとプログラミングするぞっ! というきっかけになるので自分には合ってる継続的進捗管理術でした. 1年継続めでたい.</p>
 
+<h3>2014年 GitHub の Pull Requests / Issues 一覧</h3>
+
+<p><em>追記:</em></p>
+
+<ul>
+<li><a href="https://github.com/pulls?q=is%3Apr+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に出した Pull Requests 一覧</a></li>
+<li><a href="https://github.com/issues?q=is%3Aissue+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に開いた Issues 一覧</a></li>
+</ul>
+
+
+<p>PullRequest 8 opens / 83 closed, Issues 53 open / 95 closed ※99% Vimである</p>
+
 <h3>Podcast 聴くようになった</h3>
 
 <p>聴いてるPodcastは</p>
@@ -318,7 +330,7 @@ git や GitHub, テスト, CI, オブジェクト指向やらクロージャ, �
 
 <p>また Vim だといろいろな言語を使ってる人がいて, しかも雲の上のような存在の人もたくさんいたり, オンラインでもオフラインの勉強会でも活動が活発なのでVim以外にもいろんなことが知れるし, プログラミング初学者でも最初から Vim をガンガン使ってプログラミングしていくのはおもしろいかなぁと思います.</p>
 
-<p>振り返ってみるとたくさんのVimmerにお世話になったなぁと思います. ※もちろんVimmerでないひとにも世話になりました.</p>
+<p>振り返ってみるとたくさんのVimmerにお世話になったなぁと思います. ※もちろんVimmerでないひとにもお世話になりました.</p>
 
 <p>みなさん今年はお世話になりました. 来年の2015年もぜひ仲良くしてください. よろしくお願いします.</p>
 
