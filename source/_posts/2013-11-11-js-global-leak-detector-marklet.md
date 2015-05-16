@@ -18,11 +18,11 @@ tags:
 
 ## jsGlobalLeakDetector
 
-<a href="javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a>
+<a href='javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);'>jsGlobalLeakDetector</a>
 
 上記リンクをブックマークバーにドラックなどして登録して好きなサイトで実行してください。
 
-iOS登録用: <a href="http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a>
+iOS登録用: <a href='http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);'>jsGlobalLeakDetector</a>
 
 上記リンクをクリックしてから、ページをブックマークして、?以前の文字を消去してください。
 
