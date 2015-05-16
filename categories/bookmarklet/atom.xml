@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bookmarklet | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/bookmarklet/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-01-08T23:15:11+09:00</updated>
+  <updated>2015-05-16T10:33:00+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -26,11 +26,11 @@
 
 <h2>jsGlobalLeakDetector</h2>
 
-<p><a href="javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a></p>
+<p><a href='javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);'>jsGlobalLeakDetector</a></p>
 
 <p>上記リンクをブックマークバーにドラックなどして登録して好きなサイトで実行してください。</p>
 
-<p>iOS登録用: <a href="http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);">jsGlobalLeakDetector</a></p>
+<p>iOS登録用: <a href='http://haya14busa.com/js-global-leak-detector-marklet?javascript:(function(){var c=[],a=document.createElement("iframe");a.style="display: none;";document.body.appendChild(a);var d=a.contentWindow,b;for(b in this)void 0===d[b]&&c.push(b);document.body.removeChild(a);alert(c)}).call(this);'>jsGlobalLeakDetector</a></p>
 
 <p>上記リンクをクリックしてから、ページをブックマークして、?以前の文字を消去してください。</p>
 

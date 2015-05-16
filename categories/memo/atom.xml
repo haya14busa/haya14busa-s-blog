@@ -4,7 +4,7 @@
   <title><![CDATA[Category: memo | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/memo/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-01-08T23:15:11+09:00</updated>
+  <updated>2015-05-16T10:33:00+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -1054,14 +1054,14 @@
 <dl>
 <dt>無限降下法</dt>
 <dd><ol>
-<li>  自然数に関する数式を作る。</li>
-<li>  その数式を操作して、<em>同じ形をした別の数式を作る</em>
+<li>自然数に関する数式を作る。</li>
+<li>その数式を操作して、<em>同じ形をした別の数式を作る</em>
 
 <ul>
 <li>  このとき、小さくなる自然数を含む</li>
 </ul>
 </li>
-<li>  同じ操作を繰り返すと自然数が無限に小さくなる -> 矛盾</li>
+<li>同じ操作を繰り返すと自然数が無限に小さくなる -> 矛盾</li>
 </ol>
 </dd>
 </dl>
