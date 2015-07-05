@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-05-16T10:33:00+09:00</updated>
+  <updated>2015-07-06T07:00:33+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,297 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました]]></title>
+    <link href="http://haya14busa.com/incsearch-dot-vim-ver-2/"/>
+    <updated>2015-07-06T01:34:01+09:00</updated>
+    <id>http://haya14busa.com/incsearch-dot-vim-ver-2</id>
+    <content type="html"><![CDATA[<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
+
+<p>incsearch.vim について知らないかたはこちらの記事を参照してください．
+簡単に言えばVimのインクリメンタル検索をカイゼンするプラグインです．
+-> <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a></p>
+
+<h2>incsearch.vim v2.0 をリリースした!</h2>
+
+<p>v0.9, v1.0, v1.1, v1.2, &hellip; とこれまで incsearch.vim をインクリメンタルにカイゼンにカイゼンを重ねてきました&hellip;
+そして本日， incsearch.vim は晴れて一段階進化し， バージョン2.0 となりました!</p>
+
+<p>この進化を一言で言えば，incsearch.vim はもっともっと Vim の検索を便利にすべく <strong>進化・拡張可能</strong> になりました．</p>
+
+<h2>2.0で何ができるようになったか?</h2>
+
+<p>百聞は一見に如かず．以下のgifとともに拡張プラグイン達をご覧ください!</p>
+
+<h3>曖昧検索 | fuzzy search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy.gif" alt="incsearch-fuzzy.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzy-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzy#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>曖昧スペル検索 | fuzzy spell search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzyspell.gif" alt="incsearch-fuzzyspell.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzyspell-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzyspell#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>高速でインクリメンタルなmigemo検索 | migemo search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-migemo.gif" alt="incsearch-migemo.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
+<li>参照: <a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-migemo.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map <span class="k">m</span><span class="sr">/ &lt;Plug&gt;(incsearch-migemo-/</span><span class="p">)</span>
+</span><span class='line'>map <span class="k">m</span>? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map mg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#migemo#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>EasyMotion との連携 | integration with vim-easymotion</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-easymotion.gif" alt="incsearch-easymotion.gif" /></p>
+
+<ul>
+<li>GitHub:
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+<li><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-easymotion.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-easymotion-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#easymotion#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>拡張はcomposable!</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy-easymotion.gif" alt="incsearch-fuzzy-easymotion.gif" />
+incsearch.vim x fuzzy x easymotion</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; incsearch.vim x fuzzy x vim-easymotion</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_easyfuzzymotion<span class="p">(</span>...<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
+</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [<span class="nb">incsearch</span>#config#fuzzy#converter<span class="p">()</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">()</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>
+</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_easyfuzzymotion<span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>仕組み</h2>
+
+<h3>converter 機能</h3>
+
+<ul>
+<li><code>:h incsearch-config-converters</code></li>
+</ul>
+
+
+<p>バージョン2.0でのメイン追加機能，パターンコンバート機能です．
+入力したパターンを変換して正規表現を返すコンバーター(複数可)を指定することによって，
+入力した正規表現だけでなく，変換された正規表現も追加で検索してくれます．</p>
+
+<p>fuzzy, fuzzyspell, migemo の拡張はどれもこの新たに入った仕組み，converter機能を使っています．</p>
+
+<p>他にも スネークケースとキャメルケースを相互変換してどちらも検索できるようにするとか，
+<code>{a,b}</code>を<code>\(a\|b\)</code>に変換するようなオレオレ簡易正規表現シンタックス(?)シュガーを作るとか，
+inputを受け取って正規表現を返すというシンプルな機能ながら，活用可能性はたくさんあります！
+(※  これらはそのうち実装していくと思います)</p>
+
+<h3>module 機能</h3>
+
+<ul>
+<li>GitHub: <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
+<li><code>:h incsearch-config-modules</code></li>
+<li><code>:h Vital.Over.Commandline-modules</code></li>
+</ul>
+
+
+<p>vital-over という incsearch.vim が使用しているライブラリにおけるモジュールを追加できる機能です．
+これがどんなことができて，どうやって作ればいいかといったことはそれだけで別の一つの記事どころか数十記事書ける内容なので割愛しますが，
+かなりいろんなことができるようになるはずです．(が，その分何でもできすぎるので注意は必要そうですが)．</p>
+
+<p><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a>
+がこの機能を使って検索後に <a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a> の機能を呼び出しています．</p>
+
+<h2>自分で拡張を作ることも可能！※ ただしAPIが固まってるとは言ってない</h2>
+
+<p>もちろんもっと便利な拡張を自分で作っていくことも可能です．
+ここでは例としてちょっとした <code>converter</code> を作ってみましょう</p>
+
+<h3>参照</h3>
+
+<ul>
+<li><code>:h incsearch#go()</code></li>
+<li><code>:h incsearch-config()</code></li>
+</ul>
+
+
+<h3>仕様</h3>
+
+<ul>
+<li>正規表現をエスケープして単なる文字列として返し，検索する．</li>
+<li>つまりは<code>\V</code>の機能．ただし，普通の正規表現に<strong>加えて</strong>検索できるところが違う．</li>
+</ul>
+
+
+<h3>実装</h3>
+
+<p><code>pattern</code> を受け取って正規表現を返す関数 (<code>s:noregexp()</code>) を実装して，
+<code>incsearch#go()</code>に渡すconfigの<code>converters</code>として渡してあげるだけ．
+※ converterオブジェクトを作って渡してあげる方法もありますが，現時点では関数を渡してできること大差ない．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:noregexp<span class="p">(</span>pattern<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> <span class="s1">&#39;\V&#39;</span> . escape<span class="p">(</span><span class="k">a</span>:pattern<span class="p">,</span> <span class="s1">&#39;\&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">return</span> {<span class="s1">&#39;converters&#39;</span>: [<span class="k">function</span><span class="p">(</span><span class="s1">&#39;s:noregexp&#39;</span><span class="p">)</span>]}
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> z/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config<span class="p">())</span>
+</span><span class='line'><span class="c">&quot; 例: /\vpattern と検索したら \vpattern がマッチする．普通の検索なら pattern だけ</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>めっちゃ簡単!!!</strong></p>
+
+<h2>Special Thanks</h2>
+
+<p>おしょーさん(<a href="https://github.com/osyo-manga">github@osyo-manga</a>)のライブラリには
+毎度お世話になっており，incsearch.vim v2.0 はコマンドラインライブラリである
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> の拡張性があってこそ
+リリースできたことだったり，cmigemoコマンドでも高速に migemo 検索できるのはそのまま
+<a href="https://github.com/osyo-manga/vital-migemo">osyo-manga/vital-migemo</a> のおかげだったりします．</p>
+
+<p>また <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a> でもincsearch.vimの開発に関わる質問をしたりして参考にしたりフィードバックをもらったりしました．
+皆さんありがとうございますっ！</p>
+
+<h2>終わりに．そして次のカイゼンへ&hellip;</h2>
+
+<p>incsearch.vim はシンプルかつVimデフォルトの検索と同じように快適に使用できるオススメプラグインです．
+それがバージョン2.0 になり，望めばもっともっと便利に，拡張可能なものになりました．
+気になった方は是非つかってみてください．</p>
+
+<p>そして incsearch.vim にはまだまだ改善点があるかと思います(ｼﾞｯｻｲあります)．
+なにか見つけた方や「おまえーっ&hellip;APIがなーっ&hellip;ふわふわでなぁーっ&hellip;使いにくくてなーっ&hellip;ゆるさーん(バシーン)」
+という方は <a href="https://github.com/haya14busa/incsearch.vim/issues">Issues</a> や
+<a href="https://twitter.com/haya14busa">twitter:@haya14busa</a>, はたまた <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a>
+あたりなどでフィードバックいただければカイゼンしていきたいと思うのでよろしくお願いしますっ</p>
+
+<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
+
+<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話]]></title>
@@ -3527,293 +3818,6 @@ branches:
 <p>よく考えたら、gh-pagesってプロジェクトと全く別の物が置かれているわけだから、デフォルトで無視してくれるっていうのは気が効いてていいかもしれないですね。 <code>gh-pages</code>のテストとか別にローカルで書くときにビルドしてればわかるのでそもそもあんまりテストする必要性がないのかもしれないというのはある。</p>
 
 <p>ちなみに上記のようにwhitelistでgh-pages onlyの設定にしていてもPull Requestにはちゃんと反応してくれるっぽいです。Travisさんさすがです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimプラグイン読書会やりましたー]]></title>
-    <link href="http://haya14busa.com/reading-vim-plugin-01/"/>
-    <updated>2013-12-18T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vim-plugin-01</id>
-    <content type="html"><![CDATA[<h2>Vim script読書会 #01</h2>
-
-<h3>読んだプラグイン</h3>
-
-<ol>
-<li><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></li>
-<li><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></li>
-</ol>
-
-
-<h3>場所</h3>
-
-<ul>
-<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
-</ul>
-
-
-<h3>時間</h3>
-
-<ul>
-<li>12/14(土) 21:00-23:00</li>
-</ul>
-
-
-<h3>ログ</h3>
-
-<ul>
-<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822571">Logです</a></li>
-</ul>
-
-
-<h3>Pull Request</h3>
-
-<ul>
-<li><a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
-<li><a href="https://github.com/Shougo/junkfile.vim/pull/4">Use negative value and doesn&#8217;t use reverse() by thinca · Pull Request #4 · Shougo/junkfile.vim</a></li>
-<li>thincaさんチェック便利</li>
-</ul>
-
-
-<h3>Link</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></li>
-</ul>
-
-
-<h2>感想とか</h2>
-
-<p>やりたいとか言っておきながら読みたいプラギンとか決めるのぐだぐだだったり、僕自信に拡散力のようなものが備わっていなかったりで色々と不安だったけど、蓋を開けてみると割と参加者も集まってくれて、「勉強になる」とかいい反応もあったりしてよかった。参加者の皆さん、ありがとうございます。</p>
-
-<p>特におしょーさんはいろいろ取り仕切ってくれてありがとうございます。</p>
-
-<h2>junkfile.vim</h2>
-
-<p><a href="https://github.com/Shougo/junkfile.vim">Shougo/junkfile.vim</a></p>
-
-<p>plugin/とautoload/の使い分け方とかプラグインの基本的な作り方を読んだり訊いたりして今回の「プラグインの基本的な構成や作り方について学ぶ」という目的に適ってとてもいい感じでした。</p>
-
-<h3>おまじない</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/usr_41.html#use-cpo-save">:help use-cpo-save</a></li>
-<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822765">そのへんのログ</a></li>
-</ul>
-
-
-<p><noscript>
-  <pre><code class="language-viml viml">&ldquo; おまじない
-&rdquo; Load Once
-if exists(&lsquo;g:loaded_helloworld&rsquo;) &amp;&amp; g:loaded_helloworld
-  finish
-endif
-let g:loaded_helloworld = 1</p>
-
-<p>&ldquo; Saving &lsquo;cpoptions&rsquo;
-let s:save_cpo = &amp;cpo
-set cpo&amp;vim</p>
-
-<p>&ldquo; Restore &lsquo;cpoptions&rsquo;
-let &amp;cpo = s:save_cpo
-unlet s:save_cpo
-</code></pre>
-</noscript></p>
-
-<p>行連結・副作用の回避をしましょう。おまじないレベルなのでとりあえずhelp読んである程度理解したら、なにも考えず書いておくといいっぽいです。</p>
-
-<h3>autoload変数とか</h3>
-
-<ul>
-<li><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822792">そのへんのログ</a></li>
-<li>プルリク: <a href="https://github.com/Shougo/junkfile.vim/pull/3">Autoload variable should be defined at the autoload script by thinca · Pull Request #3 · Shougo/junkfile.vim</a></li>
-<li><p><a href="http://vim-jp.org/vimdoc-ja/eval.html#internal-variables">:h internal-variables</a></p>
-
-<p>hoge#foo -> autoload
-hoge_foo -> plugin</p></li>
-</ul>
-
-
-<p>値をセットするだけなら<code>let g:hoge#foo='hoge'</code>しても、autoloadが呼ばれてしまうというわけではないはずだけど、やはりautoload変数はautoloadで定義するといいっぽい。</p>
-
-<p>plugin下では<code>g:hoge_foo</code>とかを使うのがよくあるけど<code>b:</code>とかいろいろあって難しい</p>
-
-<h3>autoloadとpluginの違い</h3>
-
-<p>C でいう、</p>
-
-<pre><code>plugin -&gt; .h
-autoload -&gt; .c
-</code></pre>
-
-<blockquote><p>実装を autoload に書いて、それを呼び出すコマンドなどを plugin で定義するのが最近の流行りですね<br/>
-と、いうのも plugin は起動時に読み込まれるため、plugin に全部の実装を書いてしまうと起動時間に影響するため</p>
-
-<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17822953">vim-users.jp &#8211; Lingr</a></cite></p></blockquote>
-
-<p>せっかく分けているのにpluginでautoloadの関数を直接呼ぶとVim起動時にautoload以下も呼ばれてしまうのでそのへんを注意して残念プラグインにならないように注意すべき。</p>
-
-<p>必然的に<Plug>マッピングの提供などはplugin下でやるべきということになる。</p>
-
-<h2>vim-visualstar</h2>
-
-<p><a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a></p>
-
-<p>plugin下に100行程度で簡単そうかと思いきや、実装が結構難しくてVim script力の高まりを感じたり感じなかったりした。</p>
-
-<blockquote><p>itchyny<br/>
-@/とか&#8217;>とかの勉強になるとは思う</p>
-
-<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823713">vim-users.jp Lingr</a></cite></p></blockquote>
-
-<p>この辺は初心者でも便利ってかんじでcountの話とかはなかなか難しかった。というか僕は<code>line("'&lt;")</code>を<code>line("v")</code>の違いでハマったみたいなこといってからその再現しようとしてたりしてvim-visualstarを完璧に理解することを諦めたりしていた。</p>
-
-<p>最近<a href="https://github.com/koron/cmigemo">cmigemo</a>のvimプラグイン部分をプルリクったり、個別に管理させてもらったり(<a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a>)してた関係もあって検索する部分とか参考になった。</p>
-
-<blockquote><p>raa0121<br/>
-(&#8220;v&#8221;) と (&#8220;`v&#8221;) が顔文字に見える</p>
-
-<p>&#8211; <cite><a href="http://lingr.com/room/vim/archives/2013/12/14#message-17823525">vim-users.jp Lingr</a></cite></p></blockquote>
-
-<p>かわいい(&#8220;`v&#8221;)</p>
-
-<h2>Vim script読書会 #02</h2>
-
-<p>結構反応もよかったのでめでたく第2回も開催しようという流れになりました。</p>
-
-<ol>
-<li>毎週21時からやるやる</li>
-<li>隔週で行う</li>
-<li>月1で行う</li>
-<li>不定期、気が向いたら</li>
-</ol>
-
-
-<p>2か3あたりかなーという感じですが、年末年始なので次回は年明けの1/11(土曜日)です。</p>
-
-<p>この辺反応良かったりして人が安定していると隔週になったりすると思うのでぜひぜひ参加したりしてわいわい読みましょう。</p>
-
-<h3>読むプラグイン(予定)</h3>
-
-<ol>
-<li><a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
-</ol>
-
-
-<p>または</p>
-
-<ol>
-<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
-<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unit-fold</a></li>
-</ol>
-
-
-<p>clever-fの製作者であるりんだんさん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>)が参加できそうならclever-f,無理そうならunite-sourceを読もうということでunite-mcdonalds-vimとunite-fold読みます(たぶん)。</p>
-
-<h3>場所</h3>
-
-<ul>
-<li><a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a></li>
-</ul>
-
-
-<h3>時間</h3>
-
-<ul>
-<li>2014/01/11(土) 21:00-23:00</li>
-</ul>
-
-
-<h2>各プラギン紹介記事Link</h2>
-
-<h3>clever-f</h3>
-
-<ul>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
-<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
-</ul>
-
-
-<p>clever-fは<a href="https://github.com/haya14busa/vim-easymotion">vim-easymotion</a>にmigemo組み込むときの参考に軽く読んでいたり、人によってはライフチェンジングプラグインでclever-f面白いし、作者のりんだんさんすごい!みたいな感じでかなり個人的に提案しました() -> <a href="http://rhysd.hatenablog.com/entry/2013/12/13/011420">（進捗あります！✧＼\٩(‘ω’)و /／✧）o 。(&#8216;､3)_ヽ)＿ &#8211; sorry, unimplemented:</a></p>
-
-<p>ただthincaさんが魔改造していてthincaさん説明も期待できそうだし、1回で1つのプラグインを集中的に読む場合、分量的にいい感じっぽいので目的にもよりますが面白そうだと思います。</p>
-
-<h3>unite-mcdonalds-vim</h3>
-
-<ul>
-<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
-</ul>
-
-
-<p>これがいわゆる人々の生活を豊かにするプラグインの内のひとつ! -> <a href="http://mattn.kaoriya.net/software/vim/20131206144325.htm">Big Sky :: Vim script は人々の生活を豊かにしなければならないッ！</a></p>
-
-<p>unite-sourceかつ<a href="https://github.com/mattn/webapi-vim">mattn/webapi-vim</a>を使っているのでウェブ上のソースを使った便利unite-sourceが作れるようになるかもですね。</p>
-
-<p>またマクドナルドのページの構造変わってて動かなくなっていたのをmattnさんに直して頂きました。ありがとうございます。<a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>も直して頂いたので、時間あったら一緒に読むとお腹すきそうでよさそう。</p>
-
-<h3>unite-fold</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20120802/1343888407">unite-fold を github に上げた &#8211; C++でゲームプログラミング</a></li>
-</ul>
-
-
-<p>おしょーさんwareなので作者本人の説明も期待できます。個人的にはunite-foldは特にvimrc編集するときに便利</p>
-
-<p>どれもいい感じのプラグインなのでみなさん参加しましょう。</p>
-
-<p>unite-sourceになる場合unite予習事案が発生するので予習によさそうなリンクとか別にまとめる予定(あくまでも予定)</p>
-
-<h2>今後についてとか</h2>
-
-<blockquote><p>[今後の課題]</p>
-
-<ul>
-<li>会ごとに具体的な目的を決めたい</li>
-<li>読んでみたいプラグインをまとめる</li>
-<li>まとめサイトほしい</li>
-<li>23時から vimrc読書会があるので延長するのが厳しい</li>
-</ul>
-
-
-<p>&#8211; <cite><a href="http://d.hatena.ne.jp/osyo-manga/20131215/1387115301">Vimプラグイン読書会を行いました &#8211; C++でゲームプログラミング</a></cite></p></blockquote>
-
-<h3>目的について</h3>
-
-<ol>
-<li>Vim script 力を身につけたい、高めたい</li>
-<li>プラグイン構成を理解する、 プラグインを作ってみたい</li>
-<li>プラグインのある部分の実装を読んでみたい(そして取り込みたいor作りたい)</li>
-<li>unite-source作りたい、vim-textobj-hogeなどなど作りたい</li>
-<li>作ったから添削してもらいたい</li>
-<li>便利だけどちょっと実装が&#8230;というプラグインを読んで怒涛のプルリクを行いたい</li>
-<li>単純におもしろそうだからみんなでわいわい読もう<a href="https://github.com/google/maktaba">google/mactaba</a>とか(?)</li>
-<li>etc&#8230;</li>
-</ol>
-
-
-<p>Vim scriptに限らずプログラミング力も高めたいとかもあるかもしれない。気軽にみんなでわいわいコードをオンラインで読めるというのはおもしろいし、vimrc読書会などそういうことができるVimのコミュニティー力はすごいなーと見ていて思う。</p>
-
-<p>なんにせよ、おしょーさんが言うように漫然と読まずに目的を決めて読むというのは大事だし得るものもその分大きくなるので決めていきたいですね。</p>
-
-<p>3.などは目的が絞られる分、参加者層にささるかが未知数だけど、こういうプラグイン作りたくて似たような部分があるプラグインを参照する事案は実際にあるのでおもしろそう。</p>
-
-<p>例えばずっと2の目的とかだと続かないので、やっぱり回ごとに決めるという流れをもっとサクサクできるようになるとよさそう。次回の例で言えば、clever-fなら「Vimのカーソル移動を拡張するプラグインを作りたい」(3に近い)、unite-sourceならそのまま「unite-sourceの構成を理解して作ってみたい」(2)みたいな目的をもってそれを参加者が共有できていると実りのある読書会ができるんじゃないかなーと思う。</p>
-
-<h3>まとめさいととか</h3>
-
-<p>vimrc読書会みたいにまとめページと、リクエストできるページあったら便利そうなのでGithub Pagesとかで(?)適当に作ろうと思って何もせず3日くらい経ってるので次回始まるまでに適当に作りたい。</p>
-
-<p>時間とかvimrc読書会の関係上もっとゆっくり読みたかったり、予想外に盛り上がっても続けれないとかあって難しい。日曜日だと次の日が月よう&#8230;ｳｯ</p>
-
-<p>いろいろ懸念事項はありますが、わいわい読めておもしろかったので興味出てきた人は1/11日に<a href="http://lingr.com/room/vim">vim-users.jp – Lingr</a>を覗いて見るときっといい感じです。</p>
-
-<p>あと今回のプラグイン構成を理解しよーという目的だったので<a href="https://github.com/haya14busa/vim-helloworld">haya14busa/vim-helloworld</a>という本当にhello worldするだけのプラグイン作って復習しました。本当は予習として作るつもりだった。読むと良さそうなhelp書いたりgitのコミットログを追っていけば勉強になるようにと意識したので、本当にこれから作るってひとは見るといいかもしれないけど、やっぱりそうでもなかったりします。ﾊｲ</p>
-
-<p>こーゆーの作りたいなーというのはあったりなかったりするので、やっぱり作りたいものを作っていきたい</p>
-
-<p>そんな時に便利なVimプラグイン読書会。次回は来年の1/11(土)です。よろしくおねがいします。</p>
 ]]></content>
   </entry>
   

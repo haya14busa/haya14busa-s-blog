@@ -9,7 +9,9 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="追記: VAC2012でもっと詳しい紹介記事を書きました Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa Vim-Easymotionが好き 僕がvimのプラグインを導入して、一番最初に感動したのはvim-easymotionでした[要出典] &hellip;">
+  <meta name="description" content="Install nltk $ pip install nltk wordnetのコーパスをPythonインタプリタからダウンロード $ python
+Python 2.7.5 (default, Jul 19 2013, 19:37:30)
+[GCC 4.2.1 Compatible Apple &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,299 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/python-nltk-natural-language-processing/">Python,NLTKで自然言語処理</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Install nltk</h2>
+
+<pre><code>$ pip install nltk
+</code></pre>
+
+<p>wordnetのコーパスをPythonインタプリタからダウンロード</p>
+
+<pre><code>$ python
+Python 2.7.5 (default, Jul 19 2013, 19:37:30)
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import nltk
+&gt;&gt;&gt; nltk.download()
+</code></pre>
+
+<p>MacならGUIの画面が起動するので適当に従ってダウンロード。</p>
+
+<p>書き終わってから気づいたけど以下ナチュラルに<code>see()</code>使ってます。代わりに<code>dir()</code>使うか、そもそも飛ばすか、便利なので<code>see</code>をインストールしましょう。</p>
+
+<pre><code>$ pip install see
+</code></pre>
+
+<p>~/.pythonstartup に</p>
+
+<pre><code>from see import see
+</code></pre>
+
+<p>を記述しておくと便利</p>
+
+<p><a href="https://github.com/haya14busa/dotfiles/blob/master/.pythonstartup">dotfiles/.pythonstartup at master · haya14busa/dotfiles</a></p>
+
+<h2>Stemming and Lemmatisation</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Stemming">Stemming &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>語幹化</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Lemmatisation">Lemmatisation &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li>見出し語化, レンマ化</li>
+</ul>
+</li>
+</ul>
+
+
+<p>語幹化、見出し語化の前に、大文字・小文字を正規化しておく。(語幹化は大文字小文字混ざってても動くっぽいけどレンマ化は動かない)</p>
+
+<pre><code>&gt;&gt;&gt; print 'Python'.lower()
+python
+</code></pre>
+
+<h3>Stemming</h3>
+
+<pre><code>&gt;&gt;&gt; from nltk import stem
+&gt;&gt;&gt; see(stem)
+    help()                 .ISRIStemmer()         .LancasterStemmer()
+    .PorterStemmer()       .RSLPStemmer()         .RegexpStemmer()
+    .SnowballStemmer()     .StemmerI()            .WordNetLemmatizer()   .api
+    .isri                  .lancaster             .porter
+    .regexp                .rslp                  .snowball
+    .wordnet
+&gt;&gt;&gt; stemmer = stem.PorterStemmer()
+&gt;&gt;&gt; stemmer.stem('dialogue')
+'dialogu'
+&gt;&gt;&gt; stemmer2 = stem.LancasterStemmer()
+&gt;&gt;&gt; stemmer2.stem('dialogue')
+'dialog'
+</code></pre>
+
+<p>PorterStemmerとLancasterStemmerでアルゴリズムが違うっぽい。</p>
+
+<p>Lancasterのほうがアグレッシブ。</p>
+
+<blockquote><p>Porter: Most commonly used stemmer without a doubt, also one of the most gentle stemmers. One of the few stemmers that actually has Java support which is a plus, though it is also the most computationally intensive of the algorithms(Granted not by a very significant margin). It is also the oldest stemming algorithm by a large margin.</p>
+
+<p>Lancaster: Very aggressive stemming algorithm, sometimes to a fault. With porter and snowball, the stemmed representations are usually fairly intuitive to a reader, not so with Lancaster, as many shorter words will become totally obfuscated. The fastest algorithm here, and will reduce your working set of words hugely, but if you want more distinction, not the tool you would want.</p>
+
+<p>&#8211; <cite><a href="http://stackoverflow.com/questions/10554052/what-are-the-major-differences-and-benefits-of-porter-and-lancaster-stemming-alg">java &#8211; What are the major differences and benefits of Porter and Lancaster Stemming algorithms? &#8211; Stack Overflow</a></cite></p></blockquote>
+
+<p>個人的にdialogueとdialogでstemが違うとつらいのでLancaster使ってみて、ミスが多いようならPorter使う予定。</p>
+
+<p>他にもSnowballとかあるけど割愛</p>
+
+<h3>Lemmatisation</h3>
+
+<pre><code>&gt;&gt;&gt; from nltk import stem
+&gt;&gt;&gt; lemmatizer = stem.WordNetLemmatizer()
+&gt;&gt;&gt; lemmatizer.lemmatize('dialogs')
+'dialog'
+&gt;&gt;&gt; lemmatizer.lemmatize('dialogues')
+'dialogue'
+&gt;&gt;&gt; lemmatizer.lemmatize('cookings')
+'cooking'
+&gt;&gt;&gt; lemmatizer.lemmatize('cooking', pos='v')
+'cook'
+</code></pre>
+
+<h2>Tokenization</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Tokenization">Tokenization &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<pre><code>&gt;&gt;&gt; from nltk import tokenize
+&gt;&gt;&gt; see(tokenize)
+    help()                    .BlanklineTokenizer()     .LineTokenizer()
+    .PunktSentenceTokenizer()                           .PunktWordTokenizer()
+    .RegexpTokenizer()        .SExprTokenizer()         .SpaceTokenizer()
+    .TabTokenizer()           .TreebankWordTokenizer()  .WhitespaceTokenizer()
+    .WordPunctTokenizer()     .api                      .blankline_tokenize()
+    .line_tokenize()          .load()                   .punkt
+    .regexp                   .regexp_tokenize()        .sent_tokenize()
+    .sexpr                    .sexpr_tokenize()         .simple
+    .treebank                 .util                     .word_tokenize()
+    .wordpunct_tokenize()
+&gt;&gt;&gt; aio1 = 'He grinned and said, "I make lots of money.  On weekdays I receive
+an average of 50 orders a day from all over the globe via the Internet."'
+</code></pre>
+
+<h3>Sentence Tokenization</h3>
+
+<pre><code>&gt;&gt;&gt; tokenize.sent_tokenize(aio1)
+['He grinned and said, "I make lots of money.', 'On weekdays I receive an average of 50 orders a day from all over the globe via the Internet.', '"']
+</code></pre>
+
+<h3>Word Tokenization</h3>
+
+<pre><code>&gt;&gt;&gt; tokenize.word_tokenize(aio1)
+['He', 'grinned', 'and', 'said', ',', '``', 'I', 'make', 'lots', 'of', 'money.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '.', "''"]
+&gt;&gt;&gt; tokenize.wordpunct_tokenize(aio1)
+['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
+</code></pre>
+
+<h2>Delete Stopwords</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Stop_words">Stop words &#8211; Wikipedia, the free encyclopedia</a></p>
+
+<pre><code>&gt;&gt;&gt; from nltk.corpus import stopwords
+&gt;&gt;&gt; stopset = set(stopwords.words('english')
+... )
+&gt;&gt;&gt; stopset
+set(['all', 'just', 'being', 'over', 'both', 'through', 'yourselves', 'its', 'before', 'herself', 'had', 'should', 'to', 'only', 'under', 'ours', 'has', 'do', 'them', 'his', 'very', 'they', 'not', 'during', 'now', 'him', 'nor', 'did', 'this', 'she', 'each', 'further', 'where', 'few', 'because', 'doing', 'some', 'are', 'our', 'ourselves', 'out', 'what', 'for', 'while', 'does', 'above', 'between', 't', 'be', 'we', 'who', 'were', 'here', 'hers', 'by', 'on', 'about', 'of', 'against', 's', 'or', 'own', 'into', 'yourself', 'down', 'your', 'from', 'her', 'their', 'there', 'been', 'whom', 'too', 'themselves', 'was', 'until', 'more', 'himself', 'that', 'but', 'don', 'with', 'than', 'those', 'he', 'me', 'myself', 'these', 'up', 'will', 'below', 'can', 'theirs', 'my', 'and', 'then', 'is', 'am', 'it', 'an', 'as', 'itself', 'at', 'have', 'in', 'any', 'if', 'again', 'no', 'when', 'same', 'how', 'other', 'which', 'you', 'after', 'most', 'such', 'why', 'a', 'off', 'i', 'yours', 'so', 'the', 'having', 'once'])
+&gt;&gt;&gt; aio1words = tokenize.wordpunct_tokenize(aio1)
+&gt;&gt;&gt; aio1words
+['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
+&gt;&gt;&gt; for word in aio1words:
+...  if len(word) &lt; 3 or word in stopset:
+...   continue
+...  print word
+...
+grinned
+said
+make
+lots
+money
+weekdays
+receive
+average
+orders
+day
+globe
+via
+Internet
+====================
+filter で
+====================
+&gt;&gt;&gt; print filter(lambda w: len(w) &gt; 2 and w not in stopset, aio1words)
+['grinned', 'said', 'make', 'lots', 'money', 'weekdays', 'receive', 'average', 'orders', 'day', 'globe', 'via', 'Internet']
+</code></pre>
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://nltk.org/">Natural Language Toolkit — NLTK 2.0 documentation</a></li>
+<li><a href="https://github.com/japerk/PyCon-NLTK-Tutorial">japerk/PyCon-NLTK-Tutorial</a></li>
+<li><a href="http://petitviolet.hatenablog.com/entry/20120523/1337760714">正規表現・自然言語処理 &#8211; I/O Error : My Knowledge</a></li>
+<li><a href="https://github.com/pika-shi/sphinx_information_retrieval/blob/master/natural_language_processing.rst">sphinx_information_retrieval/natural_language_processing.rst at master · pika-shi/sphinx_information_retrieval</a></li>
+</ul>
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51EoFqAGo1L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">入門 自然言語処理</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Steven Bird,Ewan Klein,Edward Loper
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        オライリージャパン 2010-11-11
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,990
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51QhcSlOO4L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">Natural Language Processing with Python</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Steven Bird,Ewan Klein,Edward Loper
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        Oreilly & Associates Inc 2009-06-30
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,724
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/python-nltk-natural-language-processing/">Python,NLTKで自然言語処理</a>
+      <time datetime="2013-08-16T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>16</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -709,220 +1004,6 @@ hi link EasyMotionShade  Comment
       <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/build-or-compile-on-jb-ios/">JBiOSでも自前ビルド/コンパイルがしたい！</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Attention</h2>
-
-<p>お決まりですが自己責任でお願いします.割とコアの部分触るので特に.そもそも脱獄自体グレーゾーンだし.</p>
-
-<h2>JBiOSだとターミナルでプログラミングできたりするけど…</h2>
-
-<p>Appleの署名かなんかの関係でgccが一発で通らないので今まで、自前でビルド/コンパイルができてませんでした.</p>
-
-<p>iOS4あたりまでは簡単に?回避できてたらしいけど、iOS5からはできなくなってて諦めるしかなかった.</p>
-
-<p>この記事通りにやると,vimとかgitとかをcydiaのリポジトリにかかわらず最新版使えるようになったりする(はず).</p>
-
-<h2>Setup gcc on iOS 5 and maybe iOS6</h2>
-
-<ol>
-<li>リポジトリをcydiaに追加
-
-<ul>
-<li><a href="http://cydia.radare.org">http://cydia.radare.org</a></li>
-</ul>
-</li>
-<li>追加したリポジトリから<strong>libgcc</strong>をインストール
-
-<ul>
-<li>fakegccとかiosgccとかでググってリポジトリ以外から持ってくる手もある</li>
-</ul>
-</li>
-<li>デフォのBigbossなどから基本のコマンドなどなどをインストール
-
-<ul>
-<li>Link Identity Editor (ldid)
-
-<ul>
-<li>署名回避に必要</li>
-</ul>
-</li>
-<li>GNU C Compiler(gcc)
-
-<ul>
-<li>Cコンパイラ</li>
-</ul>
-</li>
-<li>Make</li>
-<li>APT 0.7系</li>
-<li>足りなければBigBoss Recommentded Toolsとか基本系を</li>
-</ul>
-</li>
-<li>MobileTerminalかOpenSSHをインストール
-
-<ul>
-<li>OpenSSHでiSSHとかAppstoreのアプリから操作もできるし、勿論母艦からでもOK</li>
-</ul>
-</li>
-</ol>
-
-
-<p>ここまでの状態だと</p>
-
-<p>on iOS</p>
-
-<pre><code>$ echo 'void main() { printf("Hello, world!\n"); }' &gt; helloworld.c
-$ gcc helloworld.c -o helloworld
-$ ./helloworld
-# ここで署名エラー
-$ ldid -S helloworld
-$ ./helloworld
-Hello, world!
-</code></pre>
-
-<p>このように一度<code>ldid -S</code>を噛ませる必要があるせいで、<code>./configure</code>とかが通らなくなってます.</p>
-
-<p>なので<code>ldid -S</code>を自動化して擬似的に署名を回避する必要があります.</p>
-
-<h2>Bypassing Apple Code signature using ldid -S</h2>
-
-<pre><code>$ git clone git@github.com:haya14busa/ios-build
-$ sudo mv /usr/bin/gcc /usr/bin/realgcc
-$ sudo mv /usr/bin/arch /usr/bin/realarch
-$ cd ios-build
-$ chmod +x gcc arch
-$ sudo cp gcc /usr/bin/
-$ sudo cp arch /usr/bin/
-$ sudo ln -s /usr/bin/gcc /usr/bin/cc
-$ sudo ldid -S /usr/bin/gcc
-$ sudo ldid -S /usr/bin/arch
-</code></pre>
-
-<p>(コマンド自体がkillされた場合は<code>sudo ldid -S {killされたコマンドのpath}</code>で回避できる)</p>
-
-<p>archは確かgitを自前ビルドしたときにエラー吐いただけなので今のところはgccの記述だけでもOK.またgit cloneしなくても普通に持ってきてvimで書くとか、iFileで直接置いてもいい.</p>
-
-<p>gccの中身</p>
-
-<pre><code>#!/bin/bash
-
-output='a.out'
-next=false
-for arg in "$@" ; do
-    if [ "$next" == "true" ]; then
-        output=$arg
-        break
-    elif [ "$arg" == "-o" ]; then
-        next="true"
-    fi
-done
-
-realgcc $*
-
-if [ -f "$output" ]; then
-    ldid -S "$output"
-    echo "Signed with ldid"
-fi
-</code></pre>
-
-<p>シェルスクリプトで、realgccでコンパイルしてできた実行ファイルに自動でldid -Sするようにしてます.</p>
-
-<p>これで<code>./configure</code>が通ってmakeもできるのでiOSで自前でビルドできるようになります.</p>
-
-<h2>成果</h2>
-
-<h3>Git</h3>
-
-<ul>
-<li>2013/08/07現在最新バージョンである1.8.3.4をコンパイル->正常動作</li>
-<li>Cydiaリポのgitは1.5とかのレベルで,radareにある1.7.8.2はうまく動かないのでこれだけでもやったかいがあった</li>
-</ul>
-
-
-<h3>Vim</h3>
-
-<ul>
-<li>999までpatchを当てた7.3.999をコンパイル可能.あとから1000以上のpatchがあることに気づいてやり直したけど、うまく当てれなかった.</li>
-<li>Cydiaリポのvimよりは新しいバージョンを使うことに成功</li>
-<li>しかし、やりたかった+pythonオプションがどうしてもつかなかった</li>
-<li><blockquote><p>PYTHON DISABLED &lt;</p></blockquote></li>
-</ul>
-
-
-<h3>Mercurial</h3>
-
-<ul>
-<li>vimの最新バージョンを楽に取ってくるためにインストールを試みるも失敗</li>
-<li>radareリポジトリにmercurialがあるがインストール出来ない模様</li>
-</ul>
-
-
-<h3>Python</h3>
-
-<ul>
-<li>radareリポジトリのpythonは2.7.3なので,自前で2.7.5のコンパイルを試みるも失敗</li>
-<li>gccオプションが付いていないからかnumpyなどがインストール出来ないので出来れば自前でコンパイルしたかった</li>
-<li>cのヘッダ関係で失敗してるっぽい</li>
-</ul>
-
-
-<h2>結論</h2>
-
-<p><strong>JBiPadでプログラミングなんかしてないで,ノーパソが欲しい.</strong></p>
-
-<h2>Link</h2>
-
-<ul>
-<li><a href="https://github.com/haya14busa/ios-build">haya14busa/ios-build</a></li>
-<li><a href="http://ininjas.com/forum/index.php?topic=1626.msg46557">Need to disable codesign</a></li>
-<li><a href="https://rc-z.me/blog/archives/2012/02/29/setup-gcc-on-iphone-4s-running-ios-5/" class="broken_link">Setup gcc On iPhone 4S running iOS 5 &#8211; RC.Z</a></li>
-<li><a href="http://n8.io/how-to-set-up-gcc-on-ios-4/">How To: Set up GCC on iOS 4 — n8.io</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/build-or-compile-on-jb-ios/">JBiOSでも自前ビルド/コンパイルがしたい！</a>
-      <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/jb/'>jb</a></span>
       
       </footer>
     </article>

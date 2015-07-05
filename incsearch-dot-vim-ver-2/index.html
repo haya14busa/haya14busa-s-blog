@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="haya14busa/incsearch.vim incsearch.vim について知らないかたはこちらの記事を参照してください．
+簡単に言えばVimのインクリメンタル検索をカイゼンするプラグインです．
+-> incsearch.vimでVimの検索体験をリッチにする - haya14busa &hellip;&#8221;>
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/incsearch-dot-vim-ver-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-07-06T01:34:01+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
+
+<p>incsearch.vim について知らないかたはこちらの記事を参照してください．
+簡単に言えばVimのインクリメンタル検索をカイゼンするプラグインです．
+-> <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a></p>
+
+<h2>incsearch.vim v2.0 をリリースした!</h2>
+
+<p>v0.9, v1.0, v1.1, v1.2, &hellip; とこれまで incsearch.vim をインクリメンタルにカイゼンにカイゼンを重ねてきました&hellip;
+そして本日， incsearch.vim は晴れて一段階進化し， バージョン2.0 となりました!</p>
+
+<p>この進化を一言で言えば，incsearch.vim はもっともっと Vim の検索を便利にすべく <strong>進化・拡張可能</strong> になりました．</p>
+
+<h2>2.0で何ができるようになったか?</h2>
+
+<p>百聞は一見に如かず．以下のgifとともに拡張プラグイン達をご覧ください!</p>
+
+<h3>曖昧検索 | fuzzy search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy.gif" alt="incsearch-fuzzy.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzy-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzy#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>曖昧スペル検索 | fuzzy spell search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzyspell.gif" alt="incsearch-fuzzyspell.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzyspell-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzyspell#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>高速でインクリメンタルなmigemo検索 | migemo search</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-migemo.gif" alt="incsearch-migemo.gif" /></p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
+<li>参照: <a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-migemo.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map <span class="k">m</span><span class="sr">/ &lt;Plug&gt;(incsearch-migemo-/</span><span class="p">)</span>
+</span><span class='line'>map <span class="k">m</span>? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map mg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#migemo#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>EasyMotion との連携 | integration with vim-easymotion</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-easymotion.gif" alt="incsearch-easymotion.gif" /></p>
+
+<ul>
+<li>GitHub:
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+<li><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-easymotion.vim&#39;</span>
+</span><span class='line'><span class="c">&quot; マッピング例</span>
+</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-easymotion-/</span><span class="p">)</span>
+</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>?<span class="p">)</span>
+</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>stay<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; サクッとためす</span>
+</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#easymotion#make())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>拡張はcomposable!</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy-easymotion.gif" alt="incsearch-fuzzy-easymotion.gif" />
+incsearch.vim x fuzzy x easymotion</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; incsearch.vim x fuzzy x vim-easymotion</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_easyfuzzymotion<span class="p">(</span>...<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
+</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [<span class="nb">incsearch</span>#config#fuzzy#converter<span class="p">()</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">()</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>
+</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_easyfuzzymotion<span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>仕組み</h2>
+
+<h3>converter 機能</h3>
+
+<ul>
+<li><code>:h incsearch-config-converters</code></li>
+</ul>
+
+
+<p>バージョン2.0でのメイン追加機能，パターンコンバート機能です．
+入力したパターンを変換して正規表現を返すコンバーター(複数可)を指定することによって，
+入力した正規表現だけでなく，変換された正規表現も追加で検索してくれます．</p>
+
+<p>fuzzy, fuzzyspell, migemo の拡張はどれもこの新たに入った仕組み，converter機能を使っています．</p>
+
+<p>他にも スネークケースとキャメルケースを相互変換してどちらも検索できるようにするとか，
+<code>{a,b}</code>を<code>\(a\|b\)</code>に変換するようなオレオレ簡易正規表現シンタックス(?)シュガーを作るとか，
+inputを受け取って正規表現を返すというシンプルな機能ながら，活用可能性はたくさんあります！
+(※  これらはそのうち実装していくと思います)</p>
+
+<h3>module 機能</h3>
+
+<ul>
+<li>GitHub: <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
+<li><code>:h incsearch-config-modules</code></li>
+<li><code>:h Vital.Over.Commandline-modules</code></li>
+</ul>
+
+
+<p>vital-over という incsearch.vim が使用しているライブラリにおけるモジュールを追加できる機能です．
+これがどんなことができて，どうやって作ればいいかといったことはそれだけで別の一つの記事どころか数十記事書ける内容なので割愛しますが，
+かなりいろんなことができるようになるはずです．(が，その分何でもできすぎるので注意は必要そうですが)．</p>
+
+<p><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a>
+がこの機能を使って検索後に <a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a> の機能を呼び出しています．</p>
+
+<h2>自分で拡張を作ることも可能！※ ただしAPIが固まってるとは言ってない</h2>
+
+<p>もちろんもっと便利な拡張を自分で作っていくことも可能です．
+ここでは例としてちょっとした <code>converter</code> を作ってみましょう</p>
+
+<h3>参照</h3>
+
+<ul>
+<li><code>:h incsearch#go()</code></li>
+<li><code>:h incsearch-config()</code></li>
+</ul>
+
+
+<h3>仕様</h3>
+
+<ul>
+<li>正規表現をエスケープして単なる文字列として返し，検索する．</li>
+<li>つまりは<code>\V</code>の機能．ただし，普通の正規表現に<strong>加えて</strong>検索できるところが違う．</li>
+</ul>
+
+
+<h3>実装</h3>
+
+<p><code>pattern</code> を受け取って正規表現を返す関数 (<code>s:noregexp()</code>) を実装して，
+<code>incsearch#go()</code>に渡すconfigの<code>converters</code>として渡してあげるだけ．
+※ converterオブジェクトを作って渡してあげる方法もありますが，現時点では関数を渡してできること大差ない．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:noregexp<span class="p">(</span>pattern<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> <span class="s1">&#39;\V&#39;</span> . escape<span class="p">(</span><span class="k">a</span>:pattern<span class="p">,</span> <span class="s1">&#39;\&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">return</span> {<span class="s1">&#39;converters&#39;</span>: [<span class="k">function</span><span class="p">(</span><span class="s1">&#39;s:noregexp&#39;</span><span class="p">)</span>]}
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> z/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config<span class="p">())</span>
+</span><span class='line'><span class="c">&quot; 例: /\vpattern と検索したら \vpattern がマッチする．普通の検索なら pattern だけ</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>めっちゃ簡単!!!</strong></p>
+
+<h2>Special Thanks</h2>
+
+<p>おしょーさん(<a href="https://github.com/osyo-manga">github@osyo-manga</a>)のライブラリには
+毎度お世話になっており，incsearch.vim v2.0 はコマンドラインライブラリである
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> の拡張性があってこそ
+リリースできたことだったり，cmigemoコマンドでも高速に migemo 検索できるのはそのまま
+<a href="https://github.com/osyo-manga/vital-migemo">osyo-manga/vital-migemo</a> のおかげだったりします．</p>
+
+<p>また <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a> でもincsearch.vimの開発に関わる質問をしたりして参考にしたりフィードバックをもらったりしました．
+皆さんありがとうございますっ！</p>
+
+<h2>終わりに．そして次のカイゼンへ&hellip;</h2>
+
+<p>incsearch.vim はシンプルかつVimデフォルトの検索と同じように快適に使用できるオススメプラグインです．
+それがバージョン2.0 になり，望めばもっともっと便利に，拡張可能なものになりました．
+気になった方は是非つかってみてください．</p>
+
+<p>そして incsearch.vim にはまだまだ改善点があるかと思います(ｼﾞｯｻｲあります)．
+なにか見つけた方や「おまえーっ&hellip;APIがなーっ&hellip;ふわふわでなぁーっ&hellip;使いにくくてなーっ&hellip;ゆるさーん(バシーン)」
+という方は <a href="https://github.com/haya14busa/incsearch.vim/issues">Issues</a> や
+<a href="https://twitter.com/haya14busa">twitter:@haya14busa</a>, はたまた <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a>
+あたりなどでフィードバックいただければカイゼンしていきたいと思うのでよろしくお願いしますっ</p>
+
+<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
+
+<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-07-06T01:34:01+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/incsearch-dot-vim-ver-2/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/incsearch-dot-vim-ver-2/" data-via="haya14busa" data-counturl="http://haya14busa.com/incsearch-dot-vim-ver-2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/haya14busa-s-happy-vimming-year-2014/" title="Previous Post: 2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話">&laquo; 2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2015 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/incsearch-dot-vim-ver-2/';
+        var disqus_url = 'http://haya14busa.com/incsearch-dot-vim-ver-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
