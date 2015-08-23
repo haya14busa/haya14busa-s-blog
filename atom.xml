@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-08-23T13:11:00+09:00</updated>
+  <updated>2015-08-23T13:26:23+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -136,7 +136,7 @@ Ruby のディスと見せかけて間接的にperlディスってたりして�
 <p>おもしろトークだった上にめっちゃ開発の参考になる話が多かった．紹介されていた本読みたい -> <a href="http://hitode909.hatenablog.com/entry/yapc2015books">YAPCの発表で紹介した本 - hitode909の日記</a>．
 DDDとかユビキタス言語の導入の話とかがとてもいい話で，僕もやっていきたい．
 最近自分でもプログラムやドキュメントに書いてる単語がブレていたりするのを感じていて，
-<code>ユビキタス言語.md</code> (ファイル名違う気がする) とかをリポジトリに置いて環理するのとかもよさそうと思った．</p>
+<code>ユビキタス言語.md</code> (ファイル名違う気がする) とかをリポジトリに置いて管理するのとかもよさそうと思った．</p>
 
 <p>事前条件/事後条件とかあってそこで 責任外のことをチェックせずお互いを信頼するとスッキリするという話もなんとなくスッキリして面白かった．</p>
 
@@ -145,6 +145,8 @@ DDDとかユビキタス言語の導入の話とかがとてもいい話で，�
 <p>うっかりすることよくあるので，うっかりをなくす技術を聞きに行った．
 assertion ライブラリ的なものを最近作っていたのでassertionの話とかもっと聞きたかった．契約プログラミングとか???(わかってない)
 defer/guard object とかスゴイよさそうだった．golang に defer とかあるようだし，goやっていきたい．</p>
+
+<p>追記: あとせっかくうっかりをなくす技術聴いたのに2日目に会場に荷物忘れるうっかりをやらかした． そしてこの文をブログに書くのを忘れるといううっかりもして，うっかりしないようにするのはムズカシイ&hellip;</p>
 
 <h4>6) <a href="http://yapcasia.org/2015/talk/show/22957e9c-1872-11e5-aca1-525412004261">Lightning Talks Day 1 - YAPC::Asia Tokyo 2015</a></h4>
 
