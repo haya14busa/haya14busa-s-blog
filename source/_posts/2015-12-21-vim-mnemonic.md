@@ -216,7 +216,7 @@ Vimは変更する，削除するといった操作を表すオペレータ`{ope
 全てのオペレータに当てはまっているので憶えておくと便利です．(ソースコードは読んでないので確証がない.)
 
 例えば2文字のオペレータである`gq`([:h gq](http://vim-jp.org/vimdoc-ja/change.html#gq))は
-`gqq`や`gqgq`と打つことでカーソル化の行を整形できたりします．
+`gqq`や`gqgq`と打つことでカーソル下の行を整形できたりします．
 
 
 1つの変更単位としての {operator} {motion|text-objects}
@@ -243,10 +243,9 @@ Vimは変更する，削除するといった操作を表すオペレータ`{ope
 | `y` | コピーする．**y**ankから． | [:h y](http://vim-jp.org/vimdoc-ja/change.html#y)
 | `gU` | 大文字にする．おそらくprefixとして`g` + **U**ppercaseから． 大文字にマッチする正規表現の `\U`． | [:h gU](http://vim-jp.org/vimdoc-ja/change.html#gU)
 | `gu` | 小文字にする．おそらく`gU`の逆で小文字にするから．小文字にマッチする正規表現の `\u`． | [:h gu](http://vim-jp.org/vimdoc-ja/change.html#gu)
-| `>` | 右にインデントをシフトする．見た目から?． | [:h >](http://vim-jp.org/vimdoc-ja/change.html#>)
-| `<` | 左にインデントをシフトする．見た目から?． | [:h \<](http://vim-jp.org/vimdoc-ja/change.html#<)
+| `>` | 右にインデントをシフトする．見た目から?． | <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &lt;</a>
+| `<` | 左にインデントをシフトする．見た目から?． | <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &gt;</a>
 | `zf` | 折畳を作成する．`z`は後述するが"z" は紙片を折った様子を横からみた姿に見えるから．`f`は折りたたみを作成するのが一番基本コマンドと考えて**f**oldから?| [:h zf](http://vim-jp.org/vimdoc-ja/fold.html#zf)
-
 
 他にも由来わからないけど便利なオペレータはあるので使って憶えましょう．個人的に憶えておくと便利そうなものをリストアップ．
 
@@ -309,9 +308,9 @@ vnoremap < <gv
 | `$` | その行の最後の文字に移動. 正規表現の**$**| [:h $](http://vim-jp.org/vimdoc-ja/motion.html#$)
 | `g0` `g^` `g$` | それぞれのスクリーン行バージョン(折り返し考慮) |
 | `gm` | スクリーンの幅の真ん中に移動. **m**idleから．出典: ソースコード. middle of "g0" and "g$".| [:h gm](http://vim-jp.org/vimdoc-ja/motion.html#gm)
-| `f{char}` | 右に向かって [count] 番目に現れる {char} に移動．**f**indから...と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンすはないか...?| [:h f](http://vim-jp.org/vimdoc-ja/motion.html#f)
+| `f{char}` | 右に向かって [count] 番目に現れる {char} に移動．**f**indから...と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンスはないか...?| [:h f](http://vim-jp.org/vimdoc-ja/motion.html#f)
 | `F{char}` |`f`の左に向かうバージョン.| [:h F](http://vim-jp.org/vimdoc-ja/motion.html#F)
-| `t{char}` | 右に向かって [count] 番目に現れる {char} **まで**移動します．**t**ill(〜まで) から | [:h f](http://vim-jp.org/vimdoc-ja/motion.html#f)
+| `t{char}` | 右に向かって [count] 番目に現れる {char} **まで**移動．**t**ill(〜まで) から | [:h f](http://vim-jp.org/vimdoc-ja/motion.html#f)
 | `T{char}` | `t`の左バージョン | [:h f](http://vim-jp.org/vimdoc-ja/motion.html#f)
 
 #### 由来ナゾ
