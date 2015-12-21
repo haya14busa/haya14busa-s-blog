@@ -270,6 +270,21 @@ aside {
   }
 }
 
+.highlight table {
+  margin: 0;
+  border: none;
+}
+
+.highlight tr {
+  border: none;
+}
+
+.highlight td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 table {
   padding: 0;
   margin-bottom: 15px;
