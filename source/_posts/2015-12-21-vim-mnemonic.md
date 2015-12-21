@@ -284,7 +284,7 @@ vnoremap < <gv
 | `R` | 置換モードに入る. **r**eplaceから. | [:h R](http://vim-jp.org/vimdoc-ja/change.html#R)
 | `gr` `gR` | `r`, `R`の仮想文字バージョン. **g** prefix | [:h gr](http://vim-jp.org/vimdoc-ja/change.html#gr) [:h gR](http://vim-jp.org/vimdoc-ja/change.html#gR)
 | `J`, `gJ` | 行を連結する. **J**oin から | [:h J](http://vim-jp.org/vimdoc-ja/change.html#J)
-| `:s/{pattern}/{sring}/{flag}` | 置換コマンド. 省略しないと**s**ubstitute | [:h :substitute](http://vim-jp.org/vimdoc-ja/change.html#:substitute)
+| `:s///` | 置換コマンド. 省略しないと**s**ubstitute | [:h :substitute](http://vim-jp.org/vimdoc-ja/change.html#:substitute)
 
 
 #### 由来ナゾ変更コマンド
