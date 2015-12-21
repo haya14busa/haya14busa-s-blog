@@ -375,7 +375,7 @@
 全てのオペレータに当てはまっているので憶えておくと便利です．(ソースコードは読んでないので確証がない.)</p>
 
 <p>例えば2文字のオペレータである<code>gq</code>(<a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a>)は
-<code>gqq</code>や<code>gqgq</code>と打つことでカーソル化の行を整形できたりします．</p>
+<code>gqq</code>や<code>gqgq</code>と打つことでカーソル下の行を整形できたりします．</p>
 
 <h2>1つの変更単位としての {operator} {motion|text-objects}</h2>
 
@@ -429,12 +429,12 @@
 <tr>
 <td> <code>&gt;</code> </td>
 <td> 右にインデントをシフトする．見た目から?． </td>
-<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#>&#8221;>:h ></a></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &lt;</a></td>
 </tr>
 <tr>
 <td> <code>&lt;</code> </td>
 <td> 左にインデントをシフトする．見た目から?． </td>
-<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#&lt;">:h &lt;</a></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &gt;</a></td>
 </tr>
 <tr>
 <td> <code>zf</code> </td>
@@ -563,7 +563,7 @@
 <td> <a href="http://vim-jp.org/vimdoc-ja/change.html#J">:h J</a></td>
 </tr>
 <tr>
-<td> <code>:s/{pattern}/{sring}/{flag}</code> </td>
+<td> <code>:s///</code> </td>
 <td> 置換コマンド. 省略しないと<strong>s</strong>ubstitute </td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/change.html#:substitute">:h :substitute</a></td>
 </tr>
@@ -638,7 +638,7 @@
 </tr>
 <tr>
 <td> <code>f{char}</code> </td>
-<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンすはないか&hellip;?</td>
+<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンスはないか&hellip;?</td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
 </tr>
 <tr>
@@ -648,7 +648,7 @@
 </tr>
 <tr>
 <td> <code>t{char}</code> </td>
-<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動します．<strong>t</strong>ill(〜まで) から </td>
+<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動．<strong>t</strong>ill(〜まで) から </td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
 </tr>
 <tr>
@@ -896,7 +896,7 @@
 
 <p>基本的なテキストオブジェクトは<code>i</code>, <code>a</code>の2種類がそれぞれprefixとしてつくものが多い．
 <code>i</code>は <strong>i</strong>nner(内部)を表し，<code>a</code>は<strong>a</strong>(1つの)まとまり(&ldquo;a&#8221;n object)を表している．
-<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;innter&#8221;と&#8221;a&#8221;です．</p>
+<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;inner&#8221;と&#8221;a&#8221;です．</p>
 
 <table>
 <thead>
@@ -1577,7 +1577,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/hatena-intern-2015/" title="Previous Post: はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた">&laquo; はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた</a>
+        <a class="basic-alignment left" href="/yapcasia-2015/" title="Previous Post: ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習">&laquo; ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習</a>
       
       
     </p>

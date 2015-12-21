@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-12-21T16:59:08+09:00</updated>
+  <updated>2015-12-21T17:57:53+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -286,7 +286,7 @@
 全てのオペレータに当てはまっているので憶えておくと便利です．(ソースコードは読んでないので確証がない.)</p>
 
 <p>例えば2文字のオペレータである<code>gq</code>(<a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a>)は
-<code>gqq</code>や<code>gqgq</code>と打つことでカーソル化の行を整形できたりします．</p>
+<code>gqq</code>や<code>gqgq</code>と打つことでカーソル下の行を整形できたりします．</p>
 
 <h2>1つの変更単位としての {operator} {motion|text-objects}</h2>
 
@@ -340,12 +340,12 @@
 <tr>
 <td> <code>&gt;</code> </td>
 <td> 右にインデントをシフトする．見た目から?． </td>
-<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#>&#8221;>:h ></a></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &lt;</a></td>
 </tr>
 <tr>
 <td> <code>&lt;</code> </td>
 <td> 左にインデントをシフトする．見た目から?． </td>
-<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#&lt;">:h &lt;</a></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#shift-left-right">:h &gt;</a></td>
 </tr>
 <tr>
 <td> <code>zf</code> </td>
@@ -474,7 +474,7 @@
 <td> <a href="http://vim-jp.org/vimdoc-ja/change.html#J">:h J</a></td>
 </tr>
 <tr>
-<td> <code>:s/{pattern}/{sring}/{flag}</code> </td>
+<td> <code>:s///</code> </td>
 <td> 置換コマンド. 省略しないと<strong>s</strong>ubstitute </td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/change.html#:substitute">:h :substitute</a></td>
 </tr>
@@ -549,7 +549,7 @@
 </tr>
 <tr>
 <td> <code>f{char}</code> </td>
-<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンすはないか&hellip;?</td>
+<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンスはないか&hellip;?</td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
 </tr>
 <tr>
@@ -559,7 +559,7 @@
 </tr>
 <tr>
 <td> <code>t{char}</code> </td>
-<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動します．<strong>t</strong>ill(〜まで) から </td>
+<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動．<strong>t</strong>ill(〜まで) から </td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
 </tr>
 <tr>
@@ -807,7 +807,7 @@
 
 <p>基本的なテキストオブジェクトは<code>i</code>, <code>a</code>の2種類がそれぞれprefixとしてつくものが多い．
 <code>i</code>は <strong>i</strong>nner(内部)を表し，<code>a</code>は<strong>a</strong>(1つの)まとまり(&ldquo;a&#8221;n object)を表している．
-<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;innter&#8221;と&#8221;a&#8221;です．</p>
+<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;inner&#8221;と&#8221;a&#8221;です．</p>
 
 <table>
 <thead>
@@ -1435,240 +1435,6 @@
 <p>おわり．</p>
 
 <p><strong>Vim のコマンドを覚えて思考のスピードで編集しましょう!!!</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた]]></title>
-    <link href="http://haya14busa.com/hatena-intern-2015/"/>
-    <updated>2015-09-06T19:52:09+09:00</updated>
-    <id>http://haya14busa.com/hatena-intern-2015</id>
-    <content type="html"><![CDATA[<h2>NOTE</h2>
-
-<ul>
-<li><a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a></li>
-<li><a href="http://hatenacorp.jp/recruit/intern2015/entry#detail_cloud">クラウドサーバ 管理システムコース</a>
-
-<ul>
-<li>Mackerel</li>
-</ul>
-</li>
-<li>GitHub
-
-<ul>
-<li><a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
-<li><a href="https://github.com/hatena/scala-Intern-Bookmark">hatena/scala-Intern-Bookmark</a></li>
-<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
-<li><a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
-</ul>
-</li>
-<li>Mackerel 周辺
-
-<ul>
-<li><a href="http://motemen.hatenablog.com/entry/2014/10/10/nanapi-hatena-mackerel-workflow">はてなMackerelチームの開発フロー（スクラム、リモート）について話しました #nanapi_study #hatenatech - 詩と創作・思索のひろば</a></li>
-<li><a href="https://hatena.stores.jp/items/559dd4592b34924b8000255e">はてなTシャツ2015（Mackerel/スミ） | Hatena Official Store</a></li>
-<li><a href="http://www.songmu.jp/riji/entry/2015-08-21-yapc-asia-2015-talk.html">YAPC::Asia 2015で「Mackerel開発におけるScalaとGo、そしてPerl」というトークをします | おそらくはそれさえも平凡な日々</a></li>
-<li><a href="http://yuuki.hatenablog.com/entry/2013/09/21/154911">YAPC::Asia 2013ではてなのサーバ管理ツールの話のはなしをしました - ゆううきブログ</a></li>
-<li><a href="http://sssslide.com/speakerdeck.com/hakobe/scala-in-perl-company">Scala In Perl Company - SSSSLIDE</a></li>
-</ul>
-</li>
-<li>Mackerel 公式 &amp; blog
-
-<ul>
-<li><a href="https://mackerel.io/">Mackerel: A Revolutionary New Kind of Application Performance Management</a></li>
-<li><a href="https://mackerel.io/ja/">Mackerel（マカレル）: 新世代のサーバ管理・監視ツール</a></li>
-<li><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio</a>
-
-<ul>
-<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/09/03/202748" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748" data-mce-href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">blog-ja.mackerel.io</a></cite></li>
-</ul>
-</li>
-<li><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio</a>
-
-<ul>
-<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/09/03/164747" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747" data-mce-href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">blog-ja.mackerel.io</a></cite></li>
-</ul>
-</li>
-<li><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio</a>
-
-<ul>
-<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/08/28/102316" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316" data-mce-href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">blog-ja.mackerel.io</a></cite></li>
-</ul>
-</li>
-<li><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio</a>
-
-<ul>
-<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/08/21/104903" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903" data-mce-href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">blog-ja.mackerel.io</a></cite></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>YAPC
-
-<ul>
-<li>上記と同じ．<a href="http://www.songmu.jp/riji/entry/2015-08-21-yapc-asia-2015-talk.html">YAPC::Asia 2015で「Mackerel開発におけるScalaとGo、そしてPerl」というトークをします | おそらくはそれさえも平凡な日々</a></li>
-<li>Mackerel がいろんなトークで出てきてた．</li>
-<li>懇親会でちょっと聞いたりもした．便利ならしい．欲しい機能を聞いたがagent側触らないとダメなのでつらそうだった．</li>
-<li><a href="http://yapcasia.org/2015/talk/show/de9e7a1e-136d-11e5-a9fc-d9f87d574c3a">Perlの上にも三年 〜 ずっとイケてるサービスを作り続ける技術 〜 - YAPC::Asia Tokyo 2015</a></li>
-</ul>
-</li>
-<li>Scala, Bookmark
-
-<ul>
-<li>taraoさん</li>
-</ul>
-</li>
-<li>Vim
-
-<ul>
-<li><blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Outline</h2>
-
-<ul>
-<li>はてなインターン TL;DR</li>
-<li>はてなインターンへの応募，そして決断</li>
-<li>はてなインターンと事前課題
-
-<ul>
-<li>ScalaでLTSVパーザって課題めっちゃよい</li>
-</ul>
-</li>
-<li>はてなインターンとVim</li>
-<li>はてなインターンとScala</li>
-<li>はてなインターンと前半戦 | Webサービス開発講義・課題</li>
-<li>はてなインターンと後半戦 | サービス開発・研究期間</li>
-<li>はてなインターンとMackerel
-
-<ul>
-<li>はてなインターンとYAPC</li>
-<li>Google の広告が575だった</li>
-</ul>
-</li>
-<li>はてなインターンといい話
-
-<ul>
-<li>受託とか</li>
-<li>ドロドロした話</li>
-</ul>
-</li>
-<li>はてなインターンと語彙
-
-<ul>
-<li><a href="http://hitode909.hatenablog.com/entry/2014/12/02/205958">「シュッとやる」の解説 - hitode909の日記</a></li>
-</ul>
-</li>
-<li>はてなインターンと仲間たち</li>
-<li>はてなインターンまとめ</li>
-</ul>
-
-
-<h2>What I Learned</h2>
-
-<ul>
-<li>Advanced Rest Client</li>
-<li>git pull の rebase オプション</li>
-</ul>
-
-
-<h2>Mackerel</h2>
-
-<ul>
-<li>はてな社員がドッグフーディングしてるのがよい．YAPCあたりで知り合いの参加者に聞いた話でもある．</li>
-</ul>
-
-
-<h2>はてなインターン TL;DR</h2>
-
-<ul>
-<li><del>噂の(?)今年のインターン生の Emacs 率が0だった</del>
-今年はScalaやSwiftコースがあったりよりアツいのでは&hellip;?と噂の(?)はてなインターンに参加してきました．実際アツイじゃん&hellip;?</li>
-<li>僕は言語がScalaのMackerelコースだったので， Scala を Vim で書いて Mackerel 便利にして優勝してきましたっ! めでたいっ 🎉🎉🎉</li>
-<li>はてなインターンで優秀なはてなの社員さんや他のインターン生の仲間と開発できたのは最高の体験でした．楽しすぎた&hellip;</li>
-</ul>
-
-
-<p>※ エディタの話は重要でゎなぃ(書かなきゃいけない衝動に駈られた)</p>
-
-<h2>はてなインターンとVim</h2>
-
-<p>※ <strong>エディタの話は重要でゎなぃ(再)</strong></p>
-
-<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote>
-
-
-<p><del>はてなインターンに参加するにはVimをやるほうがよいってことデスね&hellip;?</del></p>
-
-<p>&hellip;というのはもちろん冗談ですが，はてなでは普段からつかう開発の道具も使いこなして本質に集中しましょう!
-という文化もあります．開発環境はScalaのチームであっても自分で決めてもいいエディタの自由があって僕はもちろん Vim を使いました．
-あと，エディタだけではなくてOSも自由で，基本Macが多いですがLinux使いたければ使ってもいいという世界観で
-僕はArch LinuxベースのManjaro Linux使ってたりもしました．</p>
-
-<p>エディタの話に戻るとVimやEmacs, Atom などなど使いこなしている人が多くて，お昼休みとか懇親会とかでいろいろ話を聞きたければ聞けてます．
-僕は普段からお世話になっている <a href="http://blog.hatena.ne.jp/itchyny/">id:itchyny</a> さんに開発の話とか結構聞けていい体験でした．
-現 Emacs Evilのメンテナ? の<a href="http://d.hatena.ne.jp/tarao/">id:tarao</a>さんもいて，taraoさんにはお昼休みとかに言語の話とか
-ブックマークの話とかいろいろ話を聞けたんですが，Evilの話聞くの忘れていたことをいまブログを書いて思い出しました．
-ぐぬぬ&hellip;また聞きにいきたい.</p>
-
-<h2>はてなインターンと僕</h2>
-
-<p>で，お前誰よ? っていうことですが現在M1の，ここまででお察しの通りVimが好きなVimmerです．</p>
-
-<ul>
-<li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
-<li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
-</ul>
-
-
-<p>Scalaについては以前にバイトで1年くらい書いていたりしました．</p>
-
-<h2>はてなインターンへの応募，そして合格</h2>
-
-<p>はてなインターンについては前年度以前のブログなどから評判は聞いていて，めっちゃ面白そうじゃん&hellip;?と思ってました．
-去年は卒業研究が忙しくてインターンどころではなく，一昨年はまぁ能力たりなさすぎて無理だろう&hellip;<del>というのと perl かぁ〜</del> という
-思いで応募すら出来ていませんでしたが，今年から言語が Scala (!)のコースができていたこともあって勢いで応募しました．</p>
-
-<p>ところで実際にインターンに参加してから，もし仮に書く言語が perl
-だったとしても来たほうが絶対良かったなと全体を通して思いましたので，
-もし来年度以降のインターンに応募しようと思っているけど perl がちょっとネック&hellip;
-くらいで参加を迷ってるなら絶対参加したほうがよいと思います!</p>
-
-<p>結局僕は perl 1行も書きませんでしたが．Scala最高!!!．</p>
-
-<p>はてなインターンの選考についてはポートフォリオをウェブページやPDFといった自由な形式で提出して，
-場合によっては面接などをして決めるようです．</p>
-
-<p>僕は面接はなくポートフォリオだけで，最初はオサレポートフォリオサイト作ったほうがいいかなぁ&hellip;
-と思っていたのですがその時間もなかったので結局PDFでスライド形式のものを作って提出しました．</p>
-
-<p>内容に関しては，普段つくってるプロダクトとかポートフォリオに書けそうな内容の95%くらいは Vim に関してだったので
-ポートフォリオも95%くらいVimについて書いてましたがなんとか合格したようです．
-ちゃんと評価されてよかった&hellip;</p>
-
-<p>はてなインターンと事前課題</p>
-
-<hr />
-
-<div class="github-card" data-github="hatena/Hatena-Intern-Exercise2015" data-width="400" data-height="" data-theme="default"></div>
-
-
-<ul>
-<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
-<li>僕の解答: <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
-</ul>
-
-
-<p>さて，はてなインターンの</p>
-
-<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 ]]></content>
   </entry>
   
@@ -5376,6 +5142,225 @@ endfunction</code></pre>
 
 
 <p>製作者のおしょーさん曰く、魔改造されていて自分でも難しいとのこと[要出典]なので、気合を入れて読む必要があるかもしれません。Vim script力の高まりを感じましょう。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vimのhelpを快適に引こう]]></title>
+    <link href="http://haya14busa.com/reading-vim-help/"/>
+    <updated>2014-01-26T00:00:00+09:00</updated>
+    <id>http://haya14busa.com/reading-vim-help</id>
+    <content type="html"><![CDATA[<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の58日目の記事です。 57日目は<a href="https://twitter.com/deris0126">@deris0126</a>さんによる<a href="http://deris.hatenablog.jp/entry/2014/01/26/124336">Vimのタブで開いているバッファのdiffを簡単に表示するpluginを書いた</a>でした。</p>
+
+<p>Vimのhelpを自由自在に引けることは、真のvimmerになるための第一歩。</p>
+
+<blockquote><p>:helpを使いこなす = Vimを極めるための一歩</p>
+
+<p>&#8211; <cite><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></cite></p></blockquote>
+
+<p>ということで、数多くのVimmerがVimのhelpの使い方を解説したり、おすすめのhelpを紹介したりしています。しかし、helpを読むための設定、カスタマイズ方法を紹介するものがあまりないように思えたので、今回は既存のhelpに関する記事のまとめと、設定/カスタマイズ方法を中心に書いていきます。</p>
+
+<h2>help記事のまとめ</h2>
+
+<h3>Helpの使い方全般</h3>
+
+<ul>
+<li><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></li>
+<li><a href="http://vim-users.jp/2009/07/hack45/">Vim-users.jp &#8211; Hack #45: help を引く</a></li>
+<li><a href="http://vim-users.jp/2011/02/hack199/">Vim-users.jp &#8211; Hack #199: :helpに慣れ親しむ</a></li>
+<li><a href="http://nanasi.jp/articles/howto/help/vim_help.html">vimエディタの「help」コマンドの使い方 — 名無しのvim使い</a></li>
+</ul>
+
+
+<p>まずは上記の記事や<a href="http://vim-jp.org/vimdoc-ja/helphelp.html">:h helphelp.txt</a>で使い方を覚えましょう。さらっと流し見するだけでも未だに使いこなせてないものがたくさん見つかったりなどすることがあり、今一度読んでみるのもいいのではないでしょうか。</p>
+
+<p>詳しい使い方については上記の記事でほぼ解説されているのでここでは割愛します。</p>
+
+<h3>おすすめのhelp</h3>
+
+<ul>
+<li><a href="http://cohama.hateblo.jp/entry/2013/07/28/235823">おすすめの :help まとめ &#8211; 反省はしても後悔はしない</a></li>
+</ul>
+
+
+<p>覚えておくor読むと良さげなhelpがたくさん紹介されています。</p>
+
+<p>ここに載ってるものを除いて独断でおすすめすると</p>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
+<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a>
+
+<ul>
+<li>(motion.txtの一部)</li>
+</ul>
+</li>
+<li><a href="http://vim-jp.org/vimdoc-ja/cmdline.html#cmdwin">:h cmdwin</a></li>
+</ul>
+
+
+<p>このあたりですね。</p>
+
+<p>motion.txtはhjklからtext-objects,inclusive/exclusiveのような普段あまり意識しない概念など、詳しくmotionについて書かれているので時間があるときに読むと面白いです。</p>
+
+<p>cmdwinについてはちょっとした思い入れがあるという個人的な紹介です。</p>
+
+<p>Vimの設定/操作法を大きく変更するときは、何かとVACの記事などでおすすめされているものをみて設定するということが多いのですが、通常のcommandlineからcommandline-windowに乗り換えたきっかけは僕の場合helpを読んでいて便利そう！と感じたからでした。</p>
+
+<p>よりよい設定方法を模索するためにその後コマンドラインウィンドウに関する記事を読んだりはしましたが、「記事を読む->便利かも?」という流れより「help読んで便利そう-> もっといい設定法ないか探す」という流れのほうが愛着が沸くのでオススメです。</p>
+
+<h2>ここから設定Tips</h2>
+
+<h3><strong>K</strong>でカーソル下の単語のhelpを引く</h3>
+
+<pre><code>set keywordprg=:help " Open Vim internal help by K command
+</code></pre>
+
+<p>デフォルトでKはmanを引く設定になっていますが、上記の設定でvimのhelpを引けるようになります。visualモードで選択した範囲を引くこともできます。引きたいものが関数だと括弧を含めるかどうかで結果が変わるので<code>(</code>を含めて選択して引くといったことができるのでいい感じです。K押しやすい。</p>
+
+<h3>helpがちょっと読みにくい</h3>
+
+<pre><code>nnoremap &lt;Space&gt;t :&lt;C-u&gt;tab help&lt;Space&gt;
+nnoremap &lt;Space&gt;v :&lt;C-u&gt;vertical belowright help&lt;Space&gt;
+" MoveToNewTab
+nnoremap &lt;silent&gt; tm :&lt;C-u&gt;call &lt;SID&gt;MoveToNewTab()&lt;CR&gt;
+function! s:MoveToNewTab()
+    tab split
+    tabprevious
+
+    if winnr('$') &gt; 1
+        close
+    elseif bufnr('$') &gt; 1
+        buffer #
+    endif
+
+    tabnext
+endfunction
+</code></pre>
+
+<p>参考: <a href="http://www.sopht.jp/blog/index.php?/archives/445-vim.html">あにゃログ &#8211; vim でタブを使う</a></p>
+
+<p>直接helpとは関係ありませんが、使い始めの頃helpのウィンドウが読みづらくて仕方なかった覚えがあります。特に開いた後ちまちまwindowのサイズを大きくするのは面倒くさい。</p>
+
+<p>ということで、最初からtab/vsplitで開く設定や、カレントウィンドウを別のタブに開き直すキーマップを使うといいと思います。MoveToNewTabの設定によって「気軽にKで開く->本格的に読みたいからタブページで開き直す」という流れなどがスムーズになっておすすめです。</p>
+
+<p>カレントウィンドウを別のタブに開き直すMoveToNewTabの設定は最初の頃設定してライフチェンジングした覚えがあり、今でもかなり使ってます。help以外でも使えますね。</p>
+
+<h3>help用の設定をする</h3>
+
+<pre><code>augroup MyVimrc
+  autocmd!
+augroup END
+
+" qでhelpを閉じる
+autocmd MyVimrc help nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+
+" 一気に複数設定する場合
+function! s:init_help()
+  nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
+  nnoremap &lt;buffer&gt; &lt;Space&gt;&lt;Space&gt; &lt;C-]&gt;
+  " etc ...
+endfunction
+autocmd MyVimrc help call s:init_help()
+</code></pre>
+
+<p>個人的にはqで閉じるくらいしか設定していませんが、もっと便利な設定とかきっとあるので自分好みにしていきたい。</p>
+
+<h3>日本語でも読みたい</h3>
+
+<ul>
+<li><p><a href="https://github.com/vim-jp/vimdoc-ja">vim-jp/vimdoc-ja</a></p>
+
+<p>set helplang&amp; helplang=en,ja &ldquo; If true Vim master, use English help file.
+NeoBundle &lsquo;vim-jp/vimdoc-ja&rsquo;</p></li>
+</ul>
+
+
+<p>僕の場合最初は英語だけを設定しており、なんとか頑張ってhelpを読むといった状態でした。</p>
+
+<p>それはそれでいいことだとも言えるのですが、なんだかんだ日本語だとよりわかりやすかったり、英語でわからなかったら日本語で読めばいいという安心感からhelpを読む抵抗が減るので、英語環境でvimを使っていてまだ使っていない方はインストールしておくと良いと思います。</p>
+
+<p>上記の設定だとkeywordの後に@jaをつけることで日本語helpが読め、デフォルトでは英語になります。</p>
+
+<h3>自動でhelpを折りたたんでほしい</h3>
+
+<ul>
+<li><p><a href="https://github.com/thinca/vim-ft-help_fold">thinca/vim-ft-help_fold</a></p>
+
+<p>NeoBundleLazy &lsquo;thinca/vim-ft-help_fold&rsquo;, {
+      \ &lsquo;filetypes&rsquo; : &lsquo;help&rsquo;
+      \ }</p></li>
+</ul>
+
+
+<p>これは、前々から思っていて、無ければ自分で作ってみようかと思っていた時期が僕にもありました。</p>
+
+<p>が、調べてみるとthincaさんがすでに作ってた。試してみたところfoldtextも含めいい感じに折りたたんでくれます。</p>
+
+<p>折りたたみ好きはぜひ</p>
+
+<h3>Uniteでhelpを引く</h3>
+
+<ul>
+<li><a href="https://github.com/tsukkee/unite-help">tsukkee/unite-help</a></li>
+<li><p><a href="https://github.com/Shougo/unite-help">Shougo/unite-help</a></p>
+
+<p>&ldquo; NeoBundleLazy &lsquo;tsukkee/unite-help&rsquo;
+NeoBundleLazy &lsquo;Shougo/unite-help&rsquo;, {
+      \ &lsquo;unite_sources&rsquo; : &lsquo;help&rsquo;
+      \ }</p>
+
+<p>&ldquo; Execute help.
+nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+&rdquo; Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
+</ul>
+
+
+<p>書いている時に気づいたのですがShougoさんのfork版が存在してメンテナンスされてるっぽいです。中身の差分みてないので何が改善されてるかは知らない(怠慢)</p>
+
+<p>追記: 主にキャッシュ周りが改善されているようです</p>
+
+<p>Uniteでインクリメンタルに検索できてhelpが格段にひきやすくなるので良さげです。</p>
+
+<h2>ブラウザでもhelpを引く</h2>
+
+<ul>
+<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a>(日本語)</li>
+<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>(英語)</li>
+</ul>
+
+
+<p>Vim記事を呼んでいるとき、LingrのVim部屋で気になるものがあったけど、botに検索してもらうほどでもないかな..というとき、手元のタブレットでvimのヘルプが読みたいときなどなど、ブラウザでvimのhelpを読めると便利な場面がきっとあるとおもいます。</p>
+
+<p>そんな時は上記の日本語版ヘルプ or Sourceforgeの本家のヘルプを読むといいんですが、日本語版は検索がGoogleカスタム検索で少し不便、英語版は検索機能は高いけどレイアウトが見づらい&#8230;両方わざわざアクセスするの面倒くさい&#8230;</p>
+
+<p>そういった不満を改善する(かもしれない)ブックマークレット、作りました。</p>
+
+<p>GitHub: <a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
+
+<ul>
+<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
+<li><a href="javascript:(function(){var">vimdoc@en</a></li>
+<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
+</ul>
+
+
+<p>ブックマークバーにドラッグ&amp;ドロップで登録できます。</p>
+
+<p>上から日本語版ヘルプを検索、英語版ヘルプを検索、どちらかを開いているときにもう片方の言語で開くブックマークレットです。(en-to-jaとかネーミングおかしいのは目を瞑りましょう)</p>
+
+<p>vimdoc@ja,@enは事前に選択しておくとそのワードで検索します。これでVim記事読む時もhelpが手軽に読めて便利。</p>
+
+<p>日本語版ヘルプの検索機能は、Googleカスタム検索ではなく、おしょーさんにつけてもらったLingrのbotが使っている方法のリダイレクトバージョンを使っているので、ほとんどvimの検索ワードと同じように使えるはずです。おしょーさんありがとうございます。</p>
+
+<h2>まとめ</h2>
+
+<p>ここまで個人的に有用だと思うhelpに関する設定やプラグインを紹介しましたが、もっと便利な設定や知見がきっとたくさんあります。それを上級Vimmerに教えてもらう&#8230;のもいいですが、それだけでなく自分でhelpを読み込んで使いこなせるようになりましょう!(自戒)</p>
+
+<p><strong>Let&#8217;s :help!</strong></p>
+
+<p><strong>Don&#8217;t panic!</strong></p>
 ]]></content>
   </entry>
   

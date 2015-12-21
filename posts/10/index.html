@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="追記: VAC2012でもっと詳しい紹介記事を書きました Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa Vim-Easymotionが好き 僕がvimのプラグインを導入して、一番最初に感動したのはvim-easymotionでした[要出典] &hellip;">
+  <meta name="description" content="GitでWPにPostしたくなった 最近Git使い出して、GitHubに気軽にコードとREADMEをpushしたりできて、こんなに便利だと記事をGitで管理して、出来ればgit push,または簡単なコマンドを打てばWordPressに投稿できるようにしたい！と思うのは必然ですよね？. git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,170 +76,6 @@
       <div id="content">
         <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/change-vim-easymotion-from-lokaltog-to-forked/">Vim-EasyMotionをforkされた拡張バージョンに変更する</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>追記: VAC2012でもっと詳しい紹介記事を書きました</p>
-
-<p><a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a></p>
-
-<h2>Vim-Easymotionが好き</h2>
-
-<p>僕がvimのプラグインを導入して、一番最初に感動したのは<a href="https://github.com/Lokaltog/vim-easymotion">vim-easymotion</a>でした[要出典]</p>
-
-<p>特にvim触りたての頃なんてj連打で移動していたりなんかしてるので、カーソル移動系のプラグインは余計感動モノです。</p>
-
-<p>そんなvim-easymotionを今でも使いまくってるのですが、少し不満な点、こんな機能あったら良くない？っていう点がありました。</p>
-
-<ol>
-<li>移動先の候補がたくさんあって2回打たなければならないとき面倒くさい
-
-<ul>
-<li>この記事で解決</li>
-</ul>
-</li>
-<li>カーソルより左(F)か右(f)かのどちらかでしかサーチできないけど、画面内に収まってる全範囲でサーチ出来るようにしたい。
-
-<ul>
-<li>この記事で解決</li>
-</ul>
-</li>
-<li>Visualモードでのバグを是非fixしてほしい
-
-<ul>
-<li>仕様かも。相対行使ってるから難しいとか？</li>
-</ul>
-</li>
-<li>Insertモードでも使いたい()
-
-<ul>
-<li>無理。しかも正直なくてもよい</li>
-</ul>
-</li>
-</ol>
-
-
-<p>2に関しては最初は<code>H&lt;Leader&gt;f</code>して、エスケープで中断されたら<C-o>でカーソル位置を戻すvimscriptとか作ればいいのかなーとか考えてたりしたんだけど、そういえばForkされてるやつあるんじゃね？と思いつきGithubへ。</p>
-
-<h2>Githubで探す</h2>
-
-<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
-
-<p>Githubのネットワークグラフで探してみると、案の定拡張機能付きのForkされたものがありました。</p>
-
-<p>ただ多すぎてどれが一番いいかわからないorz</p>
-
-<p>単純に一番最新のものを使うという手もあるけど、スターも付いてなかったのでそこそこスターついてて、拡張された奴を選びました。</p>
-
-<p><a href="https://github.com/supasorn/vim-easymotion">supasorn/vim-easymotion</a></p>
-
-<p><code>&lt;Leader&gt;s</code>でforword-backword serchが出来る他、<code>vl</code>や<code>yl</code>で行選択や行単位のヤンクを便利にしてくれるというお節介機能付き。(<code>vl</code>とか使うのでやめて…)</p>
-
-<p>またtwo-key comboとして、候補が多い時はじめから2つキーを表示してくれるようになります。</p>
-
-<h2>ということで.vimrc</h2>
-
-<p>.vimrc</p>
-
-<pre><code>" vim-easymotion
-"------------------------------------
-let g:EasyMotion_leader_key = ';'
-let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;:f'
-
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
-
-" forked easymotion extention
-let g:EasyMotion_special_select_line = 0
-let g:EasyMotion_special_select_phrase = 0
-
-let g:EasyMotion_leader_key = ';'
-</code></pre>
-
-<p>呼び出すキーを&#8217;;&lsquo;に変更.</p>
-
-<pre><code>let g:EasyMotion_keys='hjklasdgyuiopqwertnmzxcvb;:f'
-</code></pre>
-
-<p>晴れて最初から2つキーを表示してくれるようになったので、候補から打ちにくいキーは全面的に消してみる。</p>
-
-<pre><code>let g:EasyMotion_special_select_line = 0
-let g:EasyMotion_special_select_phrase = 0
-</code></pre>
-
-<p><code>vl</code>で行選択を楽にって言われてもそこまで便利にならないし、何より<code>vl</code>とか普通に使うので機能をOFFに。</p>
-
-<p>ドキュメントがFork元のものなので、ソース直接見ないとキーマップの変更の仕方とかわからないという罠。</p>
-
-<p>ハイライトの設定も追加しなくてはならないのによくわかんないので保留…</p>
-
-<p>すこしつまずきはあったもののこれで快適easymotion生活！</p>
-
-<h2>使いそうなコマンドまとめ</h2>
-
-<dl>
-<dt><code>;f</code></dt>
-<dd>  カーソルより右側の任意の文字を検索</dd>
-<dt><code>;F</code></dt>
-<dd>  カーソルより左側の任意の文字を検索</dd>
-<dt><strong><code>;s</code></strong></dt>
-<dd>  画面内の任意の文字を検索(双方向)</dd>
-<dt><code>;j</code></dt>
-<dd>  下方向に行移動</dd>
-<dt><code>;k</code></dt>
-<dd>  上方向に行移動</dd>
-<dt><code>;w</code></dt>
-<dd>  カーソルより右側の単語移動</dd>
-<dt><code>;b</code></dt>
-<dd>  カーソルより左側の単語移動</dd>
-<dt><code>;n</code></dt>
-<dd>  前方検索</dd>
-<dt><code>;N</code></dt>
-<dd>  後方検索</dd>
-</dl>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/change-vim-easymotion-from-lokaltog-to-forked/">Vim-EasyMotionをforkされた拡張バージョンに変更する</a>
-      <time datetime="2013-08-16T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
   
   
     <article>
@@ -923,6 +759,177 @@ fi
       <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/jb/'>jb</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/python-enumerate-prime/">Pythonで素数数え上げスクリプト</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-28T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>書きました</h2>
+
+<p>Github -> <a href="https://github.com/haya14busa/prime-sieve">haya14busa/prime-sieve</a></p>
+
+<p><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a>の記事読んだ時はそんなやる気なかったのについ手をだしてしまった。<a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>って名前は知らなかったけど、そのアルゴリズムは読まなくても使おうと思いながら読んでたよ！って言っても記事読んでから書いたからｱﾚ。</p>
+
+<p>まったくもってブログにあげるレベルじゃないけど、意外と<code>set</code>使ったり、<code>iterator</code>意識したりとかのPython記事見つからなかったので一応書いてみた。適当に比較した感じでは速くなってるので満足です。素数ガチ勢じゃないから</p>
+
+<blockquote><p>確率的素数判定法 : 素数判定法の中には確率的アルゴリズムに基づいた、与えられた自然数 n を「合成数である」または「良く分からない」と判別する判定法がある。</p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/素数判定">素数判定 &#8211; Wikipedia</a></cite></p></blockquote>
+
+<p>とか使って高速化とかまでは妥協。</p>
+
+<h2>Code</h2>
+
+<p>prime_sieve.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+''' Enumerate prime numbers upto 10000 '''
+
+import time
+import sys
+
+argvs = sys.argv
+if len(argvs) &lt; 2:
+    MAX = 10000
+else:
+    try:
+        MAX = int(argvs[1])
+    except:
+        MAX = 10000
+
+def sqrt(num):
+    sq = num ** .5
+    return sq
+
+def main():
+    prime_set = set(xrange(2,MAX+1))
+    possible_set = set(xrange(2,int(sqrt(MAX+1))))
+    temp_set = set() # append prime upto sqrt(MAX)
+    while 1:
+        try:
+            prime = sorted(possible_set).pop(0)
+            temp_set.add(prime)
+        except:
+            prime_set = sorted(prime_set | temp_set)
+            print 'List: ', prime_set
+            print 'Count: ', len(prime_set)
+            return
+        prime_set = set(ifilter(lambda x: x % prime, prime_set))
+        possible_set = set(ifilter(lambda x: x % prime, possible_set))
+
+
+if __name__ == '__main__':
+    starttime = time.clock()
+    from itertools import ifilter
+    main()
+    endtime = time.clock()
+    time = endtime - starttime
+    print 'Time: ', time
+</code></pre>
+
+<h3>使用法</h3>
+
+<pre><code>$ git clone git@github.com:haya14busa/prime-sieve.git
+$ python prime_stieve.py [引数]
+</code></pre>
+
+<p>引数なしの場合、デフォルトで10000までの素数列挙します。</p>
+
+<h2>注意点</h2>
+
+<ul>
+<li>xrangeを使って既にソートされてる順番のリストをset変換しても、操作してたり(？)すると少しバラバラになるっぽい</li>
+<li>ので、素数ポップアウトする際は、<code>sorted(set).pop(0)</code>とする必要があります。</li>
+<li>もしやらなかった場合、だいたい15000くらいまでは正しく動くのですが、それ以降で失敗します。この辺の挙動が謎。</li>
+</ul>
+
+
+<h2>感想</h2>
+
+<p>アルゴリズムとコードの書き方の両者とも意識することで、想像してた以上に速くなったのでちょくちょくその辺も意識したい感じ。正しく使われてる気がしないtry、catchの使い方とか書き方がなってないので、<a href="http://www.amazon.co.jp/Python-%E3%82%AF%E3%83%83%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF-%E7%AC%AC2%E7%89%88-Alex-Martelli/dp/4873112761?tag=haya14busa-22">Python クックブック</a>とかちゃんとこなそう。</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41XWUXpgeuL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank">Python クックブック 第2版</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Alex Martelli,Anna Martelli Ravenscroft,David Ascher
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        オライリー・ジャパン 2007-06-26
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 4,410
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩 &#8211; Wikipedia</a></li>
+<li><a href="https://codeiq.jp/">CodeIQ｜ITエンジニアのための実務スキル評価サービス</a></li>
+<li><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a></li>
+<li><a href="http://d.hatena.ne.jp/r_ikeda/20111028/prime">Python で素数を求めるアルゴリズムを書いてみる &#8211; 集中力なら売り切れたよ</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/python-enumerate-prime/">Pythonで素数数え上げスクリプト</a>
+      <time datetime="2013-07-28T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>28</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
       
       </footer>
     </article>
