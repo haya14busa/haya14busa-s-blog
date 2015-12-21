@@ -9,7 +9,8 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Vim Advent Calendarです この記事はVim Advent Calendar 2013 : ATNDの 108 日目の記事になります。日付がおかしいとか細かいことは気にしてはいけません。Vim Advent CalendarはVim記事を書きたいという人がいるかぎり続きます。 &hellip;">
+  <meta name="description" content="Osaka.vim #1 - connpass
+Osaka.vim#1 6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会! 関西圏のVim勉強会! 過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,431 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-06-30T19:09:21+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
+<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
+</ul>
+
+
+<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
+
+<h2>関西圏のVim勉強会!</h2>
+
+<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
+
+<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
+
+<h4>2014/04/05</h4>
+
+<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
+
+<p>manga_osyo: やると聞いて
+              haya14busa.vim</p>
+
+<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
+
+<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
+
+<h4>2014/05/17</h4>
+
+<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
+          iyuuya.vimやってもいいんですけどねー</p>
+
+<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
+
+<p><strong>やりたい!!!</strong></p>
+
+<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
+一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
+という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</span><span class='line'>  @iyuuya<span class="p">++</span>
+</span><span class='line'><span class="k">endfor</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
+
+<h2>Osaka.vim #1</h2>
+
+<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
+
+<h3>@thinca さんによるライブコーディング</h3>
+
+<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
+個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
+
+<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
+さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
+デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
+これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
+
+<ul>
+<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
+<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
+</ul>
+
+
+<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
+
+<h3>フリータイム</h3>
+
+<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
+
+<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
+
+<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
+
+<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
+聞いてみると興味をそそられました。
+<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
+いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
+コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
+使い方がとても良さそうでした。</p>
+
+<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
+
+<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
+
+<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
+<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
+
+<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
+
+<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
+この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
+それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
+周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
+
+<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
+
+<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
+
+<p>がんばりたい</p>
+
+<h3>発表した</h3>
+
+<ul>
+<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
+</ul>
+
+
+<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
+
+<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
+と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
+拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
+
+<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
+あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
+結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
+ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
+
+<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
+
+<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
+かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
+に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
+
+<p>反応はイマイチわからなかった()</p>
+
+<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
+しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
+
+<h2>懇親会&hellip;そしてカラオケオールへ</h2>
+
+<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
+アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
+
+<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
+初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
+
+<ul>
+<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
+</ul>
+
+
+<p>更新便利になって満足。</p>
+
+<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
+
+<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
+
+<h2>次回&hellip;?</h2>
+
+<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
+
+<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
+
+<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
+
+<p><strong><code>:wq Osaka.vim_01</code></strong></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a>
+      <time datetime="2014-06-30T19:09:21+09:00" pubdate><span class='month'>Jun</span> <span class='day'>30</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-04-12T12:57:25+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>第5回 Vimプラグイン読書会</h2>
+
+<ul>
+<li>日時: 2014/04/12 Sat 21:00 -</li>
+<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
+<li>読むプラグイン:
+
+<ul>
+<li><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a></li>
+</ul>
+</li>
+<li>目的: Vim scriptでリスト、文字列、辞書の効率的かつ汎用的な扱い方を学ぶ</li>
+</ul>
+
+
+<p><strong>!!!本日(4/12)の21:00から開催です!!!</strong> <del>また宣伝記事が当日になってしまった&hellip;</del></p>
+
+<p><strong>初心者でも歓迎ですよ</strong></p>
+
+<p><a href="https://github.com/vim-jp/vital.vim/issues/80">昔開催されたvital.vim読書会</a>では、<code>Data.String</code>を読んだらしいので、今回は<code>Data.List</code>と<code>Data.Dictionary</code>のどちらか1つ,または両方を読むと思います。</p>
+
+<h2>読みどころ</h2>
+
+<p><a href="https://github.com/vim-jp/vital.vim">vital.vim</a>は主にvim-jpのVim script超詳しいマンのかっくいい方々が開発している Vim プラグインのためのライブラリです。これまでVimプラグイン読書会で読んだプラグインは何かしらVimの機能自体を拡張していたのに対し、vital.vimはあくまでも<em>ライブラリ</em>であり、Vim scriptによる汎用的かつ効率的なリストやディクショナリなどなどの操作の仕方を学べるので、「まだVim独自の仕様とかよくわからない&hellip;」という方にとっても読みやすくてよいかもしれません。Vim scriptまだ良くわからないという方も含め、ぜひぜひ気軽に参加してください!</p>
+
+<p>また、vital.vimでなにが出来るのかも外から見ただけではイマイチよくわからなかったりするので、どういう関数が提供されていて、どういう仕様なのかなぁーとさらっと見ていくだけでも面白いんじゃないかと思います。</p>
+
+<h2>vitalの使い方サンプル</h2>
+
+<p>インストールした後適当なスクラッチバッファでQuickrunとかして動作確認しながら読むとよいかもしれない(かも)。vimrcに書いて自作vimrc関数で使ってもOKです。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'vim-jp/vital.vim'
+</span><span class='line'>
+</span><span class='line'>" vital.vimを単体で使う場合は`vital#of('vital')`
+</span><span class='line'>" プラグインに組み込む場合は引数の'vital'の代わりにプラグインの名前(Vitalize --name で指定した値)
+</span><span class='line'>let s:V = vital#of('vital')
+</span><span class='line'>
+</span><span class='line'>" vitalのData.Listをimportする。
+</span><span class='line'>" 基本的に s:List.&lt;utility_function&gt;(arguments) という使い方をする
+</span><span class='line'>" :h vital-data-list.txt
+</span><span class='line'>let s:List = s:V.import('Data.List')
+</span><span class='line'>
+</span><span class='line'>echo '= flatten =========='
+</span><span class='line'>
+</span><span class='line'>" リストをフラットに
+</span><span class='line'>echo s:List.flatten([[1],[2,[3,4]]])
+</span><span class='line'>" -&gt; [1,2,3,4]
+</span><span class='line'>
+</span><span class='line'>echo '= push & pop ======='
+</span><span class='line'>
+</span><span class='line'>" スタックスタック
+</span><span class='line'>let s = []
+</span><span class='line'>echo s:List.push(s, 1)
+</span><span class='line'>" [1]
+</span><span class='line'>echo s:List.push(s, 2)
+</span><span class='line'>" [1, 2]
+</span><span class='line'>echo s:List.push(s, 3)
+</span><span class='line'>" [1, 2, 3]
+</span><span class='line'>echo s
+</span><span class='line'>" [1, 2, 3]
+</span><span class='line'>echo s:List.pop(s)
+</span><span class='line'>" 3
+</span><span class='line'>echo s:List.pop(s)
+</span><span class='line'>" 2
+</span><span class='line'>echo s
+</span><span class='line'>" [1]
+</span><span class='line'>
+</span><span class='line'>echo '= uniq ============='
+</span><span class='line'>
+</span><span class='line'>" ユニークな値だけを残す。最近vim本体にも組み込まれたはずだけど仕様は異なる
+</span><span class='line'>echo s:List.uniq(['vim', 'emacs', 'vim', 'vim'])
+</span><span class='line'>" ['vim', 'emacs']
+</span><span class='line'>
+</span><span class='line'>" 条件つけたりも
+</span><span class='line'>echo s:List.uniq_by(
+</span><span class='line'>\ ['vim', 'Vim', 'VIM', 'emacs', 'Emacs', 'EMACS', 'gVim', 'GVIM'],
+</span><span class='line'>\ 'tolower(v:val)')
+</span><span class='line'>" ['vim', 'emacs', 'gVim']
+</span><span class='line'>
+</span><span class='line'>echo '= zip =============='
+</span><span class='line'>
+</span><span class='line'>" Vim girlイラスト、zipでください
+</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6])
+</span><span class='line'>" [[1, 4], [2, 5], [3, 6]]
+</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
+</span><span class='line'>" [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+</span><span class='line'>
+</span><span class='line'>" etc...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vimプラグインに組み込む方法の詳しい日本語記事とか意外と無いし、アップデートは<code>Vitalize .</code>だけでOKとかはhelpにも書いていないような気がするのでそのうち記事を誰かが書いてくれるはず。</p>
+
+<p>僕はまだvital自体をそんなに使ってないですが、<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>というvitalの外部モジュール機能を使った<code>vim-over</code>のライブラリを使わせてもらったりしてます。vitalとても便利なのでｵｽｽﾒです。</p>
+
+<h2>過去のVim Advent Calendar の vital に関する記事</h2>
+
+<ul>
+<li><a href="http://qiita.com/rbtnn/items/deb569ebc94d5172a5e5">vital.vimをどんどん使っていこう。 - Qiita</a></li>
+<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-6/">vitalのData.List.take_whileを例にvital開発の指南書</a></li>
+<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-8/">構文解析器kp19ppと字句解析器Vital.Lexerを用いた超簡単な処理系作成方法</a></li>
+<li><a href="https://gist.github.com/ujihisa/5761509">Vital.ProcessManagerとその無限の可能性について</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2013/11/08/224821">コマンドオプションを解析するライブラリ Vital.OptionParser を書いた - sorry, uninuplemented:</a></li>
+</ul>
+
+
+<p>適当にVACで検索しただけだったりする。<code>OptionParser</code>とか使ってみたいかも。</p>
+
+<h2>本日21:00開催のVimプラグイン読書会に参加しよう!!!</h2>
+
+<p>と、言うことでVimプラグイン読書会に参加してvitalを読んで実際に使ってみたり、バグとか改善点を見つけ本体にｺﾝﾄﾘﾋﾞｭｯｼｮﾝしたりしましょう！初心者でも歓迎ですし質問すれば詳しい方が解説してくれるはずです。「hi」と発言して読んでることを宣言してもらえるだけでも少なくとも僕は喜びます。 <del>人数少なすぎると読書会の存続自体が危うくなるのでhiだけでも便利</del></p>
+
+<p>本日21:00から、<a href="http://lingr.com/room/vim">LingrのVim部屋</a>で開催です！ぜひ参加してください。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a>
+      <time datetime="2014-04-12T12:57:25+09:00" pubdate><span class='month'>Apr</span> <span class='day'>12</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -837,322 +1263,6 @@ DNS設定の仕方などの記事も気が向いたら書いていこうかな�
       <time datetime="2014-03-23T18:30:56+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2014</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/octopress/'>octopress</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reading-vimplugin-04-senden/">Vimプラグイン読書会第4回が3/15(土)21:00から開催されます</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-03-15T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>第4回Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/03/15 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/tpope/vim-pathogen">tpope/vim-pathogen</a></li>
-</ul>
-</li>
-<li>目的: プラグインマネージャの仕組みを理解する</li>
-</ul>
-
-
-<p>ぜひ気軽に参加してください。</p>
-
-<h2>pathogen読みます</h2>
-
-<p>かの有名なtpope先生のプラグインです。first commitが5years agoの(たぶん)一番古株のプラグインマネージャで歴史を感じます。(<a href="https://github.com/c9s/Vimana">c9s/Vimana</a>というのもあったらしいですがperlスクリプトで、かつどっちが先かはよくわかりません)</p>
-
-<p>326行1ファイルなので分量的には気軽に読めそうです。(密度は知らない)</p>
-
-<h3>読みどころ</h3>
-
-<p>Vim触り始めの頃からNeoBundleやVundle,pathogenといったプラグインマネージャが存在して、vimのランタイムパスとかほぼ気にせずプラグインを簡単にインストール、管理できた身としてはそのあたりで何やってるかというのは、しばらく全くわかっていませんでした。(そして今もそこまでわかってないかも&#8230;)</p>
-
-<p>と、いうことでruntimepath周りや、「プラグインマネージャって結局何をどうやってるのよ?」みたいなところが１つの読みどころかなぁと思います。</p>
-
-<p>あとは関連して、ファイルやディレクトリのpathの操作などは他の用途でも汎用的に使えそうです。</p>
-
-<h2>pathogenの命名</h2>
-
-<ul>
-<li><a href="http://eow.alc.co.jp/search?q=pathogen">pathogenの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=infect">infectの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=incubate">incubateの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-</ul>
-
-
-<p>pathogenってどういう意味かなぁと思って調べると、infectやincubateといった関数が存在することから、 そのまま「病原体」の&#8221;pathogen&#8221;と&#8221;path&#8221;を掛けたっぽいですね。[要出典]</p>
-
-<p>「<code>~/vim/bundle/</code>のディレクトリをvimのruntimepathという病原体(pathogen)でinfect(感染)させるぜ!」と言ったところでしょうか。</p>
-
-<p>結構カッコイイ命名っぽい。</p>
-
-<h2>ということで</h2>
-
-<p>明日、3/15(土)21:00から[LingrのVim部屋]((<a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>)で開催されるのでぜひワイワイ読みましょう！</p>
-
-<p>初見でも初心者でも歓迎ですよ!</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/reading-vimplugin-04-senden/">Vimプラグイン読書会第4回が3/15(土)21:00から開催されます</a>
-      <time datetime="2014-03-15T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>15</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-02-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 78日目の記事になります。私事ですが本日2014/02/16日、Vimmerとして1歳の誕生日(Vim歴換算)を迎えましたので個人的な話題を含むVACの記事を書かせていただきます。そういうものが嫌いな方はブラウザバック推奨です。</p>
-
-<p>この記事によってVimの魅力が少しでも伝われば幸いです</p>
-
-<hr />
-
-<p><a href="https://twitter.com/haya14busa/statuses/302754464400568320?tw_i=302754464400568320&amp;tw_e=details&amp;tw_p=archive">vimtutorを終えた一年前のツイート</a>(ツイートの文面が恥ずかしい&#8230;)</p>
-
-<p>Vim歴1年、めでたいです。</p>
-
-<h2>『Vim駆動学習』</h2>
-
-<p>なぜ『Vim駆動学習』かというと、僕のプログラミング歴自体がVim歴+半年あるかないか程度なので、僕のプログラミング力の大部分は『Vim駆動』で学習し、向上してきたといっても過言ではないからです。Vim駆動バンザイ。</p>
-
-<p>(最近はVim駆動でVim自体を学んでいる割合が高すぎるのでそろそろVim以外の進捗もだしていこうと反省はしています&#8230;)</p>
-
-<h2>『Vim駆動学習』をおすすめしたい</h2>
-
-<h3>Vim駆動学習によってGitHub で Stars over 1000 のリポジトリをメインで開発できるようになった</h3>
-
-<ul>
-<li>vim-easymotionというカーソル移動系のVimプラグインです。</li>
-<li>Repository: <a href="https://github.com/Lokaltog/vim-easymotion">https://github.com/Lokaltog/vim-easymotion</a></li>
-</ul>
-
-
-<p>めでたいです。</p>
-
-<p>Trend入りもしました:)</p>
-
-<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-05-015432.png" alt="trend" /></p>
-
-<p>1からスターover 1000のリポジトリを作り上げたわけでは勿論なく、プログラミング力というより単なる活動量のゴリ押しと些細なアイデアによって、開発が止まっていたプロジェクトを乗っ取った(collaboratorになって開発しませんかと提案された)というのが現実です。 ですので、実は数字に見合うほどのことはできていないですが、これだけユーザー数が多いプラグインを扱えるというのはｸﾞｻｸﾞｻくるissuesがちょっぴりつらいものの、今までに無い経験でとても楽しく、『Vim駆動学習』としてVim プラグインを扱うならではのものだったと思います。 Vimを好きにならなかったらこんな経験はいまの時点の僕にはおそらくできていませんでした。</p>
-
-<p>また海外のユーザーの方もよく使ってくれている、むしろもともと日本人より海外勢のユーザーが多いプラグインなので無い英語力を引っ張りだして無理やり使ういい機会にもなったりもします。</p>
-
-<h3>Vimのコミュニティが面白い</h3>
-
-<p>GitHubでスターover 1000のリポジトリがどうだと言ったことよりも、Vimのコミュニティがおもしろいというところは特筆したいです。スター1000のリポジトリなんていっても、その99%は他のVimmerの人たちの助けを借りて、質問に答えてもらったり、アドバイスやアイデアをもらうことによる賜物でした。本当にみなさんには感謝しています。</p>
-
-<p><a href="https://github.com/vim-jp">vim-jp</a>や<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>、Twitterなどで数々のVimmerが活動しており、</p>
-
-<p>パッチ職人の方たちが数々のパッチをvim&#95;devに送って本体に取り込まれたり、</p>
-
-<p><a href="http://atnd.org/events/33746">Vim Advent Calendar 2012</a>がなぜか365日通して続いたり、</p>
-
-<p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>や<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>を毎週/毎月オンラインで開催してわいわいみんなで他人のvimrcやプラグインを読んだり、</p>
-
-<p><a href="http://lingr.com/room/vim/">LingrのVim部屋</a>では絶えず誰かがVim活していて質問すれば答えてくれるし、</p>
-
-<p>いろんなVimmerがVimを便利にしたり、Vimプラグインを作ったりメンテしたり&#8230;</p>
-
-<p>Vimmerたちの活動には見ていて本当に圧巻されます。 Vim自体が好きなのは勿論なのですが、Vimをとりまく多種多様な人たちあってのVimでもあり、僕はその人達も含めてVimが好きです。</p>
-
-<h3>他にもたくさん『Vim駆動』で得られるものがある</h3>
-
-<p>たとえば、Web上の記事よりも公式ドキュメントを読むという大事さはVimの膨大なhelpを目の当たりにすれば自然と気が付きますし、Vimはテキストを効率的にエディットするもの&#8230;<strong>Vimはテキストを効率的にエディットする</strong>ものですから、テキスト編集、プログラミングなどにおいて、Vimを極めればそれ以前と比べて数百倍の生産性(妄想)を得ることができます。決してVim scriptにハマってしまって逆に生産性が低下するなんてことはありません!!!</p>
-
-<p>そして個人的には<strong>プログラミングが楽しい</strong>とVimによってより強く思えるようになりました。Vim駆動最高です。</p>
-
-<h2>vimrcの記録</h2>
-
-<p>ここで1年間のvimrcの軌跡をちょっと振り返ってみます</p>
-
-<p>Vimの戦闘力は単純にvimrcの行数が多ければいいというわけではありませんが１つの指標としては面白いです</p>
-
-<p>一応コメントや空行を無視して正味の行数を測ってくれるScouterの情報も載せます。</p>
-
-<ul>
-<li><a href="https://github.com/thinca/vim-scouter">thinca/vim-scouter</a></li>
-<li><a href="http://vim-users.jp/2009/07/hack-39/">Vim-users.jp &#8211; Hack #39: Vimの戦闘力を計測する</a></li>
-</ul>
-
-
-<h3>一年前のvimrc</h3>
-
-<ul>
-<li>Date: 2013/02/16</li>
-<li>Lines:0</li>
-</ul>
-
-
-<p>厳密にはとある方が公開されていたシンプルな100行未満のvimrcを最初に使用していました。プラグインなし、基本オプション設定のみのものだった気がします。</p>
-
-<h3>git &amp; GitHub 使い始めのvimrc</h3>
-
-<ul>
-<li>Date: 2013/07/16</li>
-<li>Source: <a href="https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc">https://github.com/haya14busa/dotfiles/blob/2f3395fb468892764f69e4126e24c11b78a9cad3/.vimrc</a></li>
-<li>Lines:205</li>
-<li>Scouter:156</li>
-</ul>
-
-
-<p>大体半年後ですがあんまり増えてないですね。gitの情報として残っている公式記録としては最古のvimrcです。</p>
-
-<h3>現在のvimrc</h3>
-
-<ul>
-<li>Date: 2014/02/16</li>
-<li>Source: <a href="https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62">https://github.com/haya14busa/dotfiles/tree/97a79c8331c5a869730d96ee321219df84becd62</a></li>
-<li>Lines: 2794</li>
-<li>Scouter: 1296</li>
-</ul>
-
-
-<p><img src="../images/misc/wp/2014/02/Screenshot-from-2014-02-16-054350.png" alt="vimrc_3000" /></p>
-
-<p>1年間で約<strong>3000</strong>行になりました!!!</p>
-
-<h2>1年間、どうやってvimrcを成長させたか</h2>
-
-<h3>はじめはコピーやプラグインを使ってもいいかも</h3>
-
-<p>はじめは右も左もわからないし、ただでさえ慣れていないVimで効率がどうしても劣ってしまうので、最初は基本的なオススメ設定のvimrcをそのままコピーしてある程度便利に使うというのはありかなと思います(決してvim distributionとか呼ばれてるプラグインがいっぱい入ったものを勧めているわけではないです)。</p>
-
-<p>また、素Vimで1から順に学んでいくのもいいですが、それだとキリがないし割と早い段階でプラグインつかってVim便利！と感じるのもVimを挫折しないためにはオススメかなと思います。実際僕は<a href="https://github.com/mattn/emmet-vim">mattn/emmet-vim</a>や<a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a>の便利さに感動してVim頑張って使ってたという側面もありました。</p>
-
-<p>注意すべきところは知らないプラグインは入れないということでしょうか。当たり前のように思えますが、NeoBundleを導入したときに紹介されていたプラグインをそのままコピペしてインストールし困るということが僕はありました&#8230;というのもプラグインによっては使わなくてもデフォルトの挙動やマッピングを置き換えてしまうお行儀の悪いものがあり、それに気づかず操作方法を間違って憶えてしまうなんてことがあるからです。</p>
-
-<h3>vimrc読書会に参加する</h3>
-
-<p>毎週土曜日の23時から<a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>という、<a href="http://lingr.com/room/vim/">LingrのVim部屋</a>でオンラインで他の人のvimrcをわいわいみんなで読んで「この設定よさそう」とか「ここの指定のしかたはダメ」だとかをいい合う勉強会があり、これに参加すると格段にvimrc力が上がるのでオススメです。</p>
-
-<p>vimrc読書会は最初はVimmer怖いし、何が書かれているかも、何言ってるかもわからないし、僕は最初はROMっていただけなのですが、それでも参加した時に「hi」、読んでいる間は他の人が言及しているところに絞って読む、終わったら「お疲れ様でした」と言うだけでもきっとVim部屋の方々は喜びますし、最初はそれだけでいいと思います。</p>
-
-<p>勿論基本的なことでも質問すればきっと誰かが答えてくれますし、参加していれば徐々に分かることが増えてきて楽しくなる/vimrc力が上がるのでぜひ参加してみることをオススメします。</p>
-
-<h3>他人のvimrcをパクる</h3>
-
-<p>vimrc読書会ともかぶるのですが、すでにvimrc読書会で読まれたVim力の高い周りのVimmerのvimrcなどを個別に参考にしたりすると、より手っ取り早くvimrc力が上がると思います。また、プラグインの設定などでは、そのプラグインの作者のvimrcがREADMEやhelpよりも参考になるといった事案もあるのでちょっとそのプラグインの設定部分だけ盗み見るとかするのも面白いかなと思います。</p>
-
-<h2>1年間どうやってVimを学んできたか</h2>
-
-<p>vimrcとも関連していますね。</p>
-
-<h3>helpを読む</h3>
-
-<p>参考: <a href="http://haya14busa.com/reading-vim-help/">Vimのhelpを快適に引こう « haya14busa</a></p>
-
-<p>Vimのことはたいていhelpに載っているので、下手にWEB上の記事を読むよりもhelpをスラスラと引けるようになったほうが格段にVim力が上がりやすくなります。なるべく速くhelpの引き方は憶えて使いこなせるようになったほうが後々のためです。</p>
-
-<h3>実践Vimを読む</h3>
-
-<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim 思考のスピードで編集しよう!</a></p>
-
-<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22"><img border="0" src="http://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&#038;ASIN=4048916599&#038;Format=_SL110_&#038;ID=AsinImage&#038;MarketPlace=JP&#038;ServiceVersion=20070822&#038;WS=1&#038;tag=haya14busa-22" /></a><img src="http://ir-jp.amazon-adsystem.com/e/ir?t=haya14busa-22&#038;l=as2&#038;o=9&#038;a=4048916599" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></p>
-
-<p><a href="http://www.amazon.co.jp/gp/product/4048916599/ref=as_li_ss_il?ie=UTF8&amp;camp=247&amp;creative=7399&amp;creativeASIN=4048916599&amp;linkCode=as2&amp;tag=haya14busa-22">実践Vim</a>は本当にオススメです。vimtutorが終わってからすぐ読んでもいいのではないかという話を聞いたことがありますが、本当にそれぐらい初期に読んでも絶対ためになると思います。素のVimについてのいいところを十二分に、体系的に解説してくれている良書です。ドットによるリピートやテキストオブジェクトなどVimの便利な機能をあますことなく解説してくれるし、Vim的な編集の思考法などもこの本によって学ぶことができます。僕は実践VimによってVimへの興味が数段上がりました。</p>
-
-<h3>Vim Advent CalendarなどVim記事を読む/書く</h3>
-
-<p>学んだらアウトプットするとよいというのはVimに限りませんが。Vim Advent Calendarとして書けば間違っていれば指摘が入るし、一定数の人は読んでくれるので気軽にVACとして書いちゃってもいいとおもいます。</p>
-
-<h3>Lingrやvim-jp,TwitterなどなどでVim活する</h3>
-
-<p>上述したように、いろんなところでいろんな方達が活動しているので、そこで割と気軽に質問したりアドバイスをもらったりできるのは強みだと思います。特にLingrだと一番気軽に聞けてよいです。</p>
-
-<h3>Vimの勉強会などに参加する</h3>
-
-<p>僕は<a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a>に参加しただけで、個人的には勉強会にたくさん参加したというわけではありませんが、東京を中心として地方でもVimに関する勉強会がたまに開催されているので参加すると楽しいと思います。(関西圏で開催されないかなー&#8230;ﾁﾗｯ)</p>
-
-<h3>Vim プラグイン開発に手を出してみる</h3>
-
-<p>Vimが好きになってくるとやはりプラグインを自分で作ってみたいと思うようになるかと思います。そういう時は <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に参加するとよいです。</p>
-
-<p>今のところ月に一回のペースでVimプラグイン読書会が開催されており、誰かのプラグインを読んであれこれ言っています。もともと、Vimプラグインを作ってみたい初心者向けに始まったので、なるべく簡単なプラグインを読むことが多く、作ってみたい！と思ったら気軽に参加して読んでみたりあれこれ質問したりすることをオススメします。</p>
-
-<p>自分でプラグインを開発するというだけでなく、vimrcや使っているプラグインへの理解が進んだりするといったメリットもあるので、プラグインとか難しいとか考えずに参加してみてもよいかなと思います。</p>
-
-<h2>まとめ</h2>
-
-<p><strong>『Vim駆動学習』</strong>最高でした。これからもよろしくおねがいします。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい</a>
-      <time datetime="2014-02-16T00:00:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>16</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
       </footer>
     </article>

@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-08-23T13:26:23+09:00</updated>
+  <updated>2015-12-21T16:51:35+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,1673 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vim Mnemonic | Vim のコマンドの覚え方大全]]></title>
+    <link href="http://haya14busa.com/vim-mnemonic/"/>
+    <updated>2015-12-21T02:55:02+09:00</updated>
+    <id>http://haya14busa.com/vim-mnemonic</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="http://qiita.com/advent-calendar/2015/vim">Vim Advent Calendar 2015</a> の21日目の記事です．</p>
+
+<h2>もくてき</h2>
+
+<p>本記事では Vim のコマンドの&#8221;覚え方&#8221;を紹介します．
+基本的にはトリッキーな&#8221;覚え方&#8221;ではなく由来の紹介となります．
+例えば <code>J</code> で行連結は <strong>J</strong>oin が元だとか， <code>gf</code>が&#8221;<strong>g</strong>oto <strong>f</strong>ile&#8221;の略だといったことを
+知っておくとなにかと憶えやすいと思います．</p>
+
+<h2>対象読者</h2>
+
+<p>主にこれから Vim を使ってみよう! でもなかなかコマンドを覚えられないっ! という Vim 初心者の方に由来を知ることで少しでも
+コマンドを憶えやすいようにすることが目的です．
+初心者を想定しているのでコマンドの動作などもなるべく紹介していきます．</p>
+
+<p>中・上級者の方には普段何気なく使ってたあのコマンドの由来を知って「フハハハハ」と
+ほくそ笑んでもらえるような記事になれば嬉しいです．</p>
+
+<h2>注意</h2>
+
+<ul>
+<li>信憑性が高くないものもある</li>
+</ul>
+
+
+<p>注意点として公式のものから公式っぽいもの，独自の調査結果によるものなど信憑性はまちまちです．
+そしてVimのコマンドは無数にあるので覚え方大全と言っておきながらすべてを網羅できているわけではなくかなり偏っています．
+抜けてるものとか間違ってるものとか俺はこう覚えてるぜ!というものがあったら教えてください!</p>
+
+<p>出典は</p>
+
+<ul>
+<li>ヘルプファイル</li>
+<li>ソースコード</li>
+<li>出典不明だけどどこかで見聞きした話</li>
+</ul>
+
+
+<p>などです．基本英語に直すとそのままわかるものが多いかもしれません．</p>
+
+<p>またこれからたくさんのコマンドを羅列していきますがすべてを覚える必要は一切ないこと，
+そして逆にここに載ってない便利な覚えるべきVimコマンドはきっとたくさんあるので覚えようと気負ったり，
+だいたいわかるからokと思ったりしないようにおねがいします．</p>
+
+<p>そして何よりの注意点としては結局覚え方よりも実際にやってみることが大事だということです!!!
+読んでたら勝手に Vim のコマンドを憶えていたなんて魔法は無いです．</p>
+
+<p>ただ単にやってみるだけでなく由来や覚え方も知ることでより憶えやすくなったらよいなというのが本記事の趣旨なので，
+深く考えすぎずにそうなんだ〜へぇ〜と思いながら読むとよいと思います．</p>
+
+<p>ではスタートっ</p>
+
+<h2>基本のカーソル移動 hjkl</h2>
+
+<h3>vimtutor Lesson1</h3>
+
+<pre><code class="``">        ^
+        k              Hint:  The h key is at the left and moves left.
+  &lt; h       l &gt;               The l key is at the right and moves right.
+        j                     The j key looks like a down arrow.
+        v
+</code></pre>
+
+<h3>日本語版</h3>
+
+<pre><code class="``">        ^
+        k              ヒント:  h キーは左方向に移動します。
+  &lt; h       l &gt;                 l キーは右方向に移動します。
+        j                       j キーは下矢印キーのようなキーです。
+        v
+</code></pre>
+
+<p>出典: vimtutor</p>
+
+<p>右手のホームポジションから1つ左にあるので<code>h</code>は左方向に移動し, 右にある<code>l</code>が右方向への移動です．
+<code>j</code>はどことなく<code>↓</code>(下矢印)に似ているので下方向に移動すると憶えましょう．
+<code>k</code>に関してはどことなく上にとんがってるので上方向に移動すると考えてもいいかも知れません．</p>
+
+<h3>もともとのhjklの由来</h3>
+
+<ul>
+<li>出典: <a href="https://groups.google.com/forum/#!searchin/vim_use/hjkl/vim_use/Hz6x-jwUd-k/QsOmjBvZ1UsJ">h j k l &ndash; keys - Google Groups</a></li>
+</ul>
+
+
+<p>viの開発者である<a href="https://ja.wikipedia.org/wiki/%E3%83%93%E3%83%AB%E3%83%BB%E3%82%B8%E3%83%A7%E3%82%A4">ビル・ジョイ</a>さんが
+当時使っていたPCが<a href="https://en.wikipedia.org/wiki/ADM-3A">ADM-3A - Wikipedia, the free encyclopedia</a>であり，
+そのキーボードには矢印キーはなくHJKLを使ってカーソルを移動していたのが由来とのこと．</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/KB_Terminal_ADM3A.svg/931px-KB_Terminal_ADM3A.svg.png" alt="931px-KB_Terminal_ADM3A.svg.png (931×301)" /></p>
+
+<p>この由来は知っても憶えやすくならない単なる豆知識でした．</p>
+
+<h2>VIM の保存，終了と! (<code>&lt;bang&gt;</code>)</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>:q</code> <code>:q[uit]</code> </td>
+<td> カレントウィンドウを閉じる．<strong>q</strong>uit から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aq">:h :q</a></td>
+</tr>
+<tr>
+<td> <code>:qa</code> <code>:qa[ll]</code> </td>
+<td> <strong>q</strong>uit <strong>all</strong> から． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aqa">:h :qa</a></td>
+</tr>
+<tr>
+<td> <code>:q!</code>, <code>:qa!</code>  </td>
+<td> バッファに変更点があっても閉じる． <strong>q</strong>uit + <code>!</code>． </td>
+<td></td>
+</tr>
+<tr>
+<td> <code>:w</code> <code>:w[rite]</code> </td>
+<td> バッファ全体をカレントファイルに書き込む．<strong>w</strong>riteから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aw">:h :w</a></td>
+</tr>
+<tr>
+<td> <code>:wq</code> <code>:wqall</code> </td>
+<td> <code>:w</code>と<code>:q</code>の組み合わせ </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Awq">:h :wq</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>コマンド末尾の<code>!</code></h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/map.html#%3Acommand-bang">:h :command-bang</a></p>
+
+<p>Vim のコマンドは<code>!</code>修飾子を取ることができ，<code>!</code>の有無によって動作が変わる場合があります．
+基本的には強制的に実行するという意味合いが多いので憶えておくと未知のコマンド + <code>!</code>に出会った時に
+びっくりしないですみますね．</p>
+
+<h2>挿入コマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>i</code> </td>
+<td> カーソルの前にテキストを[count]回挿入する．<strong>i</strong>nsertから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#i">:h i</a></td>
+</tr>
+<tr>
+<td> <code>I</code> </td>
+<td> 行の先頭の非空白文字の前にテキストを[count]回挿入する．<strong>i</strong>nsertの大文字バージョン．大文字は行指向になるパターンが多い印象 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#I">:h I</a></td>
+</tr>
+<tr>
+<td> <code>a</code> </td>
+<td> カーソルの後ろにテキストを[count]回追加する．<strong>a</strong>ppendから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#a">:h a</a></td>
+</tr>
+<tr>
+<td> <code>A</code> </td>
+<td> 行末にテキストを[count]回追加する． <strong>a</strong>ppendの大文字バージョン </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#A">:h A</a></td>
+</tr>
+<tr>
+<td> <code>o</code> </td>
+<td> カーソルのある行の下に新しい行を作り、そこにテキストを[count]回繰り返し挿入する．<strong>o</strong>pen line から. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#o">:h o</a></td>
+</tr>
+<tr>
+<td> <code>O</code> </td>
+<td> カーソルのある行の上に新しい行を作り、そこにテキストを[count]回繰り返し挿入する．<strong>o</strong>pen line の大文字バージョン. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#O">:h O</a></td>
+</tr>
+<tr>
+<td> <code>gi</code> </td>
+<td> 最後に入力がされた場所にテキストを入力. <strong>g</strong>oto last <strong>i</strong>nsert position and start <strong>i</strong>nsert と思ってたが<strong>g</strong>は単なるprefixかも．後述する<code>gv</code>は<code>gi</code>のヴィジュアル版っぽい </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#gi">:h gi</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>モーション，オペレータ, テキストオブジェクト, ヴィジュアルモードについて</h2>
+
+<p>個々のモーション(<code>hjlk</code>, <code>w</code>, etc&hellip;)やオペレータ(<code>d</code>,<code>c</code>, <code>y</code>&hellip;)について
+それぞれ説明する前に全体的な動作について理解しておくと覚えることが減って,
+しかもとても便利なのでぜひ理解しましょう.</p>
+
+<h3>モーション {motion}</h3>
+
+<pre><code class="``">  [count] {motion}
+</code></pre>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></p>
+
+<p>モーションとはカーソル移動コマンドです．<code>[count]</code>を前置すると<code>[count]</code> x <code>{motion}</code>分だけ移動します．
+すでに見た<code>hjkl</code>ももちろんモーションなので<code>4h</code>などすると左に4文字移動するという意味になります．</p>
+
+<h3>オペレータ {operator} とモーション {motion}</h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#operator">:h operator</a></p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/8d8cb3eab06d240dbb1c1e2057fd80f8a6d4378b/misc/d2w.gif" alt="d2w.gif (661×157)" /></p>
+
+<pre><code class="``">  {operator} {motion}
+</code></pre>
+
+<p>厳密にはカウントを<code>{operator}</code>,<code>{motion}</code>のそれぞれに前置することができるので以下のようになります．
+(<code>[count]</code>を両者に前置させると掛け算になります. <code>2d3w</code> -> 6つの単語を削除.
+普通に<code>6dw</code>や<code>d6w</code>としたほうが基本的にわかりやすそうですね)</p>
+
+<pre><code class="``">  [count] {operator} [count] {motion}
+</code></pre>
+
+<p>またオペレータによってはレジスタを前置できます．<a href="http://vim-jp.org/vimdoc-ja/change.html#registers">:h registers</a></p>
+
+<pre><code class="``">  ["x] [count] {operator} [count] {motion}
+</code></pre>
+
+<p>Vimは変更する，削除するといった操作を表すオペレータ<code>{operator}</code>と，
+その操作の適用範囲であるモーション<code>{motion}</code>を組み合わせることでテキストを編集できます．
+先ほどみた<code>{motion}</code>に操作を加えている形になっています．</p>
+
+<h3>オペレータ {operator} とテキストオブジェクト {text-objects}</h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a></p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/b4e5cb04da9fee94c676d16eb38e5dec2d131690/misc/di'.gif" alt="di'.gif (657×128)" /></p>
+
+<pre><code class="``">  {operator} {text-objects}
+</code></pre>
+
+<p>また，移動コマンドとしては使えないけれど<code>{operator}</code>と組み合わせた時の操作範囲
+となるテキストオブジェクトを先ほどの<code>{motion}</code>の代わりに使うことができます．
+例えば文字列の中身を削除(オペレータの1つ)したい場合の&#8221;文字列の中身&#8221;は移動するような概念
+ではないですが，オペレータの操作対象として妥当です．</p>
+
+<h3>ヴィジュアルモード とモーション，テキストオブジェクト</h3>
+
+<p>そして厳密にはオペレータではないですがヴィジュアルモードでもモーションやテキストオブジェクトと
+組み合わせることができ，対象の範囲を選択できます．</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/b4e5cb04da9fee94c676d16eb38e5dec2d131690/misc/vi'.gif" alt="vi'.gif (657×177)" /></p>
+
+<pre><code class="``">  {visual-operation} {motion|text-objects}
+</code></pre>
+
+<p>ヴィジュアルモードを&#8221;選択する&#8221;という&#8221;操作&#8221;とみれば自然に理解できるかと思います．</p>
+
+<h3>オペレータの対象範囲としてのヴィジュアル選択範囲 {Visual}</h3>
+
+<p>そしてヴィジュアルモードで選択した範囲<code>{Visual}</code>は<code>{motion}</code>や<code>{text-objects}</code>
+と同様にオペレータの対象範囲として使えます．</p>
+
+<pre><code class="``">  {Visual} {operator}
+</code></pre>
+
+<h3>{operator}{operator} は行指向オペレーション!</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/8d8cb3eab06d240dbb1c1e2057fd80f8a6d4378b/misc/gqq.gif" alt="gqq.gif (1131×312)" /></p>
+
+<pre><code class="``">  [count] {operator} {operator}
+</code></pre>
+
+<p>そして上記の組み合わせの特殊なケースとしてオペレータ
+(2コマンド以上のオペレータの場合は最後の文字のみでも可)，
+を繰り返して入力すると操作範囲が行指向になります．</p>
+
+<p>例えば<code>dd</code> や <code>yy</code> といったオペレータを繰り返すと行を削除したりヤンクできるといった具合です．</p>
+
+<p>僕が観測している範囲ではこの挙動は<code>dd</code>や<code>yy</code>といった基本的な編集オペレータだけでなく，
+全てのオペレータに当てはまっているので憶えておくと便利です．(ソースコードは読んでないので確証がない.)</p>
+
+<p>例えば2文字のオペレータである<code>gq</code>(<a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a>)は
+<code>gqq</code>や<code>gqgq</code>と打つことでカーソル化の行を整形できたりします．</p>
+
+<h2>1つの変更単位としての {operator} {motion|text-objects}</h2>
+
+<p><strong>Vim のおすすめコマンド10選!!!</strong> として &ldquo;<code>diw</code> でカーソル下の単語を消す&rdquo; といったここで述べた
+オペレータとテキストオブジェクトをいっしょにまとめたものを1つのコマンドとして
+紹介するような記事がたくさんあったりしますが，これらは1つのコマンドでもなんでもないです．
+オペレータやモーション，テキストオブジェクトの概念を理解すれば無限大の組み合わせをそれぞれ
+覚える必要はなく，便利なオペレータとモーションを別々に覚えてそれらを組み合わせればよいです．</p>
+
+<p>これは覚え方とはまた別ですが上述したオペレータとモーション，テキストオブジェクトの組み合わせは
+1つの&#8221;変更単位&#8221;となっておりドット<code>.</code>コマンドで同じ操作を繰り返すことも可能です (<a href="http://vim-jp.org/vimdoc-ja/repeat.html#.">:h .</a>)．</p>
+
+<p>説明が長くなりましたが，ここからそれぞれのオペレータやモーションの覚え方について見ていきましょう．</p>
+
+<h2>オペレータ {operator}</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>c</code> </td>
+<td> 変更する．<strong>c</strong>hangeから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#c">:h c</a></td>
+</tr>
+<tr>
+<td> <code>d</code> </td>
+<td> 削除する．<strong>d</strong>eleteから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#d">:h d</a></td>
+</tr>
+<tr>
+<td> <code>y</code> </td>
+<td> コピーする．<strong>y</strong>ankから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#y">:h y</a></td>
+</tr>
+<tr>
+<td> <code>gU</code> </td>
+<td> 大文字にする．おそらくprefixとして<code>g</code> + <strong>U</strong>ppercaseから． 大文字にマッチする正規表現の <code>\U</code>． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gU">:h gU</a></td>
+</tr>
+<tr>
+<td> <code>gu</code> </td>
+<td> 小文字にする．おそらく<code>gU</code>の逆で小文字にするから．小文字にマッチする正規表現の <code>\u</code>． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gu">:h gu</a></td>
+</tr>
+<tr>
+<td> <code>&gt;</code> </td>
+<td> 右にインデントをシフトする．見た目から?． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#>&#8221;>:h ></a></td>
+</tr>
+<tr>
+<td> <code>&lt;</code> </td>
+<td> 左にインデントをシフトする．見た目から?． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#&lt;">:h &lt;</a></td>
+</tr>
+<tr>
+<td> <code>zf</code> </td>
+<td> 折畳を作成する．<code>z</code>は後述するが&#8221;z&#8221; は紙片を折った様子を横からみた姿に見えるから．<code>f</code>は折りたたみを作成するのが一番基本コマンドと考えて<strong>f</strong>oldから?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zf">:h zf</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>他にも由来わからないけど便利なオペレータはあるので使って憶えましょう．個人的に憶えておくと便利そうなものをリストアップ．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>=</code> </td>
+<td> フィルタ処理. インデント整形 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#%3D">:h =</a></td>
+</tr>
+<tr>
+<td> <code>gq</code> </td>
+<td> 整形する．80文字で折り返すよう整形とかできる </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>先ほどオペレータを連続させると対象が行指向になると説明したように,
+<code>cc</code>なら行を変更，<code>==</code>や<code>gqq</code>で行を整形できます．個別に覚える必要はないですね.</p>
+
+<p>また ヴィジュアルモードでの<code>&lt;</code> や <code>&gt;</code>を連続で操作するために下記のようなマッピング
+をしている人もいますが，他の選択範囲に対するオペレータによる操作となんら変わらないので
+代わりにドットリピート<code>.</code>を使って繰り返すことができます．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">vnoremap</span> <span class="p">&gt;</span> <span class="p">&gt;</span>gv
+</span><span class='line'><span class="nb">vnoremap</span> <span class="p">&lt;</span> <span class="p">&lt;</span>gv
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ちょっと脱線してその他の変更コマンド系</h3>
+
+<p><code>c</code>, <code>d</code>, <code>y</code>, <code>gU</code>&hellip;の他にもオペレータではない変更系コマンドがたくさんあります．<a href="http://vim-jp.org/vimdoc-ja/change.html">:h change</a></p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>C</code> </td>
+<td> 行末まで変更する．<strong>c</strong>hangeの大文字バージョン． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#C">:h C</a></td>
+</tr>
+<tr>
+<td> <code>D</code> </td>
+<td> 行末まで削除する．<strong>d</strong>eleteの大文字バージョン． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#D">:h D</a></td>
+</tr>
+<tr>
+<td> <code>Y</code> </td>
+<td> 行をコピーする．<strong>y</strong>ankの大文字バージョン．viの互換性から行末までではなく行． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#Y">:h Y</a></td>
+</tr>
+<tr>
+<td> <code>p</code> </td>
+<td> テキストをレジスタから貼付ける．<strong>p</strong>ut から．<strong>p</strong>aste と憶えてもよさそう </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#p">:h p</a></td>
+</tr>
+<tr>
+<td> <code>P</code> </td>
+<td> カーソルの前にテキストを貼り付ける. <code>p</code>の逆 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#P">:h P</a></td>
+</tr>
+<tr>
+<td> <code>x</code> </td>
+<td> カーソル下の文字を削除. バツマークに似てるから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#x">:h x</a></td>
+</tr>
+<tr>
+<td> <code>X</code> </td>
+<td> カーソルの前の文字を削除. <code>x</code>の逆 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#x">:h x</a></td>
+</tr>
+<tr>
+<td> <code>s</code> </td>
+<td> カーソル下の文字を削除して挿入を始める. <strong>s</strong>ubstituteから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#s">:h s</a></td>
+</tr>
+<tr>
+<td> <code>S</code> </td>
+<td> 行を削除して挿入を始める. <code>s</code>の大文字バージョン. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#S">:h S</a></td>
+</tr>
+<tr>
+<td> <code>r</code> </td>
+<td> カーソル下の文字を置き換える. <strong>r</strong>eplaceから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#r">:h r</a></td>
+</tr>
+<tr>
+<td> <code>R</code> </td>
+<td> 置換モードに入る. <strong>r</strong>eplaceから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#R">:h R</a></td>
+</tr>
+<tr>
+<td> <code>gr</code> <code>gR</code> </td>
+<td> <code>r</code>, <code>R</code>の仮想文字バージョン. <strong>g</strong> prefix </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gr">:h gr</a> <a href="http://vim-jp.org/vimdoc-ja/change.html#gR">:h gR</a></td>
+</tr>
+<tr>
+<td> <code>J</code>, <code>gJ</code> </td>
+<td> 行を連結する. <strong>J</strong>oin から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#J">:h J</a></td>
+</tr>
+<tr>
+<td> <code>:s/{pattern}/{sring}/{flag}</code> </td>
+<td> 置換コマンド. 省略しないと<strong>s</strong>ubstitute </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#:substitute">:h :substitute</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>由来ナゾ変更コマンド</h4>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>&lt;C-a&gt;</code> </td>
+<td> カーソルの下または後の数またはアルファベットに [count] を加える. <strong>a</strong>ddから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#CTRL-A">:h CTRL-A</a></td>
+</tr>
+<tr>
+<td> <code>&lt;C-x&gt;</code> </td>
+<td> カーソルの下または後の数またはアルファベットに [count] を減じる. 英語ではsubtractなので何故xかは不明．<code>CTRL-S</code>が端末によっては使えない．<code>X</code>が<code>A</code>に近いから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#CTRL-A">:h CTRL-A</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>モーション {motion}</h2>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html">:h motion.txt</a></p>
+
+<h3>左右の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>0</code> </td>
+<td> その行の最初の文字に移動. 0文字目??? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#0">:h 0</a></td>
+</tr>
+<tr>
+<td> <code>^</code> </td>
+<td> その行の最初の文字に移動. 正規表現の<strong>^</strong></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#^">:h ^</a></td>
+</tr>
+<tr>
+<td> <code>$</code> </td>
+<td> その行の最後の文字に移動. 正規表現の<strong>$</strong></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#$">:h $</a></td>
+</tr>
+<tr>
+<td> <code>g0</code> <code>g^</code> <code>g$</code> </td>
+<td> それぞれのスクリーン行バージョン(折り返し考慮) </td>
+<td></td>
+</tr>
+<tr>
+<td> <code>gm</code> </td>
+<td> スクリーンの幅の真ん中に移動. <strong>m</strong>idleから．出典: ソースコード. middle of &ldquo;g0&rdquo; and &ldquo;g$&rdquo;.</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gm">:h gm</a></td>
+</tr>
+<tr>
+<td> <code>f{char}</code> </td>
+<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンすはないか&hellip;?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+<tr>
+<td> <code>F{char}</code> </td>
+<td><code>f</code>の左に向かうバージョン.</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#F">:h F</a></td>
+</tr>
+<tr>
+<td> <code>t{char}</code> </td>
+<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動します．<strong>t</strong>ill(〜まで) から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+<tr>
+<td> <code>T{char}</code> </td>
+<td> <code>t</code>の左バージョン </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>由来ナゾ</h4>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>;</code> </td>
+<td> [count] 回最後の f, t, F, T を繰り返す. 余った記号で<code>;</code>を順方向,<code>,</code>を逆方向にした? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#;">:h ;</a></td>
+</tr>
+<tr>
+<td> <code>,</code> </td>
+<td> [count] 回最後の f, t, F, T を反対方向に繰り返す. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#,">:h ,</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>上下の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>G</code> </td>
+<td> [count] 行目の最初の非空白文字に移動.カウントがなければ最後の行． <strong>G</strong>oto から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#G">:h G</a></td>
+</tr>
+<tr>
+<td> <code>gg</code> </td>
+<td> [count] 行目の最初の非空白文字に移動.カウントがなければ最初の行． <strong>g</strong>oto から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gg">:h gg</a></td>
+</tr>
+<tr>
+<td> <code>{count}%</code> </td>
+<td>ファイルの {count} パーセントの位置に移動．そのままパーセントで直感的! </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#%">:h %</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>単語単位の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>w</code> </td>
+<td> [count] words前方に移動. <strong>w</strong>ord から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#w">:h w</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#word">:h word</a></td>
+</tr>
+<tr>
+<td> <code>W</code> </td>
+<td> [count] WORDS(非空白文字の連続)前方に移動. <strong>w</strong>ord から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#G">:h G</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#WORD">:h WORD</a></td>
+</tr>
+<tr>
+<td> <code>e</code> </td>
+<td> [count] word 前方の単語の終わりに移動. <strong>e</strong>nd of word から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#e">:h e</a></td>
+</tr>
+<tr>
+<td> <code>E</code> </td>
+<td> [count] WORD 前方の単語の終わりに移動. <strong>E</strong>nd of WORD から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#E">:h E</a></td>
+</tr>
+<tr>
+<td> <code>b</code> </td>
+<td> [count] words後方に移動. <strong>b</strong>ackward から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#b">:h b</a></td>
+</tr>
+<tr>
+<td> <code>B</code> </td>
+<td> [count] WORDS後方に移動. <strong>b</strong>ackward から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#B">:h B</a></td>
+</tr>
+<tr>
+<td> <code>ge</code> </td>
+<td> [count] word 後方の単語の終わりに移動. <strong>g</strong> prefix + <strong>e</strong>nd of word から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ge">:h ge</a></td>
+</tr>
+<tr>
+<td> <code>gE</code> </td>
+<td> [count] WORD 後方の単語の終わりに移動. <strong>g</strong> prefix + <strong>E</strong>nd of WORD から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gE">:h gE</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>オブジェクト単位で移動</h3>
+
+<p>3つのオブジェクト,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#sentence">sentence(文)</a>,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#paragraph">paragraph(段落)</a>,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#section">section(セクション)</a>
+が存在し，それぞれ<code>()</code>, <code>{}</code>, <code>[]</code>が対応する．
+セクションのみ少し例外で1桁目の&#8217;{&lsquo; か &rsquo;}&lsquo;への移動を2コマンド目で表現する.</p>
+
+<p>他に特に覚え方はわからないので表は省略．</p>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#object-motions">:h object-motions</a></p>
+
+<h3>ジャンプ</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-O</code> </td>
+<td>ジャンプリストの中の [count] だけ古いカーソル位置に移動({motion}ではない). <strong>O</strong>lder cursor position から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#CTRL-O">:h CTRL-O</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-I</code> </td>
+<td>ジャンプリストの中の [count] だけ新しいカーソル位置に移動({motion}ではない). キーボードで<code>O</code>の左に<code>I</code>がある </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#CTRL-I">:h CTRL-I</a></td>
+</tr>
+<tr>
+<td> <code>g;</code> </td>
+<td>変更リスト中の [count] 個前の位置に移動. <code>;</code>が順方向への移動っぽい</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#g;">:h g;</a></td>
+</tr>
+<tr>
+<td> <code>g,</code> </td>
+<td>変更リスト中の [count] 個後の位置に移動. <code>,</code>が逆方向への移動っぽい</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#g,">:h g,</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>様々な移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>%</code> </td>
+<td> 対応するアイテム([{}])にジャンプ. percent と parentheses(丸括弧) をかけている? <code>%</code>の文字が<code>/</code>を挟んで対応した<code>○</code>があると憶えてもよいかも  </td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#%">:h %</a></td>
+</tr>
+<tr>
+<td> <code>H</code> </td>
+<td> スクリーンの最上行から [count] 行目(デフォルト: スクリーンの最上行)に移動, <strong>H</strong>ome(top) of window とhelpに書いてあるがhomeってそんなニュアンスあるんだろうか&hellip; <strong>H</strong>igh と覚えてもよいかもしれない．</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#H">:h H</a></td>
+</tr>
+<tr>
+<td> <code>M</code> </td>
+<td> スクリーンの中央に移動．<strong>M</strong>iddle line of windowから</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#M">:h M</a></td>
+</tr>
+<tr>
+<td> <code>L</code> </td>
+<td>スクリーンの最下行から [count] 行目(デフォルト: スクリーンの最下行)に移動．<strong>L</strong>ast line on the windowから．<code>H</code>を<strong>H</strong>ighと覚えた場合は<code>L</code>は<strong>L</strong>owと覚えてもよいかも</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#L">:h L</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>角括弧コマンド: <code>[</code> + &ldquo;?&rdquo;, <code>]</code> + &ldquo;?&rdquo; 系</h4>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/vimindex.html#[">:h [</a></p>
+
+<p>ブロックやメソッド，コメントといった何かしら決められたものの始まり，終わりに移動する．
+&ldquo;?&#8221;には<code>({mM#*/</code>などが入る．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>[{</code>, <code>[(</code>, <code>]}</code> or <code>])</code></td>
+<td> マッチしない &lsquo;{&rsquo;, &lsquo;(&rsquo;, &lsquo;}&rsquo; &lsquo;)&rsquo; に移動</td>
+</tr>
+<tr>
+<td> <code>[#</code>, <code>]#</code></td>
+<td> マッチしない #if..#endif の最初か最後に移動.</td>
+</tr>
+<tr>
+<td> <code>[/</code>, <code>[*</code>, <code>]/</code>, <code>]*</code></td>
+<td> Cスタイルコメントの最初か最後に移動.</td>
+</tr>
+<tr>
+<td> <code>[m</code> or <code>]m</code> </td>
+<td> Javaスタイルメソッドの最初に移動.</td>
+</tr>
+<tr>
+<td> <code>[M</code> or <code>]M</code> </td>
+<td> Javaスタイルメソッドの最後に移動.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>テキストオブジェクト {text-objects}</h2>
+
+<p>基本的なテキストオブジェクトは<code>i</code>, <code>a</code>の2種類がそれぞれprefixとしてつくものが多い．
+<code>i</code>は <strong>i</strong>nner(内部)を表し，<code>a</code>は<strong>a</strong>(1つの)まとまり(&ldquo;a&#8221;n object)を表している．
+<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;innter&#8221;と&#8221;a&#8221;です．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>aw</code>, <code>iw</code> </td>
+<td> wordを選択. &ldquo;<strong>a</strong> word&rdquo;, &ldquo;<strong>i</strong>nner word&rdquo;. <code>a</code>は周りのホワイトスペースを含む</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aw">:h aw</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#iw">:h iw</a></td>
+</tr>
+<tr>
+<td> <code>aW</code>, <code>iW</code> </td>
+<td> WORDを選択. &ldquo;<strong>a</strong> WORD&rdquo;, &ldquo;<strong>i</strong>nner WORD&rdquo;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aW">:h aW</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#iW">:h iW</a></td>
+</tr>
+<tr>
+<td> <code>as</code>, <code>is</code> </td>
+<td> &ldquo;sentence&rdquo;(文)を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#as">:h as</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#is">:h is</a></td>
+</tr>
+<tr>
+<td> <code>ap</code>, <code>ip</code> </td>
+<td> &ldquo;paragraph&rdquo;(段落)を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ap">:h ap</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ip">:h ip</a></td>
+</tr>
+<tr>
+<td> <code>ab</code>, <code>a(</code>, <code>a)</code>, <code>ib</code> <code>i(</code>, <code>i)</code> </td>
+<td> <code>(</code>,<code>)</code>ブロック，またはその内部を選択. <strong>b</strong>races block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ab">:h ab</a></td>
+</tr>
+<tr>
+<td> <code>aB</code>, <code>a{</code>, <code>a}</code>, <code>iB</code> <code>i{</code>, <code>i}</code> </td>
+<td> <code>{</code>,<code>}</code>ブロック，またはその内部を選択. <strong>B</strong>rackets block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aB">:h aB</a></td>
+</tr>
+<tr>
+<td> <code>a[</code>, <code>a]</code>, <code>i[</code>, <code>i]</code> </td>
+<td> <code>[</code>,<code>]</code>ブロック，またはその内部を選択 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#a[">:h a[</a></td>
+</tr>
+<tr>
+<td> <code>a&lt;</code>, <code>a&gt;</code>, <code>i&lt;</code>, <code>i&gt;</code> </td>
+<td> <code>&lt;</code>,<code>&gt;</code>ブロック，またはその内部を選択 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#a>&#8221;>:h a></a></td>
+</tr>
+<tr>
+<td> <code>at</code>, <code>it</code> </td>
+<td> (xml, html)のタグブロック，またはその内部を選択．<strong>t</strong>ag block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#at">:h at</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#it">:h it</a></td>
+</tr>
+<tr>
+<td> <code>a"</code>, <code>a'</code>, <code>a`</code>, <code>i"</code>, <code>i'</code>, <code>i`</code> </td>
+<td> 前の引用符から次の引用符まで, またはその内部を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aquote">:h aquote</a></td>
+</tr>
+<tr>
+<td> <code>gn</code> </td>
+<td> 最後に使われた検索パターンを前方/後方検索してマッチを選択. <strong>g</strong> prefix + <code>n</code>, <code>N</code>から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gn">:h gn</a> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gN">:h gN</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>テキストオブジェクトの部分をハイライトした例
+<img src="https://raw.githubusercontent.com/haya14busa/i/b61a096517e2f4b358da17724dc833104c5973f3/misc/textobjects-example.gif" alt="textobjects-example.gif (1366×721)" /></p>
+
+<p>削除オペレータとの組み合わせ例</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 動作      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> &ldquo;dl&rdquo; </td>
+<td> 1文字削除 (&ldquo;x&rdquo; と同じです)</td>
+</tr>
+<tr>
+<td> &ldquo;diw&rdquo; </td>
+<td> inner word を削除</td>
+</tr>
+<tr>
+<td> &ldquo;daw&rdquo; </td>
+<td> a word を削除</td>
+</tr>
+<tr>
+<td> &ldquo;diW&rdquo; </td>
+<td> inner WORD を削除 (参照: |WORD|)</td>
+</tr>
+<tr>
+<td> &ldquo;daW&rdquo; </td>
+<td> a WORD を削除 (参照: |WORD|)</td>
+</tr>
+<tr>
+<td> &ldquo;dgn&rdquo;   次に検索パターンにマッチするものを削除</td>
+<td></td>
+</tr>
+<tr>
+<td> &ldquo;dd&rdquo; </td>
+<td> 1行削除</td>
+</tr>
+<tr>
+<td> &ldquo;dis&rdquo; </td>
+<td> inner sentence を削除</td>
+</tr>
+<tr>
+<td> &ldquo;das&rdquo; </td>
+<td> a sentence を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dib&rdquo; </td>
+<td> inner &lsquo;(&rsquo; &lsquo;)&rsquo; block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dab&rdquo; </td>
+<td> a &lsquo;(&rsquo; &lsquo;)&rsquo; block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dip&rdquo; </td>
+<td> inner paragraph を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dap&rdquo; </td>
+<td> a paragraph を削除</td>
+</tr>
+<tr>
+<td> &ldquo;diB&rdquo; </td>
+<td> inner &lsquo;{&rsquo; &lsquo;}&rsquo; Block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;daB&rdquo; </td>
+<td> a &lsquo;{&rsquo; &lsquo;}&rsquo; Block を削除</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>検索コマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>/</code> </td>
+<td> 前方検索．由来はナゾ </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/pattern.html#/">:h /</a></td>
+</tr>
+<tr>
+<td> <code>?</code> </td>
+<td> 後方検索．<code>SHIFT</code> + <code>/</code> で<code>/</code>の逆から </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#?">:h ?</a></td>
+</tr>
+<tr>
+<td> <code>n</code> </td>
+<td> 最後の &ldquo;/&rdquo; か &ldquo;?&rdquo; を [count] 回繰り返す．<strong>n</strong>ext から</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#n">:h n</a></td>
+</tr>
+<tr>
+<td> <code>N</code> </td>
+<td> 最後の &ldquo;/&rdquo; か &ldquo;?&rdquo; を逆方向に [count] 回繰り返す．<code>n</code>の大文字で<code>n</code>の逆 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#N">:h N</a></td>
+</tr>
+<tr>
+<td> <code>*</code> </td>
+<td> カーソルに最も近い単語で前方検索．USキーボードで4段目右手の中指 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#*">:h *</a></td>
+</tr>
+<tr>
+<td> <code>#</code> </td>
+<td> カーソルに最も近い単語で後方検索．USキーボードで4段目左手の中指 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html##">:h #</a></td>
+</tr>
+<tr>
+<td> <code>g*</code> <code>g#</code> </td>
+<td> <code>*</code>, <code>#</code> の&#8221;\&lt;&ldquo; と &rdquo;>&ldquo;(単語区切り)を加えないバージョン </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#g*">:h g*</a></td>
+</tr>
+<tr>
+<td> <code>gd</code> </td>
+<td> カーソルからローカル宣言を検索．<strong>g</strong>oto + <strong>d</strong>eclaration から.</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#gd">:h gd</a></td>
+</tr>
+<tr>
+<td> <code>gD</code> </td>
+<td> カーソルからグローバル宣言を検索．<code>gd</code>の大文字バージョン</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#gD">:h gD</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>スクロールコマンド</h2>
+
+<h3>上/下方スクロール</h3>
+
+<pre><code class="``">                                 +----------------+
+                                 | some text      |
+                                 | some text      |
+                                 | some text      |
+  +---------------+              | some text      |
+  | some text     |  CTRL-U  --&gt; |                |
+  |               |              | 123456         |
+  | 123456        |              +----------------+
+  | 7890          |
+  |               |              +----------------+
+  | example       |  CTRL-D --&gt;  | 7890           |
+  +---------------+              |                |
+                                 | example        |
+                                 | example        |
+                                 | example        |
+                                 | example        |
+                                 +----------------+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-E</code> </td>
+<td> 下へ[count]行ウィンドウをスクロール．<strong>E</strong>xtra lines から(vimdocでは割増との訳注あり. 追加の行?) </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-E">:h CTRL-E</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-Y</code> </td>
+<td> 上へ[count]行ウィンドウをスクロール．由来ナゾ&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-Y">:h CTRL-Y</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-D</code> </td>
+<td> ウィンドウをバッファ内で下にスクリーンの半分スクロールする．Scroll <strong>D</strong>ownwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-D">:h CTRL-D</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-U</code> </td>
+<td> ウィンドウをバッファ内で上にスクリーンの半分スクロールする．Scroll <strong>U</strong>pwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-U">:h CTRL-U</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-F</code> </td>
+<td> ページ前方(下方)にスクロール．Scroll <strong>F</strong>orwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-F">:h CTRL-F</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-B</code> </td>
+<td> ページ後方(上方)にスクロール．Scroll <strong>B</strong>ackwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-B">:h CTRL-B</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>カーソル相関スクロール</h3>
+
+<pre><code class="``">  +------------------+            +------------------+
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | some text        |  zz  --&gt;   | line with cursor |
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | line with cursor |            | some text        |
+  +------------------+            +------------------+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>zt</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの最上行にして再描画. <strong>z</strong> prefix + <strong>t</strong>op of window から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zt">:h zt</a></td>
+</tr>
+<tr>
+<td> <code>zz</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの中央にして再描画. 由来はナゾ&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zz">:h zz</a></td>
+</tr>
+<tr>
+<td> <code>zb</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの最下行にして再描画. <strong>z</strong> prefix + <strong>b</strong>ottom of window から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zz">:h zz</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>折畳コマンド</h2>
+
+<p>全ての折畳コマンドは <code>z</code> で始まっている．<code>z</code> は紙片を折った様子を横からみた姿に見える．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>zf</code> </td>
+<td> 折畳を作成する．(再掲) <code>f</code>は折りたたみを作成するのが一番基本コマンドと考えて<strong>f</strong>oldから?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zf">:h zf</a></td>
+</tr>
+<tr>
+<td> <code>zd</code> </td>
+<td> 折畳を1つ削除する． <strong>d</strong>elete から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zd">:h zd</a></td>
+</tr>
+<tr>
+<td> <code>zD</code> </td>
+<td> 折畳を再帰的に削除する． 折りたたみコマンドにおける大文字は&#8221;再帰的&#8221;, &ldquo;すべて&#8221;といった意味合いのものが多い</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zD">:h zD</a></td>
+</tr>
+<tr>
+<td> <code>zE</code> </td>
+<td> 折畳をすべて削除する． <strong>E</strong>liminate から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zE">:h zE</a></td>
+</tr>
+<tr>
+<td> <code>zo</code> </td>
+<td> 折畳を1つ開く． <strong>o</strong>pen から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zo</a></td>
+</tr>
+<tr>
+<td> <code>zO</code> </td>
+<td> 折畳を再帰的に開く． <code>zo</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zO</a></td>
+</tr>
+<tr>
+<td> <code>zc</code> </td>
+<td> 折畳を1つ閉じる． <strong>c</strong>lose から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zc">:h zc</a></td>
+</tr>
+<tr>
+<td> <code>zC</code> </td>
+<td> 折畳を再帰的に閉じる． <code>zc</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zC</a></td>
+</tr>
+<tr>
+<td> <code>za</code> </td>
+<td> 折畳をトグル(開いていたら閉じ，閉じていたら開く)． 由来はナゾ&hellip;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#za">:h za</a></td>
+</tr>
+<tr>
+<td> <code>zA</code> </td>
+<td> 折畳を再帰的にトグル． <code>za</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#za">:h za</a></td>
+</tr>
+<tr>
+<td> <code>zv</code> </td>
+<td> カーソルのある行がちょうど表示されるレベルまで折畳を開く. <strong>V</strong>iew cursor から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zv">:h zv</a></td>
+</tr>
+<tr>
+<td> <code>zx</code>, <code>zX</code> </td>
+<td> 折畳を更新する. 由来はナゾ&hellip;というかそもそもhelp読んでも動作がいまいちわからない&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zx">:h zx</a></td>
+</tr>
+<tr>
+<td> <code>zm</code> </td>
+<td> 折畳をより閉じる(&lsquo;foldlevel&rsquo; を1減少させる) Fold <strong>M</strong>ore から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zm">:h zm</a></td>
+</tr>
+<tr>
+<td> <code>zM</code> </td>
+<td> 全ての折畳を閉じる(&lsquo;foldlevel&rsquo; に0を設定する) <code>zm</code> の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zM">:h zM</a></td>
+</tr>
+<tr>
+<td> <code>zr</code> </td>
+<td> 折畳をより開く(&lsquo;foldlevel&rsquo; を1増加させる) <strong>R</strong>educe folding から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zr">:h zr</a></td>
+</tr>
+<tr>
+<td> <code>zR</code> </td>
+<td> 全ての折畳を開く(&lsquo;foldlevel&rsquo; に最大の折畳レベルを設定する) <code>zr</code> の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zR">:h zR</a></td>
+</tr>
+<tr>
+<td> <code>zn</code> </td>
+<td> 折畳しない(&lsquo;foldenable&rsquo; をリセットする。全ての折畳が開かれる) Fold <strong>n</strong>one から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zn">:h zn</a></td>
+</tr>
+<tr>
+<td> <code>zN</code> </td>
+<td> 折畳する(&lsquo;foldenable&rsquo; をセットする。全ての折畳が &lsquo;foldenable&#8217;がリセットされる以前と同様になる) Fold <strong>n</strong>ormalから．しかし<strong>n</strong>が2つあって正直意味ない&hellip;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zN">:h zN</a></td>
+</tr>
+<tr>
+<td> <code>zi</code> </td>
+<td> &lsquo;foldenable&rsquo; を反転する． <strong>I</strong>nvert から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zi">:h zi</a></td>
+</tr>
+<tr>
+<td> <code>[z</code>, <code>]z</code> </td>
+<td> 現在の開いている折畳の先頭/末尾へ移動する．角括弧コマンド(<a href="http://vim-jp.org/vimdoc-ja/vimindex.html#[">:h [</a>)は似た動作をする </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#z[">:h z[</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>| <code>zj</code> | カーソルより下方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>j</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zj">:h zj</a>
+| <code>zk</code> | カーソルより上方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>k</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zk">:h zk</a></p>
+
+<p><code>zx</code>は<code>zn</code>,<code>zN</code>はなくてもたいていの動作に支障ないのではという気がする．</p>
+
+<h2>undo と redo のコマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>u</code> </td>
+<td> [count] 個の変更を元に戻す．<strong>u</strong>ndo から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/undo.html#u">:h u</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-R</code> </td>
+<td> undo された変更を [count] 個やり直す．<strong>r</strong>edo から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/undo.html#CTRL-R">:h CTRL-R</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>ビジュアルモード</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>v</code> </td>
+<td> 文字単位のビジュアルモードを開始する．<strong>v</strong>isualから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v">:h v</a></td>
+</tr>
+<tr>
+<td> <code>V</code> </td>
+<td> 行単位のビジュアルモードを開始する．<code>v</code>の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#V">:h V</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-V</code> </td>
+<td> 矩形ビジュアルモードを開始する．<code>v</code>のctrl版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#CTRL-V">:h CTRL-V</a></td>
+</tr>
+<tr>
+<td> <code>gv</code> </td>
+<td> 最後に使用したのと同じ範囲のビジュアルモードを開始する. <strong>g</strong>otoか単なるprefix. 最後に入力がされた場所にテキストを入力する<code>gi</code>のヴィジュアル版と言える </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gv">:h gv</a></td>
+</tr>
+<tr>
+<td> <code>v_o</code> </td>
+<td> 選択されたテキストのもう一方の端へ移動する．Go to <strong>o</strong>ther end of highlighted text から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v_o">:h v_o</a></td>
+</tr>
+<tr>
+<td> <code>v_O</code> </td>
+<td> 選択されたテキストのもう一方の端へ移動する．矩形選択では行内のもう一方のコーナーに移動する．Go to <strong>o</strong>ther end of highlighted text から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v_O">:h v_O</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>その他</h2>
+
+<p>すべてのコマンドを体型的に網羅するとを諦めてその他で残りの言及すべきっぽいコマンドをいっしょくたにまとめる男の姿がそこにはあった&hellip;</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-W</code> + &ldquo;?&rdquo; </td>
+<td>ウィンドウコマンド. <strong>W</strong>indow commandsから. Windowの操作や&#8221;?&ldquo;の結果を新規ウィンドウで開いたりする</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/vimindex.html#CTRL-W">:h CTRL-W</a></td>
+</tr>
+<tr>
+<td> <code>i_CTRL-R</code> <code>c_CTRL-R</code> </td>
+<td>レジスタの内容を挿入する. <strong>R</strong>egisterから</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#i_CTRL-R">:h i_CTRL-R</a></td>
+</tr>
+<tr>
+<td> <code>gf</code> </td>
+<td> カーソルの下か後ろの名前のファイルを編集する． <strong>g</strong>oto <strong>f</strong>ile から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#gf">:h gf</a></td>
+</tr>
+<tr>
+<td> <code>K</code> </td>
+<td> カーソル位置のキーワードを調べるためのプログラムを実行．<strong>K</strong>eyword から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/various.html#K">:h K</a></td>
+</tr>
+<tr>
+<td> <code>q</code> </td>
+<td> タイプした文字をレジスタ{0-9a-zA-Z&#8221;}にレコーディングする．特に覚え方は見つからなかったが，macro -> ma<strong>q</strong>ro みたいな覚え方もあり&hellip;? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/repeat.html#q">:h q</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>おわりに，そして覚えるのもよいけれど&hellip;</h2>
+
+<p>以上で本記事のコマンドの覚え方大全は終了です．
+ここまで読んだ方お疲れ様です．そして「アレ&hellip;?まだまだあるはずじゃない?」と思ったそこのあなた，正解です．
+挿入モード，コマンドモードのコマンドはほとんどかけてないですし，単純に抜けてるものもあるかと思います．
+チカラ付きました&hellip;  ただこう理解するとわかりやすいよ〜というコマンドはなるべく網羅したような気がします．
+もっとこれ追加しろとかあったらコメントかtwitterか何かで言っていただけると嬉しいです．
+そしてVimを始めたころの初々しい気持ちを忘れていて，いやもっとここ丁寧に書かなきゃわからんぜ!ってとこも遠慮無くおねがいします．</p>
+
+<p>そして覚えるのも大事ですが，それと同じくらいわからないことをドキュメントから調べる力を
+つけるのも重要かなぁと思います．最初は覚えられなくても調べることができればかなり便利です．
+たとえば <code>:help</code>だけでなく<code>:helpgrep</code>を使いこなしたり,
+<a href="http://vim-jp.org/vimdoc-ja/index.html#help-context">:h help-context</a> を読んで引きたい項目の指定ができるようになるとはかどります．
+(他にも<code>(</code>を末尾につけることで関数のヘルプを引くといった書いてないプチハックとかもあります)</p>
+
+<table>
+<thead>
+<tr>
+<th> 種類                     </th>
+<th> 修飾子                         </th>
+<th> 例                  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ノーマルモードコマンド   </td>
+<td> (無し)                         </td>
+<td> <code>:help x</code>           </td>
+</tr>
+<tr>
+<td> ビジュアルモードコマンド </td>
+<td> <code>v_</code>                           </td>
+<td> <code>:help v_u</code>         </td>
+</tr>
+<tr>
+<td> 挿入モードコマンド       </td>
+<td> <code>i_</code>                           </td>
+<td> <code>:help i_&lt;Esc&gt;</code>     </td>
+</tr>
+<tr>
+<td> コマンドラインコマンド   </td>
+<td> <code>:</code>                            </td>
+<td> <code>:help :quit</code>       </td>
+</tr>
+<tr>
+<td> コマンドライン編集       </td>
+<td> <code>c_</code>                           </td>
+<td> <code>:help c_&lt;Del&gt;</code>     </td>
+</tr>
+<tr>
+<td> Vim の起動引数           </td>
+<td> <code>-</code>                            </td>
+<td> <code>:help -r</code>          </td>
+</tr>
+<tr>
+<td> オプション               </td>
+<td> <code>'</code>                            </td>
+<td> <code>:help 'textwidth'</code> </td>
+</tr>
+<tr>
+<td> 正規表現                 </td>
+<td> <code>/</code>                            </td>
+<td> <code>:help /[</code>          </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>僕が思うhelp周辺の便利ツールとかは <a href="http://haya14busa.com/reading-vim-help/">Vimのhelpを快適に引こう - haya14busa</a> にまとめているのでよかった読んでみてください．</p>
+
+<p>おわり．</p>
+
+<p><strong>Vim のコマンドを覚えて思考のスピードで編集しましょう!!!</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた]]></title>
+    <link href="http://haya14busa.com/hatena-intern-2015/"/>
+    <updated>2015-09-06T19:52:09+09:00</updated>
+    <id>http://haya14busa.com/hatena-intern-2015</id>
+    <content type="html"><![CDATA[<h2>NOTE</h2>
+
+<ul>
+<li><a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a></li>
+<li><a href="http://hatenacorp.jp/recruit/intern2015/entry#detail_cloud">クラウドサーバ 管理システムコース</a>
+
+<ul>
+<li>Mackerel</li>
+</ul>
+</li>
+<li>GitHub
+
+<ul>
+<li><a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
+<li><a href="https://github.com/hatena/scala-Intern-Bookmark">hatena/scala-Intern-Bookmark</a></li>
+<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li><a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+</li>
+<li>Mackerel 周辺
+
+<ul>
+<li><a href="http://motemen.hatenablog.com/entry/2014/10/10/nanapi-hatena-mackerel-workflow">はてなMackerelチームの開発フロー（スクラム、リモート）について話しました #nanapi_study #hatenatech - 詩と創作・思索のひろば</a></li>
+<li><a href="https://hatena.stores.jp/items/559dd4592b34924b8000255e">はてなTシャツ2015（Mackerel/スミ） | Hatena Official Store</a></li>
+<li><a href="http://www.songmu.jp/riji/entry/2015-08-21-yapc-asia-2015-talk.html">YAPC::Asia 2015で「Mackerel開発におけるScalaとGo、そしてPerl」というトークをします | おそらくはそれさえも平凡な日々</a></li>
+<li><a href="http://yuuki.hatenablog.com/entry/2013/09/21/154911">YAPC::Asia 2013ではてなのサーバ管理ツールの話のはなしをしました - ゆううきブログ</a></li>
+<li><a href="http://sssslide.com/speakerdeck.com/hakobe/scala-in-perl-company">Scala In Perl Company - SSSSLIDE</a></li>
+</ul>
+</li>
+<li>Mackerel 公式 &amp; blog
+
+<ul>
+<li><a href="https://mackerel.io/">Mackerel: A Revolutionary New Kind of Application Performance Management</a></li>
+<li><a href="https://mackerel.io/ja/">Mackerel（マカレル）: 新世代のサーバ管理・監視ツール</a></li>
+<li><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio</a>
+
+<ul>
+<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/09/03/202748" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748" data-mce-href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">読み取り専用APIキーと新しいAPIを使った安心で便利なサーバ管理 - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/202748">blog-ja.mackerel.io</a></cite></li>
+</ul>
+</li>
+<li><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio</a>
+
+<ul>
+<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/09/03/164747" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747" data-mce-href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">グラフ上の範囲ドラッグによるズーム機能、サービス・ロールAPIの追加 ほか - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/09/03/164747">blog-ja.mackerel.io</a></cite></li>
+</ul>
+</li>
+<li><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio</a>
+
+<ul>
+<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/08/28/102316" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316" data-mce-href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">読み取り専用APIキー・検索結果にアラートを追加・Mackerelミートアップのお知らせ - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/08/28/102316">blog-ja.mackerel.io</a></cite></li>
+</ul>
+</li>
+<li><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio</a>
+
+<ul>
+<li><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio" src="http://blog-ja.mackerel.io/embed/2015/08/21/104903" frameborder="0" scrolling="no"><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903" data-mce-href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">外形監視のレスポンスタイムグラフ化・通知先のメールアドレス個別指定 ほか - Mackerel ブログ #mackerelio</a></iframe><cite class="hatena-citation"><a href="http://blog-ja.mackerel.io/entry/2015/08/21/104903">blog-ja.mackerel.io</a></cite></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>YAPC
+
+<ul>
+<li>上記と同じ．<a href="http://www.songmu.jp/riji/entry/2015-08-21-yapc-asia-2015-talk.html">YAPC::Asia 2015で「Mackerel開発におけるScalaとGo、そしてPerl」というトークをします | おそらくはそれさえも平凡な日々</a></li>
+<li>Mackerel がいろんなトークで出てきてた．</li>
+<li>懇親会でちょっと聞いたりもした．便利ならしい．欲しい機能を聞いたがagent側触らないとダメなのでつらそうだった．</li>
+<li><a href="http://yapcasia.org/2015/talk/show/de9e7a1e-136d-11e5-a9fc-d9f87d574c3a">Perlの上にも三年 〜 ずっとイケてるサービスを作り続ける技術 〜 - YAPC::Asia Tokyo 2015</a></li>
+</ul>
+</li>
+<li>Scala, Bookmark
+
+<ul>
+<li>taraoさん</li>
+</ul>
+</li>
+<li>Vim
+
+<ul>
+<li><blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Outline</h2>
+
+<ul>
+<li>はてなインターン TL;DR</li>
+<li>はてなインターンへの応募，そして決断</li>
+<li>はてなインターンと事前課題
+
+<ul>
+<li>ScalaでLTSVパーザって課題めっちゃよい</li>
+</ul>
+</li>
+<li>はてなインターンとVim</li>
+<li>はてなインターンとScala</li>
+<li>はてなインターンと前半戦 | Webサービス開発講義・課題</li>
+<li>はてなインターンと後半戦 | サービス開発・研究期間</li>
+<li>はてなインターンとMackerel
+
+<ul>
+<li>はてなインターンとYAPC</li>
+<li>Google の広告が575だった</li>
+</ul>
+</li>
+<li>はてなインターンといい話
+
+<ul>
+<li>受託とか</li>
+<li>ドロドロした話</li>
+</ul>
+</li>
+<li>はてなインターンと語彙
+
+<ul>
+<li><a href="http://hitode909.hatenablog.com/entry/2014/12/02/205958">「シュッとやる」の解説 - hitode909の日記</a></li>
+</ul>
+</li>
+<li>はてなインターンと仲間たち</li>
+<li>はてなインターンまとめ</li>
+</ul>
+
+
+<h2>What I Learned</h2>
+
+<ul>
+<li>Advanced Rest Client</li>
+<li>git pull の rebase オプション</li>
+</ul>
+
+
+<h2>Mackerel</h2>
+
+<ul>
+<li>はてな社員がドッグフーディングしてるのがよい．YAPCあたりで知り合いの参加者に聞いた話でもある．</li>
+</ul>
+
+
+<h2>はてなインターン TL;DR</h2>
+
+<ul>
+<li><del>噂の(?)今年のインターン生の Emacs 率が0だった</del>
+今年はScalaやSwiftコースがあったりよりアツいのでは&hellip;?と噂の(?)はてなインターンに参加してきました．実際アツイじゃん&hellip;?</li>
+<li>僕は言語がScalaのMackerelコースだったので， Scala を Vim で書いて Mackerel 便利にして優勝してきましたっ! めでたいっ 🎉🎉🎉</li>
+<li>はてなインターンで優秀なはてなの社員さんや他のインターン生の仲間と開発できたのは最高の体験でした．楽しすぎた&hellip;</li>
+</ul>
+
+
+<p>※ エディタの話は重要でゎなぃ(書かなきゃいけない衝動に駈られた)</p>
+
+<h2>はてなインターンとVim</h2>
+
+<p>※ <strong>エディタの話は重要でゎなぃ(再)</strong></p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote>
+
+
+<p><del>はてなインターンに参加するにはVimをやるほうがよいってことデスね&hellip;?</del></p>
+
+<p>&hellip;というのはもちろん冗談ですが，はてなでは普段からつかう開発の道具も使いこなして本質に集中しましょう!
+という文化もあります．開発環境はScalaのチームであっても自分で決めてもいいエディタの自由があって僕はもちろん Vim を使いました．
+あと，エディタだけではなくてOSも自由で，基本Macが多いですがLinux使いたければ使ってもいいという世界観で
+僕はArch LinuxベースのManjaro Linux使ってたりもしました．</p>
+
+<p>エディタの話に戻るとVimやEmacs, Atom などなど使いこなしている人が多くて，お昼休みとか懇親会とかでいろいろ話を聞きたければ聞けてます．
+僕は普段からお世話になっている <a href="http://blog.hatena.ne.jp/itchyny/">id:itchyny</a> さんに開発の話とか結構聞けていい体験でした．
+現 Emacs Evilのメンテナ? の<a href="http://d.hatena.ne.jp/tarao/">id:tarao</a>さんもいて，taraoさんにはお昼休みとかに言語の話とか
+ブックマークの話とかいろいろ話を聞けたんですが，Evilの話聞くの忘れていたことをいまブログを書いて思い出しました．
+ぐぬぬ&hellip;また聞きにいきたい.</p>
+
+<h2>はてなインターンと僕</h2>
+
+<p>で，お前誰よ? っていうことですが現在M1の，ここまででお察しの通りVimが好きなVimmerです．</p>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+<li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+</ul>
+
+
+<p>Scalaについては以前にバイトで1年くらい書いていたりしました．</p>
+
+<h2>はてなインターンへの応募，そして合格</h2>
+
+<p>はてなインターンについては前年度以前のブログなどから評判は聞いていて，めっちゃ面白そうじゃん&hellip;?と思ってました．
+去年は卒業研究が忙しくてインターンどころではなく，一昨年はまぁ能力たりなさすぎて無理だろう&hellip;<del>というのと perl かぁ〜</del> という
+思いで応募すら出来ていませんでしたが，今年から言語が Scala (!)のコースができていたこともあって勢いで応募しました．</p>
+
+<p>ところで実際にインターンに参加してから，もし仮に書く言語が perl
+だったとしても来たほうが絶対良かったなと全体を通して思いましたので，
+もし来年度以降のインターンに応募しようと思っているけど perl がちょっとネック&hellip;
+くらいで参加を迷ってるなら絶対参加したほうがよいと思います!</p>
+
+<p>結局僕は perl 1行も書きませんでしたが．Scala最高!!!．</p>
+
+<p>はてなインターンの選考についてはポートフォリオをウェブページやPDFといった自由な形式で提出して，
+場合によっては面接などをして決めるようです．</p>
+
+<p>僕は面接はなくポートフォリオだけで，最初はオサレポートフォリオサイト作ったほうがいいかなぁ&hellip;
+と思っていたのですがその時間もなかったので結局PDFでスライド形式のものを作って提出しました．</p>
+
+<p>内容に関しては，普段つくってるプロダクトとかポートフォリオに書けそうな内容の95%くらいは Vim に関してだったので
+ポートフォリオも95%くらいVimについて書いてましたがなんとか合格したようです．
+ちゃんと評価されてよかった&hellip;</p>
+
+<p>はてなインターンと事前課題</p>
+
+<hr />
+
+<div class="github-card" data-github="hatena/Hatena-Intern-Exercise2015" data-width="400" data-height="" data-theme="default"></div>
+
+
+<ul>
+<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li>僕の解答: <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+
+
+<p>さて，はてなインターンの</p>
+
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習]]></title>
@@ -3717,305 +5384,6 @@ endfunction</code></pre>
 
 
 <p>製作者のおしょーさん曰く、魔改造されていて自分でも難しいとのこと[要出典]なので、気合を入れて読む必要があるかもしれません。Vim script力の高まりを感じましょう。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimのhelpを快適に引こう]]></title>
-    <link href="http://haya14busa.com/reading-vim-help/"/>
-    <updated>2014-01-26T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vim-help</id>
-    <content type="html"><![CDATA[<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の58日目の記事です。 57日目は<a href="https://twitter.com/deris0126">@deris0126</a>さんによる<a href="http://deris.hatenablog.jp/entry/2014/01/26/124336">Vimのタブで開いているバッファのdiffを簡単に表示するpluginを書いた</a>でした。</p>
-
-<p>Vimのhelpを自由自在に引けることは、真のvimmerになるための第一歩。</p>
-
-<blockquote><p>:helpを使いこなす = Vimを極めるための一歩</p>
-
-<p>&#8211; <cite><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></cite></p></blockquote>
-
-<p>ということで、数多くのVimmerがVimのhelpの使い方を解説したり、おすすめのhelpを紹介したりしています。しかし、helpを読むための設定、カスタマイズ方法を紹介するものがあまりないように思えたので、今回は既存のhelpに関する記事のまとめと、設定/カスタマイズ方法を中心に書いていきます。</p>
-
-<h2>help記事のまとめ</h2>
-
-<h3>Helpの使い方全般</h3>
-
-<ul>
-<li><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></li>
-<li><a href="http://vim-users.jp/2009/07/hack45/">Vim-users.jp &#8211; Hack #45: help を引く</a></li>
-<li><a href="http://vim-users.jp/2011/02/hack199/">Vim-users.jp &#8211; Hack #199: :helpに慣れ親しむ</a></li>
-<li><a href="http://nanasi.jp/articles/howto/help/vim_help.html">vimエディタの「help」コマンドの使い方 — 名無しのvim使い</a></li>
-</ul>
-
-
-<p>まずは上記の記事や<a href="http://vim-jp.org/vimdoc-ja/helphelp.html">:h helphelp.txt</a>で使い方を覚えましょう。さらっと流し見するだけでも未だに使いこなせてないものがたくさん見つかったりなどすることがあり、今一度読んでみるのもいいのではないでしょうか。</p>
-
-<p>詳しい使い方については上記の記事でほぼ解説されているのでここでは割愛します。</p>
-
-<h3>おすすめのhelp</h3>
-
-<ul>
-<li><a href="http://cohama.hateblo.jp/entry/2013/07/28/235823">おすすめの :help まとめ &#8211; 反省はしても後悔はしない</a></li>
-</ul>
-
-
-<p>覚えておくor読むと良さげなhelpがたくさん紹介されています。</p>
-
-<p>ここに載ってるものを除いて独断でおすすめすると</p>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a>
-
-<ul>
-<li>(motion.txtの一部)</li>
-</ul>
-</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/cmdline.html#cmdwin">:h cmdwin</a></li>
-</ul>
-
-
-<p>このあたりですね。</p>
-
-<p>motion.txtはhjklからtext-objects,inclusive/exclusiveのような普段あまり意識しない概念など、詳しくmotionについて書かれているので時間があるときに読むと面白いです。</p>
-
-<p>cmdwinについてはちょっとした思い入れがあるという個人的な紹介です。</p>
-
-<p>Vimの設定/操作法を大きく変更するときは、何かとVACの記事などでおすすめされているものをみて設定するということが多いのですが、通常のcommandlineからcommandline-windowに乗り換えたきっかけは僕の場合helpを読んでいて便利そう！と感じたからでした。</p>
-
-<p>よりよい設定方法を模索するためにその後コマンドラインウィンドウに関する記事を読んだりはしましたが、「記事を読む->便利かも?」という流れより「help読んで便利そう-> もっといい設定法ないか探す」という流れのほうが愛着が沸くのでオススメです。</p>
-
-<h2>ここから設定Tips</h2>
-
-<h3><strong>K</strong>でカーソル下の単語のhelpを引く</h3>
-
-<pre><code>set keywordprg=:help " Open Vim internal help by K command
-</code></pre>
-
-<p>デフォルトでKはmanを引く設定になっていますが、上記の設定でvimのhelpを引けるようになります。visualモードで選択した範囲を引くこともできます。引きたいものが関数だと括弧を含めるかどうかで結果が変わるので<code>(</code>を含めて選択して引くといったことができるのでいい感じです。K押しやすい。</p>
-
-<h3>helpがちょっと読みにくい</h3>
-
-<pre><code>nnoremap &lt;Space&gt;t :&lt;C-u&gt;tab help&lt;Space&gt;
-nnoremap &lt;Space&gt;v :&lt;C-u&gt;vertical belowright help&lt;Space&gt;
-" MoveToNewTab
-nnoremap &lt;silent&gt; tm :&lt;C-u&gt;call &lt;SID&gt;MoveToNewTab()&lt;CR&gt;
-function! s:MoveToNewTab()
-    tab split
-    tabprevious
-
-    if winnr('$') &gt; 1
-        close
-    elseif bufnr('$') &gt; 1
-        buffer #
-    endif
-
-    tabnext
-endfunction
-</code></pre>
-
-<p>参考: <a href="http://www.sopht.jp/blog/index.php?/archives/445-vim.html">あにゃログ &#8211; vim でタブを使う</a></p>
-
-<p>直接helpとは関係ありませんが、使い始めの頃helpのウィンドウが読みづらくて仕方なかった覚えがあります。特に開いた後ちまちまwindowのサイズを大きくするのは面倒くさい。</p>
-
-<p>ということで、最初からtab/vsplitで開く設定や、カレントウィンドウを別のタブに開き直すキーマップを使うといいと思います。MoveToNewTabの設定によって「気軽にKで開く->本格的に読みたいからタブページで開き直す」という流れなどがスムーズになっておすすめです。</p>
-
-<p>カレントウィンドウを別のタブに開き直すMoveToNewTabの設定は最初の頃設定してライフチェンジングした覚えがあり、今でもかなり使ってます。help以外でも使えますね。</p>
-
-<h3>help用の設定をする</h3>
-
-<pre><code>augroup MyVimrc
-  autocmd!
-augroup END
-
-" qでhelpを閉じる
-autocmd MyVimrc help nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
-
-" 一気に複数設定する場合
-function! s:init_help()
-  nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
-  nnoremap &lt;buffer&gt; &lt;Space&gt;&lt;Space&gt; &lt;C-]&gt;
-  " etc ...
-endfunction
-autocmd MyVimrc help call s:init_help()
-</code></pre>
-
-<p>個人的にはqで閉じるくらいしか設定していませんが、もっと便利な設定とかきっとあるので自分好みにしていきたい。</p>
-
-<h3>日本語でも読みたい</h3>
-
-<ul>
-<li><p><a href="https://github.com/vim-jp/vimdoc-ja">vim-jp/vimdoc-ja</a></p>
-
-<p>set helplang&amp; helplang=en,ja &ldquo; If true Vim master, use English help file.
-NeoBundle &lsquo;vim-jp/vimdoc-ja&rsquo;</p></li>
-</ul>
-
-
-<p>僕の場合最初は英語だけを設定しており、なんとか頑張ってhelpを読むといった状態でした。</p>
-
-<p>それはそれでいいことだとも言えるのですが、なんだかんだ日本語だとよりわかりやすかったり、英語でわからなかったら日本語で読めばいいという安心感からhelpを読む抵抗が減るので、英語環境でvimを使っていてまだ使っていない方はインストールしておくと良いと思います。</p>
-
-<p>上記の設定だとkeywordの後に@jaをつけることで日本語helpが読め、デフォルトでは英語になります。</p>
-
-<h3>自動でhelpを折りたたんでほしい</h3>
-
-<ul>
-<li><p><a href="https://github.com/thinca/vim-ft-help_fold">thinca/vim-ft-help_fold</a></p>
-
-<p>NeoBundleLazy &lsquo;thinca/vim-ft-help_fold&rsquo;, {
-      \ &lsquo;filetypes&rsquo; : &lsquo;help&rsquo;
-      \ }</p></li>
-</ul>
-
-
-<p>これは、前々から思っていて、無ければ自分で作ってみようかと思っていた時期が僕にもありました。</p>
-
-<p>が、調べてみるとthincaさんがすでに作ってた。試してみたところfoldtextも含めいい感じに折りたたんでくれます。</p>
-
-<p>折りたたみ好きはぜひ</p>
-
-<h3>Uniteでhelpを引く</h3>
-
-<ul>
-<li><a href="https://github.com/tsukkee/unite-help">tsukkee/unite-help</a></li>
-<li><p><a href="https://github.com/Shougo/unite-help">Shougo/unite-help</a></p>
-
-<p>&ldquo; NeoBundleLazy &lsquo;tsukkee/unite-help&rsquo;
-NeoBundleLazy &lsquo;Shougo/unite-help&rsquo;, {
-      \ &lsquo;unite_sources&rsquo; : &lsquo;help&rsquo;
-      \ }</p>
-
-<p>&ldquo; Execute help.
-nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
-&rdquo; Execute help by cursor keyword.
-nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
-</ul>
-
-
-<p>書いている時に気づいたのですがShougoさんのfork版が存在してメンテナンスされてるっぽいです。中身の差分みてないので何が改善されてるかは知らない(怠慢)</p>
-
-<p>追記: 主にキャッシュ周りが改善されているようです</p>
-
-<p>Uniteでインクリメンタルに検索できてhelpが格段にひきやすくなるので良さげです。</p>
-
-<h2>ブラウザでもhelpを引く</h2>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a>(日本語)</li>
-<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>(英語)</li>
-</ul>
-
-
-<p>Vim記事を呼んでいるとき、LingrのVim部屋で気になるものがあったけど、botに検索してもらうほどでもないかな..というとき、手元のタブレットでvimのヘルプが読みたいときなどなど、ブラウザでvimのhelpを読めると便利な場面がきっとあるとおもいます。</p>
-
-<p>そんな時は上記の日本語版ヘルプ or Sourceforgeの本家のヘルプを読むといいんですが、日本語版は検索がGoogleカスタム検索で少し不便、英語版は検索機能は高いけどレイアウトが見づらい&#8230;両方わざわざアクセスするの面倒くさい&#8230;</p>
-
-<p>そういった不満を改善する(かもしれない)ブックマークレット、作りました。</p>
-
-<p>GitHub: <a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
-
-<ul>
-<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
-<li><a href="javascript:(function(){var">vimdoc@en</a></li>
-<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
-</ul>
-
-
-<p>ブックマークバーにドラッグ&amp;ドロップで登録できます。</p>
-
-<p>上から日本語版ヘルプを検索、英語版ヘルプを検索、どちらかを開いているときにもう片方の言語で開くブックマークレットです。(en-to-jaとかネーミングおかしいのは目を瞑りましょう)</p>
-
-<p>vimdoc@ja,@enは事前に選択しておくとそのワードで検索します。これでVim記事読む時もhelpが手軽に読めて便利。</p>
-
-<p>日本語版ヘルプの検索機能は、Googleカスタム検索ではなく、おしょーさんにつけてもらったLingrのbotが使っている方法のリダイレクトバージョンを使っているので、ほとんどvimの検索ワードと同じように使えるはずです。おしょーさんありがとうございます。</p>
-
-<h2>まとめ</h2>
-
-<p>ここまで個人的に有用だと思うhelpに関する設定やプラグインを紹介しましたが、もっと便利な設定や知見がきっとたくさんあります。それを上級Vimmerに教えてもらう&#8230;のもいいですが、それだけでなく自分でhelpを読み込んで使いこなせるようになりましょう!(自戒)</p>
-
-<p><strong>Let&#8217;s :help!</strong></p>
-
-<p><strong>Don&#8217;t panic!</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimプラグイン読書会第2回が1/11(土)21:00から開催されます!]]></title>
-    <link href="http://haya14busa.com/preparation_of_reading_vim_plugin_02/"/>
-    <updated>2014-01-10T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/preparation_of_reading_vim_plugin_02</id>
-    <content type="html"><![CDATA[<h2>第2回 Vimプラグイン読書会 案内</h2>
-
-<ul>
-<li>日時: 2014年 1/11(土) 21:00-</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン: <a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f</a></li>
-</ul>
-
-
-<p>このページでVimプラグイン読書会の情報をまとめています。-> <a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></p>
-
-<h2>clever-fの紹介</h2>
-
-<ul>
-<li><a href="https://github.com/rhysd/clever-f.vim">GitHub:rhysd/clever-f</a></li>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/09/17/220837">clever-f.vim でカーソルの横移動を便利にする &#8211; sorry, unimplemented:</a></li>
-<li><a href="http://d.hatena.ne.jp/thinca/20130227/1361891993">clever-f.vim を魔改造した話 &#8211; 永遠に未完成</a></li>
-</ul>
-
-
-<p>clever-fはその名の通り<code>f{char}</code> による移動を強力にするプラグインです。</p>
-
-<p><code>f</code>で移動したあと<code>;</code>、<code>,</code>の代わりに<code>f</code> , <code>F</code>でそれそれ順方向、逆方向に移動できるのでキーマップを節約できたり、オプションを設定すれば、行をまたいで移動、smartcase機能、migemo機能などを使うことができます。</p>
-
-<p>使ったことない人は、少しだけ試してから読書会にくると、より見るべき部分がわかって面白いと思うので使ってみるとよさそうです。</p>
-
-<p><code>;</code>や<code>,</code>はあまり頻繁に使用しないせいで何かしらのprefixキーとして潰されてたり、そうでなくてもこれから使えると便利な位置にあるので、オプション設定無しで単に<code>f</code> or <code>F</code>でリピートさせるという使い方だけでも地味に助かるプラグインだと思います。</p>
-
-<p>個人的には簡単なマクロ使うときにとても重宝しています。(そういう意味では行を跨ぐ機能はOFFにしたほうがいいかなーと最近思ってる。オプションでちゃんと設定できます)</p>
-
-<h2>見どころ(個人的に)</h2>
-
-<p>前回のjunkfile.vimやvisualstar.vimよりも少し大きくなってちょっと実践度があがるのかなと思います。(helperスクリプトようにファイルを分けたりも前回はしていなかった気もするし)</p>
-
-<h3>カーソルキーの位置、状態によってキーの挙動をかえてる</h3>
-
-<p>どうやって実装してるのか、こういうところは<a href="https://github.com/kana/vim-submode">kana/vim-submode</a>と似たようなところがあるのかな？ないのかな？とか他にも応用できないかとか、いろいろ考えられそう。(これはvim-submode読まないとわからないけど。あとたぶん違う実装方な気がする)</p>
-
-<p>他にも行跨ぐ機能とか気になるところを重点的によんだりすると良さげ</p>
-
-<h3><code>.</code>によるオペレーションのリピート対応</h3>
-
-<p>カーソル移動系プラグインではこれがあるのとないのとではランクがひとつ、ふたつ違うってほど重要事項だとおもうのでこのへんのノウハウはぜひ読みたい。</p>
-
-<p>ちなみにeasymotionでは対応できていないし、同じくfを拡張して2キー対応しているvim-sneakは2キーの場合はリピートできるけど1キーだとできないという現状だったりします。(あと<a href="https://github.com/tpope/vim-repeat">tpope/vim-repeat</a>依存だったり)</p>
-
-<h3>migemo対応時のマルチバイト対応など</h3>
-
-<p>clever-fとかあんまり使わないというひとでもこういう細かいところは他の場面でも使えるので、汎用的な部分があれば積極的にみていくと良さげ感あります。clever-fに限った話じゃないですが。</p>
-
-<h3>Vim scriptでもテストを書きたい</h3>
-
-<ul>
-<li><a href="https://github.com/kana/vim-vspec">kana/vim-vspec</a></li>
-<li><a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a></li>
-<li><a href="http://labs.timedia.co.jp/2013/02/vim-plugins-vs-travis-ci.html">Vim プラグイン開発でも継続的インテグレーションがしたい! (Travis CI 編) &#8211; TIM Labs</a></li>
-<li><a href="http://labs.timedia.co.jp/2013/02/vim-vspec-introduction.html">Vim プラグイン開発でもユニットテストがしたい! (vim-vspec 編) &#8211; TIM Labs</a></li>
-<li>他のテストフレームワーク: <a href="https://github.com/Shougo/vesting/wiki/Test-framework-for-Vim-scripts">Shougo/vesting/wiki/Test-framework-for-Vim-scripts</a></li>
-</ul>
-
-
-<p>テストの書き方とか参考にしたいなとか個人的に思ってるけど、clever-fの場合はvim-vspecだけでなく、<a href="https://github.com/rhysd/vim-vspec-matchers">rhysd/vim-vspec-matchers</a>を使っててさらに拡張していたりするので、そのへん見たり見なかったりするのもよさげ。</p>
-
-<h3>2キー対応拡張したい</h3>
-
-<p><a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>のように2キー(or 複数キー)対応ができれば更に便利になるので余裕があれば複数キーに対応するにはどうやって実装すればいいかなーとか考えると面白いと思います。</p>
-
-<h2>最後に</h2>
-
-<p>ぜひ参加してわいわい読みましょう。</p>
-
-<p>今回参加できなくてもまだゆるゆると続くと思うので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>に更新情報を載せたりしますので時間あるときに参加しましょう。日時もなんとなく土曜21:00となっているけど、他の時間帯がいいという人が多ければ変えれると思うので意見していくときっといいです。</p>
 ]]></content>
   </entry>
   

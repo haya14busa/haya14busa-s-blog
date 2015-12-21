@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="VimConf2014 にいってきました 2014/11/08(Sat)に開催された VimConf 2014 に参戦して「/-improved」という発表をしてきました TL;DR 初めてVimConfで約80人の前でLTをしたり, 他の方のおもしろい発表を聞いたり, 懇親会などなどで &hellip;">
+  <meta name="description" content="この記事について この記事は Vim Advent Calendar 2014 の30日目かもしれません(または来年, Vim記事集約系のイベントやりたいという気持ちの1つです). 今年の2月に 1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,1025 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-12-30T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>この記事について</h2>
+
+<p>この記事は <a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の30日目かもしれません(または来年, Vim記事集約系のイベントやりたいという気持ちの1つです).</p>
+
+<p>今年の2月に <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a> というVim歴換算で1年を振り返ったエントリーを書いたのですが, 今回は2014年を振り返ってみたら, やっぱりVim活たのしかったなぁという日記的エントリーです.</p>
+
+<p>また思い返してみると僕がプログラミング始めたのは2年と少し前だったので, 2014年はプログラミング2年目の年でもありました.
+この文脈でみると<strong>「プログラミング2年目をVimに捧げるとどうなるか?」</strong> というエントリーとも言えそうです. (※1年目からかなりの割合をVimに捧げていました)</p>
+
+<h2>2014年, 今年のVim活を振り返る</h2>
+
+<p>※Vim活が9割です</p>
+
+<h3>カーソル移動系人気プラグインの vim-easymotion の開発を乗っ取った!</h3>
+
+<div class="github-card" data-github="Lokaltog/vim-easymotion" data-width="400" data-height="153" data-theme="default"></div>
+
+
+<p><img src="../images/easymotion/20141230_easymotion_contribution_graph.png" alt="20141230_easymotion_contribution_graph" />
+<img src="../images/gif/easymotion_on_speed_ex.gif" alt="easymotion_on_speed_ex" /></p>
+
+<ul>
+<li><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></li>
+<li><a href="https://github.com/haya14busa/vim-easyoperator-phrase">haya14busa/vim-easyoperator-phrase</a></li>
+<li><a href="https://github.com/haya14busa/vim-easyoperator-line">haya14busa/vim-easyoperator-line</a></li>
+<li>ブログ記事: <a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a></li>
+<li>執筆時GitHubスター数: 1556</li>
+</ul>
+
+
+<p>これは2013年の後半からforkして活動していて, 今年の2月くらいに起こった出来事なのですでに下記の記事に少し感想を書いています.</p>
+
+<p>-> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></p>
+
+<p>記事執筆現在, GitHub のStar数 1556 で, 開発を引き継いだ時点での Star数は 1000 にちょっと届かない程度でした.
+もともとほっといた場合の伸び具合がどれくらいかはわからないですが, 自分が引き継いだ時点で Star数 約1000 のリポジトリが, さらに500強増えたという事実は本当に嬉しいです.
+GitHub Star 500+ めでたい.</p>
+
+<p>これだけ 「たくさんのスター数がついている≒たくさんの人に使っていただけている」 プロジェクトを開発 &amp; メンテするというのはなかなかに学ぶことがおおくてとても楽しかったです.
+今後はリファクタリング含めもっと便利にしたいなぁと思っているんですが, そう思ってから半年くらい経過しております(すでに十分に便利&amp;安定してきているのでモチベが低い).</p>
+
+<h3>最高の検索体験を提供したい! incsearch.vim つくった</h3>
+
+<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="400" data-height="153" data-theme="default"></div>
+
+
+<p><img src="../images/gif/incsearch/incremental_regex_building.gif" alt="incremental_regex_building" /></p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
+<li>ブログ記事: <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a>
+
+<ul>
+<li><a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の 14日目の記事でもあります</li>
+</ul>
+</li>
+<li>執筆時GitHubスター数: 231</li>
+</ul>
+
+
+<p>今年の前半がvim-easymotionだとしたら, 後半はほとんど incsearch.vim でした.
+実はこのプラグインは最初はサクッと気晴らしにつくったぜーというレベルのものだったのですが,
+なんだかんだちゃんとしたものにしようという流れになり目一杯頑張りました.</p>
+
+<p>また使用しているライブラリの <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>
+にもコントリビューションという名のリクエスト丸投げや, 設計についてコメント, ダメダメな Pull Request
+を交えながらいろいろ関わらせていただきました.
+おしょーさんありがとうございます, 迷惑いっぱいかけてスイマセンッ, これからもよろしくお願いします..!</p>
+
+<p>便利さの9割は vital-over のおかげなのですが, 自分が1から開発してるリポジトリーでスター数3桁を達成してこれもまた非常に嬉しいです. これもめでたい.</p>
+
+<p>GitHubの VimL trending で Repositories &amp; Developers の両方で1位も獲得できました&hellip;! 嬉しさ.</p>
+
+<p><img src="../images/github/github-trending-viml-today-incsearch-2014-10-21%2009:26:33.png" alt="github-trending-viml-today-incsearch" />
+<img src="../images/github/github-developer-today-vimL-2014-10-22%2022:51:58.png" alt="github-developer-today-vimL-2014-10-22 22:51:58" /></p>
+
+<h3>VimConf 2014 で発表した</h3>
+
+<ul>
+<li><a href="http://vimconf.vim-jp.org/2014/">VimConf 2014</a></li>
+<li>皆さんの発表などなど: <a href="http://vimconf.vim-jp.org/2014/reports/">Reports - VimConf 2014</a></li>
+<li>ブログ記事: <a href="http://haya14busa.com/vimconf2014/">VimConf2014 で検索とその拡張について発表した - haya14busa</a></li>
+<li>スライド: <a href="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/pub">/-improved</a></li>
+<li>発表動画: <a href="https://www.youtube.com/watch?v=yB1H5V8e1j4&amp;list=PLx8bw5NQypsnuX8NJPRHvURhXqj2NUnGZ&amp;index=12">/-improved #VimConf2014 - YouTube</a></li>
+</ul>
+
+
+<p>VimConf2014 という感極まるVimのカンファレンスが今年も開催されたのですが, そこでLT枠で発表させていただきました.
+Vimの便利な検索機能と上述した incsearch.vim の紹介をしました. 発表グダったりもしましたが, よかったという反応をいただけたり, スライドを英語で書いたので英語圏の人にも見てもらって便利さを伝えられたのは良かったです. 英語というより gif をふんだんに活用したので伝わったという説もある.
+(<a href="http://usevim.com/2014/11/14/vimconf/">usevim</a>, <a href="http://www.reddit.com/r/vim/comments/2lwrv0/vimconf_2014_reports/">reddit</a> )</p>
+
+<p>ちなみに動画はテンパッて間違ったことも多々言ってるので鵜呑みにしないでください&hellip; この辺慣れるには場数を踏む必要がありそう</p>
+
+<h3>最高の検索体験を提供したい + α!. vim-asterisk 勢いでつくった</h3>
+
+<div class="github-card" data-github="haya14busa/vim-asterisk" data-width="400" data-height="153" data-theme="default"></div>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-asterisk/asterisk_z_star.gif" alt="asterisk_z_star" /></p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-asterisk">haya14busa/vim-asterisk</a></li>
+<li>執筆時GitHubスター数: 34</li>
+</ul>
+
+
+<p>Vim の <code>*</code> ってとても便利なのですが, 自分のユースケースとしては次のマッチにジャンプして欲しくないという不満があったので, そこを解消するために作りました.
+<code>*</code> からの <code>gn</code> テキストオブジェクト活用でスムーズに編集できるようになってとても気に入っています.</p>
+
+<p>結構小さいプラグインではあるのですが, 今まで得たVim scriptの知識や経験をたくさん使っていたり, ビジュアルモードにおける <code>*</code> 機能は <a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a> の部分をお借りしたり, マルチバイトの扱いを<a href="https://github.com/haya14busa/vim-asterisk/pulls?q=is%3Apr+is%3Aclosed">プルリク</a>貰って直したりとなかなかよさ気なものになりました.</p>
+
+<p>実は似たような機能を提供してるプラグインはいくつかあるのですが, どれも不満がまだありました(Vimの検索機能周りの拡張は結構落とし穴が多い).
+incsearch.vim の経験などが活きて落とし穴はうまく回避できました. 気になった方は是非使ってみてください.</p>
+
+<h3>vimrc 読書会にいっぱい参加 &amp; 管理のデータ化・自動化 &amp; 統計ページ をつくった</h3>
+
+<ul>
+<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a></li>
+<li><a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
+<li>ブログ記事: <a href="http://haya14busa.com/reading-vimrc-stat/">vimrc読書会Stat作った - haya14busa</a></li>
+<li><a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">たくさん参加してる様子</a></li>
+</ul>
+
+
+<p>確か管理者権限貰ったのは恐らく今年(すこしあやしい&hellip;厳密には去年だったかも&hellip;)で, 参加するだけでなくちょっとずつ運営面でも関わらせていただきました.
+Jekyll を覚えて 読書会のデータを yaml でデータ化したり,
+そのデータを使って Angularとd3.jsで 読書会の統計ページをつくったり,
+データ化によって扱いやすくなったので python や ruby で簡単なスクリプトを作成して更新作業を自動化したりしました.
+読書会は毎週やるので更新が一瞬でできるようになって非常に便利になりました. 統計ページのJS, よくない部分多々あるのでそのうち書き直したい.</p>
+
+<p><strong>毎週土曜日23:00からやっているので皆さん参加しましょう!</strong> -> <a href="http://lingr.com/signup?letmein=vim">http://lingr.com/signup?letmein=vim</a></p>
+
+<h3>Vim プラグイン読書会やってた</h3>
+
+<ul>
+<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
+</ul>
+
+
+<p>こちらも1ヶ月周期でやっていました. Vim プラグイン開発, 興味ある. という方にオススメです! 一緒に読みましょう.
+またvimrc読書会とVim プラグイン読書会での経験が, Vim以外の普段の開発のレビューにも活かされたような気も&hellip;しま&hellip;す(自信なし).</p>
+
+<p>執筆時現在次の日付が更新されてないという少々のグダりを見せていますが, 落ち着いたら必ず更新します!</p>
+
+<h3>Osaka.vim やで</h3>
+
+<ul>
+<li><a href="http://osaka-vim.connpass.com/">Osaka.vim - connpass</a></li>
+<li>ブログ記事: <a href="http://localhost:4000/osaka-vim-01/">Osaka.vim #1 に行ってきた - haya14busa</a></li>
+</ul>
+
+
+<p><strong>connpass上では運営になっていますが一切の運営をしていません&hellip;!</strong></p>
+
+<p>関西のVim勉強会, 近年ではほとんどなかったので便利. 関西の皆さん参加しましょう.</p>
+
+<h3>Vimで緊急地震速報が見れるの便利では&hellip;? eew.vim つくった</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/eew.vim">haya14busa/eew.vim</a></li>
+<li>Emacs移植: <a href="http://d.hatena.ne.jp/syohex/20140829/1409291511">eew.vimを移植しました - Life is very short</a></li>
+<li>Sublime移植: <a href="https://github.com/tgfjt/Sublime-eew">tgfjt/Sublime-eew</a></li>
+</ul>
+
+
+<blockquote class="twitter-tweet" lang="en"><p>総務省の某審議会のエライ人が「家でテレビで録画を見ていた際、緊急地震速報が出なかった。なんとかならないのか」との意見を述べ、プチ衝撃が走っているらしい。ｗｗｗ 確かに、テレビ見てることには変わりないけれど。</p>&mdash; 閑居 (@doatease2313) <a href="https://twitter.com/doatease2313/status/504522127622418434">August 27, 2014</a></blockquote>
+
+
+<blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>とりあえずでつくった <a href="https://t.co/hQQuAnnF9M">https://t.co/hQQuAnnF9M</a> RT <a href="https://twitter.com/haya14busa">@haya14busa</a> Vimに緊急地震速報流すの便利なのでは！？！？！？</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/505004191199162368">August 28, 2014</a></blockquote>
+
+
+<p>EmacsやSublimeに移植されたりとちょっとだけ話題になった(すこし).</p>
+
+<h3>その他ちっちゃい Vim plugin 達</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/unite-ghq">haya14busa/unite-ghq</a>
+
+<ul>
+<li>uniteでghqできるの便利では&hellip;?と思ってつくって公開したら, そのわずか数時間前に sorah さんが <a href="https://github.com/sorah/unite-ghq">sorah/unite-ghq</a> を公開しており,
+しかもこちらのほうが基本的によくできていて「ｱｱｱｯ&hellip;」とリアルで声がでた少し苦い思い出のあるプラグイン. 自分のバージョン使ってるの自分だけだとおもう. でも便利.
+既存プラグインの検索は直前まで入念にやりましょうという教訓を得ました. (数日前にやった時点ではなかったので大丈夫だと思ってた)</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/unite-reading-vimrc">haya14busa/unite-reading-vimrc</a>
+
+<ul>
+<li>vimrc読書会のログやvimrcのリンクをuniteで絞り込んで開ける. たまに vimrc読書会 の管理とか過去の記録を見るときに便利.</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/endtagcomment.vim">haya14busa/endtagcomment.vim</a>
+
+<ul>
+<li>よくvimrcで見かけるhtmlタグにコメントをつけるスクリプトをforkしてプラグイン化しただけ. もともと便利</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/unite-action-vimfiler_lcd">haya14busa/unite-action-vimfiler_lcd</a>
+
+<ul>
+<li>vimfilerで<code>lcd</code>してから開くというuniteアクションが欲しかった. 結局つかってないのであまり便利じゃない.</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/vim-textobj-number">haya14busa/vim-textobj-number</a>
+
+<ul>
+<li>数字のテキストオブジェクト. たまに便利. テキストオブジェクト学ぶかぁーという意図も含まれてた気がするけど結局それ以降テキストオブジェクト系プラグインは作成してない. なにかアイデア湧いたら作りたい.</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Vim活以外の進捗(残りの1割)</h2>
+
+<ul>
+<li>プログラミングのバイトを4月からはじめました(たぶんVim活アピール補正はかかりました. ある意味 Vim script もペイする言語&hellip;?).</li>
+<li>それに伴って Scala をやりはじめたんですが視野が広がってとてもよかったし, もっと学んでいきたいです.</li>
+<li>JavaScript もそこそこ書いて, Angular.js に触れたりなどしました. underscore.js も便利.</li>
+<li>しかし Scala その他 Vim 以外のOSS活動の進捗ﾀﾞﾒです</li>
+<li>heroku にPythonで小さいウェッブアプリをつくったのですが, 乗っかってるサービスが終了したので一緒にお亡くなりになってつらい.</li>
+</ul>
+
+
+<h3>勉強会にちょっとずつ参加するようになった</h3>
+
+<ul>
+<li><a href="http://scalamatsuri.org/">Enjoy.scala ! 日本最大級の Scala のカンファレンス - ScalaMatsuri</a></li>
+<li><a href="http://kansaifp.doorkeeper.jp/events/17206">関西関数型道場 - 第02回 - 関西関数型道場 | Doorkeeper</a></li>
+<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
+</ul>
+
+
+<p>Vim 以外の勉強会にも今年はちょっとずつ参加するようになりました(Vimも基本的には今年からですが). しかしこれは進捗でゎなぃな&hellip;</p>
+
+<h2>その他</h2>
+
+<h3>GitHub current streak 365 日達成した</h3>
+
+<blockquote class="twitter-tweet" lang="en"><p>気づいたらGitHubｺﾝﾄﾘﾋﾞｭｯｼｮﾝ Current streak 365日を達成していたっ&#8230;!!! <a href="http://t.co/XMED6OLFUp">pic.twitter.com/XMED6OLFUp</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/544899856037208065">December 16, 2014</a></blockquote>
+
+
+<p>dotfile 1行変更といったものがたくさんあるので全く大したことはしてないのですが, 日によってはそのついでにちゃんとプログラミングするぞっ! というきっかけになるので自分には合ってる継続的進捗管理術でした. 1年継続めでたい.</p>
+
+<h3>2014年 GitHub の Pull Requests / Issues 一覧</h3>
+
+<p><em>追記:</em></p>
+
+<ul>
+<li><a href="https://github.com/pulls?q=is%3Apr+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に出した Pull Requests 一覧</a></li>
+<li><a href="https://github.com/issues?q=is%3Aissue+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に開いた Issues 一覧</a></li>
+</ul>
+
+
+<p>PullRequest 8 opens / 83 closed, Issues 53 open / 95 closed ※99% Vimである</p>
+
+<h3>Podcast 聴くようになった</h3>
+
+<p>聴いてるPodcastは</p>
+
+<ul>
+<li><a href="http://rebuild.fm/">Rebuild</a></li>
+<li><a href="http://mozaic.fm/">mozaic.fm</a></li>
+<li><a href="https://itunes.apple.com/jp/podcast/bairingarunyusu-bilingual/id653415937?mt=2">バイリンガルニュース (Bilingual News)</a></li>
+<li><a href="http://thechangelog.com/podcast/">The Changelog Podcast</a></li>
+<li><a href="https://itunes.apple.com/us/podcast/the-binpress-podcast/id897178291?mt=2">The Binpress Podcast</a></li>
+<li>その他適当に気になったもの.</li>
+</ul>
+
+
+<p>という感じです. 例に漏れず(?), Rebuild.fm から聴き始めてめっちゃおもしろいっ! となり, そこから バイリンガルニュース や The Changelog を聴くようになりました.
+最近はずっと気になってはいたけど聞いていなかった mozaic.fm を聴くようになって, こちらも Rebuild とは別のベクトルのよさがあって全部聴きました. 技術系(?)英語 podcast の binpress podcast というポッドキャストは, 全部無料でスクリプトがついているという<em>エイゴ・ゼンゼン・キキトレナイ勢</em>としては歓喜のサービスがついていてお気に入りです. おもしろさは回によって違う感じですが, 英語もついでに学ぶかーという方にはオススメです.</p>
+
+<p>リスニング能力高めてもっと英語のポッドキャストを楽しめるようになりたい&hellip;</p>
+
+<h3>英語の記事をコンスタントに読む &amp; 検索するようになった</h3>
+
+<ul>
+<li><a href="http://www.reddit.com/r/vim/">reddit.com/r/vim</a></li>
+<li><a href="https://news.ycombinator.com/">Hacker News</a></li>
+<li><a href="https://medium.com/">Medium</a></li>
+<li><a href="http://getprismatic.com/home">Prismatic</a></li>
+</ul>
+
+
+<p>1年目も別に避けたりはしてなかったのですが, 最近は能動的に英語の情報に触れようとする確率が高くなったかなと思います.
+検索や話題になっている記事を除けば, 見ているのはだいたい上記のリンクです.
+ただ単に読んでるだけではなかなか得るものも少ないので, 自分から英語で発信する能力をつけたいなーというのが最近の悩みです.
+現状 GitHub の issue のやりとりやプラグインのドキュメントは基本英語を使ってるのですが, もっともっと使っていかないとなかなか身につかないですねー.</p>
+
+<h2>来年の抱負とか</h2>
+
+<ul>
+<li>Vim もっと頑張る.</li>
+<li>Vim のソースコード側も C言語ちょっとぐらい読み書きできるようになって簡単なバグくらいなら報告だけでなく修正案まで出せるようにしたい.</li>
+<li>Vim 以外も頑張る. なにか小さなウェッブサービスとか適当につくったりしたい.</li>
+<li>Scala力をより深めるのに加えて C, Go, Haskell あたりの言語を触って学んでいきたいという思いがある.</li>
+<li>データベース周りとか, 今触ってるレイヤーと別の部分も触っていきたい. 最低限基礎力が欲しい.</li>
+<li>英語力をつけていきたい. Vim について英語で適当に英語用Twitterアカウントつくってつぶやくとかなら継続してできるのでは&hellip;?という考えがある.
+欲を言えば Lingr の Vim 部屋のノリで英語でチャットとかできれば一番いいんじゃないかという思いがある. IRC に #vim チャンネルあるらしいけど, IRCよくわからない&hellip;ログ読みたい&hellip;</li>
+<li>人生は厳しいので人生についてちゃんと考える必要がある. 人生キビシイ.</li>
+</ul>
+
+
+<h2>「プログラミング2年目をVimに捧げるとどうなるか?」</h2>
+
+<p>少々Vim以外の進捗が少なすぎる気がするのは反省ですが, Vim活によってVimというコンテキストに留まらず, たくさんの貴重な経験ができました.
+git や GitHub, テスト, CI, オブジェクト指向やらクロージャ, 変数や関数の名前の付け方, 英語での技術系コミュニケーションなどなど, たくさんのことを Vim駆動で理解したり, 理解を深めた1年間だったと思います.</p>
+
+<p>Vim駆動学習, よさがあるのでオススメです. ※ただし用法用量を守って正しく Vim 活しないと Vim 以外の進捗が遅れます. 反省&hellip;</p>
+
+<p>また Vim だといろいろな言語を使ってる人がいて, しかも雲の上のような存在の人もたくさんいたり, オンラインでもオフラインの勉強会でも活動が活発なのでVim以外にもいろんなことが知れるし, プログラミング初学者でも最初から Vim をガンガン使ってプログラミングしていくのはおもしろいかなぁと思います.</p>
+
+<p>振り返ってみるとたくさんのVimmerにお世話になったなぁと思います. ※もちろんVimmerでないひとにもお世話になりました.</p>
+
+<p>みなさん今年はお世話になりました. 来年の2015年もぜひ仲良くしてください. よろしくお願いします.</p>
+
+<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2年目の<del>プログラミング</del> Vim活記録でした.</p>
+
+<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話</a>
+      <time datetime="2014-12-30T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>30</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/diary/'>diary,</a>, <a class='category' href='/categories/vim/'>vim,</a>, <a class='category' href='/categories/poemu/'>ポエム</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2014-12-11T22:38:41+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事は<a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a>の14日目の記事です。
+13日目は deris さんによる<a href="http://deris.hatenablog.jp/entry/2014/12/13/173125">スマートフォンでVimを操作するためにやっておいたほうがいいこと - derisの日記</a> でした。</p>
+
+<h2>1. incsearch.vim つくった</h2>
+
+<h3>Vimの検索体験をリッチにする, incsearch.vim を作りました</h3>
+
+<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
+
+<p><img src="../images/gif/incsearch/incremental_regex_building.gif" alt="incremental_regex_building" /></p>
+
+<p><br></p>
+
+<h3>あなたとincsearch.vim 今すぐインストール</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch.vim&#39;</span>
+</span><span class='line'>Plugin <span class="s1">&#39;haya14busa/incsearch.vim&#39;</span>
+</span><span class='line'>Plug <span class="s1">&#39;haya14busa/incsearch.vim&#39;</span>
+</span><span class='line'>map /  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>forward<span class="p">)</span>
+</span><span class='line'>map ?  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>backward<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>stay<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>TL;DR</h3>
+
+<ol>
+<li>Vim デフォルトの検索だとインクリメンタルハイライトは1つのマッチしかみてくれない</li>
+<li>incsearch.vim はマッチしたもの<strong>すべて</strong>をインクリメンタルにハイライトする</li>
+<li>デフォルトのコマンドラインと高い<strong>互換性</strong>を持っているのでインストールしてデフォルトの<code>/</code>を置き換えてもスムーズかつ手軽に使える</li>
+<li>本日バージョン1.0としてリリースしました</li>
+<li>ぜひ使ってみてください&hellip;!</li>
+</ol>
+
+
+<p>※ ホントにToo long になった感があるので記事は長くて嫌いになってもincsearch.vimはシンプルに使えるので嫌いにならないでくださいっ&hellip;!</p>
+
+<h2>2. Introduction</h2>
+
+<p>Vimの検索を便利にする. incsearch.vim を バージョン 1.0 としてリリースしました!</p>
+
+<p>「百聞は一見に如かず」ということで, 冒頭のgifなどを見ていただくだけで大事なことはすべて伝えつくしてしまった感があります.
+「もう便利さはわかった!」 という方は記事なんてすっ飛ばして是非ブラウザバックして使ってみてください!</p>
+
+<p>しかし今まで日本語でまともに解説したことがなかったこともあるので, ちょっとした便利機能やカスタマイズの仕方, 開発についてなど話していきたいと思います. もうすでに使っていたり, 聞いたりしたことあるよーという方も, 本日バージョン1.0としてリリースし, 以前から比べてインクリメンタルに改善してきたので少しは新しい情報もあるかなーと思います</p>
+
+<h2>3. incsearch.vim の機能を解説していくっ!</h2>
+
+<h3>3.1 シンプルにすべてをハイライトするっ</h3>
+
+<ol>
+<li>デフォルトの <a href="http://vim-jp.org/vimdoc-ja/options.html#%27incsearch%27">:h &lsquo;incsearch&rsquo;</a> とは違い, マッチしたパターンのすべてをハイライトする</li>
+<li>別ウィンドウのハイライトも対応できる(オプションで変更可, version 1.0 で追加されました)</li>
+</ol>
+
+
+<p>一番シンプルかつメインの機能としてマッチしたパターンをすべてハイライトします.
+便利さ, 自明っぽいので説明を省きます!</p>
+
+<p><img src="../images/gif/incsearch/incsearch_window.gif" alt="incsearch_window" /></p>
+
+<h3>3.2 正規表現をインテラクティブに作って確認する</h3>
+
+<ol>
+<li>デフォルトの検索だとエンターを押して<code>:set hlsearch</code> 状態になるまで, 現在入力している正規表現がどこにマッチしているかわからない</li>
+<li>incsearch.vim はもちろん正規表現に対応しており, スムーズに正規表現を作っていける</li>
+<li><code>&lt;Plug&gt;(incsearch-stay)</code> というマッピングを提供しており, これはカーソルが動かないので途中でウィンドウ外に飛ぶといったこともない</li>
+</ol>
+
+
+<p>マップ例:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map <span class="k">g</span>/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>stay<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="../images/gif/incsearch/incremental_regex_building.gif" alt="incremental_regex_building" /></p>
+
+<p>(冒頭のgifと同じ)</p>
+
+<p>これは vimrc によく書かれているプラグインマネージャが提供してるインストールコマンドから, インストールされているプラグインの部分とマッチする正規表現を作ってます(簡易版ですが). 普段の検索時にも勿論便利なのですが, 正規表現作る際の便利さは1つしかマッチを確認できないデフォルトの挙動と比べると段違いに捗ります. もしも incsearch.vim でデフォルトの検索を置き換えるまでもないかなーという人でも, 正規表現による検索の際のために<code>g/</code>など好みのマッピングに定義しておくとこういうケースでは便利に使えると思われます.</p>
+
+<h3>3.3 検索中のインクリメンタルカーソル移動とスクロールで快適ファイル内検索</h3>
+
+<ol>
+<li>Emacsは検索中にカーソルを前後に動かせるけどVimにはない&hellip;
+
+<ul>
+<li>※ Vim には <code>n</code>/<code>N</code> があるので別になくてもよい</li>
+</ul>
+</li>
+<li>incsearch.vim はデフォルトでは <code>&lt;Tab&gt;</code>/<code>&lt;S-Tab&gt;</code>で前後のマッチに移動できる</li>
+<li>Emacsや他のエディタでは見ない機能としてスクロール機能を提供しており, 画面内に目的地がないと判断すれば一気にスキップして画面外の次のマッチに飛べる(デフォルトでは<code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code>)</li>
+</ol>
+
+
+<p><img src="../images/gif/incsearch/incremental_move_and_scroll.gif" alt="incremental_move_and_scroll" /></p>
+
+<p><em>なにが便利か?</em></p>
+
+<h4>a) オペレータ待機モード時のモーションとドットリピート</h4>
+
+<p>ノーマルモードでは問題でもないですが, <code>d/{pattern}</code> といった オペレータ待機モード
+で使う場合, 決定したあとに <code>n</code>/<code>N</code> を使うことはできません. しかし,
+最初に目測でマッチを確認してからカウントをつけて <code>3d/{pattern}</code> とするのはとてもしんどい上に間違う可能性もあり, 生産的ではありません&hellip;</p>
+
+<p>また1回だけの場合は ビジュアルモード を使えば上記の問題は回避できますが, これだとドットリピート が効きません.</p>
+
+<p>そこで, incsearch.vim の <code>&lt;Tab&gt;</code>/<code>&lt;S-Tab&gt;</code> (<code>:h &lt;Over&gt;(incsearch-next)</code>) を使って
+検索中にカーソルを移動させれば一目で目的地まであとどれくらいかもわかるし,
+オペレータと組み合わせるモーションとしての使用も, その後のドットリピートの問題も解消できます.</p>
+
+<h4>b) <code>:h jumplist</code> の更新が1回で済む</h4>
+
+<p>ノーマルモードでは問題でもないといったな? あれは嘘だ!</p>
+
+<p>Vimには <code>:h jump-motions</code> というモーションの種類があり, これに属するモーションを
+行うとジャンプ前のカーソル位置が記憶され, <code>&lt;C-o&gt;</code>/<code>&lt;C-i&gt;</code> でそれらのカーソル位置を
+行ったり来たりできる超便利機能が存在します. 検索系のモーション(<code>/</code>,<code>?</code>,<code>n</code>,<code>N</code>, etc..)
+はこの jump-motions に属しており incsearch.vim でも勿論対応しているのでその機能を
+バリバリ使うことができます.</p>
+
+<p>ここで問題なのは <code>n</code>や<code>N</code> も jump-motions ということです. 検索後に <code>n</code>/<code>N</code>で移動したあとやっぱり検索した元の位置に戻りたいな〜という時に
+<code>n</code>/<code>N</code> を押した回数分<code>&lt;C-o&gt;</code>を押す(またはカウントを前置する)必要があって地味に不便です.</p>
+
+<p>incsearch.vim で検索中に<code>&lt;Tab&gt;</code>を押して移動してから検索を決定すれば勿論 <code>jumplist</code>
+の更新は1回で済むので<code>jumplist</code>を汚すことなく十二分にそのジャンプ機能の便利さを享受することができます.
+地味なよさがありますね.</p>
+
+<h4>c) スクロール機能で <code>n</code> 連打せずファイル内をサクっと検索</h4>
+
+<p>a), b) は1つ1つ前後に移動する機能の紹介でしたが, incsearch.vim は スクロール(デフォルトでは
+<code>&lt;C-j&gt;</code>がスクロールダウン, <code>&lt;C-k&gt;</code>がスクロールアップ)という機能を搭載しており, これは人に
+よってはライフチェンジングになりうるなかなかオススメ機能の1つです.</p>
+
+<p>先ほどのgifを見てもらうとわかりやすいかと思うのですが,</p>
+
+<p><em>デフォルトの場合</em></p>
+
+<ol>
+<li>「あーファイル内の{pattern}って部分に用があるな〜」</li>
+<li>「よーし<code>/{pattern}&lt;CR&gt;</code>で検索して<code>n</code>, <code>n</code>, <code>n</code>, &hellip;」</li>
+<li>「まだ見つからない&hellip;(ファイル内に<code>{pattern}</code>がたくさんあって辿り着かない)」</li>
+<li>=> 不便&hellip;</li>
+</ol>
+
+
+<p><em>incsearch.vimのスクロール機能を使った場合</em></p>
+
+<ol>
+<li>「あーファイル内の{pattern}って部分に用があるな〜」</li>
+<li>「よーし<code>/{pattern}</code>で incsearch.vim を起動しよう」</li>
+<li>「あー画面内にいっぱい<code>{pattern}</code>がある&hellip;よし<code>&lt;C-j&gt;</code> で次の画面へ」</li>
+<li>「<code>&lt;C-j&gt;</code>を数回押して目的地発見. 任意で<code>&lt;Tab&gt;</code>/<code>&lt;S-Tab&gt;</code>で前後に移動してから<code>&lt;CR&gt;</code>!」</li>
+<li>=> <em>幸せ便利</em></li>
+</ol>
+
+
+<p>勿論, そもそもファイル内にたくさん存在しないようなキーワードを使って検索したり, タグが存在するなら
+ctagsなどを使用してタグジャンプしたほうが断然よいですが,
+いつでもユニークなキーワードが思い浮かんだり, タグが存在するわけではないので万能ではありません.
+検索だとかなり汎用性が高いので個人的にはとても多用してる機能の１つになってます.</p>
+
+<p>また他にもファイルの横断検索を補助するような機能を提供しているVimの機能や
+プラグインなどなどはあるとは思いますが, 以下のようなメリットがあります</p>
+
+<ol>
+<li>&ldquo;検索&rdquo; として使える
+
+<ul>
+<li><code>gn</code>や<code>:substitute</code>と連携したりなど&#8221;検索&#8221;は他のVimの機能と一緒に使うことによって,
+相乗効果でより手に馴染む快適なキーストロークでエディットすることができます.</li>
+</ul>
+</li>
+<li>周囲のコンテキスト, 前後の行がみやすい
+
+<ul>
+<li><code>:vimgrep</code> や <code>unite-line</code> といった機能はだいたい前後の行が見れなかったりして
+ユースケースによっては困ることもあります. ただし<code>grep</code>
+などは複数のファイルを扱える大きなメリットがあるので使い分けれるようになるのが一番よさそうです.</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>3.4 オート:nohlsearch</h3>
+
+<ol>
+<li><code>:set hlsearch</code>って便利でもあるけどだいたいウザイ
+
+<ul>
+<li><code>nnoremap &lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code> と言ったマッピングで検索後に消す人が多いと思います.</li>
+</ul>
+</li>
+<li>incsearch.vim の <code>オート:nohlsearch</code> 機能を使えば検索後カーソル移動したらハイライトが消えるようになります.</li>
+<li>地味に便利</li>
+</ol>
+
+
+<p><img src="../images/gif/incsearch/incsearch_auto_nohlsearch.gif" alt="incsearch_auto_nohlsearch" /></p>
+
+<h4>設定</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">set</span> <span class="nb">hlsearch</span>
+</span><span class='line'><span class="k">let</span> <span class="k">g</span>:<span class="nb">incsearch</span>#auto_nohlsearch <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>map <span class="k">n</span>  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">n</span><span class="p">)</span>
+</span><span class='line'>map <span class="k">N</span>  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">N</span><span class="p">)</span>
+</span><span class='line'>map *  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span>*<span class="p">)</span>
+</span><span class='line'>map #  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span>#<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span>* <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">g</span>*<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span># <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">g</span>#<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>※ <code>&lt;Plug&gt;(incsearch-nohl-n)</code> などは単なる <code>&lt;Plug&gt;(incsearch-nohl)n</code> のエイリアス
+なので独自の <code>n</code>や<code>*</code>の機能を提供しているわけではありません</p>
+
+<h3>3.5 他のプラグインと組み合わせて使う</h3>
+
+<p>(3.4のつづき)</p>
+
+<p><code>incsearch.vim</code> は <code>/</code> とそれにまつわる検索の便利機能を提供するようにシンプルにしようとデザインしてるつもりです(そこっ!検索にまつわる〜とか言ってる時点でシンプルではないとか言わない!). なので <code>n</code> や <code>*</code> を拡張したい場合に備え別の拡張プラグインと同時に扱える用に設計しています.</p>
+
+<p>普通に一緒に使う分には何も考えなくとも併用できますが, incsearch.vim の オート :nohlsearch 機能 を使いたい場合はマッピングをちょっといじる必要があるので自分が使ってる例を出してみます</p>
+
+<h4>n 拡張プラグイン vim-auzu と一緒に使う</h4>
+
+<div class="github-card" data-github="osyo-manga/vim-anzu" data-width="500" data-height="150" data-theme="default"></div>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map   <span class="k">n</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">n</span><span class="p">)</span>
+</span><span class='line'>map   <span class="k">N</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">N</span><span class="p">)</span>
+</span><span class='line'>nmap  <span class="k">n</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>anzu<span class="p">-</span><span class="k">n</span><span class="p">-</span>with<span class="p">-</span>echo<span class="p">)</span>
+</span><span class='line'>nmap  <span class="k">N</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>anzu<span class="p">-</span><span class="k">N</span><span class="p">-</span>with<span class="p">-</span>echo<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim-anzu は <code>n</code>/<code>N</code> を押すとファイル内の <code>現在位置までの数/全マッチ数</code> を表示してくれる拡張機能です.</p>
+
+<h4>* 拡張プラグイン vim-asterisk と一緒に使う</h4>
+
+<div class="github-card" data-github="haya14busa/vim-asterisk" data-width="500" data-height="153" data-theme="default"></div>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map *  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>*<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span>* <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span><span class="k">g</span>*<span class="p">)</span>
+</span><span class='line'>map #  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>#<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span># <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span><span class="k">g</span>#<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>または vim-asterisk の<code>z*</code>機能(カーソルが動かない<code>*</code>) をメインに使う場合</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>map *  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>nohl0<span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>z*<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span>* <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>nohl0<span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>gz*<span class="p">)</span>
+</span><span class='line'>map #  <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>nohl0<span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>z#<span class="p">)</span>
+</span><span class='line'>map <span class="k">g</span># <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>nohl0<span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>asterisk<span class="p">-</span>gz#<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>vim-asterisk は僕が最近作った <code>*</code> をカイゼンするプラグインです. 機能としては</p>
+
+<ol>
+<li>カーソルを動かさない <code>*</code> 機能の提供(マッピングにzのprefixがついてる)
+
+<ul>
+<li>動かさずに <code>*</code> や <code>g*</code> でカーソル位置の単語を検索レジスタ(<code>@/</code>)に入れたあとに
+<code>gn</code> などを組み合わせて編集したいというケースでは次のマッチに飛ぶ必要がないので
+カーソル動かないバージョンの <code>*</code> が欲しかった. どうせ <code>n</code>/<code>N</code> ですぐ動かせる</li>
+<li><code>noremap * *N</code> という解決法はダサいしウィンドウが一時的に動くので不便</li>
+</ul>
+</li>
+<li>ビジュアルモードで選択したテキストを検索するvisual-star 機能
+
+<ul>
+<li>サクッと勢いで作ったので <a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a>
+のマルチバイトや <code>keyword</code> の扱いの部分のコードをお借りしています. ありがとうございます</li>
+<li>visual-star は <code>CursorMoved</code> イベントが2回発生してしまうという問題があり,
+incsearch.vim の オート:nohlsearch 機能と併用できなかった.
+なので visual-star機能と同時に使いたい場合はvim-asteriskのvim-asterisk機能を使うと便利</li>
+</ul>
+</li>
+<li>ignorecase だけでなく smartcase の値も一緒にみてくれる
+
+<ul>
+<li>デフォルトはなぜか <code>ignorecase</code> の値しかみてくれず, <code>smartcase</code> を設定していても<code>ignorecase</code>状態で検索される</li>
+<li>非直感的すぎるので vim-asterisk は <code>:set ignorecase</code>の値も<code>:set smartcase</code>をみるようになっています</li>
+</ul>
+</li>
+</ol>
+
+
+<h3>3.6 Vim のデフォルトからちょっとカイゼン</h3>
+
+<h4>a) magic オプションカイゼン</h4>
+
+<p>Vimには <code>'magic'</code> という正規表現のエスケープする文字を変えるオプションがありますが
+<code>\m</code>, <code>\M</code> しか設定できません(<code>:h /magic</code>).
+またこれは<code>/</code>だけでなくすべての正規表現の挙動を変えてしまい設定すると,
+対応できていないプラグインが動かなくなったりする問題があります (<code>:h 'magic'</code>)</p>
+
+<p>incsearch.vim ではこれをカイゼンして <code>\v</code>, <code>\V</code>, <code>\m</code>, <code>\M</code> の, どの magic でも設定できる. また勿論他のプラグインには一切影響しません.</p>
+
+<p><em>例</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:<span class="nb">incsearch</span>#<span class="nb">magic</span> <span class="p">=</span> <span class="s1">&#39;\v&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>b) カーソル下単語補完やCtrl-Wによる単語削除のカイゼン</h4>
+
+<p>Vimは<code>set incsearch</code>状態で検索中に<code>&lt;C-r&gt;&lt;C-w&gt;</code>を押すとコマンドラインのカーソル前の単語とのマッチをみて,
+バッファのカーソル下の単語を補完してくれる機能を持っています.
+この機能自体はとてもべんりなのですが, コマンドラインが <code>/\vwo</code> の状態, カーソル下の単語が <code>word</code> の時に
+<code>&lt;C-r&gt;&lt;C-w&gt;</code> を押しても補完が発動せず単にカーソル下の単語が挿入され <code>/\vwoword</code>になってしまいます.</p>
+
+<p>これはvery magicオプションを設定する<code>\v</code>の<code>v</code>部分と<code>wo</code>との区別がなく<code>vwor</code>
+がコマンドラインのカーソル前の単語と認識されているのが原因なので, カーソル前の単語
+の範囲をかしこく決めてくれる機能を提供しています(オプションでoffにすることは可能です. <code>:h g:incsearch#smart_backward_word</code>)</p>
+
+<p><code>&lt;C-w&gt;</code> によるカーソル前の単語の削除も同様の問題がありこれもカイゼンして,
+<code>/\vword</code>状態で<code>&lt;C-w&gt;</code>を押すとデフォルトだと<code>/\</code>となるところを<code>\v</code>となるようにしています</p>
+
+<p><img src="../images/gif/incsearch/incsearch_smart_backward_word.gif" alt="incsearch_smart_backward_word" /></p>
+
+<p>見た目はとっても地味で聞いてもピンとこないかもしれないですが, 挙動が直感的になるとても気に入ってる機能のひとつです. ｼﾞｯｻｲﾍﾞﾝﾘ</p>
+
+<h3>3.6 マッピングについて</h3>
+
+<ol>
+<li><code>:cnoremap</code> や <code>:cmap</code> に設定されているマッピングは自動で適用される</li>
+<li>incsearch.vim が提供する機能へのマッピングや, <code>:cnoremap</code> の設定の上書き,
+incsearch.vim でのみマッピングしたいという場合は <code>:h IncSearchNoreMap</code> コマンド
+を使います</li>
+</ol>
+
+
+<p><em>設定例</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>augroup <span class="nb">incsearch</span><span class="p">-</span><span class="nb">keymap</span>
+</span><span class='line'>    <span class="k">autocmd</span><span class="p">!</span>
+</span><span class='line'>    <span class="k">autocmd</span> <span class="nb">VimEnter</span> * <span class="k">call</span> <span class="k">s</span>:incsearch_keymap<span class="p">()</span>
+</span><span class='line'>augroup END
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:incsearch_keymap<span class="p">()</span>
+</span><span class='line'>    IncSearchNoreMap <span class="p">&lt;</span>Right<span class="p">&gt;</span> <span class="p">&lt;</span>Over<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>next<span class="p">)</span>
+</span><span class='line'>    IncSearchNoreMap <span class="p">&lt;</span>Left<span class="p">&gt;</span>  <span class="p">&lt;</span>Over<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">prev</span><span class="p">)</span>
+</span><span class='line'>    IncSearchNoreMap <span class="p">&lt;</span>Down<span class="p">&gt;</span>  <span class="p">&lt;</span>Over<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="nb">scroll</span><span class="p">-</span><span class="k">f</span><span class="p">)</span>
+</span><span class='line'>    IncSearchNoreMap <span class="p">&lt;</span>Up<span class="p">&gt;</span>    <span class="p">&lt;</span>Over<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="nb">scroll</span><span class="p">-</span><span class="k">b</span><span class="p">)</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3.7 autocmd で拡張できる</h3>
+
+<p>参照: <code>:h incsearch-autocmd</code></p>
+
+<p>incsearch.vim は Vim デフォルトのコマンドラインのと違い独自の autocmd イベントを発行しているので, それをつかってincsearch.vimを拡張することができます. 以下は <a href="https://github.com/inside/vim-search-pulse">inside/vim-search-pulse</a> というプラグインの機能を簡単に組み込んでみた例です. 個人的には要らないけどなんかカッコイイ&hellip;!?</p>
+
+<p><img src="../images/gif/incsearch/incsearch_autocmd_flash.gif" alt="incsearch_autocmd_flash" /></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:flash<span class="p">()</span>
+</span><span class='line'>  <span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">set</span> <span class="nb">cursorline</span><span class="p">!</span>
+</span><span class='line'>    <span class="k">redraw</span>
+</span><span class='line'>    sleep <span class="m">50</span>m
+</span><span class='line'>  <span class="k">endfor</span>
+</span><span class='line'>  <span class="k">set</span> <span class="nb">cursorline</span><span class="p">!</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'>augroup <span class="nb">incsearch</span><span class="p">-</span>pulse
+</span><span class='line'>    <span class="k">autocmd</span><span class="p">!</span>
+</span><span class='line'>    <span class="k">autocmd</span> <span class="nb">User</span> IncSearchExecute <span class="k">call</span> <span class="k">s</span>:flash<span class="p">()</span>
+</span><span class='line'>augroup END
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span>flash<span class="p">)</span> :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>flash<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span><span class='line'>map <span class="k">n</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">n</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span>flash<span class="p">)</span>
+</span><span class='line'>map <span class="k">N</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span><span class="k">nohl</span><span class="p">-</span><span class="k">N</span><span class="p">)&lt;</span>Plug<span class="p">&gt;(</span>my<span class="p">-</span>flash<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; デフォルトの場合</span>
+</span><span class='line'><span class="c">&quot; map n n&lt;Plug&gt;(my-flash)</span>
+</span><span class='line'><span class="c">&quot; map N N&lt;Plug&gt;(my-flash)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. Development</h2>
+
+<p>開発の話とか.</p>
+
+<h3>4.1 Design</h3>
+
+<p>ここまでいろいろと紹介しておいてどうかという話なのですが, incsearch.vim は
+<em>シンプル</em>に機能を提供し , デフォルトのコマンドラインと高い<em>互換性</em>を保ちつつ,
+それでいて<em>拡張性</em>の高いものにしようというコンセプトでつくっています(実際そうなっているとは言ってない)</p>
+
+<p>特に一番苦心したのはデフォルトのコマンドラインとの互換性を保つように開発するところでした.
+現在はVimのデフォルトの<code>/</code>でできるほとんどのことはできますが,</p>
+
+<p>ビジュアルモードでのハイライトだったり, vim-repeat といった別のプラグインに依存せず
+ドットリピートを可能にしたり, 逆にそれを可能にした <code>&lt;expr&gt;</code> マッピングによる <code>textlock</code> という
+Vimの制限を解消するために, 必要でない部分は<code>&lt;expr&gt;</code> マッピングを使わないようにするといった回り道を
+しながら, 現在はほぼデフォルトと互換性のある状態にできたと思います.</p>
+
+<h4><code>&lt;expr&gt;</code> についてちょっと解説したりする</h4>
+
+<ol>
+<li><code>:h :map-&lt;expr&gt;</code></li>
+<li>ドットリピート対応できる</li>
+<li><code>:h function-search-undo</code> とかの制限をかいくぐれる</li>
+<li>いろいろいじった上で最終的にデフォルトのマッピングを返して実行! ということができるのでデフォルトのモーションを拡張する際にとても便利</li>
+<li>しかし問題点もある</li>
+</ol>
+
+
+<p><code>&lt;expr&gt;</code> とは expression mapping の略で, <code>{rhs}</code>(right-hand-side) を評価した値を返してくれます.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;</span> <span class="k">g</span><span class="sr">/ printf(&quot;/</span>%<span class="k">s</span>\<span class="p">&lt;</span>CR<span class="p">&gt;</span>&quot;<span class="p">,</span> input<span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記のマッピング例では, <code>{rhs}</code> の <code>input('&gt;')</code> が評価され, そこで入力した値を<code>{pattern}</code>とすると
+それが<code>printf()</code>によって最終的には <code>/{pattern}&lt;CR&gt;</code> になります.</p>
+
+<p>何がいいのかというと, 実際に <code>dg/pattern</code> などと使った際に, <code>{rhs}</code> が評価されて <code>d/pattern</code> になります.
+これはそもそも最初から <code>d/pattern</code> と打った時と同様の挙動になるので, あたかもデフォルトの<code>/</code>を使ったような挙動を簡単に実装できるのです!
+これによって ドットリピート や <code>:function-search-undo</code> に対応することが可能となります.</p>
+
+<p>とは行ってもイマイチわかりにくいと思うので <code>&lt;expr&gt;</code> を使わないマッピングを見てみましょう.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:non_expr_search<span class="p">()</span>
+</span><span class='line'>    execute <span class="s1">&#39;normal!&#39;</span> printf<span class="p">(</span><span class="s2">&quot;/%s\&lt;CR&gt;&quot;</span><span class="p">,</span> input<span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'><span class="nb">noremap</span> z/ :<span class="p">&lt;</span>C<span class="p">-</span><span class="k">u</span><span class="p">&gt;</span><span class="k">call</span> <span class="p">&lt;</span>SID<span class="p">&gt;</span>non_expr_search<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>単に検索という意味では動いているように見えるのですが, <code>function-search-undo</code>の制限により
+ハイライトされず, また <code>dz/pattern</code> は <code>d:&lt;C-u&gt;call &lt;SID&gt;non_expr_search()&lt;CR&gt;</code> となるので,
+ドットリピート時にも <code>s:non_expr_search</code> 関数が呼ばれてしまします. これによってその中の
+<code>input()</code>がドットリピートでも呼ばれてしまい入力待ちになってしまいます.
+これでは以前に入力した値をつかって検索してくれるデフォルトのドットリピートの挙動が再現出来ていません&hellip;不便&hellip;</p>
+
+<p>普通のマッピングだとこういう問題があるのでそれを解消ができる <code>&lt;expr&gt;</code>
+はデフォルトのモーションの拡張にとてもあっているのですが,
+<code>&lt;expr&gt;</code> は<code>&lt;expr&gt;</code>で上述した副作用として <code>:normal</code> が使えないといった問題もあるので
+これから<code>&lt;expr&gt;</code>を使ってプラグイン作りたいっという方は注意して使ってみてください.</p>
+
+<p>incsearch.vim や先ほど紹介した vim-asterisk も<code>&lt;expr&gt;</code>を活用して便利にしたりしています.
+他にも <a href="https://github.com/rhysd/clever-f.vim">rhysd/clever-f.vim</a> や <a href="https://github.com/deris/vim-shot-f">deris/vim-shot-f</a>
+といった <code>f</code> を拡張するプラグインでも <code>&lt;expr&gt;</code> が使用されており, もともとこの<code>&lt;expr&gt;</code>でドットリピートに対応するという方法は
+僕は clever-f で初めてみました. スゴイ.</p>
+
+<h3>4.2 vital-over, または incsearch.vim のカスタムコマンドラインインターフェースについて</h3>
+
+<div class="github-card" data-github="osyo-manga/vital-over" data-width="400" data-height="150" data-theme="default"></div>
+
+
+<p>incsearch.vim は vital-over というカスタムコマンドラインインターフェースを提供するライブラリを使わせていただいてます.
+incsearch.vim のデザインとしてVimデフォルトとの互換性を目指していると先ほど書いたのですが,
+実はincsearch.vimがやっている部分は検索だけで,
+コマンドラインインターフェースがVimのデフォルトと同じように使えるのはこの vital-over というライブラリのおかげです.
+本当にアツイプラグインなので興味あるVim プラグイン開発者は是非使ってみてください!</p>
+
+<p>モジュール性が高いのでガッツリとしたコマンドラインとしてではなく, ちょっと便利な <code>input()</code> や
+<code>getchar()</code> として使えるかなーと思います. そのうち何かまた作ってみたい&hellip;!</p>
+
+<h3>4.3 テストとかLintとか</h3>
+
+<ol>
+<li>themis.vim でテスト書いた</li>
+<li>vim-lint / vint (期待)</li>
+<li>テストって便利って改めて気づいた&hellip;!</li>
+<li>themis のテスト書き方自体は <a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a> など他のものを参考にするとよいと思う</li>
+</ol>
+
+
+<div class="github-card" data-github="thinca/vim-themis" data-width="400" data-height="150" data-theme="default"></div>
+
+
+<div class="github-card" data-github="syngan/vim-vimlint" data-width="400" data-height="153" data-theme="default"></div>
+
+
+<p><img src="../images/gif/incsearch/incsearch_dot_reporter_test.png" alt="incsearch_dot_reporter_test.png" />
+<img src="../images/gif/incsearch/incsearch_badges.png" alt="incsearch_badges.png" /></p>
+
+<p>今回incsearch.vim は(現在が開発&amp;メンテしてるvim-easymotionでもちょっとずつやってはいましたが)割と初めてスクラッチでテストやlintをしながら
+書いたものだったのですが Vim script の開発周りの環境はかなり便利です. 特に <strong>Vim</strong> を使えるところが開発しやすくてよいです.</p>
+
+<p>CI も travis で 最新に近い Vim と travis.org の Vim のバージョンの両方でテスト
+(<a href="https://github.com/vim-jp/vital.vim/pull/241">Test on the latest Vim by crazymaster · Pull Request #241 · vim-jp/vital.vim</a>) したり,
+<a href="http://d.hatena.ne.jp/thinca/20140812/1407775202">Vim プラグインを Windows 環境でテストする - 永遠に未完成</a>
+を参考に Windows 環境 でもテストがしてみたりしてなかなかよかったです. (<del>Windows環境だけで違う挙動になるのヤメローッ!</del>)</p>
+
+<p>Lint に関しては <a href="https://github.com/Kuniwak/vint">Kuniwak/vint</a> という python 製ツールも気になっているので期待ですね.</p>
+
+<h3>4.4 Vim script 楽しいっ</h3>
+
+<p>テストやLintツールもあるし,
+<a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a> や
+<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>
+といったライブラリ, Vim から引ける膨大な<code>:help</code>, 困ったら <a href="http://lingr.com/room/vim/archives#message-20835831">vim-jp – Lingr</a>
+や <a href="https://github.com/vim-jp/issues/issues">Issues · vim-jp/issues</a> に相談, バグ報告できる環境,
+Vim を使って開発できる Vim script を書くのは楽しいです&hellip;!</p>
+
+<p><br>
+&hellip;&hellip;..
+<br>
+<br>
+<strong>&hellip;.ほんとうですよっ!?</strong> (言語仕様は寛容な心でカバー)
+<br>
+<br></p>
+
+<p>ぜひぜひみなさんVim プラグイン開発やっていって開発効率を上げたり快適でリッチなエディタ環境を作ってみましょう&hellip;!</p>
+
+<p>(※ 用法, 用量を守ってただしくVimしましょう)</p>
+
+<h2>5. 最後に</h2>
+
+<p>話が逸れてる感をひしひしと感じますが, あくまで incsearch.vim を紹介・解説する記事だったはずなので話を戻しましょう.</p>
+
+<p>incsearch.vim, 今でもとても便利だと思っているのですが, まだまだ開発していく余地があります. (後方互換性を壊すことはしないと思います)</p>
+
+<p>autocmd の拡張例を上述しましたが, まだコマンドラインの中身をいじれるようなインターフェースは実は提供できていません.
+どこまでオープンにしていけばいいのか, オープンにしたら本当に便利になるのか,
+などなど僕にとっては難しくゆっくり考えながら決めて行きたいです.  意見頂けたりとかコントリビューションお待ちしています&hellip;!</p>
+
+<p>Vim Advent Calendar でテンションあがってちょっと長くなってしまいました. ここまで読んでくださった方ありがとうございます.</p>
+
+<p><a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> 是非1度使ってみてください. 気に入って頂けるとそれはとっても嬉しいです!</p>
+
+<p>それではVim Advent Calendar 2014の14日目の記事でした.</p>
+
+<p>Happy Vimming!</p>
+
+<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする</a>
+      <time datetime="2014-12-11T22:38:41+09:00" pubdate><span class='month'>Dec</span> <span class='day'>11</span> <span class='year'>2014</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -561,431 +1580,6 @@ themis便利なんですが自分が使いこなせてないのでテストも�
       
       - <a href="/reading-vimrc-stat/">vimrc読書会Stat作った</a>
       <time datetime="2014-07-17T01:18:34+09:00" pubdate><span class='month'>Jul</span> <span class='day'>17</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-30T19:09:21+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
-<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
-</ul>
-
-
-<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
-
-<h2>関西圏のVim勉強会!</h2>
-
-<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
-
-<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
-
-<h4>2014/04/05</h4>
-
-<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
-
-<p>manga_osyo: やると聞いて
-              haya14busa.vim</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
-
-<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
-
-<h4>2014/05/17</h4>
-
-<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
-          iyuuya.vimやってもいいんですけどねー</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
-
-<p><strong>やりたい!!!</strong></p>
-
-<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
-一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
-という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
-</span><span class='line'>  @iyuuya<span class="p">++</span>
-</span><span class='line'><span class="k">endfor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
-
-<h2>Osaka.vim #1</h2>
-
-<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
-
-<h3>@thinca さんによるライブコーディング</h3>
-
-<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
-個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
-
-<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
-さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
-デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
-これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
-
-<ul>
-<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
-<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
-</ul>
-
-
-<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
-
-<h3>フリータイム</h3>
-
-<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
-
-<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
-
-<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
-
-<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
-聞いてみると興味をそそられました。
-<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
-いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
-コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
-使い方がとても良さそうでした。</p>
-
-<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
-
-<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
-
-<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
-<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
-
-<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
-
-<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
-この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
-それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
-周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
-
-<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
-
-<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
-
-<p>がんばりたい</p>
-
-<h3>発表した</h3>
-
-<ul>
-<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
-</ul>
-
-
-<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
-
-<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
-と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
-拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
-
-<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
-あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
-結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
-ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
-
-<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
-
-<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
-かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
-に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
-
-<p>反応はイマイチわからなかった()</p>
-
-<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
-しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
-
-<h2>懇親会&hellip;そしてカラオケオールへ</h2>
-
-<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
-アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
-
-<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
-初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
-
-<ul>
-<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
-</ul>
-
-
-<p>更新便利になって満足。</p>
-
-<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
-
-<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
-
-<h2>次回&hellip;?</h2>
-
-<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
-
-<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
-
-<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
-
-<p><strong><code>:wq Osaka.vim_01</code></strong></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/osaka-vim-01/">Osaka.vim #1 に行ってきた</a>
-      <time datetime="2014-06-30T19:09:21+09:00" pubdate><span class='month'>Jun</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-04-12T12:57:25+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>第5回 Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/04/12 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a></li>
-</ul>
-</li>
-<li>目的: Vim scriptでリスト、文字列、辞書の効率的かつ汎用的な扱い方を学ぶ</li>
-</ul>
-
-
-<p><strong>!!!本日(4/12)の21:00から開催です!!!</strong> <del>また宣伝記事が当日になってしまった&hellip;</del></p>
-
-<p><strong>初心者でも歓迎ですよ</strong></p>
-
-<p><a href="https://github.com/vim-jp/vital.vim/issues/80">昔開催されたvital.vim読書会</a>では、<code>Data.String</code>を読んだらしいので、今回は<code>Data.List</code>と<code>Data.Dictionary</code>のどちらか1つ,または両方を読むと思います。</p>
-
-<h2>読みどころ</h2>
-
-<p><a href="https://github.com/vim-jp/vital.vim">vital.vim</a>は主にvim-jpのVim script超詳しいマンのかっくいい方々が開発している Vim プラグインのためのライブラリです。これまでVimプラグイン読書会で読んだプラグインは何かしらVimの機能自体を拡張していたのに対し、vital.vimはあくまでも<em>ライブラリ</em>であり、Vim scriptによる汎用的かつ効率的なリストやディクショナリなどなどの操作の仕方を学べるので、「まだVim独自の仕様とかよくわからない&hellip;」という方にとっても読みやすくてよいかもしれません。Vim scriptまだ良くわからないという方も含め、ぜひぜひ気軽に参加してください!</p>
-
-<p>また、vital.vimでなにが出来るのかも外から見ただけではイマイチよくわからなかったりするので、どういう関数が提供されていて、どういう仕様なのかなぁーとさらっと見ていくだけでも面白いんじゃないかと思います。</p>
-
-<h2>vitalの使い方サンプル</h2>
-
-<p>インストールした後適当なスクラッチバッファでQuickrunとかして動作確認しながら読むとよいかもしれない(かも)。vimrcに書いて自作vimrc関数で使ってもOKです。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'vim-jp/vital.vim'
-</span><span class='line'>
-</span><span class='line'>" vital.vimを単体で使う場合は`vital#of('vital')`
-</span><span class='line'>" プラグインに組み込む場合は引数の'vital'の代わりにプラグインの名前(Vitalize --name で指定した値)
-</span><span class='line'>let s:V = vital#of('vital')
-</span><span class='line'>
-</span><span class='line'>" vitalのData.Listをimportする。
-</span><span class='line'>" 基本的に s:List.&lt;utility_function&gt;(arguments) という使い方をする
-</span><span class='line'>" :h vital-data-list.txt
-</span><span class='line'>let s:List = s:V.import('Data.List')
-</span><span class='line'>
-</span><span class='line'>echo '= flatten =========='
-</span><span class='line'>
-</span><span class='line'>" リストをフラットに
-</span><span class='line'>echo s:List.flatten([[1],[2,[3,4]]])
-</span><span class='line'>" -&gt; [1,2,3,4]
-</span><span class='line'>
-</span><span class='line'>echo '= push & pop ======='
-</span><span class='line'>
-</span><span class='line'>" スタックスタック
-</span><span class='line'>let s = []
-</span><span class='line'>echo s:List.push(s, 1)
-</span><span class='line'>" [1]
-</span><span class='line'>echo s:List.push(s, 2)
-</span><span class='line'>" [1, 2]
-</span><span class='line'>echo s:List.push(s, 3)
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 3
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 2
-</span><span class='line'>echo s
-</span><span class='line'>" [1]
-</span><span class='line'>
-</span><span class='line'>echo '= uniq ============='
-</span><span class='line'>
-</span><span class='line'>" ユニークな値だけを残す。最近vim本体にも組み込まれたはずだけど仕様は異なる
-</span><span class='line'>echo s:List.uniq(['vim', 'emacs', 'vim', 'vim'])
-</span><span class='line'>" ['vim', 'emacs']
-</span><span class='line'>
-</span><span class='line'>" 条件つけたりも
-</span><span class='line'>echo s:List.uniq_by(
-</span><span class='line'>\ ['vim', 'Vim', 'VIM', 'emacs', 'Emacs', 'EMACS', 'gVim', 'GVIM'],
-</span><span class='line'>\ 'tolower(v:val)')
-</span><span class='line'>" ['vim', 'emacs', 'gVim']
-</span><span class='line'>
-</span><span class='line'>echo '= zip =============='
-</span><span class='line'>
-</span><span class='line'>" Vim girlイラスト、zipでください
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6])
-</span><span class='line'>" [[1, 4], [2, 5], [3, 6]]
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
-</span><span class='line'>" [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-</span><span class='line'>
-</span><span class='line'>" etc...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Vimプラグインに組み込む方法の詳しい日本語記事とか意外と無いし、アップデートは<code>Vitalize .</code>だけでOKとかはhelpにも書いていないような気がするのでそのうち記事を誰かが書いてくれるはず。</p>
-
-<p>僕はまだvital自体をそんなに使ってないですが、<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>というvitalの外部モジュール機能を使った<code>vim-over</code>のライブラリを使わせてもらったりしてます。vitalとても便利なのでｵｽｽﾒです。</p>
-
-<h2>過去のVim Advent Calendar の vital に関する記事</h2>
-
-<ul>
-<li><a href="http://qiita.com/rbtnn/items/deb569ebc94d5172a5e5">vital.vimをどんどん使っていこう。 - Qiita</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-6/">vitalのData.List.take_whileを例にvital開発の指南書</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-8/">構文解析器kp19ppと字句解析器Vital.Lexerを用いた超簡単な処理系作成方法</a></li>
-<li><a href="https://gist.github.com/ujihisa/5761509">Vital.ProcessManagerとその無限の可能性について</a></li>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/11/08/224821">コマンドオプションを解析するライブラリ Vital.OptionParser を書いた - sorry, uninuplemented:</a></li>
-</ul>
-
-
-<p>適当にVACで検索しただけだったりする。<code>OptionParser</code>とか使ってみたいかも。</p>
-
-<h2>本日21:00開催のVimプラグイン読書会に参加しよう!!!</h2>
-
-<p>と、言うことでVimプラグイン読書会に参加してvitalを読んで実際に使ってみたり、バグとか改善点を見つけ本体にｺﾝﾄﾘﾋﾞｭｯｼｮﾝしたりしましょう！初心者でも歓迎ですし質問すれば詳しい方が解説してくれるはずです。「hi」と発言して読んでることを宣言してもらえるだけでも少なくとも僕は喜びます。 <del>人数少なすぎると読書会の存続自体が危うくなるのでhiだけでも便利</del></p>
-
-<p>本日21:00から、<a href="http://lingr.com/room/vim">LingrのVim部屋</a>で開催です！ぜひ参加してください。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/reading-vimplugin-05-senden/">Vimプラグイン読書会第5回が4/12(土)21:00から開催されます</a>
-      <time datetime="2014-04-12T12:57:25+09:00" pubdate><span class='month'>Apr</span> <span class='day'>12</span> <span class='year'>2014</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       

@@ -1,0 +1,1731 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Vim Mnemonic | Vim のコマンドの覚え方大全 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="この記事は Vim Advent Calendar 2015 の21日目の記事です． もくてき 本記事では Vim のコマンドの"覚え方"を紹介します．
+基本的にはトリッキーな"覚え方"ではなく由来の紹介となります．
+例えば J で行連結は Join が元だとか， gfが"goto file" &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vim-mnemonic/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Vim Mnemonic | Vim のコマンドの覚え方大全</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-12-21T02:55:02+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>この記事は <a href="http://qiita.com/advent-calendar/2015/vim">Vim Advent Calendar 2015</a> の21日目の記事です．</p>
+
+<h2>もくてき</h2>
+
+<p>本記事では Vim のコマンドの&#8221;覚え方&#8221;を紹介します．
+基本的にはトリッキーな&#8221;覚え方&#8221;ではなく由来の紹介となります．
+例えば <code>J</code> で行連結は <strong>J</strong>oin が元だとか， <code>gf</code>が&#8221;<strong>g</strong>oto <strong>f</strong>ile&#8221;の略だといったことを
+知っておくとなにかと憶えやすいと思います．</p>
+
+<h2>対象読者</h2>
+
+<p>主にこれから Vim を使ってみよう! でもなかなかコマンドを覚えられないっ! という Vim 初心者の方に由来を知ることで少しでも
+コマンドを憶えやすいようにすることが目的です．
+初心者を想定しているのでコマンドの動作などもなるべく紹介していきます．</p>
+
+<p>中・上級者の方には普段何気なく使ってたあのコマンドの由来を知って「フハハハハ」と
+ほくそ笑んでもらえるような記事になれば嬉しいです．</p>
+
+<h2>注意</h2>
+
+<ul>
+<li>信憑性が高くないものもある</li>
+</ul>
+
+
+<p>注意点として公式のものから公式っぽいもの，独自の調査結果によるものなど信憑性はまちまちです．
+そしてVimのコマンドは無数にあるので覚え方大全と言っておきながらすべてを網羅できているわけではなくかなり偏っています．
+抜けてるものとか間違ってるものとか俺はこう覚えてるぜ!というものがあったら教えてください!</p>
+
+<p>出典は</p>
+
+<ul>
+<li>ヘルプファイル</li>
+<li>ソースコード</li>
+<li>出典不明だけどどこかで見聞きした話</li>
+</ul>
+
+
+<p>などです．基本英語に直すとそのままわかるものが多いかもしれません．</p>
+
+<p>またこれからたくさんのコマンドを羅列していきますがすべてを覚える必要は一切ないこと，
+そして逆にここに載ってない便利な覚えるべきVimコマンドはきっとたくさんあるので覚えようと気負ったり，
+だいたいわかるからokと思ったりしないようにおねがいします．</p>
+
+<p>そして何よりの注意点としては結局覚え方よりも実際にやってみることが大事だということです!!!
+読んでたら勝手に Vim のコマンドを憶えていたなんて魔法は無いです．</p>
+
+<p>ただ単にやってみるだけでなく由来や覚え方も知ることでより憶えやすくなったらよいなというのが本記事の趣旨なので，
+深く考えすぎずにそうなんだ〜へぇ〜と思いながら読むとよいと思います．</p>
+
+<p>ではスタートっ</p>
+
+<h2>基本のカーソル移動 hjkl</h2>
+
+<h3>vimtutor Lesson1</h3>
+
+<pre><code class="``">        ^
+        k              Hint:  The h key is at the left and moves left.
+  &lt; h       l &gt;               The l key is at the right and moves right.
+        j                     The j key looks like a down arrow.
+        v
+</code></pre>
+
+<h3>日本語版</h3>
+
+<pre><code class="``">        ^
+        k              ヒント:  h キーは左方向に移動します。
+  &lt; h       l &gt;                 l キーは右方向に移動します。
+        j                       j キーは下矢印キーのようなキーです。
+        v
+</code></pre>
+
+<p>出典: vimtutor</p>
+
+<p>右手のホームポジションから1つ左にあるので<code>h</code>は左方向に移動し, 右にある<code>l</code>が右方向への移動です．
+<code>j</code>はどことなく<code>↓</code>(下矢印)に似ているので下方向に移動すると憶えましょう．
+<code>k</code>に関してはどことなく上にとんがってるので上方向に移動すると考えてもいいかも知れません．</p>
+
+<h3>もともとのhjklの由来</h3>
+
+<ul>
+<li>出典: <a href="https://groups.google.com/forum/#!searchin/vim_use/hjkl/vim_use/Hz6x-jwUd-k/QsOmjBvZ1UsJ">h j k l &ndash; keys - Google Groups</a></li>
+</ul>
+
+
+<p>viの開発者である<a href="https://ja.wikipedia.org/wiki/%E3%83%93%E3%83%AB%E3%83%BB%E3%82%B8%E3%83%A7%E3%82%A4">ビル・ジョイ</a>さんが
+当時使っていたPCが<a href="https://en.wikipedia.org/wiki/ADM-3A">ADM-3A - Wikipedia, the free encyclopedia</a>であり，
+そのキーボードには矢印キーはなくHJKLを使ってカーソルを移動していたのが由来とのこと．</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/KB_Terminal_ADM3A.svg/931px-KB_Terminal_ADM3A.svg.png" alt="931px-KB_Terminal_ADM3A.svg.png (931×301)" /></p>
+
+<p>この由来は知っても憶えやすくならない単なる豆知識でした．</p>
+
+<h2>VIM の保存，終了と! (<code>&lt;bang&gt;</code>)</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>:q</code> <code>:q[uit]</code> </td>
+<td> カレントウィンドウを閉じる．<strong>q</strong>uit から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aq">:h :q</a></td>
+</tr>
+<tr>
+<td> <code>:qa</code> <code>:qa[ll]</code> </td>
+<td> <strong>q</strong>uit <strong>all</strong> から． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aqa">:h :qa</a></td>
+</tr>
+<tr>
+<td> <code>:q!</code>, <code>:qa!</code>  </td>
+<td> バッファに変更点があっても閉じる． <strong>q</strong>uit + <code>!</code>． </td>
+<td></td>
+</tr>
+<tr>
+<td> <code>:w</code> <code>:w[rite]</code> </td>
+<td> バッファ全体をカレントファイルに書き込む．<strong>w</strong>riteから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Aw">:h :w</a></td>
+</tr>
+<tr>
+<td> <code>:wq</code> <code>:wqall</code> </td>
+<td> <code>:w</code>と<code>:q</code>の組み合わせ </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#%3Awq">:h :wq</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>コマンド末尾の<code>!</code></h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/map.html#%3Acommand-bang">:h :command-bang</a></p>
+
+<p>Vim のコマンドは<code>!</code>修飾子を取ることができ，<code>!</code>の有無によって動作が変わる場合があります．
+基本的には強制的に実行するという意味合いが多いので憶えておくと未知のコマンド + <code>!</code>に出会った時に
+びっくりしないですみますね．</p>
+
+<h2>挿入コマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>i</code> </td>
+<td> カーソルの前にテキストを[count]回挿入する．<strong>i</strong>nsertから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#i">:h i</a></td>
+</tr>
+<tr>
+<td> <code>I</code> </td>
+<td> 行の先頭の非空白文字の前にテキストを[count]回挿入する．<strong>i</strong>nsertの大文字バージョン．大文字は行指向になるパターンが多い印象 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#I">:h I</a></td>
+</tr>
+<tr>
+<td> <code>a</code> </td>
+<td> カーソルの後ろにテキストを[count]回追加する．<strong>a</strong>ppendから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#a">:h a</a></td>
+</tr>
+<tr>
+<td> <code>A</code> </td>
+<td> 行末にテキストを[count]回追加する． <strong>a</strong>ppendの大文字バージョン </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#A">:h A</a></td>
+</tr>
+<tr>
+<td> <code>o</code> </td>
+<td> カーソルのある行の下に新しい行を作り、そこにテキストを[count]回繰り返し挿入する．<strong>o</strong>pen line から. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#o">:h o</a></td>
+</tr>
+<tr>
+<td> <code>O</code> </td>
+<td> カーソルのある行の上に新しい行を作り、そこにテキストを[count]回繰り返し挿入する．<strong>o</strong>pen line の大文字バージョン. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#O">:h O</a></td>
+</tr>
+<tr>
+<td> <code>gi</code> </td>
+<td> 最後に入力がされた場所にテキストを入力. <strong>g</strong>oto last <strong>i</strong>nsert position and start <strong>i</strong>nsert と思ってたが<strong>g</strong>は単なるprefixかも．後述する<code>gv</code>は<code>gi</code>のヴィジュアル版っぽい </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#gi">:h gi</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>モーション，オペレータ, テキストオブジェクト, ヴィジュアルモードについて</h2>
+
+<p>個々のモーション(<code>hjlk</code>, <code>w</code>, etc&hellip;)やオペレータ(<code>d</code>,<code>c</code>, <code>y</code>&hellip;)について
+それぞれ説明する前に全体的な動作について理解しておくと覚えることが減って,
+しかもとても便利なのでぜひ理解しましょう.</p>
+
+<h3>モーション {motion}</h3>
+
+<pre><code class="``">  [count] {motion}
+</code></pre>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></p>
+
+<p>モーションとはカーソル移動コマンドです．<code>[count]</code>を前置すると<code>[count]</code> x <code>{motion}</code>分だけ移動します．
+すでに見た<code>hjkl</code>ももちろんモーションなので<code>4h</code>などすると左に4文字移動するという意味になります．</p>
+
+<h3>オペレータ {operator} とモーション {motion}</h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#operator">:h operator</a></p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/8d8cb3eab06d240dbb1c1e2057fd80f8a6d4378b/misc/d2w.gif" alt="d2w.gif (661×157)" /></p>
+
+<pre><code class="``">  {operator} {motion}
+</code></pre>
+
+<p>厳密にはカウントを<code>{operator}</code>,<code>{motion}</code>のそれぞれに前置することができるので以下のようになります．
+(<code>[count]</code>を両者に前置させると掛け算になります. <code>2d3w</code> -> 6つの単語を削除.
+普通に<code>6dw</code>や<code>d6w</code>としたほうが基本的にわかりやすそうですね)</p>
+
+<pre><code class="``">  [count] {operator} [count] {motion}
+</code></pre>
+
+<p>またオペレータによってはレジスタを前置できます．<a href="http://vim-jp.org/vimdoc-ja/change.html#registers">:h registers</a></p>
+
+<pre><code class="``">  ["x] [count] {operator} [count] {motion}
+</code></pre>
+
+<p>Vimは変更する，削除するといった操作を表すオペレータ<code>{operator}</code>と，
+その操作の適用範囲であるモーション<code>{motion}</code>を組み合わせることでテキストを編集できます．
+先ほどみた<code>{motion}</code>に操作を加えている形になっています．</p>
+
+<h3>オペレータ {operator} とテキストオブジェクト {text-objects}</h3>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a></p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/b4e5cb04da9fee94c676d16eb38e5dec2d131690/misc/di'.gif" alt="di'.gif (657×128)" /></p>
+
+<pre><code class="``">  {operator} {text-objects}
+</code></pre>
+
+<p>また，移動コマンドとしては使えないけれど<code>{operator}</code>と組み合わせた時の操作範囲
+となるテキストオブジェクトを先ほどの<code>{motion}</code>の代わりに使うことができます．
+例えば文字列の中身を削除(オペレータの1つ)したい場合の&#8221;文字列の中身&#8221;は移動するような概念
+ではないですが，オペレータの操作対象として妥当です．</p>
+
+<h3>ヴィジュアルモード とモーション，テキストオブジェクト</h3>
+
+<p>そして厳密にはオペレータではないですがヴィジュアルモードでもモーションやテキストオブジェクトと
+組み合わせることができ，対象の範囲を選択できます．</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/b4e5cb04da9fee94c676d16eb38e5dec2d131690/misc/vi'.gif" alt="vi'.gif (657×177)" /></p>
+
+<pre><code class="``">  {visual-operation} {motion|text-objects}
+</code></pre>
+
+<p>ヴィジュアルモードを&#8221;選択する&#8221;という&#8221;操作&#8221;とみれば自然に理解できるかと思います．</p>
+
+<h3>オペレータの対象範囲としてのヴィジュアル選択範囲 {Visual}</h3>
+
+<p>そしてヴィジュアルモードで選択した範囲<code>{Visual}</code>は<code>{motion}</code>や<code>{text-objects}</code>
+と同様にオペレータの対象範囲として使えます．</p>
+
+<pre><code class="``">  {Visual} {operator}
+</code></pre>
+
+<h3>{operator}{operator} は行指向オペレーション!</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/8d8cb3eab06d240dbb1c1e2057fd80f8a6d4378b/misc/gqq.gif" alt="gqq.gif (1131×312)" /></p>
+
+<pre><code class="``">  [count] {operator} {operator}
+</code></pre>
+
+<p>そして上記の組み合わせの特殊なケースとしてオペレータ
+(2コマンド以上のオペレータの場合は最後の文字のみでも可)，
+を繰り返して入力すると操作範囲が行指向になります．</p>
+
+<p>例えば<code>dd</code> や <code>yy</code> といったオペレータを繰り返すと行を削除したりヤンクできるといった具合です．</p>
+
+<p>僕が観測している範囲ではこの挙動は<code>dd</code>や<code>yy</code>といった基本的な編集オペレータだけでなく，
+全てのオペレータに当てはまっているので憶えておくと便利です．(ソースコードは読んでないので確証がない.)</p>
+
+<p>例えば2文字のオペレータである<code>gq</code>(<a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a>)は
+<code>gqq</code>や<code>gqgq</code>と打つことでカーソル化の行を整形できたりします．</p>
+
+<h2>1つの変更単位としての {operator} {motion|text-objects}</h2>
+
+<p><strong>Vim のおすすめコマンド10選!!!</strong> として &ldquo;<code>diw</code> でカーソル下の単語を消す&rdquo; といったここで述べた
+オペレータとテキストオブジェクトをいっしょにまとめたものを1つのコマンドとして
+紹介するような記事がたくさんあったりしますが，これらは1つのコマンドでもなんでもないです．
+オペレータやモーション，テキストオブジェクトの概念を理解すれば無限大の組み合わせをそれぞれ
+覚える必要はなく，便利なオペレータとモーションを別々に覚えてそれらを組み合わせればよいです．</p>
+
+<p>これは覚え方とはまた別ですが上述したオペレータとモーション，テキストオブジェクトの組み合わせは
+1つの&#8221;変更単位&#8221;となっておりドット<code>.</code>コマンドで同じ操作を繰り返すことも可能です (<a href="http://vim-jp.org/vimdoc-ja/repeat.html#.">:h .</a>)．</p>
+
+<p>説明が長くなりましたが，ここからそれぞれのオペレータやモーションの覚え方について見ていきましょう．</p>
+
+<h2>オペレータ {operator}</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>c</code> </td>
+<td> 変更する．<strong>c</strong>hangeから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#c">:h c</a></td>
+</tr>
+<tr>
+<td> <code>d</code> </td>
+<td> 削除する．<strong>d</strong>eleteから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#d">:h d</a></td>
+</tr>
+<tr>
+<td> <code>y</code> </td>
+<td> コピーする．<strong>y</strong>ankから． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#y">:h y</a></td>
+</tr>
+<tr>
+<td> <code>gU</code> </td>
+<td> 大文字にする．おそらくprefixとして<code>g</code> + <strong>U</strong>ppercaseから． 大文字にマッチする正規表現の <code>\U</code>． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gU">:h gU</a></td>
+</tr>
+<tr>
+<td> <code>gu</code> </td>
+<td> 小文字にする．おそらく<code>gU</code>の逆で小文字にするから．小文字にマッチする正規表現の <code>\u</code>． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gu">:h gu</a></td>
+</tr>
+<tr>
+<td> <code>&gt;</code> </td>
+<td> 右にインデントをシフトする．見た目から?． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#>&#8221;>:h ></a></td>
+</tr>
+<tr>
+<td> <code>&lt;</code> </td>
+<td> 左にインデントをシフトする．見た目から?． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#&lt;">:h &lt;</a></td>
+</tr>
+<tr>
+<td> <code>zf</code> </td>
+<td> 折畳を作成する．<code>z</code>は後述するが&#8221;z&#8221; は紙片を折った様子を横からみた姿に見えるから．<code>f</code>は折りたたみを作成するのが一番基本コマンドと考えて<strong>f</strong>oldから?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zf">:h zf</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>他にも由来わからないけど便利なオペレータはあるので使って憶えましょう．個人的に憶えておくと便利そうなものをリストアップ．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>=</code> </td>
+<td> フィルタ処理. インデント整形 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#%3D">:h =</a></td>
+</tr>
+<tr>
+<td> <code>gq</code> </td>
+<td> 整形する．80文字で折り返すよう整形とかできる </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gq">:h gq</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>先ほどオペレータを連続させると対象が行指向になると説明したように,
+<code>cc</code>なら行を変更，<code>==</code>や<code>gqq</code>で行を整形できます．個別に覚える必要はないですね.</p>
+
+<p>また ヴィジュアルモードでの<code>&lt;</code> や <code>&gt;</code>を連続で操作するために下記のようなマッピング
+をしている人もいますが，他の選択範囲に対するオペレータによる操作となんら変わらないので
+代わりにドットリピート<code>.</code>を使って繰り返すことができます．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">vnoremap</span> <span class="p">&gt;</span> <span class="p">&gt;</span>gv
+</span><span class='line'><span class="nb">vnoremap</span> <span class="p">&lt;</span> <span class="p">&lt;</span>gv
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ちょっと脱線してその他の変更コマンド系</h3>
+
+<p><code>c</code>, <code>d</code>, <code>y</code>, <code>gU</code>&hellip;の他にもオペレータではない変更系コマンドがたくさんあります．<a href="http://vim-jp.org/vimdoc-ja/change.html">:h change</a></p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>C</code> </td>
+<td> 行末まで変更する．<strong>c</strong>hangeの大文字バージョン． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#C">:h C</a></td>
+</tr>
+<tr>
+<td> <code>D</code> </td>
+<td> 行末まで削除する．<strong>d</strong>eleteの大文字バージョン． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#D">:h D</a></td>
+</tr>
+<tr>
+<td> <code>Y</code> </td>
+<td> 行をコピーする．<strong>y</strong>ankの大文字バージョン．viの互換性から行末までではなく行． </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#Y">:h Y</a></td>
+</tr>
+<tr>
+<td> <code>p</code> </td>
+<td> テキストをレジスタから貼付ける．<strong>p</strong>ut から．<strong>p</strong>aste と憶えてもよさそう </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#p">:h p</a></td>
+</tr>
+<tr>
+<td> <code>P</code> </td>
+<td> カーソルの前にテキストを貼り付ける. <code>p</code>の逆 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#P">:h P</a></td>
+</tr>
+<tr>
+<td> <code>x</code> </td>
+<td> カーソル下の文字を削除. バツマークに似てるから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#x">:h x</a></td>
+</tr>
+<tr>
+<td> <code>X</code> </td>
+<td> カーソルの前の文字を削除. <code>x</code>の逆 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#x">:h x</a></td>
+</tr>
+<tr>
+<td> <code>s</code> </td>
+<td> カーソル下の文字を削除して挿入を始める. <strong>s</strong>ubstituteから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#s">:h s</a></td>
+</tr>
+<tr>
+<td> <code>S</code> </td>
+<td> 行を削除して挿入を始める. <code>s</code>の大文字バージョン. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#S">:h S</a></td>
+</tr>
+<tr>
+<td> <code>r</code> </td>
+<td> カーソル下の文字を置き換える. <strong>r</strong>eplaceから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#r">:h r</a></td>
+</tr>
+<tr>
+<td> <code>R</code> </td>
+<td> 置換モードに入る. <strong>r</strong>eplaceから. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#R">:h R</a></td>
+</tr>
+<tr>
+<td> <code>gr</code> <code>gR</code> </td>
+<td> <code>r</code>, <code>R</code>の仮想文字バージョン. <strong>g</strong> prefix </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#gr">:h gr</a> <a href="http://vim-jp.org/vimdoc-ja/change.html#gR">:h gR</a></td>
+</tr>
+<tr>
+<td> <code>J</code>, <code>gJ</code> </td>
+<td> 行を連結する. <strong>J</strong>oin から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#J">:h J</a></td>
+</tr>
+<tr>
+<td> <code>:s/{pattern}/{sring}/{flag}</code> </td>
+<td> 置換コマンド. 省略しないと<strong>s</strong>ubstitute </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#:substitute">:h :substitute</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>由来ナゾ変更コマンド</h4>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>&lt;C-a&gt;</code> </td>
+<td> カーソルの下または後の数またはアルファベットに [count] を加える. <strong>a</strong>ddから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#CTRL-A">:h CTRL-A</a></td>
+</tr>
+<tr>
+<td> <code>&lt;C-x&gt;</code> </td>
+<td> カーソルの下または後の数またはアルファベットに [count] を減じる. 英語ではsubtractなので何故xかは不明．<code>CTRL-S</code>が端末によっては使えない．<code>X</code>が<code>A</code>に近いから? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/change.html#CTRL-A">:h CTRL-A</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>モーション {motion}</h2>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html">:h motion.txt</a></p>
+
+<h3>左右の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>0</code> </td>
+<td> その行の最初の文字に移動. 0文字目??? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#0">:h 0</a></td>
+</tr>
+<tr>
+<td> <code>^</code> </td>
+<td> その行の最初の文字に移動. 正規表現の<strong>^</strong></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#^">:h ^</a></td>
+</tr>
+<tr>
+<td> <code>$</code> </td>
+<td> その行の最後の文字に移動. 正規表現の<strong>$</strong></td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#$">:h $</a></td>
+</tr>
+<tr>
+<td> <code>g0</code> <code>g^</code> <code>g$</code> </td>
+<td> それぞれのスクリーン行バージョン(折り返し考慮) </td>
+<td></td>
+</tr>
+<tr>
+<td> <code>gm</code> </td>
+<td> スクリーンの幅の真ん中に移動. <strong>m</strong>idleから．出典: ソースコード. middle of &ldquo;g0&rdquo; and &ldquo;g$&rdquo;.</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gm">:h gm</a></td>
+</tr>
+<tr>
+<td> <code>f{char}</code> </td>
+<td> 右に向かって [count] 番目に現れる {char} に移動．<strong>f</strong>indから&hellip;と思いきやヘルプ/ソースコード的にはfindとは一切書いてない．確かにfindに移動するニュアンすはないか&hellip;?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+<tr>
+<td> <code>F{char}</code> </td>
+<td><code>f</code>の左に向かうバージョン.</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#F">:h F</a></td>
+</tr>
+<tr>
+<td> <code>t{char}</code> </td>
+<td> 右に向かって [count] 番目に現れる {char} <strong>まで</strong>移動します．<strong>t</strong>ill(〜まで) から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+<tr>
+<td> <code>T{char}</code> </td>
+<td> <code>t</code>の左バージョン </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#f">:h f</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>由来ナゾ</h4>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>;</code> </td>
+<td> [count] 回最後の f, t, F, T を繰り返す. 余った記号で<code>;</code>を順方向,<code>,</code>を逆方向にした? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#;">:h ;</a></td>
+</tr>
+<tr>
+<td> <code>,</code> </td>
+<td> [count] 回最後の f, t, F, T を反対方向に繰り返す. </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#,">:h ,</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>上下の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>G</code> </td>
+<td> [count] 行目の最初の非空白文字に移動.カウントがなければ最後の行． <strong>G</strong>oto から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#G">:h G</a></td>
+</tr>
+<tr>
+<td> <code>gg</code> </td>
+<td> [count] 行目の最初の非空白文字に移動.カウントがなければ最初の行． <strong>g</strong>oto から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gg">:h gg</a></td>
+</tr>
+<tr>
+<td> <code>{count}%</code> </td>
+<td>ファイルの {count} パーセントの位置に移動．そのままパーセントで直感的! </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#%">:h %</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>単語単位の移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>w</code> </td>
+<td> [count] words前方に移動. <strong>w</strong>ord から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#w">:h w</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#word">:h word</a></td>
+</tr>
+<tr>
+<td> <code>W</code> </td>
+<td> [count] WORDS(非空白文字の連続)前方に移動. <strong>w</strong>ord から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#G">:h G</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#WORD">:h WORD</a></td>
+</tr>
+<tr>
+<td> <code>e</code> </td>
+<td> [count] word 前方の単語の終わりに移動. <strong>e</strong>nd of word から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#e">:h e</a></td>
+</tr>
+<tr>
+<td> <code>E</code> </td>
+<td> [count] WORD 前方の単語の終わりに移動. <strong>E</strong>nd of WORD から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#E">:h E</a></td>
+</tr>
+<tr>
+<td> <code>b</code> </td>
+<td> [count] words後方に移動. <strong>b</strong>ackward から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#b">:h b</a></td>
+</tr>
+<tr>
+<td> <code>B</code> </td>
+<td> [count] WORDS後方に移動. <strong>b</strong>ackward から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#B">:h B</a></td>
+</tr>
+<tr>
+<td> <code>ge</code> </td>
+<td> [count] word 後方の単語の終わりに移動. <strong>g</strong> prefix + <strong>e</strong>nd of word から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ge">:h ge</a></td>
+</tr>
+<tr>
+<td> <code>gE</code> </td>
+<td> [count] WORD 後方の単語の終わりに移動. <strong>g</strong> prefix + <strong>E</strong>nd of WORD から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#gE">:h gE</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>オブジェクト単位で移動</h3>
+
+<p>3つのオブジェクト,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#sentence">sentence(文)</a>,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#paragraph">paragraph(段落)</a>,
+<a href="http://vim-jp.org/vimdoc-ja/motion.html#section">section(セクション)</a>
+が存在し，それぞれ<code>()</code>, <code>{}</code>, <code>[]</code>が対応する．
+セクションのみ少し例外で1桁目の&#8217;{&lsquo; か &rsquo;}&lsquo;への移動を2コマンド目で表現する.</p>
+
+<p>他に特に覚え方はわからないので表は省略．</p>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/motion.html#object-motions">:h object-motions</a></p>
+
+<h3>ジャンプ</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-O</code> </td>
+<td>ジャンプリストの中の [count] だけ古いカーソル位置に移動({motion}ではない). <strong>O</strong>lder cursor position から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#CTRL-O">:h CTRL-O</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-I</code> </td>
+<td>ジャンプリストの中の [count] だけ新しいカーソル位置に移動({motion}ではない). キーボードで<code>O</code>の左に<code>I</code>がある </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#CTRL-I">:h CTRL-I</a></td>
+</tr>
+<tr>
+<td> <code>g;</code> </td>
+<td>変更リスト中の [count] 個前の位置に移動. <code>;</code>が順方向への移動っぽい</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#g;">:h g;</a></td>
+</tr>
+<tr>
+<td> <code>g,</code> </td>
+<td>変更リスト中の [count] 個後の位置に移動. <code>,</code>が逆方向への移動っぽい</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#g,">:h g,</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>様々な移動</h3>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>%</code> </td>
+<td> 対応するアイテム([{}])にジャンプ. percent と parentheses(丸括弧) をかけている? <code>%</code>の文字が<code>/</code>を挟んで対応した<code>○</code>があると憶えてもよいかも  </td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#%">:h %</a></td>
+</tr>
+<tr>
+<td> <code>H</code> </td>
+<td> スクリーンの最上行から [count] 行目(デフォルト: スクリーンの最上行)に移動, <strong>H</strong>ome(top) of window とhelpに書いてあるがhomeってそんなニュアンスあるんだろうか&hellip; <strong>H</strong>igh と覚えてもよいかもしれない．</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#H">:h H</a></td>
+</tr>
+<tr>
+<td> <code>M</code> </td>
+<td> スクリーンの中央に移動．<strong>M</strong>iddle line of windowから</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#M">:h M</a></td>
+</tr>
+<tr>
+<td> <code>L</code> </td>
+<td>スクリーンの最下行から [count] 行目(デフォルト: スクリーンの最下行)に移動．<strong>L</strong>ast line on the windowから．<code>H</code>を<strong>H</strong>ighと覚えた場合は<code>L</code>は<strong>L</strong>owと覚えてもよいかも</td>
+<td><a href="http://vim-jp.org/vimdoc-ja/motion.html#L">:h L</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>角括弧コマンド: <code>[</code> + &ldquo;?&rdquo;, <code>]</code> + &ldquo;?&rdquo; 系</h4>
+
+<p><a href="http://vim-jp.org/vimdoc-ja/vimindex.html#[">:h [</a></p>
+
+<p>ブロックやメソッド，コメントといった何かしら決められたものの始まり，終わりに移動する．
+&ldquo;?&#8221;には<code>({mM#*/</code>などが入る．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>[{</code>, <code>[(</code>, <code>]}</code> or <code>])</code></td>
+<td> マッチしない &lsquo;{&rsquo;, &lsquo;(&rsquo;, &lsquo;}&rsquo; &lsquo;)&rsquo; に移動</td>
+</tr>
+<tr>
+<td> <code>[#</code>, <code>]#</code></td>
+<td> マッチしない #if..#endif の最初か最後に移動.</td>
+</tr>
+<tr>
+<td> <code>[/</code>, <code>[*</code>, <code>]/</code>, <code>]*</code></td>
+<td> Cスタイルコメントの最初か最後に移動.</td>
+</tr>
+<tr>
+<td> <code>[m</code> or <code>]m</code> </td>
+<td> Javaスタイルメソッドの最初に移動.</td>
+</tr>
+<tr>
+<td> <code>[M</code> or <code>]M</code> </td>
+<td> Javaスタイルメソッドの最後に移動.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>テキストオブジェクト {text-objects}</h2>
+
+<p>基本的なテキストオブジェクトは<code>i</code>, <code>a</code>の2種類がそれぞれprefixとしてつくものが多い．
+<code>i</code>は <strong>i</strong>nner(内部)を表し，<code>a</code>は<strong>a</strong>(1つの)まとまり(&ldquo;a&#8221;n object)を表している．
+<code>i</code>を<strong>i</strong>nside, <code>a</code>のをオブジェクトの<strong>a</strong>round(まわり)まで含むと覚えてたりしてもよいと思いますが公式は&#8221;innter&#8221;と&#8221;a&#8221;です．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>aw</code>, <code>iw</code> </td>
+<td> wordを選択. &ldquo;<strong>a</strong> word&rdquo;, &ldquo;<strong>i</strong>nner word&rdquo;. <code>a</code>は周りのホワイトスペースを含む</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aw">:h aw</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#iw">:h iw</a></td>
+</tr>
+<tr>
+<td> <code>aW</code>, <code>iW</code> </td>
+<td> WORDを選択. &ldquo;<strong>a</strong> WORD&rdquo;, &ldquo;<strong>i</strong>nner WORD&rdquo;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aW">:h aW</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#iW">:h iW</a></td>
+</tr>
+<tr>
+<td> <code>as</code>, <code>is</code> </td>
+<td> &ldquo;sentence&rdquo;(文)を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#as">:h as</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#is">:h is</a></td>
+</tr>
+<tr>
+<td> <code>ap</code>, <code>ip</code> </td>
+<td> &ldquo;paragraph&rdquo;(段落)を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ap">:h ap</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ip">:h ip</a></td>
+</tr>
+<tr>
+<td> <code>ab</code>, <code>a(</code>, <code>a)</code>, <code>ib</code> <code>i(</code>, <code>i)</code> </td>
+<td> <code>(</code>,<code>)</code>ブロック，またはその内部を選択. <strong>b</strong>races block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#ab">:h ab</a></td>
+</tr>
+<tr>
+<td> <code>aB</code>, <code>a{</code>, <code>a}</code>, <code>iB</code> <code>i{</code>, <code>i}</code> </td>
+<td> <code>{</code>,<code>}</code>ブロック，またはその内部を選択. <strong>B</strong>rackets block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aB">:h aB</a></td>
+</tr>
+<tr>
+<td> <code>a[</code>, <code>a]</code>, <code>i[</code>, <code>i]</code> </td>
+<td> <code>[</code>,<code>]</code>ブロック，またはその内部を選択 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#a[">:h a[</a></td>
+</tr>
+<tr>
+<td> <code>a&lt;</code>, <code>a&gt;</code>, <code>i&lt;</code>, <code>i&gt;</code> </td>
+<td> <code>&lt;</code>,<code>&gt;</code>ブロック，またはその内部を選択 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#a>&#8221;>:h a></a></td>
+</tr>
+<tr>
+<td> <code>at</code>, <code>it</code> </td>
+<td> (xml, html)のタグブロック，またはその内部を選択．<strong>t</strong>ag block から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#at">:h at</a> <a href="http://vim-jp.org/vimdoc-ja/motion.html#it">:h it</a></td>
+</tr>
+<tr>
+<td> <code>a"</code>, <code>a'</code>, <code>a`</code>, <code>i"</code>, <code>i'</code>, <code>i`</code> </td>
+<td> 前の引用符から次の引用符まで, またはその内部を選択</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/motion.html#aquote">:h aquote</a></td>
+</tr>
+<tr>
+<td> <code>gn</code> </td>
+<td> 最後に使われた検索パターンを前方/後方検索してマッチを選択. <strong>g</strong> prefix + <code>n</code>, <code>N</code>から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gn">:h gn</a> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gN">:h gN</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>テキストオブジェクトの部分をハイライトした例
+<img src="https://raw.githubusercontent.com/haya14busa/i/b61a096517e2f4b358da17724dc833104c5973f3/misc/textobjects-example.gif" alt="textobjects-example.gif (1366×721)" /></p>
+
+<p>削除オペレータとの組み合わせ例</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 動作      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> &ldquo;dl&rdquo; </td>
+<td> 1文字削除 (&ldquo;x&rdquo; と同じです)</td>
+</tr>
+<tr>
+<td> &ldquo;diw&rdquo; </td>
+<td> inner word を削除</td>
+</tr>
+<tr>
+<td> &ldquo;daw&rdquo; </td>
+<td> a word を削除</td>
+</tr>
+<tr>
+<td> &ldquo;diW&rdquo; </td>
+<td> inner WORD を削除 (参照: |WORD|)</td>
+</tr>
+<tr>
+<td> &ldquo;daW&rdquo; </td>
+<td> a WORD を削除 (参照: |WORD|)</td>
+</tr>
+<tr>
+<td> &ldquo;dgn&rdquo;   次に検索パターンにマッチするものを削除</td>
+<td></td>
+</tr>
+<tr>
+<td> &ldquo;dd&rdquo; </td>
+<td> 1行削除</td>
+</tr>
+<tr>
+<td> &ldquo;dis&rdquo; </td>
+<td> inner sentence を削除</td>
+</tr>
+<tr>
+<td> &ldquo;das&rdquo; </td>
+<td> a sentence を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dib&rdquo; </td>
+<td> inner &lsquo;(&rsquo; &lsquo;)&rsquo; block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dab&rdquo; </td>
+<td> a &lsquo;(&rsquo; &lsquo;)&rsquo; block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dip&rdquo; </td>
+<td> inner paragraph を削除</td>
+</tr>
+<tr>
+<td> &ldquo;dap&rdquo; </td>
+<td> a paragraph を削除</td>
+</tr>
+<tr>
+<td> &ldquo;diB&rdquo; </td>
+<td> inner &lsquo;{&rsquo; &lsquo;}&rsquo; Block を削除</td>
+</tr>
+<tr>
+<td> &ldquo;daB&rdquo; </td>
+<td> a &lsquo;{&rsquo; &lsquo;}&rsquo; Block を削除</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>検索コマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>/</code> </td>
+<td> 前方検索．由来はナゾ </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/pattern.html#/">:h /</a></td>
+</tr>
+<tr>
+<td> <code>?</code> </td>
+<td> 後方検索．<code>SHIFT</code> + <code>/</code> で<code>/</code>の逆から </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#?">:h ?</a></td>
+</tr>
+<tr>
+<td> <code>n</code> </td>
+<td> 最後の &ldquo;/&rdquo; か &ldquo;?&rdquo; を [count] 回繰り返す．<strong>n</strong>ext から</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#n">:h n</a></td>
+</tr>
+<tr>
+<td> <code>N</code> </td>
+<td> 最後の &ldquo;/&rdquo; か &ldquo;?&rdquo; を逆方向に [count] 回繰り返す．<code>n</code>の大文字で<code>n</code>の逆 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#N">:h N</a></td>
+</tr>
+<tr>
+<td> <code>*</code> </td>
+<td> カーソルに最も近い単語で前方検索．USキーボードで4段目右手の中指 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#*">:h *</a></td>
+</tr>
+<tr>
+<td> <code>#</code> </td>
+<td> カーソルに最も近い単語で後方検索．USキーボードで4段目左手の中指 </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html##">:h #</a></td>
+</tr>
+<tr>
+<td> <code>g*</code> <code>g#</code> </td>
+<td> <code>*</code>, <code>#</code> の&#8221;\&lt;&ldquo; と &rdquo;>&ldquo;(単語区切り)を加えないバージョン </td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#g*">:h g*</a></td>
+</tr>
+<tr>
+<td> <code>gd</code> </td>
+<td> カーソルからローカル宣言を検索．<strong>g</strong>oto + <strong>d</strong>eclaration から.</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#gd">:h gd</a></td>
+</tr>
+<tr>
+<td> <code>gD</code> </td>
+<td> カーソルからグローバル宣言を検索．<code>gd</code>の大文字バージョン</td>
+<td>  <a href="http://vim-jp.org/vimdoc-ja/pattern.html#gD">:h gD</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>スクロールコマンド</h2>
+
+<h3>上/下方スクロール</h3>
+
+<pre><code class="``">                                 +----------------+
+                                 | some text      |
+                                 | some text      |
+                                 | some text      |
+  +---------------+              | some text      |
+  | some text     |  CTRL-U  --&gt; |                |
+  |               |              | 123456         |
+  | 123456        |              +----------------+
+  | 7890          |
+  |               |              +----------------+
+  | example       |  CTRL-D --&gt;  | 7890           |
+  +---------------+              |                |
+                                 | example        |
+                                 | example        |
+                                 | example        |
+                                 | example        |
+                                 +----------------+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-E</code> </td>
+<td> 下へ[count]行ウィンドウをスクロール．<strong>E</strong>xtra lines から(vimdocでは割増との訳注あり. 追加の行?) </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-E">:h CTRL-E</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-Y</code> </td>
+<td> 上へ[count]行ウィンドウをスクロール．由来ナゾ&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-Y">:h CTRL-Y</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-D</code> </td>
+<td> ウィンドウをバッファ内で下にスクリーンの半分スクロールする．Scroll <strong>D</strong>ownwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-D">:h CTRL-D</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-U</code> </td>
+<td> ウィンドウをバッファ内で上にスクリーンの半分スクロールする．Scroll <strong>U</strong>pwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-U">:h CTRL-U</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-F</code> </td>
+<td> ページ前方(下方)にスクロール．Scroll <strong>F</strong>orwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-F">:h CTRL-F</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-B</code> </td>
+<td> ページ後方(上方)にスクロール．Scroll <strong>B</strong>ackwards から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#CTRL-B">:h CTRL-B</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>カーソル相関スクロール</h3>
+
+<pre><code class="``">  +------------------+            +------------------+
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | some text        |  zz  --&gt;   | line with cursor |
+  | some text        |            | some text        |
+  | some text        |            | some text        |
+  | line with cursor |            | some text        |
+  +------------------+            +------------------+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>zt</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの最上行にして再描画. <strong>z</strong> prefix + <strong>t</strong>op of window から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zt">:h zt</a></td>
+</tr>
+<tr>
+<td> <code>zz</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの中央にして再描画. 由来はナゾ&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zz">:h zz</a></td>
+</tr>
+<tr>
+<td> <code>zb</code> </td>
+<td> [count]行(省略時はカーソルのある行)をウィンドウの最下行にして再描画. <strong>z</strong> prefix + <strong>b</strong>ottom of window から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/scroll.html#zz">:h zz</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>折畳コマンド</h2>
+
+<p>全ての折畳コマンドは <code>z</code> で始まっている．<code>z</code> は紙片を折った様子を横からみた姿に見える．</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>zf</code> </td>
+<td> 折畳を作成する．(再掲) <code>f</code>は折りたたみを作成するのが一番基本コマンドと考えて<strong>f</strong>oldから?</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zf">:h zf</a></td>
+</tr>
+<tr>
+<td> <code>zd</code> </td>
+<td> 折畳を1つ削除する． <strong>d</strong>elete から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zd">:h zd</a></td>
+</tr>
+<tr>
+<td> <code>zD</code> </td>
+<td> 折畳を再帰的に削除する． 折りたたみコマンドにおける大文字は&#8221;再帰的&#8221;, &ldquo;すべて&#8221;といった意味合いのものが多い</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zD">:h zD</a></td>
+</tr>
+<tr>
+<td> <code>zE</code> </td>
+<td> 折畳をすべて削除する． <strong>E</strong>liminate から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zE">:h zE</a></td>
+</tr>
+<tr>
+<td> <code>zo</code> </td>
+<td> 折畳を1つ開く． <strong>o</strong>pen から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zo</a></td>
+</tr>
+<tr>
+<td> <code>zO</code> </td>
+<td> 折畳を再帰的に開く． <code>zo</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zO</a></td>
+</tr>
+<tr>
+<td> <code>zc</code> </td>
+<td> 折畳を1つ閉じる． <strong>c</strong>lose から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zc">:h zc</a></td>
+</tr>
+<tr>
+<td> <code>zC</code> </td>
+<td> 折畳を再帰的に閉じる． <code>zc</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zo">:h zC</a></td>
+</tr>
+<tr>
+<td> <code>za</code> </td>
+<td> 折畳をトグル(開いていたら閉じ，閉じていたら開く)． 由来はナゾ&hellip;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#za">:h za</a></td>
+</tr>
+<tr>
+<td> <code>zA</code> </td>
+<td> 折畳を再帰的にトグル． <code>za</code>の大文字版</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#za">:h za</a></td>
+</tr>
+<tr>
+<td> <code>zv</code> </td>
+<td> カーソルのある行がちょうど表示されるレベルまで折畳を開く. <strong>V</strong>iew cursor から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zv">:h zv</a></td>
+</tr>
+<tr>
+<td> <code>zx</code>, <code>zX</code> </td>
+<td> 折畳を更新する. 由来はナゾ&hellip;というかそもそもhelp読んでも動作がいまいちわからない&hellip; </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zx">:h zx</a></td>
+</tr>
+<tr>
+<td> <code>zm</code> </td>
+<td> 折畳をより閉じる(&lsquo;foldlevel&rsquo; を1減少させる) Fold <strong>M</strong>ore から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zm">:h zm</a></td>
+</tr>
+<tr>
+<td> <code>zM</code> </td>
+<td> 全ての折畳を閉じる(&lsquo;foldlevel&rsquo; に0を設定する) <code>zm</code> の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zM">:h zM</a></td>
+</tr>
+<tr>
+<td> <code>zr</code> </td>
+<td> 折畳をより開く(&lsquo;foldlevel&rsquo; を1増加させる) <strong>R</strong>educe folding から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zr">:h zr</a></td>
+</tr>
+<tr>
+<td> <code>zR</code> </td>
+<td> 全ての折畳を開く(&lsquo;foldlevel&rsquo; に最大の折畳レベルを設定する) <code>zr</code> の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zR">:h zR</a></td>
+</tr>
+<tr>
+<td> <code>zn</code> </td>
+<td> 折畳しない(&lsquo;foldenable&rsquo; をリセットする。全ての折畳が開かれる) Fold <strong>n</strong>one から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zn">:h zn</a></td>
+</tr>
+<tr>
+<td> <code>zN</code> </td>
+<td> 折畳する(&lsquo;foldenable&rsquo; をセットする。全ての折畳が &lsquo;foldenable&#8217;がリセットされる以前と同様になる) Fold <strong>n</strong>ormalから．しかし<strong>n</strong>が2つあって正直意味ない&hellip;</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zN">:h zN</a></td>
+</tr>
+<tr>
+<td> <code>zi</code> </td>
+<td> &lsquo;foldenable&rsquo; を反転する． <strong>I</strong>nvert から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zi">:h zi</a></td>
+</tr>
+<tr>
+<td> <code>[z</code>, <code>]z</code> </td>
+<td> 現在の開いている折畳の先頭/末尾へ移動する．角括弧コマンド(<a href="http://vim-jp.org/vimdoc-ja/vimindex.html#[">:h [</a>)は似た動作をする </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#z[">:h z[</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>| <code>zj</code> | カーソルより下方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>j</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zj">:h zj</a>
+| <code>zk</code> | カーソルより上方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>k</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zk">:h zk</a></p>
+
+<p><code>zx</code>は<code>zn</code>,<code>zN</code>はなくてもたいていの動作に支障ないのではという気がする．</p>
+
+<h2>undo と redo のコマンド</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>u</code> </td>
+<td> [count] 個の変更を元に戻す．<strong>u</strong>ndo から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/undo.html#u">:h u</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-R</code> </td>
+<td> undo された変更を [count] 個やり直す．<strong>r</strong>edo から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/undo.html#CTRL-R">:h CTRL-R</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>ビジュアルモード</h2>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>v</code> </td>
+<td> 文字単位のビジュアルモードを開始する．<strong>v</strong>isualから </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v">:h v</a></td>
+</tr>
+<tr>
+<td> <code>V</code> </td>
+<td> 行単位のビジュアルモードを開始する．<code>v</code>の大文字版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#V">:h V</a></td>
+</tr>
+<tr>
+<td> <code>CTRL-V</code> </td>
+<td> 矩形ビジュアルモードを開始する．<code>v</code>のctrl版 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#CTRL-V">:h CTRL-V</a></td>
+</tr>
+<tr>
+<td> <code>gv</code> </td>
+<td> 最後に使用したのと同じ範囲のビジュアルモードを開始する. <strong>g</strong>otoか単なるprefix. 最後に入力がされた場所にテキストを入力する<code>gi</code>のヴィジュアル版と言える </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#gv">:h gv</a></td>
+</tr>
+<tr>
+<td> <code>v_o</code> </td>
+<td> 選択されたテキストのもう一方の端へ移動する．Go to <strong>o</strong>ther end of highlighted text から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v_o">:h v_o</a></td>
+</tr>
+<tr>
+<td> <code>v_O</code> </td>
+<td> 選択されたテキストのもう一方の端へ移動する．矩形選択では行内のもう一方のコーナーに移動する．Go to <strong>o</strong>ther end of highlighted text から</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/visual.html#v_O">:h v_O</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>その他</h2>
+
+<p>すべてのコマンドを体型的に網羅するとを諦めてその他で残りの言及すべきっぽいコマンドをいっしょくたにまとめる男の姿がそこにはあった&hellip;</p>
+
+<table>
+<thead>
+<tr>
+<th> コマンド </th>
+<th> 説明と由来      </th>
+<th> help </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> <code>CTRL-W</code> + &ldquo;?&rdquo; </td>
+<td>ウィンドウコマンド. <strong>W</strong>indow commandsから. Windowの操作や&#8221;?&ldquo;の結果を新規ウィンドウで開いたりする</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/vimindex.html#CTRL-W">:h CTRL-W</a></td>
+</tr>
+<tr>
+<td> <code>i_CTRL-R</code> <code>c_CTRL-R</code> </td>
+<td>レジスタの内容を挿入する. <strong>R</strong>egisterから</td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/insert.html#i_CTRL-R">:h i_CTRL-R</a></td>
+</tr>
+<tr>
+<td> <code>gf</code> </td>
+<td> カーソルの下か後ろの名前のファイルを編集する． <strong>g</strong>oto <strong>f</strong>ile から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/editing.html#gf">:h gf</a></td>
+</tr>
+<tr>
+<td> <code>K</code> </td>
+<td> カーソル位置のキーワードを調べるためのプログラムを実行．<strong>K</strong>eyword から </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/various.html#K">:h K</a></td>
+</tr>
+<tr>
+<td> <code>q</code> </td>
+<td> タイプした文字をレジスタ{0-9a-zA-Z&#8221;}にレコーディングする．特に覚え方は見つからなかったが，macro -> ma<strong>q</strong>ro みたいな覚え方もあり&hellip;? </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/repeat.html#q">:h q</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>おわりに，そして覚えるのもよいけれど&hellip;</h2>
+
+<p>以上で本記事のコマンドの覚え方大全は終了です．
+ここまで読んだ方お疲れ様です．そして「アレ&hellip;?まだまだあるはずじゃない?」と思ったそこのあなた，正解です．
+挿入モード，コマンドモードのコマンドはほとんどかけてないですし，単純に抜けてるものもあるかと思います．
+チカラ付きました&hellip;  ただこう理解するとわかりやすいよ〜というコマンドはなるべく網羅したような気がします．
+もっとこれ追加しろとかあったらコメントかtwitterか何かで言っていただけると嬉しいです．
+そしてVimを始めたころの初々しい気持ちを忘れていて，いやもっとここ丁寧に書かなきゃわからんぜ!ってとこも遠慮無くおねがいします．</p>
+
+<p>そして覚えるのも大事ですが，それと同じくらいわからないことをドキュメントから調べる力を
+つけるのも重要かなぁと思います．最初は覚えられなくても調べることができればかなり便利です．
+たとえば <code>:help</code>だけでなく<code>:helpgrep</code>を使いこなしたり,
+<a href="http://vim-jp.org/vimdoc-ja/index.html#help-context">:h help-context</a> を読んで引きたい項目の指定ができるようになるとはかどります．
+(他にも<code>(</code>を末尾につけることで関数のヘルプを引くといった書いてないプチハックとかもあります)</p>
+
+<table>
+<thead>
+<tr>
+<th> 種類                     </th>
+<th> 修飾子                         </th>
+<th> 例                  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ノーマルモードコマンド   </td>
+<td> (無し)                         </td>
+<td> <code>:help x</code>           </td>
+</tr>
+<tr>
+<td> ビジュアルモードコマンド </td>
+<td> <code>v_</code>                           </td>
+<td> <code>:help v_u</code>         </td>
+</tr>
+<tr>
+<td> 挿入モードコマンド       </td>
+<td> <code>i_</code>                           </td>
+<td> <code>:help i_&lt;Esc&gt;</code>     </td>
+</tr>
+<tr>
+<td> コマンドラインコマンド   </td>
+<td> <code>:</code>                            </td>
+<td> <code>:help :quit</code>       </td>
+</tr>
+<tr>
+<td> コマンドライン編集       </td>
+<td> <code>c_</code>                           </td>
+<td> <code>:help c_&lt;Del&gt;</code>     </td>
+</tr>
+<tr>
+<td> Vim の起動引数           </td>
+<td> <code>-</code>                            </td>
+<td> <code>:help -r</code>          </td>
+</tr>
+<tr>
+<td> オプション               </td>
+<td> <code>'</code>                            </td>
+<td> <code>:help 'textwidth'</code> </td>
+</tr>
+<tr>
+<td> 正規表現                 </td>
+<td> <code>/</code>                            </td>
+<td> <code>:help /[</code>          </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>僕が思うhelp周辺の便利ツールとかは <a href="http://haya14busa.com/reading-vim-help/">Vimのhelpを快適に引こう - haya14busa</a> にまとめているのでよかった読んでみてください．</p>
+
+<p>おわり．</p>
+
+<p><strong>Vim のコマンドを覚えて思考のスピードで編集しましょう!!!</strong></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-12-21T02:55:02+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vim-mnemonic/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vim-mnemonic/" data-via="haya14busa" data-counturl="http://haya14busa.com/vim-mnemonic/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/hatena-intern-2015/" title="Previous Post: はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた">&laquo; はてなインターン2015でScalaをVimで書いてMackerelをとにかく便利にして優勝してきた</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2015 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vim-mnemonic/';
+        var disqus_url = 'http://haya14busa.com/vim-mnemonic/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

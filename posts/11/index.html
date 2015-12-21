@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="なんか勘違いしてたので書き直しました 2013/07/08。(記事投稿の翌日) 日本語入力できなかった MacデフォルトのzshからHomebrewで最新のzsh(5.0.2)にしたらめっちゃ便利だったメモ « haya14busaで便利だーーーーと思ったのもつかの間、 &hellip;">
+  <meta name="description" content="書きました Github -> haya14busa/prime-sieve 素数を数える方法の記事読んだ時はそんなやる気なかったのについ手をだしてしまった。エラトステネスの篩って名前は知らなかったけど、そのアルゴリズムは読まなくても使おうと思いながら読んでたよ！ &hellip;&#8221;>
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,284 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/python-enumerate-prime/">Pythonで素数数え上げスクリプト</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-28T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>書きました</h2>
+
+<p>Github -> <a href="https://github.com/haya14busa/prime-sieve">haya14busa/prime-sieve</a></p>
+
+<p><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a>の記事読んだ時はそんなやる気なかったのについ手をだしてしまった。<a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩</a>って名前は知らなかったけど、そのアルゴリズムは読まなくても使おうと思いながら読んでたよ！って言っても記事読んでから書いたからｱﾚ。</p>
+
+<p>まったくもってブログにあげるレベルじゃないけど、意外と<code>set</code>使ったり、<code>iterator</code>意識したりとかのPython記事見つからなかったので一応書いてみた。適当に比較した感じでは速くなってるので満足です。素数ガチ勢じゃないから</p>
+
+<blockquote><p>確率的素数判定法 : 素数判定法の中には確率的アルゴリズムに基づいた、与えられた自然数 n を「合成数である」または「良く分からない」と判別する判定法がある。</p>
+
+<p>&#8211; <cite><a href="http://ja.wikipedia.org/wiki/素数判定">素数判定 &#8211; Wikipedia</a></cite></p></blockquote>
+
+<p>とか使って高速化とかまでは妥協。</p>
+
+<h2>Code</h2>
+
+<p>prime_sieve.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+''' Enumerate prime numbers upto 10000 '''
+
+import time
+import sys
+
+argvs = sys.argv
+if len(argvs) &lt; 2:
+    MAX = 10000
+else:
+    try:
+        MAX = int(argvs[1])
+    except:
+        MAX = 10000
+
+def sqrt(num):
+    sq = num ** .5
+    return sq
+
+def main():
+    prime_set = set(xrange(2,MAX+1))
+    possible_set = set(xrange(2,int(sqrt(MAX+1))))
+    temp_set = set() # append prime upto sqrt(MAX)
+    while 1:
+        try:
+            prime = sorted(possible_set).pop(0)
+            temp_set.add(prime)
+        except:
+            prime_set = sorted(prime_set | temp_set)
+            print 'List: ', prime_set
+            print 'Count: ', len(prime_set)
+            return
+        prime_set = set(ifilter(lambda x: x % prime, prime_set))
+        possible_set = set(ifilter(lambda x: x % prime, possible_set))
+
+
+if __name__ == '__main__':
+    starttime = time.clock()
+    from itertools import ifilter
+    main()
+    endtime = time.clock()
+    time = endtime - starttime
+    print 'Time: ', time
+</code></pre>
+
+<h3>使用法</h3>
+
+<pre><code>$ git clone git@github.com:haya14busa/prime-sieve.git
+$ python prime_stieve.py [引数]
+</code></pre>
+
+<p>引数なしの場合、デフォルトで10000までの素数列挙します。</p>
+
+<h2>注意点</h2>
+
+<ul>
+<li>xrangeを使って既にソートされてる順番のリストをset変換しても、操作してたり(？)すると少しバラバラになるっぽい</li>
+<li>ので、素数ポップアウトする際は、<code>sorted(set).pop(0)</code>とする必要があります。</li>
+<li>もしやらなかった場合、だいたい15000くらいまでは正しく動くのですが、それ以降で失敗します。この辺の挙動が謎。</li>
+</ul>
+
+
+<h2>感想</h2>
+
+<p>アルゴリズムとコードの書き方の両者とも意識することで、想像してた以上に速くなったのでちょくちょくその辺も意識したい感じ。正しく使われてる気がしないtry、catchの使い方とか書き方がなってないので、<a href="http://www.amazon.co.jp/Python-%E3%82%AF%E3%83%83%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF-%E7%AC%AC2%E7%89%88-Alex-Martelli/dp/4873112761?tag=haya14busa-22">Python クックブック</a>とかちゃんとこなそう。</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41XWUXpgeuL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofollow" target="_blank">Python クックブック 第2版</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        Alex Martelli,Anna Martelli Ravenscroft,David Ascher
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        オライリー・ジャパン 2007-06-26
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 4,410
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873112761/haya14busa/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9">エラトステネスの篩 &#8211; Wikipedia</a></li>
+<li><a href="https://codeiq.jp/">CodeIQ｜ITエンジニアのための実務スキル評価サービス</a></li>
+<li><a href="(http://www.wakatta-blog.com/prime-number-counter.html)">素数を数える方法</a></li>
+<li><a href="http://d.hatena.ne.jp/r_ikeda/20111028/prime">Python で素数を求めるアルゴリズムを書いてみる &#8211; 集中力なら売り切れたよ</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/python-enumerate-prime/">Pythonで素数数え上げスクリプト</a>
+      <time datetime="2013-07-28T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>28</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/github-introductio/">GitHub導入メモ</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>登録しました -> <a href="https://github.com/haya14busa">GitHub/haya14busa</a></p>
+
+<h2>導入</h2>
+
+<p>Permission denied (publickey)で若干困ったので忘備録</p>
+
+<p>SSH用の公開鍵、秘密鍵</p>
+
+<pre><code>% ssh-keygen -t dsa -f ~/.ssh/id_dsa_github
+</code></pre>
+
+<p>~/.ssh/config</p>
+
+<pre><code>Host github.com
+User git
+Hostname github.com
+
+IdentityFile ~/.ssh/id_dsa_github
+</code></pre>
+
+<p><code>~/.ssh/id_dsa_github.pub</code>を<a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a>に登録。</p>
+
+<p>そして</p>
+
+<pre><code>% ssh -T git@github.com
+</code></pre>
+
+<h2>dotfiles</h2>
+
+<p>GitHubでdotfilesのリポジトリを作っておく。</p>
+
+<pre><code>% cd
+% mkdir dotfiles
+% mv .vimrc dotfiles
+% ln -s dotfiles/.vimrc .vimrc
+% cd dotfiles
+% git init
+% git add .
+% git commit -m'first commit'
+% git remote add origin git@github.com:haya14busa/dotfiles.git
+% git push -u origin master
+</code></pre>
+
+<p>iPad用のブランチ</p>
+
+<pre><code>% git branch ipad
+% git checkout ipad
+% # vimでごにょごにょ
+% git add .
+% git commit -m'ごにょごにょ'
+% git push origin ipad
+</code></pre>
+
+<p>こりゃー便利</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://sho.tdiary.net/20091024.html">「Permission denied (publickey).」と言われてGitHubが使えなくなった場合の対処法 &#8211; ただのにっき(2009-10-24)</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/github-introductio/">GitHub導入メモ</a>
+      <time datetime="2013-07-16T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>16</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -464,378 +742,6 @@ print u"てきすと" == unicode("てきすと",'utf-8') # True
       <time datetime="2013-07-07T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>07</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/zsh/'>zsh</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-07-07T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>参考リンク</h3>
-
-<ul>
-<li><a href="http://www.metareal.org/2008/04/11/building-readline-enabled-python-on-mac/">Mac の Python をビルドするときに GNU Readline ライブラリを有効にする | METAREAL</a></li>
-<li><a href="http://python.matrix.jp/pages/tips/compatibility/interact_encoding.html">インタラクティブモードのエンコード — PythonMatrixJp</a></li>
-<li><a href="http://raydive.hatenablog.jp/entry/20100925/1285414097">Homebrew環境下で野良Pythonをビルドしても大丈夫か？ &#8211; 日々の御伽噺</a></li>
-<li><a href="http://raydive.hatenablog.jp/entry/20100207/1265555421">Python2.6.4をreadlineと文字ロケール問題を回避してSnow Leopardに入れる &#8211; 日々の御伽噺</a></li>
-<li><a href="http://raydive.hatenablog.jp/entry/20090111/1231694394">Readlineとロケール問題を回避したPythonをインストールする &#8211; 日々の御伽噺</a></li>
-<li>etc…</li>
-</ul>
-
-
-<h3>環境</h3>
-
-<ul>
-<li>Mac OSX 10.8.4</li>
-<li>Python 2.7.5 (Homebrewでインストール)</li>
-</ul>
-
-
-<h3>MacのPythonインタプリタで日本語が入力出来なくてつらい。つらい</h3>
-
-<p>Snow Leopardだと<code>easy_install readline</code>で解決するって記事がもう嫌になるほど見つかるけど僕の環境では全く解決しません。</p>
-
-<p>ただなんにせよreadlineの問題であることはわかりました。</p>
-
-<p>単にreadlineといっても</p>
-
-<ol>
-<li>Mac標準のreadline</li>
-<li>Homebrewで入れるreadline</li>
-<li>easy_installで入れるreadline</li>
-<li>pipで入れるreadline</li>
-</ol>
-
-
-<p>もう何がなんだか…。1と2はライセンスの関係で少し違うらしいこと、3と4は同じかと思いきやHomebrewのreadlineをアンインストールした状態で3のeasy_installでは上手くimportできるのに、4のpipではimportエラーが発生します。</p>
-
-<p>Homebrewでのreadlineをアンインストールした状態で,pip install readlineした時のエラー</p>
-
-<pre><code>ImportError: dlopen(/usr/local/Cellar/python/2.7.5/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/readline.so, 2): Library not loaded: /usr/local/opt/readline/lib/libreadline.6.2.dylib
-  Referenced from: /usr/local/Cellar/python/2.7.5/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/readline.so
-  Reason: image not found
-</code></pre>
-
-<p>readlineの問題だと考えるのはHomebrew、easy_install、pipのすべてでreadlineをアンインストールした場合、ちゃんと日本語が通ります。ただ勿論readlineが使えないので補完はおろか矢印キーさえ動きません。これはツライ。</p>
-
-<p>1-4でいろんな組み合わせでreadlineをインストール&amp;アンインストールしてもimportできた場合はすべて日本語通りません…</p>
-
-<p>.zshrc</p>
-
-<pre><code>export PYTHONSTARTUP=~/.pythonstartup
-export PYTHONIOENCODING='utf-8'
-</code></pre>
-
-<p>.pythonstartup</p>
-
-<pre><code>import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-
-import codecs
-
-sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
-sys.stdin = codecs.getreader('utf_8')(sys.stdin)
-</code></pre>
-
-<p>上記の2つを設定して、Pythonシェルでのエンコーディングをすべてutf-8にしても解決せず。utf-8に変更する前はUS-ASCIIだったんでこれが問題かと思ったんだけど……</p>
-
-<p>Python インタプリタ</p>
-
-<pre><code>import sys
-&gt;&gt;&gt; print sys.getfilesystemencoding()
-utf-8
-&gt;&gt;&gt; print sys.stdin.encoding
-utf-8
-&gt;&gt;&gt; print sys.stdout.encoding
-utf-8
-&gt;&gt;&gt; print sys.stderr.encoding
-utf-8
-&gt;&gt;&gt; print sys.getdefaultencoding()
-utf-8
-</code></pre>
-
-<p>もちろんLANG=ja_JP.UTF-8状態にもしてるし、ターミナルではちゃんと日本語入力できるのに…</p>
-
-<p><code>brew link readline</code>とかやったり、brewで入れたreadlineを使うように（?）Homebrew使わず自前でPython入れなおしてみたりいろいろとやってみた………が………だめ</p>
-
-<pre><code>% CPPFLAGS=-I/usr/local/Cellar/readline/6.2.4/include LDFLAGS=-L/usr/local/Cellar/readline/6.2.4/lib  ./configure --prefix=/usr/local/Cellar/python/2.7.5 --enable-ipv6 --datarootdir=/usr/local/Cellar/python/2.7.5/share --datadir=/usr/local/Cellar/python/2.7.5 --enable-framework --with-universal-archs=intel --enable-universalsdk=/
-
-% make
-% sudo make frameworkinstall
-</code></pre>
-
-<p>書きながら調べてたらここを見つけた。-> <a href="http://raydive.hatenablog.jp/entry/2013/02/09/120000">Pythonビルドメモ（2013/02/09版） &#8211; 日々の御伽噺</a></p>
-
-<p>というか参考にしてたリンクの更新版的な記事だったのでやっぱ検索力足りてない…試してみようかな</p>
-
-<h2>追記</h2>
-
-<p>なんとか解決できました</p>
-
-<p><a href="http://haya14busa.com/mac-python-readline-input-japanese/">解決:Mac OSXのPythonのインタプリタで日本語入力する方法 « haya14busa</a></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/cannot-input-japanese-in-python-interpreter/">Mac OSXのPythonのインタラクティブシェルorインタプリタで日本語が入力出来なくてつらい</a>
-      <time datetime="2013-07-07T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>07</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-07-06T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>作りま……パクりました</h2>
-
-<p>初心者ながらPythonでツイッターのタイムライン読み上げさせたら面白いなーと思って頑張ってました。最初は何も考えず<a href="(https://github.com/bear/python-twitter)">python-twitter</a>で試行錯誤してたんだけど、<a href="(https://github.com/tweepy/tweepy)">tweepy</a>はStreaming APIにも対応しててtweepy使った方が楽なことを発見。んでググってたらそのままターミナルにストリーミングでTL流すスクリプト見つけたので、そこにSayKotoeriコマンドをプラスしてちょっと変えただけのほぼ丸パクリです。頑張って自分で作ったのは別記事のリストを擬似ストリーミングで読み上げさせる方なので、ご了承ください。</p>
-
-<p>リストバージョン -> <a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></p>
-
-<h2>tweepyのインストール</h2>
-
-<p><code>pip install tweepy</code>でおけ。記事執筆現在API1.1にも対応してます。pipならバージョンは2.0でgithubには2.1が上がってるっぽいです。でも現場2.0で良さそう。公式ドキュメントのバージョンが1.4で古かったりして大変なので、バージョンに気を付けてググったり、dir()コマンドとかソース読んで自分で見ていくとわかりやすいっぽいです。</p>
-
-<h2>読み上げコマンド</h2>
-
-<p><a href="(https://sites.google.com/site/nicohemus/home/saykotoeri)">Saykotoeri</a> &amp; <a href="(http://www.a-quest.com/quickware/saykana/)">SayKana</a> , or <a href="(https://sites.google.com/site/nicohemus/home/saykotoeri2)">Saykotoeri2</a>コマンドが必要です。リンク先からインストールしてください。デフォルトのsayコマンドで<a href="(http://stts.hatenablog.com/entry/20110724/1311513263)">Kyoko</a>さんをインストールして使うのもいいけどKyokoさんは漢字全然読めないからお察し。英語を読ませる場合、sayコマンドの発音は凄いと思います。英語用リストではsayコマンド使ってます。</p>
-
-<p>SayKotoeri2の方がいろいろコマンドのオプションがあって使いやすいんだけど、女性1、いわゆるゆっくり(れいむ)の声がSayKotoeriの方でしか使えなかったんでやむなくSayKotoeri使ってます。SayKotoeri2で同じ声使う方法知ってる方がいらしたら教えてほしい。</p>
-
-<p>それとSayKotoeriは英語が全然読めないのでことえり辞書で教育するといいっぽいです。(例: 読み->ついったー, 単語:Twitter)<br/>
-それ用の辞書入れたら良いのだろうけど無料でいいやつは現状ないかも。シェアウェアなら-><a href="http://nadroom.dousetsu.com/download/download_katakana_share.html">NADのカタカナ英語辞書(シェア)</a></p>
-
-<p>一応正規表現でツイートに埋め込まれてるURLを「URL」, RTを「Retweet」に置換などはしてますがもっと置換のパターン増やせばよりストレスなく聞き取れるかも。</p>
-
-<h2>コード</h2>
-
-<p>twAloud.py</p>
-
-<pre><code>#!/usr/bin/env python
-# -*- coding:utf-8 -*-
-#
-# Timelineをストリーミングで読み上げさせる
-# 
-# Author:   haya14busa
-# URL:      http://haya14busa.com
-# require:  SayKotoeri, Saykana or SayKotoeri2
-# OS:       for Mac Only
-# Link:     [twitterをターミナル上で楽しむ(python)](http://www.nari64.com/?p=200)
-
-import tweepy
-from tweepy import  Stream, TweepError
-import logging
-import urllib
-from subprocess import call
-import re
-import sys, codecs
-
-sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
-sys.stdin = codecs.getreader('utf_8')(sys.stdin)
-
-def get_oauth():
-    CONSUMER_KEY='**********'
-    CONSUMER_SECRET='**********'
-    ACCESS_TOKEN_KEY='**********'
-    ACCESS_TOKEN_SECRET='**********'
-
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
-    return auth
-
-def str_replace(string):
-    string = re.sub('&amp;.+;', ' ', string)
-    # remove URL
-    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
-    # remove quote
-    string = re.sub('"', ' ', string)
-    string = re.sub("'", ' ', string)
-    string = re.sub('\/', ' ', string)
-
-    string = re.sub('RT', 'Retweet', string)
-    return string
-
-class CustomStreamListener(tweepy.StreamListener):
-
-    def on_status(self, status):
-
-        try:
-            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
-                    name = status.author.name,
-                    screen = status.author.screen_name,
-                    text = status.text,
-                    src = status.source,
-                    created = status.created_at)
-            read_text = str_replace(status.text.encode('utf-8'))
-            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
-
-        except Exception, e:
-            print &gt;&gt; sys.stderr, 'Encountered Exception:', e
-            pass
-
-    def on_error(self, status_code):
-        print &gt;&gt; sys.stderr, 'Encountered error with status code:', status_code
-        return True # Don't kill the stream
-
-    def on_timeout(self):
-        print &gt;&gt; sys.stderr, 'Timeout...'
-        return True # Don't kill the stream
-
-
-class UserStream(Stream):
-
-    def user_stream(self, follow=None, track=None, async=False, locations=None):
-        self.parameters = {"delimited": "length", }
-        self.headers['Content-type'] = "application/x-www-form-urlencoded"
-
-        if self.running:
-            raise TweepError('Stream object already connected!')
-
-        self.scheme = "https"
-        self.host = 'userstream.twitter.com'
-        self.url = '/2/user.json'
-
-        if follow:
-           self.parameters['follow'] = ','.join(map(str, follow))
-        if track:
-            self.parameters['track'] = ','.join(map(str, track))
-        if locations and len(locations) &gt; 0:
-            assert len(locations) % 4 == 0
-            self.parameters['locations'] = ','.join(['%.2f' % l for l in locations])
-
-        self.body = urllib.urlencode(self.parameters)
-        logging.debug("[ User Stream URL ]: %s://%s%s" % (self.scheme, self.host, self.url))
-        logging.debug("[ Request Body ] :" + self.body)
-        self._start(async)
-
-def main():
-    auth = get_oauth()
-    stream = UserStream(auth, CustomStreamListener())
-    stream.timeout = None
-    stream.user_stream()
-
-if __name__ == "__main__":
-    main()
-</code></pre>
-
-<h2>使い方</h2>
-
-<p><a href="https://dev.twitter.com/">Twitter Developers</a>に登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。PINコードで認証とかは気が向いたらまた考える。</p>
-
-<p>読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。もちろん読み上げなしにして授業中や会社でばれないようにツイッターするのもよし。</p>
-
-<p>あとはターミナルで<code>python twaloud.py</code> 終了はCtrl-Cで強制終了してください。</p>
-
-<p>それとデフォルトのTerminal.appよりも<a href="(http://www.iterm2.com/#/section/home)">iTerm2</a>だとコマンドクリックでURL開けるのでタイムライン読むのに便利です。</p>
-
-<h2>参考リンク</h2>
-
-<h3>ライブラリ</h3>
-
-<ul>
-<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
-<li><a href="https://github.com/bear/python-twitter">bear/python-twitter · GitHub</a></li>
-</ul>
-
-
-<h3>リストバージョン</h3>
-
-<ul>
-<li><a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></li>
-</ul>
-
-
-<h3>コード</h3>
-
-<ul>
-<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
-<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
-<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
-</ul>
-
-
-<h3>読み上げ関連</h3>
-
-<ul>
-<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri">SayKotoeri &#8211; Hemus -Macアプリ</a></li>
-<li><a href="http://www.a-quest.com/quickware/saykana/">SayKana &#8211; Mac用音声合成プログラム</a></li>
-<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri2">SayKotoeri2 &#8211; Hemus -Macアプリ</a></li>
-<li><a href="http://stts.hatenablog.com/entry/20110724/1311513263">Mac OSX 10.7 Lion付属のKyokoさんにスピーチしてもらう &#8211; sttsのソースコードMemoブログ</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]</a>
-      <time datetime="2013-07-06T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/tweepy/'>tweepy</a></span>
       
       </footer>
     </article>
