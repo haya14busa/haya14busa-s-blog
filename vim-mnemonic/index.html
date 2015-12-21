@@ -127,12 +127,7 @@
 
 <h2>注意</h2>
 
-<ul>
-<li>信憑性が高くないものもある</li>
-</ul>
-
-
-<p>注意点として公式のものから公式っぽいもの，独自の調査結果によるものなど信憑性はまちまちです．
+<p>注意点として公式のものから公式<strong>っぽい</strong>もの，独自の調査結果によるものなど信憑性はまちまちです．
 そしてVimのコマンドは無数にあるので覚え方大全と言っておきながらすべてを網羅できているわけではなくかなり偏っています．
 抜けてるものとか間違ってるものとか俺はこう覚えてるぜ!というものがあったら教えてください!</p>
 
@@ -145,14 +140,13 @@
 </ul>
 
 
-<p>などです．基本英語に直すとそのままわかるものが多いかもしれません．</p>
+<p>などです．基本英語に直して理解する方針のものが多いです．</p>
 
 <p>またこれからたくさんのコマンドを羅列していきますがすべてを覚える必要は一切ないこと，
 そして逆にここに載ってない便利な覚えるべきVimコマンドはきっとたくさんあるので覚えようと気負ったり，
 だいたいわかるからokと思ったりしないようにおねがいします．</p>
 
-<p>そして何よりの注意点としては結局覚え方よりも実際にやってみることが大事だということです!!!
-読んでたら勝手に Vim のコマンドを憶えていたなんて魔法は無いです．</p>
+<p>そして何よりの注意点としては結局覚え方よりも実際にやってみることが大事だということです!!!</p>
 
 <p>ただ単にやってみるだけでなく由来や覚え方も知ることでより憶えやすくなったらよいなというのが本記事の趣旨なので，
 深く考えすぎずにそうなんだ〜へぇ〜と思いながら読むとよいと思います．</p>
@@ -167,15 +161,6 @@
         k              Hint:  The h key is at the left and moves left.
   &lt; h       l &gt;               The l key is at the right and moves right.
         j                     The j key looks like a down arrow.
-        v
-</code></pre>
-
-<h3>日本語版</h3>
-
-<pre><code class="``">        ^
-        k              ヒント:  h キーは左方向に移動します。
-  &lt; h       l &gt;                 l キーは右方向に移動します。
-        j                       j キーは下矢印キーのようなキーです。
         v
 </code></pre>
 
@@ -1338,14 +1323,21 @@
 <td> 現在の開いている折畳の先頭/末尾へ移動する．角括弧コマンド(<a href="http://vim-jp.org/vimdoc-ja/vimindex.html#[">:h [</a>)は似た動作をする </td>
 <td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#z[">:h z[</a></td>
 </tr>
+<tr>
+<td> <code>zj</code> </td>
+<td> カーソルより下方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>j</code>移動 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zj">:h zj</a></td>
+</tr>
+<tr>
+<td> <code>zk</code> </td>
+<td> カーソルより上方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>k</code>移動 </td>
+<td> <a href="http://vim-jp.org/vimdoc-ja/fold.html#zk">:h zk</a></td>
+</tr>
 </tbody>
 </table>
 
 
-<p>| <code>zj</code> | カーソルより下方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>j</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zj">:h zj</a>
-| <code>zk</code> | カーソルより上方の折畳へ移動. 折りたたみにおける<code>hjkl</code>の<code>k</code>移動 | <a href="http://vim-jp.org/vimdoc-ja/fold.html#zk">:h zk</a></p>
-
-<p><code>zx</code>は<code>zn</code>,<code>zN</code>はなくてもたいていの動作に支障ないのではという気がする．</p>
+<p>(<code>zx</code>とか<code>zn</code>,<code>zN</code>などは覚えなくてもたいていの動作に支障ないのではという気がする．．．)</p>
 
 <h2>undo と redo のコマンド</h2>
 
