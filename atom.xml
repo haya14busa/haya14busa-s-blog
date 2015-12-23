@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-12-21T17:57:53+09:00</updated>
+  <updated>2015-12-23T16:40:37+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -911,8 +911,8 @@
 <td> a WORD を削除 (参照: |WORD|)</td>
 </tr>
 <tr>
-<td> &ldquo;dgn&rdquo;   次に検索パターンにマッチするものを削除</td>
-<td></td>
+<td> &ldquo;dgn&rdquo; </td>
+<td> 次に検索パターンにマッチするものを削除</td>
 </tr>
 <tr>
 <td> &ldquo;dd&rdquo; </td>
