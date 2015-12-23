@@ -419,7 +419,7 @@ vnoremap < <gv
 | "daw" | a word を削除
 | "diW" | inner WORD を削除 (参照: |WORD|)
 | "daW" | a WORD を削除 (参照: |WORD|)
-| "dgn"   次に検索パターンにマッチするものを削除
+| "dgn" | 次に検索パターンにマッチするものを削除
 | "dd" | 1行削除
 | "dis" | inner sentence を削除
 | "das" | a sentence を削除
