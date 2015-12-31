@@ -9,9 +9,11 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="この記事は Vim Advent Calendar 2015 の21日目の記事です． もくてき 本記事では Vim のコマンドの"覚え方"を紹介します．
-基本的にはトリッキーな"覚え方"ではなく由来の紹介となります．
-例えば J で行連結は Join が元だとか， gfが"goto file" &hellip;">
+  <meta name="description" content="インターン終わったときに書きたかったのですが，バタバタしていたのと，イカ
+(Splatoon)という麻薬に犯されたので2015
+年の振り返りとして書いています． 乗り遅れた感しかないけど記録として残しておきま
+す！
+2015年全体の振り返りはこちら -> はてな， &hellip;&#8221;>
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +80,576 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/hatena-intern-2015/">2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-12-31T22:15:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>インターン終わったときに書きたかったのですが，バタバタしていたのと，イカ
+(<a href="https://www.nintendo.co.jp/wiiu/agmj/">Splatoon</a>)という麻薬に犯されたので2015
+年の振り返りとして書いています． 乗り遅れた感しかないけど記録として残しておきま
+す！
+2015年全体の振り返りはこちら -> <a href="http://haya14busa.com/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り - haya14busa</a></p>
+
+<p>今年の夏はどこかインターン行きたいなぁ〜，最高の夏を過ごしたいなぁ〜と思っていました．
+そんな時に <a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a> 情報，
+特に今年は<a href="http://developer.hatenastaff.com/entry/2015/04/08/124053"> <strong>Scala</strong> や swift が書けるコースもある</a>
+という話を聞いてこれは行きたい! と応募しました．
+その結果幸運なことに選考に受かったので8月10日から9月4日まで最高の夏を過ごしにはてなインターンに行ってきました．</p>
+
+<h3>はてなインターン TL;DR</h3>
+
+<ul>
+<li><del>噂の(?)今年のインターン生の Emacs 率が0だった</del>
+
+<ul>
+<li><blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote></li>
+</ul>
+</li>
+<li>僕は言語がScalaのMackerelコースで， <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんと一緒に Mackerel を便利にして優勝してきましたっ! めでたいっ 🎉🎉🎉</li>
+<li>はてなインターンで優秀なはてなの社員さんや他のインターン生の仲間と開発できたのは最高の体験でした．もっかい体験したい．</li>
+</ul>
+
+
+<h3>参考情報</h3>
+
+<ul>
+<li>公式サイト <a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a></li>
+<li>公式レポート <a href="http://hatenacorp.jp/intern2015/">はてなサマーインターン2015 レポートサイト</a></li>
+<li>GitHub
+
+<ul>
+<li>最高の教科書 <a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
+<li>最高のサンプルアプリ <a href="https://github.com/hatena/scala-Intern-Bookmark">hatena/scala-Intern-Bookmark</a></li>
+<li>最高の事前課題 <a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li>僕の事前課題回答 <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>はてなインターン応募と参加</h3>
+
+<p>一昨年の2013年夏にインターン探していたときも，はてなインターン卒業生のブログな
+どを読んで， はてなインターンよさそうだなぁ〜と思ってました．その時は能力たりな
+さすぎて無理だろう&hellip;<del>というのと perl かぁ〜</del> という思いで応募すら出来ていま
+せんでした．</p>
+
+<p>今年は言語が Scala (!)のコースができていたこともあったこと，一昨年よりはアルバイトでScala
+書いたりとある程度経験値積んでいて，Vim でよければいくつかアピールできるようなものもあったので
+えいやっと応募しました．はてなインターンの選考では基本的にポートフォリオを提出するのみ
+だったのですが，ポートフォリオは8割 Vim でした．評価されてよかった&hellip;</p>
+
+<p>ところで実際にインターンに参加してから思ったことは，もし仮に書く言語が perl
+だったとしても来たほうが良かったなということでした． もし来年度以降のインターン
+に応募しようと思っているけど perl がちょっとネック&hellip;  くらいで参加を迷ってるな
+ら勢いで参加申し込んでもよいと思います．</p>
+
+<p>結局僕は perl 1行も書きませんでしたが．Scala最高!!!(コンパイル爆速になればより&hellip;)</p>
+
+<h3>事前課題がScalaを基礎から勉強するのに最高</h3>
+
+<p>さて，晴れてはてなインターンに行けることになったらインターンまでの学習としてちょっとした事前課題が課されます．</p>
+
+<ul>
+<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li>僕の解答: <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+
+
+<p>この事前課題では perl か scala, それに JavaScript でいくつか課題が与えられ，問題を解いてテストを通していく形式でした．
+事前課題は全体，課題ごとに課題のねらいが書いてあり，言語の基本を学ぶのに最高だと思いました．</p>
+
+<p><a href="https://github.com/hatena/Hatena-Intern-Exercise2015/tree/master/scala">Scala の課 題</a>
+は 与えられたログ用に <a href="http://ltsv.org/">Labeled Tab-separated Values (LTSV)</a>
+パーサを書くという課題だったのですが，言語の基本やテストの仕方，テストの追加の
+仕方はもちろんのこと，問題の性質上 エラーハンドリングをどうするか，<code>Option</code>型を
+使うか，<code>Either</code>型を使うか，パース失敗時に エラーの行を収集するために
+<a href="https://github.com/scalaz/scalaz">scalaz</a> でいう <code>Validation</code> 型を使えばベンリ
+なんじゃないか&hellip;!といろいろやりがいがありました． もっと言うと指定されたログの
+モデル以外にも対応できるような汎用的なLTSVパーサにしたら便利そうと思ったんですが
+そこまでは時間と実力が足りなくてできませんでした．残念．</p>
+
+<p>LTSV パーサ，Scalaの課題としてよかったなぁと思います．</p>
+
+<p>またこの事前課題は単にテストを通して提出すると終了&hellip;というわけではなくインターンの初日あたりに
+講評が行われるのが最高でした．自分のコードはどう書けばよりよかったのか，他のインターン生は
+どう書いていてどこがよかったのかといったことも知れて便利でした．この講評はインターンの前半課題
+でも行われました．</p>
+
+<h3>前半の講義がウェブ開発を基礎から勉強するのに最高</h3>
+
+<ul>
+<li><a href="http://hatenacorp.jp/intern2015/lecture/">講義パート - はてなサマーインターン2015 レポートサイト</a></li>
+<li>教科書 <a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
+</ul>
+
+
+<h4>スケジュール</h4>
+
+<ul>
+<li>1日目 Perl/Scalaによるプログラミングの基礎</li>
+<li>2日目 Perl/Scalaによるデータベースプログラミング</li>
+<li>3日目 Perl/ScalaによるWebアプリケーション開発</li>
+<li>4日目 JavaScriptによるイベント・ドリブンプログラミング</li>
+<li>5日目 自由課題</li>
+<li>6日目 インフラ</li>
+<li>7日目 SwiftでのiOSアプリ開発</li>
+</ul>
+
+
+<p>前半の講義パートは言語の基礎からWebアプリケーション，インフラ，それにSwift
+コースや希望者はSwiftのiOSアプリ開発までを1週間で学べるようになっていました．
+それぞれのコースのインターン生ごとにメンターさんがついてくれます．僕の場合は
+<a href="http://sixeight.hatenablog.com/">id:sixeight</a> でした．</p>
+
+<p>毎日課題が課されてそれをメンターさんに質問したり，レビューを受けたり，講評をも
+らったりとﾋｲﾋｲこなして行くことで後半に向けて基礎力を向上できる仕組みになってい
+ました．大変でしたが楽しかった&hellip;!</p>
+
+<p>課題としては自由課題が最後で，その内容はそれまでに学んできた技術と課題で作って
+きたブログシステムを活かして好きなWeb アプリケーションを作るというものでした．</p>
+
+<p>ここで作ったサービスは社内で投票で順位もつく前半の集大成という課題で厳しくも楽
+しい，燃える課題となっていました．僕はあんまり独創的なアイデアのなくこれがあれ
+ばベンリやろ〜というノリでちょっとしたものしか作れなかったのですが，他のイン
+ターン生のアプリケーションのクオリティが高くて刺激になりました．</p>
+
+<p>完全に言い訳になるのですが僕は自由課題の日の前の土日で開催されたオープンイン
+ターネッツに公開されてない，はてなで行われたもくもく回ハッカソンで途中まで
+作ってた <a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert</a>
+に夢中になってました．
+他のインターン生のつくったサービスをみてもと自由課題に力入れればよかった&hellip;と
+思ったので来年度以降はてなインターンへの参加を考えている各位は前半最後の自由
+課題はやりがいあってよいよ！と言っておきます．</p>
+
+<h3>後半の実践パートでサービスにコミットしていく実践経験が得られて最高</h3>
+
+<p><a href="http://hatenacorp.jp/intern2015/projects/">実践パート - はてなサマーインターン2015 レポートサイト</a></p>
+
+<p>今年から前半/後半の比率が代わり前半が少し短く，その分後半の実践パートが長く
+なったようです．開発に時間がとれてベンリ．</p>
+
+<p>後半は僕は <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんと一緒にMackerelコースに配属され，
+ちょっとしたバグ修正によるインターン生最速リリース(ちょっとｽﾞﾙｲ)から始まり4つほ
+ど多方面からMackerelの機能改善や新機能のリリースを行い，最終成果発表で1位を獲得できました!</p>
+
+<p>だいたい <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんやメンターの
+<a href="http://sixeight.hatenablog.com/">id:sixeight</a>さんをはじめとするMackerelチーム
+の皆さんのおかげでした．</p>
+
+<p><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんはインターンまでScalaほとんど書いてなかったらしいのに，
+後半過程では1年くらいScala経験あった僕と同じかそれ以上のレベルでScalaかけちゃうし，
+JavaScriptまわりでペアプロして相談しても的確に正しい方向に導いていってくれるし最強かよ〜という感じでした．
+<a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんとのペアプロ，最高に便利体験でした.</p>
+
+<p><a href="http://sixeight.hatenablog.com/">id:sixeight</a>さんやMackerelチームの方には
+方針を一緒に考えてもらったり，ダメなところをダメと指摘してもらったり，実装・仕様の相談をさせてもらったりと，
+最高の体験でした．</p>
+
+<p><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a>くんや優秀なMackerelチームのメンバーと
+少しの間とは言えチームとして働く経験ができて，しかも最後には優勝というおまけまでついてきて
+最高の夏を過ごせました．ありがとうございました!</p>
+
+<h3>はてなインターン最高でした</h3>
+
+<p>上述したカリキュラム上の話だけじゃなく毎日おいしいはてなのまかないをはてなの社員さんと
+お話しながら食べたり，他の優秀なインターン生の話を聞いたり，実力を垣間見たり，
+インターン途中に参加したYAPCや社内TGIF，ごはん連れてってもらったりしたときにはてなの社員さんの
+話を聞いたりなどなど，最高の夏を過ごせました．</p>
+
+<p>逆に慣れなかったことといえばはてなの 「<a href="http://hitode909.hatenablog.com/entry/2014/12/02/205958">シュッと</a>」
+っという言葉だけは いやいや「サッと」とかのほうが馴染むじゃん&hellip;?とあんまり慣れな
+かったのですが， インターン終わってから「シュッと」，いいじゃん使いやすいじゃん&hellip;?
+となぜかインターン終わってから馴染むようになってしまいました．不思議だ&hellip;</p>
+
+<h3>他のインターン生の紹介</h3>
+
+<p>イカしたやつらを紹介するぜ! ってやつ．終始凄い人多すぎてびびってました&hellip;
+僕も頑張りたい．</p>
+
+<ul>
+<li><a href="http://blog.hatena.ne.jp/akiym/">id:akiym</a> perl, CTFのプロ</li>
+<li><a href="http://blog.hatena.ne.jp/daiiz/">id:daiiz</a> インターン委員長のプロ! 同窓会すき焼き(?)おねがいします
+
+<ul>
+<li><a href="http://daiiz.hatenablog.com/entry/2015/09/11/101815">はてなサマーインターンが終わり、エンジニアへの道が始まった - daizの日記</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/SWIMATH2/">id:SWIMATH2</a> idが定まらないプロ(?). いろいろつくっていて面白い
+
+<ul>
+<li><a href="http://swimath2.hatenablog.com/entry/2015/09/29/181805">中2の頃から大好きなはてなのインターンで最高の経験をした話 - クフでダローバルな日記</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/hiroqn/">id:hiroqn</a> 常識人ミュージシャンのプロ</li>
+<li><a href="http://blog.hatena.ne.jp/kakira96/">id:kakira96</a> 競プロとかWebGLとか多彩に出来るょぅじょのプロ．kakiraさんには関心しっぱなしだった&hellip;</li>
+<li><a href="http://blog.hatena.ne.jp/karur4n/">id:karur4n</a> ポッドキャスト(<a href="http://kumocast.jp/">くもキャスト</a>)やってるプロ．Vimの回あれば呼んでください</li>
+<li><a href="http://blog.hatena.ne.jp/Lepton/">id:Lepton</a> 競プロのプロ
+
+<ul>
+<li><a href="http://leptont.hatenablog.jp/entry/hatenaintern2015">最高のはてなサマーインターン - うに</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/tom__bo/">id:tom__bo</a> インターン最終日に最高最高言うプロ
+
+<ul>
+<li><a href="http://tombo2.hatenablog.com/entry/2015/09/07/023655">はてなサマーインターン2015に参加してきた - tom__bo’s blog</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> 最高の相方プロ
+
+<ul>
+<li><a href="http://tyage.hatenablog.com/entry/2015/09/30/235943">Scalaの夏、はてなインターンの夏 - tyage&rsquo;s diary</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/daguniko/">id:daguniko</a> eemonさん似のプロ</li>
+<li><a href="http://blog.hatena.ne.jp/eemon18/">id:eemon18</a> dagunikoさん似のプロ
+
+<ul>
+<li><a href="http://emon18.hateblo.jp/entry/2015/09/30/222214">はてなサマーインターンシップ2015に行ってきました - e-mon</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>最高の夏〜</strong></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/hatena-intern-2015/">2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた</a>
+      <time datetime="2015-12-31T22:15:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>31</span> <span class='year'>2015</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/internship/'>internship</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-12-31T21:15:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今年は4月から大きく環境が変わったり，インターンに行ったりちょくちょくVim活したりイカ(<a href="https://www.nintendo.co.jp/wiiu/agmj/">Splatoon</a>)したりと振り返ってみる
+と色んな事がありました．</p>
+
+<p>最初にネタバレをすると最も進捗があったのは Splatoon で最高ウデマエS+90まで行ったことでした．</p>
+
+<p><strong>マンメンミ!</strong></p>
+
+<h2>去年や一昨年の</h2>
+
+<ul>
+<li>Vim歴換算1年目 -> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
+<li>プログラミング2年目 -> <a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
+</ul>
+
+
+<p>今年はプログラミング初めてからだいたい3年目でした．もう初心者とか言ってられないようになって気がしますが，まだまだ勉強不足・力不足すぎるので精進したい.</p>
+
+<h2>はてなサマーインターン</h2>
+
+<p>長くなったので記事分けた -> <a href="http://haya14busa.com/hatena-intern-2015/">2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた - haya14busa</a></p>
+
+<p><strong>最高の夏〜</strong></p>
+
+<h2>Google Japan Software Engineer インターン</h2>
+
+<p>はてなインターンが終わった後，3ヶ月ほどGoogle Japanのインターンに行っていました．
+Googleは内側ではオープンで全然違う国の違うチームの情報を見れたりするオープンさなのですが，
+外側にはオープンではないので基本的にブログに書いたらだめっぽい，というか線引きがわ
+からないので参加した内容に関する感想は書けません&hellip;残念&hellip;</p>
+
+<p>Googleの優秀なエンジニアさんたちとGoogleという会社で開発できたのは学びもやりが
+いもたくさんあって最高の体験でした．</p>
+
+<h2>インターン対策とか競技プログラミング</h2>
+
+<p>はてなとGoogle以外にもいくつか応募して受かったり落ちたりしたのですが，
+そのうち1回ホワイトボードコーディング面接があり，超基本的なことを聞かれているの
+にぜんぜん答えられない&hellip;という苦い経験がありました．</p>
+
+<p>頭のどこかで僕は情報学部じゃなかったし，プログラミングも独学で好きなことやってる段階だし
+基礎的も知らなくてもまだ仕方ない&hellip;と思ってた節があったりしました．
+しかしこれは完全に言い訳です．
+<strong>基礎</strong>は土台．最低限理解して説明できる程度にはなってないと面接とか関係なく
+マズいな&hellip;と思いデータ構造，アルゴリズムなど勉強しなおしました．</p>
+
+<p>その一環として前から興味はあったんだけどなかなか手がでなかった競技プログラミングにも今年はちょくちょく手をだしはじめました．
+最近ちょっとイカしすぎておろそかになってますがやっていきたいです．</p>
+
+<h3>面接対策でつかった本とか</h3>
+
+<h4>世界で闘うプログラミング力を鍛える150問</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00HR19TSO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<h4>The Joel on Software 採用面接ゲリラガイド</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4274066304" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p><a href="http://local.joelonsoftware.com/wiki/%E6%8E%A1%E7%94%A8%E9%9D%A2%E6%8E%A5%E3%82%B2%E3%83%AA%E3%83%A9%E3%82%AC%E3%82%A4%E3%83%89(version_3.0">採用面接ゲリラガイド(version 3.0) - The Joel on Software Translation Project</a>)</p>
+
+<h2>Vim 活</h2>
+
+<h3>incsearch.vim v2.0</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim/releases/tag/v2.0.0">Release Version 2.0 · haya14busa/incsearch.vim</a></li>
+<li><a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a></li>
+<li>関連リポジトリ
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+<li><a href="https://github.com/haya14busa/vital-string-converter">haya14busa/vital-string-converter</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>incsearch.vimをカイゼンしてv2.0にしてました．もっと昔にやってた気がするけど今年
+の7月でした．リファクタリングしてコンポーザブルにしたりと拡張性をましてincsearch.vimをより便利にできました．</p>
+
+<h3>vital-power-assert と VimConf | Vim script 版 powerassert!</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vital-power-assert">haya14busa/vital-power-assert</a></li>
+<li><a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert! テスト書いてないとかお前それ Vim script の前でも同じこと言えんの? - haya14busa</a></li>
+<li><a href="http://vimconf.vim-jp.org/2015/">VimConf 2015</a></li>
+</ul>
+
+
+<p>はてなインターン中に作ってその後もちょくちょくと触ってました．またVimConfで発表したりもしました．</p>
+
+<iframe src="https://docs.google.com/presentation/d/1Nkll31jRFpKCFUA-5ruEFoa1-ODAHBU7wRM5s5DyETk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<p>去年も大概だったのですが今年は個人的にVimConfに向けての準備がゼンゼン足りてなくて来年こそはちゃんとするゾ!!という気持ちです．</p>
+
+<h3>underscore.vim</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/underscore.vim">haya14busa/underscore.vim</a></li>
+</ul>
+
+
+<p>underscore.jsのVim scriptバージョンを作ってました．実装は去年からなんだかんだやっていましたがエイプリルフールにリリースしました．
+実用性がないわけではないけど，ラムダが無いとかスコープの関係上凝ったことしようとすると微妙に使いづらいのが残念ですが開発してて面白かったです．</p>
+
+<h3>勢い Vim プラグイン系</h3>
+
+<h4>niconicomment.vim</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/niconicomment.vim">haya14busa/niconicomment.vim</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/niconicomment.vim/niconicomment2.gif" alt="niconicomment2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い．</p>
+
+<h4>vim-undoreplay</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-undoreplay">haya14busa/vim-undoreplay</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-undoreplay/undoreplay_fizzbuzz2.gif" alt="undoreplay_fizzbuzz2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い2．</p>
+
+<h3>vital.vim にPullRequest</h3>
+
+<ul>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/258">Vim.ScriptLocal: Add ScriptLocal (get script-local things) by haya14busa · Pull Request #258 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/239">Add Data.Set module by haya14busa · Pull Request #239 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/348">Data.Counter: Implement &ldquo;Data.Counter&rdquo; by haya14busa · Pull Request #348 · vim-jp/vital.vim</a></li>
+</ul>
+
+
+<p><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a> というVim scriptのライブラリにいくつか欲しいモジュールをPRで送ったりした．
+Vim.ScriptLocal は Vim scriptのスクリプトローカル変数を外からハックするモジュールでVim scriptのテストフレームワークである
+<a href="https://github.com/thinca/vim-themis">thinca/vim-themis</a> で使ってもらったりした．
+他にはPythonあたりにある便利なデータ構造をVim scriptにポートする業などしていました．</p>
+
+<h3>Vim Advent Calendar</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-mnemonic/">Vim Mnemonic | Vim のコマンドの覚え方大全 - haya14busa</a></li>
+</ul>
+
+
+<p>前から自分が欲しかった，まとめたかった記事を書きました．今までで最高ブクマ数を頂いてありがたい．</p>
+
+<h3>vim-operator-flashy</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-operator-flashy">haya14busa/vim-operator-flashy</a></li>
+</ul>
+
+
+<p>年末駆け込みプラグイン．VimConfで<a href="https://github.com/t9md">t9md</a>さんが開発してる
+<a href="https://github.com/t9md/atom-vim-mode-plus">t9md/atom-vim-mode-plus</a> でヤンク対象を
+フラッシュしていてわかりやすいというのを見せて頂いたのがきっかけになってます．
+地味にUX向上してよい．</p>
+
+<h2>参加・発表したミートアップ・勉強会系</h2>
+
+<h3>YAPC</h3>
+
+<ul>
+<li><a href="http://yapcasia.org/2015/">YAPC::Asia Tokyo 2015</a></li>
+<li><a href="http://haya14busa.com/yapcasia-2015/">ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習 - haya14busa</a></li>
+</ul>
+
+
+<p>YAPCに初めて参加しました．学生無料便利すぎました．LT発表は応募したのですが残念ながら落ちて残念．</p>
+
+<h3>Yokohama.vim</h3>
+
+<ul>
+<li><a href="http://yokohamavim.connpass.com/event/21069/">Yokohama.vim.osaka? #7 - connpass</a></li>
+</ul>
+
+
+<p>Yokohama.vimではなぜか基調講演という名の戦犯をしてきました．
+内容はYAPCでしようとしていたVim駆動学習の話の微調整という感じでした．
+ちゃんと基調講演と言えるような発表をできるようになってまたYokohama.vim参加したい．</p>
+
+<h3>VimConf 2015</h3>
+
+<p>上述した．</p>
+
+<h3>fpinscala読書会完走</h3>
+
+<ul>
+<li><a href="https://www.manning.com/books/functional-programming-in-scala">Functional Programming in Scala</a></li>
+<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
+</ul>
+
+
+<p>大阪で定期的に開催されていたfpinscala読書会でFunctional Programming in Scalaを(一応)読了しました．
+が，まだまだ理解しきれてないところ，飛ばしたところなどたくさんあるので2週目に参加してしっかり
+関数型プログラミング身につけたいなと思います．</p>
+
+<h2>GitHub 記録</h2>
+
+<ul>
+<li><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に出したPull Request一覧</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aissue+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に開いたPull Request一覧</a></li>
+</ul>
+
+
+<p>あんまり大したことできてなかった</p>
+
+<h2>Splatoon</h2>
+
+<p><img src="../images/splatoon/IMG_0424.JPG" alt="Splatoon S+ 90" /></p>
+
+<p>インターン中に買ってインターン終了までにS+になるという目標は達成したのですが，
+年内にカンストするという目標は残念ながらできませんでした．
+しかし，今年の後半は本当にイカしかやってないというベルでやっていてイカ進捗が一番でてました．
+イカちゃん楽しすぎる&hellip;</p>
+
+<p>よかったらみなさん一緒にイカしましょう!</p>
+
+<h2>その他</h2>
+
+<p>ちょくちょくReact触ったり, 引き続きScala書いたり, golang はじめたりしましたが，
+OSSっぽいこと，ここに書くようなことはほとんどできませんでした．</p>
+
+<h2>最後に</h2>
+
+<p>今年は環境が変わっただとか，インターン長期間行ってたとか，Splatoonやってたとか
+で特に今年後半はあんまり見える活動できてなかったです．もっと頑張りたい．</p>
+
+<p>去年も似たようなこと言ってたような気がしますが来年はVimはもちろんのことVim以外のこともやっていきたいなぁと思います．
+あともう少し大きいレベルで目標を定めてそれに向かってやれるとよさそう(まだふわふわだけど真剣に考えなきゃ&hellip;)．</p>
+
+<p>それと今年最も苦労して迷惑かけたのは英語ではないかという説があるので，
+来年は英語でコミュニケーションとれるように頑張って勉強していきたいですね．</p>
+
+<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2015年の振り返り記録でした.</p>
+
+<p><strong>来年もイカよろしく〜</strong></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り</a>
+      <time datetime="2015-12-31T21:15:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>31</span> <span class='year'>2015</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/diary-vim-poemu/'>diary,vim,ポエム</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -2133,704 +2705,6 @@ Lingr: <a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>
       <time datetime="2015-08-19T22:13:51+09:00" pubdate><span class='month'>Aug</span> <span class='day'>19</span> <span class='year'>2015</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-07-06T01:34:01+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
-
-
-<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
-
-<p>incsearch.vim について知らないかたはこちらの記事を参照してください．
-簡単に言えばVimのインクリメンタル検索をカイゼンするプラグインです．
--> <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a></p>
-
-<h2>incsearch.vim v2.0 をリリースした!</h2>
-
-<p>v0.9, v1.0, v1.1, v1.2, &hellip; とこれまで incsearch.vim をインクリメンタルにカイゼンにカイゼンを重ねてきました&hellip;
-そして本日， incsearch.vim は晴れて一段階進化し， バージョン2.0 となりました!</p>
-
-<p>この進化を一言で言えば，incsearch.vim はもっともっと Vim の検索を便利にすべく <strong>進化・拡張可能</strong> になりました．</p>
-
-<h2>2.0で何ができるようになったか?</h2>
-
-<p>百聞は一見に如かず．以下のgifとともに拡張プラグイン達をご覧ください!</p>
-
-<h3>曖昧検索 | fuzzy search</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy.gif" alt="incsearch-fuzzy.gif" /></p>
-
-<ul>
-<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
-</span><span class='line'><span class="c">&quot; マッピング例</span>
-</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzy-/</span><span class="p">)</span>
-</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>?<span class="p">)</span>
-</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzy<span class="p">-</span>stay<span class="p">)</span>
-</span><span class='line'><span class="c">&quot; サクッとためす</span>
-</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzy#make())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>曖昧スペル検索 | fuzzy spell search</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzyspell.gif" alt="incsearch-fuzzyspell.gif" /></p>
-
-<ul>
-<li>GitHub: <a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-fuzzy.vim&#39;</span>
-</span><span class='line'><span class="c">&quot; マッピング例</span>
-</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-fuzzyspell-/</span><span class="p">)</span>
-</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>?<span class="p">)</span>
-</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>fuzzyspell<span class="p">-</span>stay<span class="p">)</span>
-</span><span class='line'><span class="c">&quot; サクッとためす</span>
-</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#fuzzyspell#make())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>高速でインクリメンタルなmigemo検索 | migemo search</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-migemo.gif" alt="incsearch-migemo.gif" /></p>
-
-<ul>
-<li>GitHub: <a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
-<li>参照: <a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-migemo.vim&#39;</span>
-</span><span class='line'><span class="c">&quot; マッピング例</span>
-</span><span class='line'>map <span class="k">m</span><span class="sr">/ &lt;Plug&gt;(incsearch-migemo-/</span><span class="p">)</span>
-</span><span class='line'>map <span class="k">m</span>? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>?<span class="p">)</span>
-</span><span class='line'>map mg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>migemo<span class="p">-</span>stay<span class="p">)</span>
-</span><span class='line'><span class="c">&quot; サクッとためす</span>
-</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#migemo#make())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>EasyMotion との連携 | integration with vim-easymotion</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-easymotion.gif" alt="incsearch-easymotion.gif" /></p>
-
-<ul>
-<li>GitHub:
-
-<ul>
-<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
-<li><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>NeoBundle <span class="s1">&#39;haya14busa/incsearch-easymotion.vim&#39;</span>
-</span><span class='line'><span class="c">&quot; マッピング例</span>
-</span><span class='line'>map z<span class="sr">/ &lt;Plug&gt;(incsearch-easymotion-/</span><span class="p">)</span>
-</span><span class='line'>map z? <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>?<span class="p">)</span>
-</span><span class='line'>map zg/ <span class="p">&lt;</span>Plug<span class="p">&gt;(</span><span class="nb">incsearch</span><span class="p">-</span>easymotion<span class="p">-</span>stay<span class="p">)</span>
-</span><span class='line'><span class="c">&quot; サクッとためす</span>
-</span><span class='line'><span class="c">&quot; :call incsearch#call(incsearch#config#easymotion#make())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>拡張はcomposable!</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/incsearch.vim/extensions/incsearch-fuzzy-easymotion.gif" alt="incsearch-fuzzy-easymotion.gif" />
-incsearch.vim x fuzzy x easymotion</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; incsearch.vim x fuzzy x vim-easymotion</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_easyfuzzymotion<span class="p">(</span>...<span class="p">)</span> abort
-</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
-</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [<span class="nb">incsearch</span>#config#fuzzy#converter<span class="p">()</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">()</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>
-</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_easyfuzzymotion<span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>仕組み</h2>
-
-<h3>converter 機能</h3>
-
-<ul>
-<li><code>:h incsearch-config-converters</code></li>
-</ul>
-
-
-<p>バージョン2.0でのメイン追加機能，パターンコンバート機能です．
-入力したパターンを変換して正規表現を返すコンバーター(複数可)を指定することによって，
-入力した正規表現だけでなく，変換された正規表現も追加で検索してくれます．</p>
-
-<p>fuzzy, fuzzyspell, migemo の拡張はどれもこの新たに入った仕組み，converter機能を使っています．</p>
-
-<p>他にも スネークケースとキャメルケースを相互変換してどちらも検索できるようにするとか，
-<code>{a,b}</code>を<code>\(a\|b\)</code>に変換するようなオレオレ簡易正規表現シンタックス(?)シュガーを作るとか，
-inputを受け取って正規表現を返すというシンプルな機能ながら，活用可能性はたくさんあります！
-(※  これらはそのうち実装していくと思います)</p>
-
-<h3>module 機能</h3>
-
-<ul>
-<li>GitHub: <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
-<li><code>:h incsearch-config-modules</code></li>
-<li><code>:h Vital.Over.Commandline-modules</code></li>
-</ul>
-
-
-<p>vital-over という incsearch.vim が使用しているライブラリにおけるモジュールを追加できる機能です．
-これがどんなことができて，どうやって作ればいいかといったことはそれだけで別の一つの記事どころか数十記事書ける内容なので割愛しますが，
-かなりいろんなことができるようになるはずです．(が，その分何でもできすぎるので注意は必要そうですが)．</p>
-
-<p><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a>
-がこの機能を使って検索後に <a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a> の機能を呼び出しています．</p>
-
-<h2>自分で拡張を作ることも可能！※ ただしAPIが固まってるとは言ってない</h2>
-
-<p>もちろんもっと便利な拡張を自分で作っていくことも可能です．
-ここでは例としてちょっとした <code>converter</code> を作ってみましょう</p>
-
-<h3>参照</h3>
-
-<ul>
-<li><code>:h incsearch#go()</code></li>
-<li><code>:h incsearch-config()</code></li>
-</ul>
-
-
-<h3>仕様</h3>
-
-<ul>
-<li>正規表現をエスケープして単なる文字列として返し，検索する．</li>
-<li>つまりは<code>\V</code>の機能．ただし，普通の正規表現に<strong>加えて</strong>検索できるところが違う．</li>
-</ul>
-
-
-<h3>実装</h3>
-
-<p><code>pattern</code> を受け取って正規表現を返す関数 (<code>s:noregexp()</code>) を実装して，
-<code>incsearch#go()</code>に渡すconfigの<code>converters</code>として渡してあげるだけ．
-※ converterオブジェクトを作って渡してあげる方法もありますが，現時点では関数を渡してできること大差ない．</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:noregexp<span class="p">(</span>pattern<span class="p">)</span> abort
-</span><span class='line'>  <span class="k">return</span> <span class="s1">&#39;\V&#39;</span> . escape<span class="p">(</span><span class="k">a</span>:pattern<span class="p">,</span> <span class="s1">&#39;\&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config<span class="p">()</span> abort
-</span><span class='line'>  <span class="k">return</span> {<span class="s1">&#39;converters&#39;</span>: [<span class="k">function</span><span class="p">(</span><span class="s1">&#39;s:noregexp&#39;</span><span class="p">)</span>]}
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> z/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config<span class="p">())</span>
-</span><span class='line'><span class="c">&quot; 例: /\vpattern と検索したら \vpattern がマッチする．普通の検索なら pattern だけ</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>めっちゃ簡単!!!</strong></p>
-
-<h2>Special Thanks</h2>
-
-<p>おしょーさん(<a href="https://github.com/osyo-manga">github@osyo-manga</a>)のライブラリには
-毎度お世話になっており，incsearch.vim v2.0 はコマンドラインライブラリである
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> の拡張性があってこそ
-リリースできたことだったり，cmigemoコマンドでも高速に migemo 検索できるのはそのまま
-<a href="https://github.com/osyo-manga/vital-migemo">osyo-manga/vital-migemo</a> のおかげだったりします．</p>
-
-<p>また <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a> でもincsearch.vimの開発に関わる質問をしたりして参考にしたりフィードバックをもらったりしました．
-皆さんありがとうございますっ！</p>
-
-<h2>終わりに．そして次のカイゼンへ&hellip;</h2>
-
-<p>incsearch.vim はシンプルかつVimデフォルトの検索と同じように快適に使用できるオススメプラグインです．
-それがバージョン2.0 になり，望めばもっともっと便利に，拡張可能なものになりました．
-気になった方は是非つかってみてください．</p>
-
-<p>そして incsearch.vim にはまだまだ改善点があるかと思います(ｼﾞｯｻｲあります)．
-なにか見つけた方や「おまえーっ&hellip;APIがなーっ&hellip;ふわふわでなぁーっ&hellip;使いにくくてなーっ&hellip;ゆるさーん(バシーン)」
-という方は <a href="https://github.com/haya14busa/incsearch.vim/issues">Issues</a> や
-<a href="https://twitter.com/haya14busa">twitter:@haya14busa</a>, はたまた <a href="http://lingr.com/room/vim/">Lingrのvim部屋</a>
-あたりなどでフィードバックいただければカイゼンしていきたいと思うのでよろしくお願いしますっ</p>
-
-<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="500" data-height="150" data-theme="default"></div>
-
-
-<p><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></p>
-
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました</a>
-      <time datetime="2015-07-06T01:34:01+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2015</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-30T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>この記事について</h2>
-
-<p>この記事は <a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の30日目かもしれません(または来年, Vim記事集約系のイベントやりたいという気持ちの1つです).</p>
-
-<p>今年の2月に <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a> というVim歴換算で1年を振り返ったエントリーを書いたのですが, 今回は2014年を振り返ってみたら, やっぱりVim活たのしかったなぁという日記的エントリーです.</p>
-
-<p>また思い返してみると僕がプログラミング始めたのは2年と少し前だったので, 2014年はプログラミング2年目の年でもありました.
-この文脈でみると<strong>「プログラミング2年目をVimに捧げるとどうなるか?」</strong> というエントリーとも言えそうです. (※1年目からかなりの割合をVimに捧げていました)</p>
-
-<h2>2014年, 今年のVim活を振り返る</h2>
-
-<p>※Vim活が9割です</p>
-
-<h3>カーソル移動系人気プラグインの vim-easymotion の開発を乗っ取った!</h3>
-
-<div class="github-card" data-github="Lokaltog/vim-easymotion" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="../images/easymotion/20141230_easymotion_contribution_graph.png" alt="20141230_easymotion_contribution_graph" />
-<img src="../images/gif/easymotion_on_speed_ex.gif" alt="easymotion_on_speed_ex" /></p>
-
-<ul>
-<li><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></li>
-<li><a href="https://github.com/haya14busa/vim-easyoperator-phrase">haya14busa/vim-easyoperator-phrase</a></li>
-<li><a href="https://github.com/haya14busa/vim-easyoperator-line">haya14busa/vim-easyoperator-line</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a></li>
-<li>執筆時GitHubスター数: 1556</li>
-</ul>
-
-
-<p>これは2013年の後半からforkして活動していて, 今年の2月くらいに起こった出来事なのですでに下記の記事に少し感想を書いています.</p>
-
-<p>-> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></p>
-
-<p>記事執筆現在, GitHub のStar数 1556 で, 開発を引き継いだ時点での Star数は 1000 にちょっと届かない程度でした.
-もともとほっといた場合の伸び具合がどれくらいかはわからないですが, 自分が引き継いだ時点で Star数 約1000 のリポジトリが, さらに500強増えたという事実は本当に嬉しいです.
-GitHub Star 500+ めでたい.</p>
-
-<p>これだけ 「たくさんのスター数がついている≒たくさんの人に使っていただけている」 プロジェクトを開発 &amp; メンテするというのはなかなかに学ぶことがおおくてとても楽しかったです.
-今後はリファクタリング含めもっと便利にしたいなぁと思っているんですが, そう思ってから半年くらい経過しております(すでに十分に便利&amp;安定してきているのでモチベが低い).</p>
-
-<h3>最高の検索体験を提供したい! incsearch.vim つくった</h3>
-
-<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="../images/gif/incsearch/incremental_regex_building.gif" alt="incremental_regex_building" /></p>
-
-<ul>
-<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
-<li><a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a>
-
-<ul>
-<li><a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の 14日目の記事でもあります</li>
-</ul>
-</li>
-<li>執筆時GitHubスター数: 231</li>
-</ul>
-
-
-<p>今年の前半がvim-easymotionだとしたら, 後半はほとんど incsearch.vim でした.
-実はこのプラグインは最初はサクッと気晴らしにつくったぜーというレベルのものだったのですが,
-なんだかんだちゃんとしたものにしようという流れになり目一杯頑張りました.</p>
-
-<p>また使用しているライブラリの <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>
-にもコントリビューションという名のリクエスト丸投げや, 設計についてコメント, ダメダメな Pull Request
-を交えながらいろいろ関わらせていただきました.
-おしょーさんありがとうございます, 迷惑いっぱいかけてスイマセンッ, これからもよろしくお願いします..!</p>
-
-<p>便利さの9割は vital-over のおかげなのですが, 自分が1から開発してるリポジトリーでスター数3桁を達成してこれもまた非常に嬉しいです. これもめでたい.</p>
-
-<p>GitHubの VimL trending で Repositories &amp; Developers の両方で1位も獲得できました&hellip;! 嬉しさ.</p>
-
-<p><img src="../images/github/github-trending-viml-today-incsearch-2014-10-21%2009:26:33.png" alt="github-trending-viml-today-incsearch" />
-<img src="../images/github/github-developer-today-vimL-2014-10-22%2022:51:58.png" alt="github-developer-today-vimL-2014-10-22 22:51:58" /></p>
-
-<h3>VimConf 2014 で発表した</h3>
-
-<ul>
-<li><a href="http://vimconf.vim-jp.org/2014/">VimConf 2014</a></li>
-<li>皆さんの発表などなど: <a href="http://vimconf.vim-jp.org/2014/reports/">Reports - VimConf 2014</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/vimconf2014/">VimConf2014 で検索とその拡張について発表した - haya14busa</a></li>
-<li>スライド: <a href="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/pub">/-improved</a></li>
-<li>発表動画: <a href="https://www.youtube.com/watch?v=yB1H5V8e1j4&amp;list=PLx8bw5NQypsnuX8NJPRHvURhXqj2NUnGZ&amp;index=12">/-improved #VimConf2014 - YouTube</a></li>
-</ul>
-
-
-<p>VimConf2014 という感極まるVimのカンファレンスが今年も開催されたのですが, そこでLT枠で発表させていただきました.
-Vimの便利な検索機能と上述した incsearch.vim の紹介をしました. 発表グダったりもしましたが, よかったという反応をいただけたり, スライドを英語で書いたので英語圏の人にも見てもらって便利さを伝えられたのは良かったです. 英語というより gif をふんだんに活用したので伝わったという説もある.
-(<a href="http://usevim.com/2014/11/14/vimconf/">usevim</a>, <a href="http://www.reddit.com/r/vim/comments/2lwrv0/vimconf_2014_reports/">reddit</a> )</p>
-
-<p>ちなみに動画はテンパッて間違ったことも多々言ってるので鵜呑みにしないでください&hellip; この辺慣れるには場数を踏む必要がありそう</p>
-
-<h3>最高の検索体験を提供したい + α!. vim-asterisk 勢いでつくった</h3>
-
-<div class="github-card" data-github="haya14busa/vim-asterisk" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-asterisk/asterisk_z_star.gif" alt="asterisk_z_star" /></p>
-
-<ul>
-<li><a href="https://github.com/haya14busa/vim-asterisk">haya14busa/vim-asterisk</a></li>
-<li>執筆時GitHubスター数: 34</li>
-</ul>
-
-
-<p>Vim の <code>*</code> ってとても便利なのですが, 自分のユースケースとしては次のマッチにジャンプして欲しくないという不満があったので, そこを解消するために作りました.
-<code>*</code> からの <code>gn</code> テキストオブジェクト活用でスムーズに編集できるようになってとても気に入っています.</p>
-
-<p>結構小さいプラグインではあるのですが, 今まで得たVim scriptの知識や経験をたくさん使っていたり, ビジュアルモードにおける <code>*</code> 機能は <a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a> の部分をお借りしたり, マルチバイトの扱いを<a href="https://github.com/haya14busa/vim-asterisk/pulls?q=is%3Apr+is%3Aclosed">プルリク</a>貰って直したりとなかなかよさ気なものになりました.</p>
-
-<p>実は似たような機能を提供してるプラグインはいくつかあるのですが, どれも不満がまだありました(Vimの検索機能周りの拡張は結構落とし穴が多い).
-incsearch.vim の経験などが活きて落とし穴はうまく回避できました. 気になった方は是非使ってみてください.</p>
-
-<h3>vimrc 読書会にいっぱい参加 &amp; 管理のデータ化・自動化 &amp; 統計ページ をつくった</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a></li>
-<li><a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/reading-vimrc-stat/">vimrc読書会Stat作った - haya14busa</a></li>
-<li><a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">たくさん参加してる様子</a></li>
-</ul>
-
-
-<p>確か管理者権限貰ったのは恐らく今年(すこしあやしい&hellip;厳密には去年だったかも&hellip;)で, 参加するだけでなくちょっとずつ運営面でも関わらせていただきました.
-Jekyll を覚えて 読書会のデータを yaml でデータ化したり,
-そのデータを使って Angularとd3.jsで 読書会の統計ページをつくったり,
-データ化によって扱いやすくなったので python や ruby で簡単なスクリプトを作成して更新作業を自動化したりしました.
-読書会は毎週やるので更新が一瞬でできるようになって非常に便利になりました. 統計ページのJS, よくない部分多々あるのでそのうち書き直したい.</p>
-
-<p><strong>毎週土曜日23:00からやっているので皆さん参加しましょう!</strong> -> <a href="http://lingr.com/signup?letmein=vim">http://lingr.com/signup?letmein=vim</a></p>
-
-<h3>Vim プラグイン読書会やってた</h3>
-
-<ul>
-<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
-</ul>
-
-
-<p>こちらも1ヶ月周期でやっていました. Vim プラグイン開発, 興味ある. という方にオススメです! 一緒に読みましょう.
-またvimrc読書会とVim プラグイン読書会での経験が, Vim以外の普段の開発のレビューにも活かされたような気も&hellip;しま&hellip;す(自信なし).</p>
-
-<p>執筆時現在次の日付が更新されてないという少々のグダりを見せていますが, 落ち着いたら必ず更新します!</p>
-
-<h3>Osaka.vim やで</h3>
-
-<ul>
-<li><a href="http://osaka-vim.connpass.com/">Osaka.vim - connpass</a></li>
-<li>ブログ記事: <a href="http://localhost:4000/osaka-vim-01/">Osaka.vim #1 に行ってきた - haya14busa</a></li>
-</ul>
-
-
-<p><strong>connpass上では運営になっていますが一切の運営をしていません&hellip;!</strong></p>
-
-<p>関西のVim勉強会, 近年ではほとんどなかったので便利. 関西の皆さん参加しましょう.</p>
-
-<h3>Vimで緊急地震速報が見れるの便利では&hellip;? eew.vim つくった</h3>
-
-<ul>
-<li><a href="https://github.com/haya14busa/eew.vim">haya14busa/eew.vim</a></li>
-<li>Emacs移植: <a href="http://d.hatena.ne.jp/syohex/20140829/1409291511">eew.vimを移植しました - Life is very short</a></li>
-<li>Sublime移植: <a href="https://github.com/tgfjt/Sublime-eew">tgfjt/Sublime-eew</a></li>
-</ul>
-
-
-<blockquote class="twitter-tweet" lang="en"><p>総務省の某審議会のエライ人が「家でテレビで録画を見ていた際、緊急地震速報が出なかった。なんとかならないのか」との意見を述べ、プチ衝撃が走っているらしい。ｗｗｗ 確かに、テレビ見てることには変わりないけれど。</p>&mdash; 閑居 (@doatease2313) <a href="https://twitter.com/doatease2313/status/504522127622418434">August 27, 2014</a></blockquote>
-
-
-<blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>とりあえずでつくった <a href="https://t.co/hQQuAnnF9M">https://t.co/hQQuAnnF9M</a> RT <a href="https://twitter.com/haya14busa">@haya14busa</a> Vimに緊急地震速報流すの便利なのでは！？！？！？</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/505004191199162368">August 28, 2014</a></blockquote>
-
-
-<p>EmacsやSublimeに移植されたりとちょっとだけ話題になった(すこし).</p>
-
-<h3>その他ちっちゃい Vim plugin 達</h3>
-
-<ul>
-<li><a href="https://github.com/haya14busa/unite-ghq">haya14busa/unite-ghq</a>
-
-<ul>
-<li>uniteでghqできるの便利では&hellip;?と思ってつくって公開したら, そのわずか数時間前に sorah さんが <a href="https://github.com/sorah/unite-ghq">sorah/unite-ghq</a> を公開しており,
-しかもこちらのほうが基本的によくできていて「ｱｱｱｯ&hellip;」とリアルで声がでた少し苦い思い出のあるプラグイン. 自分のバージョン使ってるの自分だけだとおもう. でも便利.
-既存プラグインの検索は直前まで入念にやりましょうという教訓を得ました. (数日前にやった時点ではなかったので大丈夫だと思ってた)</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/unite-reading-vimrc">haya14busa/unite-reading-vimrc</a>
-
-<ul>
-<li>vimrc読書会のログやvimrcのリンクをuniteで絞り込んで開ける. たまに vimrc読書会 の管理とか過去の記録を見るときに便利.</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/endtagcomment.vim">haya14busa/endtagcomment.vim</a>
-
-<ul>
-<li>よくvimrcで見かけるhtmlタグにコメントをつけるスクリプトをforkしてプラグイン化しただけ. もともと便利</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/unite-action-vimfiler_lcd">haya14busa/unite-action-vimfiler_lcd</a>
-
-<ul>
-<li>vimfilerで<code>lcd</code>してから開くというuniteアクションが欲しかった. 結局つかってないのであまり便利じゃない.</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/vim-textobj-number">haya14busa/vim-textobj-number</a>
-
-<ul>
-<li>数字のテキストオブジェクト. たまに便利. テキストオブジェクト学ぶかぁーという意図も含まれてた気がするけど結局それ以降テキストオブジェクト系プラグインは作成してない. なにかアイデア湧いたら作りたい.</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Vim活以外の進捗(残りの1割)</h2>
-
-<ul>
-<li>プログラミングのバイトを4月からはじめました(たぶんVim活アピール補正はかかりました. ある意味 Vim script もペイする言語&hellip;?).</li>
-<li>それに伴って Scala をやりはじめたんですが視野が広がってとてもよかったし, もっと学んでいきたいです.</li>
-<li>JavaScript もそこそこ書いて, Angular.js に触れたりなどしました. underscore.js も便利.</li>
-<li>しかし Scala その他 Vim 以外のOSS活動の進捗ﾀﾞﾒです</li>
-<li>heroku にPythonで小さいウェッブアプリをつくったのですが, 乗っかってるサービスが終了したので一緒にお亡くなりになってつらい.</li>
-</ul>
-
-
-<h3>勉強会にちょっとずつ参加するようになった</h3>
-
-<ul>
-<li><a href="http://scalamatsuri.org/">Enjoy.scala ! 日本最大級の Scala のカンファレンス - ScalaMatsuri</a></li>
-<li><a href="http://kansaifp.doorkeeper.jp/events/17206">関西関数型道場 - 第02回 - 関西関数型道場 | Doorkeeper</a></li>
-<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
-</ul>
-
-
-<p>Vim 以外の勉強会にも今年はちょっとずつ参加するようになりました(Vimも基本的には今年からですが). しかしこれは進捗でゎなぃな&hellip;</p>
-
-<h2>その他</h2>
-
-<h3>GitHub current streak 365 日達成した</h3>
-
-<blockquote class="twitter-tweet" lang="en"><p>気づいたらGitHubｺﾝﾄﾘﾋﾞｭｯｼｮﾝ Current streak 365日を達成していたっ&#8230;!!! <a href="http://t.co/XMED6OLFUp">pic.twitter.com/XMED6OLFUp</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/544899856037208065">December 16, 2014</a></blockquote>
-
-
-<p>dotfile 1行変更といったものがたくさんあるので全く大したことはしてないのですが, 日によってはそのついでにちゃんとプログラミングするぞっ! というきっかけになるので自分には合ってる継続的進捗管理術でした. 1年継続めでたい.</p>
-
-<h3>2014年 GitHub の Pull Requests / Issues 一覧</h3>
-
-<p><em>追記:</em></p>
-
-<ul>
-<li><a href="https://github.com/pulls?q=is%3Apr+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に出した Pull Requests 一覧</a></li>
-<li><a href="https://github.com/issues?q=is%3Aissue+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に開いた Issues 一覧</a></li>
-</ul>
-
-
-<p>PullRequest 8 opens / 83 closed, Issues 53 open / 95 closed ※99% Vimである</p>
-
-<h3>Podcast 聴くようになった</h3>
-
-<p>聴いてるPodcastは</p>
-
-<ul>
-<li><a href="http://rebuild.fm/">Rebuild</a></li>
-<li><a href="http://mozaic.fm/">mozaic.fm</a></li>
-<li><a href="https://itunes.apple.com/jp/podcast/bairingarunyusu-bilingual/id653415937?mt=2">バイリンガルニュース (Bilingual News)</a></li>
-<li><a href="http://thechangelog.com/podcast/">The Changelog Podcast</a></li>
-<li><a href="https://itunes.apple.com/us/podcast/the-binpress-podcast/id897178291?mt=2">The Binpress Podcast</a></li>
-<li>その他適当に気になったもの.</li>
-</ul>
-
-
-<p>という感じです. 例に漏れず(?), Rebuild.fm から聴き始めてめっちゃおもしろいっ! となり, そこから バイリンガルニュース や The Changelog を聴くようになりました.
-最近はずっと気になってはいたけど聞いていなかった mozaic.fm を聴くようになって, こちらも Rebuild とは別のベクトルのよさがあって全部聴きました. 技術系(?)英語 podcast の binpress podcast というポッドキャストは, 全部無料でスクリプトがついているという<em>エイゴ・ゼンゼン・キキトレナイ勢</em>としては歓喜のサービスがついていてお気に入りです. おもしろさは回によって違う感じですが, 英語もついでに学ぶかーという方にはオススメです.</p>
-
-<p>リスニング能力高めてもっと英語のポッドキャストを楽しめるようになりたい&hellip;</p>
-
-<h3>英語の記事をコンスタントに読む &amp; 検索するようになった</h3>
-
-<ul>
-<li><a href="http://www.reddit.com/r/vim/">reddit.com/r/vim</a></li>
-<li><a href="https://news.ycombinator.com/">Hacker News</a></li>
-<li><a href="https://medium.com/">Medium</a></li>
-<li><a href="http://getprismatic.com/home">Prismatic</a></li>
-</ul>
-
-
-<p>1年目も別に避けたりはしてなかったのですが, 最近は能動的に英語の情報に触れようとする確率が高くなったかなと思います.
-検索や話題になっている記事を除けば, 見ているのはだいたい上記のリンクです.
-ただ単に読んでるだけではなかなか得るものも少ないので, 自分から英語で発信する能力をつけたいなーというのが最近の悩みです.
-現状 GitHub の issue のやりとりやプラグインのドキュメントは基本英語を使ってるのですが, もっともっと使っていかないとなかなか身につかないですねー.</p>
-
-<h2>来年の抱負とか</h2>
-
-<ul>
-<li>Vim もっと頑張る.</li>
-<li>Vim のソースコード側も C言語ちょっとぐらい読み書きできるようになって簡単なバグくらいなら報告だけでなく修正案まで出せるようにしたい.</li>
-<li>Vim 以外も頑張る. なにか小さなウェッブサービスとか適当につくったりしたい.</li>
-<li>Scala力をより深めるのに加えて C, Go, Haskell あたりの言語を触って学んでいきたいという思いがある.</li>
-<li>データベース周りとか, 今触ってるレイヤーと別の部分も触っていきたい. 最低限基礎力が欲しい.</li>
-<li>英語力をつけていきたい. Vim について英語で適当に英語用Twitterアカウントつくってつぶやくとかなら継続してできるのでは&hellip;?という考えがある.
-欲を言えば Lingr の Vim 部屋のノリで英語でチャットとかできれば一番いいんじゃないかという思いがある. IRC に #vim チャンネルあるらしいけど, IRCよくわからない&hellip;ログ読みたい&hellip;</li>
-<li>人生は厳しいので人生についてちゃんと考える必要がある. 人生キビシイ.</li>
-</ul>
-
-
-<h2>「プログラミング2年目をVimに捧げるとどうなるか?」</h2>
-
-<p>少々Vim以外の進捗が少なすぎる気がするのは反省ですが, Vim活によってVimというコンテキストに留まらず, たくさんの貴重な経験ができました.
-git や GitHub, テスト, CI, オブジェクト指向やらクロージャ, 変数や関数の名前の付け方, 英語での技術系コミュニケーションなどなど, たくさんのことを Vim駆動で理解したり, 理解を深めた1年間だったと思います.</p>
-
-<p>Vim駆動学習, よさがあるのでオススメです. ※ただし用法用量を守って正しく Vim 活しないと Vim 以外の進捗が遅れます. 反省&hellip;</p>
-
-<p>また Vim だといろいろな言語を使ってる人がいて, しかも雲の上のような存在の人もたくさんいたり, オンラインでもオフラインの勉強会でも活動が活発なのでVim以外にもいろんなことが知れるし, プログラミング初学者でも最初から Vim をガンガン使ってプログラミングしていくのはおもしろいかなぁと思います.</p>
-
-<p>振り返ってみるとたくさんのVimmerにお世話になったなぁと思います. ※もちろんVimmerでないひとにもお世話になりました.</p>
-
-<p>みなさん今年はお世話になりました. 来年の2015年もぜひ仲良くしてください. よろしくお願いします.</p>
-
-<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2年目の<del>プログラミング</del> Vim活記録でした.</p>
-
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話</a>
-      <time datetime="2014-12-30T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>30</span> <span class='year'>2014</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/diary/'>diary,</a>, <a class='category' href='/categories/vim/'>vim,</a>, <a class='category' href='/categories/poemu/'>ポエム</a></span>
       
       </footer>
     </article>

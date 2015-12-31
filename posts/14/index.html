@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="作りました。 ぐぐっても見つからなかったので。（需要ないだけ？） Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。 MarkdownURL->DraftPad javascript:location.href=&#8217;draftpad &hellip;&#8221;>
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/posts/14/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-03-24T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>作りました。</h3>
+
+<p>ぐぐっても見つからなかったので。（需要ないだけ？）</p>
+
+<p>Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。</p>
+
+<dl>
+<dt>MarkdownURL->DraftPad</dt>
+<dd><pre><code>  javascript:location.href='draftpad:///insert?after='+encodeURIComponent('\n['+document.title+']('+location.href+')\n');
+</code></pre></dd>
+</dl>
+
+<p>Markdown記法の中でHTMLのリンクで書いても差し支えないですが、統一したかったのでちょっと既存のブックマークレットを編集しただけです。</p>
+
+<h3>Example</h3>
+
+<p>例えばこのページで実行すると下記のコードをDraftPadに吐き出します。</p>
+
+<pre><code>[MarkdownURL-&gt;DraftPad « haya14busa](http://haya14busa.com/markdownurl2draftpad/)
+</code></pre>
+
+<h3>Memo</h3>
+
+<dl>
+<dt><code>location.href</code></dt>
+<dd>  ページのURLを取得</dd>
+<dt><code>document.title</code></dt>
+<dd>  ページのタイトルを取得</dd>
+</dl>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/markdownurl2draftpad/">MarkdownURL->DraftPad</a>
+      <time datetime="2013-03-24T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/first-post/">ブログ作った。</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-03-23T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>動機</h3>
+
+<p>前に一回WordPressでサイトを作った時、もう一つ個人的なWebサイト欲しいなって考えてたこともあって勢いで作った。作ったといってもWPのレスポンシブテーマを改造しただけ。あとまだ完成してない。<br/>
+日記的に日々の出来事を書くっていうよりは、何かを外部に向けて公開しようって思ったときのプラットホームみたいなイメージ。その何かに「日々の出来事」が入るかもしれないけど。</p>
+
+<h3>抱負</h3>
+
+<p>無理しない程度に続けれたらいいかなって思う。嫌になったらなかったことにします。そんな感じです。お願いします。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/first-post/">ブログ作った。</a>
+      <time datetime="2013-03-23T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/uncategorized/'>uncategorized</a></span>
+      
+      </footer>
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/13">Newer &rarr;</a>
+    
+  </div><!-- /div.pagination -->
+</div><!-- /div.blog-index -->
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2015 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

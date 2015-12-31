@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Cognitive Neuroscience: Definitions, Themes, and Approaches#01 Introduction Cognitive neuroscience &#8211; Wikipedia, the free encyclopedia   1. &hellip;">
+  <meta name="description" content="Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ Vim-easymotionのマルチバイト文字対応でハマってた haya14busa/vim-easymotion Vim-easymotionの動作は基本的に正規表現でマッチする文字列を探して、その座標( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,584 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-01T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</h1>
+
+<h2>Vim-easymotionのマルチバイト文字対応でハマってた</h2>
+
+<p><a href="https://github.com/haya14busa/vim-easymotion">haya14busa/vim-easymotion</a></p>
+
+<p>Vim-easymotionの動作は基本的に正規表現でマッチする文字列を探して、その座標(cooridinate)としてline番号とcolumn番号をリストに追加し、それをあとからターゲット文字列に一括置換してHighlightさせるという手順を取ります。</p>
+
+<p>Multibyte文字を扱わないときはこれで一切問題ないのですが、日本語の文字列やTab文字など、column番号に使われるbyte数と、実際に表示される文字列の長さが違う場合にバグが起こります。</p>
+
+<h2>表示位置がずれる</h2>
+
+<p>設定にもよりますが、Tab文字列は4文字分表示させていますが、1byteです。これをターゲットである&#8221;f&#8221;や&#8221;j&#8221;といった1byteで置換してしまうと3byte分表示列がずれてしまいます。</p>
+
+<h3>解決法</h3>
+
+<p>表示がずれる問題は置換した時の文字列の差分の分だけスペースを足せばいいということになります。</p>
+
+<p><code>strdisplaywidth()</code>関数を使い文字列の長さを取り、<code>repeat(' ', target_char_len -1)</code>を置換する文字に足します</p>
+
+<h2>Byte数のズレによって置換、ハイライトができなくなる</h2>
+
+<p>日本語はもっと厄介で、表示される1文字の長さは2byte分でさらに実際のbyte数は3byteです。vimで一括置換するといっても、ターゲットにマッチする座標のリストをループしながら置換していくだけなので、行ごとに最初のmultibyte文字を置換した瞬間、その後のbyte数がずれてしまい(日本語の3byte -> 1byte + 日本語の長さ2byte分を埋め合わせるためのスペース1byte)で1byteずつずれてしまいます。</p>
+
+<p>これによって次の3byteの日本語文字列の2byte目がターゲットになってしまい、置換もできなければ、highlightも動かなくなってしまいます。</p>
+
+<h3>Example</h3>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果
+</code></pre>
+
+<p>このように座標が置換するごとにずれてしまい、うまく動かなくなります</p>
+
+<h3>解決</h3>
+
+<p>Loopごとに置換前と置換後の行全体の文字列のbyteの長さの差を記憶しておき、そのぶん指定するcolumnに足して置換していく</p>
+
+<pre><code>あ あ あ あ あ あ
+1  5  9  13 17 21  &lt;- col('.')の結果かつ、置換するリストのcolumn数
+↓ 1文字目を'a 'に置換
+a  あ あ あ あ あ
+1  4  8  12 16 20  &lt;- 置換後のcol('.')の結果。
+残りの[5,9,13,17,21]はそれぞれ差分の1を引いて[4,8,12,16,20]になる
+</code></pre>
+
+<h2>結論</h2>
+
+<p>すごいわかりづらい感じになったし、わかりやすく書く努力すらできていないけど、何が言いたいかってvim-easymotionにmigemo機能を実装して日本語でもeasymotionするのなかなか捗りを感じる。</p>
+
+<p>ちょっと重いけどおすすめ。</p>
+
+<p>(もとから実装されてた単語移動などによってずれる問題も解決ってことなのでmigemoなしでも便利)</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-substitute-multibyte/">Vimでマルチバイト文字を座標によって一括置換したときにハマらないようにするメモ</a>
+      <time datetime="2013-11-01T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>01</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/mathematics-girls-01/">数学ガール第1巻読んだメモなど</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-10-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>数学ガール</h2>
+
+<ul>
+<li><a href="http://www.hyuki.com/girl/">『数学ガール』シリーズ</a></li>
+<li><a href="http://www.hyuki.com/girl/web.html">Web版「数学ガール」</a></li>
+</ul>
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41xPYoL7N8L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">数学ガール (数学ガールシリーズ 1)</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        結城 浩
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        ソフトバンククリエイティブ 2007-06-27
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 1,890
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797341378/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Notation</h2>
+
+<h3>Π(Product)</h3>
+
+<p>積(Product)の頭文字Pをギリシャ文字にしたものがΠ</p>
+
+<blockquote><p>The upper-case letter Π is used as a symbol for: The product operator in mathematics, indicated with capital pi notation ∏ (in analogy to the use of the capital Sigma Σ as summation symbol).</p>
+
+<p>&#8211; <cite><a href="http://en.wikipedia.org/wiki/Pi_(letter)">Pi (letter) &#8211; Wikipedia, the free encyclopedia</a></cite></p></blockquote>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Infinite_product">Infinite product &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%B7%8F%E4%B9%97">総乗 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Σ(Sum)</h3>
+
+<p>和(Sum)の頭文字Sをギリシャ文字にしたものがΣ</p>
+
+<blockquote><p>Upper case Σ is used as a symbol for: the summation operator</p>
+
+<p>&#8211; <cite><a href="http://en.wikipedia.org/wiki/Sigma">Sigma &#8211; Wikipedia, the free encyclopedia</a></cite></p></blockquote>
+
+<p>MathisFun</p>
+
+<blockquote><p>Sigma is the upper case letter S in Greek. And S stands for Sum.</p>
+
+<p>&#8211; <cite><a href="http://www.mathsisfun.com/algebra/sigma-notation.html">Sigma Notation</a></cite></p></blockquote>
+
+<p>Discrete mathematics(離散数学)におけるギリシャ文字のΣと、Continuous(連続)的な世界におけるローマ字のS、「∫」が対応する</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Discrete_mathematics">Discrete mathematics &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9B%A2%E6%95%A3%E6%95%B0%E5%AD%A6">離散数学 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ωのワルツ</h2>
+
+<p><a href="http://ja.wikipedia.org/wiki/%CE%A9">Ω &#8211; Wikipedia</a></p>
+
+<p><strong>振動</strong> -> <strong>回転</strong></p>
+
+<h3>ド・モアブルの定理</h3>
+
+<p>(cos θ + i sin θ)n = cos nθ + i sin nθ</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/De_Moivre's_formula">De Moivre&#8217;s formula &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%BB%E3%83%A2%E3%82%A2%E3%83%96%E3%83%AB%E3%81%AE%E5%AE%9A%E7%90%86">ド・モアブルの定理 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>フィボナッチ数列と母関数</h2>
+
+<p>フィボナッチ数列の一般項を母関数を使って捕まえる</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Generating_function">Generating function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%AF%8D%E9%96%A2%E6%95%B0">母関数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>級数 -> Series 無限級数 -> Infinit Series</p>
+
+<p>無限級数を使って無限に続く数式をxの閉じた式で表せる</p>
+
+<p>数列 -> 母関数 -> 母関数の閉じた式 -> 数列の一般項</p>
+
+<h2>相加相乗平均</h2>
+
+<ul>
+<li>相加平均 <a href="http://ja.wikipedia.org/wiki/%E7%AE%97%E8%A1%93%E5%B9%B3%E5%9D%87">算術平均 &#8211; Wikipedia</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Arithmetic_mean">Arithmetic mean &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+<li>相乗平均 <a href="http://ja.wikipedia.org/wiki/%E5%B9%BE%E4%BD%95%E5%B9%B3%E5%9D%87">幾何平均 &#8211; Wikipedia</a>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Geometric_mean">Geometric mean &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>実数r(real number)の2乗から相加相乗平均の関係を導く</p>
+
+<h2>連続(continuous)と離散(discrete)</h2>
+
+<p>微分演算子D <-> 差分演算子Δ<br/>
+冪 <-> 下降階乗冪(falling factorial)<br/>
+e<sup>x</sup> <-> 2<sup>x</sup><br/>
+積分∫ <-> 和文Σ</p>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E9%9A%8E%E4%B9%97#.E9.9A.8E.E4.B9.97.E5.86.AA">階乗 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Pochhammer_symbol">Pochhammer symbol &#8211; Wikipedia, the free encyclopedia</a></li>
+</ul>
+
+
+<h2>コンボリューション</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Catalan_number">Catalan number &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%82%BF%E3%83%A9%E3%83%B3%E6%95%B0">カタラン数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Convolution">Convolution &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF">畳み込み &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ハーモニックナンバー</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">Harmonic series (mathematics) &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%AA%BF%E5%92%8C%E7%B4%9A%E6%95%B0">調和級数 &#8211; Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann zeta function &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%BC%E3%82%BF%E9%96%A2%E6%95%B0">リーマンゼータ関数 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>いくらでも大きくなる -> M (Magnitude)</p>
+
+<p>連続 <-> 離散<br/>
+logx = ∫1/tdt <-> Σ1/kδk</p>
+
+<h3>ゼータ関数とオイラー積</h3>
+
+<p>調和級数の発散が、素数の無限性の証明に結び付けられる</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Euler_product">Euler product &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC%E7%A9%8D">オイラー積 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>テイラー展開とバーゼル問題</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Taylor_series">Taylor series &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%86%E3%82%A4%E3%83%A9%E3%83%BC%E5%B1%95%E9%96%8B">テイラー展開 &#8211; Wikipedia</a></li>
+<li>冪級数展開</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Basel_problem">Basel problem &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%BC%E3%83%AB%E5%95%8F%E9%A1%8C">バーゼル問題 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%AC%E3%82%AA%E3%83%B3%E3%83%8F%E3%83%AB%E3%83%88%E3%83%BB%E3%82%AA%E3%82%A4%E3%83%A9%E3%83%BC">レオンハルト・オイラー &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>sinxのテイラー展開を使って、バーゼル問題(ζ(2)の値を求める)を解く</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra">Fundamental theorem of algebra &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E4%BB%A3%E6%95%B0%E5%AD%A6%E3%81%AE%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86">代数学の基本定理 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>n次方程式の解と係数の関係</h3>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Vieta's_formulas">Vieta&#8217;s formulas &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E6%A0%B9%E3%81%A8%E4%BF%82%E6%95%B0%E3%81%AE%E9%96%A2%E4%BF%82">根と係数の関係 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+<li>解(根) -> root</li>
+<li>係数 -> coefficient</li>
+<li>項 -> term</li>
+</ul>
+
+
+<h2>分割数</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Partition_(number_theory)">Partition (number theory) &#8211; Wikipedia, the free encyclopedia</a>
+
+<ul>
+<li><a href="http://ja.wikipedia.org/wiki/%E5%88%86%E5%89%B2%E6%95%B0">分割数 &#8211; Wikipedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E8%87%AA%E7%84%B6%E6%95%B0%E3%81%AE%E5%88%86%E5%89%B2">自然数の分割 &#8211; Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>ついでにNumdot問題</h2>
+
+<ul>
+<li><a href="https://codeiq.jp/ace/yuki_hiroshi/q468">挑戦者求む！【アルゴリズム】古代文献を復元しよう！ by The Essence of Programming 結城 浩│CodeIQ</a></li>
+<li><a href="http://matome.naver.jp/odai/2138012200810917201">【CodeIQ】ナムドット問題答案 &#8211; NAVER まとめ</a></li>
+</ul>
+
+
+<p>ちょっと前にCodeIQで開催されていたNumdot問題。締め切り前日にはじめて見てちょっと考えたけど時間なくて挫折した。解説もらえるのは挑戦者だけのようだったのでわからなくても出せば良かったか…</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Bell_number">Bell number &#8211; Wikipedia, the free encyclopedia</a></li>
+<li><a href="http://ja.wikipedia.org/wiki/%E3%83%99%E3%83%AB%E6%95%B0">ベル数 &#8211; Wikipedia</a></li>
+</ul>
+
+
+<h2>参考文献・読書案内のうち読みたいものPick up</h2>
+
+<p><a href="http://www.gakushuin.ac.jp/~881791/mathbook/">数学：物理を学び楽しむために</a>[Web Page]</p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51XGP8AFX2L._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">いかにして問題をとくか</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        G. ポリア
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        丸善 1975-04-01
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 1,575
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4621045938/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p><a href="http://www.hyuki.com/math/">『プログラマの数学』</a></p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51YsvP5o-fL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">プログラマの数学</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        結城 浩
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        ソフトバンククリエイティブ 2005-03-24
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 2,310
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4797329734/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51MiA0NYVKL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">コンピュータの数学</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        ロナルド・L. グレアム,オーレン パタシュニク,ドナルド・E. クヌース
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        共立出版 1993-08
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 9,975
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4320026683/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p><a href="http://www-cs-faculty.stanford.edu/~knuth/taocp.html">The Art of Computer Programming</a></p>
+
+<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
+  <div class="amz-left" style="float:left; margin:0 20px 0;">
+    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41Jh58C%2BZOL._SL160_.jpg" class="amz-img" /></a>
+  </div>
+  
+  <div class="amz-right" style="overflow:hidden;">
+    <div class="amz-title" style="margin-bottom:20px;">
+      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">[改訂第5版] LaTeX2e 美文書作成入門</a>
+    </div>
+    
+    <div class="amz-detail">
+      <div class="amz-info1" style="white-space:nowrap;">
+        奥村 晴彦
+      </div>
+      
+      <div class="amz-info2" style="white-space:nowrap;">
+        技術評論社 2010-07-07
+      </div>
+      
+      <div class="amz-price" style="white-space:nowrap;">
+        ￥ 3,339
+      </div>
+      
+      <div class="amz-link" style="margin-top:20px;">
+        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774143197/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>Phrase</h2>
+
+<ul>
+<li>&lt;&lt;当たり前のところから出発するのはいいこと>></li>
+<li>&lt;&lt;例示は理解は試金石>></li>
+<li>&lt;&lt;変数の導入による一般化>></li>
+<li>&lt;&lt;分けっこ>></li>
+<li>&lt;&lt;数式は言葉>></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/mathematics-girls-01/">数学ガール第1巻読んだメモなど</a>
+      <time datetime="2013-10-16T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>16</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -687,353 +1265,6 @@ inoremap &lt;C-u&gt; &lt;C-g&gt;u&lt;C-u&gt;
       
       - <a href="/learn-statistical-regularity-and-memory/">統計的規則性の学習と記憶の関連性</a>
       <time datetime="2013-10-09T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-10-09T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>記憶の歪み・バイアス</h2>
-
-<ul>
-<li>記憶の七癖(Achacter, 1999)
-
-<ul>
-<li>環境による影響</li>
-<li>事後情報による誤誘導</li>
-<li>感情や精神状態による影響</li>
-<li>認知地図の歪み</li>
-<li>シーン記憶における境界拡張</li>
-</ul>
-</li>
-<li>短期記憶において視覚イメージが歪むという報告は少ない
-
-<ul>
-<li>統計的平均へのバイアス</li>
-<li>既有知識への回帰</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>身体の部位の位置にかんする短期記憶実験</h2>
-
-<ul>
-<li>どの程度記憶できるか？</li>
-<li>バイアスは？</li>
-</ul>
-
-
-<h2>考察</h2>
-
-<ul>
-<li>歪みの原因
-
-<ul>
-<li>原型回帰・プロトタイプ仮説</li>
-<li>身体スキーマ仮説</li>
-</ul>
-</li>
-<li>今後
-
-<ul>
-<li>身体スキーマ(長期記憶)との関連</li>
-</ul>
-</li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a>
-      <time datetime="2013-10-09T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/mathematics-and-its-history-02/">Mathematics and Its History #02</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-10-08T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
-  <div class="amz-left" style="float:left; margin:0 20px 0;">
-    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486602559/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51TYP6v%2BkoL._SL160_.jpg" class="amz-img" /></a>
-  </div>
-  
-  <div class="amz-right" style="overflow:hidden;">
-    <div class="amz-title" style="margin-bottom:20px;">
-      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486602559/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">A Concise History of Mathematics: Fourth Revised Edition (Dover Books on Mathematics)</a>
-    </div>
-    
-    <div class="amz-detail">
-      <div class="amz-info1" style="white-space:nowrap;">
-        Dirk J. Struik,Mathematics
-      </div>
-      
-      <div class="amz-info2" style="white-space:nowrap;">
-        Dover Publications 1987-08-01
-      </div>
-      
-      <div class="amz-price" style="white-space:nowrap;">
-        ￥ 783
-      </div>
-      
-      <div class="amz-link" style="margin-top:20px;">
-        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486602559/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<p><a href="http://en.wikipedia.org/wiki/History_of_mathematics">History of mathematics &#8211; Wikipedia, the free encyclopedia</a></p>
-
-<h3>China (Hong He, Yangtse)</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Chinese_mathematics">Chinese mathematics &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Gaussian_elimination">Gaussian elimination &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Rod_calculus#System_of_linear_equations">Rod calculus &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-<li>8Ch. Systems of linear equations</li>
-<li>9Ch. Contains Theorem of Pythagoras (with proof)</li>
-</ul>
-
-
-<h3>India (Indus, Ganger)</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Indian_mathematics">Indian mathematics &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/%C5%9Aulba_S%C5%ABtras">Shulba Sutras &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-
-
-<h3>Mesopotamia (Tigris, Euphrates)</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Babylonian_mathematics">Babylonian mathematics &#8211; Wikipedia, the free encyclopedia</a></li>
-<li>Cuneiform script on clay tablets
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Cuneiform">Cuneiform &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-<li>Calendar: 360 + 5 days / year</li>
-<li>Sexagesimal system
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Sexagesimal">Sexagesimal &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-<li>Place value system</li>
-</ul>
-
-
-<h3>Egypt (Nile)</h3>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Egyptian_mathematics">Egyptian mathematics &#8211; Wikipedia, the free encyclopedia</a></li>
-<li>Papyrus Rhind (Henry Rhind) ~1650BC
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Rhind_Mathematical_Papyrus">Rhind Mathematical Papyrus &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-<li>unit fractions
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Egyptian_fraction">Egyptian fraction &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>3. The Orient offer the Decline of Greek Society</h2>
-
-<h2>India</h2>
-
-<ul>
-<li>Siddhantas(Doctrine) ~400AD
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Surya_Siddhanta">Surya Siddhanta &#8211; Wikipedia, the free encyclopedia</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Siddhanta">Siddhanta &#8211; Wikipedia, the free encyclopedia</a></li>
-<li>Decimal place value system</li>
-<li>sine / cosine</li>
-</ul>
-</li>
-<li>Aryabhata ~500AD
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Aryabhata">Aryabhata &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Mesopotamia</h2>
-
-<ul>
-<li>Baghdad</li>
-<li><a href="http://en.wikipedia.org/wiki/Mu%E1%B8%A5ammad_ibn_M%C5%ABs%C4%81_al-Khw%C4%81rizm%C4%AB">Muḥammad ibn Mūsā al-Khwārizmī &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li>~800AD</li>
-<li>algorithmi -> algorithm</li>
-<li>al-jabr -> algebra</li>
-<li>Book: Hisab al-jabr wal-muqabla Science of reduction and confrontation</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>China</h2>
-
-<ul>
-<li>Song dynasty (960 ~ 1276)
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Song_Dynasty">Song Dynasty &#8211; Wikipedia, the free encyclopedia</a></li>
-</ul>
-</li>
-<li>Chin Hiu Shao (~1247)
-
-<ul>
-<li>Solve polynomial equations numerrally</li>
-</ul>
-</li>
-<li>Li Yeh / Chi-Chieh
-
-<ul>
-<li>The method of the celestical element(tengen jutsu)</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Italy</h2>
-
-<ul>
-<li>Fibonacci Book (Liber Abaci) ~1202
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Fibonacci">Fibonacci &#8211; Wikipedia, the free encyclopedia</a></li>
-<li>al-khwarizmi(Algebra)</li>
-<li>(Practica Geometriae) ~1220</li>
-<li>(Geometry)</li>
-</ul>
-</li>
-</ul>
-
-
-<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
-  <div class="amz-left" style="float:left; margin:0 20px 0;">
-    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486434826/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51VEuZzxqSL._SL160_.jpg" class="amz-img" /></a>
-  </div>
-  
-  <div class="amz-right" style="overflow:hidden;">
-    <div class="amz-title" style="margin-bottom:20px;">
-      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486434826/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">A History of Japanese Mathematics (Dover Books on Mathematics)</a>
-    </div>
-    
-    <div class="amz-detail">
-      <div class="amz-info1" style="white-space:nowrap;">
-        David E. Smith,Yoshio Mikami,Mathematics
-      </div>
-      
-      <div class="amz-info2" style="white-space:nowrap;">
-        Dover Publications 2004-04-30
-      </div>
-      
-      <div class="amz-price" style="white-space:nowrap;">
-        ￥ 1,448
-      </div>
-      
-      <div class="amz-link" style="margin-top:20px;">
-        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0486434826/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/mathematics-and-its-history-02/">Mathematics and its History #02</a>
-      <time datetime="2013-10-08T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>08</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
       

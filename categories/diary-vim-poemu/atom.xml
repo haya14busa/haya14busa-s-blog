@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: diary,vim,ポエム | haya14busa]]></title>
+  <link href="http://haya14busa.com/categories/diary-vim-poemu/atom.xml" rel="self"/>
+  <link href="http://haya14busa.com/"/>
+  <updated>2015-12-31T21:20:09+09:00</updated>
+  <id>http://haya14busa.com/</id>
+  <author>
+    <name><![CDATA[haya14busa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り]]></title>
+    <link href="http://haya14busa.com/look-back-2015/"/>
+    <updated>2015-12-31T21:15:00+09:00</updated>
+    <id>http://haya14busa.com/look-back-2015</id>
+    <content type="html"><![CDATA[<p>今年は4月から大きく環境が変わったり，インターンに行ったりちょくちょくVim活したりイカ(<a href="https://www.nintendo.co.jp/wiiu/agmj/">Splatoon</a>)したりと振り返ってみる
+と色んな事がありました．</p>
+
+<p>最初にネタバレをすると最も進捗があったのは Splatoon で最高ウデマエS+90まで行ったことでした．</p>
+
+<p><strong>マンメンミ!</strong></p>
+
+<h2>去年や一昨年の</h2>
+
+<ul>
+<li>Vim歴換算1年目 -> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
+<li>プログラミング2年目 -> <a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
+</ul>
+
+
+<p>今年はプログラミング初めてからだいたい3年目でした．もう初心者とか言ってられないようになって気がしますが，まだまだ勉強不足・力不足すぎるので精進したい.</p>
+
+<h2>はてなサマーインターン</h2>
+
+<p>長くなったので記事分けた -> <a href="http://haya14busa.com/hatena-intern-2015/">2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた - haya14busa</a></p>
+
+<p><strong>最高の夏〜</strong></p>
+
+<h2>Google Japan Software Engineer インターン</h2>
+
+<p>はてなインターンが終わった後，3ヶ月ほどGoogle Japanのインターンに行っていました．
+Googleは内側ではオープンで全然違う国の違うチームの情報を見れたりするオープンさなのですが，
+外側にはオープンではないので基本的にブログに書いたらだめっぽい，というか線引きがわ
+からないので参加した内容に関する感想は書けません&hellip;残念&hellip;</p>
+
+<p>Googleの優秀なエンジニアさんたちとGoogleという会社で開発できたのは学びもやりが
+いもたくさんあって最高の体験でした．</p>
+
+<h2>インターン対策とか競技プログラミング</h2>
+
+<p>はてなとGoogle以外にもいくつか応募して受かったり落ちたりしたのですが，
+そのうち1回ホワイトボードコーディング面接があり，超基本的なことを聞かれているの
+にぜんぜん答えられない&hellip;という苦い経験がありました．</p>
+
+<p>頭のどこかで僕は情報学部じゃなかったし，プログラミングも独学で好きなことやってる段階だし
+基礎的も知らなくてもまだ仕方ない&hellip;と思ってた節があったりしました．
+しかしこれは完全に言い訳です．
+<strong>基礎</strong>は土台．最低限理解して説明できる程度にはなってないと面接とか関係なく
+マズいな&hellip;と思いデータ構造，アルゴリズムなど勉強しなおしました．</p>
+
+<p>その一環として前から興味はあったんだけどなかなか手がでなかった競技プログラミングにも今年はちょくちょく手をだしはじめました．
+最近ちょっとイカしすぎておろそかになってますがやっていきたいです．</p>
+
+<h3>面接対策でつかった本とか</h3>
+
+<h4>世界で闘うプログラミング力を鍛える150問</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00HR19TSO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<h4>The Joel on Software 採用面接ゲリラガイド</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4274066304" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p><a href="http://local.joelonsoftware.com/wiki/%E6%8E%A1%E7%94%A8%E9%9D%A2%E6%8E%A5%E3%82%B2%E3%83%AA%E3%83%A9%E3%82%AC%E3%82%A4%E3%83%89(version_3.0">採用面接ゲリラガイド(version 3.0) - The Joel on Software Translation Project</a>)</p>
+
+<h2>Vim 活</h2>
+
+<h3>incsearch.vim v2.0</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim/releases/tag/v2.0.0">Release Version 2.0 · haya14busa/incsearch.vim</a></li>
+<li><a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a></li>
+<li>関連リポジトリ
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+<li><a href="https://github.com/haya14busa/vital-string-converter">haya14busa/vital-string-converter</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>incsearch.vimをカイゼンしてv2.0にしてました．もっと昔にやってた気がするけど今年
+の7月でした．リファクタリングしてコンポーザブルにしたりと拡張性をましてincsearch.vimをより便利にできました．</p>
+
+<h3>vital-power-assert と VimConf | Vim script 版 powerassert!</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vital-power-assert">haya14busa/vital-power-assert</a></li>
+<li><a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert! テスト書いてないとかお前それ Vim script の前でも同じこと言えんの? - haya14busa</a></li>
+<li><a href="http://vimconf.vim-jp.org/2015/">VimConf 2015</a></li>
+</ul>
+
+
+<p>はてなインターン中に作ってその後もちょくちょくと触ってました．またVimConfで発表したりもしました．</p>
+
+<iframe src="https://docs.google.com/presentation/d/1Nkll31jRFpKCFUA-5ruEFoa1-ODAHBU7wRM5s5DyETk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<p>去年も大概だったのですが今年は個人的にVimConfに向けての準備がゼンゼン足りてなくて来年こそはちゃんとするゾ!!という気持ちです．</p>
+
+<h3>underscore.vim</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/underscore.vim">haya14busa/underscore.vim</a></li>
+</ul>
+
+
+<p>underscore.jsのVim scriptバージョンを作ってました．実装は去年からなんだかんだやっていましたがエイプリルフールにリリースしました．
+実用性がないわけではないけど，ラムダが無いとかスコープの関係上凝ったことしようとすると微妙に使いづらいのが残念ですが開発してて面白かったです．</p>
+
+<h3>勢い Vim プラグイン系</h3>
+
+<h4>niconicomment.vim</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/niconicomment.vim">haya14busa/niconicomment.vim</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/niconicomment.vim/niconicomment2.gif" alt="niconicomment2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い．</p>
+
+<h4>vim-undoreplay</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-undoreplay">haya14busa/vim-undoreplay</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-undoreplay/undoreplay_fizzbuzz2.gif" alt="undoreplay_fizzbuzz2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い2．</p>
+
+<h3>vital.vim にPullRequest</h3>
+
+<ul>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/258">Vim.ScriptLocal: Add ScriptLocal (get script-local things) by haya14busa · Pull Request #258 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/239">Add Data.Set module by haya14busa · Pull Request #239 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/348">Data.Counter: Implement &ldquo;Data.Counter&rdquo; by haya14busa · Pull Request #348 · vim-jp/vital.vim</a></li>
+</ul>
+
+
+<p><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a> というVim scriptのライブラリにいくつか欲しいモジュールをPRで送ったりした．
+Vim.ScriptLocal は Vim scriptのスクリプトローカル変数を外からハックするモジュールでVim scriptのテストフレームワークである
+<a href="https://github.com/thinca/vim-themis">thinca/vim-themis</a> で使ってもらったりした．
+他にはPythonあたりにある便利なデータ構造をVim scriptにポートする業などしていました．</p>
+
+<h3>Vim Advent Calendar</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-mnemonic/">Vim Mnemonic | Vim のコマンドの覚え方大全 - haya14busa</a></li>
+</ul>
+
+
+<p>前から自分が欲しかった，まとめたかった記事を書きました．今までで最高ブクマ数を頂いてありがたい．</p>
+
+<h3>vim-operator-flashy</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-operator-flashy">haya14busa/vim-operator-flashy</a></li>
+</ul>
+
+
+<p>年末駆け込みプラグイン．VimConfで<a href="https://github.com/t9md">t9md</a>さんが開発してる
+<a href="https://github.com/t9md/atom-vim-mode-plus">t9md/atom-vim-mode-plus</a> でヤンク対象を
+フラッシュしていてわかりやすいというのを見せて頂いたのがきっかけになってます．
+地味にUX向上してよい．</p>
+
+<h2>参加・発表したミートアップ・勉強会系</h2>
+
+<h3>YAPC</h3>
+
+<ul>
+<li><a href="http://yapcasia.org/2015/">YAPC::Asia Tokyo 2015</a></li>
+<li><a href="http://haya14busa.com/yapcasia-2015/">ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習 - haya14busa</a></li>
+</ul>
+
+
+<p>YAPCに初めて参加しました．学生無料便利すぎました．LT発表は応募したのですが残念ながら落ちて残念．</p>
+
+<h3>Yokohama.vim</h3>
+
+<ul>
+<li><a href="http://yokohamavim.connpass.com/event/21069/">Yokohama.vim.osaka? #7 - connpass</a></li>
+</ul>
+
+
+<p>Yokohama.vimではなぜか基調講演という名の戦犯をしてきました．
+内容はYAPCでしようとしていたVim駆動学習の話の微調整という感じでした．
+ちゃんと基調講演と言えるような発表をできるようになってまたYokohama.vim参加したい．</p>
+
+<h3>VimConf 2015</h3>
+
+<p>上述した．</p>
+
+<h3>fpinscala読書会完走</h3>
+
+<ul>
+<li><a href="https://www.manning.com/books/functional-programming-in-scala">Functional Programming in Scala</a></li>
+<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
+</ul>
+
+
+<p>大阪で定期的に開催されていたfpinscala読書会でFunctional Programming in Scalaを(一応)読了しました．
+が，まだまだ理解しきれてないところ，飛ばしたところなどたくさんあるので2週目に参加してしっかり
+関数型プログラミング身につけたいなと思います．</p>
+
+<h2>GitHub 記録</h2>
+
+<ul>
+<li><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に出したPull Request一覧</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aissue+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に開いたPull Request一覧</a></li>
+</ul>
+
+
+<p>あんまり大したことできてなかった</p>
+
+<h2>Splatoon</h2>
+
+<p><img src="../images/splatoon/IMG_0424.JPG" alt="Splatoon S+ 90" /></p>
+
+<p>インターン中に買ってインターン終了までにS+になるという目標は達成したのですが，
+年内にカンストするという目標は残念ながらできませんでした．
+しかし，今年の後半は本当にイカしかやってないというベルでやっていてイカ進捗が一番でてました．
+イカちゃん楽しすぎる&hellip;</p>
+
+<p>よかったらみなさん一緒にイカしましょう!</p>
+
+<h2>その他</h2>
+
+<p>ちょくちょくReact触ったり, 引き続きScala書いたり, golang はじめたりしましたが，
+OSSっぽいこと，ここに書くようなことはほとんどできませんでした．</p>
+
+<h2>最後に</h2>
+
+<p>今年は環境が変わっただとか，インターン長期間行ってたとか，Splatoonやってたとか
+で特に今年後半はあんまり見える活動できてなかったです．もっと頑張りたい．</p>
+
+<p>去年も似たようなこと言ってたような気がしますが来年はVimはもちろんのことVim以外のこともやっていきたいなぁと思います．
+あともう少し大きいレベルで目標を定めてそれに向かってやれるとよさそう(まだふわふわだけど真剣に考えなきゃ&hellip;)．</p>
+
+<p>それと今年最も苦労して迷惑かけたのは英語ではないかという説があるので，
+来年は英語でコミュニケーションとれるように頑張って勉強していきたいですね．</p>
+
+<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2015年の振り返り記録でした.</p>
+
+<p><strong>来年もイカよろしく〜</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

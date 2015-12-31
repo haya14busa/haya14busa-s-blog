@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-12-23T16:40:37+09:00</updated>
+  <updated>2015-12-31T21:20:09+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,500 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた]]></title>
+    <link href="http://haya14busa.com/hatena-intern-2015/"/>
+    <updated>2015-12-31T22:15:00+09:00</updated>
+    <id>http://haya14busa.com/hatena-intern-2015</id>
+    <content type="html"><![CDATA[<p>インターン終わったときに書きたかったのですが，バタバタしていたのと，イカ
+(<a href="https://www.nintendo.co.jp/wiiu/agmj/">Splatoon</a>)という麻薬に犯されたので2015
+年の振り返りとして書いています． 乗り遅れた感しかないけど記録として残しておきま
+す！
+2015年全体の振り返りはこちら -> <a href="http://haya14busa.com/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り - haya14busa</a></p>
+
+<p>今年の夏はどこかインターン行きたいなぁ〜，最高の夏を過ごしたいなぁ〜と思っていました．
+そんな時に <a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a> 情報，
+特に今年は<a href="http://developer.hatenastaff.com/entry/2015/04/08/124053"> <strong>Scala</strong> や swift が書けるコースもある</a>
+という話を聞いてこれは行きたい! と応募しました．
+その結果幸運なことに選考に受かったので8月10日から9月4日まで最高の夏を過ごしにはてなインターンに行ってきました．</p>
+
+<h3>はてなインターン TL;DR</h3>
+
+<ul>
+<li><del>噂の(?)今年のインターン生の Emacs 率が0だった</del>
+
+<ul>
+<li><blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">【速報】今年のはてなインターン参加者のEmacs率はなんと 0 とのこと</p>&mdash; Shinji Tanaka (@stanaka) <a href="https://twitter.com/stanaka/status/630582977349595136">August 10, 2015</a></blockquote></li>
+</ul>
+</li>
+<li>僕は言語がScalaのMackerelコースで， <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんと一緒に Mackerel を便利にして優勝してきましたっ! めでたいっ 🎉🎉🎉</li>
+<li>はてなインターンで優秀なはてなの社員さんや他のインターン生の仲間と開発できたのは最高の体験でした．もっかい体験したい．</li>
+</ul>
+
+
+<h3>参考情報</h3>
+
+<ul>
+<li>公式サイト <a href="http://hatenacorp.jp/recruit/intern2015/">はてなサマーインターン2015</a></li>
+<li>公式レポート <a href="http://hatenacorp.jp/intern2015/">はてなサマーインターン2015 レポートサイト</a></li>
+<li>GitHub
+
+<ul>
+<li>最高の教科書 <a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
+<li>最高のサンプルアプリ <a href="https://github.com/hatena/scala-Intern-Bookmark">hatena/scala-Intern-Bookmark</a></li>
+<li>最高の事前課題 <a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li>僕の事前課題回答 <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+</li>
+</ul>
+
+
+<h3>はてなインターン応募と参加</h3>
+
+<p>一昨年の2013年夏にインターン探していたときも，はてなインターン卒業生のブログな
+どを読んで， はてなインターンよさそうだなぁ〜と思ってました．その時は能力たりな
+さすぎて無理だろう&hellip;<del>というのと perl かぁ〜</del> という思いで応募すら出来ていま
+せんでした．</p>
+
+<p>今年は言語が Scala (!)のコースができていたこともあったこと，一昨年よりはアルバイトでScala
+書いたりとある程度経験値積んでいて，Vim でよければいくつかアピールできるようなものもあったので
+えいやっと応募しました．はてなインターンの選考では基本的にポートフォリオを提出するのみ
+だったのですが，ポートフォリオは8割 Vim でした．評価されてよかった&hellip;</p>
+
+<p>ところで実際にインターンに参加してから思ったことは，もし仮に書く言語が perl
+だったとしても来たほうが良かったなということでした． もし来年度以降のインターン
+に応募しようと思っているけど perl がちょっとネック&hellip;  くらいで参加を迷ってるな
+ら勢いで参加申し込んでもよいと思います．</p>
+
+<p>結局僕は perl 1行も書きませんでしたが．Scala最高!!!(コンパイル爆速になればより&hellip;)</p>
+
+<h3>事前課題がScalaを基礎から勉強するのに最高</h3>
+
+<p>さて，晴れてはてなインターンに行けることになったらインターンまでの学習としてちょっとした事前課題が課されます．</p>
+
+<ul>
+<li><a href="https://github.com/hatena/Hatena-Intern-Exercise2015">hatena/Hatena-Intern-Exercise2015</a></li>
+<li>僕の解答: <a href="https://github.com/haya14busa/Hatena-Intern-Exercise2015">haya14busa/Hatena-Intern-Exercise2015</a></li>
+</ul>
+
+
+<p>この事前課題では perl か scala, それに JavaScript でいくつか課題が与えられ，問題を解いてテストを通していく形式でした．
+事前課題は全体，課題ごとに課題のねらいが書いてあり，言語の基本を学ぶのに最高だと思いました．</p>
+
+<p><a href="https://github.com/hatena/Hatena-Intern-Exercise2015/tree/master/scala">Scala の課 題</a>
+は 与えられたログ用に <a href="http://ltsv.org/">Labeled Tab-separated Values (LTSV)</a>
+パーサを書くという課題だったのですが，言語の基本やテストの仕方，テストの追加の
+仕方はもちろんのこと，問題の性質上 エラーハンドリングをどうするか，<code>Option</code>型を
+使うか，<code>Either</code>型を使うか，パース失敗時に エラーの行を収集するために
+<a href="https://github.com/scalaz/scalaz">scalaz</a> でいう <code>Validation</code> 型を使えばベンリ
+なんじゃないか&hellip;!といろいろやりがいがありました． もっと言うと指定されたログの
+モデル以外にも対応できるような汎用的なLTSVパーサにしたら便利そうと思ったんですが
+そこまでは時間と実力が足りなくてできませんでした．残念．</p>
+
+<p>LTSV パーサ，Scalaの課題としてよかったなぁと思います．</p>
+
+<p>またこの事前課題は単にテストを通して提出すると終了&hellip;というわけではなくインターンの初日あたりに
+講評が行われるのが最高でした．自分のコードはどう書けばよりよかったのか，他のインターン生は
+どう書いていてどこがよかったのかといったことも知れて便利でした．この講評はインターンの前半課題
+でも行われました．</p>
+
+<h3>前半の講義がウェブ開発を基礎から勉強するのに最高</h3>
+
+<ul>
+<li><a href="http://hatenacorp.jp/intern2015/lecture/">講義パート - はてなサマーインターン2015 レポートサイト</a></li>
+<li>教科書 <a href="https://github.com/hatena/Hatena-Textbook-2015">hatena/Hatena-Textbook-2015</a></li>
+</ul>
+
+
+<h4>スケジュール</h4>
+
+<ul>
+<li>1日目 Perl/Scalaによるプログラミングの基礎</li>
+<li>2日目 Perl/Scalaによるデータベースプログラミング</li>
+<li>3日目 Perl/ScalaによるWebアプリケーション開発</li>
+<li>4日目 JavaScriptによるイベント・ドリブンプログラミング</li>
+<li>5日目 自由課題</li>
+<li>6日目 インフラ</li>
+<li>7日目 SwiftでのiOSアプリ開発</li>
+</ul>
+
+
+<p>前半の講義パートは言語の基礎からWebアプリケーション，インフラ，それにSwift
+コースや希望者はSwiftのiOSアプリ開発までを1週間で学べるようになっていました．
+それぞれのコースのインターン生ごとにメンターさんがついてくれます．僕の場合は
+<a href="http://sixeight.hatenablog.com/">id:sixeight</a> でした．</p>
+
+<p>毎日課題が課されてそれをメンターさんに質問したり，レビューを受けたり，講評をも
+らったりとﾋｲﾋｲこなして行くことで後半に向けて基礎力を向上できる仕組みになってい
+ました．大変でしたが楽しかった&hellip;!</p>
+
+<p>課題としては自由課題が最後で，その内容はそれまでに学んできた技術と課題で作って
+きたブログシステムを活かして好きなWeb アプリケーションを作るというものでした．</p>
+
+<p>ここで作ったサービスは社内で投票で順位もつく前半の集大成という課題で厳しくも楽
+しい，燃える課題となっていました．僕はあんまり独創的なアイデアのなくこれがあれ
+ばベンリやろ〜というノリでちょっとしたものしか作れなかったのですが，他のイン
+ターン生のアプリケーションのクオリティが高くて刺激になりました．</p>
+
+<p>完全に言い訳になるのですが僕は自由課題の日の前の土日で開催されたオープンイン
+ターネッツに公開されてない，はてなで行われたもくもく回ハッカソンで途中まで
+作ってた <a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert</a>
+に夢中になってました．
+他のインターン生のつくったサービスをみてもと自由課題に力入れればよかった&hellip;と
+思ったので来年度以降はてなインターンへの参加を考えている各位は前半最後の自由
+課題はやりがいあってよいよ！と言っておきます．</p>
+
+<h3>後半の実践パートでサービスにコミットしていく実践経験が得られて最高</h3>
+
+<p><a href="http://hatenacorp.jp/intern2015/projects/">実践パート - はてなサマーインターン2015 レポートサイト</a></p>
+
+<p>今年から前半/後半の比率が代わり前半が少し短く，その分後半の実践パートが長く
+なったようです．開発に時間がとれてベンリ．</p>
+
+<p>後半は僕は <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんと一緒にMackerelコースに配属され，
+ちょっとしたバグ修正によるインターン生最速リリース(ちょっとｽﾞﾙｲ)から始まり4つほ
+ど多方面からMackerelの機能改善や新機能のリリースを行い，最終成果発表で1位を獲得できました!</p>
+
+<p>だいたい <a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんやメンターの
+<a href="http://sixeight.hatenablog.com/">id:sixeight</a>さんをはじめとするMackerelチーム
+の皆さんのおかげでした．</p>
+
+<p><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんはインターンまでScalaほとんど書いてなかったらしいのに，
+後半過程では1年くらいScala経験あった僕と同じかそれ以上のレベルでScalaかけちゃうし，
+JavaScriptまわりでペアプロして相談しても的確に正しい方向に導いていってくれるし最強かよ〜という感じでした．
+<a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> くんさんとのペアプロ，最高に便利体験でした.</p>
+
+<p><a href="http://sixeight.hatenablog.com/">id:sixeight</a>さんやMackerelチームの方には
+方針を一緒に考えてもらったり，ダメなところをダメと指摘してもらったり，実装・仕様の相談をさせてもらったりと，
+最高の体験でした．</p>
+
+<p><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a>くんや優秀なMackerelチームのメンバーと
+少しの間とは言えチームとして働く経験ができて，しかも最後には優勝というおまけまでついてきて
+最高の夏を過ごせました．ありがとうございました!</p>
+
+<h3>はてなインターン最高でした</h3>
+
+<p>上述したカリキュラム上の話だけじゃなく毎日おいしいはてなのまかないをはてなの社員さんと
+お話しながら食べたり，他の優秀なインターン生の話を聞いたり，実力を垣間見たり，
+インターン途中に参加したYAPCや社内TGIF，ごはん連れてってもらったりしたときにはてなの社員さんの
+話を聞いたりなどなど，最高の夏を過ごせました．</p>
+
+<p>逆に慣れなかったことといえばはてなの 「<a href="http://hitode909.hatenablog.com/entry/2014/12/02/205958">シュッと</a>」
+っという言葉だけは いやいや「サッと」とかのほうが馴染むじゃん&hellip;?とあんまり慣れな
+かったのですが， インターン終わってから「シュッと」，いいじゃん使いやすいじゃん&hellip;?
+となぜかインターン終わってから馴染むようになってしまいました．不思議だ&hellip;</p>
+
+<h3>他のインターン生の紹介</h3>
+
+<p>イカしたやつらを紹介するぜ! ってやつ．終始凄い人多すぎてびびってました&hellip;
+僕も頑張りたい．</p>
+
+<ul>
+<li><a href="http://blog.hatena.ne.jp/akiym/">id:akiym</a> perl, CTFのプロ</li>
+<li><a href="http://blog.hatena.ne.jp/daiiz/">id:daiiz</a> インターン委員長のプロ! 同窓会すき焼き(?)おねがいします
+
+<ul>
+<li><a href="http://daiiz.hatenablog.com/entry/2015/09/11/101815">はてなサマーインターンが終わり、エンジニアへの道が始まった - daizの日記</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/SWIMATH2/">id:SWIMATH2</a> idが定まらないプロ(?). いろいろつくっていて面白い
+
+<ul>
+<li><a href="http://swimath2.hatenablog.com/entry/2015/09/29/181805">中2の頃から大好きなはてなのインターンで最高の経験をした話 - クフでダローバルな日記</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/hiroqn/">id:hiroqn</a> 常識人ミュージシャンのプロ</li>
+<li><a href="http://blog.hatena.ne.jp/kakira96/">id:kakira96</a> 競プロとかWebGLとか多彩に出来るょぅじょのプロ．kakiraさんには関心しっぱなしだった&hellip;</li>
+<li><a href="http://blog.hatena.ne.jp/karur4n/">id:karur4n</a> ポッドキャスト(<a href="http://kumocast.jp/">くもキャスト</a>)やってるプロ．Vimの回あれば呼んでください</li>
+<li><a href="http://blog.hatena.ne.jp/Lepton/">id:Lepton</a> 競プロのプロ
+
+<ul>
+<li><a href="http://leptont.hatenablog.jp/entry/hatenaintern2015">最高のはてなサマーインターン - うに</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/tom__bo/">id:tom__bo</a> インターン最終日に最高最高言うプロ
+
+<ul>
+<li><a href="http://tombo2.hatenablog.com/entry/2015/09/07/023655">はてなサマーインターン2015に参加してきた - tom__bo’s blog</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/tyage/">id:tyage</a> 最高の相方プロ
+
+<ul>
+<li><a href="http://tyage.hatenablog.com/entry/2015/09/30/235943">Scalaの夏、はてなインターンの夏 - tyage&rsquo;s diary</a></li>
+</ul>
+</li>
+<li><a href="http://blog.hatena.ne.jp/daguniko/">id:daguniko</a> eemonさん似のプロ</li>
+<li><a href="http://blog.hatena.ne.jp/eemon18/">id:eemon18</a> dagunikoさん似のプロ
+
+<ul>
+<li><a href="http://emon18.hateblo.jp/entry/2015/09/30/222214">はてなサマーインターンシップ2015に行ってきました - e-mon</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>最高の夏〜</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り]]></title>
+    <link href="http://haya14busa.com/look-back-2015/"/>
+    <updated>2015-12-31T21:15:00+09:00</updated>
+    <id>http://haya14busa.com/look-back-2015</id>
+    <content type="html"><![CDATA[<p>今年は4月から大きく環境が変わったり，インターンに行ったりちょくちょくVim活したりイカ(<a href="https://www.nintendo.co.jp/wiiu/agmj/">Splatoon</a>)したりと振り返ってみる
+と色んな事がありました．</p>
+
+<p>最初にネタバレをすると最も進捗があったのは Splatoon で最高ウデマエS+90まで行ったことでした．</p>
+
+<p><strong>マンメンミ!</strong></p>
+
+<h2>去年や一昨年の</h2>
+
+<ul>
+<li>Vim歴換算1年目 -> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
+<li>プログラミング2年目 -> <a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
+</ul>
+
+
+<p>今年はプログラミング初めてからだいたい3年目でした．もう初心者とか言ってられないようになって気がしますが，まだまだ勉強不足・力不足すぎるので精進したい.</p>
+
+<h2>はてなサマーインターン</h2>
+
+<p>長くなったので記事分けた -> <a href="http://haya14busa.com/hatena-intern-2015/">2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた - haya14busa</a></p>
+
+<p><strong>最高の夏〜</strong></p>
+
+<h2>Google Japan Software Engineer インターン</h2>
+
+<p>はてなインターンが終わった後，3ヶ月ほどGoogle Japanのインターンに行っていました．
+Googleは内側ではオープンで全然違う国の違うチームの情報を見れたりするオープンさなのですが，
+外側にはオープンではないので基本的にブログに書いたらだめっぽい，というか線引きがわ
+からないので参加した内容に関する感想は書けません&hellip;残念&hellip;</p>
+
+<p>Googleの優秀なエンジニアさんたちとGoogleという会社で開発できたのは学びもやりが
+いもたくさんあって最高の体験でした．</p>
+
+<h2>インターン対策とか競技プログラミング</h2>
+
+<p>はてなとGoogle以外にもいくつか応募して受かったり落ちたりしたのですが，
+そのうち1回ホワイトボードコーディング面接があり，超基本的なことを聞かれているの
+にぜんぜん答えられない&hellip;という苦い経験がありました．</p>
+
+<p>頭のどこかで僕は情報学部じゃなかったし，プログラミングも独学で好きなことやってる段階だし
+基礎的も知らなくてもまだ仕方ない&hellip;と思ってた節があったりしました．
+しかしこれは完全に言い訳です．
+<strong>基礎</strong>は土台．最低限理解して説明できる程度にはなってないと面接とか関係なく
+マズいな&hellip;と思いデータ構造，アルゴリズムなど勉強しなおしました．</p>
+
+<p>その一環として前から興味はあったんだけどなかなか手がでなかった競技プログラミングにも今年はちょくちょく手をだしはじめました．
+最近ちょっとイカしすぎておろそかになってますがやっていきたいです．</p>
+
+<h3>面接対策でつかった本とか</h3>
+
+<h4>世界で闘うプログラミング力を鍛える150問</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=B00HR19TSO" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<h4>The Joel on Software 採用面接ゲリラガイド</h4>
+
+<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=haya14busa-22&o=9&p=8&l=as4&m=amazon&f=ifr&ref=ss_til&asins=4274066304" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+
+
+<p><a href="http://local.joelonsoftware.com/wiki/%E6%8E%A1%E7%94%A8%E9%9D%A2%E6%8E%A5%E3%82%B2%E3%83%AA%E3%83%A9%E3%82%AC%E3%82%A4%E3%83%89(version_3.0">採用面接ゲリラガイド(version 3.0) - The Joel on Software Translation Project</a>)</p>
+
+<h2>Vim 活</h2>
+
+<h3>incsearch.vim v2.0</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim/releases/tag/v2.0.0">Release Version 2.0 · haya14busa/incsearch.vim</a></li>
+<li><a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a></li>
+<li>関連リポジトリ
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+<li><a href="https://github.com/haya14busa/vital-string-converter">haya14busa/vital-string-converter</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>incsearch.vimをカイゼンしてv2.0にしてました．もっと昔にやってた気がするけど今年
+の7月でした．リファクタリングしてコンポーザブルにしたりと拡張性をましてincsearch.vimをより便利にできました．</p>
+
+<h3>vital-power-assert と VimConf | Vim script 版 powerassert!</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vital-power-assert">haya14busa/vital-power-assert</a></li>
+<li><a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert! テスト書いてないとかお前それ Vim script の前でも同じこと言えんの? - haya14busa</a></li>
+<li><a href="http://vimconf.vim-jp.org/2015/">VimConf 2015</a></li>
+</ul>
+
+
+<p>はてなインターン中に作ってその後もちょくちょくと触ってました．またVimConfで発表したりもしました．</p>
+
+<iframe src="https://docs.google.com/presentation/d/1Nkll31jRFpKCFUA-5ruEFoa1-ODAHBU7wRM5s5DyETk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<p>去年も大概だったのですが今年は個人的にVimConfに向けての準備がゼンゼン足りてなくて来年こそはちゃんとするゾ!!という気持ちです．</p>
+
+<h3>underscore.vim</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/underscore.vim">haya14busa/underscore.vim</a></li>
+</ul>
+
+
+<p>underscore.jsのVim scriptバージョンを作ってました．実装は去年からなんだかんだやっていましたがエイプリルフールにリリースしました．
+実用性がないわけではないけど，ラムダが無いとかスコープの関係上凝ったことしようとすると微妙に使いづらいのが残念ですが開発してて面白かったです．</p>
+
+<h3>勢い Vim プラグイン系</h3>
+
+<h4>niconicomment.vim</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/niconicomment.vim">haya14busa/niconicomment.vim</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/niconicomment.vim/niconicomment2.gif" alt="niconicomment2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い．</p>
+
+<h4>vim-undoreplay</h4>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-undoreplay">haya14busa/vim-undoreplay</a></li>
+</ul>
+
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-undoreplay/undoreplay_fizzbuzz2.gif" alt="undoreplay_fizzbuzz2.gif (1366×747)" /></p>
+
+<p>思い出したように実行すると面白い2．</p>
+
+<h3>vital.vim にPullRequest</h3>
+
+<ul>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/258">Vim.ScriptLocal: Add ScriptLocal (get script-local things) by haya14busa · Pull Request #258 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/239">Add Data.Set module by haya14busa · Pull Request #239 · vim-jp/vital.vim</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/348">Data.Counter: Implement &ldquo;Data.Counter&rdquo; by haya14busa · Pull Request #348 · vim-jp/vital.vim</a></li>
+</ul>
+
+
+<p><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a> というVim scriptのライブラリにいくつか欲しいモジュールをPRで送ったりした．
+Vim.ScriptLocal は Vim scriptのスクリプトローカル変数を外からハックするモジュールでVim scriptのテストフレームワークである
+<a href="https://github.com/thinca/vim-themis">thinca/vim-themis</a> で使ってもらったりした．
+他にはPythonあたりにある便利なデータ構造をVim scriptにポートする業などしていました．</p>
+
+<h3>Vim Advent Calendar</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-mnemonic/">Vim Mnemonic | Vim のコマンドの覚え方大全 - haya14busa</a></li>
+</ul>
+
+
+<p>前から自分が欲しかった，まとめたかった記事を書きました．今までで最高ブクマ数を頂いてありがたい．</p>
+
+<h3>vim-operator-flashy</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-operator-flashy">haya14busa/vim-operator-flashy</a></li>
+</ul>
+
+
+<p>年末駆け込みプラグイン．VimConfで<a href="https://github.com/t9md">t9md</a>さんが開発してる
+<a href="https://github.com/t9md/atom-vim-mode-plus">t9md/atom-vim-mode-plus</a> でヤンク対象を
+フラッシュしていてわかりやすいというのを見せて頂いたのがきっかけになってます．
+地味にUX向上してよい．</p>
+
+<h2>参加・発表したミートアップ・勉強会系</h2>
+
+<h3>YAPC</h3>
+
+<ul>
+<li><a href="http://yapcasia.org/2015/">YAPC::Asia Tokyo 2015</a></li>
+<li><a href="http://haya14busa.com/yapcasia-2015/">ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習 - haya14busa</a></li>
+</ul>
+
+
+<p>YAPCに初めて参加しました．学生無料便利すぎました．LT発表は応募したのですが残念ながら落ちて残念．</p>
+
+<h3>Yokohama.vim</h3>
+
+<ul>
+<li><a href="http://yokohamavim.connpass.com/event/21069/">Yokohama.vim.osaka? #7 - connpass</a></li>
+</ul>
+
+
+<p>Yokohama.vimではなぜか基調講演という名の戦犯をしてきました．
+内容はYAPCでしようとしていたVim駆動学習の話の微調整という感じでした．
+ちゃんと基調講演と言えるような発表をできるようになってまたYokohama.vim参加したい．</p>
+
+<h3>VimConf 2015</h3>
+
+<p>上述した．</p>
+
+<h3>fpinscala読書会完走</h3>
+
+<ul>
+<li><a href="https://www.manning.com/books/functional-programming-in-scala">Functional Programming in Scala</a></li>
+<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
+</ul>
+
+
+<p>大阪で定期的に開催されていたfpinscala読書会でFunctional Programming in Scalaを(一応)読了しました．
+が，まだまだ理解しきれてないところ，飛ばしたところなどたくさんあるので2週目に参加してしっかり
+関数型プログラミング身につけたいなと思います．</p>
+
+<h2>GitHub 記録</h2>
+
+<ul>
+<li><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に出したPull Request一覧</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aissue+author%3Ahaya14busa+created%3A%222015-01-01+..+2016-01-01%22+">2015年に開いたPull Request一覧</a></li>
+</ul>
+
+
+<p>あんまり大したことできてなかった</p>
+
+<h2>Splatoon</h2>
+
+<p><img src="../images/splatoon/IMG_0424.JPG" alt="Splatoon S+ 90" /></p>
+
+<p>インターン中に買ってインターン終了までにS+になるという目標は達成したのですが，
+年内にカンストするという目標は残念ながらできませんでした．
+しかし，今年の後半は本当にイカしかやってないというベルでやっていてイカ進捗が一番でてました．
+イカちゃん楽しすぎる&hellip;</p>
+
+<p>よかったらみなさん一緒にイカしましょう!</p>
+
+<h2>その他</h2>
+
+<p>ちょくちょくReact触ったり, 引き続きScala書いたり, golang はじめたりしましたが，
+OSSっぽいこと，ここに書くようなことはほとんどできませんでした．</p>
+
+<h2>最後に</h2>
+
+<p>今年は環境が変わっただとか，インターン長期間行ってたとか，Splatoonやってたとか
+で特に今年後半はあんまり見える活動できてなかったです．もっと頑張りたい．</p>
+
+<p>去年も似たようなこと言ってたような気がしますが来年はVimはもちろんのことVim以外のこともやっていきたいなぁと思います．
+あともう少し大きいレベルで目標を定めてそれに向かってやれるとよさそう(まだふわふわだけど真剣に考えなきゃ&hellip;)．</p>
+
+<p>それと今年最も苦労して迷惑かけたのは英語ではないかという説があるので，
+来年は英語でコミュニケーションとれるように頑張って勉強していきたいですね．</p>
+
+<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2015年の振り返り記録でした.</p>
+
+<p><strong>来年もイカよろしく〜</strong></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Vim Mnemonic | Vim のコマンドの覚え方大全]]></title>
@@ -5085,282 +5579,6 @@ endfunction</code></pre>
 <p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
 
 <p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[第3回 Vim Plugin読書会が開催されます!!!]]></title>
-    <link href="http://haya14busa.com/reading-vimplugin-03-senden/"/>
-    <updated>2014-02-08T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vimplugin-03-senden</id>
-    <content type="html"><![CDATA[<ul>
-<li>日時: 2014/02/08 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim/">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/mattn/unite-mcdonalds-vim">mattn/unite-mcdonalds-vim</a></li>
-<li><a href="https://github.com/osyo-manga/unite-fold">osyo-manga/unite-fold</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>投稿時点で30分前です!!!怠慢!</p>
-
-<p>ぜひわいわい参加しましょう。</p>
-
-<h2>unite sourceの作り方</h2>
-
-<p>:h unite-create-source</p>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/thinca/20101105/1288896674">簡単な unite の source の作り方 &#8211; 永遠に未完成</a></li>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20130520/1369049201">unite-source を作成する流れをまとめてみた &#8211; C++でゲームプログラミング</a></li>
-<li><a href="http://vim-users.jp/2011/01/hack197/">Vim-users.jp &#8211; Hack #197: unite.vim の source を作成する</a></li>
-</ul>
-
-
-<h2>読むプラグインの紹介</h2>
-
-<h3>unite-mcdonalds-vim</h3>
-
-<ul>
-<li><a href="http://mattn.kaoriya.net/software/vim/20101117005222.htm">Big Sky :: Uniteプラグイン書いた。</a></li>
-</ul>
-
-
-<p>unite-sourceの作り方とweb-api.vimの使い方を両方同時に学べて,お腹もいい感じにすく一石三鳥なプラグインです。</p>
-
-<p><a href="https://github.com/mattn/unite-gyukaku-vim">mattn/unite-gyukaku-vim</a>もあるのでこちらもオススメです</p>
-
-<h3>unite-fold</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20120801/1343820751">unite-fold &#8211; C++でゲームプログラミング</a></li>
-</ul>
-
-
-<p>製作者のおしょーさん曰く、魔改造されていて自分でも難しいとのこと[要出典]なので、気合を入れて読む必要があるかもしれません。Vim script力の高まりを感じましょう。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimのhelpを快適に引こう]]></title>
-    <link href="http://haya14busa.com/reading-vim-help/"/>
-    <updated>2014-01-26T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vim-help</id>
-    <content type="html"><![CDATA[<p>この記事は<a href="http://atnd.org/events/45072">Vim Advent Calendar 2013 : ATND</a>の58日目の記事です。 57日目は<a href="https://twitter.com/deris0126">@deris0126</a>さんによる<a href="http://deris.hatenablog.jp/entry/2014/01/26/124336">Vimのタブで開いているバッファのdiffを簡単に表示するpluginを書いた</a>でした。</p>
-
-<p>Vimのhelpを自由自在に引けることは、真のvimmerになるための第一歩。</p>
-
-<blockquote><p>:helpを使いこなす = Vimを極めるための一歩</p>
-
-<p>&#8211; <cite><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></cite></p></blockquote>
-
-<p>ということで、数多くのVimmerがVimのhelpの使い方を解説したり、おすすめのhelpを紹介したりしています。しかし、helpを読むための設定、カスタマイズ方法を紹介するものがあまりないように思えたので、今回は既存のhelpに関する記事のまとめと、設定/カスタマイズ方法を中心に書いていきます。</p>
-
-<h2>help記事のまとめ</h2>
-
-<h3>Helpの使い方全般</h3>
-
-<ul>
-<li><a href="http://whileimautomaton.net/2008/08/vimworkshop3-kana-presentation">Vimの極め方</a></li>
-<li><a href="http://vim-users.jp/2009/07/hack45/">Vim-users.jp &#8211; Hack #45: help を引く</a></li>
-<li><a href="http://vim-users.jp/2011/02/hack199/">Vim-users.jp &#8211; Hack #199: :helpに慣れ親しむ</a></li>
-<li><a href="http://nanasi.jp/articles/howto/help/vim_help.html">vimエディタの「help」コマンドの使い方 — 名無しのvim使い</a></li>
-</ul>
-
-
-<p>まずは上記の記事や<a href="http://vim-jp.org/vimdoc-ja/helphelp.html">:h helphelp.txt</a>で使い方を覚えましょう。さらっと流し見するだけでも未だに使いこなせてないものがたくさん見つかったりなどすることがあり、今一度読んでみるのもいいのではないでしょうか。</p>
-
-<p>詳しい使い方については上記の記事でほぼ解説されているのでここでは割愛します。</p>
-
-<h3>おすすめのhelp</h3>
-
-<ul>
-<li><a href="http://cohama.hateblo.jp/entry/2013/07/28/235823">おすすめの :help まとめ &#8211; 反省はしても後悔はしない</a></li>
-</ul>
-
-
-<p>覚えておくor読むと良さげなhelpがたくさん紹介されています。</p>
-
-<p>ここに載ってるものを除いて独断でおすすめすると</p>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#motion.txt">:h motion.txt</a></li>
-<li><a href="http://vim-jp.org/vimdoc-ja/motion.html#text-objects">:h text-objects</a>
-
-<ul>
-<li>(motion.txtの一部)</li>
-</ul>
-</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/cmdline.html#cmdwin">:h cmdwin</a></li>
-</ul>
-
-
-<p>このあたりですね。</p>
-
-<p>motion.txtはhjklからtext-objects,inclusive/exclusiveのような普段あまり意識しない概念など、詳しくmotionについて書かれているので時間があるときに読むと面白いです。</p>
-
-<p>cmdwinについてはちょっとした思い入れがあるという個人的な紹介です。</p>
-
-<p>Vimの設定/操作法を大きく変更するときは、何かとVACの記事などでおすすめされているものをみて設定するということが多いのですが、通常のcommandlineからcommandline-windowに乗り換えたきっかけは僕の場合helpを読んでいて便利そう！と感じたからでした。</p>
-
-<p>よりよい設定方法を模索するためにその後コマンドラインウィンドウに関する記事を読んだりはしましたが、「記事を読む->便利かも?」という流れより「help読んで便利そう-> もっといい設定法ないか探す」という流れのほうが愛着が沸くのでオススメです。</p>
-
-<h2>ここから設定Tips</h2>
-
-<h3><strong>K</strong>でカーソル下の単語のhelpを引く</h3>
-
-<pre><code>set keywordprg=:help " Open Vim internal help by K command
-</code></pre>
-
-<p>デフォルトでKはmanを引く設定になっていますが、上記の設定でvimのhelpを引けるようになります。visualモードで選択した範囲を引くこともできます。引きたいものが関数だと括弧を含めるかどうかで結果が変わるので<code>(</code>を含めて選択して引くといったことができるのでいい感じです。K押しやすい。</p>
-
-<h3>helpがちょっと読みにくい</h3>
-
-<pre><code>nnoremap &lt;Space&gt;t :&lt;C-u&gt;tab help&lt;Space&gt;
-nnoremap &lt;Space&gt;v :&lt;C-u&gt;vertical belowright help&lt;Space&gt;
-" MoveToNewTab
-nnoremap &lt;silent&gt; tm :&lt;C-u&gt;call &lt;SID&gt;MoveToNewTab()&lt;CR&gt;
-function! s:MoveToNewTab()
-    tab split
-    tabprevious
-
-    if winnr('$') &gt; 1
-        close
-    elseif bufnr('$') &gt; 1
-        buffer #
-    endif
-
-    tabnext
-endfunction
-</code></pre>
-
-<p>参考: <a href="http://www.sopht.jp/blog/index.php?/archives/445-vim.html">あにゃログ &#8211; vim でタブを使う</a></p>
-
-<p>直接helpとは関係ありませんが、使い始めの頃helpのウィンドウが読みづらくて仕方なかった覚えがあります。特に開いた後ちまちまwindowのサイズを大きくするのは面倒くさい。</p>
-
-<p>ということで、最初からtab/vsplitで開く設定や、カレントウィンドウを別のタブに開き直すキーマップを使うといいと思います。MoveToNewTabの設定によって「気軽にKで開く->本格的に読みたいからタブページで開き直す」という流れなどがスムーズになっておすすめです。</p>
-
-<p>カレントウィンドウを別のタブに開き直すMoveToNewTabの設定は最初の頃設定してライフチェンジングした覚えがあり、今でもかなり使ってます。help以外でも使えますね。</p>
-
-<h3>help用の設定をする</h3>
-
-<pre><code>augroup MyVimrc
-  autocmd!
-augroup END
-
-" qでhelpを閉じる
-autocmd MyVimrc help nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
-
-" 一気に複数設定する場合
-function! s:init_help()
-  nnoremap &lt;buffer&gt; q &lt;C-w&gt;c
-  nnoremap &lt;buffer&gt; &lt;Space&gt;&lt;Space&gt; &lt;C-]&gt;
-  " etc ...
-endfunction
-autocmd MyVimrc help call s:init_help()
-</code></pre>
-
-<p>個人的にはqで閉じるくらいしか設定していませんが、もっと便利な設定とかきっとあるので自分好みにしていきたい。</p>
-
-<h3>日本語でも読みたい</h3>
-
-<ul>
-<li><p><a href="https://github.com/vim-jp/vimdoc-ja">vim-jp/vimdoc-ja</a></p>
-
-<p>set helplang&amp; helplang=en,ja &ldquo; If true Vim master, use English help file.
-NeoBundle &lsquo;vim-jp/vimdoc-ja&rsquo;</p></li>
-</ul>
-
-
-<p>僕の場合最初は英語だけを設定しており、なんとか頑張ってhelpを読むといった状態でした。</p>
-
-<p>それはそれでいいことだとも言えるのですが、なんだかんだ日本語だとよりわかりやすかったり、英語でわからなかったら日本語で読めばいいという安心感からhelpを読む抵抗が減るので、英語環境でvimを使っていてまだ使っていない方はインストールしておくと良いと思います。</p>
-
-<p>上記の設定だとkeywordの後に@jaをつけることで日本語helpが読め、デフォルトでは英語になります。</p>
-
-<h3>自動でhelpを折りたたんでほしい</h3>
-
-<ul>
-<li><p><a href="https://github.com/thinca/vim-ft-help_fold">thinca/vim-ft-help_fold</a></p>
-
-<p>NeoBundleLazy &lsquo;thinca/vim-ft-help_fold&rsquo;, {
-      \ &lsquo;filetypes&rsquo; : &lsquo;help&rsquo;
-      \ }</p></li>
-</ul>
-
-
-<p>これは、前々から思っていて、無ければ自分で作ってみようかと思っていた時期が僕にもありました。</p>
-
-<p>が、調べてみるとthincaさんがすでに作ってた。試してみたところfoldtextも含めいい感じに折りたたんでくれます。</p>
-
-<p>折りたたみ好きはぜひ</p>
-
-<h3>Uniteでhelpを引く</h3>
-
-<ul>
-<li><a href="https://github.com/tsukkee/unite-help">tsukkee/unite-help</a></li>
-<li><p><a href="https://github.com/Shougo/unite-help">Shougo/unite-help</a></p>
-
-<p>&ldquo; NeoBundleLazy &lsquo;tsukkee/unite-help&rsquo;
-NeoBundleLazy &lsquo;Shougo/unite-help&rsquo;, {
-      \ &lsquo;unite_sources&rsquo; : &lsquo;help&rsquo;
-      \ }</p>
-
-<p>&ldquo; Execute help.
-nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
-&rdquo; Execute help by cursor keyword.
-nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR></p></li>
-</ul>
-
-
-<p>書いている時に気づいたのですがShougoさんのfork版が存在してメンテナンスされてるっぽいです。中身の差分みてないので何が改善されてるかは知らない(怠慢)</p>
-
-<p>追記: 主にキャッシュ周りが改善されているようです</p>
-
-<p>Uniteでインクリメンタルに検索できてhelpが格段にひきやすくなるので良さげです。</p>
-
-<h2>ブラウザでもhelpを引く</h2>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/">Vim documentation: help</a>(日本語)</li>
-<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>(英語)</li>
-</ul>
-
-
-<p>Vim記事を呼んでいるとき、LingrのVim部屋で気になるものがあったけど、botに検索してもらうほどでもないかな..というとき、手元のタブレットでvimのヘルプが読みたいときなどなど、ブラウザでvimのhelpを読めると便利な場面がきっとあるとおもいます。</p>
-
-<p>そんな時は上記の日本語版ヘルプ or Sourceforgeの本家のヘルプを読むといいんですが、日本語版は検索がGoogleカスタム検索で少し不便、英語版は検索機能は高いけどレイアウトが見づらい&#8230;両方わざわざアクセスするの面倒くさい&#8230;</p>
-
-<p>そういった不満を改善する(かもしれない)ブックマークレット、作りました。</p>
-
-<p>GitHub: <a href="https://github.com/haya14busa/vimdoc-marklet">haya14busa/vimdoc-marklet</a></p>
-
-<ul>
-<li><a href="javascript:(function(){var">vimdoc@ja</a></li>
-<li><a href="javascript:(function(){var">vimdoc@en</a></li>
-<li><a href="javascript:(function(){var">vimdoc-en-to-ja</a></li>
-</ul>
-
-
-<p>ブックマークバーにドラッグ&amp;ドロップで登録できます。</p>
-
-<p>上から日本語版ヘルプを検索、英語版ヘルプを検索、どちらかを開いているときにもう片方の言語で開くブックマークレットです。(en-to-jaとかネーミングおかしいのは目を瞑りましょう)</p>
-
-<p>vimdoc@ja,@enは事前に選択しておくとそのワードで検索します。これでVim記事読む時もhelpが手軽に読めて便利。</p>
-
-<p>日本語版ヘルプの検索機能は、Googleカスタム検索ではなく、おしょーさんにつけてもらったLingrのbotが使っている方法のリダイレクトバージョンを使っているので、ほとんどvimの検索ワードと同じように使えるはずです。おしょーさんありがとうございます。</p>
-
-<h2>まとめ</h2>
-
-<p>ここまで個人的に有用だと思うhelpに関する設定やプラグインを紹介しましたが、もっと便利な設定や知見がきっとたくさんあります。それを上級Vimmerに教えてもらう&#8230;のもいいですが、それだけでなく自分でhelpを読み込んで使いこなせるようになりましょう!(自戒)</p>
-
-<p><strong>Let&#8217;s :help!</strong></p>
-
-<p><strong>Don&#8217;t panic!</strong></p>
 ]]></content>
   </entry>
   
