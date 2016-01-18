@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-01-19T06:10:07+09:00</updated>
+  <updated>2016-01-19T06:50:42+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -177,7 +177,7 @@
 </span><span class='line'><span class="c">&quot; EasyMotion.</span>
 </span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:incsearch_config<span class="p">(</span>...<span class="p">)</span> abort
 </span><span class='line'>  <span class="k">return</span> <span class="nb">incsearch</span>#util#deepextend<span class="p">(</span>deepcopy<span class="p">(</span>{
-</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span><span class="p">)</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
 </span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {
 </span><span class='line'>  \     <span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>
 </span><span class='line'>  \   }<span class="p">,</span>
