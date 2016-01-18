@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-01-19T06:50:42+09:00</updated>
+  <updated>2016-01-19T07:05:16+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -327,9 +327,9 @@ vim-easymotionはforkする前のもともとコードがそんなに綺麗じ�
 
 <p><a href="https://github.com/easymotion/vim-easymotion">vim-easymotion</a>, また一段と便利になったので是非使ってみてください!</p>
 
-<p>僕はもうこの機能なしでは生きていけなさそうです．**</p>
+<p>僕はもうこの機能なしでは生きていけなさそうです．</p>
 
-<p>あぁ〜カーソルがぴょんぴょんするんじゃぁ〜**</p>
+<p><strong>あぁ〜カーソルがぴょんぴょんするんじゃぁ〜</strong></p>
 
 <blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">vim-easymotion, あぁ〜カーソルがぴょんぴょんするんじゃぁ〜 って感じだ</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/687679866175500288">January 14, 2016</a></blockquote>
 
