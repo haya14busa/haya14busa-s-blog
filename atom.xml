@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2015-12-31T21:42:56+09:00</updated>
+  <updated>2016-01-19T06:10:07+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,337 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました]]></title>
+    <link href="http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions/"/>
+    <updated>2016-01-19T03:14:43+09:00</updated>
+    <id>http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions</id>
+    <content type="html"><![CDATA[<p>Vim-EasyMotion でウィンドウをまたいだ移動ができるようになりました!!!</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/2753bd4dd1dfdf5962dbdbffabf24244e4e14243/easymotion/overwin-motions.gif" alt="" /></p>
+
+<div class="github-card" data-github="easymotion/vim-easymotion" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></p>
+
+<h3>過去の関連記事</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する - haya14busa</a>
+
+<ul>
+<li>まだ fork でやってた時代の記事． 自分のVim歴より始まりが古く，1年続いたという伝説のVim Advent Calendar 2012の363日目の記事で懐かしい．</li>
+</ul>
+</li>
+<li><a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a>
+
+<ul>
+<li>easymotionのメンテナになってからの便利機能まとめ的な記事.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>そして今回の記事はvim-easymotionのリポジトリがorganization持ちになって<del>久々に</del>便利機能追加したという記事になります．</p>
+
+<p>vim-easymotionとはVimのカーソル移動をブラウザでいうHit-A-Hint機能のように行うカーソル移動改善系プラグインです．
+よく知らないよ〜という方は<a href="https://github.com/easymotion/vim-easymotion">README</a>眺めたり， 過去記事 (<a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a> ) をさらっと読むと分かるかと思います．過去記事は<code>n-key Find Motion</code>の節以外はだいたい現役で使えると思います．</p>
+
+<h2>vim-easymotion v3.0</h2>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/2753bd4dd1dfdf5962dbdbffabf24244e4e14243/easymotion/overwin-motions.gif" alt="" /></p>
+
+<p><a href="https://github.com/easymotion/vim-easymotion/releases/tag/v3.0.0">Release EasyMotion now supports moving cursor over/across windows · easymotion/vim-easymotion</a></p>
+
+<p>vim-easymotionではこれまでカーソルと同一ウィンドウ内にしか移動できなかったのですが，v3.0でとうとう他のウィンドウにも移動できるようになりました! めでたい．
+実はv3.0 で追加するメイン機能はこれだけなんですが，個人的にかなり気に入ってしまい，「これはメジャーバージョンアップするしかない」と思い勢いだけでバージョンあげています．
+他にはバグフィックスとか細かい修正で，とくに後方互換性は壊してないはずなので気軽にアップデートできると思います．</p>
+
+<h3>追加したマッピング</h3>
+
+<table>
+<thead>
+<tr>
+<th> mapping </th>
+<th> description </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Plug&gt;(easymotion-overwin-f){char}</code> </td>
+<td> <code>{char}</code> にマッチする位置を対象として移動 </td>
+</tr>
+<tr>
+<td><code>&lt;Plug&gt;(easymotion-overwin-f2){char}{char}</code> </td>
+<td> <code>{char}{char}</code> にマッチする位置を対象として移動 </td>
+</tr>
+<tr>
+<td><code>&lt;Plug&gt;(easymotion-overwin-line)</code> </td>
+<td> 行を対象として移動 </td>
+</tr>
+<tr>
+<td><code>&lt;Plug&gt;(easymotion-overwin-w)</code> </td>
+<td> 単語の先頭を対象として移動 </td>
+</tr>
+</tbody>
+</table>
+
+
+<h4>マッピング例</h4>
+
+<p>ヴィジュアルモードやオペレータ待機モードで他のウィンドウに移動するというのは意味をなさないので，
+他のウィンドウに移動する overwin モーションは <code>Normal</code> モードのマッピングのみ提供しています．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; &lt;Leader&gt;f{char} to move to {char}</span>
+</span><span class='line'>map  <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">f</span><span class="p">)</span>
+</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span><span class="k">f</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; s{char}{char} to move to {char}{char}</span>
+</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span>f2<span class="p">)</span>
+</span><span class='line'>vmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>f2<span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Move to line</span>
+</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span>L <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>jk<span class="p">)</span>
+</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>L <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span>line<span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&quot; Move to word</span>
+</span><span class='line'>map  <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">w</span><span class="p">)</span>
+</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span><span class="k">w</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>EasyMotion触ったことなくてミニマムに始めたい場合は上記設定から気に入ったもの +
+以下の設定でデフォルトマッピングをオフにするとよいかなと思います．</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>incsearch.vim との連携</h4>
+
+<p>vim-easymotionには<code>&lt;Plug&gt;(easymotion-sn)</code>という <code>N</code> 文字入力してマッチした位置
+を対象として移動するモーション，言わばeasymotionの検索(<code>/</code>)版マッピングを提供していたのですが，
+今回，それのウィンドウ間移動できるマッピングは提供していません．</p>
+
+<p>というのも，<code>&lt;Plug&gt;(easymotion-sn)</code>はVimデフォルトの検索との互換性が甘いところがあり，
+<a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a>
+の記事で紹介した incsearch.vim と vim-easymotion を連携させたほうが基本的に便利になっていて，
+こちらを推奨したいなという訳です．</p>
+
+<h4>必要なもの</h4>
+
+<ul>
+<li><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></li>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; You can use other keymappings like &lt;C-l&gt; instead of &lt;CR&gt; if you want to</span>
+</span><span class='line'><span class="c">&quot; use these mappings as default search and somtimes want to move cursor with</span>
+</span><span class='line'><span class="c">&quot; EasyMotion.</span>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:incsearch_config<span class="p">(</span>...<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> <span class="nb">incsearch</span>#util#deepextend<span class="p">(</span>deepcopy<span class="p">(</span>{
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span><span class="p">)</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {
+</span><span class='line'>  \     <span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>
+</span><span class='line'>  \   }<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span>
+</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> /  <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">())</span>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> ?  <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">(</span>{<span class="s1">&#39;command&#39;</span>: <span class="s1">&#39;?&#39;</span>}<span class="p">))</span>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">g</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">(</span>{<span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>}<span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>&lt;CR&gt;</code> を <code>&lt;C-l&gt;</code>とかにすることで普段は普通の incsearch.vim, <code>&lt;C-l&gt;</code>押した時に
+easymotion発動といったことができたりします．僕はそういう設定にしていて，便利につかえてます．</p>
+
+<h2>おまけ</h2>
+
+<h3>incsearch-migemo 連携</h3>
+
+<p><a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_migemo<span class="p">(</span>...<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
+</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [
+</span><span class='line'>  \     <span class="nb">incsearch</span>#config#migemo#converter<span class="p">(),</span>
+</span><span class='line'>  \   ]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;C-l&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">m</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">())</span>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">m</span>? <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">(</span>{<span class="s1">&#39;command&#39;</span>: <span class="s1">&#39;?&#39;</span>}<span class="p">))</span>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> mg/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">(</span>{<span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>}<span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>fuzzy search で easymotion</h3>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/eab1d12a8bd322223d551956a4fd8a21d5c4bfe9/easymotion/fuzzy-incsearch-easymotion.gif" alt="" /></p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
+<li><a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_easyfuzzymotion<span class="p">(</span>...<span class="p">)</span> abort
+</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
+</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [<span class="nb">incsearch</span>#config#fuzzyword#converter<span class="p">()</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
+</span><span class='line'>  \   <span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>
+</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_easyfuzzymotion<span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>実装とか背景の話</h2>
+
+<p>実はこのウィンドウをまたいだ移動についてはvim-easymotionの開発を引き継いだころからずっと欲しいなぁ〜やりたいな〜と思っていた待望の機能でした．
+emacs版easymotionである <a href="https://github.com/winterTTr/ace-jump-mode">winterTTr/ace-jump-mode</a> や atomのsmalls (<a href="http://qiita.com/t9md/items/bca96d45af1a5244b5d1">ATOM - smalls つくった - Qiita</a>)ではラベルジャンプでウィンドウ移動ができています．</p>
+
+<p>どの拡張も，もともとはEasyMotion にインスパイアされて作ったもので，他の機能はともかく少なくともウィンドウ間をまたげるという一点ではvim-easymotionを上回っていました．
+ではなぜ，vim-easymotionでもやりたいなぁと思っていたのに，これまで実装できていなかったかというと，
+これは<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>というわけではなく Vim の機能でやるのがきつかったことに起因します．
+Vimにはオーバーレイで文字を表示するといった機能がないのでvim-easymotionでは一旦バッファの文字を書き換えて戻すという実装になっていました．
+この実装だと同じバッファを別ウィンドウに表示している場合にラベルがバッティングしてしまいます．</p>
+
+<p>では今回どうしたかというと Vim の conceal 機能, <a href="http://vim-jp.org/vimdoc-ja/syntax.html#%3Asyn-cchar">:h syn-cchar</a> を使っています．
+この機能を使えば直接バッファを書き換えずにラベルを表示できるので，同じバッファが別ウィンドウにあっても違ったラベルを表示することが可能です．</p>
+
+<h3>Conceal の syn-cchar つらい問題</h3>
+
+<p>しかし，このconcealでラベルを表示するというアイデア自体は以前からあって <a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>
+がこのスタイルで表示しています(カーソルと同一ウィンドウだけですが)．
+前からアイデアを知っていたのにやれなかったのは，決して<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>というわけではなく
+conceal機能はかなり制限があってやりたいことができなさそうだなぁと長らく思っていたからです．
+というも，syn-ccharでは1文字しか表示できないし，空白行といった無の部分に文字を表示することができません．
+この制限からラベルが2文字以上の時でも1文字しか表示できなかったり，
+Tab文字や文字幅が2以上のマルチバイトの文字をラベルに置き換えるとラベル表示時に表示にズレが生じてしまいます．</p>
+
+<h3>結局<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong></h3>
+
+<p>じゃあどうすればいいかというと，ここまでの話・実装を組み合わせると実は答えは出ています．
+ラベルを表示するさいに対象が空白行や行末，マルチバイト文字であれば一旦スペースを追加またはスペースに置き換えてしまう前処理をすればOKです．
+そうすれば空白行や行末を対象とできるし，2文字のラベルも表示できるし，ラベルを表示した際に表示のズレが生じません!
+やったぜこれで理論上実装可能じゃん!</p>
+
+<p>なぜこれに気づくのに時間がかかったのかというと結局<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>
+のでしばらくeasymotionにまともに向き合ってなかったからでした．
+vim-easymotionはforkする前のもともとコードがそんなに綺麗じゃなかった上に，
+プログラミング自体ほとんど初心者だった僕が以前に便利な機能を追加したりVimとの互換性を保ったりすることと引き換えに，
+コードは比較的カオス状態になっていました．
+僕の実装力ではこれを互換性を保った状態でリファクタして他のウィンドウへ移動する抜本的な機能改善なんて無理や&hellip;
+と内心思っていましたし，実際無理感あります．
+こういった理由でウィンドウ間移動という待望の機能は2年間ほど待望の機能であり続けました．</p>
+
+<h3>1から作って互換性意識すればいいんじゃん?</h3>
+
+<p>互換性保ちながらリファクタしていくのがつらいなら1から作って，インターフェースを既存のeasymotionと合わせればいいんじゃないか?
+と気付き，今回の機能は実装されました．</p>
+
+<p>「パンがなければお菓子を食べればいいじゃない」に通ずるものがあります(ない)</p>
+
+<p>これに気づいてやってみると，一旦動くところまで実装する程度なら1日程度で待望の機能が実装できました．
+やってみるものですね．</p>
+
+<p>しかし，vim-easymotionを活発に開発していた2年前の僕にはできなかったかなぁと感じていて，
+これまでに incsearch.vim といった他のプラグインを作った知見や，他の Vim プラグイン開発者から得た知見，
+そして2年間でちょっと基本的な開発力があがったおかげで開発できたなぁと思います．
+みなさまありがとうございました．そして自分，まだまだですがちょっと頑張ったなって思いました．</p>
+
+<p>開発の実装や背景の話と2年前に熱を入れて取り組んでいたvim-easymotionに今の自分が取り組んでみたらちょっと感慨深かったなという話でした．</p>
+
+<h2>おわりに</h2>
+
+<p><a href="https://github.com/easymotion/vim-easymotion">vim-easymotion</a>, また一段と便利になったので是非使ってみてください!</p>
+
+<p>僕はもうこの機能なしでは生きていけなさそうです．**</p>
+
+<p>あぁ〜カーソルがぴょんぴょんするんじゃぁ〜**</p>
+
+<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">vim-easymotion, あぁ〜カーソルがぴょんぴょんするんじゃぁ〜 って感じだ</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/687679866175500288">January 14, 2016</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2015年夏，はてなインターンでMackerelをとにかく便利にして優勝してきた]]></title>
@@ -5408,177 +5739,6 @@ let g:EasyMotion_use_migemo = 1 " Migemo機能ON
 <p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
 
 <p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimの検索ハイライト,hlsearch,:nohlsearch,v:hlsearchがややこしい]]></title>
-    <link href="http://haya14busa.com/vim_highlight_search/"/>
-    <updated>2014-02-12T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/vim_highlight_search</id>
-    <content type="html"><![CDATA[<p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 73日目の記事になります。</p>
-
-<p>普段何気なくvimrcに書いている<code>set hlsearch</code>や<code>:nohlsearch</code>。実はこれ、結構ややこしいです。</p>
-
-<h2>まずはhelp!</h2>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/options.html#%27hlsearch%27">:h &#8216;hlsearch&#8217;</a> &lt;- オプション</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a> &lt;- コマンド</li>
-<li><a href="http://vim-jp.org/vimdoc-ja/eval.html#v:hlsearch">:h v:hlsearch</a> &lt;- 新たなる変数(最近入った)</li>
-</ul>
-
-
-<p>そして他に注意すべきものとして</p>
-
-<ul>
-<li><code>set nohlsearch</code> &lt;- <code>set hlsearch</code>の逆。<strong><code>:nohlsearch</code>とは違う</strong></li>
-<li><code>&amp;hlsearch</code> &lt;- オプションhlsearchの値の変数。<code>set hlsearch</code>なら1,<code>set nohlsearchなら0</code></li>
-</ul>
-
-
-<p>ややこしいですね。</p>
-
-<h2>v:hlsearchを解説しながら全体的に説明するよ</h2>
-
-<p>最近縁があったのでv:hlsearchの日本語訳を書かせて頂きましたが、ぶっちゃけ元の英語の説明もわかりづらいのでここで解説します。</p>
-
-<p><noscript>
-  <pre><code class="language- ">                    <em>v:hlsearch</em> <em>hlsearch-variable</em>
-v:hlsearch  検索による強調表示がオンになっているかどうかを決定する変数。
-        |+extra_search| 機能が必要である &lsquo;hlsearch&rsquo; が有効になっている
-        時のみ意味をなす。この変数を0に設定することは、 |:nohlsearch|
-        コマンドを実行することと同様に働き、1に設定することは以下と同様に働く &gt;
-            let &amp;hlsearch = &amp;hlsearch</code></pre>
-</noscript></p>
-
-<p>まず仕様ですが、この変数は<strong>実際に現在</strong>検索によるハイライトが行われているかどうかを判定、決定できます。</p>
-
-<h3>判定</h3>
-
-<p><code>echo v:hlsearch</code></p>
-
-<ul>
-<li>ハイライトが行われている -> 1</li>
-<li>ハイライトが行われていない -> 0</li>
-</ul>
-
-
-<h3>決定(ハイライトをON or OFFにする)</h3>
-
-<blockquote><p>この変数を0に設定することは、 |:nohlsearch| コマンドを実行することと同様に働き、 1に設定することは以下と同様に働く let &amp;hlsearch = &amp;hlsearch</p></blockquote>
-
-<p>わかりずらい!!!</p>
-
-<h4>let v:hlsearch = 0</h4>
-
-<p>これは、helpによると<code>:nohlsearch</code>コマンドを実行することと同様に働きます。</p>
-
-<ul>
-<li><a href="http://vim-jp.org/vimdoc-ja/pattern.html#:nohlsearch">:h :nohlsearch</a></li>
-</ul>
-
-
-<blockquote><p>|:nohlsearch| コマンドを使うと、<strong>一時的に</strong>強調表示をやめさせることができます。</p></blockquote>
-
-<p><strong>一時的に</strong> というのがミソです。この<code>:nohlsearch</code>コマンドは<code>hlsearch</code>オプションの変数である、<code>&amp;hlsearch</code>を変更しないのです。つまり<code>set hlsearch</code>している場合<code>&amp;hlsearch</code>変数の値は1ですが、<code>:nohlsearch</code>を実行しても<code>&amp;hlsearch</code>の値は1のままでハイライトを一時的にオフにします。</p>
-
-<h4>let v:hlsearch = 1</h4>
-
-<p>helpによると1に設定することは</p>
-
-<p><code>let &amp;hlsearch = &amp;hlsearch</code></p>
-
-<p>をすることと同様に働くようです。ここがかなりわかりずらい。</p>
-
-<p>前提として、</p>
-
-<ol>
-<li>基本的に<code>v:hlsearch</code>は実際にハイライトを行っているかどうかを決定するのですが<code>set nohlsearch</code>が設定されていた場合は<code>set nohlsearch</code>が優先されます。</li>
-<li>コマンド<code>:nohlsearch</code>によって一時的にハイライトをオフにした場合、再び検索するなどしたときにハイライトが有効になるのですが、<code>set hlsearch</code>,つまりは<strong><code>let &amp;hlsearch = 1</code></strong>を設定した場合も同様にトリガーとなってハイライトが有効になります(実装は見ていないので予測含む。動作確認はしています)</li>
-</ol>
-
-
-<p>よって、もし<code>set nohlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は0なので<code>let &amp;hlsearch = 0</code>と同様の動作となり何も起こりません。</p>
-
-<p>反対に、<code>set hlsearch</code>が設定されていれば<code>&amp;hlsearch</code>の値は1で、<code>let &amp;hlsearch = 1</code>と同様になり、前提の2からこの動作がトリガーとなって再びハイライトがONになります。</p>
-
-<p>はぁ、ややこしかった。わからなかった方は直接@haya14busaまで質問とかしてください。また間違ってたらご指摘よろしくおねがいします。</p>
-
-<p>ここから<code>v:hlsearch</code>から得られたTipsを2つ紹介します</p>
-
-<h2>Reloadableなvimrcの設定</h2>
-
-<p>一般的には下記のような設定をしている方が多いと思います</p>
-
-<p><noscript>
-  <pre><code class="language- ">set hlsearch
-nnoremap &lt;silent&gt;&lt;Esc&gt;&lt;Esc&gt; :&lt;C-u&gt;nohlsearch&lt;CR&gt;</code></pre>
-</noscript></p>
-
-<p>が、リローダブルなvimrcを目指している方はこの問題に少なからず気づいているかもしれません。</p>
-
-<p>つまり、<code>set hlsearch</code>を記述しているとリロード時に問答無用でハイライトされてしまうのです。(ｳｻﾞｲ</p>
-
-<p>これを改善しましょう</p>
-
-<h3>1. 簡単かつv:hlsearchがなくてもOK</h3>
-
-<p><noscript>
-  <pre><code class="language- ">&ldquo; hlsearchは使うがvimrcを読み込んだ時にハイライトしないようにする
-set hlsearch | nohlsearch</code></pre>
-</noscript></p>
-
-<p>上記のようにすると<code>&amp;hlsearch</code>の値は1で検索のハイライトは有効になっていますが、<code>:nohlsearch</code>コマンドによりそれを一時的にOFFにします。</p>
-
-<p>欠点: ハイライトしている状態でリロードするとハイライトが消えてしまう。</p>
-
-<h3>2. v:hlsearchを使って1の欠点をなくす</h3>
-
-<p><noscript>
-  <pre><code class="language- ">if exists(&lsquo;v:hlsearch&rsquo;)
-  let v_hl_save = v:hlsearch
-endif
-set hlsearch
-execute exists(&lsquo;v:hlsearch&rsquo;) ? &lsquo;let v:hlsearch = v_hl_save&rsquo; : &lsquo;nohlsearch&rsquo;</code></pre>
-</noscript></p>
-
-<p>欠点: 書き方が悪いということを除いてもわざわざそこまでしたくない&#8230;</p>
-
-<h2>スクリプトから扱う</h2>
-
-<h3>ハイライトを確認する</h3>
-
-<p><code>v:hlsearch</code>が登場する以前では<code>&amp;hlsearch</code>の値を見ることしかできず、ハイライトの設定がされているかどうかは分かるけれども、実際にハイライトされているかどうかがわかりませんでした。(<code>:nohlsearch</code>で一時的にハイライトしていなくても<code>set hlsearch</code>していれば一貫して<code>&amp;hlsearch</code>の値は1です)</p>
-
-<p><code>v:hlsearch</code>の登場によって改善されたのはほぼこの一点といってもいいでしょう。</p>
-
-<h3>実際に関数からハイライトさせる</h3>
-
-<ul>
-<li><a href="http://d.hatena.ne.jp/osyo-manga/20131021/1382346459">Vim の関数内で set hlsearch しても反映されない場合の対処方法 &#8211; C++でゲームプログラミング</a></li>
-</ul>
-
-
-<p>上記の記事の問題は<code>v:hlsearch</code>でも同じなようで、関数内で<code>let v:hlsearch = 1</code>にしても実行が終わると勝手に元の値に戻されてしまいます。これを回避するには記事にあるように<a href="http://vim-jp.org/vimdoc-ja/eval.html#feedkeys%28%29">:h feedkeys()</a>を使うしかないようです。残念&#8230;</p>
-
-<h4>ちょっと改善</h4>
-
-<p>上記の記事の関数だと<code>set nohlsearch</code>のオプションを無視してしまうので下記のように<code>:let &amp;hlsearch=&amp;hlsearch\&lt;CR&gt;</code>を使うとよりお行儀よくハイライトさせることができます。</p>
-
-<p><noscript>
-  <pre><code class="language-viml viml">function! HLsearch()
-    call feedkeys(&ldquo;:let &amp;hlsearch=&amp;hlsearch&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
-    &ldquo; または
-    &rdquo; call feedkeys(&ldquo;:let v:hlsearch=1&amp;lt;CR&gt;&rdquo;, &ldquo;n&rdquo;)
-endfunction</code></pre>
-</noscript></p>
-
-<h2>最後に</h2>
-
-<p>最新への追従 #84: <a href="https://github.com/vim-jp/vimdoc-ja/issues/84">https://github.com/vim-jp/vimdoc-ja/issues/84</a></p>
-
-<p>Vimの日本語訳がオリジナルのヘルプに追従しきれていないようです。実際<code>v:hlsearch</code>を訳して、レビューしてもらったりしましたが、結構新鮮で面白かったしこれからも暇があれば、僕も日本語訳に参加して貢献できればいいなと思います。人手は足りていないようなので、気になった方は簡単な/分かるところからでもいいから訳して、vim-jpに投げてみるといいのではないでしょうか。きっとみんな優しくしてくれると思います。</p>
 ]]></content>
   </entry>
   

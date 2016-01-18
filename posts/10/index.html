@@ -9,9 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Install nltk $ pip install nltk wordnetのコーパスをPythonインタプリタからダウンロード $ python
-Python 2.7.5 (default, Jul 19 2013, 19:37:30)
-[GCC 4.2.1 Compatible Apple &hellip;">
+  <meta name="description" content="VMWareでUbuntu入れました その際、vmware-toolsにバグがあるっぽくて(?)/mnt/hgfs下に作ったWindowsから作ったSharedフォルダが表示されませんでした。 いろいろ解決策はありそうでしたが、一番手軽そうなやつをメモ 最初にvmware標準のvmware- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,80 @@ Python 2.7.5 (default, Jul 19 2013, 19:37:30)
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/solution-of-sharing-file-between-windows-and-ubuntu-under-vmware/">VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-08-24T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>VMWareでUbuntu入れました</h2>
+
+<p>その際、vmware-toolsにバグがあるっぽくて(?)<code>/mnt/hgfs</code>下に作ったWindowsから作ったSharedフォルダが表示されませんでした。</p>
+
+<p>いろいろ解決策はありそうでしたが、一番手軽そうなやつをメモ</p>
+
+<p>最初にvmware標準のvmware-toolsをアンインストールする必要あったかも</p>
+
+<blockquote><pre><code>sudo apt-get install open-vm-tools
+sudo mkdir /mnt/hgfs
+sudo mount -t vmhgfs .host:/ /mnt/hgfs
+</code></pre>
+
+<p>&#8211; <cite><a href="http://superuser.com/questions/588304/no-mnt-hgfs-in-ubuntu-guest-under-vmware-fusion">linux &#8211; No /mnt/hgfs in Ubuntu guest under VMWare Fusion &#8211; Super User</a></cite></p></blockquote>
+
+<p><code>sudo mount -t vmhgfs .host:/ /mnt/hgfs</code>は起動するごとにやらなきゃだめなので自動化したほうが良さげ。あとたまに出来ない(?)ので再起動してもっかい打ってみたりすると表示されるかも[要出典]。</p>
+
+<h2>Link</h2>
+
+<ul>
+<li><a href="http://superuser.com/questions/588304/no-mnt-hgfs-in-ubuntu-guest-under-vmware-fusion">linux &#8211; No /mnt/hgfs in Ubuntu guest under VMWare Fusion &#8211; Super User</a></li>
+<li><a href="http://meta.superuser.com/questions/4836/what-is-the-difference-betweensuper-user-and-stack-overflow">What is the difference between Super User and Stack Overflow? &#8211; Meta Super User</a></li>
+</ul>
+
+
+<p>デザイン見てやっぱStack Overflowって神サイトだなって思ったらSuper Userだったでござる</p>
+
+<p>勉強になったね</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/solution-of-sharing-file-between-windows-and-ubuntu-under-vmware/">VMWare下のUbuntuとWindowsのファイル共有で/mnt/hgfsにフォルダが出ないときの対処法</a>
+      <time datetime="2013-08-24T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/linux/'>linux</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -889,125 +961,6 @@ username = hogehoge
       </footer>
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/edit-vimrc-easily/">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-08-07T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Edit &amp; Automatically Reload .vimrc</h2>
-
-<p>.vimrc</p>
-
-<pre><code>"------------------------------------
-" Open &amp; Reload .vimrc
-"------------------------------------
-set foldmethod=expr
-set modeline
-command! Evimrc  e $MYVIMRC
-
-augroup source-vimrc
-  autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
-  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
-
-"------------------------------------
-" Lokaltog/vim-easymotion
-"------------------------------------
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
-
-"------------------------------------
-"vim: foldmethod=marker
-</code></pre>
-
-<p>.vimrcを編集するときは<code>:Evimrc</code>(:ev<TAB>で補完させる).<br/>
-.vimrcを編集後のリロードは最初はコマンドを使おうと思ったけど保存時の自動実行のほうが手軽で良さげ.ただ,関数とか途中まで記述してる状態で保存しちゃうと困りそうでもあるかも？</p>
-
-<h2>問題点</h2>
-
-<p>なるべく最小構成の環境で試したから自分だけではないとおもうのだけど,</p>
-
-<ol>
-<li>vimrcの<code>set foldmethod=expr</code>とvimのモードラインの<code>"vim: foldmethod=marker</code>の記述で違うものを設定してる場合,リロード時にvimrcの方の記述の設定に変わってしまう.
-
-<ul>
-<li>しかも最小構成では発生しなかったけど,使ってるvimrcでは一度閉じてから読み込み直してもそのままモードライン記述が無視された.</li>
-<li>最小構成の方でも試したからloadviewの問題ではないっぽい.</li>
-</ul>
-</li>
-<li>なぜかEasymotionのターゲットのハイライトが消えて,超絶読みにくくなる問題も発生</li>
-</ol>
-
-
-<h2>解決策</h2>
-
-<p>上記vimrcに記述したとおり</p>
-
-<ol>
-<li>普通は<code>autocmd BufWritePost *vimrc source $MYVIMRC</code>と記述するところを<code>autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker</code>として無理やり変える.</li>
-<li>今まで設定してなかったけど上記vimrcのようにEasymotionのハイライト設定してしまう.</li>
-</ol>
-
-
-<h2>というか</h2>
-
-<p>vimrcの編集とリロードをしやすくする設定を未だしてなかったあたりVimmerを名乗れるない感じですね…今までわざわざ<code>:source ~/.vimrc</code>するかvim再起動させてた.</p>
-
-<p>出来るのは知ってたけど後回しにしてた結果がこれだよ.でも自動で再読み込みさせることも出来るのは収穫だった.有名どころの記述はコマンドかキーマッピングで実装してる気がする.オートロードさせるとかなり捗りますね.ただfoldの状態がリセットされるので,折りたたみを閉じてる状態でやるとちょっとびっくりする.</p>
-
-<p>Easymotionのハイライトに関しては原因が全くわからなかった…検索とかのハイライトは機能していたのでハイライト機能自体がおかしくなったわけじゃないっぽい</p>
-
-<p>リロード時にモードラインの記述が無視されるのは,最初はバグ的な何かだと思ったけど,<code>source ~/.vimrc</code>の場合,そもそもコメントであるモードラインの記述は読み込まない仕様かも.</p>
-
-<h2>Link</h2>
-
-<ul>
-<li><a href="http://c4se.hatenablog.com/entry/2013/05/15/115205">vimrcを編集し、保存時に自動で再読み込みする &#8211; c4se記：さっちゃんですよ☆</a></li>
-<li><a href="http://vim-users.jp/2009/09/hack74/">Vim-users.jp &#8211; Hack #74: 簡単にvimrcを編集する</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/edit-vimrc-easily/">Vimでvimrcを編集しやすくする記述とvimrcのリロードでモードラインの設定が無視される問題</a>
-      <time datetime="2013-08-07T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>07</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/11">&larr; Older</a>
@@ -1081,7 +1034,7 @@ hi link EasyMotionShade  Comment
 
 <div id="credit" role="contentinfo">
   <p>
-    Copyright &copy; 2015 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
     <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
   </p>
 </div>

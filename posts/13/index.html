@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Googunosy GooGunosy javascript:(function(){var text=encodeURIComponent(window.getSelection());text=(!text)?encodeURIComponent(window.prompt(' &hellip;">
+  <meta name="description" content="作りました。 ぐぐっても見つからなかったので。（需要ないだけ？） Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。 MarkdownURL->DraftPad javascript:location.href=&#8217;draftpad &hellip;&#8221;>
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,81 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/markdownurl2draftpad-2/">MarkdownURL->DraftPad</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-05-09T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>作りました。</h3>
+
+<p>ぐぐっても見つからなかったので。（需要ないだけ？）</p>
+
+<p>Safariから下記ブックマークレット起動でDraftPadにMarkdown型式のURLリンクを吐き出します。</p>
+
+<dl>
+<dt>MarkdownURL->DraftPad</dt>
+<dd><pre><code>  javascript:location.href='draftpad:///insert?after='+encodeURIComponent('\n['+document.title+']('+location.href+')\n');
+</code></pre></dd>
+</dl>
+
+<p>Markdown記法の中でHTMLのリンクで書いても差し支えないですが、統一したかったのでちょっと既存のブックマークレットを編集しただけです。</p>
+
+<h3>Example</h3>
+
+<p>例えばこのページで実行すると下記のコードをDraftPadに吐き出します。</p>
+
+<pre><code>[MarkdownURL-&gt;DraftPad « haya14busa](http://haya14busa.com/markdownurl2draftpad/)
+</code></pre>
+
+<h3>Memo</h3>
+
+<dl>
+<dt><code>location.href</code></dt>
+<dd>  ページのURLを取得</dd>
+<dt><code>document.title</code></dt>
+<dd>  ページのタイトルを取得</dd>
+</dl>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/markdownurl2draftpad-2/">MarkdownURL->DraftPad</a>
+      <time datetime="2013-05-09T00:00:00+09:00" pubdate><span class='month'>May</span> <span class='day'>09</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -845,94 +920,6 @@
       </footer>
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/markdownquote-amazonquote/">MarkdownQuote &#038; AmazonQuote</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-03-27T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>これで君も引用厨。</p>
-
-<h3>MarkdownQuote</h3>
-
-<p>Markdown記法で、選択部分を引用し、引用元リンクをciteタグで囲むブックマークレットです。 今回の転送先はDraftPadではなく新規タブで<a href="http://d.hatena.ne.jp/wineroses/20130211/p2">Safariで走る韋駄天エディタDarkRoomの「ほぼ完成版」 &#8211; W&amp;R : Jazzと読書の日々</a>を改造したMyDarkroomのtextareaに表示させます。下記コードをブックマークして、引用したい部分を選択した状態（しなくても動きます）で実行。</p>
-
-<dl>
-<dt>MarkdownQuote</dt>
-<dd><pre><code>  javascript:fontsize="20";color="#5ccdb6";bgcolor="#453933";font="Hiragino Kaku Gothic ProN";MarkdownURL=encodeURIComponent('\n\n&gt;-- &lt;cite&gt;['+document.title+']('+location.href+')&lt;/cite&gt;');text="data:text/html;charset=UTF-8,&lt;meta name=viewport content=initial-scale=1,maximum-scale=1&gt;&lt;title&gt;MarkdownCite&lt;/title&gt;&lt;body style=margin:0;&gt;&lt;textarea id=wine rows=999 style='border:0;width:100%;height:100%;margin-right:1px;background:#F7F6EB;color:black;font-size:"+fontsize+"px;font-family:"+font+";'&gt;"+"&gt;"+document.getSelection()+MarkdownURL+"&lt;/textarea&gt;&lt;/body&gt;";window.open(text,"_blank");
-</code></pre></dd>
-</dl>
-
-<p>Safari版Darkroomは<a href="http://ja.wikipedia.org/wiki/Data_URI_scheme">Data URI scheme</a>を使ってるので、対応していればiOS以外のモダンブラウザで使えるかも（フォントを弄る必要は少なくともありそう）。もちろんtextareaなので細かい編集可能です。そして何よりブックマークレットが使える!</p>
-
-<blockquote><p> 
-Safariで走るエディタ DarkRoom。ブラウザ上で動いているので、ブックマークレットが使えます。テキスト領域の変数は「wine」。これを使えば文章加工が出来るわけ。　
-*   wine.value：全文を対象にします。　
-*   wine.selectionStart：カーソル位置を示します。あるいは選択領域の始端。
-*   wine.selectionEnd：選択領域の終端を示します。   &#8212;</p>
-
-<p><cite><a href="http://d.hatena.ne.jp/wineroses/20130209/p1">Safari版韋駄天エディタDarkRoomをブックマークレットで拡張する方法 &#8211; W&amp;R : Jazzと読書の日々</a></cite></p></blockquote>
-
-<p>可能性は無限大。</p>
-
-<h3>AmazonQuote</h3>
-
-<p>MarkdownQuoteのURLをAmazonアソシエイトIDに対応させただけ。あとページタイトルではなく商品タイトルに変更しています。参考リンク<a href="http://stocker.jp/diary/amazon-bookmarklet/">今見てるページタイトルとURLをコピーし、Amazon商品ページだったらアフィIDを付けるブックマークレット | Stocker.jp / diary</a><br/>
-小説の一節をちょっと引用したいってときに使えるかも。普通に商品紹介するなら既存のブックマークレットの方が数万倍クオリティー高い。下記コードのhaya14busa-22の部分を自分のIDに変えてください。</p>
-
-<dl>
-<dt>AmazonQuote</dt>
-<dd><pre><code>  javascript:fontsize="20";color="#5ccdb6";bgcolor="#453933";font="Hiragino Kaku Gothic ProN"; title = document.getElementById('btAsinTitle').innerText; param = (document.URL.indexOf('?') == -1) ? '?' : '&amp;'; MarkdownURL=encodeURIComponent('\n\n&gt;-- &lt;cite&gt;['+title+']('+document.URL+param+'tag=haya14busa-22)&lt;/cite&gt;'); text="data:text/html;charset=UTF-8,&lt;meta name=viewport content=initial-scale=1,maximum-scale=1&gt;&lt;title&gt;AmazonCite&lt;/title&gt;&lt;body style=margin:0;&gt;&lt;textarea id=wine rows=999 style='border:0;width:100%;height:100%;margin-right:1px;background:#F7F6EB;color:black;font-size:"+fontsize+"px;font-family:"+font+";'&gt;"+"&gt; "+document.getSelection()+MarkdownURL+" &lt;/textarea&gt;&lt;/body&gt;";window.open(text,"_blank");
-</code></pre></dd>
-</dl>
-
-<blockquote><p> 
-人間は、本当に真剣に、誰がどう見ても絶対に信用するような顔で、平気で嘘をつく。     </p>
-
-<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E6%B1%BA%E5%A3%8A%E3%80%88%E4%B8%8A%E3%80%89-%E6%96%B0%E6%BD%AE%E6%96%87%E5%BA%AB-%E5%B9%B3%E9%87%8E-%E5%95%93%E4%B8%80%E9%83%8E/dp/4101290415?tag=haya14busa-22">決壊〈上〉 (新潮文庫) [文庫]</a></cite></p></blockquote>
-
-<p>blockquoteにcite属性でISBN指定した方がいいんでしょうがMarkdown記法では実装できなさそうなので諦めました。諦めるのは記法の方だとか言わない。<br/>
-そして実際使ってみて気づいた…著者名が表示されない…</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/markdownquote-amazonquote/">MarkdownQuote &#038; AmazonQuote</a>
-      <time datetime="2013-03-27T00:00:00+09:00" pubdate><span class='month'>Mar</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/bookmarklet/'>bookmarklet</a></span>
-      
-      </footer>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/14">&larr; Older</a>
@@ -1006,7 +993,7 @@ Safariで走るエディタ DarkRoom。ブラウザ上で動いているので�
 
 <div id="credit" role="contentinfo">
   <p>
-    Copyright &copy; 2015 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
     <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
   </p>
 </div>
