@@ -217,9 +217,9 @@ vim-easymotionはforkする前のもともとコードがそんなに綺麗じ�
 
 [vim-easymotion](https://github.com/easymotion/vim-easymotion), また一段と便利になったので是非使ってみてください!
 
-僕はもうこの機能なしでは生きていけなさそうです．**
+僕はもうこの機能なしでは生きていけなさそうです．
 
-あぁ〜カーソルがぴょんぴょんするんじゃぁ〜**
+**あぁ〜カーソルがぴょんぴょんするんじゃぁ〜**
 
 <blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">vim-easymotion, あぁ〜カーソルがぴょんぴょんするんじゃぁ〜 って感じだ</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/687679866175500288">January 14, 2016</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
