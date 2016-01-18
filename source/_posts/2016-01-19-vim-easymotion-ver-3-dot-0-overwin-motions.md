@@ -95,7 +95,7 @@ vim-easymotionには`<Plug>(easymotion-sn)`という `N` 文字入力してマ�
 " EasyMotion.
 function! s:incsearch_config(...) abort
   return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1)],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
   \   'keymap': {
   \     "\<CR>": '<Over>(easymotion)'
   \   },
