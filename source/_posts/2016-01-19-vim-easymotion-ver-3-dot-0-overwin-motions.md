@@ -73,6 +73,11 @@ EasyMotion触ったことなくてミニマムに始めたい場合は上記設�
 let g:EasyMotion_do_mapping = 0
 ```
 
+もしひとつだけおすすめするなら`nmap s <Plug>(easymotion-overwin-f2)`がオススメです．
+このマッピングだと画面上の見えているところへならどこへでも `s{char}{char}{hint}`の4 キーストロークで移動できます．
+`<Plug>(easymotion-overwin-f)`や`<Plug>(easymotion-overwin-w)`だと候補が多すぎてヒントを2回以上打たないとダメなケースがよくあるのですが，
+`{char}{char}`と2文字打つと候補が劇的に減ってヒントは大抵のケースで1文字入力するだけですみます．
+
 #### incsearch.vim との連携
 
 vim-easymotionには`<Plug>(easymotion-sn)`という `N` 文字入力してマッチした位置
