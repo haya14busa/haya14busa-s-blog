@@ -142,7 +142,7 @@ revital.vim の使い方
 
 #### b) モジュールの使い方
 
-```.vim
+```vim
 let s:V = vital#{pluginname}#of()
 let s:List = s:V.import('Data.List')
 echo s:List.uniq([1, 1, 2, 3, 1, 2])
