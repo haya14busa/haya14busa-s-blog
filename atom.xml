@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-01-19T07:05:16+09:00</updated>
+  <updated>2016-03-23T07:18:42+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,213 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする]]></title>
+    <link href="http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/"/>
+    <updated>2016-03-23T04:45:43+09:00</updated>
+    <id>http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster</id>
+    <content type="html"><![CDATA[<div class="github-card" data-github="haya14busa/revital.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/revital.vim">haya14busa/revital.vim</a></p>
+
+<p>この度， revital.vim というプラグインを作って vital.vim のモジュールのローディングを爆速にしてお前らが使ってる Vim plugin を速くしました．</p>
+
+<p>めでたい．</p>
+
+<p>あと気づいたんですが今日は僕の誕生日のですね．これもまためでたい．</p>
+
+<p>そして本当のところは vital.vim を使ってるプラグイン開発者が， revital.vim を使って初めて速くなるので実はまだ速くなってないものが多いです．
+待ちきれない方はこの記事を読んで revital.vim の使い方を覚えてプルリクしていきましょう．
+また爆速にはなったと思うんですが，体感には個人差・環境差があり，もともとほとんど速度が気にならない人も多いかと思うのでご注意ください．
+Windows だか symlink だか virtualbox だか neovim だか何かはまだよくわかってませんが，特定の
+環境が原因なのか vital.vim をヘビーに使用しているプラグインにまれによく「遅いぞ?」という issue が飛んできたりしていて，
+そういった方には顕著に効果があると思います．(たぶん)</p>
+
+<p>参考: <a href="https://github.com/easymotion/vim-easymotion/issues/242">遅いと</a>，<a href="https://github.com/easymotion/vim-easymotion/issues/136">言ってる</a>，<a href="https://github.com/haya14busa/incsearch.vim/issues/85">人たち</a>
+(放置気味でｽｲﾏｾﾝ&hellip;いや workaround な修正なら前からできたんだけど手元でも再現しないものをその場対処はあんまりやりたくなくてやる気が&hellip;)</p>
+
+<h2>vital.vim とは?</h2>
+
+<p><a href="https://github.com/vim-jp/vital.vim">https://github.com/vim-jp/vital.vim</a></p>
+
+<p>Vim script の最高のライブラリです．vital.vimのいいところとダメなところを個人的に上げるとこんな感じです．</p>
+
+<h3>vital.vim のいいところ</h3>
+
+<ol>
+<li>組み込み式なので依存ライブラリがアップデートされても安心</li>
+<li>プラグインのユーザはvital.vimを別途インストールする必要がない</li>
+<li>めっちゃ気軽に外部ライブラリを作って使える</li>
+<li>けっこういろんなものがそろっていて種類が豊富</li>
+<li>日本人の凄腕 Vimmer 達が開発・メンテしているので品質も高い</li>
+</ol>
+
+
+<p><strong>とにかくベンリ</strong></p>
+
+<h3>vital.vim のダメなところ</h3>
+
+<ol>
+<li>(ロードが) <strong>遅い</strong> (ケースがある)(基本的に気にならないけど)</li>
+<li>ドキュメントがたぶん足りないので敷居が高い(ように見える)</li>
+<li>インストールやアップデートでハマることが多い印象</li>
+</ol>
+
+
+<p>他のところで，ファイルをコピーするのが無駄だとかキッチンシンクじゃない?みたいな
+話を聞いたことがありますが，前者は全然気にする時代じゃないはずだし，後者は単なる勘違いで
+vital.vim は使うライブラリのみ組み込めるので問題ないはずです．</p>
+
+<p><a href="https://github.com/vim-jp/vital.vim">Githubのリポジトリ</a>では</p>
+
+<blockquote><p>This is like a plugin which has both aspects of Bundler and jQuery at the same time.</p></blockquote>
+
+<p>と(たぶん昔から)書いてあって，Bundler はともかく jQuery はちょっとあんまり良い印象ではないのかなぁと思う．
+どちらかというと lodash とか Bundler に合わせるなら npm と言ってもいい気がする．</p>
+
+<p>で，話が少々それていますが，今回 1つ目のモジュールの読み込みが<strong>遅い</strong>という部分を revital.vim で解決してみました．
+2と3はドキュメントを拡充したり，<code>:Vitalizer</code>というコマンドをもうちょっとユーザフレンドリーにしてあげるといいのかなぁと個人的に思うのでなんとかしたいと思います．
+(去年くらい前から思っているのでつらい)</p>
+
+<p>とにかく <a href="https://github.com/vim-jp/vital.vim">vital.vim</a> 最高なので
+<a href="https://github.com/haya14busa/revital.vim">revital.vim</a> と一緒に使っていきましょう．</p>
+
+<h2>速くなったというならまずはベンチマーク(雑)じゃん?</h2>
+
+<h3>スクリプト</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerStart <span class="k">let</span> start_time <span class="p">=</span> reltime<span class="p">()</span>
+</span><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerEnd echo reltimestr<span class="p">(</span>reltime<span class="p">(</span>start_time<span class="p">))</span> <span class="p">|</span> unlet start_time
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#of<span class="p">(</span><span class="s1">&#39;incsearch&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#<span class="nb">incsearch</span>#of<span class="p">()</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">let</span> <span class="k">s</span>:times <span class="p">=</span> <span class="m">100</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 1.565324</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 0.028437</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>結果: vital#of() と V.import(&lsquo;Data.List&rsquo;) 相当を100回回したベンチマーク</h4>
+
+<table>
+<thead>
+<tr>
+<th>vital.vim (x 100) </th>
+<th> revital.vim (x 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.565324 sec </td>
+<td> <strong>0.028437 sec</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>ref: <a href="https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963">https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963</a></p>
+
+<p><strong>速くなってますね!!!</strong></p>
+
+<p>(まぁ僕の環境ではもともと1回分にすると0.01秒くらいで全然遅いと感じたことなかったのですが)</p>
+
+<p>上記のベンチマークは <a href="https://github.com/haya14busa/incsearch.vim">https://github.com/haya14busa/incsearch.vim</a> のコードで回しましたが，<a href="https://github.com/easymotion/vim-easymotion">https://github.com/easymotion/vim-easymotion</a> や 手元でテスト様に作った全部のvital モジュールをインストールしたプラグインでも同じような結果になりました．</p>
+
+<h2>revital.vim の使い方</h2>
+
+<p>さぁこれだけ速くなってるならvital.vimを既に使ってる人なんかは特に revital.vim を使ってみたくなりましたよね?
+使い方は簡単です．</p>
+
+<h3>わかってる人向けの簡単説明</h3>
+
+<ol>
+<li>vital.vim で :Vitalize しておく</li>
+<li>revital.vim の :Revitalize コマンドを実行</li>
+<li><code>vital#of('{plugin-name}')</code> の変わりに <code>vital#{plugin-name}#of()</code>を使う．</li>
+</ol>
+
+
+<p>これだけです．インターフェースは vital.vim をそのまま使う場合とほとんど変わりません．</p>
+
+<h3>ちょっと丁寧な説明</h3>
+
+<h4>a) モジュールをインストール</h4>
+
+<p><code>{pluginname}</code> をあなたかが開発しているプラグインの名前に置き換えましょう．</p>
+
+<ol>
+<li><code>:cd /path/to/your/plugin</code> プラグインのディレクトリに移動．もちろん shell で移動してから Vim を起動するとかコマンドで指定してもOK.</li>
+<li><code>:Vitalize --name={pluginname} . +Data.List</code> <code>Data.List</code> モジュールを組み込んでみる</li>
+<li>※  <code>--name</code>には<code>.</code>や<code>-</code>が使えないので適宜<code>vim-</code>とか<code>.vim</code>とかいらない部分は削る．</li>
+<li><code>:Revitalize .</code> Revitalize 実行!</li>
+</ol>
+
+
+<h4>b) モジュールの使い方</h4>
+
+<p>let s:V = vital#{pluginname}#of()
+let s:List = s:V.import(&lsquo;Data.List&rsquo;)
+echo s:List.uniq([1, 1, 2, 3, 1, 2])
+&ldquo; => [1, 2, 3]</p>
+
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました]]></title>
@@ -135,6 +342,11 @@
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>もしひとつだけおすすめするなら<code>nmap s &lt;Plug&gt;(easymotion-overwin-f2)</code>がオススメです．
+このマッピングだと画面上の見えているところへならどこへでも <code>s{char}{char}{hint}</code>の4 キーストロークで移動できます．
+<code>&lt;Plug&gt;(easymotion-overwin-f)</code>や<code>&lt;Plug&gt;(easymotion-overwin-w)</code>だと候補が多すぎてヒントを2回以上打たないとダメなケースがよくあるのですが，
+<code>{char}{char}</code>と2文字打つと候補が劇的に減ってヒントは大抵のケースで1文字入力するだけですみます．</p>
 
 <h4>incsearch.vim との連携</h4>
 
@@ -5628,117 +5840,6 @@ DNS設定の仕方などの記事も気が向いたら書いていこうかな�
 <h2>まとめ</h2>
 
 <p><strong>『Vim駆動学習』</strong>最高でした。これからもよろしくおねがいします。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimでmigemoを使って日本語でもローマ字のまま検索がしたい]]></title>
-    <link href="http://haya14busa.com/vim_migemo_search/"/>
-    <updated>2014-02-14T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/vim_migemo_search</id>
-    <content type="html"><![CDATA[<p>この記事は <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事になります。</p>
-
-<h2>Migemoとは</h2>
-
-<ul>
-<li><a href="http://0xcc.net/migemo/">Migemo: ローマ字のまま日本語をインクリメンタル検索</a></li>
-<li><a href="http://0xcc.net/unimag/2/">横着プログラミング 第2回: Migemo: 日本語のインクリメンタル検索</a></li>
-</ul>
-
-
-<p>「Migemoとはローマ字のまま日本語を検索できるものです」みたいな紹介をしようと思ったら思ったよりも『インクリメンタル』が重要なファクターっぽいですね。今回はインクリメンタル基本的にしない/できないmigemoの紹介です。</p>
-
-<p>vimでもmigemo使いたいですよね。</p>
-
-<h2>+kaoriyaのVimならデフォルトでmigemoが使えるけど</h2>
-
-<p>+kaoriya以外のVimでmigemo使うのは(昔は)結構面倒くさかったように思えます。</p>
-
-<p>-kaoriyaでmigemoを使う方法としては</p>
-
-<ol>
-<li><a href="http://www.kaoriya.net/software/cmigemo/">C/Migemo</a>を端末にインストール</li>
-<li>cmigemoと連携する Vim プラグインをインストール</li>
-</ol>
-
-
-<p>なのですが、1は</p>
-
-<pre><code>apt-get install cmigemo
-brew install cmigemo
-</code></pre>
-
-<p>などなどで割と簡単だったのですが、<a href="https://github.com/koron/cmigemo">koron/cmigemo</a>のVimプラグインの部分がかなり昔から書かれていたこともありその後の2でパス通すのがつらい、プラグインのみで配布されていないのでプラグインマネージャで簡単にインストールできないなどなどちょっとつらい仕様だったので、<a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a>がはじまった初期の右も左もわからない時にPull Requestしてkaoriyaさんにレビューしてもらったり、プラグイン部分を独立してGitHubに上げる権限をもらったりしました。</p>
-
-<p><a href="https://github.com/haya14busa/vim-migemo">haya14busa/vim-migemo</a></p>
-
-<p>ということで、昔の他の人の記事とかを見るとちょっと面倒くさいようにみえるcmigemoのVimへの導入も、</p>
-
-<pre><code>NeoBundle 'haya14busa/vim-migemo'
-</code></pre>
-
-<p>このように割と簡単にできるようになりました。あとvimprocが使えたら使うなどちょっとした改善もしたような記憶があります。</p>
-
-<p>使い方は以前と同じで <code>:Migemo</code> コマンドまたはデフォルトで <code>&lt;Leader&gt;mi</code> にマッピングされています。(<code>&lt;Plug&gt;</code>の提供とかプロンプトの文字列の変更とかの追加はそういえばやっていないけれどしたほうがよいかな&#8230;)</p>
-
-<h2>別のプラグインでちょっと便利に(?)つかう</h2>
-
-<p>基本的にどのプラグインも+kaoriyaでmigemoがデフォルトで使えればそれを、cmigemoがインストールされていればcmigemoを、どれも無理なら使えないという仕様になっていたはずです。</p>
-
-<h3><a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a></h3>
-
-<p>つい先日、<a href="http://techracho.bpsinc.jp/yamasita-taisuke/2014_02_06/15331">vim日本語検索をちょっと便利にするmigemo検索 | TechRacho</a>で紹介されていましたがLindanさん ware の<a href="https://github.com/rhysd/migemo-search.vim">rhysd/migemo-search.vim</a>というプラグインがあります。</p>
-
-<pre><code>NeoBundle 'rhysd/migemo-search.vim'
-if executable('cmigemo')
-    cnoremap &lt;expr&gt;&lt;CR&gt; migemosearch#replace_search_word()."\&lt;CR&gt;"
-endif
-</code></pre>
-
-<p>これは<code>&lt;CR&gt;</code>にマッピングすることで、Vimデフォルトの検索をするときに、検索文字列がローマ字っぽかったらmigemoをよしなに呼んでくれるというものです。こちらの仕様のほうが好きな人はオススメです。個人的にはちょっと試した程度でほぼ使っていないので実は使用感はお伝え出来ません。</p>
-
-<h3>Uniteのmatcherにmigemoを使う</h3>
-
-<p><a href="https://github.com/Shougo/unite.vim">Shougo/unite.vim</a></p>
-
-<p>:h unite-filter-matcher_migemo</p>
-
-<pre><code>NeoBundle 'Shougo/unite.vim'
-nnoremap &lt;silent&gt; g/ :&lt;C-u&gt;Unite -buffer-name=search line -start-insert&lt;CR&gt;
-call unite#custom#source('line', 'matchers', 'matcher_migemo')
-</code></pre>
-
-<p>実はUniteのmatcherの１つにmigemo機能があります。なので、Vimデフォルトの検索とは 操作法が異なりますが、lineソースにmigemoのmatchersを充ててmigemo検索をUniteですることができます。</p>
-
-<h3>EasyMotionのmigemo機能</h3>
-
-<p><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></p>
-
-<p>2012年のVAC記事(<a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する « haya14busa</a>)でEasyMotionで1文字migemoを使えるようにしたと紹介したのですが、最近 n-key motionとして任意の数のキーでEasyMotionできるVimデフォルトの検索の拡張を実装したので、cmigemoがインストールかつ、migemoオプションがオンなら同様にEasyMotionでもmigemo検索できるようになりました。</p>
-
-<pre><code>NeoBundle 'Lokaltog/vim-easymotion'
-map g/ &lt;Plug&gt;(easymotion-sn)
-omap g/ &lt;Plug&gt;(easymotion-tn) " opeartor-pending時にVimデフォルトの検索の仕様に合わせる
-let g:EasyMotion_use_migemo = 1 " Migemo機能ON
-</code></pre>
-
-<p>このあたりは全く別の記事でまた紹介したいのですが、このEasyMotionの検索機能の拡張とも言うべき機能は、インクリメンタルにハイライトしたり、普通のEasyMotionの機能と違って画面外まで飛んだり、<code>&lt;Tab&gt;</code>キーでスクロールできたり、勿論検索履歴やテキストオブジェクト<code>gn</code>とも連携させたりしているので、完璧とは言わないまでもデフォルトの検索をこれに置き換えてもよいかなぁというレベルになっています。</p>
-
-<h4>仕様</h4>
-
-<p>もともとEasyMotionが<strong>スクリーン内</strong>の移動を拡張するというコンセプトなので、仕様としてはmigemo機能がONになっていてもスクリーン上にマルチバイト文字が無ければmigemoを使わないようになっています。なので、普段コードを書くときにmigemoによって遅くならないようになっているともいえるし、画面外に日本語があるとはわかっているんだけど画面内に日本語が無ければ発動しないという残念仕様でもあるとは言えますね&#8230;</p>
-
-<p>またインクリメンタルハイライトにmigemoを対応させていないので、実はMigemoに関してはインクリメンタルハイライトの一貫性がなくなってしまっている状態(インクリメンタルにハイライトはされていなくても<code>&lt;CR&gt;</code>で実行するとマッチする)なのでmigemo機能として使うには実はあんまりオススメはできません()。現状での仕様をわかった上で使ってくれたらいいかなぁと思います。</p>
-
-<p>というのも、システムのcmigemoを呼ぶという性質上、毎回のinputでインクリメンタルにcmigemoを呼ぶと、とてもじゃないけど耐えらたものじゃない速度になってしまい、実装してみましたが敢え無く断念しました。このためにProcessManagerも使ってみたんですがやっぱりダメでした&#8230;無念。</p>
-
-<p>そのうち要望 or 気が向いたら、インクリメンタル検索中のキーマッピングとしてmigemo使って一時的にハイライトさせるみたいな機能を実装するかもしれません。(それでも不便感は拭えないですが&#8230;)</p>
-
-<h3>まとめ</h3>
-
-<p>migemoで日本語の検索も出来てよいです。ただ+kaoriyaコンパイル以外でのインクリメンタル検索は基本つらいのでまだ改善の余地はあるかもしれないですね。</p>
-
-<p>それでは <a href="http://atnd.org/events/45072">Vim Advent Calendar 2013</a> 75日目の記事でした。</p>
 ]]></content>
   </entry>
   

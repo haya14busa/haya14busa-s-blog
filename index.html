@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Vim-EasyMotion でウィンドウをまたいだ移動ができるようになりました!!! easymotion/vim-easymotion 過去の関連記事 Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する - haya14busa まだ fork でやってた時代の記事． &hellip;">
+  <meta name="description" content="haya14busa/revital.vim この度， revital.vim というプラグインを作って vital.vim のモジュールのローディングを爆速にしてお前らが使ってる Vim plugin を速くしました． めでたい． あと気づいたんですが今日は僕の誕生日のですね． &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,251 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/revital-vim-makes-vital-vim-a-log-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim Plugin を速くする</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-03-23T04:45:43+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="github-card" data-github="haya14busa/revital.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/revital.vim">haya14busa/revital.vim</a></p>
+
+<p>この度， revital.vim というプラグインを作って vital.vim のモジュールのローディングを爆速にしてお前らが使ってる Vim plugin を速くしました．</p>
+
+<p>めでたい．</p>
+
+<p>あと気づいたんですが今日は僕の誕生日のですね．これもまためでたい．</p>
+
+<p>そして本当のところは vital.vim を使ってるプラグイン開発者が， revital.vim を使って初めて速くなるので実はまだ速くなってないものが多いです．
+待ちきれない方はこの記事を読んで revital.vim の使い方を覚えてプルリクしていきましょう．
+また爆速にはなったと思うんですが，体感には個人差・環境差があり，もともとほとんど速度が気にならない人も多いかと思うのでご注意ください．
+Windows だか symlink だか virtualbox だか neovim だか何かはまだよくわかってませんが，特定の
+環境が原因なのか vital.vim をヘビーに使用しているプラグインにまれによく「遅いぞ?」という issue が飛んできたりしていて，
+そういった方には顕著に効果があると思います．(たぶん)</p>
+
+<p>参考: <a href="https://github.com/easymotion/vim-easymotion/issues/242">遅いと</a>，<a href="https://github.com/easymotion/vim-easymotion/issues/136">言ってる</a>，<a href="https://github.com/haya14busa/incsearch.vim/issues/85">人たち</a>
+(放置気味でｽｲﾏｾﾝ&hellip;いや workaround な修正なら前からできたんだけど手元でも再現しないものをその場対処はあんまりやりたくなくてやる気が&hellip;)</p>
+
+<h2>vital.vim とは?</h2>
+
+<p><a href="https://github.com/vim-jp/vital.vim">https://github.com/vim-jp/vital.vim</a></p>
+
+<p>Vim script の最高のライブラリです．vital.vimのいいところとダメなところを個人的に上げるとこんな感じです．</p>
+
+<h3>vital.vim のいいところ</h3>
+
+<ol>
+<li>組み込み式なので依存ライブラリがアップデートされても安心</li>
+<li>プラグインのユーザはvital.vimを別途インストールする必要がない</li>
+<li>めっちゃ気軽に外部ライブラリを作って使える</li>
+<li>けっこういろんなものがそろっていて種類が豊富</li>
+<li>日本人の凄腕 Vimmer 達が開発・メンテしているので品質も高い</li>
+</ol>
+
+
+<p><strong>とにかくベンリ</strong></p>
+
+<h3>vital.vim のダメなところ</h3>
+
+<ol>
+<li>(ロードが) <strong>遅い</strong> (ケースがある)(基本的に気にならないけど)</li>
+<li>ドキュメントがたぶん足りないので敷居が高い(ように見える)</li>
+<li>インストールやアップデートでハマることが多い印象</li>
+</ol>
+
+
+<p>他のところで，ファイルをコピーするのが無駄だとかキッチンシンクじゃない?みたいな
+話を聞いたことがありますが，前者は全然気にする時代じゃないはずだし，後者は単なる勘違いで
+vital.vim は使うライブラリのみ組み込めるので問題ないはずです．</p>
+
+<p><a href="https://github.com/vim-jp/vital.vim">Githubのリポジトリ</a>では</p>
+
+<blockquote><p>This is like a plugin which has both aspects of Bundler and jQuery at the same time.</p></blockquote>
+
+<p>と(たぶん昔から)書いてあって，Bundler はともかく jQuery はちょっとあんまり良い印象ではないのかなぁと思う．
+どちらかというと lodash とか Bundler に合わせるなら npm と言ってもいい気がする．</p>
+
+<p>で，話が少々それていますが，今回 1つ目のモジュールの読み込みが<strong>遅い</strong>という部分を revital.vim で解決してみました．
+2と3はドキュメントを拡充したり，<code>:Vitalizer</code>というコマンドをもうちょっとユーザフレンドリーにしてあげるといいのかなぁと個人的に思うのでなんとかしたいと思います．
+(去年くらい前から思っているのでつらい)</p>
+
+<p>とにかく <a href="https://github.com/vim-jp/vital.vim">vital.vim</a> 最高なので
+<a href="https://github.com/haya14busa/revital.vim">revital.vim</a> と一緒に使っていきましょう．</p>
+
+<h2>速くなったというならまずはベンチマーク(雑)じゃん?</h2>
+
+<h3>スクリプト</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerStart <span class="k">let</span> start_time <span class="p">=</span> reltime<span class="p">()</span>
+</span><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerEnd echo reltimestr<span class="p">(</span>reltime<span class="p">(</span>start_time<span class="p">))</span> <span class="p">|</span> unlet start_time
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#of<span class="p">(</span><span class="s1">&#39;incsearch&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#<span class="nb">incsearch</span>#of<span class="p">()</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">let</span> <span class="k">s</span>:times <span class="p">=</span> <span class="m">100</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 1.565324</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 0.028437</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>結果: vital#of() と V.import(&lsquo;Data.List&rsquo;) 相当を100回回したベンチマーク</h4>
+
+<table>
+<thead>
+<tr>
+<th>vital.vim (x 100) </th>
+<th> revital.vim (x 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.565324 sec </td>
+<td> <strong>0.028437 sec</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>ref: <a href="https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963">https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963</a></p>
+
+<p><strong>速くなってますね!!!</strong></p>
+
+<p>(まぁ僕の環境ではもともと1回分にすると0.01秒くらいで全然遅いと感じたことなかったのですが)</p>
+
+<p>上記のベンチマークは <a href="https://github.com/haya14busa/incsearch.vim">https://github.com/haya14busa/incsearch.vim</a> のコードで回しましたが，<a href="https://github.com/easymotion/vim-easymotion">https://github.com/easymotion/vim-easymotion</a> や 手元でテスト様に作った全部のvital モジュールをインストールしたプラグインでも同じような結果になりました．</p>
+
+<h2>revital.vim の使い方</h2>
+
+<p>さぁこれだけ速くなってるならvital.vimを既に使ってる人なんかは特に revital.vim を使ってみたくなりましたよね?
+使い方は簡単です．</p>
+
+<h3>わかってる人向けの簡単説明</h3>
+
+<ol>
+<li>vital.vim で :Vitalize しておく</li>
+<li>revital.vim の :Revitalize コマンドを実行</li>
+<li><code>vital#of('{plugin-name}')</code> の変わりに <code>vital#{plugin-name}#of()</code>を使う．</li>
+</ol>
+
+
+<p>これだけです．インターフェースは vital.vim をそのまま使う場合とほとんど変わりません．</p>
+
+<h3>ちょっと丁寧な説明</h3>
+
+<h4>a) モジュールをインストール</h4>
+
+<p><code>{pluginname}</code> をあなたかが開発しているプラグインの名前に置き換えましょう．</p>
+
+<ol>
+<li><code>:cd /path/to/your/plugin</code> プラグインのディレクトリに移動．もちろん shell で移動してから Vim を起動するとかコマンドで指定してもOK.</li>
+<li><code>:Vitalize --name={pluginname} . +Data.List</code> <code>Data.List</code> モジュールを組み込んでみる</li>
+<li>※  <code>--name</code>には<code>.</code>や<code>-</code>が使えないので適宜<code>vim-</code>とか<code>.vim</code>とかいらない部分は削る．</li>
+<li><code>:Revitalize .</code> Revitalize 実行!</li>
+</ol>
+
+
+<h4>b) モジュールの使い方</h4>
+
+<p>let s:V = vital#{pluginname}#of()
+let s:List = s:V.import(&lsquo;Data.List&rsquo;)
+echo s:List.uniq([1, 1, 2, 3, 1, 2])
+&ldquo; => [1, 2, 3]</p>
+
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/revital-vim-makes-vital-vim-a-log-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする</a>
+      <time datetime="2016-03-23T04:45:43+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2016</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -225,6 +470,11 @@
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>もしひとつだけおすすめするなら<code>nmap s &lt;Plug&gt;(easymotion-overwin-f2)</code>がオススメです．
+このマッピングだと画面上の見えているところへならどこへでも <code>s{char}{char}{hint}</code>の4 キーストロークで移動できます．
+<code>&lt;Plug&gt;(easymotion-overwin-f)</code>や<code>&lt;Plug&gt;(easymotion-overwin-w)</code>だと候補が多すぎてヒントを2回以上打たないとダメなケースがよくあるのですが，
+<code>{char}{char}</code>と2文字打つと候補が劇的に減ってヒントは大抵のケースで1文字入力するだけですみます．</p>
 
 <h4>incsearch.vim との連携</h4>
 
@@ -2475,291 +2725,6 @@ OSSっぽいこと，ここに書くようなことはほとんどできませ�
       <time datetime="2015-12-21T02:55:02+09:00" pubdate><span class='month'>Dec</span> <span class='day'>21</span> <span class='year'>2015</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/yapcasia-2015/">ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-23T10:24:12+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>YAPC::Asia 2015 に1日目・2日目と参加してきました．</p>
-
-<h2>ブログを書くまでがYAPCで，LTしてみたかったならやぷしー終了するまでにブログで発表すればいいじゃない</h2>
-
-<p>YAPC 2015 初めての参加でしたが一言で言うと<strong>最高</strong>でした!!! 刺激になるトーク多すぎました．</p>
-
-<p>ただひとつ悔やまれるのは1日目の前日くらいに勢いでLT応募したけど，そのまま勢いで落ちたのでﾁｮｯﾄ発表してみたかった&hellip;倍率高すぎる〜</p>
-
-<p>(本当に悔やまれるのはトラック被って見れなかった裏トラックを見れてないということで，資料とかまとめとかYouTube見ていくゾ!!!)</p>
-
-<p>&hellip;ところで，YAPCはブログを書くまで終わらないんだからブログでLTしたかった内容発表すれば，
-それはもうYAPCでLTしたことになるのでは&hellip;!?!?!?(混乱)</p>
-
-<p>と考えたのでブログで発表したかった資料をあげる最高にカッコワルイことを今からします．
-その後参加記みたいな何かを書いています．</p>
-
-<p>いろいろと，読む前でも読んだ上でも思うことはあると思いますが自分でも思うことはあるので
-察してそっとしておいてください!! いろいろと反省はしている．</p>
-
-<h2>Vim 駆動学習</h2>
-
-<script async class="speakerdeck-embed" data-id="62d0b9127b664ae5aad0e14742371fcc" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<ul>
-<li><a href="http://yapcasia.org/2015/talk/show/8f1aad32-474d-11e5-a80e-c7de7d574c3a">Vim 駆動学習 - YAPC::Asia Tokyo 2015</a></li>
-<li><a href="https://speakerdeck.com/haya14busa/vim-driven-learning">Vim Driven Learning // Speaker Deck</a></li>
-</ul>
-
-
-<p>※ 1箇所gifが表現できないのでクリックして見てと言っているけどSpeaker Deckだとクリックできないのでスルーしてください(PDFをダウンロードすれば一応クリックできるけど)</p>
-
-<h2>LT説明や資料の反省とか．あと参考記事</h2>
-
-<p>エモイ話だ&hellip;</p>
-
-<p>基本的にはこれまでにどこかでアウトプットした内容で，なるべくそうならないように意識はしてたのだけど，
-説明文とか内容とか何か聴衆に有益情報話すというより，単なる自分語り感が強すぎるのがｳｰﾝっていう感じだと思っています．</p>
-
-<p>まぁ技術的な説明とかは他の人のほうが断然できるはずだし，
-僕ができるのは僕の経験を話すこと．それが一番僕にしかできない発表で，
-そこで何か聴衆に響かせることができたらいいなって考えたのでこういった内容になってます．</p>
-
-<p>内容がだいたいどこかで以前アウトプットしたものになった原因は，これまで基本的には記事書くようにしていたからっていうことや，
-聴衆がどうよりも経験としてYAPCみたいな舞台で発表したいというエゴによって自分のなかでGoサインが勢いで出てしまった感じになってます．</p>
-
-<p>資料できてここまで書いて思ったけどたぶん落ちてよかったんじゃないかなぁみたいな思いもある．
-普通に5minオーバーすると思うし．</p>
-
-<p>これからまた頑張っていくゾイ!!!</p>
-
-<h3>参考記事</h3>
-
-<p>だいたい僕のブログ読んでたらLT資料読まなくてもだいたいわかる感じになっている．
-もし興味出たっていう優しいかたは気になった記事を読んでいただけると少し詳しく書かれています．</p>
-
-<ul>
-<li>全体:
-
-<ul>
-<li><a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
-<li><a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
-</ul>
-</li>
-<li>vim-easymotionの話: <a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a></li>
-<li>incsearch.vimの話:
-
-<ul>
-<li><a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a></li>
-<li><a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a></li>
-</ul>
-</li>
-<li>おもしろ開発系:
-
-<ul>
-<li><a href="https://github.com/haya14busa/eew.vim">緊急地震速報 on Vim</a> とか <a href="https://github.com/haya14busa/niconicomment.vim">Vimでニコニコlikeコメント</a> は記事は書いてなくてTwitterでやってた</li>
-</ul>
-</li>
-<li>Vim script へ移植
-
-<ul>
-<li>underscore.vim は記事かいてなかった&hellip;</li>
-<li>Vim版power-assert: <a href="http://haya14busa.com/vim-vital-power-assert/">Vim script版 power-assert! テスト書いてないとかお前それ Vim script の前でも同じこと言えんの? - haya14busa</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>自分の LT のくだり終了．</p>
-
-<h2>YAPC::Asia 2015 Day1 感想</h2>
-
-<h3>聴いたTalkと感想</h3>
-
-<p>1日目は朝5時半くらいから起きて東京に向かったのでなかなか大変でしたが，早起きチャレンジ成功してよかった．</p>
-
-<h4>1) <a href="http://yapcasia.org/2015/talk/show/a636430c-0fbf-11e5-8a02-43ec7d574c3a">メリークリスマス！ - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>perl を書いたことは無かったけど歌って踊るラリーウォールみれてよかった．
-perl6 面白そうなようなので(又聞き)，クリスマス期待．</p>
-
-<h4>2) <a href="http://yapcasia.org/2015/talk/show/9ec2791c-05e5-11e5-81fa-79c97d574c3a">世界展開する大規模ウェブサービスのデプロイを支える技術 - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>Miiverse のデプロイを支える技術の話だった．海を超えたgit pullとかその不可を抑えるためのランダムスリープみたいな
-つらい話からはじまって，それを解決していった話が聞けました．
-大規模ウェブサービスのデプロイ，やったこと一切なくてあまり個人の実感がわかないのでムズカシイけどこういう話も勉強していきたい．</p>
-
-<h4>3) <a href="http://yapcasia.org/2015/talk/show/cc0ec485-1879-11e5-aca1-525412004261">TBD - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>Rubyのパパ Matz が Rubyの話しを封印したと思ったら10分で封印を解いたり，
-Ruby のディスと見せかけて間接的にperlディスってたりしておもしろかった．
-内容も面白くて，主流のアーキテクチャが変わると言語デザインも変わってきて，それに対応してデザインされているのが streem ならしい．</p>
-
-<h4>4) <a href="http://yapcasia.org/2015/talk/show/de9e7a1e-136d-11e5-a9fc-d9f87d574c3a">Perlの上にも三年 〜 ずっとイケてるサービスを作り続ける技術 〜 - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>おもしろトークだった上にめっちゃ開発の参考になる話が多かった．紹介されていた本読みたい -> <a href="http://hitode909.hatenablog.com/entry/yapc2015books">YAPCの発表で紹介した本 - hitode909の日記</a>．
-DDDとかユビキタス言語の導入の話とかがとてもいい話で，僕もやっていきたい．
-最近自分でもプログラムやドキュメントに書いてる単語がブレていたりするのを感じていて，
-<code>ユビキタス言語.md</code> (ファイル名違う気がする) とかをリポジトリに置いて管理するのとかもよさそうと思った．</p>
-
-<p>事前条件/事後条件とかあってそこで 責任外のことをチェックせずお互いを信頼するとスッキリするという話もなんとなくスッキリして面白かった．</p>
-
-<h4>5) <a href="http://yapcasia.org/2015/talk/show/523b9508-0d77-11e5-8174-67dc7d574c3a">うっかりをなくす技術 - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>うっかりすることよくあるので，うっかりをなくす技術を聞きに行った．
-assertion ライブラリ的なものを最近作っていたのでassertionの話とかもっと聞きたかった．契約プログラミングとか???(わかってない)
-defer/guard object とかスゴイよさそうだった．golang に defer とかあるようだし，goやっていきたい．</p>
-
-<p>追記: あとせっかくうっかりをなくす技術聴いたのに2日目に会場に荷物忘れるうっかりをやらかした． そしてこの文をブログに書くのを忘れるといううっかりもして，うっかりしないようにするのはムズカシイ&hellip;</p>
-
-<h4>6) <a href="http://yapcasia.org/2015/talk/show/22957e9c-1872-11e5-aca1-525412004261">Lightning Talks Day 1 - YAPC::Asia Tokyo 2015</a></h4>
-
-<p>Slack + Hubot でお前の一番好きな二次元嫁キャラと一緒に仕事をする 話とかが思考がぶっ飛んでいて面白かった．
-PHPでregister_globalsの話をしてた方が最初に<a href="https://github.com/gongo/emacs-ikku">gongo/emacs-ikku</a>とか作っていて
-「Vimでやらなきゃ&hellip;負けてられない&hellip;」とか考えていたけどまだできていない．</p>
-
-<h2>YAPC::Asia 2015 Day2 感想</h2>
-
-<h3>聴いたTalkと感想</h3>
-
-<h4><a href="http://yapcasia.org/2015/talk/show/5b1cd536-07ed-11e5-9e42-79c97d574c3a">Mackerel開発におけるScalaとGo、そしてPerl - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>複数の言語，技術を用途によって適切に使い分けてるのがすごい．</li>
-<li>Scalaのimplicit conversion の解決遅すぎ問題のつらさわかる〜みたいな気持ちになったりした．</li>
-<li>ちょっと最初の10minくらい遅れていってしまってツライ&hellip;ちゃんと見直したい．</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/f2816038-10ec-11e5-89bf-d7f07d574c3a">我々はどのように冗長化を失敗したのか - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>式年遷宮面白かった．</li>
-<li>発表前から資料がアップロードされていてよさ．</li>
-<li>冗長化ムズカシイ．</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/0af26fe4-0b7b-11e5-a29c-67dc7d574c3a">MySQLで2億件のシリアルデータと格闘したチューニングの話 - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>自分にとっては難しかったのとあまり集中して聞けてなかったのであまり記憶がない&hellip;(LT採択どうかな〜みたいな気持ちで気が気じゃなかったのもある)</li>
-<li>あとから資料見てみたい．</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/bd04b86c-f9de-11e4-b996-8ab37d574c3a">Adventures in Refactoring - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>GitHubの中の人のリファクタリングの話でめっちゃよかった!!! リファクタリングしたい気持ちが高まりまくった．</li>
-<li>リファクタリングは挙動を変えては行けなくて，それはバグも同じで一緒に修正したら問題の切り分けができなくてダメだよという話は，
-わかるという思いと共に，そうは言ってもムズカシイので意識してデキルようにしていきたい．</li>
-<li>リファクタリングをナゼするのかとか，成果を計測しなくてはならないというのは全然意識したことがなかった．資料とか見直しながらやっていきたい．</li>
-<li>(変数・)メソッド名のアンダースコアはリファクタリングチャンス．なるほどという感じだった．</li>
-<li>とにかくリファクタリングやっていくゾ!!!</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/e466d60a-11db-11e5-b07b-d7f07d574c3a">Posture for Engineers - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>肩こりがひどいので姿勢の話を聞きに行った．</li>
-<li>いくつかヨガのポーズみたいなものを教えてもらったので実践できればいいのだけどデキルだろうか&hellip;</li>
-<li>バランスボールのって開発してたら逆に肩こりと首こりがヤバくなった経験があってすぐにやめちゃったのでいい座り方・使い方がしりたい．(質問しそこねた)</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/b03162be-0052-11e5-ba92-89c77d574c3a">Run containerized workloads with Lattice - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>正直わからんかったマン(ムズカシイ&hellip;)</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/6bde6c69-187a-11e5-aca1-525412004261">Profiling &amp; Optimizing in Go - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>とにかくライブコーディングがカッコヨサで Go の標準で提供されている tool すごい強いし，コンパイル速くて書きやすそうだし，
-まだ Go はかけてないけど，Go 書いていくゾ！という気持ちになった． Go 書き始めたらまた参照して学んで行きたい．</li>
-</ul>
-
-
-<h4><a href="http://yapcasia.org/2015/talk/show/69caedbd-1872-11e5-aca1-525412004261">Lightning Talks Day 2 - YAPC::Asia Tokyo 2015</a></h4>
-
-<ul>
-<li>どのLT もこれぞLTってカンジで良かった&hellip;あんなLTできるようになりたい．</li>
-<li><a href="https://twitter.com/orga_chem">@orga_chem</a> さんの Vim script 静的解析の闇がトリで Vim script の闇を暴露していていい話だった．
-Vim script はああいった感じでカワイイのでぜひ興味を持った皆さんには vint のチカラを借りながら Vim script を書いてみて欲しい．
-基本静的解析のときツライという話で，<code>v:count</code>, 関数と変数のネームスペース， <code>map()</code> の引数とかが文字列って以外は普通に書いてるときの
-闇としては避けられそう．(十分多い&hellip;???)</li>
-</ul>
-
-
-<h2>個人的な悔やまれることとか</h2>
-
-<ul>
-<li>最近Vim版power-assert作って補足して頂いたりしたので <a href="https://twitter.com/t_wada">@t_wada</a> さんに会ってご挨拶くらいしておきたかった．
-Vim版 power-assert もっと便利にしておきたい．</li>
-<li>世界の <a href="https://twitter.com/miyagawa">@miyagawa</a> さんを見かけて Rebuild.fm 大好きでめっちゃ聴いてますって言ってみたかったけど，誰かと話されていて，
-Rebuild.fm 聴いてますとか耳たこかもしれないし，その後何か話せるか考えたけど訳分からんくておそらく Rebuild.fm で
-Vim とかエディタの話をしてほしいとかは言わないまでも，Vimmerのゲスト増やしてくださいみたいな困らせるようなことを喋りそうで
-そうこう言ってるうちに機会が過ぎてしまった&hellip;フベン&hellip;</li>
-<li>Twitter のタイムラインを見る限り，オープンインターネッツ上で見たことあるひとがたくさんいたけど，現実の顔と一致しなくて結局
-会わずじまいな人が多かったのでまた何かの機会にお会いしたい．会えたひとも何人かいてそれはよかった．</li>
-<li>発表しようと思うならもっと早めに用意しないと，僕のレベルだと時間をいっぱいかけてやっと聴くに耐えるものになるかどうかギリギリみたいな
-感じだと思うし，ちゃんと準備したい．</li>
-</ul>
-
-
-<h2>全体的に</h2>
-
-<p>YAPC::Asia 2015，YAPC初めての参加でしたが本当に最高でした!!!
-同時通訳の方の同時通訳がすごくて圧巻されたり，会場のWifiはあの人数だったのに個人的にはほとんど繋がっていて CONBU さん凄かった．
-無限に湧き出てくるコーヒーも美味しかったし，懇親会も豪華だしスポンサーの皆様ありがとうございました．</p>
-
-<p>そして発表者の皆様，<a href="https://twitter.com/lestrrat">@lestrrat</a>さんをはじめとした運営の皆様，他の参加者の方々，
-(漏れていたとしたらその方々!)， 最高のYAPC本当にありがとうございました．楽しかったです!!!</p>
-
-<p>絶対来年も参加したい！！！！</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/yapcasia-2015/">ブログを書くまでが #yapcasia なのでブログでLT発表して感想かく ― Vim駆動学習</a>
-      <time datetime="2015-08-23T10:24:12+09:00" pubdate><span class='month'>Aug</span> <span class='day'>23</span> <span class='year'>2015</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/converence/'>converence,</a>, <a class='category' href='/categories/vim/'>vim</a></span>
       
       </footer>
     </article>

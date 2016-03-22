@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="haya14busa/revital.vim この度， revital.vim というプラグインを作って vital.vim のモジュールのローディングを爆速にしてお前らが使ってる Vim plugin を速くしました． めでたい． あと気づいたんですが今日は僕の誕生日のですね． &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">revital.vim で vital.vim を爆速にしてお前らの Vim Plugin を速くする</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-03-23T04:45:43+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><div class="github-card" data-github="haya14busa/revital.vim" data-width="500" data-height="150" data-theme="default"></div>
+
+
+<p><a href="https://github.com/haya14busa/revital.vim">haya14busa/revital.vim</a></p>
+
+<p>この度， revital.vim というプラグインを作って vital.vim のモジュールのローディングを爆速にしてお前らが使ってる Vim plugin を速くしました．</p>
+
+<p>めでたい．</p>
+
+<p>あと気づいたんですが今日は僕の誕生日のですね．これもまためでたい．</p>
+
+<p>そして本当のところは vital.vim を使ってるプラグイン開発者が， revital.vim を使って初めて速くなるので実はまだ速くなってないものが多いです．
+待ちきれない方はこの記事を読んで revital.vim の使い方を覚えてプルリクしていきましょう．
+また爆速にはなったと思うんですが，体感には個人差・環境差があり，もともとほとんど速度が気にならない人も多いかと思うのでご注意ください．
+Windows だか symlink だか virtualbox だか neovim だか何かはまだよくわかってませんが，特定の
+環境が原因なのか vital.vim をヘビーに使用しているプラグインにまれによく「遅いぞ?」という issue が飛んできたりしていて，
+そういった方には顕著に効果があると思います．(たぶん)</p>
+
+<p>参考: <a href="https://github.com/easymotion/vim-easymotion/issues/242">遅いと</a>，<a href="https://github.com/easymotion/vim-easymotion/issues/136">言ってる</a>，<a href="https://github.com/haya14busa/incsearch.vim/issues/85">人たち</a>
+(放置気味でｽｲﾏｾﾝ&hellip;いや workaround な修正なら前からできたんだけど手元でも再現しないものをその場対処はあんまりやりたくなくてやる気が&hellip;)</p>
+
+<h2>vital.vim とは?</h2>
+
+<p><a href="https://github.com/vim-jp/vital.vim">https://github.com/vim-jp/vital.vim</a></p>
+
+<p>Vim script の最高のライブラリです．vital.vimのいいところとダメなところを個人的に上げるとこんな感じです．</p>
+
+<h3>vital.vim のいいところ</h3>
+
+<ol>
+<li>組み込み式なので依存ライブラリがアップデートされても安心</li>
+<li>プラグインのユーザはvital.vimを別途インストールする必要がない</li>
+<li>めっちゃ気軽に外部ライブラリを作って使える</li>
+<li>けっこういろんなものがそろっていて種類が豊富</li>
+<li>日本人の凄腕 Vimmer 達が開発・メンテしているので品質も高い</li>
+</ol>
+
+
+<p><strong>とにかくベンリ</strong></p>
+
+<h3>vital.vim のダメなところ</h3>
+
+<ol>
+<li>(ロードが) <strong>遅い</strong> (ケースがある)(基本的に気にならないけど)</li>
+<li>ドキュメントがたぶん足りないので敷居が高い(ように見える)</li>
+<li>インストールやアップデートでハマることが多い印象</li>
+</ol>
+
+
+<p>他のところで，ファイルをコピーするのが無駄だとかキッチンシンクじゃない?みたいな
+話を聞いたことがありますが，前者は全然気にする時代じゃないはずだし，後者は単なる勘違いで
+vital.vim は使うライブラリのみ組み込めるので問題ないはずです．</p>
+
+<p><a href="https://github.com/vim-jp/vital.vim">Githubのリポジトリ</a>では</p>
+
+<blockquote><p>This is like a plugin which has both aspects of Bundler and jQuery at the same time.</p></blockquote>
+
+<p>と(たぶん昔から)書いてあって，Bundler はともかく jQuery はちょっとあんまり良い印象ではないのかなぁと思う．
+どちらかというと lodash とか Bundler に合わせるなら npm と言ってもいい気がする．</p>
+
+<p>で，話が少々それていますが，今回 1つ目のモジュールの読み込みが<strong>遅い</strong>という部分を revital.vim で解決してみました．
+2と3はドキュメントを拡充したり，<code>:Vitalizer</code>というコマンドをもうちょっとユーザフレンドリーにしてあげるといいのかなぁと個人的に思うのでなんとかしたいと思います．
+(去年くらい前から思っているのでつらい)</p>
+
+<p>とにかく <a href="https://github.com/vim-jp/vital.vim">vital.vim</a> 最高なので
+<a href="https://github.com/haya14busa/revital.vim">revital.vim</a> と一緒に使っていきましょう．</p>
+
+<h2>速くなったというならまずはベンチマーク(雑)じゃん?</h2>
+
+<h3>スクリプト</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerStart <span class="k">let</span> start_time <span class="p">=</span> reltime<span class="p">()</span>
+</span><span class='line'>command<span class="p">!</span> <span class="p">-</span><span class="k">bar</span> TimerEnd echo reltimestr<span class="p">(</span>reltime<span class="p">(</span>start_time<span class="p">))</span> <span class="p">|</span> unlet start_time
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#of<span class="p">(</span><span class="s1">&#39;incsearch&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span> abort
+</span><span class='line'>  <span class="k">let</span> V <span class="p">=</span> vital#<span class="nb">incsearch</span>#of<span class="p">()</span>
+</span><span class='line'>  <span class="k">call</span> V.<span class="k">load</span><span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> V.unload<span class="p">()</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">let</span> <span class="k">s</span>:times <span class="p">=</span> <span class="m">100</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 1.565324</span>
+</span><span class='line'>
+</span><span class='line'>TimerStart
+</span><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="k">s</span>:times<span class="p">)</span>
+</span><span class='line'>  <span class="k">call</span> <span class="k">s</span>:_vital_incsearch_of<span class="p">()</span>
+</span><span class='line'><span class="k">endfor</span>
+</span><span class='line'>TimerEnd
+</span><span class='line'><span class="c">&quot; =&gt; 0.028437</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>結果: vital#of() と V.import(&lsquo;Data.List&rsquo;) 相当を100回回したベンチマーク</h4>
+
+<table>
+<thead>
+<tr>
+<th>vital.vim (x 100) </th>
+<th> revital.vim (x 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.565324 sec </td>
+<td> <strong>0.028437 sec</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>ref: <a href="https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963">https://github.com/haya14busa/incsearch.vim/pull/112#issue-142680963</a></p>
+
+<p><strong>速くなってますね!!!</strong></p>
+
+<p>(まぁ僕の環境ではもともと1回分にすると0.01秒くらいで全然遅いと感じたことなかったのですが)</p>
+
+<p>上記のベンチマークは <a href="https://github.com/haya14busa/incsearch.vim">https://github.com/haya14busa/incsearch.vim</a> のコードで回しましたが，<a href="https://github.com/easymotion/vim-easymotion">https://github.com/easymotion/vim-easymotion</a> や 手元でテスト様に作った全部のvital モジュールをインストールしたプラグインでも同じような結果になりました．</p>
+
+<h2>revital.vim の使い方</h2>
+
+<p>さぁこれだけ速くなってるならvital.vimを既に使ってる人なんかは特に revital.vim を使ってみたくなりましたよね?
+使い方は簡単です．</p>
+
+<h3>わかってる人向けの簡単説明</h3>
+
+<ol>
+<li>vital.vim で :Vitalize しておく</li>
+<li>revital.vim の :Revitalize コマンドを実行</li>
+<li><code>vital#of('{plugin-name}')</code> の変わりに <code>vital#{plugin-name}#of()</code>を使う．</li>
+</ol>
+
+
+<p>これだけです．インターフェースは vital.vim をそのまま使う場合とほとんど変わりません．</p>
+
+<h3>ちょっと丁寧な説明</h3>
+
+<h4>a) モジュールをインストール</h4>
+
+<p><code>{pluginname}</code> をあなたかが開発しているプラグインの名前に置き換えましょう．</p>
+
+<ol>
+<li><code>:cd /path/to/your/plugin</code> プラグインのディレクトリに移動．もちろん shell で移動してから Vim を起動するとかコマンドで指定してもOK.</li>
+<li><code>:Vitalize --name={pluginname} . +Data.List</code> <code>Data.List</code> モジュールを組み込んでみる</li>
+<li>※  <code>--name</code>には<code>.</code>や<code>-</code>が使えないので適宜<code>vim-</code>とか<code>.vim</code>とかいらない部分は削る．</li>
+<li><code>:Revitalize .</code> Revitalize 実行!</li>
+</ol>
+
+
+<h4>b) モジュールの使い方</h4>
+
+<p>let s:V = vital#{pluginname}#of()
+let s:List = s:V.import(&lsquo;Data.List&rsquo;)
+echo s:List.uniq([1, 1, 2, 3, 1, 2])
+&ldquo; => [1, 2, 3]</p>
+
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-03-23T04:45:43+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/" data-via="haya14busa" data-counturl="http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/vim-easymotion-ver-3-dot-0-overwin-motions/" title="Previous Post: Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました">&laquo; Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/';
+        var disqus_url = 'http://haya14busa.com/revital-vim-makes-vital-vim-a-log-faster/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

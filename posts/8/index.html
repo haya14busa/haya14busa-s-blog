@@ -9,7 +9,10 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Mergeしんどい 今までConflict起きたら直接コンフリクトしたファイルを編集して完全手動で直してたんですが、mergetoolの存在とかvimdiffとかで出来そうと思って調べました。 Gitの設定 git config &ndash;global merge.tool vimdiff &hellip;">
+  <meta name="description" content="strdisplaywidthのhelpよくわからん {col}が何を指しているのか、どういう作用を及ぼすのかhelp読んでもいまいちわかりずらく実際に調べてみました。 準備 set noexpandtab
+set softtabstop=8
+set shiftwidth=8
+set &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +79,149 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-11-07T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>strdisplaywidthのhelpよくわからん</h2>
+
+<p>{col}が何を指しているのか、どういう作用を及ぼすのかhelp読んでもいまいちわかりずらく実際に調べてみました。</p>
+
+<h2>準備</h2>
+
+<pre><code>set noexpandtab
+set softtabstop=8
+set shiftwidth=8
+set tabstop=8
+</code></pre>
+
+<h2>結果の見方の説明</h2>
+
+<p><code>.</code> -> col_numをドット(<code>.</code>)で擬似的に表す <code>.</code>から<code>:</code>まで -> TAB文字 <code>:</code>の次 -> <code>:echo strdisplay("\t", {col})</code>の結果</p>
+
+<h2>結果</h2>
+
+<pre><code>&lt;br /&gt;        :8
+.       :7
+..      :6
+...     :5
+....    :4
+.....   :3
+......  :2
+....... :1
+........        :8
+.........       :7
+..........      :6
+...........     :5
+............    :4
+.............   :3
+..............  :2
+............... :1
+................        :8
+.................       :7
+..................      :6
+...................     :5
+....................    :4
+.....................   :3
+......................  :2
+....................... :1
+</code></pre>
+
+<h3>colを指定しない別の結果</h3>
+
+<pre><code>:echo strdisplaywidth("\t") -&gt; 8
+:echo strdisplaywidth(".\t") -&gt; 8
+:echo strdisplaywidth("..\t") -&gt; 8
+:echo strdisplaywidth("...\t") -&gt; 8
+:echo strdisplaywidth("....\t") -&gt; 8
+:echo strdisplaywidth(".....\t") -&gt; 8
+:echo strdisplaywidth("......\t") -&gt; 8
+:echo strdisplaywidth(".......\t") -&gt; 8
+:echo strdisplaywidth("........\t") -&gt; 16
+</code></pre>
+
+<h2>つまり&#8230;?</h2>
+
+<p><code>strdisplaywidth({expr}[, {col}])</code>のcolは{expr}の{col}文字目以降を返すという意味<strong>ではなく</strong>、スタートするスクリーン上のカラムの位置を表す。</p>
+
+<p>完全にTAB文字専用の引数って感じでした。</p>
+
+<p>Helpに書いてあることがイメージできなかったっぽいのでHelp解読力あげたい。</p>
+
+<p>vimdoc</p>
+
+<blockquote><p>strdisplaywidth({expr}[, {col}]) <em>strdisplaywidth()</em><br/>
+The result is a Number, which is the number of display cells<br/>
+String {expr} occupies on the screen.<br/>
+When {col} is omitted zero is used. Otherwise it is the<br/>
+screen column where to start. This matters for Tab<br/>
+characters.<br/>
+The option settings of the current window are used. This<br/>
+matters for anything that&#8217;s displayed differently, such as<br/>
+&#8216;tabstop&#8217; and &#8216;display&#8217;.<br/>
+When {expr} contains characters with East Asian Width Class<br/>
+Ambiguous, this function&#8217;s return value depends on &#8216;ambiwidth&#8217;.<br/>
+Also see |strlen()|, |strwidth()| and |strchars()|.</p>
+
+<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/eval.html#strdisplaywidth()">:h strdisplaywidth()</a></cite></p></blockquote>
+
+<p>vimdoc-ja</p>
+
+<blockquote><p>strdisplaywidth({expr}[, {col}])                        <em>strdisplaywidth()</em><br/>
+                文字列 {expr} のスクリーン上での表示セル幅を返す。<br/>
+                {col} が省略されたときはゼロが使われる。{col} には計算を開始す<br/>
+                るスクリーン上の列の位置を指定する。これはタブ文字の幅の計算に<br/>
+                影響する。<br/>
+                計算にはカレントウィンドウのオプションが使用される。&#8217;tabstop&#8217;<br/>
+                や &#8217;display&#8217; のような表示を変更するようなオプションが影響す<br/>
+                る。<br/>
+                {expr} に幅が曖昧 (Ambiguous) な東アジアの文字が含まれていると<br/>
+                きは、文字幅は &#8217;ambiwidth&#8217; の設定に依存する。<br/>
+                |strlen()|, |strwidth()|, |strchars()| も参照。</p>
+
+<p>&#8211; <cite><a href="http://vim-jp.org/vimdoc-ja/eval.html#strdisplaywidth()">:h strdisplaywidth@ja</a></cite></p></blockquote>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/vim-strdisplaywidth-col/">[Vim]strdisplaywidth({expr}[, {col}])のcolがよくわかってなかった</a>
+      <time datetime="2013-11-07T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>07</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1187,127 +1333,6 @@ logx = ∫1/tdt <-> Σ1/kδk</p>
       <time datetime="2013-10-16T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>16</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim-break-undo-sequence-in-insertmode/">VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-10-11T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Undo履歴区切ろう</h2>
-
-<h3>実践Vimにて</h3>
-
-<blockquote><p><strong>アンドゥコマンドの粒度</strong></p>
-
-<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
-
-<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
-  <div class="amz-left" style="float:left; margin:0 20px 0;">
-    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51xLKL7w92L._SL160_.jpg" class="amz-img" /></a>
-  </div>
-  
-  <div class="amz-right" style="overflow:hidden;">
-    <div class="amz-title" style="margin-bottom:20px;">
-      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">実践Vim 思考のスピードで編集しよう!</a>
-    </div>
-    
-    <div class="amz-detail">
-      <div class="amz-info1" style="white-space:nowrap;">
-        Drew Neil
-      </div>
-      
-      <div class="amz-info2" style="white-space:nowrap;">
-        アスキー・メディアワークス 2013-08-29
-      </div>
-      
-      <div class="amz-price" style="white-space:nowrap;">
-        ￥ 2,940
-      </div>
-      
-      <div class="amz-link" style="margin-top:20px;">
-        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4048916599/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<p>実践Vim読んでるときって基本Vimちゃんすごい!Vimちゃんこんなこともできたの!?Vimちゃん大好き！なのですが、ここまでするものなのかと、若干DrewNeilさんに<s>引いて</s>感動してしまった部分が1つだけありました。</p>
-
-<blockquote><p>(略) 行を挿入する一番簡単な方法は<code>&lt;CR&gt;</code>を押すことだ。だけど、筆者がよく使うのは<code>&lt;Esc&gt;o</code>。これは単に、アンドゥする単位を新規に作りたいからだ。ハードコアすぎるって？いやいや心配はいらない。Vimに慣れてくれば、モードの切り替えなんてちょちょいのちょいになるから。</p>
-
-<p>&#8211; <cite><a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5Vim-%E6%80%9D%E8%80%83%E3%81%AE%E3%82%B9%E3%83%94%E3%83%BC%E3%83%89%E3%81%A7%E7%B7%A8%E9%9B%86%E3%81%97%E3%82%88%E3%81%86-Drew-Neil/dp/4048916599?tag=haya14busa-22">実践Vim 思考のスピードで編集しよう! [単行本（ソフトカバー）]</a></cite></p></blockquote>
-
-<p><s>流石にハードコアすぎる&#8230;</s>Vim意識高すぎる！</p>
-
-<p>と、言うことで(Pure)Vim力低いし、<code>&lt;CR&gt;</code>と<code>&lt;Esc&gt;o</code>使い分ける必要も無さそうなのでvimrcでカスタマイズ。</p>
-
-<h2>vimrc書き書き</h2>
-
-<p>vimrc <noscript>
-  <pre><code class="language-viml viml">&ldquo; For Undo Revision, Break Undo Sequence
-inoremap &lt;CR&gt; &lt;C-]&gt;&lt;C-G&gt;u&lt;CR&gt;</p>
-
-<p>inoremap &lt;C-h&gt; &lt;C-g&gt;u&lt;C-h&gt;
-inoremap &lt;BS&gt; &lt;C-g&gt;u&lt;BS&gt;
-inoremap &lt;Del&gt; &lt;C-g&gt;u&lt;Del&gt;
-inoremap &lt;C-d&gt; &lt;C-g&gt;u&lt;Del&gt;
-inoremap &lt;C-w&gt; &lt;C-g&gt;u&lt;C-w&gt;
-inoremap &lt;C-u&gt; &lt;C-g&gt;u&lt;C-u&gt;
-</code></pre>
-</noscript></p>
-
-<p>helpる。helpる。さまよう&#8230;あった!</p>
-
-<blockquote><p>CTRL-G u break undo sequence, start new change <em>i_CTRL-G_u</em></p>
-
-<p>&#8211; <cite><a href="http://vimdoc.sourceforge.net/htmldoc/insert.html#i_CTRL-G_u">:h i_CTRL-G_u</a></cite></p></blockquote>
-
-<p><code>&lt;C-o&gt;</code>の一時コマンドモードで副作用的にUndoを区切るのではなく、まさにやりたいことそのまんまのコマンド(<code>i_CTRL-G_u</code>)が用意されていたようです。知らなかった&#8230;</p>
-
-<p>改行ついでに削除系インサートコマンドでも<code>&lt;C-g&gt;u</code>噛ませることに。便利。<code>&lt;C-h&gt;</code>に限って言えば区切りすぎウザイ感あるのでいらないかも。</p>
-
-<p><code>&lt;C-d&gt;</code>だけデフォルトのキーマップじゃないですが、デフォルトの動作はインサートモードでインデント下げるという<s>誰得</s>機能なので変えても良さそう。</p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim-break-undo-sequence-in-insertmode/">VimのインサートモードでUndo履歴を区切る(改行、削除コマンド)</a>
-      <time datetime="2013-10-11T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>11</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
       </footer>
     </article>
