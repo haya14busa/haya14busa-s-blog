@@ -82,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/revital-vim-makes-vital-vim-a-log-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim Plugin を速くする</a></h1>
+      <h1 class="entry-title"><a href="/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim Plugin を速くする</a></h1>
     
     
       <div class="post-meta">
@@ -152,7 +152,7 @@ Windows だか symlink だか virtualbox だか neovim だか何かはまだよ�
 
 <ol>
 <li>(ロードが) <strong>遅い</strong> (ケースがある)(基本的に気にならないけど)</li>
-<li>ドキュメントがたぶん足りないので敷居が高い(ように見える)</li>
+<li>ドキュメントがたぶん足りないので敷居が高い(ように見えるだけで使い方は簡単なんだけど&hellip;)</li>
 <li>インストールやアップデートでハマることが多い印象</li>
 </ol>
 
@@ -175,7 +175,7 @@ vital.vim は使うライブラリのみ組み込めるので問題ないはず�
 <p>とにかく <a href="https://github.com/vim-jp/vital.vim">vital.vim</a> 最高なので
 <a href="https://github.com/haya14busa/revital.vim">revital.vim</a> と一緒に使っていきましょう．</p>
 
-<h2>速くなったというならまずはベンチマーク(雑)じゃん?</h2>
+<h2>速くなったというならまずはベンチマークじゃん?(雑)</h2>
 
 <h3>スクリプト</h3>
 
@@ -266,7 +266,7 @@ vital.vim は使うライブラリのみ組み込めるので問題ないはず�
 
 <p>(まぁ僕の環境ではもともと1回分にすると0.01秒くらいで全然遅いと感じたことなかったのですが)</p>
 
-<p>上記のベンチマークは <a href="https://github.com/haya14busa/incsearch.vim">https://github.com/haya14busa/incsearch.vim</a> のコードで回しましたが，<a href="https://github.com/easymotion/vim-easymotion">https://github.com/easymotion/vim-easymotion</a> や 手元でテスト様に作った全部のvital モジュールをインストールしたプラグインでも同じような結果になりました．</p>
+<p>上記のベンチマークは <a href="https://github.com/haya14busa/incsearch.vim">https://github.com/haya14busa/incsearch.vim</a> のコードで回しましたが，<a href="https://github.com/easymotion/vim-easymotion">https://github.com/easymotion/vim-easymotion</a> や 手元でテスト用に作った全部のvital モジュールをインストールしたプラグインでも同じような結果になりました．</p>
 
 <h2>revital.vim の使い方</h2>
 
@@ -300,10 +300,98 @@ vital.vim は使うライブラリのみ組み込めるので問題ないはず�
 
 <h4>b) モジュールの使い方</h4>
 
-<p>let s:V = vital#{pluginname}#of()
-let s:List = s:V.import(&lsquo;Data.List&rsquo;)
-echo s:List.uniq([1, 1, 2, 3, 1, 2])
-&ldquo; => [1, 2, 3]</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">s</span>:V <span class="p">=</span> vital#{pluginname}#of<span class="p">()</span>
+</span><span class='line'><span class="k">let</span> <span class="k">s</span>:List <span class="p">=</span> <span class="k">s</span>:V.import<span class="p">(</span><span class="s1">&#39;Data.List&#39;</span><span class="p">)</span>
+</span><span class='line'>echo <span class="k">s</span>:List.uniq<span class="p">(</span>[<span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span>]<span class="p">)</span>
+</span><span class='line'><span class="c">&quot; =&gt; [1, 2, 3]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>簡単で vital.vim のみで使うケースとほとんど変わりません．</p>
+
+<h4>c) モジュールのアップデート</h4>
+
+<p><code>:Vitalize</code>でアップデートしたあとにもう一度 <code>:Revitalize</code> する必要があります．</p>
+
+<ol>
+<li><code>:cd /path/to/your/plugin</code> プラグインのディレクトリに移動．</li>
+<li><code>:Vitalize .</code> アップデートするときはこれだけ．</li>
+<li><code>:Revitalize .</code> Revitalize 実行</li>
+</ol>
+
+
+<h2>どうして revitalize.vim は速いのか?</h2>
+
+<p>vital.vim はモジュールをロードする際(<code>s:V.import('Module.Name')</code>)に</p>
+
+<ol>
+<li>モジュール名から目的のファイルを探す</li>
+<li>そのファイルからモジュール用のオブジェクトを作る</li>
+</ol>
+
+
+<p>というざっくり2段階が必要です．このうち1などはsimlinkをたどるといった関数が遅
+いせいで結構な時間が環境によってはかかっていますし，2はそこまで遅くはない気もし
+ますがいろいろ内部でやっています．(ちゃんとprofileはしてない．)
+vital.vim の組み込みライブラリであるという性質上，普通にやるなら上記の段階が必要です．
+また歴史的経緯も含まれているかもしれないですが上記の2段階の前にはライブラリを
+ロードするためのローダーを同じような手順で作成する必要があります(<code>vital#of({plugin-name})</code>)．</p>
+
+<p>速くする方法はないものかなぁと考えると1つ思い当たります．</p>
+
+<p>モジュール名から目的のファイルを Vim script で素早く探すのにはなかなか骨が折れますが，Vim script には
+autoload function という機能があり，autoload 関数をいい感じに定義しいい感じに呼
+べば(<code>path#to#module#file</code>)，対応したファイルを勝手に内部で見つけてきて関数を呼
+んでくれるという仕組みが存在します．Vim script で頑張るよりも組み込み機能を
+使ったほうが速いはずです!! autoload 関数使いたい!!!</p>
+
+<p>しかし，autoload 関数をいい感じに定義する際にはファイルのパス情報が必要になります．
+ここでvital.vim は別のプラグインに組み込まれることが前提のライブラリなのでパスが定まっていません．
+よって autoload はそのままでは使えませんでした&hellip;</p>
+
+<p>うーん．困ったな&hellip;</p>
+
+<p>でもでも，よくよく考えてみると最初からパスが定まっていなくても，モジュールをプラグインに組み込んだあとのパスは決定しています．
+つまり，<code>:Vitalize</code> でモジュールをプラグインに組み込んだあとにモジュールのファイルに適切な autoload 関数を追加してしまえばいいのです．</p>
+
+<p>もうわかったでしょか?</p>
+
+<p>revital.vim が提供する <code>:Revitalize</code> コマンドは組み込んだモジュールのファイルに
+適切なautoload関数を追加し， <code>s:V.import('Module.Name')</code> の内部では追加した autoload 関数を呼ぶようになっているのです．
+また，autoload関数を追加する際にモジュールのオブジェクトの雛形となるようなオブジェクトをついでに生成してやっているので，
+そのオブジェクトの生成するプロセス分も速くなっています．</p>
+
+<p>最後にファイルを探したりといろいろと大変な <code>vital#of({plugin-name})</code> の代わりに
+直接 vital のローダーオブジェクトを返す <code>vital#{plugin-name}#of()</code> を作って revital.vim の仕事は終了です．</p>
+
+<p>モジュールのファイルに autoload 関数を追加するというちょっと刺激的なハックをすることによって vital.vim のロードを爆速化することができました．
+ただモジュールのファイルといっても組み込んだあとのモジュールのファイルを書き換
+えるだけなのでオリジナルのファイルは書き換えないし，これくらいのハックは別に問題ないかなと思います．
+一応vitalモジュールのファイルの途中で <code>:finish</code> されると使えなくなるという問題がありますが，まずそんなケースはないでしょう．</p>
+
+<h2>本家に入れたいような気もするけど要相談?</h2>
+
+<p>確実に速くなるし，本家ではテストされてないような部分もテストしているので，少々
+ランニングして安定すれば本家にオプションかなにかで入れてもいいんじゃないかなぁと思います．</p>
+
+<p>しかし，一応入り口のインターフェースが変わることと，ちょっと実装にハック感があ
+ること，ドラスティックな変更なのでいろいろ待つよりもまずは実装して見てみるということで
+revital.vim を作ってみました．</p>
+
+<p>後方互換性は崩さないような仕組みになっているので時が来たらvital.vim 本家に同じ機能が実装されるとよさがありますね．</p>
+
+<h2>おわり</h2>
+
+<p><a href="https://github.com/haya14busa/revital.vim">haya14busa/revital.vim</a> で
+vital.vim が爆速になるので vital.vim を使っている Vim プラグイン開発者各位や
+これから <a href="https://github.com/vim-jp/vital.vim">vital.vim</a> を使ってみたいという
+各位は是非お試しください!</p>
+
+<p><strong>「爆ぜろリアル！ 弾けろシナプス！ Rev!talize Th!s World！」</strong></p>
 
 <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 
@@ -314,7 +402,7 @@ echo s:List.uniq([1, 1, 2, 3, 1, 2])
 
       <footer>
       
-      - <a href="/revital-vim-makes-vital-vim-a-log-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする</a>
+      - <a href="/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする</a>
       <time datetime="2016-03-23T04:45:43+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2016</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
