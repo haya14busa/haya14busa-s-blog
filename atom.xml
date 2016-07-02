@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-05-31T01:24:15+09:00</updated>
+  <updated>2016-07-02T23:14:58+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,1115 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ]]></title>
+    <link href="http://haya14busa.com/hatena-pepabo-kyoto/"/>
+    <updated>2016-07-02T20:06:46+09:00</updated>
+    <id>http://haya14busa.com/hatena-pepabo-kyoto</id>
+    <content type="html"><![CDATA[<h2>はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 7/2</h2>
+
+<p><a href="http://hatena.connpass.com/event/33521/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 - connpass</a></p>
+
+<p>行ってきました．メモってたのでせっかくなので共有しておきます．
+gistでいいかとおもったけどスライド埋め込みとか考えたらブログに雑に投げたほうが見なおしやすそうと思ったのでブログで．
+自分で発表したわけでもないし，感想とか書いてるわけでもないけどまぁいいかってカンジ．</p>
+
+<h2>注意</h2>
+
+<p>わかってない人が書いたメモなのでいろいろわかってないメモが書かれてます．
+理解度に関係なく聞き漏らしたところ雑に書いたりしてるので発表様がおっしゃってた話とちがうところもあるかもしれない．
+特に座談会の内容とかは Twitterのハッシュタグみてたら <a href="https://twitter.com/matsumotory">@matsumotory</a> さんと <a href="https://twitter.com/yumu19">@yumu19</a> さんがまとめてたのでそっち見たほうがわかりやすいかも．</p>
+
+<h3>Togetter</h3>
+
+<p>~~ <a href="http://togetter.com/li/994969">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 7/2 - Togetterまとめ</a> ~~</p>
+
+<p><del>ということで雑にtogetterつくっておきました．#pepabohatena で検索したやつからスパム2-3個消しただけです．
+そういえばtogetterだめな人とかいるかもじゃん&hellip;!ということに気づいたんですが全員に連絡するの流石につらいのでダメなひと
+<a href="https://twitter.com/haya14busa">@haya14busa</a> まで連絡していただければ幸いです．勝手に使って申し訳ないでした :bow: </del></p>
+
+<p>記事書いてる間に @yumu19 さんが作ってた -> <a href="http://togetter.com/li/994986">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 #pepabohatena ツイートまとめ - Togetterまとめ</a></p>
+
+<h3>タイムテーブル</h3>
+
+<table>
+<thead>
+<tr>
+<th>time </th>
+<th> 名前 </th>
+<th> タイトル </th>
+<th> 時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13:30 </td>
+<td>  </td>
+<td> 受付開始・開場 </td>
+<td> 30分</td>
+</tr>
+<tr>
+<td>14:00 </td>
+<td> y_uuki(はてな) </td>
+<td> 開会宣言・会場説明 </td>
+<td> 5分</td>
+</tr>
+<tr>
+<td>14:05 </td>
+<td> y_uuki(はてな) </td>
+<td> はてなにおけるLinuxネットワークスタックの性能改善 </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>14:30 </td>
+<td> matsumotory(ペパボ) </td>
+<td> Webサービス基盤の自律制御と動的平衡性 </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>14:55 </td>
+<td>  </td>
+<td> 休憩 </td>
+<td> 5分</td>
+</tr>
+<tr>
+<td>15:00 </td>
+<td> ichirin2501(はてな) </td>
+<td> 計算量と僕とWeb開発 </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>15:25 </td>
+<td> pyama(ペパボ) </td>
+<td> STNS 〜点と線を結び新しい何かを作るコト〜 </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>15:50 </td>
+<td>  </td>
+<td> 休憩 </td>
+<td> 5分</td>
+</tr>
+<tr>
+<td>15:55 </td>
+<td> masayoshi(はてな) </td>
+<td> 負荷分散技術を選ぶ時に考えること </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>16:20 </td>
+<td> monochromegane(ペパボ) </td>
+<td> サービスに寄り添うログ基盤 - ログ収集のその先に - </td>
+<td> 25分</td>
+</tr>
+<tr>
+<td>16:45 </td>
+<td>  </td>
+<td> 休憩 </td>
+<td> 10分</td>
+</tr>
+<tr>
+<td>16:55 </td>
+<td> masayoshi(はてな) taketo957(はてな) alotofwe(ペパボ) hanazuki(ペパボ) モデレータ stanaka(はてな) </td>
+<td> 若手インフラ座談会 </td>
+<td> 40分</td>
+</tr>
+<tr>
+<td>17:35 </td>
+<td>  </td>
+<td> 懇親会 軽食と飲み物を用意しています！ </td>
+<td></td>
+</tr>
+<tr>
+<td>19:00 </td>
+<td>  </td>
+<td> お開き</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>開会宣言・会場説明</h2>
+
+<p>14:00 | y_uuki(はてな) | 開会宣言・会場説明 | 5分</p>
+
+<ul>
+<li>発表6本+座談会</li>
+<li>アンケート</li>
+</ul>
+
+
+<h2>はてなにおけるLinuxネットワークスタックの性能改善</h2>
+
+<p>14:05 | y_uuki(はてな) | はてなにおけるLinuxネットワークスタックの性能改善 | 25分</p>
+
+<p><a href="https://speakerdeck.com/yuukit/linux-network-performance-improvement-at-hatena">はてなにおけるLinuxネットワークスタックパフォーマンス改善 / Linux network performance improvement at hatena // Speaker Deck</a></p>
+
+<script async class="speakerdeck-embed" data-id="1c0ab465dca74bc7b0f955cb6955ba8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<ul>
+<li>はてなのウェブオペレーションエンジニア．新卒1年目の仕事</li>
+<li>今は3年目</li>
+<li>3層構成 LB <-> proxy <-> application <-> database</li>
+<li>ボトルネックどこ?
+
+<ul>
+<li>CPU: %user/%sys/%iowait</li>
+<li>Mem: used/cached/buffer</li>
+<li>Disk: read/write</li>
+<li>NW: tx/rx/tx</li>
+</ul>
+</li>
+<li>ソフト割り込み(パケット受信)の負荷が高いときの話 (%soft)</li>
+<li>ネットワークスタック
+
+<ul>
+<li>ネットワークi/oを実現するために必要な要素群．低レイヤより
+
+<ul>
+<li>NIC/パケット送受信/etc&hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ネットワークI/O 高速化</li>
+<li>パケット受信フロー  NIC -> Kernel -> Process
+
+<ul>
+<li>この辺の話かな? <a href="https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-network-packet-reception.html">8.3. パケット受信の概要</a></li>
+<li><img src="https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/images/packet-reception.png" alt="" /></li>
+<li>NIC: 物理デバイス</li>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%AB%E3%83%BC%E3%83%89">ネットワークカード - Wikipedia</a></li>
+<li>NIC ->(ハード割り込み) -> パケット受信 -> プロトコル処理 -> データ受信処理 -> Process</li>
+<li>割り込み2種類ある．なぜか?</li>
+<li>ハード割り込みだけだとパケット受信のたびにプロトコル処理まで実行しちゃう</li>
+<li>なので一旦バッファにいれる．ソフト割り込み</li>
+</ul>
+</li>
+<li>NAPI (New API)
+
+<ul>
+<li>1パケットずつでなく複数パケットごとに割り込み</li>
+<li>ポーリングによってとってくる．待ち時間発生するので負荷が高い時だけやるみたいに賢くなってる</li>
+<li>ソフト割り込みを減らす</li>
+</ul>
+</li>
+<li>HAProxy の台数増問題 (実際に取り組んだやつ)</li>
+<li>割り込みが多い -> 割り込み減らしたい</li>
+<li>HAProxy のネットワーク負荷が高いのでHAProxyを DNS RR で並べた</li>
+<li>Interrupt Coalescing
+
+<ul>
+<li>ハード割り込みを減らす</li>
+</ul>
+</li>
+<li>NICドライバのパラメータ検証した</li>
+<li>RPS (Receive Packet Steering)
+
+<ul>
+<li>コア間割り込み</li>
+</ul>
+</li>
+<li>RPS でRedisチューニング
+
+<ul>
+<li>Redisは1スレッド</li>
+<li>カーネルのネットワークI/O処理するスレッドと Redisのスレッドは分散可能</li>
+<li>-> CPU% 10% 減 (コンテキストスイッチが減ったり，キャッシュが効くようになったからっぽい)</li>
+<li>redisの公式ページにやりかた書いてある <a href="http://redis.io/topics/benchmarks">http://redis.io/topics/benchmarks</a></li>
+</ul>
+</li>
+<li>ユーザランドへゼロコピー
+
+<ul>
+<li>そもそもカーネルに処理しないという変態処理．</li>
+<li>パケットを NIC -> ユーザランドへバイパス</li>
+<li>実装: netmap</li>
+<li>まだ実用ではなさそうだけど研究されてる</li>
+<li>ソケットAPIの限界
+
+<ul>
+<li>ソケットAPIではゼロコピーできない</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>まとめ
+
+<ul>
+<li>OSの内部面白い．OS内部の技術の外出し</li>
+<li>ソフト割り込みにより遅延処理</li>
+<li>ジョブキューのような非同期処理</li>
+<li>割り込みとポーリング</li>
+<li>OSの技術をもうちょっと上のレイヤの技術に応用してやったりするのベンリ</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Webサービス基盤の自律制御と動的平衡性</h2>
+
+<p>14:30 | matsumotory(ペパボ) | Webサービス基盤の自律制御と動的平衡性 | 25分</p>
+
+<script async class="speakerdeck-embed" data-id="60124a9e42bf4939b3d64687ef266d5c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<ul>
+<li>@matsumotory <a href="http://research.matsumoto-r.jp/">松本亮介の研究・開発業績ページ by matsumoto-r</a></li>
+<li>技術基盤チームで研究開発してる</li>
+<li>目次
+
+<ul>
+<li>なめらかなシステム</li>
+<li>Webサービスの現状・課題</li>
+<li>自立制御</li>
+<li>動的平衡性</li>
+</ul>
+</li>
+<li>なめらかなシステム
+
+<ul>
+<li>システムにとってのユーザ，システムを構成するサーバ等の要素のカテゴリや特徴を詳細に認識する</li>
+<li>人間の労苦は避けたい</li>
+</ul>
+</li>
+<li>Webサービスの現状・課題
+
+<ul>
+<li>bad UI / 遅い / etc&hellip; -> 快適に利用できるのが当たり前</li>
+<li>サーバの運用大変
+
+<ul>
+<li>高負荷・障害対応</li>
+<li>問い合わせ</li>
+<li>バジョンアップ</li>
+<li>監視</li>
+<li>新規構築</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>監視に注目してみる
+
+<ul>
+<li>閾値設定はムズカシイ</li>
+<li>1時的な高負荷は無視したい．すぐもどるならok</li>
+<li>傾向が変わるならすぐ知りたい</li>
+<li>正常にみえるけど異常っぽいものを検知したい</li>
+<li>段階的な傾向の変化を検知したい．階段みたいな．でも1時的なものは無視</li>
+</ul>
+</li>
+<li>詳細な変化と原因を知るには人の目が必要．でも自動で制御したい
+
+<ul>
+<li>人は何をみてるか? 対象の振る舞いをみてる</li>
+<li>振る舞いを表す特徴が知りたい!</li>
+<li>人工知能でやれるか</li>
+</ul>
+</li>
+<li>考え方
+
+<ul>
+<li>特徴がある</li>
+<li>通常の状態を学習</li>
+<li>外れた状態を解析</li>
+<li>連速的に外れた状態が異常のはじまり</li>
+</ul>
+</li>
+<li>各種基盤技術
+
+<ul>
+<li>[x] 設定をプログラム化</li>
+<li>[x] リソース制御連携</li>
+<li>[ ] 特徴量定義と解析 &lt;- ここ</li>
+</ul>
+</li>
+<li>特徴量解析
+
+<ul>
+<li>変化点検出やクラスタリングなど研究はされている</li>
+<li>mruby-changefinder <a href="https://github.com/matsumoto-r/mruby-changefinder">matsumoto-r/mruby-changefinder: ChangeFinder class detect change points via continuous outlier and smoothing.</a></li>
+<li>複数データの関係性を得る</li>
+</ul>
+</li>
+<li>Webサーバの自律制御
+
+<ul>
+<li>特徴量抽出による検知できる点の増加</li>
+<li>閾値以下でも傾向変化の細かい検知ができる</li>
+</ul>
+</li>
+<li>細かい傾向変化した時点でどうするか?
+
+<ul>
+<li>異常検知．誤検知もある．false positive/negative?</li>
+<li>すぐ制限とかは影響でかい</li>
+<li>なんかアクションはとりたい</li>
+<li>システムとしてバランスを取りたい条件ある
+
+<ul>
+<li>マルチテナント環境とする．</li>
+<li>リソースが逼迫してきたのみ制限かけたい．自動で制限したい．</li>
+<li>グラフなめらかにしたい．</li>
+</ul>
+</li>
+<li>e.g.
+
+<ul>
+<li>どのホストが変化点スコアが高い?</li>
+<li>重み付け (優先順位つける) example.com:95, matsumoto-r.jp:93, &hellip;</li>
+<li>傾向変化ごとに重みつけリスト更新</li>
+<li>全リソースが逼迫 -> リストを元に自動制御</li>
+<li>逼迫してないなら重みつけリストをつくるところだけしとく</li>
+</ul>
+</li>
+<li>時系列データの生成
+
+<ul>
+<li>相関関係の時系列データも作れる</li>
+<li>全体の負荷とホストの負荷どっちか</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>要素技術
+
+<ul>
+<li>機能拡張 mod_mruby</li>
+<li>mruby-resource</li>
+<li>mruby-changefineder</li>
+<li>etc&hellip;</li>
+</ul>
+</li>
+<li>制限の実装方法
+
+<ul>
+<li>リクエスト単位でCPU/IOなどの割当を変更</li>
+<li>cgroup/rlimit</li>
+<li>e.g. 特定のcgroupにリクエストをアタッチしてCPUを20%に制限する．レスポンス返したらデタッチ</li>
+</ul>
+</li>
+<li>ミドルウェアが特徴量抽出解析・制限行いたい</li>
+<li>webサービスの動的平衡性
+
+<ul>
+<li>生命とは? 動的平衡にある流れ</li>
+<li><blockquote><p>動的平衡（どうてきへいこう、英語：dynamic equilibrium）とは、物理学・化学などにおいて、互いに逆向きの過程が同じ速度で進行することにより、系全体としては時間変化せず平衡に達している状態を言う。
+&ndash; <cite><a href="https://ja.wikipedia.org/wiki/%E5%8B%95%E7%9A%84%E5%B9%B3%E8%A1%A1">動的平衡 - Wikipedia</a></p></blockquote></li>
+<li><a href="https://ja.wikipedia.org/wiki/%E7%B4%B0%E8%83%9E%E5%91%A8%E6%9C%9F%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">細胞周期チェックポイント - Wikipedia</a>
+
+<ul>
+<li>細胞: さーば</li>
+<li>動的平衡: サーバの構築と破壊</li>
+<li>Web サービス基盤を生命のように扱う
+
+<ul>
+<li>異常・エントロピー増大からは逃れられない</li>
+<li>自分で自らを破壊・増殖・再構築していく</li>
+<li>一つ一つの細胞の調子わるいな?とかは僕らだってみてない．1部変でも全体としては大丈夫．</li>
+</ul>
+</li>
+<li>詳しくは: <a href="https://speakerdeck.com/matsumoto_r/namerakad-idea-design">なめらかなシステムのアイデアと設計概要 / namerakad-idea-design // Speaker Deck</a>
+<script async class="speakerdeck-embed" data-id="51e39a56e84e4b79a957f653b8c941d0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>今後: STNS/haconiwa, &hellip;</li>
+<li>Q&amp;A:
+
+<ul>
+<li>フォールトトレランスとの違い?
+
+<ul>
+<li>現時点はそこまで．循環するパターン．状態を持つサーバと持たないサーバがある．この辺とかの落とし所を考えてる</li>
+</ul>
+</li>
+<li>from yuuki: Docckerとかで動的にスケールしてるけど，違うアプローチっぽい．どう違う? キューバネティスとか?
+
+<ul>
+<li>こちらはサーバを積極的に，自主的に落として循環していくといった部分が違う．元気なサーバでも任意の時間経過で落としたり．</li>
+</ul>
+</li>
+<li>from astj: バースト．イベントやyahoo砲とかのバズり，が怖い．これを異常検知するのはむずくてなかなか考えても答えが出ない．自律制御のスピード超えてバースト来たらどうする?
+
+<ul>
+<li>全体的にはバーストに対応したい．落とす条件．3時間で落ちそうなやつが1.5時間で落ちたなら1つではく2つのVMを再構築するといった方法あるかも．落としたときに条件によって10倍再構築するとか．</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>netflix とかも似たようなことやってる感じらしい?</p>
+
+<p>mackerel で出来たりしたら最高だな〜と思った．</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">なめらかなシステムのシミュレーションはこれを見るとわかりやすいです <a href="https://t.co/PK3jn4cJvi">https://t.co/PK3jn4cJvi</a> <a href="https://twitter.com/hashtag/pepabohatena?src=hash">#pepabohatena</a></p>&mdash; 松本 亮介 / まつもとりー (@matsumotory) <a href="https://twitter.com/matsumotory/status/749135118095163394">July 2, 2016</a></blockquote>
+
+
+<h2>計算量と僕とWeb開発</h2>
+
+<p>15:00 | ichirin2501(はてな) | 計算量と僕とWeb開発 | 25分</p>
+
+<ul>
+<li>@ichirin2501 いちりんちゃんさん
+
+<ul>
+<li>アプリケーションエンジニア2年 ->(転職) web オペレーションエンジニア1年(hatena)</li>
+<li>スピリチュアルな発表!</li>
+</ul>
+</li>
+<li>もくじ
+
+<ul>
+<li>計算量について</li>
+<li>mysql クエリ改善</li>
+</ul>
+</li>
+<li>計算量とは?
+
+<ul>
+<li>大変さの指標．</li>
+<li>係数無視 O(3n<sup>3</sup>) -> O(n<sup>3</sup>)</li>
+<li>でかいやつだけ O(n<sup>3</sup> + n<sup>2</sup>) -> O(n<sup>3</sup>)</li>
+</ul>
+</li>
+<li>計算量といちりんちゃん
+
+<ul>
+<li>競プロで向き合う．</li>
+<li>計算量と時間の基準・感覚がある</li>
+<li>O(10<sup>7</sup>) ~ O(10<sup>9</sup>) 0 -> 1s くらいじゃん?みたいな感じ</li>
+<li>データサイズからの見積もり
+
+<ul>
+<li>1sec デッドラインの見積もりならこんな感じやろ的な．</li>
+<li>n &lt;= 10<sup>6</sup> -> O(n)</li>
+<li>n &lt;= 10<sup>5</sup> -> O(nlogn)</li>
+<li>n &lt;= 3000 -> O(n<sup>2</sup>)</li>
+<li>n &lt;= 100 -> O(n<sup>3</sup>)</li>
+<li>n &lt;= 20 -> O(2<sup>n</sup>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MySQL 改善のはなし
+
+<ul>
+<li>group by / distinct の迷い．どっちでも重複除外できるので実現可．
+
+<ul>
+<li>follow/followerテーブル的なものを想定</li>
+<li>friend_id 重複なしで 1000件ほしい</li>
+<li>結果を言うと group by だと遅いケースがあった</li>
+<li>group_by で OR句のuser_idが多いと異常におそくなった</li>
+<li>どう計算してるか知ればいいじゃん</li>
+</ul>
+</li>
+<li>インデックス構造
+
+<ul>
+<li>インデックス B+tree</li>
+<li>主キーのインデックス clustered index</li>
+<li>主キー以外のインデックス secondary index (主キーがこれでわかる)</li>
+<li>B+tree はleafが連結リスト．rangeで検索とかのときにベンリ</li>
+<li>例とか．この辺発表の図をみるとわかりやすくてベンリ</li>
+</ul>
+</li>
+<li>話をもどしてfriend_id. なぜ遅いのか?
+
+<ul>
+<li>オーダーが違うかも</li>
+<li>意図してないインデックスで検索してるかも -> オーダー線形なってるかも</li>
+</ul>
+</li>
+<li>結論そうだった
+
+<ul>
+<li>explainするとわかる</li>
+<li>オプティマイザが間違った判断してた(あるある．経験則). distinct だと解決した</li>
+<li>経験則やexplain使わなくても計算量と時間の感覚でどこがまずそうかわかることもあるよ!
+
+<ul>
+<li>ミドルウェアのどのへんが悪いかとか計算量の感覚やインデックスの使われ方を理解して推測したり出来るとベンリ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Redis の話
+
+<ul>
+<li>redis とか
+
+<ul>
+<li>kvs nosql(ほかにもグラフデータベースとかあるよねー)</li>
+<li>list/set/sorted sets(rankingの実装らくとか)/etc .. データ構造いっぱいあってベンリ</li>
+<li>メモリ最適化 2.2 から入ってる．勝手に圧縮してもらえる
+
+<ul>
+<li>-> パラメータ眺めてオーダーとか変わったりするのでは?と推測</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>怪しいのでパラメータ変えて実際試す
+
+<ul>
+<li>データ数と実行時間からオーダーわかる</li>
+<li>データ数10kで1 sec超えるのオカシイのではと気づく．</li>
+</ul>
+</li>
+<li>やっぱり -> データ構造違ってた
+
+<ul>
+<li>ドキュメントに実は書かれてたりも．</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>まとめ
+
+<ul>
+<li>知識だけじゃなく感覚を身に着けてるとすぐわかったりしてベンリ．現場で検証しまくるとかできなかたったりするし．</li>
+<li>まつもとりーさんも言ってたが快適にウェブサービス使えるのは当たり前だし，この辺にコミットするために計算量ベンリ</li>
+</ul>
+</li>
+<li>Q&amp;A
+
+<ul>
+<li>from yuuki: このへんミスったりすると自律制御したりしても一瞬でリソース食いつぶしたりするし，このへん自律制御するのどうするかとかもおもしろそう</li>
+</ul>
+</li>
+</ul>
+
+
+<p>べんり <a href="http://gigamaker.jimdo.com/">ホーム - 鳥獣戯画制作キット</a></p>
+
+<p>計算量の感覚大事．</p>
+
+<h2>STNS 〜点と線を結び新しい何かを作るコト〜</h2>
+
+<p>15:25 | pyama(ペパボ) | STNS 〜点と線を結び新しい何かを作るコト〜 | 25分</p>
+
+<ul>
+<li>やましたさん． @pyama86
+
+<ul>
+<li>ムームードメインやってる</li>
+</ul>
+</li>
+<li>Linux のユーザ管理
+
+<ul>
+<li>いつから LDAP 主流だと錯覚してい(ry</li>
+</ul>
+</li>
+<li>最近のユーザ管理
+
+<ul>
+<li>root おおい．</li>
+</ul>
+</li>
+<li>rootは問題あるよね
+
+<ul>
+<li>セキュリティ事故の追跡</li>
+<li>sudo権限の分離</li>
+<li>userの追加削除管理困難．追加でポリシーのため他のサーバにも足す&hellip;とかやるとこまる．</li>
+<li>rootはアブナイ!!!</li>
+</ul>
+</li>
+<li>でもなぜやってしまうか
+
+<ul>
+<li>なにかあったときしか困らない</li>
+<li>まぁLDAP構築たいへんだよねとかある．</li>
+</ul>
+</li>
+<li>STNS で解決!
+
+<ul>
+<li><a href="https://github.com/STNS/STNS">STNS/STNS: Simple Toml Name Service</a></li>
+<li>名前解決/公開鍵取得/アカウント認証のみを提供．LDAPはいろいろできすぎて困る．</li>
+<li>ls -ltr の名前は実はid. pyama -> id:1000 ．これが名前解決</li>
+</ul>
+</li>
+<li>デプロイユーザの管理できる
+
+<ul>
+<li>capistorano とか公開鍵たしてsshでやるよね．authorized_keys 管理だるくなるよね．</li>
+<li>stnsだとスッキリ!誰がdeployできるか一目瞭然でよい．</li>
+</ul>
+</li>
+<li>組織構造を表現できる
+
+<ul>
+<li>group</li>
+</ul>
+</li>
+<li>シュッとインストールできるよ! 2.5min</li>
+<li>事例
+
+<ul>
+<li>pepaboさん事例．ユーザ管理もgithub flowで. ghe でpr -> droneでテスト &amp; レビュー -> deploy</li>
+<li>承認してマネージャーが承認して&hellip;とかめんどくてそれ解決できてベンリ．エンジニアで管理</li>
+<li>ghe で全部管理できるので入退社管理とかも楽</li>
+</ul>
+</li>
+<li>プロダクトを運用すること
+
+<ul>
+<li>ヒントとなった技術からアイデア得たり</li>
+<li>mackerelのtomlとかgo使ってるやつ参考にしたり</li>
+<li>linuxで利用可能な共通ライブラリがgo1.5から作れるようになってこれがでかい．Cを書かなくてもLinuxのシステムに手を入れられる</li>
+<li>自分が開発者だし自分がSTNSを最高にできる!!!</li>
+</ul>
+</li>
+</ul>
+
+
+<p>LDAP とかユーザ管理あんまり関わってないけど便利そうだった．良い話きけて良い．</p>
+
+<ul>
+<li>Q&amp;A:
+
+<ul>
+<li>from yuuki: hatena は LDAP だけどSTNSよさそう!</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>負荷分散技術を選ぶ時に考えること</h2>
+
+<p>15:55 | masayoshi(はてな) | 負荷分散技術を選ぶ時に考えること | 25分</p>
+
+<ul>
+<li>masayoshi @yoyogidesaiz
+
+<ul>
+<li>新卒．めでたい．</li>
+<li>SDN(Software-Defined Networking) 大学でやってた <a href="http://e-words.jp/w/SDN.html">SDNとは｜Software-Defined Networking - 意味/定義 ： IT用語辞典</a></li>
+</ul>
+</li>
+<li>負荷分散技術の概要
+
+<ul>
+<li>データセンター分散したり</li>
+<li>ロードバランサーでbackend web分散したり</li>
+<li>サーバ内/ロールごと/サーバごと のだいたい3つの分散ある</li>
+</ul>
+</li>
+<li>サーバ内リソースの負荷分散
+
+<ul>
+<li>ハードウェア機能: hyper-threading, raid0</li>
+<li>ハードウェア意識のOSの負荷分散: numa, rss/rfs/rps</li>
+<li>OS意識のアプリケーションの作り方: fork()/clone() などのシステムコール</li>
+<li>Numa <a href="https://ja.wikipedia.org/wiki/NUMA">NUMA - Wikipedia</a>
+
+<ul>
+<li><blockquote><p>NUMA（Non-Uniform Memory Access、ヌマ）とは、共有メモリ型マルチプロセッサコンピュータシステムのアーキテクチャのひとつで、複数プロセッサが共有するメインメモリへのアクセスコストが、メモリ領域とプロセッサに依存して均一でないアーキテクチャである
+&ndash; <cite><a href="https://ja.wikipedia.org/wiki/NUMA">NUMA - Wikipedia</a></p></blockquote></li>
+</ul>
+</li>
+<li>application
+
+<ul>
+<li>fork() プロセス</li>
+<li>clone() スレッド</li>
+<li>select() プロセス &lt;- x (io多重化とかに影響するだけでCPUには影響しない?)</li>
+<li>このへんいろいろ理解してアプリケーションコードかく! (なるほど)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ロールごとの分散
+
+<ul>
+<li>proxy/web/db などのロールの分散</li>
+<li>proxyでキャッシュしたり，全部のリクエストがdbまで到達しないようにとか</li>
+<li>キャッシュ
+
+<ul>
+<li>ユーザに近いところで返す</li>
+<li>キャッシュヒットしなくて破綻とか実装に無理があったりとかもする．</li>
+<li>-> 使いどころを見極める．キャッシュは麻薬</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>サーバごとの負荷分散
+
+<ul>
+<li>この辺がインフラエンジニアに特にやりがいあったり</li>
+<li>拠点ごとに分散．</li>
+<li>load balancerでパケットを分散</li>
+<li>負荷分散技術を実現するために分散システムの考え方を参考にしたり</li>
+<li>透過性: <a href="https://ja.wikipedia.org/wiki/%E9%80%8F%E9%81%8E%E6%80%A7_(%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6">透過性 (情報工学) - Wikipedia</a>)</li>
+<li>DNSラウンドロビン
+
+<ul>
+<li>位置透過性を実現</li>
+</ul>
+</li>
+<li>ロードバランサ
+
+<ul>
+<li>位置透過性実現</li>
+<li>ヘルスチェックできる</li>
+<li>でもネットワークの制限受けたり</li>
+</ul>
+</li>
+<li>Proxy
+
+<ul>
+<li>haproxy/nginxなど</li>
+<li>ヘルスチェックできるし位置透過性も高い</li>
+</ul>
+</li>
+<li>分散先ノードのヘルスチェック
+
+<ul>
+<li>監視: how?</li>
+<li>異常(どんな?)のあるノードを削除</li>
+</ul>
+</li>
+<li>ヘルスチェックむずい．
+
+<ul>
+<li>OK返してるの本当ok? 中身見たら実はngとか</li>
+<li>ビザンチン将軍問題．<a href="https://ja.wikipedia.org/wiki/%E3%83%93%E3%82%B6%E3%83%B3%E3%83%81%E3%83%B3%E5%B0%86%E8%BB%8D%E5%95%8F%E9%A1%8C">ビザンチン将軍問題 - Wikipedia</a></li>
+<li>Gossip protocol <a href="http://www.slideshare.net/winebarrel/ss-10433600">ゴシッププロトコルによる冗長化と負荷分散の検証</a></li>
+<li><a href="http://qiita.com/hshimo/items/b7c0e0f12b7363e2e333">分散型コンセンサス・アルゴリズム プロトコル まとめ - Qiita</a></li>
+</ul>
+</li>
+<li>ロードバランサの耐障害性
+
+<ul>
+<li>冗長化技術であって負荷分散技術ではない</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>まとめ
+
+<ul>
+<li>負荷分散の仕方まとめ</li>
+<li>必要以上に複雑にしない．コスト増とかもある．simple is best</li>
+<li>本当に必要なのか最高する</li>
+<li>オープンソースカンファレンスはてなでブースだす． <a href="http://www.ospn.jp/osc2016-kyoto/">オープンソースカンファレンス2016 Kyoto - オープンソースの文化祭！</a></li>
+</ul>
+</li>
+<li>Q&amp;A
+
+<ul>
+<li>どこが負荷おおいか?
+
+<ul>
+<li>disk がおおい．dbとか．ロールごとに分けておいてキャッシュ聞かせていく戦略おおい．(計算機の仕組み的にdiskがおそい from yuuki)．最近iodriveとかあって速くなってきてるのでスケールアップが多い．</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>サービスに寄り添うログ基盤 - ログ収集のその先に -</h2>
+
+<p>16:20 | monochromegane(ペパボ) | サービスに寄り添うログ基盤 - ログ収集のその先に - | 25分</p>
+
+<p><a href="https://speakerdeck.com/monochromegane/pepabo-log-infrastructure-bigfoot">サービスに寄り添うログ基盤/pepabo_log_infrastructure_bigfoot // Speaker Deck</a></p>
+
+<script async class="speakerdeck-embed" data-id="5afe99df3d13476d8fd631d22d83d393" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+
+<ul>
+<li>monochromegane
+
+<ul>
+<li>minne</li>
+<li>普段 rails 書いてる．最近ログ基盤の開発してる．</li>
+</ul>
+</li>
+<li>ログはいいぞ!
+
+<ul>
+<li>ログはウェブサービスにおいて重要</li>
+</ul>
+</li>
+<li>行動ログ
+
+<ul>
+<li>アプリケーション層で出力するログ(apacheのログとかではない)</li>
+<li>いつ，だれが，なにをやったか特定できる</li>
+<li>最終結果だけでなく，どこであきらめたか．どう迷ったかが分かる
+
+<ul>
+<li><blockquote><p>特にどこであきらめたか．どう迷ったかが分かるところにサービス改善のヒントが詰まってる!!!</p></blockquote></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>行動ログ活用段階
+
+<ul>
+<li>収集: とりあとめる</li>
+<li>分析: 視覚化したり分析</li>
+<li>活用: 分析結果を使って継続的なサービス改善</li>
+<li>&ldquo;ログの活用&rdquo;
+
+<ul>
+<li>ログがたまるだけとか，グラフでてバンザイ！するだけではだめ!!</li>
+</ul>
+</li>
+<li>-> ログの<strong>活用</strong>基盤をつくる!</li>
+</ul>
+</li>
+<li>Bigfoot
+
+<ul>
+<li>ペパボの次世代ログ<strong>活用</strong>基盤</li>
+<li>minnneのそれでもある．</li>
+<li>UID 振る．アプリでログを吐いて集約基盤へ -> 分析 -> サービス改善など活用</li>
+</ul>
+</li>
+<li>Bigfoot を支える技術
+
+<ul>
+<li>ログを送る
+
+<ul>
+<li>fluentd rack-bigfoot(rails) OSS的な感じではなさそうか&hellip;?</li>
+</ul>
+</li>
+<li>集約基盤 Treasure Data
+
+<ul>
+<li>活用に力入れたかったので集約基盤はとりあえずTDに任せた．あとで自社のものにするかも</li>
+<li>Hive QL. 行動ログをSQLライクに扱える</li>
+</ul>
+</li>
+<li>ワークフロー
+
+<ul>
+<li>tdのスケジュールクエリを利用．これはwebのコンソールからorAPI.APIだと個々人が勝手にいろいろできたりしてこまる</li>
+<li>-> クエリのコード管理にpendulum <a href="http://blog.monochromegane.com/blog/2016/03/21/pendulum/">Treasure Dataのスケジュールジョブをコードで管理するPendulumというgemをつくった · THINKING MEGANE</a></li>
+<li>コードレビューとか管理できてよい</li>
+<li>digdag というtd社公式のものがあるので移行中 <a href="https://github.com/treasure-data/digdag">treasure-data/digdag: Workload Automation System</a></li>
+</ul>
+</li>
+<li>属性情報
+
+<ul>
+<li>行動ログのidから性別などなど属性情報を組み合わせると分析の幅が広がる</li>
+</ul>
+</li>
+<li>名寄せ
+
+<ul>
+<li>サービスのアカウントと各クライアントをマッピング</li>
+<li>未ログイン状態のアカウントも名寄せ後に過去に遡って紐付け</li>
+<li>cookie syncと組み合わせてサービス間の紐付け</li>
+</ul>
+</li>
+<li>Big Cube とCube
+
+<ul>
+<li>BigCube: 全サービスの行動ログを集約してる</li>
+<li>切り口が確定したらCubeに切り出す(cubeに切り出されるとpostgresに入るので速く集計できたりする)</li>
+</ul>
+</li>
+<li>視覚化と分析
+
+<ul>
+<li>pivot tableのすごいやつ． Tableau社のTableau Desktopを使う <a href="http://www.tableau.com/ja-jp/products/desktop">Tableau Desktop | Tableau Software</a></li>
+<li>データソースとしてtdつかえる</li>
+</ul>
+</li>
+<li>活用
+
+<ul>
+<li>画面デザインの変更．ステップ見直し</li>
+<li>A/Bテスト</li>
+<li>-> 静的なフィードバック．人が判断．固定化する．</li>
+</ul>
+</li>
+<li>動的なフィードバックがよいのでは?
+
+<ul>
+<li>システムが行動ログを吐く -> 変換したものをシステムが受け取る -> 挙動を変える</li>
+<li>バンディットアルゴリズム
+
+<ul>
+<li>いまやってみてる．</li>
+<li>A/Bテストの機会損失減らしてる．</li>
+<li><a href="https://www.oreilly.co.jp/books/9784873116273/">O&#8217;Reilly Japan - バンディットアルゴリズムによる最適化手法</a></li>
+<li>強欲な感じで期間内の最良の手法を探す．最大はそれにbetする(活用)が他のものにもbet(探求)．</li>
+</ul>
+</li>
+<li>リコメンド
+
+<ul>
+<li>matrix factorization</li>
+<li>強調フィルタリングの一種</li>
+<li>tdのなんかでできるらしい?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>browse,card abondonment</li>
+</ul>
+</li>
+<li>サービスに寄り添うログ基盤
+
+<ul>
+<li>単に集めるだけじゃなくて分析，活用の段階を補助する</li>
+<li>静的フィードバックから動的フィードバックへ</li>
+<li>行動ログの循環によって<strong>なめらかな世界</strong>へ．ということでログはいいぞ</li>
+</ul>
+</li>
+<li>Q&amp;A
+
+<ul>
+<li>Q「送る側のサービスからログ基盤への負荷の問題はどうか」A「fluentdがよく出来ているから問題ない」 <a href="https://twitter.com/matsumotory/status/749151437850980352">https://twitter.com/matsumotory/status/749151437850980352</a></li>
+<li>Q「fluentd自体の負荷はどうか」A「ない、今の設計規模では大丈夫」もともとfluentd自体はつかってて大丈夫ならしい</li>
+<li>td負荷? ログを送りつけるぶんには負荷は気にしなくて良い．送ったあとにインデックス使わずに集計したりするとまずい．プランやすかったりすると特に．</li>
+</ul>
+</li>
+</ul>
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">これ、みやけさんほぼ一人でやってたからやばすごなんですよ… <a href="https://twitter.com/hashtag/pepabohatena?src=hash">#pepabohatena</a></p>&mdash; 松本 亮介 / まつもとりー (@matsumotory) <a href="https://twitter.com/matsumotory/status/749146241422860288">July 2, 2016</a></blockquote>
+
+
+<p>まじか&hellip;</p>
+
+<p>活用を重要視していてよさそう．おもしろい話だった．</p>
+
+<p>「ログはいいぞ」．</p>
+
+<h2>若手インフラ座談会</h2>
+
+<p>16:55 | masayoshi(はてな) taketo957(はてな) alotofwe(ペパボ) hanazuki(ペパボ) モデレータ stanaka(はてな) | 若手インフラ座談会 | 40分</p>
+
+<ul>
+<li>新卒1,2年目の人達で座談会．stanakaさん仕切ってる</li>
+<li>自己紹介
+
+<ul>
+<li>taketo957: hatena. 新卒．インフラしてる． <a href="https://twitter.com/taketo957">taketo957 (@taketo957) | Twitter</a></li>
+<li>masayoshi: hatena. 新卒．さっき発表した <a href="https://twitter.com/yoyogidesaiz">まさよし (@yoyogidesaiz) | Twitter</a></li>
+<li>hanazuki: pepabo. 大学京都．インフラしてる．渋谷．去年入社 <a href="https://github.com/hanazuki">hanazuki (Kasumi Hanazuki)</a></li>
+<li>alotofwe: pepabo. 読み方:すずぴー．ねっとではれいか??? 去年入社．競プロ学生からやってる <a href="https://twitter.com/alotofwe">玲香@健康 (@alotofwe) | Twitter</a></li>
+</ul>
+</li>
+<li>なんでインフラ?
+
+<ul>
+<li>masayoshi: ネットワーク系の研究してたり．かっこいいじゃん?</li>
+<li>hanazuki: KMC入ってた．サーバーいじったりするの楽しかった．</li>
+<li>taketo957: B3くらいでRailsやってたらブラックボックスおおくていろいろ調べてた．京都ならはてなでインフラできそうということでアルバイトしてisuconしたりなどなど．面白くてそういう形式で入社した．</li>
+<li>alotofwe: 大学時代はそんなにインフラしてたわけじゃなかった．アプリは書いていたけど，やっていてアプリはもういいやという感じになった．インフラorセキュリティやろうとおもって，セキュリティ志望だけどセキュリティするためにはインフラ知らなきゃだめなので今インフラやってる
+
+<ul>
+<li><ol type="a">
+<li>せきゅりてぃ専門のひとpepaboにいる?</li>
+</ol>
+</li>
+<li><ol type="a">
+<li>ちょっといる．matsumotoryさんとかも?</li>
+</ol>
+</li>
+<li>はてなではセキュリティ専門はいない．みんなでやる．</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>アプリとインフラの境界? たとえばDBへのクエリ，スキーマあたりの責任や分担とかどう?
+
+<ul>
+<li>masayoshi: 監視業務のアルバイトしてその時はじめてインフラやった．そのときはコード書いてる人はいなかった．DBの設計まではしないけど性能のチェック，クエリのパフォーマンスチェックなどはしてた．はてなでは? -> だいたい一緒．</li>
+<li>taketo957: 入社以前はもっとハッキリした境界あると思ってたけど，入ってみたらアプリ側が一緒にやってくれたりとか．インフラはmiddle wareより下はだいたいみてる．</li>
+<li>hanazuki: パフォーマンスチューニングとかが境界．どっちからもみる．上からみるか下からみるかって感じ．境界がハッキリはしてない．</li>
+<li>alotofwe: だいたいhanazukiさんと同じ．開発のひとからpull-reqが飛んできてレビューするとかまであるくらい境界は曖昧．ある程度権限はあるけどソレ以外はほとんど境界はない．</li>
+</ul>
+</li>
+<li>インフラエンジニアになって1-2年，おもしろかったことや印象的なエピソードとかある?
+
+<ul>
+<li>masayoshi: はてなはオンプレ環境ある．ネットワーク機器をみてエラーパケットとかみたりした．そこで傾向とかがみれて面白い</li>
+<li>hanazuki: プライベートクラウド使ってる．チョット前まではオンプレ．仮想環境を使う側．awsを使うのとは違ってどう動かすかとかツールとか作っていく．この辺が楽しい</li>
+<li>taketo957: いろいろわかってきて嬉しい!</li>
+<li>alotofwe: 推理小説がスキ．障害の何が原因か調べるのが探偵の推理っぽくて楽しい．</li>
+</ul>
+</li>
+<li>研修でよかったこと
+
+<ul>
+<li>taketo957: 今年からインフラでも新卒研修．知識編と設計編．設計編がおもしろかった．実際に動いてるサービスにたいしてこのくらいのリクエストならどう設計するか．身になる部分でよかった．</li>
+<li>hanazuki: 1ヶ月間くらい研修ある．内容自体はだいたい知ってたりもしたけど試行錯誤がおもしろかった．</li>
+<li>alotofwe: 今年は研修作る側．内容: railsつくって運用基盤つくってmobileつくる．最低限の生き延びるための知識を得るようなもの．インフラのものはあまり知らなかったので特に勉強になった．</li>
+<li>masayoshi: 全部taketoくんに言われた! ミドルウェアの組み合わせだけじゃなくて構築するとかコードを書いて作ってみるとどこがボトルネックになるのかとかわかったりする．作ったり構築・コード書くのも研修でやるとその辺に気づけて勉強になるのでベンリ．</li>
+</ul>
+</li>
+<li>hatena は京都と東京．pepaboは福岡と東京にある．2拠点でやってることに関して感じることとか?
+
+<ul>
+<li>taketo957: 自分がやった話ではない．東京とのコミュニケーションコストを下げる．提示前15minのslack call雑談とかやってる．(yuukiさんが導入した)</li>
+<li>masayoshi: taketoさんの続きってかんじ．今すぐ，まだまとまってないけど考えを話し合い，そういうときに音声チャットあってすぐに話せる環境があるとよい．ちょっと話したいけどいいですか?って聞いたらすぐ聞けるという環境が大事でベンリ．</li>
+<li>taketo957: 補足．はてなは社内の文化的にこんなことも残すのか．というところまで残す．音声もベンリだけどチャットなどのテキストで何でも残すというところもよい．</li>
+<li>hanazuki: みてるサービスが違うのでそこまでコミュニケーションをする必要はそもそもない．週1でビデオコールとかしてる．コミュニケーションとりたいけど取れないときもあるのでなんとかしたい．</li>
+<li>alotofwe: slackべんり．アイコンが顔写真でよい．</li>
+<li>masayoshi: アイコンもよいよね!</li>
+<li>どうしても落ちがちな情報．手元で詰まってるけど大変とかいう情報とか．</li>
+</ul>
+</li>
+<li>ロールモデル．将来どうなりたいとか．社内社外問わず目標としてる人とかいるか?
+
+<ul>
+<li>masayoshi: 具体的な人物とかはあんまりない．エンジニアとアカデミック系では本来あんまり境界はない．インフラのパフォーマンスチューニングとかは個人の技術という側面がおおいので体系化して学術分野にも広めたりアウトプットしたい．</li>
+<li>taketo957: 入社したときはyuukiさんにあこがれてといった．ネットワーク周り喋ってるひとがおおい．アプリ観点から観てるひとはあんまりすくなさそう．研究室でやってきた人力でやる仕組みとか応用したりしていきたい．(クラウドソーシング?)</li>
+<li>hanazuki: あんまり決まってない．人力の認知力でやったりするのはうっかりとかが発生して困るのでつらい．半分寝てても仕事できるようにしたい</li>
+<li>alotofwe: よくばりさんなので側面によって尊敬してる人が異なる．つまみ食いしていきたい．食べてる最中なのであんまり決まってない．</li>
+</ul>
+</li>
+<li>インフラエンジニアの醍醐味?．会社のいいところは?
+
+<ul>
+<li>taketo957: レイヤーが下がるにつれて相手にするものが多くなる．それにつれて自分の知識も増やす必要がある．いろんな知識を裏側まで見通してやっていったりするのは面白い．会社のよいところ．新しい技術・古い技術と幅がでていてよい．</li>
+<li>masayoshi: 基盤をつくるのが面白い．大規模なものを支えるところが面白い．裏方だけど支えがないと動かない．このアラート放置していいんすか?とか聞くと先輩とかが話してくれて一緒に解決してくれたり．</li>
+<li>hanazuki: インフラといってもハードウェアみたりチューニングしたりなどいろいろな分野・仕事がある．いろいろできるのよい．それぞれスキなレイヤで改善できるところとかよい．</li>
+<li>alotofwe: アプリと比較．アプリ開発だと適当に書いても動いちゃう．インフラだと1行追加すると大きい影響があってじっくり考慮してかかなきゃだめだったりする．向上心強い人がおおい．よくしていきたいという気持ち．勉強しやすい会社．</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>僕の(雑)まとめ感想とか</h2>
+
+<p>インフラ系のことはほとんどできていなくて，知識も全然ないけど，どんな感じでやってるのかなぁと興味はあったので参加しました．
+アプリケーション書くときもインフラ意識して書くとよかったりするのでインフラエンジニアとかウェブオペレーションエンジニアみたいな職種につかなくても知っておくと便利．
+実際座談会の話では，はてなさんでもペパボさんでもアプリケーションエンジニアとインフラエンジニアの仕事の境界とかは曖昧で，上から見るか下から見るかの違い程度しかないみたいな話をしてた気がする．
+僕も，もっとインフラ意識しながら開発していきたいなーという気持ち高まった．</p>
+
+<p>ネットワーク周りだとシステムコールとかいろいろ正直よくわからんくて前提知識僕が持ってないんだなーという話は多かったけど，
+わかんない話でもおもしろいなーと得られる部分あったり，割とまだ分かる話(相対的に)でも知らないことがたくさん学べたり，なるほどなーとかそうだよなーよいよい!という話ばかりで
+どの発表もよくて来てよかった．</p>
+
+<p>運営・発表者の皆さんありがとうございました．</p>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[6/2までKindle本50%オフセール!IT系の本で僕が欲しい本をまとめた!!!]]></title>
@@ -5879,65 +6988,6 @@ Vimを使い出したり,プログラミングに興味を持つ1つのきっか
 
 <p>テーマの作り方とか、GitHub pagesでユーザーページではなくプロジェクトページを使う、
 DNS設定の仕方などの記事も気が向いたら書いていこうかなと思います。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimプラグイン読書会第4回が3/15(土)21:00から開催されます]]></title>
-    <link href="http://haya14busa.com/reading-vimplugin-04-senden/"/>
-    <updated>2014-03-15T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/reading-vimplugin-04-senden</id>
-    <content type="html"><![CDATA[<h2>第4回Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/03/15 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/tpope/vim-pathogen">tpope/vim-pathogen</a></li>
-</ul>
-</li>
-<li>目的: プラグインマネージャの仕組みを理解する</li>
-</ul>
-
-
-<p>ぜひ気軽に参加してください。</p>
-
-<h2>pathogen読みます</h2>
-
-<p>かの有名なtpope先生のプラグインです。first commitが5years agoの(たぶん)一番古株のプラグインマネージャで歴史を感じます。(<a href="https://github.com/c9s/Vimana">c9s/Vimana</a>というのもあったらしいですがperlスクリプトで、かつどっちが先かはよくわかりません)</p>
-
-<p>326行1ファイルなので分量的には気軽に読めそうです。(密度は知らない)</p>
-
-<h3>読みどころ</h3>
-
-<p>Vim触り始めの頃からNeoBundleやVundle,pathogenといったプラグインマネージャが存在して、vimのランタイムパスとかほぼ気にせずプラグインを簡単にインストール、管理できた身としてはそのあたりで何やってるかというのは、しばらく全くわかっていませんでした。(そして今もそこまでわかってないかも&#8230;)</p>
-
-<p>と、いうことでruntimepath周りや、「プラグインマネージャって結局何をどうやってるのよ?」みたいなところが１つの読みどころかなぁと思います。</p>
-
-<p>あとは関連して、ファイルやディレクトリのpathの操作などは他の用途でも汎用的に使えそうです。</p>
-
-<h2>pathogenの命名</h2>
-
-<ul>
-<li><a href="http://eow.alc.co.jp/search?q=pathogen">pathogenの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=infect">infectの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-<li><a href="http://eow.alc.co.jp/search?q=incubate">incubateの意味・用例｜英辞郎 on the WEB：アルク</a></li>
-</ul>
-
-
-<p>pathogenってどういう意味かなぁと思って調べると、infectやincubateといった関数が存在することから、 そのまま「病原体」の&#8221;pathogen&#8221;と&#8221;path&#8221;を掛けたっぽいですね。[要出典]</p>
-
-<p>「<code>~/vim/bundle/</code>のディレクトリをvimのruntimepathという病原体(pathogen)でinfect(感染)させるぜ!」と言ったところでしょうか。</p>
-
-<p>結構カッコイイ命名っぽい。</p>
-
-<h2>ということで</h2>
-
-<p>明日、3/15(土)21:00から[LingrのVim部屋]((<a href="http://lingr.com/room/vim">http://lingr.com/room/vim</a>)で開催されるのでぜひワイワイ読みましょう！</p>
-
-<p>初見でも初心者でも歓迎ですよ!</p>
 ]]></content>
   </entry>
   
