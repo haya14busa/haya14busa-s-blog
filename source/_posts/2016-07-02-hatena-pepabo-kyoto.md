@@ -20,7 +20,7 @@ gistでいいかとおもったけどスライド埋め込みとか考えたら�
 特に座談会の内容とかは Twitterのハッシュタグみてたら [@matsumotory](https://twitter.com/matsumotory) さんと [@yumu19](https://twitter.com/yumu19) さんがまとめてたのでそっち見たほうがわかりやすいかも．
 
 ### Togetter
-~~ [はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 7/2 - Togetterまとめ](http://togetter.com/li/994969) ~~
+~~http://togetter.com/li/994969~~
 
 ~~ということで雑にtogetterつくっておきました．#pepabohatena で検索したやつからスパム2-3個消しただけです．
 そういえばtogetterだめな人とかいるかもじゃん...!ということに気づいたんですが全員に連絡するの流石につらいのでダメなひと
