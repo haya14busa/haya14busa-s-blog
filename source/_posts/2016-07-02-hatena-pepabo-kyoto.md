@@ -326,6 +326,9 @@ LDAP とかユーザ管理あんまり関わってないけど便利そうだっ
 ## 負荷分散技術を選ぶ時に考えること
 15:55 | masayoshi(はてな) | 負荷分散技術を選ぶ時に考えること | 25分
 
+[負荷分散技術を選ぶときに考えること // Speaker Deck](https://speakerdeck.com/masayoshi/fu-he-fen-san-ji-shu-woxuan-butokinikao-erukoto-1)
+<script async class="speakerdeck-embed" data-id="4069267887dd401c93e8fe6b1de08f34" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
 - masayoshi @yoyogidesaiz
   - 新卒．めでたい．
   - SDN(Software-Defined Networking) 大学でやってた [SDNとは｜Software-Defined Networking - 意味/定義 ： IT用語辞典](http://e-words.jp/w/SDN.html)
