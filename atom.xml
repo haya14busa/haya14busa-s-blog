@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-07-05T00:05:13+09:00</updated>
+  <updated>2016-10-24T09:10:32+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,154 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[reviewdog を飼ってコードレビューや開発を改善しませんか]]></title>
+    <link href="http://haya14busa.com/reviewdog/"/>
+    <updated>2016-10-24T07:44:34+09:00</updated>
+    <id>http://haya14busa.com/reviewdog</id>
+    <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/haya14busa/i/d598ed7dc49fefb0018e422e4c43e5ab8f207a6b/reviewdog/reviewdog.logo.png" alt="reviewdog logo" /></p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/dc0ccb1e110515ea407c146d99b749018db05c45/reviewdog/sample-comment.png" alt="" /></p>
+
+<p>GitHub: <a href="https://github.com/haya14busa/reviewdog">haya14busa/reviewdog: A code review dog who keeps your codebase healthy</a></p>
+
+<p>英語記事: <a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.r3hb734et">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></p>
+
+<p>reviewdog というlinter などのチェックツールの結果を自動で GitHub の Pull Request にコメントしたり，
+ローカルでも diff の結果から新たに導入されたエラーだけを表示するようにフィルタリングできるツールを作りました．</p>
+
+<p><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.r3hb734et">英語記事</a> を Medium に書いたし，README も書いたので
+日本語記事はまぁいらないかなぁと思ったけど，柄にもなく Vim 関連以外で普通に便利ツールを書いてしまって，これは日本語でも簡単に共有しようかなぁと思いこの記事を書いています．
+(とはいえ機能の実現方法として Vim は関係はしてるんですけどね.)</p>
+
+<p>特に和訳とかではなく，英語ではなかなか文章に落としづらかったことをだらだら書こうかと思います．英語は難しい&hellip;
+(だらだらと日本語を書いてるので日本語ができてるとは言ってない)</p>
+
+<h2>背景とかきっかけ</h2>
+
+<p>compiler や lint といったコードをチェックするツールはものによっては直さなくてもいいものをレポートすることがありますよね．
+例えば Scala の compiler はオプションを与えたらかなりいろんな警告を出してくれますが，
+別に直さなくてもいいケースがあるものがあったり， Play framework
+で使ってると ルーティングファイルやテンプレートファイルに対して，こちらが直せない警告を
+バンバンだしてきたりします．(これはバージョンを上げると直るっぽい?)</p>
+
+<p><a href="https://github.com/golang/lint">golint</a> は <code>-set_exit_status</code> を付けないと問題を見つけても exit status が 1 になりませんが，
+これはもともとあくまで コーディングスタイル の問題を見つけるものだという思想からでしょう．</p>
+
+<blockquote><p>Golint differs from govet. Govet is concerned with correctness, whereas golint is concerned with coding style.</p></blockquote>
+
+<p>Go の OSS プロジェクトでは CI で golint の問題があればビルドをFAILにすることが結構多いと思いますが，
+本来直さなくてもいいところまで直さなくてはいけなくて消耗したりしていませんか?</p>
+
+<p>去年 Google のインターンで Go 書いてたときは，実際 golint のエラーでテストがfail するとかではなく，
+bot が自動でコメントしてくれてあとは勝手に直せという感じで便利でした．</p>
+
+<p>まぁ直さなくてもいい結果は少なくて大抵は直すのですが，直さなくてもいいものはゼロではないです．
+コメントで bot に直さなくてもいいものを指摘されたら単に無視してcloseすればいいので無駄に消耗せずにすんで便利．</p>
+
+<p>また CI で落とすために指摘してくれると便利なことは多いけど設定で off にしてしまうケースもあるかなーと思います．
+例えば JavaScript で関数の引数に使ってないものがあったら警告してくれると便利なケースもあるかなぁーという反面，
+コールバック用関数などでは渡ってくるのがわかってるからいいんだよ！というケースとか．</p>
+
+<p>あとは既存のコードベースに新しく linter を導入しようとすると，既存のコードに対してエラー
+出まくって導入するために直していくのが面倒だなぁ&hellip; 放置していると新しいコードに対しても
+lint が走らないので消耗する&hellip;ということもあるかと思います．</p>
+
+<p>上記の問題を解決する1つの方法としては，とりあえずPull Request の差分に関して lint をかけたり
+して自動でbotがコメントしてくれる仕組みがあれば，100% 円満解決ではなくともかなりつらみが
+解消されるかと思います．</p>
+
+<p>世の中にはすでにそういうサービスは一応あって <a href="https://houndci.com/">Hound CI</a>
+とか <a href="https://sideci.com/">SideCI</a> がそうなんですが，使える言語やツールは限られています．
+たとえば Vim の linter を Vim プラグインのレポジトリに対して使えるようになることはないでしょう.</p>
+
+<p>また，ローカルでも(差分に対して lint などを書けるという意味で)実行できないと Pull Request 出さないとチェックできないので不便です．</p>
+
+<p>ということで作ったのが <a href="https://github.com/haya14busa/reviewdog">reviewdog</a> になります．</p>
+
+<p>あんまり技術的に面白いことがあったというよりは，本来あるべきものなのになかったので作ったという感じ．
+汎用的に lint の結果をパースする手段をどのツールも提供してるものがないのが問題で，
+reviewdog は Vim の Quickfix 用の &lsquo;errorformat&rsquo; という機能を Go で port することによって実現しました．</p>
+
+<p>GitHub: <a href="https://github.com/haya14busa/errorformat">haya14busa/errorformat: Vim&rsquo;s quickfix errorformat implementation in Go</a></p>
+
+<p>&lsquo;errorformat&rsquo; 形式を採用したのは僕が単に Vimmer だから&hellip; というのももちろんあるんですが，
+仕様の全体を理解するのは結構大変とはいえ，簡単なerrorformatを書くのは簡単だし，それでいて
+難しい複数行のエラーメッセージをパースできる利点があります．</p>
+
+<p>emacs では compilation モードが Vim の quickfix に対応するようで，errorformat に対応するものは
+正規表現とサブマッチのインデックスっぽいのですが，簡単な複数行エラーには対応してそうですが，
+Vim の &lsquo;errorformat&rsquo; のほうが汎用的っぽいなーと思いました(詳しく見れてません)</p>
+
+<p>&lsquo;errorformat&rsquo;, 実装ポーティングして仕様を理解していくと，かなりよくできているなーという印象で
+Vim は時代の先を走ってると思いました．</p>
+
+<p>また reviewdog 以外でも <a href="https://github.com/alecthomas/gometalinter">https://github.com/alecthomas/gometalinter</a> のもっと汎用的なバージョンを言語を問わず
+errorformat を使って作るとかも可能なんじゃないかな〜と思います．(gometalinter 個人的にあんまり好きくないし)</p>
+
+<h2>インストールとか使い方書こうかと思ったけど疲れたのでREADMEとか英語のpost読んでください</h2>
+
+<ul>
+<li><a href="https://github.com/haya14busa/reviewdog">haya14busa/reviewdog: A code review dog who keeps your codebase healthy</a></li>
+<li><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.r3hb734et">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></li>
+</ul>
+
+
+<p>あと雑だけど Google Doc の design doc な何かも一応ある <a href="https://docs.google.com/document/d/1mGOX19SSqRowWGbXieBfGPtLnM0BdTkIc9JelTiu6wA/edit#">reviewdog - Google Docs</a></p>
+
+<h2>CI サービス連携問題</h2>
+
+<p>reviewdog は Pull Request hook と実行環境さえあれば対応できてオープンなCIサービスの場合はGitHubへコメントするための
+API トークンを安全に環境変数などで保存する方法があれば対応できます．</p>
+
+<p>travis や circle ci といったメジャーなCIサービスは両方対応していて，最初は全然このあたりは問題ではないなーと思ってたのですが，
+実はOSS用のリポジトリに対して使おうとすると fork レポジトリからの pull-request では暗号化された環境変数は使えない!
+という問題があって，これどうすかなぁーということにかなり悩まされました．
+考えてみれば当たり前で，<code>echo $SECRET_VAR</code> とかした悪意あるPull Request が開かれたら簡単に漏れちゃいます．</p>
+
+<p>そこで，いろいろ CI サービスを探ってると <a href="https://drone.io/">https://drone.io/</a> の OSS バージョン
+<a href="https://github.com/drone/drone">https://github.com/drone/drone</a> を見つけました．</p>
+
+<p>help (<a href="http://readme.drone.io/usage/secrets/">Secrets · Drone</a>) を読むと，
+yaml ファイルのチェックサムとセクション分けによって(完璧ではないものの)安全に
+秘密の環境変数をforkからのプルリクでも使えるようになっているようです．
+完全に便利なので travis とか circle ci でもこの機能ほしい&hellip;</p>
+
+<p>drone.io OSS バージョンは <a href="https://drone.io/">https://drone.io/</a> とは別物という感じで環境変数の扱い以外も
+結構便利っぽく，drone.io も reviewdog はデフォルトでサポートしました．</p>
+
+<p>ただ OSS で雑にGitHubに上げたサービスに対して使うケースでも drone.io
+をどこかにホスティングしなくてはならないのが不便なところです&hellip;
+個人的にはreviewdogのために Degital Ocean に月500円で drone.io 用サーバを立ててみて，
+今の所かなり便利感ありますが，ワガママをOSS用にどっかホスティングしてほしい.</p>
+
+<p>で，じゃあ結局forkからのPull Requestも受け付けるOSS用リポジトリにreviewdog導入
+したい場合どうすればいいかというと，現状は Circle CI の <a href="https://circleci.com/docs/fork-pr-builds/#unsafe-fork-pr-builds">Building Pull Requests from forks - CircleCI</a>
+機能をセキュリティリスクと引き換えに ON にするしかないかなーという感じです．</p>
+
+<p>GitHub の Personal Access Token, しかも scope を適切に <code>public_repo</code> とかに設定しておけば，
+もし漏れても大したことはできないはずだし，rebokeもできるし，fork して悪意あるPull Request 作られたら流石に気付くし，
+まぁそもそもそんなこと GitHub の 権限すくないPersonal Access Token 得るためにやる人は
+少ないのでは&hellip; という感じですね．ただ使う場合はもちろん自己責任でお願いします．</p>
+
+<p>Circle CI か travis あたりが drone.io みたいに yaml のチェックサム+環境変数が使えるスコープを制限する機能がもし実装されたらそれを使っていきたい</p>
+
+<p>(ところで他のCIサービスとして wrecker 試したんですが，fork からの pull-request で普通に秘密の環境変数使えてしまった気がする&hellip;問題では&hellip;あとPull Request hook によるビルドがなさそうだった)</p>
+
+<h3>終わりに</h3>
+
+<p>reviewdog 完全に便利という感じなのでぜひ使ってみてください〜</p>
+
+<p>CI 用環境変数とか設定すれば Jenkins とかいろんな環境で導入できるはずだし，
+一度導入したら撤退しずらいとかもないので，ギョームとかでも使えるような気がしますが
+リリース直後なのでいろいろ変わるかも知れないしそのへんはよしなにお願いします．
+GitHub Enterprise とか BitBucket 対応は気が向いたらするかもしれない．
+特にGitHub Enterprise はGitHub 用の base の url 変えるだけで対応できる&hellip;?</p>
+
+<p>ちょくちょく気になるところはあるのでちまちま改善していこうかなーと思います</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ]]></title>
@@ -6937,62 +7085,6 @@ themis便利なんですが自分が使いこなせてないのでテストも�
 <p><strong>Boost your productivity with EasyMotion!</strong></p>
 
 <p><del>結局思考が追いつかないし、進捗力ある人 with メモ帳に負ける</del></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[WordPressからOctopressに移行した]]></title>
-    <link href="http://haya14busa.com/move-to-octopress-from-wordpress/"/>
-    <updated>2014-03-23T18:30:56+09:00</updated>
-    <id>http://haya14busa.com/move-to-octopress-from-wordpress</id>
-    <content type="html"><![CDATA[<h2>Octopressに移行しました</h2>
-
-<p>常々、WordPressからOctopressに移行したいなぁーと考えていたんですが、とうとう実行に移して完全移行を実現しました。</p>
-
-<p>理由としては</p>
-
-<ul>
-<li>WordPressの管理画面にいってどうこうするとか、面倒になってきたし、VimRepressというプラグインも使いづらかった</li>
-<li>ブログ記事をgitで管理したかった</li>
-<li>CUIで簡潔する。ｱﾂｲ。VimやGitとの相性が抜群</li>
-<li>Jekyllを使ってある程度慣れていた。</li>
-<li>Programmer向けの静的サイトジェネレータで、プラグインなども公開していたり、自分で作れちゃったりする</li>
-<li><del>GitHub Pagesで管理すればCurrent Streakを伸ばすための1つの選択肢になる</del></li>
-<li>etc&hellip;</li>
-</ul>
-
-
-<p>移行しない理由がなかった。</p>
-
-<h2>Octopressのテーマを作りました</h2>
-
-<p><a href="https://github.com/haya14busa/mjolvim-octotheme">haya14busa/mjolvim-octotheme</a></p>
-
-<p>基本的に移行前のブログのデザインをベースにして、いろいろ改善しました。</p>
-
-<p>個人的にはシンプルでいい感じになったと思います。
-WordPressの時と違って手元で変更してFTPでアップロードなどせずとも、
-普通に編集してgit push出来るので何か気になったら気軽に改善できるところが嬉しいですね。</p>
-
-<h2>WordPress1年間ありがとう</h2>
-
-<p>実はWordPressでサイトを公開してからちょうど1年になります。</p>
-
-<p>1年前のポスト: <a href="http://haya14busa.com/first-post/">ブログ作った。 - haya14busa</a></p>
-
-<p>WordPressでウェブサイト作ってみよう！とHTML, CSSから初めて,そこで
-Vimを使い出したり,プログラミングに興味を持つ1つのきっかけになったりしたので、
-とても感慨深いです。</p>
-
-<p>WordPressさんありがとうございました。</p>
-
-<h2>Octopress楽しい!</h2>
-
-<p>Octopress使って間もないですが、弄り甲斐があってとても楽しく、これからもっと
-ブログ執筆環境を改善して、楽々ブログ更新したいなぁーと思います。</p>
-
-<p>テーマの作り方とか、GitHub pagesでユーザーページではなくプロジェクトページを使う、
-DNS設定の仕方などの記事も気が向いたら書いていこうかなと思います。</p>
 ]]></content>
   </entry>
   
