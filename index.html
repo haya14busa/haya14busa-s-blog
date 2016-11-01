@@ -382,7 +382,7 @@ interface を埋め込みます．</p>
 返り値をいろいろ変えたものをいくつか作ってテストする&hellip;といったことが上記のパターンを
 使うことによって簡単にできます．Table Testing することも可能．</p>
 
-<p>普通にわざわざのstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
+<p>普通にわざわざstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
 を定義することができません．</p>
 
 <p>そこで <code>FakeFunc func()</code> というfield を持たせて実装を丸投げすることによって，

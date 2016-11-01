@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-11-02T08:33:04+09:00</updated>
+  <updated>2016-11-02T08:48:55+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -290,7 +290,7 @@ interface を埋め込みます．</p>
 返り値をいろいろ変えたものをいくつか作ってテストする&hellip;といったことが上記のパターンを
 使うことによって簡単にできます．Table Testing することも可能．</p>
 
-<p>普通にわざわざのstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
+<p>普通にわざわざstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
 を定義することができません．</p>
 
 <p>そこで <code>FakeFunc func()</code> というfield を持たせて実装を丸投げすることによって，
