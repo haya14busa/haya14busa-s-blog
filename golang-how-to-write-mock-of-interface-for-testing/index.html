@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Golangにおけるinterfaceをつかったテストで mock を書く技法 - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="いい記事に感化されて僕も何か書きたくなった。 Golangにおけるinterfaceをつかったテスト技法 | SOTA リスペクト: Big Sky :: golang で終了を確認するテストの書き方
+GolangでAPI Clientを実装する | SOTA
+Big Sky :: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Golangにおけるinterfaceをつかったテストで Mock を書く技法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-11-02T07:19:14+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>いい記事に感化されて僕も何か書きたくなった。</p>
+
+<p><a href="http://deeeet.com/writing/2016/10/25/go-interface-testing/">Golangにおけるinterfaceをつかったテスト技法 | SOTA</a></p>
+
+<p>リスペクト:</p>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/lang/go/20161025113154.htm">Big Sky :: golang で終了を確認するテストの書き方</a></li>
+<li><a href="http://deeeet.com/writing/2016/11/01/go-api-client/">GolangでAPI Clientを実装する | SOTA</a></li>
+<li><a href="http://mattn.kaoriya.net/software/lang/go/20161101151118.htm">Big Sky :: GolangでAPI Clientを実装する、の続き</a></li>
+</ul>
+
+
+<p>今週のやつではなく先週のです．今週のは特に知見がなかった&hellip;<a href="https://github.com/grpc/grpc-go">grpc-go</a>とか使えたらクライアント勝手に生成されるしいいよねgrpc流行ると便利そう(感想) くらい</p>
+
+<p><a href="http://deeeet.com/writing/2016/10/25/go-interface-testing/">Golangにおけるinterfaceをつかったテスト技法 | SOTA</a>
+めっちゃいいなーと思ったんですが，テスト用 の mock を気軽に作るテクニックはあまり詳しく紹介されてなかったのでそのあたりの１つのテクニックを書きたい．</p>
+
+<h2>前提</h2>
+
+<p>僕もテストフレームワークや外部ツールは全く使わない．標準のtestingパッケージのみを使う．
+<a href="https://github.com/stretchr/testify">testify</a> もいらないし， mock するために <a href="https://github.com/golang/mock">gomock</a> も基本はいらない．</p>
+
+<p>とにかくGolangだけで書くのが気持ちがいい，に尽きる．</p>
+
+<p>僕程度の Gopher 力で紹介されてるテクニックってどうなの&hellip;?と思う方もいらっしゃるかと思いますが，
+もともとは 某 Golang トップレベルで使ってる会社でインターンしてたときに教えてもらった方法なので
+そんなに間違ってないと思います．僕も最初は mock&hellip; なんか gomock
+とか使って生成しなきゃダメなのかな&hellip;? と思ったけど，そのときに Golang だけで書く方法を教えてもらったので
+gomock 使ったことないです．</p>
+
+<h2>テスト用 fake client をつくる</h2>
+
+<p>全体の動くはずのgist: <a href="https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee">https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee</a></p>
+
+<p>例えばこういう実装のテストを書くときのことを考えます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "context"
+</span><span class='line'>  "fmt"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>type GitHub interface {
+</span><span class='line'>  CreateRelease(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  GetRelease(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  DeleteRelease(ctx context.Context, releaseID int) error
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>type GhRelease struct {
+</span><span class='line'>  c GitHub
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (ghr *GhRelease) CreateNewRelease(ctx context.Context) (*Release, error) {
+</span><span class='line'>  tag, err := ghr.c.CreateRelease(ctx, nil)
+</span><span class='line'>  if err != nil {
+</span><span class='line'>      return nil, fmt.Errorf("failed to create release: %v", err)
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  // check created release
+</span><span class='line'>  if _, err := ghr.c.GetRelease(ctx, tag); err != nil {
+</span><span class='line'>      return nil, fmt.Errorf("failed to get created release: %v", err)
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  // ...
+</span><span class='line'>  return &Release{}, nil
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>type Option struct{}
+</span><span class='line'>type Release struct{}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>GitHub interface をテストでは mock したものを使いたい．そういうときには以下のように mock を作ると便利です．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>type fakeGitHub struct {
+</span><span class='line'>  // インターフェース埋め込み
+</span><span class='line'>  GitHub
+</span><span class='line'>  FakeCreateRelease func(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  FakeGetRelease    func(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  // 埋め込みを使うので，例えば DeleteRelease はまだテストしないので mock
+</span><span class='line'>  // しない... いうことができる．
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) CreateRelease(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>  return c.FakeCreateRelease(ctx, opt)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) GetRelease(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>  return c.FakeGetRelease(ctx, tag)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>fakeGitHub</code> という struct を作成し，インターフェースをとにかく満たすために <code>GitHub</code>
+interface を埋め込みます．</p>
+
+<p>そして mock したいメソッドは新たに <code>func (c *fakeGitHub) CreateRelease(...) (...)</code> と
+定義しなおし，実装の中身は <code>fakeGitHub</code> に持たせた <code>FakeCreateRelease</code> field に丸投げします．</p>
+
+<p>このようにしてテスト用 mock を作るとそれぞれのテストで簡単に中身の実装を変えられるので大変便利です．</p>
+
+<p>実際にテストしてみる例</p>
+
+<h4>main_test.go</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "context"
+</span><span class='line'>  "fmt"
+</span><span class='line'>  "testing"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>type fakeGitHub struct {
+</span><span class='line'>  // インターフェース埋め込み
+</span><span class='line'>  GitHub
+</span><span class='line'>  FakeCreateRelease func(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  FakeGetRelease    func(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  // 埋め込みを使うので，例えば DeleteRelease はまだテストしないので mock
+</span><span class='line'>  // しない... いうことができる．
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) CreateRelease(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>  return c.FakeCreateRelease(ctx, opt)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) GetRelease(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>  return c.FakeGetRelease(ctx, tag)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func TestGhRelease_CreateNewRelease(t *testing.T) {
+</span><span class='line'>  fakeclient := &fakeGitHub{
+</span><span class='line'>      FakeCreateRelease: func(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>          return "v1.0", nil
+</span><span class='line'>      },
+</span><span class='line'>      FakeGetRelease: func(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>          return "", fmt.Errorf("failed to get %v release!", tag)
+</span><span class='line'>      },
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  ghr := &GhRelease{c: fakeclient}
+</span><span class='line'>
+</span><span class='line'>  release, err := ghr.CreateNewRelease(context.Background())
+</span><span class='line'>  if err != nil {
+</span><span class='line'>      t.Error(err)
+</span><span class='line'>      // =&gt; failed to get created release: failed to get v1.0 release!
+</span><span class='line'>  }
+</span><span class='line'>  _ = release
+</span><span class='line'>  // ...
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下のような感じで，簡単にテスト用mockの実装を書いて，テストすることができます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>fakeclient := &fakeGitHub{
+</span><span class='line'>  FakeCreateRelease: func(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>      return "v1.0", nil
+</span><span class='line'>  },
+</span><span class='line'>  FakeGetRelease: func(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>      return "", fmt.Errorf("failed to get %v release!", tag)
+</span><span class='line'>  },
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記の例では1種類の実装しかテストしてないのであまり恩恵がわかりづらいかも知れないですが，
+例えば error が帰ってきたときに正しくエラーハンドリングできてるかとか，
+返り値をいろいろ変えたものをいくつか作ってテストする&hellip;といったことが上記のパターンを
+使うことによって簡単にできます．Table Testing することも可能．</p>
+
+<p>普通にわざわざのstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
+を定義することができません．</p>
+
+<p>そこで <code>FakeFunc func()</code> というfield を持たせて実装を丸投げすることによって，
+簡単にいろんな実装のテスト用 mock を作成してテストができるということの紹介でした．</p>
+
+<h2>まとめ</h2>
+
+<p>僕は最初にこのパターンを教わってなるほどなぁ&hellip;と思ったんですが，いざ世にでてみると(?)
+ぜんぜんこのパターンを紹介しているものが見つからなかったので紹介してみました．
+(一応どっかの medium の英語記事にこれに似たパターンが紹介されてたのを見た気もする&hellip;)</p>
+
+<p>ぜひ使ってみてください．</p>
+
+<h2>あまり関係ない追記</h2>
+
+<p>この記事の主旨とは関係ないけど，基本的にテスト用ライブラリは使わないとはいえ，
+たまににヘルパー関数ほしいなーというケースがあります．</p>
+
+<p>でかい struct をテストで比較するときに，比較自体は <code>refrect.DeepEqual</code> で出来るのだけど，
+もし違っていたときにどこが違うかを表示するのが面倒くさいのでヘルパー関数提供してくれるライブラリがほしい&hellip;</p>
+
+<p>某社でgoのテスト書いてたときもこういう大きめのstruct比較するケースでは便利diff表示用ライブラリを
+使っていた気がしたんだけど，なんかOSSで見つからない気がする&hellip; prettycmp みたいな名前だった気がするが
+どうだったか&hellip; そもそも記憶違いな気もする&hellip;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-11-02T07:19:14+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/go/'>go</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/" data-via="haya14busa" data-counturl="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/reviewdog/" title="Previous Post: reviewdog を飼ってコードレビューや開発を改善しませんか">&laquo; reviewdog を飼ってコードレビューや開発を改善しませんか</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/';
+        var disqus_url = 'http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

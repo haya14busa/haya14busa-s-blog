@@ -4,7 +4,7 @@
   <title><![CDATA[Category: uncategorized | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/uncategorized/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-11-02T08:28:21+09:00</updated>
+  <updated>2016-11-02T08:33:04+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -126,7 +126,7 @@
 
 <p>default.htmlなどで</p>
 
-<pre><code>{{ site.baseurl }}{{ post.url }}
+<pre><code>
 </code></pre>
 
 <p>Shell</p>
@@ -150,7 +150,7 @@
 
 <p>公式サイトを見る限り、baseurlは<code>/{repository-name}/</code>ではなく<code>/{repository-name}</code>にして最後のスラッシュは書かないほうがいいっぽいです。</p>
 
-<p>これは書いてても一応使えるんですが問題があって、<code>{{ site.baseurl }}{{ page.url }}</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>{{ site.base-url }}{{ page.url | remove_first:'/' }}</code>)</p>
+<p>これは書いてても一応使えるんですが問題があって、<code>/categories/uncategorized/atom.xml</code>とかした時に<code>baseurl//page-url</code>になってしまって、わざわざ最初のスラッシュを消す必要がでてきてしまいます。(<code>categories/uncategorized/atom.xml</code>)</p>
 
 <p>このへんvimrc読書会のページがこの構成で少しハマりかけたので注意です。絶対とは言いませんが最後のスラッシュはない方がよいです。</p>
 
@@ -188,9 +188,9 @@ title: なにかタイトル
 
 <h3>&#95;layout</h3>
 
-<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの<code>{{ content }}</code>にMarkdown内容を出力することになります。</p>
+<p>先ほど出てきた<code>layout: default</code>などは、所定のレイアウトを使ってそのなかの<code></code>にMarkdown内容を出力することになります。</p>
 
-<p><code>{{ page.title }}</code>や<code>{{ content }}</code>を使用してよさげに作るとよいです</p>
+<p><code>Category: uncategorized</code>や<code></code>を使用してよさげに作るとよいです</p>
 
 <h3>Gemfile</h3>
 
@@ -221,7 +221,14 @@ gem 'github-pages'
 
 <h3>&#95;includeを使う</h3>
 
-<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において<code>{% include header.html %}</code>とレイアウトなどなどから呼び出すことができます。</p>
+<p>各ページに共通の<code>&lt;head&gt;</code>タグ部分や、サイドバー、フッターなどなどは<code>_include/header.html</code>のようにフォルダ下において<code><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa's memo</h2>
+  
+</hgroup>
+
+</code>とレイアウトなどなどから呼び出すことができます。</p>
 
 <h3>&#95;dataとfor loopが便利っぽい</h3>
 
@@ -238,11 +245,7 @@ gem 'github-pages'
 
 <p>とかしておくとMarkdownファイル含め任意のところで</p>
 
-<pre><code>{% for member in site.data.members %}
-- {{ member.name }}
-  - GitHub : [{{ member.github }}](https://github.com/{{ member.github }})
-  - Twitter: [@{{ member.twitter }}](https://twitter.com/{{ member.twitter }})
-{% endfor %}
+<pre><code>
 </code></pre>
 
 <p>こんなふうに呼び出せて便利そうです。</p>

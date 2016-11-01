@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/go/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-11-02T08:28:21+09:00</updated>
+  <updated>2016-11-02T08:33:04+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -51,9 +51,11 @@ gomock 使ったことないです．</p>
 
 <h2>テスト用 fake client をつくる</h2>
 
+<p>全体の動くはずのgist: <a href="https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee">https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee</a></p>
+
 <p>例えばこういう実装のテストを書くときのことを考えます．</p>
 
-<pre><code class="go">package main
+<pre><code>package main
 
 import (
     "context"
@@ -91,7 +93,7 @@ type Release struct{}
 
 <p>GitHub interface をテストでは mock したものを使いたい．そういうときには以下のように mock を作ると便利です．</p>
 
-<pre><code class="go">type fakeGitHub struct {
+<pre><code>type fakeGitHub struct {
     // インターフェース埋め込み
     GitHub
     FakeCreateRelease func(ctx context.Context, opt *Option) (string, error)
@@ -121,7 +123,7 @@ interface を埋め込みます．</p>
 
 <h4>main_test.go</h4>
 
-<pre><code class="go">package main
+<pre><code>package main
 
 import (
     "context"

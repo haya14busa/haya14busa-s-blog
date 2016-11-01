@@ -9,8 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="Vim script読書会 #01 読んだプラグイン Shougo/junkfile.vim
-thinca/vim-visualstar 場所 vim-users.jp – Lingr 時間 12/14(土) 21:00-23:00 ログ Logです Pull Request Autoload &hellip;">
+  <meta name="description" content="なんどpushしてもTravisが動いてくれなくて非常につらかった 何度も設定見なおして、何度も更新して、何度も何度もpushしました。 しかし何も起こらなかった。。。 解決 ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,86 @@ thinca/vim-visualstar 場所 vim-users.jp – Lingr 時間 12/14(土) 21:00-23:0
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages Branch)のテストをするときにハマった</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-12-27T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>なんどpushしてもTravisが動いてくれなくて非常につらかった</h2>
+
+<p>何度も設定見なおして、何度も更新して、何度も何度もpushしました。</p>
+
+<p>しかし何も起こらなかった。。。</p>
+
+<h2>解決</h2>
+
+<p>ふと、masterじゃないとダメなのかなとmasterにプッシュしたら動いたので、さらにドキュメントを調べてみると&#8230;</p>
+
+<blockquote><p>Note that the gh-pages branch will not be built unless you add it to the whitelist (branches.only).</p>
+
+<p>&#8211; <cite><a href="http://about.travis-ci.org/docs/user/build-configuration/">Travis CI: Configuring your build</a></cite></p></blockquote>
+
+<p>書いてあった！！！</p>
+
+<p><code>gh-pages</code>ブランチはデフォルトではテストしてくれなくて、whitelistで明示的に指定しないとダメなようです。</p>
+
+<p>.travis.yml</p>
+
+<pre><code>language: ruby
+rvm:
+  - 2.0.0
+before_script: "bundle show"
+script: "bundle exec jekyll build"
+after_script: "find _site -type f"
+branches:
+  only:
+    - gh-pages
+</code></pre>
+
+<p>よく考えたら、gh-pagesってプロジェクトと全く別の物が置かれているわけだから、デフォルトで無視してくれるっていうのは気が効いてていいかもしれないですね。 <code>gh-pages</code>のテストとか別にローカルで書くときにビルドしてればわかるのでそもそもあんまりテストする必要性がないのかもしれないというのはある。</p>
+
+<p>ちなみに上記のようにwhitelistでgh-pages onlyの設定にしていてもPull Requestにはちゃんと反応してくれるっぽいです。Travisさんさすがです。</p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/travis_jekyll_gh-pages/">Travis CIでJekyll on GitHub Pages(gh-pages branch)のテストをするときにハマった</a>
+      <time datetime="2013-12-27T00:00:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>27</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1321,221 +1400,6 @@ let g:EasyMotion_use_migemo = 1</p>
       
       - <a href="/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する</a>
       <time datetime="2013-11-28T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vimconf2013/">VimConf2013に参加してきました!</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-11-19T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>VimConf2013!</h2>
-
-<ul>
-<li><a href="http://vimconf.vim-jp.org/2013/">VimConf2013</a></li>
-<li><a href="http://connpass.com/event/3978/">VimConf 2013 &#8211; connpass</a></li>
-</ul>
-
-
-<p>VimConf2013に参加してきました！Vim!</p>
-
-<h2>How to suggest new features for Vim (by <a href="https://twitter.com/kaoriya">@kaoriya</a> さん)</h2>
-
-<ul>
-<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
-</ul>
-
-
-<p>Vim本体に取り込まれるためにはどうやってpatchを投げればいいかという話だったけど、Vimに留まらずいろんなところで応用が効く話だった。ただ便利じゃん、といった思いつきでなく、しっかりストーリーを組み立てるのが大事。</p>
-
-<ol>
-<li><strong>Strategy</strong>を組み立て</li>
-<li><strong>Problem</strong>を共有してきちんと理解してもらい</li>
-<li>シンプルな<strong>Solution</strong>を作って</li>
-<li>やっと<strong>Patch</strong>を書く</li>
-</ol>
-
-
-<p>最近vim-devの1日のabbrev.版のメールを読んだり(読まなかったり)してるのだけど、まさにvim-devのVimのパッチはProblemが何かから始まり、そしてそのSolutionについての文章が続き、その後にPatchの内容が続くという流れになっている。パッチを受け入れられるために、その流れに従うというある意味当たり前のことをちゃんと意識して、実践することが大事。</p>
-
-<p>Vimはテキストエディタ(再確認)なのでエディタに要らない機能は取り込まれないし、Vimの思想(<a href="http://vimdoc.sourceforge.net/htmldoc/develop.html#development">:h development</a>)を理解することが大事とあとの発表で<a href="https://twitter.com/k_takata">@k_takata</a>さんもおっしゃっていた。</p>
-
-<p>ところで、@k_takataさんはHow to <em>write</em> patchという話で、どちらかといえば具体的・実践的な話だとしたら、@koronさんの話は抽象的・理論的なHow to <em>suggest</em>という話だったので、同じPatchの話でもそれぞれ非常におもしろかった。</p>
-
-<h2>Evil is justice (by <a href="https://twitter.com/esehara">@esehara</a> さん)</h2>
-
-<ul>
-<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
-</ul>
-
-
-<p>VimConf2013はインターナショナルなVimカンファレンスを志向するためにスライドは英語推奨だったりしたのだけれど、@eseharaさんのプレゼンは特にインターナショナルだった(エディタ間で)。Vim国とEmacs国の宗教戦争をEvilで終わらせるべく参上したという感じで、ネタを交えつつEmacsでVimのキーバインドを使えるEvilを紹介してくださって、おもしろい発表だった。</p>
-
-<p>Emacsで小指云々は親指Ctrlや特殊な配列のキーボードで解消できるらしい(by <a href="https://mobile.twitter.com/kiwanami">@kiwanami</a>さん)。VimでもCtrlは重要なキーなので親指Ctrlそのうちやってみたい。</p>
-
-<h2>How to use git from vim ＠vim conf2013(by <a href="https://twitter.com/c0hama">@cohama</a> さん)</h2>
-
-<ul>
-<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
-</ul>
-
-
-<p>個人的にGitをVimから便利に使おうとして、何度も挫折して、結局tmuxの別ペインでGitという選択肢を使っていたので、発表前から気になる内容だった。</p>
-
-<p>VimデフォルトのGitの機能が思ったよりも高機能。<code>:DiffGitCache</code>, <code>K</code> etc&#8230;</p>
-
-<p>Pluginではvim-fugitive, vim-gitvを紹介されていて、特に<code>:Gdiff</code>で<code>git add -p</code>のようにインテラクティブにaddできたりするのvim-fugitive入れてるのに全然しらなくてちゃんとドキュメント含め読んどこうと思った。</p>
-
-<p>またAdvancedとしてgitのSHA-1 hashを使えば自由自在にBranchきったりいろんなことができて便利なのでキーマップとか定義して便利そうだった。</p>
-
-<h3>関係ないけど</h3>
-
-<p>git stashとかせず、ReadOnlyでいいから別ブランチやコミットのコードを参照したいってとき結構あるんだけれどどうすればいいかわからないので、誰か教えてください:-)</p>
-
-<p>あと紹介はされてなかったけど、最近git mergetoolをvimdiffで便利にするとなかなかにbenriだったので感動しました。 <a href="http://haya14busa.com/git-mergetool-vimdiff/">git mergetoolでvimdiffを便利に使う » haya14busa</a></p>
-
-<h2>Vital.ProcessManager (by <a href="https://twitter.com/ujm">@ujihisa</a> さん)</h2>
-
-<ul>
-<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
-<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
-</ul>
-
-
-<p>vimprocのwrapperとなる(?)Vital.ProcessManagerの話。正直内容についてはVim力低すぎてよく理解できなかった&#8230;勉強しよう</p>
-
-<p>途中で全く別の発表を始めて間を開けたり、周りの人に質問(確認)投げかけながら会場全体を巻き込んでプレゼンしていてujihisaさんの発表力を感じて感極まった。</p>
-
-<h2>Do You Know about Vim Runtime Files?(by <a href="https://twitter.com/Linda_pp">@Linda_pp</a> さん)</h2>
-
-<ul>
-<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
-</ul>
-
-
-<p>Vimがデフォルトで提供されてる機能をいろいろ紹介して下さった。正直matchit以外知らなかったと言っても過言じゃないくらいなので、発見が多くておもしろかった。</p>
-
-<p>maze.vimや、hanoiの塔, Lifeゲームなど遊び心もあってそのへんのコード読んでみたい。</p>
-
-<h2>How to write patches for Vim(by <a href="https://twitter.com/k_takata">@k_takata</a> さん)</h2>
-
-<ul>
-<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
-</ul>
-
-
-<p>自称Vim Beginner(年間採用パッチ数75)のパッチ職人、@k_takataさんの発表はその経験を活かしてどのようにVimのパッチを書くかということを実践的・具体的に話していてパッチ職人の世界を垣間見れる興味深い話だった。</p>
-
-<p>お気に入りのパッチとして最近マージされたspelllang-cjkやbreakindentについて紹介をしていた。お気に入りのパッチとか言ってみたい。</p>
-
-<h2>LT</h2>
-
-<h3>iVimConf(by <a href="https://twitter.com/dictav">@dictav</a> さん)</h3>
-
-<p>VimConfのiPhoneアプリ、iVimConfを作ったというお話。Lingrで話題になってから試作するまでめっちゃはやくてすごい。</p>
-
-<h3>duzzle.vim(by <a href="https://twitter.com/deris0126">@deris</a> さん)</h3>
-
-<ul>
-<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim</a></li>
-</ul>
-
-
-<p>Portalに触発されて作ったというVimでできる迷路パズルのお話。Demoを見ていると面白そうだし、確かにカーソル移動の勉強になりそうでよさそうだった。</p>
-
-<h3>Emacsの紹介(by <a href="https://twitter.com/kiwanami">@kiwanami</a> さん)</h3>
-
-<p>タイトルがとってもストレート。Emacsの方とも仲良くしたい。</p>
-
-<h2>About of neocomplete(by <a href="https://twitter.com/ShougoMatsu">@Shougo</a> さん)</h2>
-
-<ul>
-<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
-</ul>
-
-
-<p>暗黒美夢王さんからのneocompleteについての話。初っ端からダークビムマスターが覚醒してネタを交えて会場を沸かせながらも、しっかりneocompleteを中心として補完やif_luaの効率などためになる話をしていて聞いてて飽きない発表だった。if_luaはかわいい。</p>
-
-<p>そして暗黒美夢王の真髄は懇親会で遺憾なく発揮され、4曲もVim曲を聞くことができて感極まりました。鋼のメンタルは伊達じゃなかった。</p>
-
-<h2>まとめとか</h2>
-
-<p>VimConf2013最高でした！次の機会があったらただ参加するだけでなく、ぜひ発表したりしたいと思った。</p>
-
-<p>主催のujihisaさん、VimConf2013運営の方々、Vim熱をひしひしと感じるカンファレンスでした。<br/>
-会場を提供して下さったCOOKPADの方々、無限コーヒーめっちゃ美味しくて3杯くらい飲みました。おいしい。<br/>
-発表者の方々、どの発表も面白くて勉強になりました。お疲れ様です！<br/>
-参加者の方々、Vimmerがこんなに集まってVimについてわいわいがやがやできて感極まりました。</p>
-
-<p>みなさん本当にお疲れ様でした &amp;&amp; ありがとうございました！</p>
-
-<p><strong>:wqa!</strong></p>
-
-<h2>他の人の感想記事</h2>
-
-<ul>
-<li><a href="http://kashewnuts.bitbucket.org/2013/11/16/vimconf2013.html?utm_content=buffer94494&amp;utm_source=buffer&amp;utm_medium=twitter&amp;utm_campaign=Buffer">#VimConf2013 に参加しました — kashew_nuts-blog</a></li>
-<li><a href="http://bugrammer.hateblo.jp/entry/2013/11/17/003744">Vim Conference 2013とオープンソースの精神 &#8211; Line 1: Error: Invalid Blog(&#8216;by Esehara&#8217; )</a></li>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/11/17/015347">VimConf 2013 で発表してきた &#8211; sorry, unimplemented:</a></li>
-<li><a href="http://deris.hatenablog.jp/entry/2013/11/17/010343">VimConf2013に参加しました &#8211; derisの日記</a></li>
-<li><a href="http://daisuzu.hatenablog.com/entry/2013/11/17/192511">VimConf2013に行ってきた &#8211; daisuzu&#8217;s notes</a></li>
-<li><a href="http://vinarian.blogspot.jp/2013/11/vimconf2013-vimconf2013.html">あるVimmerのブログ: 暗黒美夢王が見た VimConf2013(ぼくの VimConf2013のかんそう)</a></li>
-<li><a href="http://ac-mopp.blogspot.jp/2013/11/vimconf2013.html?spref=tw">もぷろぐ: VimConf2013 に行ってきた話</a></li>
-</ul>
-
-
-<h2>発表資料</h2>
-
-<ul>
-<li><a href="http://koron.github.io/vimconf2013/">How to suggest new features for Vim</a></li>
-<li><a href="http://www.slideshare.net/esehara/evil-is-justice-1">Evil is justice.</a></li>
-<li><a href="http://www.slideshare.net/cohama/how-to-use-git-from-vim-vim-conf2013">How to use git from vim ＠vim conf2013</a></li>
-<li><a href="https://docs.google.com/presentation/d/1m4aSvo-laMeEzEv84M0jEt7scPsrDefcd3V4jeNY_rI/mobilepresent#slide=id.p">VimConf2013 vital.ProcessManager &#8211; Google ドライブ</a></li>
-<li><a href="http://www.slideshare.net/ujihisa/vimconf2013">vimconf2013</a></li>
-<li><a href="https://speakerdeck.com/rhysd/do-you-know-about-vim-runtime-files#">Do You Know about Vim Runtime Files? // Speaker Deck</a></li>
-<li><a href="http://www.slideshare.net/k-takata/how-to-write-patches-for-vim-28307604">How to write patches for Vim</a></li>
-<li><a href="https://speakerdeck.com/player/3180142030fc0131c6a30e119e1f0349#">Escaped puzzle game on Vim // Speaker Deck</a></li>
-<li><a href="http://www.slideshare.net/Shougo/neocompletevim">An introduction to neocomplete</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vimconf2013/">VimConf2013に参加してきました!</a>
-      <time datetime="2013-11-19T00:00:00+09:00" pubdate><span class='month'>Nov</span> <span class='day'>19</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
