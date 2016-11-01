@@ -37,9 +37,11 @@ gomock 使ったことないです．
 
 ## テスト用 fake client をつくる
 
+全体の動くはずのgist: https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee
+
 例えばこういう実装のテストを書くときのことを考えます．
 
-```go
+```
 package main
 
 import (
@@ -78,7 +80,7 @@ type Release struct{}
 
 GitHub interface をテストでは mock したものを使いたい．そういうときには以下のように mock を作ると便利です．
 
-```go
+```
 type fakeGitHub struct {
 	// インターフェース埋め込み
 	GitHub
@@ -109,7 +111,7 @@ interface を埋め込みます．
 
 #### main_test.go
 
-```go
+```
 package main
 
 import (
@@ -175,7 +177,7 @@ func TestGhRelease_CreateNewRelease(t *testing.T) {
 返り値をいろいろ変えたものをいくつか作ってテストする...といったことが上記のパターンを
 使うことによって簡単にできます．Table Testing することも可能．
 
-普通にわざわざのstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. `func (c *client) Func()`)
+普通にわざわざstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. `func (c *client) Func()`)
 を定義することができません．
 
 そこで `FakeFunc func()` というfield を持たせて実装を丸投げすることによって，
