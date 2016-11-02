@@ -196,3 +196,6 @@ func TestGhRelease_CreateNewRelease(t *testing.T) {
 某社でgoのテスト書いてたときもこういう大きめのstruct比較するケースでは便利diff表示用ライブラリを
 使っていた気がしたんだけど，なんかOSSで見つからない気がする... prettycmp みたいな名前だった気がするが
 どうだったか... そもそも記憶違いな気もする...
+
+追記: twitter で教えてもらいましたが https://github.com/kylelemons/godebug っぽいです．
+便利. https://godoc.org/github.com/kylelemons/godebug/pretty#Compare
