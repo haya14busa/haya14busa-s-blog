@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/go/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-11-02T09:06:06+09:00</updated>
+  <updated>2016-11-02T09:42:42+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -206,6 +206,9 @@ func TestGhRelease_CreateNewRelease(t *testing.T) {
 <p>某社でgoのテスト書いてたときもこういう大きめのstruct比較するケースでは便利diff表示用ライブラリを
 使っていた気がしたんだけど，なんかOSSで見つからない気がする&hellip; prettycmp みたいな名前だった気がするが
 どうだったか&hellip; そもそも記憶違いな気もする&hellip;</p>
+
+<p>追記: twitter で教えてもらいましたが <a href="https://github.com/kylelemons/godebug">https://github.com/kylelemons/godebug</a> っぽいです．
+便利. <a href="https://godoc.org/github.com/kylelemons/godebug/pretty#Compare">https://godoc.org/github.com/kylelemons/godebug/pretty#Compare</a></p>
 ]]></content>
   </entry>
   
