@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | haya14busa]]></title>
   <link href="http://haya14busa.com/categories/go/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-11-02T08:48:55+09:00</updated>
+  <updated>2016-11-02T09:06:06+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -42,12 +42,6 @@
 <a href="https://github.com/stretchr/testify">testify</a> もいらないし， mock するために <a href="https://github.com/golang/mock">gomock</a> も基本はいらない．</p>
 
 <p>とにかくGolangだけで書くのが気持ちがいい，に尽きる．</p>
-
-<p>僕程度の Gopher 力で紹介されてるテクニックってどうなの&hellip;?と思う方もいらっしゃるかと思いますが，
-もともとは 某 Golang トップレベルで使ってる会社でインターンしてたときに教えてもらった方法なので
-そんなに間違ってないと思います．僕も最初は mock&hellip; なんか gomock
-とか使って生成しなきゃダメなのかな&hellip;? と思ったけど，そのときに Golang だけで書く方法を教えてもらったので
-gomock 使ったことないです．</p>
 
 <h2>テスト用 fake client をつくる</h2>
 
