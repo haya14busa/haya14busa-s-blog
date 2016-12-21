@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://haya14busa.com/vim-go-client/</loc>
+    <lastmod>2016-12-21T18:14:54+09:00</lastmod>
+  </url>
+  <url>
     <loc>http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/</loc>
     <lastmod>2016-11-02T07:19:14+09:00</lastmod>
   </url>
