@@ -77,13 +77,13 @@ staticcheck は一言で言うとサードパーティーの `go vet`です．go
 - [dominikh/go-simple: Gosimple is a linter for Go source code that specialises on simplifying code](https://github.com/dominikh/go-simple)
 - おすすめ度: ★★★★★
 
-gosimple は一言で言うとdominikh さん製のサードパーティー `gofmt -s` に近く，もっとコードをシンプルに出来るところを報告してくれます．
-(ただしリフォーマット自体は自動でやってくれるわけではない)
+gosimple は一言で言うとdominikh さん製のサードパーティー `gofmt -s` です．もっとコードをシンプルに出来るところを報告してくれます．
+(ただし執筆時現在，自動で修正してくれるオプションとかはない)
 
 例えば `if err != nil { return err }; return nil` といった構造のコードがあれば
 `return err` で十分だよ? と報告してくれます．
 
-特に報告 false positive もない印象で，あーそんなメソッドあったのか〜ということに気付いたりできてオススメです．
+報告に false positive もない印象で，あーそんなメソッドあったのか〜ということに気付いたりできてオススメです．
 
 ### go-unused
 - [dominikh/go-unused: Check Go programs for unused identifiers](https://github.com/dominikh/go-unused)
@@ -98,17 +98,16 @@ unused は グローバル変数の var や const, struct の field，export さ
 引数もらうけど使わないんやというケースなどを考えて報告されていないのではないかという気がします．[要出典]
 
 また個人的には使えてないので強くオススメできませんが，パッケージのリストを渡して
-exported なものでも渡したパッケージで使われていない関数などをチェック出来るようです．
+exported なもので，渡したパッケージ内で使われていないものをチェック出来る機能もあります．
 https://github.com/dominikh/go-unused#whole-program-analysis
-
 "internal" packages などを使っていたりする場合は便利かもしれないですね．
 
 unused は個人的には大変便利に使っていて，ごくまれにデバック用のexportしてない関数を報告されて，
-あー...ってなる以外に false positive な結果もなく思考停止で実行してます．
+あー...ってなる以外に false positive な結果もなく便利に使っています．
 
 この前 interface を満たすためのダミーの関数をいろんな struct に定義してたんですが，
-その際，追加すべきでない struct にも追加してしまい，それを unused が報告してくれたことがありました．て
-インターフェースを満たすかどうかといった観点の"used"もちゃんと見てくれていて大変良い子だな〜と思い感動しました．
+その際，追加すべきでない struct にも追加してしまい，それを unused が[報告](https://github.com/haya14busa/go-vimlparser/pull/23#pullrequestreview-11276693)
+してくれたことがありました．インターフェースを満たすかどうかといった観点での"used"もちゃんと見てくれていて大変良い子だな〜と思い感動しました．
 オススメです．
 
 ### gofmt -s
@@ -163,10 +162,10 @@ Goは必要であれば [go/types](https://golang.org/pkg/go/types/) パッケ�
 解析できるので大変便利ですね...! 標準ライブラリでカバーされてるところも +1
 
 **"go/ast ではしゃいでるのはもう古い! 時代は go/types !"** みたいな煽りタイトルの解説記事を最近は待ち望んでます．
-go/types 関連は標準ライブラリの中でもかなり大きいものなのでなかなか僕もまだちゃんと理解できてないです．
+go/types 関連は標準ライブラリの中でもかなり大きいものなのでなかなか僕もまだ全貌を理解できてないです．
 
 #### その他のその他
-gometalinter とか [Go Report Card](https://goreportcard.com/report/github.com/haya14busa/reviewdog) で紹介されているツール．
+[gometalinter](https://github.com/alecthomas/gometalinter) とか [Go Report Card](https://goreportcard.com/report/github.com/haya14busa/reviewdog) で紹介されているツール．
 
 https://github.com/fzipp/gocyclo
 とかイマイチ恩恵を受けたことがないんですが，gometalinter とか [Go Report Card](https://goreportcard.com/report/github.com/haya14busa/reviewdog)
@@ -177,14 +176,17 @@ https://github.com/fzipp/gocyclo
 なリポートが結構あって，めっちゃ便利でチェックしたいんだけど CI で fail
 にしづらい... というものがいくつかあります．
 
-そこでまた拙作ツール [reviewdog](https://github.com/haya14busa/reviewdog) の紹介です．Go 製です!
+そこで拙作ツール [reviewdog](https://github.com/haya14busa/reviewdog) の紹介です．(宣伝)
+
+もちろん Go 製です!
 
 [![](../images/post/2016-12-26-reviewdog.png)](https://github.com/haya14busa/reviewdog/pull/63#pullrequestreview-13287340)
+
 (画像は実際のPull Requestのコメントへのリンクになってます)
 
 reviewdog は Go 言語の linter に限らず，任意のコマンドの結果を'errorformat'
 という形式を使うことでパースして，*diff* で新たに追加された部分にたいする問題だけを
-表示したり，GitHub にコメントすることが出来るツールです．
+表示したり，GitHub にコメントすることが出来るツールです． 詳しくは -> [reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa](http://haya14busa.com/reviewdog/)
 
 結果をdiffでフィルターすれば，それらの問題についてのみPull
 Requestのレビュー時やコミット時にチェックすることが出来るので，
@@ -205,23 +207,23 @@ Go 製ツールである reviewdog は自分自身のコードでドックフー
 Go は標準で `go test -coverprofile=coverage.out .` などと実行するとテストカバレッジを取得することができます．
 ただ実は CI などでカバレッジを取得する際は注意点があり，複数のパッケージをまとめてカバレッジを計測することはできません．
 つまり例えば `go test -coverprofile=coverage.out ./...` とはできません．これは
-`go test` 内部ではパッケージごとにテスト実行用バイナリを作成してそれぞれ実行してるという設計になっているので，
-[issue](https://github.com/golang/go/issues/6909#issuecomment-233493644) は上がってますが標準ではなかなかデキナイようになっています．
+`go test` 内部ではパッケージごとにテスト実行用バイナリを作成してそれぞれ実行してるという設計になっていることに起因します．
+[issue](https://github.com/golang/go/issues/6909#issuecomment-233493644) は上がってますが標準では対応するのはなかなか骨が折れそうです．
 (ちょっと修正してコントリビューションしてみようかと格闘しましたが構造的に地味に大変そうでした...)
 
-そこで，複数パッケージのテストカバレッジに対応するために色んな所で Makefile やGoのツールを使うといった解決方法が紹介されています．
-が，紹介されていて，確かにある程度はどれも動くのですが，実は多くのスクリプトはちょっと片手落ちなものになっています．
+そこで現状で，複数パッケージのテストカバレッジに対応するために色んな所で Makefile やGoのツールを使うといった解決方法が紹介されています．
+しかし!紹介されていて，確かにある程度はどれも動くのですが，実は多くのスクリプトはちょっと片手落ちなものになっています．
 例えば go test の `-coverpkg` 引数を使わないと依存先のコードカバレッジが取得できてなかったり，
-結果の coverage.out に重複行が生まれるケースがあったりしています．
+結果の coverage.out に重複行が生まれるケースがあったりします．
 
 ### 解決策
 mattn さんの [mattn/goveralls](https://github.com/mattn/goveralls)
-では上記の問題に対応したマルチパッケージテストカバレッジ機能が備わっています．というか僕がPull Request させていただきました．
+では上記の問題に対応したマルチパッケージ対応テストカバレッジ機能が備わっています．というか僕がPull Request しました．
 [Coveralls](https://coveralls.io/) に投稿する場合は goveralls を使うと良いと思います.  (`goveralls -service=travis-ci` でよしなにやってくれる)
 
 ### ローカルでは?
 goveralls にコントリビューションしたあと，あれ...これローカルでもやりたいじゃん...ということに気付き，
-Makefileソリューションや似たツールはいくつかあるにはあったんですが，上記の問題などの対応とか
+既存のMakefileソリューションや似たツールはいくつかあるにはあったんですが，上記の問題などの対応とか
 いろいろ面倒だったのでマルチパッケージカバレッジ作成用go test のラッパーツールを作りました．
 
 [haya14busa/goverage: go test -coverprofile for multiple packages](https://github.com/haya14busa/goverage)
@@ -235,8 +237,8 @@ $ goverage -coverprofile=coverage.out ./...
 ### codecov に投稿してレビューでも活用する - "おい、coverall もいいけど codecov 使えよ"
 サブタイは [b4b4r07](https://twitter.com/b4b4r07) さんリスペクトです． ref: [おい、peco もいいけど fzf 使えよ - Qiita](http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033)
 
-[Codecov](https://codecov.io/) という coverall と似たサービスがあるのはご存知でしょうか?
-僕はたまに見かけたことはあったのですが，最近はじめて使ってみて，断然 coverall よりいいじゃん... となりました．
+[Codecov](https://codecov.io/) という [Coveralls](https://coveralls.io/) と似たサービスがあるのはご存知でしょうか?
+僕は以前からたまに見かけたことはあったのですが，最近はじめて使ってみて，断然 coverall よりいいじゃん...!!! と感じました．
 
 全体的に洗練されてる...というよさもあるんですが，一番いいところは Pull Request の diff に対するカバレッジを表示できて，
 ブラウザの拡張をインストールすれば GitHub の Pull Request 画面上でカバーされた行をオーバーレイで確認できるところが大変気に入りました．
@@ -275,7 +277,7 @@ Pull Request などではカバーすべきところをしっかりカバーし�
 codecov を使うとこのフローがやりやすいし，レビュイーもPull Request を出した時点で自分で気付いて
 テスト足したりできると思います．
 
-実は codecov 使い始めたのは最近で，僕自身がチーム開発で使った経験はないのですが，
+実は codecov 使い始めたのは最近で，僕自身がチーム開発として使った経験はまだないのですが，
 coverall よりも codecov 使うとこの辺いい感じに可視化されて人間が指摘しなくてもよくなったり，
 レビュワーとして指摘しやすくなったりすると思います．
 
