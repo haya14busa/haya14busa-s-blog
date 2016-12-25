@@ -199,13 +199,13 @@ false positive を減らす工夫もされているようです．</p>
 </ul>
 
 
-<p>gosimple は一言で言うとdominikh さん製のサードパーティー <code>gofmt -s</code> に近く，もっとコードをシンプルに出来るところを報告してくれます．
-(ただしリフォーマット自体は自動でやってくれるわけではない)</p>
+<p>gosimple は一言で言うとdominikh さん製のサードパーティー <code>gofmt -s</code> です．もっとコードをシンプルに出来るところを報告してくれます．
+(ただし執筆時現在，自動で修正してくれるオプションとかはない)</p>
 
 <p>例えば <code>if err != nil { return err }; return nil</code> といった構造のコードがあれば
 <code>return err</code> で十分だよ? と報告してくれます．</p>
 
-<p>特に報告 false positive もない印象で，あーそんなメソッドあったのか〜ということに気付いたりできてオススメです．</p>
+<p>報告に false positive もない印象で，あーそんなメソッドあったのか〜ということに気付いたりできてオススメです．</p>
 
 <h3>go-unused</h3>
 
@@ -224,17 +224,16 @@ unused は グローバル変数の var や const, struct の field，export さ
 引数もらうけど使わないんやというケースなどを考えて報告されていないのではないかという気がします．[要出典]</p>
 
 <p>また個人的には使えてないので強くオススメできませんが，パッケージのリストを渡して
-exported なものでも渡したパッケージで使われていない関数などをチェック出来るようです．
-<a href="https://github.com/dominikh/go-unused#whole-program-analysis">https://github.com/dominikh/go-unused#whole-program-analysis</a></p>
-
-<p>&ldquo;internal&rdquo; packages などを使っていたりする場合は便利かもしれないですね．</p>
+exported なもので，渡したパッケージ内で使われていないものをチェック出来る機能もあります．
+<a href="https://github.com/dominikh/go-unused#whole-program-analysis">https://github.com/dominikh/go-unused#whole-program-analysis</a>
+&ldquo;internal&rdquo; packages などを使っていたりする場合は便利かもしれないですね．</p>
 
 <p>unused は個人的には大変便利に使っていて，ごくまれにデバック用のexportしてない関数を報告されて，
-あー&hellip;ってなる以外に false positive な結果もなく思考停止で実行してます．</p>
+あー&hellip;ってなる以外に false positive な結果もなく便利に使っています．</p>
 
 <p>この前 interface を満たすためのダミーの関数をいろんな struct に定義してたんですが，
-その際，追加すべきでない struct にも追加してしまい，それを unused が報告してくれたことがありました．て
-インターフェースを満たすかどうかといった観点の&#8221;used&#8221;もちゃんと見てくれていて大変良い子だな〜と思い感動しました．
+その際，追加すべきでない struct にも追加してしまい，それを unused が<a href="https://github.com/haya14busa/go-vimlparser/pull/23#pullrequestreview-11276693">報告</a>
+してくれたことがありました．インターフェースを満たすかどうかといった観点での&#8221;used&#8221;もちゃんと見てくれていて大変良い子だな〜と思い感動しました．
 オススメです．</p>
 
 <h3>gofmt -s</h3>
@@ -306,11 +305,11 @@ Goは必要であれば <a href="https://golang.org/pkg/go/types/">go/types</a> 
 解析できるので大変便利ですね&hellip;! 標準ライブラリでカバーされてるところも +1</p>
 
 <p><strong>&ldquo;go/ast ではしゃいでるのはもう古い! 時代は go/types !&rdquo;</strong> みたいな煽りタイトルの解説記事を最近は待ち望んでます．
-go/types 関連は標準ライブラリの中でもかなり大きいものなのでなかなか僕もまだちゃんと理解できてないです．</p>
+go/types 関連は標準ライブラリの中でもかなり大きいものなのでなかなか僕もまだ全貌を理解できてないです．</p>
 
 <h4>その他のその他</h4>
 
-<p>gometalinter とか <a href="https://goreportcard.com/report/github.com/haya14busa/reviewdog">Go Report Card</a> で紹介されているツール．</p>
+<p><a href="https://github.com/alecthomas/gometalinter">gometalinter</a> とか <a href="https://goreportcard.com/report/github.com/haya14busa/reviewdog">Go Report Card</a> で紹介されているツール．</p>
 
 <p><a href="https://github.com/fzipp/gocyclo">https://github.com/fzipp/gocyclo</a>
 とかイマイチ恩恵を受けたことがないんですが，gometalinter とか <a href="https://goreportcard.com/report/github.com/haya14busa/reviewdog">Go Report Card</a>
@@ -322,14 +321,17 @@ go/types 関連は標準ライブラリの中でもかなり大きいものな�
 なリポートが結構あって，めっちゃ便利でチェックしたいんだけど CI で fail
 にしづらい&hellip; というものがいくつかあります．</p>
 
-<p>そこでまた拙作ツール <a href="https://github.com/haya14busa/reviewdog">reviewdog</a> の紹介です．Go 製です!</p>
+<p>そこで拙作ツール <a href="https://github.com/haya14busa/reviewdog">reviewdog</a> の紹介です．(宣伝)</p>
 
-<p><a href="https://github.com/haya14busa/reviewdog/pull/63#pullrequestreview-13287340"><img src="../images/post/2016-12-26-reviewdog.png" alt="" /></a>
-(画像は実際のPull Requestのコメントへのリンクになってます)</p>
+<p>もちろん Go 製です!</p>
+
+<p><a href="https://github.com/haya14busa/reviewdog/pull/63#pullrequestreview-13287340"><img src="../images/post/2016-12-26-reviewdog.png" alt="" /></a></p>
+
+<p>(画像は実際のPull Requestのコメントへのリンクになってます)</p>
 
 <p>reviewdog は Go 言語の linter に限らず，任意のコマンドの結果を&#8217;errorformat&#8217;
 という形式を使うことでパースして，<em>diff</em> で新たに追加された部分にたいする問題だけを
-表示したり，GitHub にコメントすることが出来るツールです．</p>
+表示したり，GitHub にコメントすることが出来るツールです． 詳しくは -> <a href="http://haya14busa.com/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa</a></p>
 
 <p>結果をdiffでフィルターすれば，それらの問題についてのみPull
 Requestのレビュー時やコミット時にチェックすることが出来るので，
@@ -350,25 +352,25 @@ Requestのレビュー時やコミット時にチェックすることが出来�
 <p>Go は標準で <code>go test -coverprofile=coverage.out .</code> などと実行するとテストカバレッジを取得することができます．
 ただ実は CI などでカバレッジを取得する際は注意点があり，複数のパッケージをまとめてカバレッジを計測することはできません．
 つまり例えば <code>go test -coverprofile=coverage.out ./...</code> とはできません．これは
-<code>go test</code> 内部ではパッケージごとにテスト実行用バイナリを作成してそれぞれ実行してるという設計になっているので，
-<a href="https://github.com/golang/go/issues/6909#issuecomment-233493644">issue</a> は上がってますが標準ではなかなかデキナイようになっています．
+<code>go test</code> 内部ではパッケージごとにテスト実行用バイナリを作成してそれぞれ実行してるという設計になっていることに起因します．
+<a href="https://github.com/golang/go/issues/6909#issuecomment-233493644">issue</a> は上がってますが標準では対応するのはなかなか骨が折れそうです．
 (ちょっと修正してコントリビューションしてみようかと格闘しましたが構造的に地味に大変そうでした&hellip;)</p>
 
-<p>そこで，複数パッケージのテストカバレッジに対応するために色んな所で Makefile やGoのツールを使うといった解決方法が紹介されています．
-が，紹介されていて，確かにある程度はどれも動くのですが，実は多くのスクリプトはちょっと片手落ちなものになっています．
+<p>そこで現状で，複数パッケージのテストカバレッジに対応するために色んな所で Makefile やGoのツールを使うといった解決方法が紹介されています．
+しかし!紹介されていて，確かにある程度はどれも動くのですが，実は多くのスクリプトはちょっと片手落ちなものになっています．
 例えば go test の <code>-coverpkg</code> 引数を使わないと依存先のコードカバレッジが取得できてなかったり，
-結果の coverage.out に重複行が生まれるケースがあったりしています．</p>
+結果の coverage.out に重複行が生まれるケースがあったりします．</p>
 
 <h3>解決策</h3>
 
 <p>mattn さんの <a href="https://github.com/mattn/goveralls">mattn/goveralls</a>
-では上記の問題に対応したマルチパッケージテストカバレッジ機能が備わっています．というか僕がPull Request させていただきました．
+では上記の問題に対応したマルチパッケージ対応テストカバレッジ機能が備わっています．というか僕がPull Request しました．
 <a href="https://coveralls.io/">Coveralls</a> に投稿する場合は goveralls を使うと良いと思います.  (<code>goveralls -service=travis-ci</code> でよしなにやってくれる)</p>
 
 <h3>ローカルでは?</h3>
 
 <p>goveralls にコントリビューションしたあと，あれ&hellip;これローカルでもやりたいじゃん&hellip;ということに気付き，
-Makefileソリューションや似たツールはいくつかあるにはあったんですが，上記の問題などの対応とか
+既存のMakefileソリューションや似たツールはいくつかあるにはあったんですが，上記の問題などの対応とか
 いろいろ面倒だったのでマルチパッケージカバレッジ作成用go test のラッパーツールを作りました．</p>
 
 <p><a href="https://github.com/haya14busa/goverage">haya14busa/goverage: go test -coverprofile for multiple packages</a></p>
@@ -383,8 +385,8 @@ Makefileソリューションや似たツールはいくつかあるにはあっ
 
 <p>サブタイは <a href="https://twitter.com/b4b4r07">b4b4r07</a> さんリスペクトです． ref: <a href="http://qiita.com/b4b4r07/items/9e1bbffb1be70b6ce033">おい、peco もいいけど fzf 使えよ - Qiita</a></p>
 
-<p><a href="https://codecov.io/">Codecov</a> という coverall と似たサービスがあるのはご存知でしょうか?
-僕はたまに見かけたことはあったのですが，最近はじめて使ってみて，断然 coverall よりいいじゃん&hellip; となりました．</p>
+<p><a href="https://codecov.io/">Codecov</a> という <a href="https://coveralls.io/">Coveralls</a> と似たサービスがあるのはご存知でしょうか?
+僕は以前からたまに見かけたことはあったのですが，最近はじめて使ってみて，断然 coverall よりいいじゃん&hellip;!!! と感じました．</p>
 
 <p>全体的に洗練されてる&hellip;というよさもあるんですが，一番いいところは Pull Request の diff に対するカバレッジを表示できて，
 ブラウザの拡張をインストールすれば GitHub の Pull Request 画面上でカバーされた行をオーバーレイで確認できるところが大変気に入りました．</p>
@@ -432,7 +434,7 @@ Pull Request などではカバーすべきところをしっかりカバーし�
 codecov を使うとこのフローがやりやすいし，レビュイーもPull Request を出した時点で自分で気付いて
 テスト足したりできると思います．</p>
 
-<p>実は codecov 使い始めたのは最近で，僕自身がチーム開発で使った経験はないのですが，
+<p>実は codecov 使い始めたのは最近で，僕自身がチーム開発として使った経験はまだないのですが，
 coverall よりも codecov 使うとこの辺いい感じに可視化されて人間が指摘しなくてもよくなったり，
 レビュワーとして指摘しやすくなったりすると思います．</p>
 
