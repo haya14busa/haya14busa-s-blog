@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-12-21T19:58:00+09:00</updated>
+  <updated>2016-12-25T23:55:44+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Go の CI で lint と カバレッジ回して非人間的部分のレビューを自動化する in 2016年]]></title>
+    <link href="http://haya14busa.com/ci-for-go-in-end-of-2016/"/>
+    <updated>2016-12-25T23:15:50+09:00</updated>
+    <id>http://haya14busa.com/ci-for-go-in-end-of-2016</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="http://qiita.com/advent-calendar/2016/go3">Go (その3) Advent Calendar 2016</a> の24日目の記事です．(代打)
+メリークリスマス!</p>
+
+<p>本記事では Go 言語プロジェクトの CI で回すと便利な各種lintの紹介やカバレッジ計測の方法について紹介します．</p>
+
+<h2>Go 言語おすすめ linter</h2>
+
+<p>Go の lint 一覧といえば <a href="https://github.com/alecthomas/gometalinter">gometalinter</a> じゃん?
+みたいな話もあると思うのですが，CIで回すには個別のいい linterを明示的に回すほうが良いかと思います．
+ということで 僕が普段使ってるオススメ linter の紹介です．</p>
+
+<h3>go vet</h3>
+
+<ul>
+<li><a href="https://golang.org/cmd/vet/">vet - The Go Programming Language</a></li>
+<li>おすすめ度: ★★★★★</li>
+</ul>
+
+
+<blockquote><p>Vet examines Go source code and reports suspicious constructs, such as Printf
+calls whose arguments do not align with the format string. Vet uses
+heuristics that do not guarantee all reports are genuine problems, but it can
+find errors not caught by the compilers.</p></blockquote>
+
+<p>Go 言語標準でついているlintツールで，コンパイラが検出しないエラーを検出できます．
+false positive な結果も無いようにデザインされているのでエラーがリポートされた場合は安心してCIをfailにできます．
+go vet に検出されたエラーはほぼ100%直したほうがよいでしょう．</p>
+
+<h3>golint</h3>
+
+<ul>
+<li><a href="https://github.com/golang/lint">golang/lint: This is a linter for Go source code.</a></li>
+<li>おすすめ度: ★★★★☆</li>
+</ul>
+
+
+<blockquote><p>Golint differs from gofmt. Gofmt reformats Go source code, whereas golint prints out style mistakes.
+Golint differs from govet. Govet is concerned with correctness, whereas golint is concerned with coding style.</p></blockquote>
+
+<p>gofmtがコードのリフォーマットを，govetがコードの正確性をチェックするのに対して，golint
+は Go のソースコードの <strong>&ldquo;コーディングスタイル&rdquo;</strong>
+の問題を報告します．これはエラーというよりも &ldquo;suggestion&rdquo; に近く，
+基本的に従っていたほうがGoの慣習に沿った確実によいコードになるのですが，
+まれに，いやここの関数はコメント書かなくても絶対いいよね&hellip;とかいうケースもあり
+若干消耗することもあるので星4です．</p>
+
+<h3>errcheck</h3>
+
+<ul>
+<li><a href="https://github.com/kisielk/errcheck">kisielk/errcheck: errcheck checks that you checked errors.</a></li>
+<li>おすすめ度: ★★★☆☆</li>
+</ul>
+
+
+<p>errcheck は関数のエラーの返り値をハンドリングチェックしているかどうかを静的に解析してくれるツールです．
+エラーを捨てた状態の場合思わぬ動作(nilになってたりだとか)するので，これをチェックしてくれるのは大変嬉しいです．</p>
+
+<p>ただし，少し実際直さなくてもいいという意味でのfalse positive が多くCIで動かすには工夫が必要で星3です．エラーをチェックしてくれるという便利度は満点．
+なお，最近は標準ライブラリで必ずエラーnilとして返ってくるような関数についてはリポートしないという
+false positive を減らす工夫もされているようです．</p>
+
+<h3>staticcheck</h3>
+
+<ul>
+<li><a href="https://github.com/dominikh/go-staticcheck">dominikh/go-staticcheck: Staticcheck is go vet on steroids, applying a ton of static analysis checks you might be used to from tools like ReSharper for C#</a></li>
+<li>おすすめ度: ★★★★★</li>
+</ul>
+
+
+<p>staticcheck は一言で言うとサードパーティーの <code>go vet</code>です．go vet でチェックされていないようなことを静的に解析してくれます．
+(例えば正規表現がvalidかチェックしてくれるかなどなど&hellip;たくさん項目があるのでREADMEを見てみてください．)</p>
+
+<p>作者の <a href="https://github.com/dominikh">dominikh さん</a> は Go
+言語の開発にも関わっていて，dominikh さん製Go lint ツールは個人的には
+信頼できる印象です．github/go の issue でも  go vet のissueなどに， staticcheck
+は実際こういうのチェックしてるけどと言った感じで参照されてたりするのを見かけます．</p>
+
+<p>そして次の2つのツールも dominikh さん製です．</p>
+
+<h3>gosimple</h3>
+
+<ul>
+<li><a href="https://github.com/dominikh/go-simple">dominikh/go-simple: Gosimple is a linter for Go source code that specialises on simplifying code</a></li>
+<li>おすすめ度: ★★★★★</li>
+</ul>
+
+
+<p>TODO: すいませんもうチョット追記しますが，一旦アドベントカレンダー25締め切りのために登録します!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Go で Vim プラグインを書く]]></title>
@@ -6942,183 +7038,6 @@ themis便利なんですが自分が使いこなせてないのでテストも�
 <p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
 
 <p><strong><code>:wq Osaka.vim_01</code></strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vimプラグイン読書会第5回が4/12(土)21:00から開催されます]]></title>
-    <link href="http://haya14busa.com/reading-vimplugin-05-senden/"/>
-    <updated>2014-04-12T12:57:25+09:00</updated>
-    <id>http://haya14busa.com/reading-vimplugin-05-senden</id>
-    <content type="html"><![CDATA[<h2>第5回 Vimプラグイン読書会</h2>
-
-<ul>
-<li>日時: 2014/04/12 Sat 21:00 -</li>
-<li>場所: <a href="http://lingr.com/room/vim">LingrのVim部屋</a></li>
-<li>読むプラグイン:
-
-<ul>
-<li><a href="https://github.com/vim-jp/vital.vim">vim-jp/vital.vim</a></li>
-</ul>
-</li>
-<li>目的: Vim scriptでリスト、文字列、辞書の効率的かつ汎用的な扱い方を学ぶ</li>
-</ul>
-
-
-<p><strong>!!!本日(4/12)の21:00から開催です!!!</strong> <del>また宣伝記事が当日になってしまった&hellip;</del></p>
-
-<p><strong>初心者でも歓迎ですよ</strong></p>
-
-<p><a href="https://github.com/vim-jp/vital.vim/issues/80">昔開催されたvital.vim読書会</a>では、<code>Data.String</code>を読んだらしいので、今回は<code>Data.List</code>と<code>Data.Dictionary</code>のどちらか1つ,または両方を読むと思います。</p>
-
-<h2>読みどころ</h2>
-
-<p><a href="https://github.com/vim-jp/vital.vim">vital.vim</a>は主にvim-jpのVim script超詳しいマンのかっくいい方々が開発している Vim プラグインのためのライブラリです。これまでVimプラグイン読書会で読んだプラグインは何かしらVimの機能自体を拡張していたのに対し、vital.vimはあくまでも<em>ライブラリ</em>であり、Vim scriptによる汎用的かつ効率的なリストやディクショナリなどなどの操作の仕方を学べるので、「まだVim独自の仕様とかよくわからない&hellip;」という方にとっても読みやすくてよいかもしれません。Vim scriptまだ良くわからないという方も含め、ぜひぜひ気軽に参加してください!</p>
-
-<p>また、vital.vimでなにが出来るのかも外から見ただけではイマイチよくわからなかったりするので、どういう関数が提供されていて、どういう仕様なのかなぁーとさらっと見ていくだけでも面白いんじゃないかと思います。</p>
-
-<h2>vitalの使い方サンプル</h2>
-
-<p>インストールした後適当なスクラッチバッファでQuickrunとかして動作確認しながら読むとよいかもしれない(かも)。vimrcに書いて自作vimrc関数で使ってもOKです。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>NeoBundle 'vim-jp/vital.vim'
-</span><span class='line'>
-</span><span class='line'>" vital.vimを単体で使う場合は`vital#of('vital')`
-</span><span class='line'>" プラグインに組み込む場合は引数の'vital'の代わりにプラグインの名前(Vitalize --name で指定した値)
-</span><span class='line'>let s:V = vital#of('vital')
-</span><span class='line'>
-</span><span class='line'>" vitalのData.Listをimportする。
-</span><span class='line'>" 基本的に s:List.&lt;utility_function&gt;(arguments) という使い方をする
-</span><span class='line'>" :h vital-data-list.txt
-</span><span class='line'>let s:List = s:V.import('Data.List')
-</span><span class='line'>
-</span><span class='line'>echo '= flatten =========='
-</span><span class='line'>
-</span><span class='line'>" リストをフラットに
-</span><span class='line'>echo s:List.flatten([[1],[2,[3,4]]])
-</span><span class='line'>" -&gt; [1,2,3,4]
-</span><span class='line'>
-</span><span class='line'>echo '= push & pop ======='
-</span><span class='line'>
-</span><span class='line'>" スタックスタック
-</span><span class='line'>let s = []
-</span><span class='line'>echo s:List.push(s, 1)
-</span><span class='line'>" [1]
-</span><span class='line'>echo s:List.push(s, 2)
-</span><span class='line'>" [1, 2]
-</span><span class='line'>echo s:List.push(s, 3)
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s
-</span><span class='line'>" [1, 2, 3]
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 3
-</span><span class='line'>echo s:List.pop(s)
-</span><span class='line'>" 2
-</span><span class='line'>echo s
-</span><span class='line'>" [1]
-</span><span class='line'>
-</span><span class='line'>echo '= uniq ============='
-</span><span class='line'>
-</span><span class='line'>" ユニークな値だけを残す。最近vim本体にも組み込まれたはずだけど仕様は異なる
-</span><span class='line'>echo s:List.uniq(['vim', 'emacs', 'vim', 'vim'])
-</span><span class='line'>" ['vim', 'emacs']
-</span><span class='line'>
-</span><span class='line'>" 条件つけたりも
-</span><span class='line'>echo s:List.uniq_by(
-</span><span class='line'>\ ['vim', 'Vim', 'VIM', 'emacs', 'Emacs', 'EMACS', 'gVim', 'GVIM'],
-</span><span class='line'>\ 'tolower(v:val)')
-</span><span class='line'>" ['vim', 'emacs', 'gVim']
-</span><span class='line'>
-</span><span class='line'>echo '= zip =============='
-</span><span class='line'>
-</span><span class='line'>" Vim girlイラスト、zipでください
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6])
-</span><span class='line'>" [[1, 4], [2, 5], [3, 6]]
-</span><span class='line'>echo s:List.zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
-</span><span class='line'>" [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-</span><span class='line'>
-</span><span class='line'>" etc...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Vimプラグインに組み込む方法の詳しい日本語記事とか意外と無いし、アップデートは<code>Vitalize .</code>だけでOKとかはhelpにも書いていないような気がするのでそのうち記事を誰かが書いてくれるはず。</p>
-
-<p>僕はまだvital自体をそんなに使ってないですが、<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>というvitalの外部モジュール機能を使った<code>vim-over</code>のライブラリを使わせてもらったりしてます。vitalとても便利なのでｵｽｽﾒです。</p>
-
-<h2>過去のVim Advent Calendar の vital に関する記事</h2>
-
-<ul>
-<li><a href="http://qiita.com/rbtnn/items/deb569ebc94d5172a5e5">vital.vimをどんどん使っていこう。 - Qiita</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-6/">vitalのData.List.take_whileを例にvital開発の指南書</a></li>
-<li><a href="http://vim-users.jp/2013/03/vim-advent-calendar-2012-ujihisa-8/">構文解析器kp19ppと字句解析器Vital.Lexerを用いた超簡単な処理系作成方法</a></li>
-<li><a href="https://gist.github.com/ujihisa/5761509">Vital.ProcessManagerとその無限の可能性について</a></li>
-<li><a href="http://rhysd.hatenablog.com/entry/2013/11/08/224821">コマンドオプションを解析するライブラリ Vital.OptionParser を書いた - sorry, uninuplemented:</a></li>
-</ul>
-
-
-<p>適当にVACで検索しただけだったりする。<code>OptionParser</code>とか使ってみたいかも。</p>
-
-<h2>本日21:00開催のVimプラグイン読書会に参加しよう!!!</h2>
-
-<p>と、言うことでVimプラグイン読書会に参加してvitalを読んで実際に使ってみたり、バグとか改善点を見つけ本体にｺﾝﾄﾘﾋﾞｭｯｼｮﾝしたりしましょう！初心者でも歓迎ですし質問すれば詳しい方が解説してくれるはずです。「hi」と発言して読んでることを宣言してもらえるだけでも少なくとも僕は喜びます。 <del>人数少なすぎると読書会の存続自体が危うくなるのでhiだけでも便利</del></p>
-
-<p>本日21:00から、<a href="http://lingr.com/room/vim">LingrのVim部屋</a>で開催です！ぜひ参加してください。</p>
 ]]></content>
   </entry>
   

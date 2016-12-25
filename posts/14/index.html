@@ -9,7 +9,7 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="なかなか便利 tweepyのソース読んだり、ぐぐったりしながらなんとか形になった。ここで言う擬似ストリーミングはツイッターのStreaming APIではなく、Rest APIを自動で投げて表示させるって意味なので全然Streamingじゃないですね。 リストにStreaming &hellip;">
+  <meta name="description" content="作りま……パクりました 初心者ながらPythonでツイッターのタイムライン読み上げさせたら面白いなーと思って頑張ってました。最初は何も考えずpython-twitterで試行錯誤してたんだけど、tweepyはStreaming APIにも対応しててtweepy使った方が楽なことを発見。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,229 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-07-06T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>作りま……パクりました</h2>
+
+<p>初心者ながらPythonでツイッターのタイムライン読み上げさせたら面白いなーと思って頑張ってました。最初は何も考えず<a href="(https://github.com/bear/python-twitter)">python-twitter</a>で試行錯誤してたんだけど、<a href="(https://github.com/tweepy/tweepy)">tweepy</a>はStreaming APIにも対応しててtweepy使った方が楽なことを発見。んでググってたらそのままターミナルにストリーミングでTL流すスクリプト見つけたので、そこにSayKotoeriコマンドをプラスしてちょっと変えただけのほぼ丸パクリです。頑張って自分で作ったのは別記事のリストを擬似ストリーミングで読み上げさせる方なので、ご了承ください。</p>
+
+<p>リストバージョン -> <a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></p>
+
+<h2>tweepyのインストール</h2>
+
+<p><code>pip install tweepy</code>でおけ。記事執筆現在API1.1にも対応してます。pipならバージョンは2.0でgithubには2.1が上がってるっぽいです。でも現場2.0で良さそう。公式ドキュメントのバージョンが1.4で古かったりして大変なので、バージョンに気を付けてググったり、dir()コマンドとかソース読んで自分で見ていくとわかりやすいっぽいです。</p>
+
+<h2>読み上げコマンド</h2>
+
+<p><a href="(https://sites.google.com/site/nicohemus/home/saykotoeri)">Saykotoeri</a> &amp; <a href="(http://www.a-quest.com/quickware/saykana/)">SayKana</a> , or <a href="(https://sites.google.com/site/nicohemus/home/saykotoeri2)">Saykotoeri2</a>コマンドが必要です。リンク先からインストールしてください。デフォルトのsayコマンドで<a href="(http://stts.hatenablog.com/entry/20110724/1311513263)">Kyoko</a>さんをインストールして使うのもいいけどKyokoさんは漢字全然読めないからお察し。英語を読ませる場合、sayコマンドの発音は凄いと思います。英語用リストではsayコマンド使ってます。</p>
+
+<p>SayKotoeri2の方がいろいろコマンドのオプションがあって使いやすいんだけど、女性1、いわゆるゆっくり(れいむ)の声がSayKotoeriの方でしか使えなかったんでやむなくSayKotoeri使ってます。SayKotoeri2で同じ声使う方法知ってる方がいらしたら教えてほしい。</p>
+
+<p>それとSayKotoeriは英語が全然読めないのでことえり辞書で教育するといいっぽいです。(例: 読み->ついったー, 単語:Twitter)<br/>
+それ用の辞書入れたら良いのだろうけど無料でいいやつは現状ないかも。シェアウェアなら-><a href="http://nadroom.dousetsu.com/download/download_katakana_share.html">NADのカタカナ英語辞書(シェア)</a></p>
+
+<p>一応正規表現でツイートに埋め込まれてるURLを「URL」, RTを「Retweet」に置換などはしてますがもっと置換のパターン増やせばよりストレスなく聞き取れるかも。</p>
+
+<h2>コード</h2>
+
+<p>twAloud.py</p>
+
+<pre><code>#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+#
+# Timelineをストリーミングで読み上げさせる
+# 
+# Author:   haya14busa
+# URL:      http://haya14busa.com
+# require:  SayKotoeri, Saykana or SayKotoeri2
+# OS:       for Mac Only
+# Link:     [twitterをターミナル上で楽しむ(python)](http://www.nari64.com/?p=200)
+
+import tweepy
+from tweepy import  Stream, TweepError
+import logging
+import urllib
+from subprocess import call
+import re
+import sys, codecs
+
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
+sys.stdin = codecs.getreader('utf_8')(sys.stdin)
+
+def get_oauth():
+    CONSUMER_KEY='**********'
+    CONSUMER_SECRET='**********'
+    ACCESS_TOKEN_KEY='**********'
+    ACCESS_TOKEN_SECRET='**********'
+
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    return auth
+
+def str_replace(string):
+    string = re.sub('&amp;.+;', ' ', string)
+    # remove URL
+    string = re.sub('(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&amp;=+\$,%#]+)', 'URL', string)
+    # remove quote
+    string = re.sub('"', ' ', string)
+    string = re.sub("'", ' ', string)
+    string = re.sub('\/', ' ', string)
+
+    string = re.sub('RT', 'Retweet', string)
+    return string
+
+class CustomStreamListener(tweepy.StreamListener):
+
+    def on_status(self, status):
+
+        try:
+            print u'---{name}/@{screen}---\n   {text}\nvia {src} {created}'.format(
+                    name = status.author.name,
+                    screen = status.author.screen_name,
+                    text = status.text,
+                    src = status.source,
+                    created = status.created_at)
+            read_text = str_replace(status.text.encode('utf-8'))
+            call(['SayKotoeri -s "-s 120" "{text}" &gt;/dev/null 2&gt;&amp;1'.format(text=read_text)], shell=True)
+
+        except Exception, e:
+            print &gt;&gt; sys.stderr, 'Encountered Exception:', e
+            pass
+
+    def on_error(self, status_code):
+        print &gt;&gt; sys.stderr, 'Encountered error with status code:', status_code
+        return True # Don't kill the stream
+
+    def on_timeout(self):
+        print &gt;&gt; sys.stderr, 'Timeout...'
+        return True # Don't kill the stream
+
+
+class UserStream(Stream):
+
+    def user_stream(self, follow=None, track=None, async=False, locations=None):
+        self.parameters = {"delimited": "length", }
+        self.headers['Content-type'] = "application/x-www-form-urlencoded"
+
+        if self.running:
+            raise TweepError('Stream object already connected!')
+
+        self.scheme = "https"
+        self.host = 'userstream.twitter.com'
+        self.url = '/2/user.json'
+
+        if follow:
+           self.parameters['follow'] = ','.join(map(str, follow))
+        if track:
+            self.parameters['track'] = ','.join(map(str, track))
+        if locations and len(locations) &gt; 0:
+            assert len(locations) % 4 == 0
+            self.parameters['locations'] = ','.join(['%.2f' % l for l in locations])
+
+        self.body = urllib.urlencode(self.parameters)
+        logging.debug("[ User Stream URL ]: %s://%s%s" % (self.scheme, self.host, self.url))
+        logging.debug("[ Request Body ] :" + self.body)
+        self._start(async)
+
+def main():
+    auth = get_oauth()
+    stream = UserStream(auth, CustomStreamListener())
+    stream.timeout = None
+    stream.user_stream()
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+
+<h2>使い方</h2>
+
+<p><a href="https://dev.twitter.com/">Twitter Developers</a>に登録してCONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRETをそれぞれ取得してコードの該当位置に書き込んでください。PINコードで認証とかは気が向いたらまた考える。</p>
+
+<p>読み上げコマンド含め好きなように編集して使ってください。デフォルトだと一般的なゆっくりの声です。もちろん読み上げなしにして授業中や会社でばれないようにツイッターするのもよし。</p>
+
+<p>あとはターミナルで<code>python twaloud.py</code> 終了はCtrl-Cで強制終了してください。</p>
+
+<p>それとデフォルトのTerminal.appよりも<a href="(http://www.iterm2.com/#/section/home)">iTerm2</a>だとコマンドクリックでURL開けるのでタイムライン読むのに便利です。</p>
+
+<h2>参考リンク</h2>
+
+<h3>ライブラリ</h3>
+
+<ul>
+<li><a href="https://github.com/tweepy/tweepy">tweepy/tweepy · GitHub</a></li>
+<li><a href="https://github.com/bear/python-twitter">bear/python-twitter · GitHub</a></li>
+</ul>
+
+
+<h3>リストバージョン</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/tweepy-read-aloud-list-tl/">PythonでツイッターのリストのTLを擬似ストリーミングで読み上げさせる[tweepy] « haya14busa</a></li>
+</ul>
+
+
+<h3>コード</h3>
+
+<ul>
+<li><a href="http://www.nari64.com/?p=200">twitterをターミナル上で楽しむ(python)</a></li>
+<li><a href="http://kk6.hateblo.jp/entry/20110817/1313564125">tweepyがUser Streamsに対応していた &#8211; kk6のメモ帳*</a></li>
+<li><a href="http://creco.net/2009/07/17/softalk_twitter_to_bring_out_slowly_in_a_voice_of/">TwitterをSoftalkのゆっくりボイスでしゃべらせる 2 | クレコ</a></li>
+</ul>
+
+
+<h3>読み上げ関連</h3>
+
+<ul>
+<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri">SayKotoeri &#8211; Hemus -Macアプリ</a></li>
+<li><a href="http://www.a-quest.com/quickware/saykana/">SayKana &#8211; Mac用音声合成プログラム</a></li>
+<li><a href="https://sites.google.com/site/nicohemus/home/saykotoeri2">SayKotoeri2 &#8211; Hemus -Macアプリ</a></li>
+<li><a href="http://stts.hatenablog.com/entry/20110724/1311513263">Mac OSX 10.7 Lion付属のKyokoさんにスピーチしてもらう &#8211; sttsのソースコードMemoブログ</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/tweepy-read-aloud-tl/">PythonでTwitterのタイムラインをストリーミングで読み上げさせるfor Mac[tweepy]</a>
+      <time datetime="2013-07-06T00:00:00+09:00" pubdate><span class='month'>Jul</span> <span class='day'>06</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/tweepy/'>tweepy</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -807,188 +1030,6 @@ if __name__ == "__main__":
       <time datetime="2013-05-03T00:00:00+09:00" pubdate><span class='month'>May</span> <span class='day'>03</span> <span class='year'>2013</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/darkroom-dot-js/'>darkroom.js</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/wordpress-jquery-plugin/">WordPressでfunctions.phpを使ったjQueryプラグインの導入方法</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-04-06T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>そろそろjQueryプラグインというものに触れてみたかった。</p>
-
-<p>プラグインやheader.phpに直接書くのではなく、functions.phpで一括管理する方法。任意のページで読み込ませることやjQueryをGoogle Library APIを使って読み込ます方法もメモ。 今回は<a href="http://masonry.desandro.com/">jQuery Masonry</a>を導入します。</p>
-
-<h2>最初に</h2>
-
-<p>各種プラグインを配布してるサイトから.jsファイルをダウンロードしてテーマの[WPテーマのディレクトリ]/js/フォルダにアップロード。</p>
-
-<h2>Google Hosted LibraryからjQueryを読み込む</h2>
-
-<p><a href="https://developers.google.com/speed/libraries/devguide#jquery">Google Hosted Libraries &#8211; Developer&#8217;s Guide &#8211; Make the Web Faster — Google Developers</a></p>
-
-<p>サーバーの負荷の分散と他サイトでも使われていることによってキャッシュが効いてくるのがメリットなはず。</p>
-
-<dl>
-<dt>functions.php</dt>
-<dd><pre><code>  //Using jQuery Google API
-  function modify_jquery() {
-      if (!is_admin()) {
-          // comment out the next two lines to load the local copy of jQuery
-          wp_deregister_script('jquery');
-          wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3');
-          wp_enqueue_script('jquery');
-      }
-  }
-  add_action('init', 'modify_jquery');
-</code></pre></dd>
-</dl>
-
-<p>記事執筆時点でjQueryの最新バージョンは1.9.1ですが、Wordpressに標準搭載されてるものは1.8.3なので1.8.3を読み込んでおけば不具合は起きないはず。<br/>
-1.9.1読み込みたかったら使用してる各種WPのプラグインが対応できているか確認する必要ありです。</p>
-
-<h2>functions.phpで任意のページで振り分けて読み込む</h2>
-
-<blockquote><p> 
-    if (!is_admin()) {
-       function register_script(){
-         wp_register_script(&lsquo;rollover&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/rollover.js&rsquo;);
-         wp_register_script(&lsquo;slide&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/slide.js&rsquo;);
-         wp_register_script(&lsquo;jquery-lightbox&rsquo;, get_bloginfo(&lsquo;template_directory&rsquo;).&lsquo;/js/jquery-lightbox.js&rsquo;);
-       }
-       function add_script() {
-         register_script();
-         // 全ページ共通
-         wp_enqueue_script(&lsquo;rollover&rsquo;);
-         // TOPページ専用
-         if (is_home()) {
-            wp_enqueue_script(&lsquo;slide&rsquo;);
-         }
-         // 固定ページIDが“1”と“3”のページ専用
-         elseif (is_page(array(1,3))) {
-            wp_enqueue_script(&lsquo;jquery-lightbox&rsquo;);
-         }
-       }
-       add_action(&lsquo;wp_print_scripts&rsquo;, &lsquo;add_script&rsquo;);
-    }
-      </p>
-
-<p>&#8211; <cite><a href="http://www.webcreator-net.com/tips_memo/wordpress/20111229230125.html">WordPressでCSSやJavascriptをページ毎に振り分ける | Webクリエイターネット</a></cite></p></blockquote>
-
-<p>最初に!is_admin()で管理画面で読み込まないようにしてから、is_home(),is_archive(),ページIDなどなどでさらに振り分けます。</p>
-
-<h3>ついでにMobileでも振り分け</h3>
-
-<p><a href="http://haya14busa.com/detect-mobile-ua-in-wordpress/">UserAgent 判別でモバイル用にコンテンツを振り分ける【Wordpress】 « haya14busa</a></p>
-
-<p>少しコードを変えて、</p>
-
-<dl>
-<dt>funcitons.php</dt>
-<dd><pre><code>  if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
-      /* for PC */
-      wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
-      wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
-  } else {
-      /* for Mobile */
-  }
-</code></pre></dd>
-</dl>
-
-<h2>まとめ</h2>
-
-<p>今回はjQuery Masonryを使うことによって、記事一覧をpinterest風に表示することが目的なので、ホームとアーカイブページに読み込み、かつ画面の小さいモバイル端末では読み込ませないようにします。</p>
-
-<dl>
-<dt>functions.php</dt>
-<dd><pre><code>  //Using jQuery Google API
-  function modify_jquery() {
-      if (!is_admin()) {
-          // comment out the next two lines to load the local copy of jQuery
-          wp_deregister_script('jquery');
-          wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3');
-          wp_enqueue_script('jquery');
-      }
-  }
-  add_action('init', 'modify_jquery');
-
-  //javascript management
-  if (!is_admin()) {
-     function register_script(){
-       //wp_register_script('rollover', get_bloginfo('template_directory').'/js/rollover.js');
-         wp_register_script('masonry', get_bloginfo('template_directory').'/js/jquery.masonry.min.js');
-         wp_register_script('pinterest', get_bloginfo('template_directory').'/js/pinterest.js');
-     }
-     function add_script() {
-       register_script();
-       //wp_enqueue_script('rollover');
-       if (is_home()) {
-          //wp_enqueue_script('slide');
-
-          if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
-          /* for PC */
-           wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
-           wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
-          } else {
-          /* for Mobile */
-          }
-
-       } else if (is_archive()) {
-
-          if (( !function_exists(’is_mobile’)) || !is_mobile()){ 
-          /* for PC */
-           wp_enqueue_script( 'masonry', array( 'jquery' ), '2.1.08');
-           wp_enqueue_script( 'pinterest', array( 'jquery' ), '1.0');
-          } else {
-          /* for Mobile */
-          }
-       }
-     }
-     add_action('wp_print_scripts', 'add_script');
-  }
-</code></pre></dd>
-</dl>
-
-<p>ResponsiveサイトでのjQuery Masonryの使用では、Media Queryでもスタイルや動作を切り替えておくとよさそう。<br/>
-<a href="http://www.koikikukan.com/archives/2012/10/19-015555.php">レスポンシブWebデザイン制作にjQuery Masonryを利用するための5つのポイント: 小粋空間</a></p>
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/wordpress-jquery-plugin/">WordPressでfunctions.phpを使ったjQueryプラグインの導入方法</a>
-      <time datetime="2013-04-06T00:00:00+09:00" pubdate><span class='month'>Apr</span> <span class='day'>06</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/wordpress/'>wordpress</a></span>
       
       </footer>
     </article>
