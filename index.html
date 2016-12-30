@@ -9,8 +9,9 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="この記事は Go (その3) Advent Calendar 2016 の24日目の記事です(代打)．
-メリークリスマス! 本記事では Go 言語プロジェクトの CI で回すと便利な各種lintの紹介やカバレッジ計測の方法などなどについて紹介します． Go 言語おすすめ linter Go の &hellip;">
+  <meta name="description" content="この記事では2016年 @haya14busa がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
+個人的な備忘録です．あとポエム． 過去の振り返り記事 1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa
+2014年の振り返り. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,654 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2016-is-go-year/">Go に恋した Vimmer の2016年の振り返り</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-12-29T17:47:59+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>この記事では2016年 <a href="https://twitter.com/haya14busa">@haya14busa</a> がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
+個人的な備忘録です．あとポエム．</p>
+
+<h3>過去の振り返り記事</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
+<li><a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
+<li><a href="http://haya14busa.com/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り - haya14busa</a></li>
+</ul>
+
+
+<p>今年はざっくりプログラミング &amp; Vimmer 歴 4年目でした．
+そろそろプログラミングの基礎的なところわかってなくても，まだはじめてそんな経ってなくてまだ勉強できてないんです〜，また今度やっておきますっ!
+みたいな言い訳が完全に通用しない年になってきた気がします (そもそも実際に言ったことは無い)．
+まだまだ学んでおきたい分野はたくさんあって，特にもうちょっとレイヤーが下の要素もやっていって理解しておきたさがありますね&hellip;</p>
+
+<h2>&ldquo;Go&rdquo; に恋した 2016年</h2>
+
+<p>AlphaGo, Pokemon GO, Amazon Go&hellip; &ldquo;Go&rdquo; は2016年の1つのキーワードだったように思いますが，個人的には Go 言語の &ldquo;Go&rdquo; に恋した1年でした．</p>
+
+<p><img src="../images/post/2016-12-26-gopher-stickers-lovely.png" alt="" /></p>
+
+<p><small>credit: <a href="https://github.com/tenntenn/gopher-stickers">Gopher by tenntenn CC BY 3.0</a></small></p>
+
+<h3>Go との出会い</h3>
+
+<p>Go 言語との出会いは去年インターンでGoをはじめて使ったときでした．</p>
+
+<p>その時一目惚れ&hellip; をしたわけではありません．</p>
+
+<p>シンプルでとにかくプロジェクトで動くものは作れる感じだったので，なんとなくGoよさそうかなぁとは感じつつも，
+ちょっと気になっている子(Scala) との大きな違いに戸惑ってたりしてました．
+&ldquo;Functional Programming&rdquo;? なにそれおいしいの? とでも聞こえてきそうな Go の雰囲気に，
+僕は一歩足を引いて評価を保留してました．
+ただ，さも vim で書くために生まれてきた言語では&hellip;? というほどの <code>gofmt</code>
+といった周辺のツールの充実っぷりはこの頃から大好きで，言語というよりは周囲の
+エコシステムがよさ&hellip;という印象でした．</p>
+
+<p>また，Go と出会ったころと時を同じくして，僕はスプラトゥーンと出会ってました．
+お家に帰って Go やってる場合ではなく，一日中イカする毎日．
+イカの存在によって Go とはどこかビジネスライクな付き合いにとどまってました．イカはっょぃ．</p>
+
+<h3>Go との別れ</h3>
+
+<p>それから程なくして，インターンが終了しました．
+Go をいちから学ぶところからはじめたにも関わらず，
+終了時にある程度のものが出来たことを Go にも感謝しつつ，
+一旦 Go との付き合いもお別れになりました．</p>
+
+<p>結局，まぁなんかよさそうな言語だ程度の(ふんわり)印象でここで一旦お別れしたわけですが，
+後々，このときのいい環境で Go を書いてレビューしてもらったり，
+教えてもらったことはとても役に立ちました．
+ありがたい．</p>
+
+<h3>Go との再会</h3>
+
+<p>2016年の春，忙しかった時期も一段落し，スプラトゥーンとの距離をうまく保てるようになった僕は
+ちょっとした小さいツールを Go で書くことにしました．</p>
+
+<p>理由としては，コマンドラインツールとか Go で書くのは便利そうだったことや，
+来年以降もGo書くことになりそうかなぁという打算的な思考，
+また同じ頃にはじめたアルバイト先のいくつかのサブシステムは Go で書かれていることもあり，
+Go 書けるとそのへんも触れておもしろそうかなという気持ちがありました．</p>
+
+<p>数カ月の Go とのお別れ期間でいろいろ忘れていることに戸惑いつつも，書いていくうちに勘も戻ってきました．
+ちょっとした自分用ツールをいくつか Go で完成させて，簡単にサーバにもっていって動かすことができてよいなーと感じたり，
+Google App Engine で雑に動かしたりして遊んでました．
+アルバイト先でもちょっとずつ書いたりするようになって，Go と触れ合う時間は増えました．</p>
+
+<h3>2016年秋，気づけば Go に恋に落ちてた</h3>
+
+<p>それからも，定期的に Go で何か作ったりしてました．例えば，</p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/goplay">haya14busa/goplay: The Go Playground (https://play.golang.org/) client</a>
+
+<ul>
+<li>コマンドラインから Go Playground で Go を実行したり，コードを Playground に共有するツール</li>
+<li>習作という向きも強かったけど，いまでも Playground でコードを共有する際に使ったりしていて便利．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/gopkgs">haya14busa/gopkgs: List Go packages FAST by using the same implementation as goimports</a>
+
+<ul>
+<li>goimports と同じ内部実装でGo のパッケージをリストするツール</li>
+<li>goimports と同じ実装なので <code>.goimportsignore</code> も見てくれてたりなど速い．</li>
+<li>peco/fzf/unite といったフィルタリングツールと組み合わせて，import したり godoc を開いたりなどして今も便利に使ってる．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/goverage">haya14busa/goverage: go test -coverprofile for multiple packages</a>
+
+<ul>
+<li>マルチパッケージ対応版 go test -coverprofile</li>
+<li>関連記事: <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a></li>
+</ul>
+</li>
+<li>関連Post: <a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.4h65zgqzb">Golang tips you might not know – Medium</a></li>
+</ul>
+
+
+<p>この頃には Go がかなり手に馴染むようになってきました．上記に上げたツールも Go
+の開発を助けるツールだということからも，Go をより書くようになってきてることがうかがえます．</p>
+
+<p>特にきっかけはありませんでした．でもこの頃にはもう Go に恋してたんだと思います．
+その結果，特に意味もなく Vim script のパーサを Go 言語で動かしたいなぁ&hellip;
+既存の Python 実装とかあるけど，Go でいじりたいなぁ&hellip; と思って Go 実装を作ったりしてました．</p>
+
+<h4>go-vimlparser - Vim Script Parser written in Go</h4>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/go-vimlparser">haya14busa/go-vimlparser: Vim Script Parser written in Go</a></li>
+<li>Post: <a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.rtaybepih">Vim Script Parser written in Go – Medium</a></li>
+<li>VimConf でも発表しました: <a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.d8n121p9e">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+</ul>
+
+
+<p>Just for fun ではじめましたが，結果として最速 Vim script parser 実装となって，Vimmer にも嬉しい便利なものになったと思います．
+Go のパフォーマンスチューニングのやり方も改めて経験できて身についたし，
+AST の表現や AST walker の実装をするために <a href="https://golang.org/pkg/go/ast/">go/ast</a>
+のコードを読んでインターフェースをパク&hellip;参考にしたりとおもしろかった．
+Go の標準ライブラリのデザインはとても参考になるし，それを Go 言語でザクザク読めるのは本当にいいなぁと思います．</p>
+
+<h3>Go と Vim との共同作業</h3>
+
+<p>この頃，Vim はJSONやchannel, job 機能が実装され，外部インターフェースとの通信が容易になり，もうすぐ Vim 8.0 出すよ〜という時期でした．
+Go に恋した Vimmer としては，もちろんここで Go 言語を使って Vim との共同作業をさせたいというのは必然です!
+(これでは Go と Vim がカップルになってるのではということは気にしない．でも実際2人の相性はとてもよい)</p>
+
+<p>このあたりの話は Vim Advent Calendar で書きました．</p>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-go-client/">Go で Vim プラグインを書く - haya14busa</a></li>
+<li><a href="https://github.com/haya14busa/vim-go-client">haya14busa/vim-go-client: [WIP] Vim 8.0 client written in go</a></li>
+<li><a href="https://github.com/haya14busa/vim-stacktrace">haya14busa/vim-stacktrace: Stacktrace of Vim script</a></li>
+</ul>
+
+
+<p>vim-go-client の通信のハンドリングのデザインは Go の <a href="https://golang.org/pkg/net/http/">net/http</a> のコードを読んで参考にしたりしました．
+が，もうちょっといい感じにできそうな気がする&hellip;
+実際に Go で vim-stacktrace という便利プラグインを作れることを確認できて，go-vimlparser も有効活用できたりなど，
+Vim活にも Go が絡むようになってきてますます Go が好きになっていきました．</p>
+
+<h3>Go と Vim との間に生まれた子供 - reviewdog</h3>
+
+<p>(Go と Vim が結婚して子供を産みました．僕のGoへの恋は片想い)</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/d598ed7dc49fefb0018e422e4c43e5ab8f207a6b/reviewdog/reviewdog.logo.png" alt="reviewdog logo" /></p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/reviewdog">haya14busa/reviewdog: A code review dog who keeps your codebase healthy</a></li>
+<li><a href="https://github.com/haya14busa/errorformat">haya14busa/errorformat: Vim&rsquo;s quickfix errorformat implementation in Go</a></li>
+<li><a href="http://haya14busa.com/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa</a></li>
+<li><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.r3hb734et">reviewdog — A code review dog who keeps your codebase healthy</a></li>
+</ul>
+
+
+<p>reviewdog は僕の 2016年に作ったプロダクトの一番のヒット作と言えます．reviewdog の GitHub のスターは執筆時現在 268 です．
+reviewdog が好きなのは，実際に超便利プロダクトだということはもちろん，Vim の &lsquo;errorformat&rsquo; という便利な機能を
+Go言語で port して Vim の外でも使えるようにしたという，Vim と Go の&#8221;よさ&#8221; が存分に発揮されたプロダクトだというところがとても気に入っています．</p>
+
+<p>reviewdog のようなものを作るには，いろんな linter などのコマンドの結果を扱わなくてはいけません．
+他のツールでは， <a href="https://github.com/alecthomas/gometalinter">gometalinter</a> のように linter ごとに正規表現をアドホックに作ったり，
+それぞれのコマンドの runner を作ったり， checkstyle xml やJSONのある機械的な形式を吐くlinterにのみ対応するといった割り切りをしています．</p>
+
+<p>Vim はそういういろんなコマンドやいろんなアウトプット形式に対応するというのは得意で，
+&lsquo;errorformat&rsquo; という scanf-like な機能がこれにあたり，この形式を使うことに決めました．</p>
+
+<p>ただしこの&#8217;errorformat&#8217;は Vim でしか使えません．そこを同じくマルチプラットフォームで簡単に動く
+Go 言語で同等の機能をポート(<a href="https://github.com/haya14busa/errorformat">haya14busa/errorformat</a>)し，
+Vim のよさを Go がサポートしてより広く使ってもらえるようにできました．</p>
+
+<p>reviewdog は現在もちょくちょく改善していて，特にローカルでもより動かしやすいようにしようと思ってます．
+年内にある程度開発してバージョン1.0にしようかと思っていましたが，もう少しかかりそうです．</p>
+
+<h4>reviewdog の状況</h4>
+
+<ul>
+<li><blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">reviewdogでエゴサしたらつい昨日リリースしたというのにすでに <a href="https://twitter.com/hashtag/lispmeetup?src=hash">#lispmeetup</a> というミートアップで lisp のlint ツールの発表で reviewdog 使ってくれているっぽいことを発見した&hellip;. べんりすぎる <a href="https://t.co/zYQeOVIGTX"><a href="https://t.co/zYQeOVIGTX">https://t.co/zYQeOVIGTX</a></a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/790888183844089857">October 25, 2016</a></blockquote>
+
+<ul>
+<li>スライド: <a href="http://www.slideshare.net/fukamachi/sblint">SBLint</a></li>
+<li>リリースした直後に reviewdog に対応するための lint ツール作った発表とかを観測してビビった．</li>
+</ul>
+</li>
+<li><a href="https://speakerdeck.com/fortkle/yasashii-sonogo">やさしいコーディング規約の導入〜その後〜 / yasashii-sonogo // Speaker Deck</a>
+
+<ul>
+<li>実際に使ってもらえてるっぽくてよさ</li>
+</ul>
+</li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/458">CI: reviewdog 導入 by haya14busa · Pull Request #458 · vim-jp/vital.vim</a>
+
+<ul>
+<li>vital.vim という Vim script ライブラリのリポジトリに reviewdog 導入してもらった．</li>
+</ul>
+</li>
+<li>reviewdog は僕がバリバリドックフーディングしているのはもちろんのこと，ちょっと使ってもらってる例はちらほら見かける．</li>
+</ul>
+
+
+<p>OSS で導入するのは CI サービスがうまく Secure Token を扱ってくれないせいで，
+若干最初の導入が手間なのが使ってもらうには少し壁になってるのが悲しい．Travis〜CircleCI〜頼む〜改善してくれ〜．
+一度導入してしまえばあとは楽だし，もしくはローカルでだけ使っても便利なのでもうちょっと使用事案増えて欲しい．</p>
+
+<h3>Go 活動その他</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで mock を書く技法 - haya14busa</a>
+
+<ul>
+<li>いい記事に感化されて僕も何か書きたくなった。事案</li>
+</ul>
+</li>
+<li><a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a>
+
+<ul>
+<li>Go の CI 周りの紹介</li>
+</ul>
+</li>
+<li><a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.cp9eqobvo">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a>
+
+<ul>
+<li><a href="http://developer.hatenastaff.com/entry/engineer-advent-calendar-2016">はてなエンジニアアドベントカレンダー2016</a> の 6日目の記事</li>
+<li>はてなの Mackerel チームでアルバイトしていて，仕事してて直和型っぽいことを表現したいときの知見がちょうどあったのでアドベントカレンダーに書かせていただきました．</li>
+<li>linter はアドベントカレンダー書くなら知見共有だけよりはツールも欲しいなと書きました．<code>go/types</code> パッケージ便利．</li>
+</ul>
+</li>
+<li>OSS Contributions
+
+<ul>
+<li><a href="https://github.com/mattn/goveralls">mattn/goveralls</a> で複数パッケージサポート足した</li>
+<li>go-github で GitHub の Review API サポートのレビューをなぜかメンテナでもないけどやってる <a href="https://github.com/google/go-github/issues/495">https://github.com/google/go-github/issues/495</a>
+
+<ul>
+<li>実質 GitHub Review API の reviewer みたいにもなってて Support に要望送りまくってる</li>
+</ul>
+</li>
+<li>あんまりやってなかった&hellip;</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Go が好き</h3>
+
+<p>書いてるうちに手に馴染んできて，いつの間にか好きになってましたが，結局僕はなぜ Go に恋に落ちたのでしょうか．
+1つは間違いなく Go の Simplicity に惹かれたんだと思います．</p>
+
+<h4>Simplicity is Complicated</h4>
+
+<ul>
+<li>slide: <a href="https://talks.golang.org/2015/simplicity-is-complicated.slide#1">Simplicity is Complicated</a></li>
+<li>youtube: <a href="https://www.youtube.com/watch?v=rFejpH_tAHM">dotGo 2015 - Rob Pike - Simplicity is Complicated - YouTube</a></li>
+</ul>
+
+
+<p>Rob Pike の &ldquo;Simplicity is Complicated&rdquo; という発表がオススメです．
+僕はこの発表をみて，胸がきゅーーんっとなりました．Go かわいいよ Go．</p>
+
+<p>Go はなぜ成功したんでしょうか? コンパイル速度，実行速度，デプロイの容易さ，充実したツール，質の高いライブラリ，interfaceやconcurrencyをサポートする言語機能&hellip;
+そのどれもが大事で，僕も実際どれも好きですが，Rob Pike は &ldquo;Simplicity&rdquo; が答えだといいます．
+そしてこの &ldquo;Simplicity&rdquo; は &ldquo;Complicated&rdquo; だとも．</p>
+
+<p>シンプルという言葉はともすれば薄っぺらくなります．特にVimmerという職業(?)柄，
+Vim plugin とかをいくつかみると，&#8221;simple&#8221; だとか，他にも &ldquo;easy&rdquo;, &ldquo;minimalictic&rdquo;
+と言った単語が並んでたりします．これは自戒を込めてですが，場合によってはちょっと薄っぺらいなぁと感じるようなものもあったりします．</p>
+
+<blockquote><p>Simplicity is the art of hiding complexity.</p></blockquote>
+
+<p>Go が simple だとか，less is more だとか，引き算の言語だ&hellip;といった表現をされるとき，
+僕は全く薄っぺらいだとかは思いません．
+これは&#8221;Simplicity&#8221; というのは実は&#8221;Complicated&#8221; であり，
+&ldquo;Simplicity&rdquo; の背後には&#8221;complexity&#8221;を洗練された，緻密なデザインや設計，実装が隠れているからなんだと思います．</p>
+
+<p>GCやgoroutine,interfaceといった実際の例がスライドで説明されているので是非見てみてください．</p>
+
+<p>僕らが享受しているGo の &ldquo;Simplicity&rdquo; は簡単に実現されたものではありません．
+僕らが Go に対して，「あぁ，こういうのでいいんだよ．こういうので．」と感じるとき，
+その背後には Go がたくさんの機能を削ぎ落として，直交する必要十分な機能のデザインと
+複雑な実装が存在しています．</p>
+
+<blockquote><p>Simplicity is hard—to design. <br>
+Simplicity is complicated—to build. <br>
+But if you get it right&hellip; <br>
+Simplicity is easy—to use. <br>
+The success of Go proves it. <br>
+&ndash; <a href="https://talks.golang.org/2015/simplicity-is-complicated.slide#30">https://talks.golang.org/2015/simplicity-is-complicated.slide#30</a></p></blockquote>
+
+<p>&ldquo;Simplicity&rdquo; をデザインするのは難しく，&#8221;Simplicity&#8221;の実現はとても複雑です．
+でもこれらをうまくやると，&#8221;Simplicity&#8221; は使うのが簡単になります．</p>
+
+<p>これが Go は， &ldquo;simple&rdquo; であり，&#8221;less is more&#8221; であり，&#8221;引き算の言語&#8221; であり，
+「あぁ，こういうのでいいんだよ．こういうので．」ということなのでしょう．</p>
+
+<h4>Go is more Pythonic than Python</h4>
+
+<p><a href="https://talks.golang.org/2012/zen.slide#1">Go and the Zen of Python</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; import this
+</span><span class='line'>The Zen of Python, by Tim Peters
+</span><span class='line'>
+</span><span class='line'>Beautiful is better than ugly.
+</span><span class='line'>Explicit is better than implicit.
+</span><span class='line'>Simple is better than complex.
+</span><span class='line'>Complex is better than complicated.
+</span><span class='line'>Flat is better than nested.
+</span><span class='line'>Sparse is better than dense.
+</span><span class='line'>Readability counts.
+</span><span class='line'>Special cases aren't special enough to break the rules.
+</span><span class='line'>Although practicality beats purity.
+</span><span class='line'>Errors should never pass silently.
+</span><span class='line'>Unless explicitly silenced.
+</span><span class='line'>In the face of ambiguity, refuse the temptation to guess.
+</span><span class='line'>There should be one-- and preferably only one --obvious way to do it.
+</span><span class='line'>Although that way may not be obvious at first unless you're Dutch.
+</span><span class='line'>Now is better than never.
+</span><span class='line'>Although never is often better than *right* now.
+</span><span class='line'>If the implementation is hard to explain, it's a bad idea.
+</span><span class='line'>If the implementation is easy to explain, it may be a good idea.
+</span><span class='line'>Namespaces are one honking great idea -- let's do more of those!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>僕が最初に学んだ言語は Python で，The Zen of Python の思想はとても好きでした．</p>
+
+<ul>
+<li>Explicit is better than implicit.</li>
+<li>Simple is better than complex.</li>
+<li>Readability counts.</li>
+<li>There should be one&ndash; and preferably only one &ndash;obvious way to do it.</li>
+</ul>
+
+
+<p>Go は The Zen of Python に，ともすれば Python 以上にマッチしています．
+Go が Pythonic なところも間違いなく僕が Go を好きになった一因です．
+なんなら，Go が Python より Pythonic なので，もう Python で書くようなところは，
+Go で書きたい．</p>
+
+<p>Go の前に学んだ言語は Scala でした．
+Scala が魅せてくれるプログラミング言語の可能性にはスゴイなぁ，おもしろいなぁ，
+と思いつつも，Scala が気になる子止まりだったのは，The Zen of Python の思想の真逆を
+行くような，ないし真逆のコードが生まれやすい言語だからだと思います．
+Scala は今も書いているし，堅牢かつ規模の大きいコードも Scala だと比較的安心して書いていけたり，
+僕に &ldquo;Functional Programming&rdquo; などを教えてくれた Scala は好きですが，恋に落ちるほどではなかった．
+僕を含め，もう少し人類が進化するとまた変わってくる気もする．</p>
+
+<h3>Go とのこれから</h3>
+
+<p>2017年もGoと仲良くやってきたいです．個人的には特に Vim との連携とか含め．
+Go 本体になんかコントリビュッションしたいと思いつつできなかったので，機会があればやっていきたい．</p>
+
+<p>あとは，Go のよさを再確認するため(?)に別のパラダイムの言語(rust とか)にちょい浮気しつつやっていきたいですね．</p>
+
+<h2>Vim との 2016年 - 本妻は Vim</h2>
+
+<p>2016年のVim活もザックリ振り返ります．</p>
+
+<h3>EasyMotion 3.0</h3>
+
+<p><a href="http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました - haya14busa</a></p>
+
+<p>結構前にやった気もしますが，今年でした．
+バージョン3.0の機能追加でウィンドウをまたいだEasyMotionによるカーソル移動が実現しました．
+完全にライフチェンジング機能だし，待望の機能の実現で自分の Vim script 力の高まりも確認できてよかった．</p>
+
+<h3>vital のロード高速化</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする - haya14busa</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/415">vital モジュールのロードを爆速にする &amp; ロード方法を考える by haya14busa · Pull Request #415 · vim-jp/vital.vim</a></li>
+</ul>
+
+
+<p>まず，revital.vim という別プラグインで vital.vim のロードを高速化できることを示した後，結局 vital.vim 本体に入れてもらいました．
+ついでにリファクタリングしたりインターフェースの改善も行いました(後方互換性は維持している)．
+特定の環境でvital.vimが遅いという問題を完全に解決し，現在では autoload 関数を呼ぶのと変わらなくなってます．</p>
+
+<h3>はじめてのパッチ - Vim の Contributer に!</h3>
+
+<ul>
+<li><a href="https://github.com/vim-jp/issues/issues/893">statuslineの%{}などでevalした際に，try-catch でVimのエラーをキャッチしていても statusline が disable されてしまう · Issue #893 · vim-jp/issues</a></li>
+<li><a href="https://github.com/vim/vim/commit/a742e084b677f76c67e9e52c4f9fb9ab24002e20">patch 7.4.1711 · vim/vim@a742e08</a></li>
+</ul>
+
+
+<p>vital のロード高速化の際に Vim のバグを踏んで，小さいですがはじめてパッチを書いて取り込まれました!
+このバグは本体のバグだったということもあって異常に原因究明が難しく，原因を見つけたのは <a href="https://github.com/lambdalisue">lambdalisue</a> さんでした．</p>
+
+<p>今年は他にも EasyMotion で踏んだバグの修正パッチや，Vim8.0 リリース前の channelやjob 機能を叩いたパッチを書いたり，
+Vim 8.0 に lambda いれようぜ! ともう一回 vim-jp でちょっと騒いで，あとは vim-jp の <a href="https://github.com/mattn">mattn</a> さんや
+<a href="https://github.com/k-takata">k-takata</a> さんに丸投げするなどをしてました．</p>
+
+<p>そのあたりの話で１つ記事を書いてます -> <a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.nxkskyex2">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></p>
+
+<p>今年になって小さいとは言え Vimのパッチ書いたりできたのはとても嬉しかったです．
+Vim のソースコードも読むことは出来るし，デバッグの仕方もわかってきたし，
+場合によってはちょっと修正するくらいのことも出来るということがわかったのは収穫でした．
+ただ，もっと C 力は高めたほうがよさそう．</p>
+
+<h3>Vim 8.0 &amp; Go関連</h3>
+
+<ul>
+<li>go-vimlparser</li>
+<li>vim-go-client</li>
+<li>vim-stacktrace</li>
+<li>パッチいくつか．</li>
+</ul>
+
+
+<p>詳細は Go のところで紹介したので省略．</p>
+
+<h3>VimConf</h3>
+
+<ul>
+<li><a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.d8n121p9e">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li><a href="https://github.com/haya14busa/vim-metarepeat">haya14busa/vim-metarepeat</a></li>
+<li><a href="https://github.com/haya14busa/vim-textobj-function-syntax">haya14busa/vim-textobj-function-syntax: heuristic syntax-based text-object for function</a></li>
+</ul>
+
+
+<p>発表は go-vimlparser についての話ですでに書きましたが，
+<a href="https://github.com/t9md">t9md</a> さんの <a href="https://github.com/t9md/atom-vim-mode-plus">t9md/atom-vim-mode-plus</a> の発表が面白くて，
+Atom の vim-mode-plus のアイデアを Vim にバックポートする業などをしていました．</p>
+
+<p><a href="https://github.com/haya14busa/vim-metarepeat">haya14busa/vim-metarepeat</a> は vim-mode-plus の occurence で出来るようになる便利な機能を別の角度から実装したもので，
+ドットリピートをオペレータとして，テキストオブジェクト内の対象に対して一括でドットリピートを実行するものです．
+記事には書いてないけどissueにちょっと考えとかを書いています -> <a href="https://github.com/vim-jp/issues/issues/977#issuecomment-259703728">https://github.com/vim-jp/issues/issues/977#issuecomment-259703728</a>
+vim-metarepeat はかなり便利で常用していて，記事書くかぁと思いながら今年が終了しました．</p>
+
+<p><a href="https://github.com/haya14busa/vim-textobj-function-syntax">haya14busa/vim-textobj-function-syntax</a> は関数text-objectをVimのsyntaxを使って言語ごとに用意せずに使えるようにしたものです．
+syntax によって使える/使えない言語がありますが，ちょっと便利．
+これも記事にはしてないけどissueにちょっとコメントしてます．-> <a href="https://github.com/vim-jp/issues/issues/987#issuecomment-262870187">https://github.com/vim-jp/issues/issues/987#issuecomment-262870187</a></p>
+
+<h3>Google Translate の衝撃と Vim</h3>
+
+<p><a href="https://japan.googleblog.com/2016/11/google.html">Google Japan Blog: Google 翻訳が進化しました。</a></p>
+
+<p>今年はGoogle Translate が日英間の翻訳に Neural Machine Translation を導入して，
+機械翻訳がとても流暢になりました．Google Translate さんすごい．
+この改善をみて，Vimから使いやすくするためにいくつかプラグインを作りました．</p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-open-googletranslate">haya14busa/vim-open-googletranslate: Open Google Translate (https://translate.google.com/) from Vim.</a>
+
+<ul>
+<li>Vim から Google Translate を開く operator やコマンドを追加するプラグイン．常用してます．</li>
+<li><a href="https://twitter.com/Linda_pp">りんだん</a> さんに <a href="https://github.com/rhysd/electron-open-url">rhysd/electron-open-url</a> という Electron で url を開くものを作ってもらって，これをつかって Google Translate を開く設定をすることによって，連続で翻訳しやすくなってとても便利になりました．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/gtrans">haya14busa/gtrans: Command-line translator using Google Translate</a></li>
+<li><a href="https://github.com/haya14busa/vim-gtrans">haya14busa/vim-gtrans: Google Translate in Vim</a>
+
+<ul>
+<li>Google Translate の API を使ったもの．こちらは Vim のバッファで完結できる．</li>
+<li>API はめちゃめちゃ安いとはいえ，お金がかかるし，vim-open-googletranslate with electron-open-url の組み合わせが十分便利なのでそちらを最近は使ってる．</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>英語でブログ記事を書く</h2>
+
+<p>Google Translate の流れでいうと今年後半からは実験的にブログ記事も英語で書くようにしました．
+Google Translate 改善前からやっていて，改善後も勿論(?)Google Translateはあくまで補助としての使用ですが．</p>
+
+<h3>書いた英語 Posts</h3>
+
+<ul>
+<li><a href="https://medium.com/@haya14busa">haya14busa – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.5f2fkfj0o">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.gj03djo2w">Vim Script Parser written in Go – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.80j73sekq">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.pz8doupyk">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.zhpcp2dot">Golang tips you might not know – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.l22136r8d">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a></li>
+</ul>
+
+
+<p>英語で書く記事かどうか決めるというよりは，基本的に英語で書いて，どうしても日本語で書いたほうがよさそうだったら日本語で書くことにしています．
+直近の2つのアドベントカレンダーは普通に日本語で書いてしまって守れてないけど&hellip;正直時間が取れなかったので日本語に逃げました&hellip;
+まぁ日本語で発信するのもそれはそれで大事だと思うのでいいかなぁーとは思ってます．</p>
+
+<p>英語で書く理由としては，今後使うし勉強のためやらなきゃ&hellip;という理由と，
+発信を日本に閉じる必要性はないかなーと最近は考えてるからでした．
+僕はVimとかGoについて書くことが最近は多いですが，それらの記事のターゲットは大抵 Vimmer か Gopher で，
+別に想定読者を日本人に絞る必要性はないんですよね．</p>
+
+<p>日本語で書いた後，英訳しようとはなかなか行動できないので，英語・日本語両方ポスト作ると言うよりは，
+実質デファクトになってる英語で書けば英語読める日本人は読めるので，基本的には
+英語で1つ記事を書くということにしました．</p>
+
+<p>&hellip;とはいえ時間やクオリティーの兼ね合い，日本のコミュニティーの活性化，
+フィードバックのもらいやすさ，そして何より現状の英語力が足りてない問題など，
+色々と問題はありますが．そもそもたくさんの人に読んでもらうというのが目的ではないという観点もありそうだけど．</p>
+
+<p>英語で書くと特に日本では伸びづらいですが，
+日本で伸びなくても今までリーチしなかった層にリーチするし，
+今年書いた記事はだいたいある程度は日本人もそれ以外も読んでもらえたっぽいので，
+今の所やってみてよかったです．
+reddit とかにあげるとそこそこ読みにきてくれて便利．(redditのCEOがコメント編集したという事件があって，若干使いたさが減りましたが&hellip;)．
+来年も続けていこうかなぁと思います．</p>
+
+<p>英語に関してはWritingもそうだけど，どちらかといえば勉強する必要があったのはSpeaking/Listeningだった気が&hellip;
+という説もあり，今後がとても心配すぎる&hellip;</p>
+
+<h2>2016年活動情報</h2>
+
+<h3>GitHub Contributions</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa?utf8=%E2%9C%93&amp;tab=repositories&amp;q=created%3A%222016-01-01%20..%202017-01-01%22%20fork%3Afalse&amp;type=&amp;language=">作った Repositories</a></li>
+<li><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222016-01-01+..+2017-01-01%22+&amp;type=Issues&amp;ref=searchresults">開いた issues</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222016-01-01+..+2017-01-01%22+">開いた Pull Requests</a></li>
+</ul>
+
+
+<p>GitHub Contributions (including private contributions)</p>
+
+<p><img src="../images/post/2016-github-all-contributions.png" alt="GitHub Contributions (including private contributions)" /></p>
+
+<p>GitHub Contributions (public)</p>
+
+<p><img src="../images/post/2016-github-public-contributions.png" alt="GitHub Contributions (public)" /></p>
+
+<h3>Posts</h3>
+
+<ul>
+<li>Jan 19 <a href="http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました - haya14busa</a></li>
+<li>Mar 23 <a href="http://haya14busa.com/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする - haya14busa</a></li>
+<li>May 30 <a href="http://haya14busa.com/amazon-kindle-sale-til-2016-06-02/">6/2までKindle本50%オフセール!IT系の本で僕が欲しい本をまとめた!!! - haya14busa</a></li>
+<li>Jul 02 <a href="http://haya14busa.com/hatena-pepabo-kyoto/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ - haya14busa</a></li>
+<li>Oct 24 <a href="http://haya14busa.com/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa</a></li>
+<li>Nov 02 <a href="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで mock を書く技法 - haya14busa</a></li>
+<li>Dec 21 <a href="http://haya14busa.com/vim-go-client/">Go で Vim プラグインを書く - haya14busa</a></li>
+<li>Dec 24 <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a></li>
+</ul>
+
+
+<h3>Posts (English)</h3>
+
+<ul>
+<li>Sep 13 <a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.zeqiwqjtq">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></li>
+<li>Sep 20 <a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.5ehmbn3dn">Vim Script Parser written in Go – Medium</a></li>
+<li>Oct 24 <a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.lk0e5kix0">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></li>
+<li>Nov 7 <a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.fe69sy14m">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li>Dec 1 <a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.77th9mu4e">Golang tips you might not know – Medium</a></li>
+<li>Dec 6 <a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.cp9eqobvo">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a></li>
+</ul>
+
+
+<h2>歩くのが下手って気付いた2016年</h2>
+
+<p>今年は1つ大きく躓いた出来事がありました．躓いただけなら立て直せばよかったはずだったけど，
+そのまま歩き続ける意味を見失い，歩みを進めようとする心はもう折れていて，しばらくその場でうずくまってしまいました．
+躓いたことにも，歩き直せなかったことにも，道を変えて歩くことさえもできずに，ただただうずくまってました．
+今まで通りとはいかないにしても，もうちょっとうまく歩けたはずでした．
+あぁ，僕は歩くのがなんて下手なんだ&hellip;</p>
+
+<p>今の所，詳細はオープンインターネットには書かなくてもいいかな&hellip;と思ってます．
+書く気がないのにここでふんわり書いたのは完全に自己満足です．忘年です．忘れないけど．</p>
+
+<p>あとは完全にここでやるべきことではないけど，一種の懺悔みたいなものです．
+僕が単に1人でうずくまったまま世界から消えても，別に世界はどうってことないけど，
+無駄に不要なところにまで迷惑をおかけしてしまったり，いくつか見えた差し伸べられた手も
+完全にシャットアウトしてしまったことは，単純に反省しています．ごめんなさい．</p>
+
+<p>最近は人間的な生活をおくるリハビリをしていて，心に平穏は戻りつつある気はします．</p>
+
+<h2>最後に</h2>
+
+<p>2016年の振り返り記事だって言ってるのに無駄なポエムがところどころにあるせいで無駄に長くなった気がします．
+あとオープンにやってきたこと何でもかんでも放り込み過ぎて長くなったので，もうちょっとハイライトだけ振り返ればよかった気もする．
+まぁ，まだまだとはいえ，2016年結構いろいろやったのでは? と振り返って思いました．
+来年の目標，なにか定量的なものを設定して振り返るのが本当は良い気がしますが，
+来年はとりあえず強く生きることを目標にします．</p>
+
+<p>来年がとても素晴らしい1年でありますように．</p>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/2016-is-go-year/">Go に恋した Vimmer の2016年の振り返り</a>
+      <time datetime="2016-12-29T17:47:59+09:00" pubdate><span class='month'>Dec</span> <span class='day'>29</span> <span class='year'>2016</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/go/'>go</a>, <a class='category' href='/categories/vim/'>vim,</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1357,1156 +2006,6 @@ GitHub Enterprise とか BitBucket 対応は気が向いたらするかもしれ
       
       - <a href="/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか</a>
       <time datetime="2016-10-24T07:44:34+09:00" pubdate><span class='month'>Oct</span> <span class='day'>24</span> <span class='year'>2016</span></time>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/hatena-pepabo-kyoto/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-07-02T20:06:46+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 7/2</h2>
-
-<p><a href="http://hatena.connpass.com/event/33521/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 - connpass</a></p>
-
-<p>行ってきました．メモってたのでせっかくなので共有しておきます．
-gistでいいかとおもったけどスライド埋め込みとか考えたらブログに雑に投げたほうが見なおしやすそうと思ったのでブログで．
-自分で発表したわけでもないし，感想とか書いてるわけでもないけどまぁいいかってカンジ．</p>
-
-<h2>注意</h2>
-
-<p>わかってない人が書いたメモなのでいろいろわかってないメモが書かれてます．
-理解度に関係なく聞き漏らしたところ雑に書いたりしてるので発表様がおっしゃってた話とちがうところもあるかもしれない．
-特に座談会の内容とかは Twitterのハッシュタグみてたら <a href="https://twitter.com/matsumotory">@matsumotory</a> さんと <a href="https://twitter.com/yumu19">@yumu19</a> さんがまとめてたのでそっち見たほうがわかりやすいかも．</p>
-
-<h3>Togetter</h3>
-
-<p><del><a href="http://togetter.com/li/994969">http://togetter.com/li/994969</a></del></p>
-
-<p><del>ということで雑にtogetterつくっておきました．#pepabohatena で検索したやつからスパム2-3個消しただけです．
-そういえばtogetterだめな人とかいるかもじゃん&hellip;!ということに気づいたんですが全員に連絡するの流石につらいのでダメなひと
-<a href="https://twitter.com/haya14busa">@haya14busa</a> まで連絡していただければ幸いです．勝手に使って申し訳ないでした :bow: </del></p>
-
-<p>記事書いてる間に @yumu19 さんが作ってた -> <a href="http://togetter.com/li/994986">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 #pepabohatena ツイートまとめ - Togetterまとめ</a></p>
-
-<h3>タイムテーブル</h3>
-
-<table>
-<thead>
-<tr>
-<th>time </th>
-<th> 名前 </th>
-<th> タイトル </th>
-<th> 時間</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>13:30 </td>
-<td>  </td>
-<td> 受付開始・開場 </td>
-<td> 30分</td>
-</tr>
-<tr>
-<td>14:00 </td>
-<td> y_uuki(はてな) </td>
-<td> 開会宣言・会場説明 </td>
-<td> 5分</td>
-</tr>
-<tr>
-<td>14:05 </td>
-<td> y_uuki(はてな) </td>
-<td> はてなにおけるLinuxネットワークスタックの性能改善 </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>14:30 </td>
-<td> matsumotory(ペパボ) </td>
-<td> Webサービス基盤の自律制御と動的平衡性 </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>14:55 </td>
-<td>  </td>
-<td> 休憩 </td>
-<td> 5分</td>
-</tr>
-<tr>
-<td>15:00 </td>
-<td> ichirin2501(はてな) </td>
-<td> 計算量と僕とWeb開発 </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>15:25 </td>
-<td> pyama(ペパボ) </td>
-<td> STNS 〜点と線を結び新しい何かを作るコト〜 </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>15:50 </td>
-<td>  </td>
-<td> 休憩 </td>
-<td> 5分</td>
-</tr>
-<tr>
-<td>15:55 </td>
-<td> masayoshi(はてな) </td>
-<td> 負荷分散技術を選ぶ時に考えること </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>16:20 </td>
-<td> monochromegane(ペパボ) </td>
-<td> サービスに寄り添うログ基盤 - ログ収集のその先に - </td>
-<td> 25分</td>
-</tr>
-<tr>
-<td>16:45 </td>
-<td>  </td>
-<td> 休憩 </td>
-<td> 10分</td>
-</tr>
-<tr>
-<td>16:55 </td>
-<td> masayoshi(はてな) taketo957(はてな) alotofwe(ペパボ) hanazuki(ペパボ) モデレータ stanaka(はてな) </td>
-<td> 若手インフラ座談会 </td>
-<td> 40分</td>
-</tr>
-<tr>
-<td>17:35 </td>
-<td>  </td>
-<td> 懇親会 軽食と飲み物を用意しています！ </td>
-<td></td>
-</tr>
-<tr>
-<td>19:00 </td>
-<td>  </td>
-<td> お開き</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>開会宣言・会場説明</h2>
-
-<p>14:00 | y_uuki(はてな) | 開会宣言・会場説明 | 5分</p>
-
-<ul>
-<li>発表6本+座談会</li>
-<li>アンケート</li>
-</ul>
-
-
-<h2>はてなにおけるLinuxネットワークスタックの性能改善</h2>
-
-<p>14:05 | y_uuki(はてな) | はてなにおけるLinuxネットワークスタックの性能改善 | 25分</p>
-
-<p><a href="https://speakerdeck.com/yuukit/linux-network-performance-improvement-at-hatena">はてなにおけるLinuxネットワークスタックパフォーマンス改善 / Linux network performance improvement at hatena // Speaker Deck</a></p>
-
-<script async class="speakerdeck-embed" data-id="1c0ab465dca74bc7b0f955cb6955ba8a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<ul>
-<li>はてなのウェブオペレーションエンジニア．新卒1年目の仕事</li>
-<li>今は3年目</li>
-<li>3層構成 LB <-> proxy <-> application <-> database</li>
-<li>ボトルネックどこ?
-
-<ul>
-<li>CPU: %user/%sys/%iowait</li>
-<li>Mem: used/cached/buffer</li>
-<li>Disk: read/write</li>
-<li>NW: tx/rx/tx</li>
-</ul>
-</li>
-<li>ソフト割り込み(パケット受信)の負荷が高いときの話 (%soft)</li>
-<li>ネットワークスタック
-
-<ul>
-<li>ネットワークi/oを実現するために必要な要素群．低レイヤより
-
-<ul>
-<li>NIC/パケット送受信/etc&hellip;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ネットワークI/O 高速化</li>
-<li>パケット受信フロー  NIC -> Kernel -> Process
-
-<ul>
-<li>この辺の話かな? <a href="https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-network-packet-reception.html">8.3. パケット受信の概要</a></li>
-<li><img src="https://access.redhat.com/documentation/ja-JP/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/images/packet-reception.png" alt="" /></li>
-<li>NIC: 物理デバイス</li>
-<li><a href="https://ja.wikipedia.org/wiki/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%AB%E3%83%BC%E3%83%89">ネットワークカード - Wikipedia</a></li>
-<li>NIC ->(ハード割り込み) -> パケット受信 -> プロトコル処理 -> データ受信処理 -> Process</li>
-<li>割り込み2種類ある．なぜか?</li>
-<li>ハード割り込みだけだとパケット受信のたびにプロトコル処理まで実行しちゃう</li>
-<li>なので一旦バッファにいれる．ソフト割り込み</li>
-</ul>
-</li>
-<li>NAPI (New API)
-
-<ul>
-<li>1パケットずつでなく複数パケットごとに割り込み</li>
-<li>ポーリングによってとってくる．待ち時間発生するので負荷が高い時だけやるみたいに賢くなってる</li>
-<li>ソフト割り込みを減らす</li>
-</ul>
-</li>
-<li>HAProxy の台数増問題 (実際に取り組んだやつ)</li>
-<li>割り込みが多い -> 割り込み減らしたい</li>
-<li>HAProxy のネットワーク負荷が高いのでHAProxyを DNS RR で並べた</li>
-<li>Interrupt Coalescing
-
-<ul>
-<li>ハード割り込みを減らす</li>
-</ul>
-</li>
-<li>NICドライバのパラメータ検証した</li>
-<li>RPS (Receive Packet Steering)
-
-<ul>
-<li>コア間割り込み</li>
-</ul>
-</li>
-<li>RPS でRedisチューニング
-
-<ul>
-<li>Redisは1スレッド</li>
-<li>カーネルのネットワークI/O処理するスレッドと Redisのスレッドは分散可能</li>
-<li>-> CPU% 10% 減 (コンテキストスイッチが減ったり，キャッシュが効くようになったからっぽい)</li>
-<li>redisの公式ページにやりかた書いてある <a href="http://redis.io/topics/benchmarks">http://redis.io/topics/benchmarks</a></li>
-</ul>
-</li>
-<li>ユーザランドへゼロコピー
-
-<ul>
-<li>そもそもカーネルに処理しないという変態処理．</li>
-<li>パケットを NIC -> ユーザランドへバイパス</li>
-<li>実装: netmap</li>
-<li>まだ実用ではなさそうだけど研究されてる</li>
-<li>ソケットAPIの限界
-
-<ul>
-<li>ソケットAPIではゼロコピーできない</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>まとめ
-
-<ul>
-<li>OSの内部面白い．OS内部の技術の外出し</li>
-<li>ソフト割り込みにより遅延処理</li>
-<li>ジョブキューのような非同期処理</li>
-<li>割り込みとポーリング</li>
-<li>OSの技術をもうちょっと上のレイヤの技術に応用してやったりするのベンリ</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Webサービス基盤の自律制御と動的平衡性</h2>
-
-<p>14:30 | matsumotory(ペパボ) | Webサービス基盤の自律制御と動的平衡性 | 25分</p>
-
-<script async class="speakerdeck-embed" data-id="60124a9e42bf4939b3d64687ef266d5c" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<ul>
-<li>@matsumotory <a href="http://research.matsumoto-r.jp/">松本亮介の研究・開発業績ページ by matsumoto-r</a></li>
-<li>技術基盤チームで研究開発してる</li>
-<li>目次
-
-<ul>
-<li>なめらかなシステム</li>
-<li>Webサービスの現状・課題</li>
-<li>自立制御</li>
-<li>動的平衡性</li>
-</ul>
-</li>
-<li>なめらかなシステム
-
-<ul>
-<li>システムにとってのユーザ，システムを構成するサーバ等の要素のカテゴリや特徴を詳細に認識する</li>
-<li>人間の労苦は避けたい</li>
-</ul>
-</li>
-<li>Webサービスの現状・課題
-
-<ul>
-<li>bad UI / 遅い / etc&hellip; -> 快適に利用できるのが当たり前</li>
-<li>サーバの運用大変
-
-<ul>
-<li>高負荷・障害対応</li>
-<li>問い合わせ</li>
-<li>バジョンアップ</li>
-<li>監視</li>
-<li>新規構築</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>監視に注目してみる
-
-<ul>
-<li>閾値設定はムズカシイ</li>
-<li>1時的な高負荷は無視したい．すぐもどるならok</li>
-<li>傾向が変わるならすぐ知りたい</li>
-<li>正常にみえるけど異常っぽいものを検知したい</li>
-<li>段階的な傾向の変化を検知したい．階段みたいな．でも1時的なものは無視</li>
-</ul>
-</li>
-<li>詳細な変化と原因を知るには人の目が必要．でも自動で制御したい
-
-<ul>
-<li>人は何をみてるか? 対象の振る舞いをみてる</li>
-<li>振る舞いを表す特徴が知りたい!</li>
-<li>人工知能でやれるか</li>
-</ul>
-</li>
-<li>考え方
-
-<ul>
-<li>特徴がある</li>
-<li>通常の状態を学習</li>
-<li>外れた状態を解析</li>
-<li>連速的に外れた状態が異常のはじまり</li>
-</ul>
-</li>
-<li>各種基盤技術
-
-<ul>
-<li>[x] 設定をプログラム化</li>
-<li>[x] リソース制御連携</li>
-<li>[ ] 特徴量定義と解析 &lt;- ここ</li>
-</ul>
-</li>
-<li>特徴量解析
-
-<ul>
-<li>変化点検出やクラスタリングなど研究はされている</li>
-<li>mruby-changefinder <a href="https://github.com/matsumoto-r/mruby-changefinder">matsumoto-r/mruby-changefinder: ChangeFinder class detect change points via continuous outlier and smoothing.</a></li>
-<li>複数データの関係性を得る</li>
-</ul>
-</li>
-<li>Webサーバの自律制御
-
-<ul>
-<li>特徴量抽出による検知できる点の増加</li>
-<li>閾値以下でも傾向変化の細かい検知ができる</li>
-</ul>
-</li>
-<li>細かい傾向変化した時点でどうするか?
-
-<ul>
-<li>異常検知．誤検知もある．false positive/negative?</li>
-<li>すぐ制限とかは影響でかい</li>
-<li>なんかアクションはとりたい</li>
-<li>システムとしてバランスを取りたい条件ある
-
-<ul>
-<li>マルチテナント環境とする．</li>
-<li>リソースが逼迫してきたのみ制限かけたい．自動で制限したい．</li>
-<li>グラフなめらかにしたい．</li>
-</ul>
-</li>
-<li>e.g.
-
-<ul>
-<li>どのホストが変化点スコアが高い?</li>
-<li>重み付け (優先順位つける) example.com:95, matsumoto-r.jp:93, &hellip;</li>
-<li>傾向変化ごとに重みつけリスト更新</li>
-<li>全リソースが逼迫 -> リストを元に自動制御</li>
-<li>逼迫してないなら重みつけリストをつくるところだけしとく</li>
-</ul>
-</li>
-<li>時系列データの生成
-
-<ul>
-<li>相関関係の時系列データも作れる</li>
-<li>全体の負荷とホストの負荷どっちか</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>要素技術
-
-<ul>
-<li>機能拡張 mod_mruby</li>
-<li>mruby-resource</li>
-<li>mruby-changefineder</li>
-<li>etc&hellip;</li>
-</ul>
-</li>
-<li>制限の実装方法
-
-<ul>
-<li>リクエスト単位でCPU/IOなどの割当を変更</li>
-<li>cgroup/rlimit</li>
-<li>e.g. 特定のcgroupにリクエストをアタッチしてCPUを20%に制限する．レスポンス返したらデタッチ</li>
-</ul>
-</li>
-<li>ミドルウェアが特徴量抽出解析・制限行いたい</li>
-<li>webサービスの動的平衡性
-
-<ul>
-<li>生命とは? 動的平衡にある流れ</li>
-<li><blockquote><p>動的平衡（どうてきへいこう、英語：dynamic equilibrium）とは、物理学・化学などにおいて、互いに逆向きの過程が同じ速度で進行することにより、系全体としては時間変化せず平衡に達している状態を言う。
-&ndash; <cite><a href="https://ja.wikipedia.org/wiki/%E5%8B%95%E7%9A%84%E5%B9%B3%E8%A1%A1">動的平衡 - Wikipedia</a></p></blockquote></li>
-<li><a href="https://ja.wikipedia.org/wiki/%E7%B4%B0%E8%83%9E%E5%91%A8%E6%9C%9F%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88">細胞周期チェックポイント - Wikipedia</a>
-
-<ul>
-<li>細胞: さーば</li>
-<li>動的平衡: サーバの構築と破壊</li>
-<li>Web サービス基盤を生命のように扱う
-
-<ul>
-<li>異常・エントロピー増大からは逃れられない</li>
-<li>自分で自らを破壊・増殖・再構築していく</li>
-<li>一つ一つの細胞の調子わるいな?とかは僕らだってみてない．1部変でも全体としては大丈夫．</li>
-</ul>
-</li>
-<li>詳しくは: <a href="https://speakerdeck.com/matsumoto_r/namerakad-idea-design">なめらかなシステムのアイデアと設計概要 / namerakad-idea-design // Speaker Deck</a>
-<script async class="speakerdeck-embed" data-id="51e39a56e84e4b79a957f653b8c941d0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>今後: STNS/haconiwa, &hellip;</li>
-<li>Q&amp;A:
-
-<ul>
-<li>フォールトトレランスとの違い?
-
-<ul>
-<li>現時点はそこまで．循環するパターン．状態を持つサーバと持たないサーバがある．この辺とかの落とし所を考えてる</li>
-</ul>
-</li>
-<li>from yuuki: Docckerとかで動的にスケールしてるけど，違うアプローチっぽい．どう違う? キューバネティスとか?
-
-<ul>
-<li>こちらはサーバを積極的に，自主的に落として循環していくといった部分が違う．元気なサーバでも任意の時間経過で落としたり．</li>
-</ul>
-</li>
-<li>from astj: バースト．イベントやyahoo砲とかのバズり，が怖い．これを異常検知するのはむずくてなかなか考えても答えが出ない．自律制御のスピード超えてバースト来たらどうする?
-
-<ul>
-<li>全体的にはバーストに対応したい．落とす条件．3時間で落ちそうなやつが1.5時間で落ちたなら1つではく2つのVMを再構築するといった方法あるかも．落としたときに条件によって10倍再構築するとか．</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<p>netflix とかも似たようなことやってる感じらしい?</p>
-
-<p>mackerel で出来たりしたら最高だな〜と思った．</p>
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">なめらかなシステムのシミュレーションはこれを見るとわかりやすいです <a href="https://t.co/PK3jn4cJvi">https://t.co/PK3jn4cJvi</a> <a href="https://twitter.com/hashtag/pepabohatena?src=hash">#pepabohatena</a></p>&mdash; 松本 亮介 / まつもとりー (@matsumotory) <a href="https://twitter.com/matsumotory/status/749135118095163394">July 2, 2016</a></blockquote>
-
-
-<h2>計算量と僕とWeb開発</h2>
-
-<p>15:00 | ichirin2501(はてな) | 計算量と僕とWeb開発 | 25分</p>
-
-<ul>
-<li>@ichirin2501 いちりんちゃんさん
-
-<ul>
-<li>アプリケーションエンジニア2年 ->(転職) web オペレーションエンジニア1年(hatena)</li>
-<li>スピリチュアルな発表!</li>
-</ul>
-</li>
-<li>もくじ
-
-<ul>
-<li>計算量について</li>
-<li>mysql クエリ改善</li>
-</ul>
-</li>
-<li>計算量とは?
-
-<ul>
-<li>大変さの指標．</li>
-<li>係数無視 O(3n<sup>3</sup>) -> O(n<sup>3</sup>)</li>
-<li>でかいやつだけ O(n<sup>3</sup> + n<sup>2</sup>) -> O(n<sup>3</sup>)</li>
-</ul>
-</li>
-<li>計算量といちりんちゃん
-
-<ul>
-<li>競プロで向き合う．</li>
-<li>計算量と時間の基準・感覚がある</li>
-<li>O(10<sup>7</sup>) ~ O(10<sup>9</sup>) 0 -> 1s くらいじゃん?みたいな感じ</li>
-<li>データサイズからの見積もり
-
-<ul>
-<li>1sec デッドラインの見積もりならこんな感じやろ的な．</li>
-<li>n &lt;= 10<sup>6</sup> -> O(n)</li>
-<li>n &lt;= 10<sup>5</sup> -> O(nlogn)</li>
-<li>n &lt;= 3000 -> O(n<sup>2</sup>)</li>
-<li>n &lt;= 100 -> O(n<sup>3</sup>)</li>
-<li>n &lt;= 20 -> O(2<sup>n</sup>)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>MySQL 改善のはなし
-
-<ul>
-<li>group by / distinct の迷い．どっちでも重複除外できるので実現可．
-
-<ul>
-<li>follow/followerテーブル的なものを想定</li>
-<li>friend_id 重複なしで 1000件ほしい</li>
-<li>結果を言うと group by だと遅いケースがあった</li>
-<li>group_by で OR句のuser_idが多いと異常におそくなった</li>
-<li>どう計算してるか知ればいいじゃん</li>
-</ul>
-</li>
-<li>インデックス構造
-
-<ul>
-<li>インデックス B+tree</li>
-<li>主キーのインデックス clustered index</li>
-<li>主キー以外のインデックス secondary index (主キーがこれでわかる)</li>
-<li>B+tree はleafが連結リスト．rangeで検索とかのときにベンリ</li>
-<li>例とか．この辺発表の図をみるとわかりやすくてベンリ</li>
-</ul>
-</li>
-<li>話をもどしてfriend_id. なぜ遅いのか?
-
-<ul>
-<li>オーダーが違うかも</li>
-<li>意図してないインデックスで検索してるかも -> オーダー線形なってるかも</li>
-</ul>
-</li>
-<li>結論そうだった
-
-<ul>
-<li>explainするとわかる</li>
-<li>オプティマイザが間違った判断してた(あるある．経験則). distinct だと解決した</li>
-<li>経験則やexplain使わなくても計算量と時間の感覚でどこがまずそうかわかることもあるよ!
-
-<ul>
-<li>ミドルウェアのどのへんが悪いかとか計算量の感覚やインデックスの使われ方を理解して推測したり出来るとベンリ</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Redis の話
-
-<ul>
-<li>redis とか
-
-<ul>
-<li>kvs nosql(ほかにもグラフデータベースとかあるよねー)</li>
-<li>list/set/sorted sets(rankingの実装らくとか)/etc .. データ構造いっぱいあってベンリ</li>
-<li>メモリ最適化 2.2 から入ってる．勝手に圧縮してもらえる
-
-<ul>
-<li>-> パラメータ眺めてオーダーとか変わったりするのでは?と推測</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>怪しいのでパラメータ変えて実際試す
-
-<ul>
-<li>データ数と実行時間からオーダーわかる</li>
-<li>データ数10kで1 sec超えるのオカシイのではと気づく．</li>
-</ul>
-</li>
-<li>やっぱり -> データ構造違ってた
-
-<ul>
-<li>ドキュメントに実は書かれてたりも．</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>まとめ
-
-<ul>
-<li>知識だけじゃなく感覚を身に着けてるとすぐわかったりしてベンリ．現場で検証しまくるとかできなかたったりするし．</li>
-<li>まつもとりーさんも言ってたが快適にウェブサービス使えるのは当たり前だし，この辺にコミットするために計算量ベンリ</li>
-</ul>
-</li>
-<li>Q&amp;A
-
-<ul>
-<li>from yuuki: このへんミスったりすると自律制御したりしても一瞬でリソース食いつぶしたりするし，このへん自律制御するのどうするかとかもおもしろそう</li>
-</ul>
-</li>
-</ul>
-
-
-<p>べんり <a href="http://gigamaker.jimdo.com/">ホーム - 鳥獣戯画制作キット</a></p>
-
-<p>計算量の感覚大事．</p>
-
-<h2>STNS 〜点と線を結び新しい何かを作るコト〜</h2>
-
-<p>15:25 | pyama(ペパボ) | STNS 〜点と線を結び新しい何かを作るコト〜 | 25分</p>
-
-<ul>
-<li>やましたさん． @pyama86
-
-<ul>
-<li>ムームードメインやってる</li>
-</ul>
-</li>
-<li>Linux のユーザ管理
-
-<ul>
-<li>いつから LDAP 主流だと錯覚してい(ry</li>
-</ul>
-</li>
-<li>最近のユーザ管理
-
-<ul>
-<li>root おおい．</li>
-</ul>
-</li>
-<li>rootは問題あるよね
-
-<ul>
-<li>セキュリティ事故の追跡</li>
-<li>sudo権限の分離</li>
-<li>userの追加削除管理困難．追加でポリシーのため他のサーバにも足す&hellip;とかやるとこまる．</li>
-<li>rootはアブナイ!!!</li>
-</ul>
-</li>
-<li>でもなぜやってしまうか
-
-<ul>
-<li>なにかあったときしか困らない</li>
-<li>まぁLDAP構築たいへんだよねとかある．</li>
-</ul>
-</li>
-<li>STNS で解決!
-
-<ul>
-<li><a href="https://github.com/STNS/STNS">STNS/STNS: Simple Toml Name Service</a></li>
-<li>名前解決/公開鍵取得/アカウント認証のみを提供．LDAPはいろいろできすぎて困る．</li>
-<li>ls -ltr の名前は実はid. pyama -> id:1000 ．これが名前解決</li>
-</ul>
-</li>
-<li>デプロイユーザの管理できる
-
-<ul>
-<li>capistorano とか公開鍵たしてsshでやるよね．authorized_keys 管理だるくなるよね．</li>
-<li>stnsだとスッキリ!誰がdeployできるか一目瞭然でよい．</li>
-</ul>
-</li>
-<li>組織構造を表現できる
-
-<ul>
-<li>group</li>
-</ul>
-</li>
-<li>シュッとインストールできるよ! 2.5min</li>
-<li>事例
-
-<ul>
-<li>pepaboさん事例．ユーザ管理もgithub flowで. ghe でpr -> droneでテスト &amp; レビュー -> deploy</li>
-<li>承認してマネージャーが承認して&hellip;とかめんどくてそれ解決できてベンリ．エンジニアで管理</li>
-<li>ghe で全部管理できるので入退社管理とかも楽</li>
-</ul>
-</li>
-<li>プロダクトを運用すること
-
-<ul>
-<li>ヒントとなった技術からアイデア得たり</li>
-<li>mackerelのtomlとかgo使ってるやつ参考にしたり</li>
-<li>linuxで利用可能な共通ライブラリがgo1.5から作れるようになってこれがでかい．Cを書かなくてもLinuxのシステムに手を入れられる</li>
-<li>自分が開発者だし自分がSTNSを最高にできる!!!</li>
-</ul>
-</li>
-</ul>
-
-
-<p>LDAP とかユーザ管理あんまり関わってないけど便利そうだった．良い話きけて良い．</p>
-
-<ul>
-<li>Q&amp;A:
-
-<ul>
-<li>from yuuki: hatena は LDAP だけどSTNSよさそう!</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>負荷分散技術を選ぶ時に考えること</h2>
-
-<p>15:55 | masayoshi(はてな) | 負荷分散技術を選ぶ時に考えること | 25分</p>
-
-<p><a href="https://speakerdeck.com/masayoshi/fu-he-fen-san-ji-shu-woxuan-butokinikao-erukoto-1">負荷分散技術を選ぶときに考えること // Speaker Deck</a></p>
-
-<script async class="speakerdeck-embed" data-id="4069267887dd401c93e8fe6b1de08f34" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<ul>
-<li>masayoshi @yoyogidesaiz
-
-<ul>
-<li>新卒．めでたい．</li>
-<li>SDN(Software-Defined Networking) 大学でやってた <a href="http://e-words.jp/w/SDN.html">SDNとは｜Software-Defined Networking - 意味/定義 ： IT用語辞典</a></li>
-</ul>
-</li>
-<li>負荷分散技術の概要
-
-<ul>
-<li>データセンター分散したり</li>
-<li>ロードバランサーでbackend web分散したり</li>
-<li>サーバ内/ロールごと/サーバごと のだいたい3つの分散ある</li>
-</ul>
-</li>
-<li>サーバ内リソースの負荷分散
-
-<ul>
-<li>ハードウェア機能: hyper-threading, raid0</li>
-<li>ハードウェア意識のOSの負荷分散: numa, rss/rfs/rps</li>
-<li>OS意識のアプリケーションの作り方: fork()/clone() などのシステムコール</li>
-<li>Numa <a href="https://ja.wikipedia.org/wiki/NUMA">NUMA - Wikipedia</a>
-
-<ul>
-<li><blockquote><p>NUMA（Non-Uniform Memory Access、ヌマ）とは、共有メモリ型マルチプロセッサコンピュータシステムのアーキテクチャのひとつで、複数プロセッサが共有するメインメモリへのアクセスコストが、メモリ領域とプロセッサに依存して均一でないアーキテクチャである
-&ndash; <cite><a href="https://ja.wikipedia.org/wiki/NUMA">NUMA - Wikipedia</a></p></blockquote></li>
-</ul>
-</li>
-<li>application
-
-<ul>
-<li>fork() プロセス</li>
-<li>clone() スレッド</li>
-<li>select() プロセス &lt;- x (io多重化とかに影響するだけでCPUには影響しない?)</li>
-<li>このへんいろいろ理解してアプリケーションコードかく! (なるほど)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ロールごとの分散
-
-<ul>
-<li>proxy/web/db などのロールの分散</li>
-<li>proxyでキャッシュしたり，全部のリクエストがdbまで到達しないようにとか</li>
-<li>キャッシュ
-
-<ul>
-<li>ユーザに近いところで返す</li>
-<li>キャッシュヒットしなくて破綻とか実装に無理があったりとかもする．</li>
-<li>-> 使いどころを見極める．キャッシュは麻薬</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>サーバごとの負荷分散
-
-<ul>
-<li>この辺がインフラエンジニアに特にやりがいあったり</li>
-<li>拠点ごとに分散．</li>
-<li>load balancerでパケットを分散</li>
-<li>負荷分散技術を実現するために分散システムの考え方を参考にしたり</li>
-<li>透過性: <a href="https://ja.wikipedia.org/wiki/%E9%80%8F%E9%81%8E%E6%80%A7_(%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6">透過性 (情報工学) - Wikipedia</a>)</li>
-<li>DNSラウンドロビン
-
-<ul>
-<li>位置透過性を実現</li>
-</ul>
-</li>
-<li>ロードバランサ
-
-<ul>
-<li>位置透過性実現</li>
-<li>ヘルスチェックできる</li>
-<li>でもネットワークの制限受けたり</li>
-</ul>
-</li>
-<li>Proxy
-
-<ul>
-<li>haproxy/nginxなど</li>
-<li>ヘルスチェックできるし位置透過性も高い</li>
-</ul>
-</li>
-<li>分散先ノードのヘルスチェック
-
-<ul>
-<li>監視: how?</li>
-<li>異常(どんな?)のあるノードを削除</li>
-</ul>
-</li>
-<li>ヘルスチェックむずい．
-
-<ul>
-<li>OK返してるの本当ok? 中身見たら実はngとか</li>
-<li>ビザンチン将軍問題．<a href="https://ja.wikipedia.org/wiki/%E3%83%93%E3%82%B6%E3%83%B3%E3%83%81%E3%83%B3%E5%B0%86%E8%BB%8D%E5%95%8F%E9%A1%8C">ビザンチン将軍問題 - Wikipedia</a></li>
-<li>Gossip protocol <a href="http://www.slideshare.net/winebarrel/ss-10433600">ゴシッププロトコルによる冗長化と負荷分散の検証</a></li>
-<li><a href="http://qiita.com/hshimo/items/b7c0e0f12b7363e2e333">分散型コンセンサス・アルゴリズム プロトコル まとめ - Qiita</a></li>
-</ul>
-</li>
-<li>ロードバランサの耐障害性
-
-<ul>
-<li>冗長化技術であって負荷分散技術ではない</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>まとめ
-
-<ul>
-<li>負荷分散の仕方まとめ</li>
-<li>必要以上に複雑にしない．コスト増とかもある．simple is best</li>
-<li>本当に必要なのか最高する</li>
-<li>オープンソースカンファレンスはてなでブースだす． <a href="http://www.ospn.jp/osc2016-kyoto/">オープンソースカンファレンス2016 Kyoto - オープンソースの文化祭！</a></li>
-</ul>
-</li>
-<li>Q&amp;A
-
-<ul>
-<li>どこが負荷おおいか?
-
-<ul>
-<li>disk がおおい．dbとか．ロールごとに分けておいてキャッシュ聞かせていく戦略おおい．(計算機の仕組み的にdiskがおそい from yuuki)．最近iodriveとかあって速くなってきてるのでスケールアップが多い．</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>サービスに寄り添うログ基盤 - ログ収集のその先に -</h2>
-
-<p>16:20 | monochromegane(ペパボ) | サービスに寄り添うログ基盤 - ログ収集のその先に - | 25分</p>
-
-<p><a href="https://speakerdeck.com/monochromegane/pepabo-log-infrastructure-bigfoot">サービスに寄り添うログ基盤/pepabo_log_infrastructure_bigfoot // Speaker Deck</a></p>
-
-<script async class="speakerdeck-embed" data-id="5afe99df3d13476d8fd631d22d83d393" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
-
-
-<ul>
-<li>monochromegane
-
-<ul>
-<li>minne</li>
-<li>普段 rails 書いてる．最近ログ基盤の開発してる．</li>
-</ul>
-</li>
-<li>ログはいいぞ!
-
-<ul>
-<li>ログはウェブサービスにおいて重要</li>
-</ul>
-</li>
-<li>行動ログ
-
-<ul>
-<li>アプリケーション層で出力するログ(apacheのログとかではない)</li>
-<li>いつ，だれが，なにをやったか特定できる</li>
-<li>最終結果だけでなく，どこであきらめたか．どう迷ったかが分かる
-
-<ul>
-<li><blockquote><p>特にどこであきらめたか．どう迷ったかが分かるところにサービス改善のヒントが詰まってる!!!</p></blockquote></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>行動ログ活用段階
-
-<ul>
-<li>収集: とりあとめる</li>
-<li>分析: 視覚化したり分析</li>
-<li>活用: 分析結果を使って継続的なサービス改善</li>
-<li>&ldquo;ログの活用&rdquo;
-
-<ul>
-<li>ログがたまるだけとか，グラフでてバンザイ！するだけではだめ!!</li>
-</ul>
-</li>
-<li>-> ログの<strong>活用</strong>基盤をつくる!</li>
-</ul>
-</li>
-<li>Bigfoot
-
-<ul>
-<li>ペパボの次世代ログ<strong>活用</strong>基盤</li>
-<li>minnneのそれでもある．</li>
-<li>UID 振る．アプリでログを吐いて集約基盤へ -> 分析 -> サービス改善など活用</li>
-</ul>
-</li>
-<li>Bigfoot を支える技術
-
-<ul>
-<li>ログを送る
-
-<ul>
-<li>fluentd rack-bigfoot(rails) OSS的な感じではなさそうか&hellip;?</li>
-</ul>
-</li>
-<li>集約基盤 Treasure Data
-
-<ul>
-<li>活用に力入れたかったので集約基盤はとりあえずTDに任せた．あとで自社のものにするかも</li>
-<li>Hive QL. 行動ログをSQLライクに扱える</li>
-</ul>
-</li>
-<li>ワークフロー
-
-<ul>
-<li>tdのスケジュールクエリを利用．これはwebのコンソールからorAPI.APIだと個々人が勝手にいろいろできたりしてこまる</li>
-<li>-> クエリのコード管理にpendulum <a href="http://blog.monochromegane.com/blog/2016/03/21/pendulum/">Treasure Dataのスケジュールジョブをコードで管理するPendulumというgemをつくった · THINKING MEGANE</a></li>
-<li>コードレビューとか管理できてよい</li>
-<li>digdag というtd社公式のものがあるので移行中 <a href="https://github.com/treasure-data/digdag">treasure-data/digdag: Workload Automation System</a></li>
-</ul>
-</li>
-<li>属性情報
-
-<ul>
-<li>行動ログのidから性別などなど属性情報を組み合わせると分析の幅が広がる</li>
-</ul>
-</li>
-<li>名寄せ
-
-<ul>
-<li>サービスのアカウントと各クライアントをマッピング</li>
-<li>未ログイン状態のアカウントも名寄せ後に過去に遡って紐付け</li>
-<li>cookie syncと組み合わせてサービス間の紐付け</li>
-</ul>
-</li>
-<li>Big Cube とCube
-
-<ul>
-<li>BigCube: 全サービスの行動ログを集約してる</li>
-<li>切り口が確定したらCubeに切り出す(cubeに切り出されるとpostgresに入るので速く集計できたりする)</li>
-</ul>
-</li>
-<li>視覚化と分析
-
-<ul>
-<li>pivot tableのすごいやつ． Tableau社のTableau Desktopを使う <a href="http://www.tableau.com/ja-jp/products/desktop">Tableau Desktop | Tableau Software</a></li>
-<li>データソースとしてtdつかえる</li>
-</ul>
-</li>
-<li>活用
-
-<ul>
-<li>画面デザインの変更．ステップ見直し</li>
-<li>A/Bテスト</li>
-<li>-> 静的なフィードバック．人が判断．固定化する．</li>
-</ul>
-</li>
-<li>動的なフィードバックがよいのでは?
-
-<ul>
-<li>システムが行動ログを吐く -> 変換したものをシステムが受け取る -> 挙動を変える</li>
-<li>バンディットアルゴリズム
-
-<ul>
-<li>いまやってみてる．</li>
-<li>A/Bテストの機会損失減らしてる．</li>
-<li><a href="https://www.oreilly.co.jp/books/9784873116273/">O&#8217;Reilly Japan - バンディットアルゴリズムによる最適化手法</a></li>
-<li>強欲な感じで期間内の最良の手法を探す．最大はそれにbetする(活用)が他のものにもbet(探求)．</li>
-</ul>
-</li>
-<li>リコメンド
-
-<ul>
-<li>matrix factorization</li>
-<li>強調フィルタリングの一種</li>
-<li>tdのなんかでできるらしい?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>browse,card abondonment</li>
-</ul>
-</li>
-<li>サービスに寄り添うログ基盤
-
-<ul>
-<li>単に集めるだけじゃなくて分析，活用の段階を補助する</li>
-<li>静的フィードバックから動的フィードバックへ</li>
-<li>行動ログの循環によって<strong>なめらかな世界</strong>へ．ということでログはいいぞ</li>
-</ul>
-</li>
-<li>Q&amp;A
-
-<ul>
-<li>Q「送る側のサービスからログ基盤への負荷の問題はどうか」A「fluentdがよく出来ているから問題ない」 <a href="https://twitter.com/matsumotory/status/749151437850980352">https://twitter.com/matsumotory/status/749151437850980352</a></li>
-<li>Q「fluentd自体の負荷はどうか」A「ない、今の設計規模では大丈夫」もともとfluentd自体はつかってて大丈夫ならしい</li>
-<li>td負荷? ログを送りつけるぶんには負荷は気にしなくて良い．送ったあとにインデックス使わずに集計したりするとまずい．プランやすかったりすると特に．</li>
-</ul>
-</li>
-</ul>
-
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">これ、みやけさんほぼ一人でやってたからやばすごなんですよ… <a href="https://twitter.com/hashtag/pepabohatena?src=hash">#pepabohatena</a></p>&mdash; 松本 亮介 / まつもとりー (@matsumotory) <a href="https://twitter.com/matsumotory/status/749146241422860288">July 2, 2016</a></blockquote>
-
-
-<p>まじか&hellip;</p>
-
-<p>活用を重要視していてよさそう．おもしろい話だった．</p>
-
-<p>「ログはいいぞ」．</p>
-
-<h2>若手インフラ座談会</h2>
-
-<p>16:55 | masayoshi(はてな) taketo957(はてな) alotofwe(ペパボ) hanazuki(ペパボ) モデレータ stanaka(はてな) | 若手インフラ座談会 | 40分</p>
-
-<ul>
-<li>新卒1,2年目の人達で座談会．stanakaさん仕切ってる</li>
-<li>自己紹介
-
-<ul>
-<li>taketo957: hatena. 新卒．インフラしてる． <a href="https://twitter.com/taketo957">taketo957 (@taketo957) | Twitter</a></li>
-<li>masayoshi: hatena. 新卒．さっき発表した <a href="https://twitter.com/yoyogidesaiz">まさよし (@yoyogidesaiz) | Twitter</a></li>
-<li>hanazuki: pepabo. 大学京都．インフラしてる．渋谷．去年入社 <a href="https://github.com/hanazuki">hanazuki (Kasumi Hanazuki)</a></li>
-<li>alotofwe: pepabo. 読み方:すずぴー．ねっとではれいか??? 去年入社．競プロ学生からやってる <a href="https://twitter.com/alotofwe">玲香@健康 (@alotofwe) | Twitter</a></li>
-</ul>
-</li>
-<li>なんでインフラ?
-
-<ul>
-<li>masayoshi: ネットワーク系の研究してたり．かっこいいじゃん?</li>
-<li>hanazuki: KMC入ってた．サーバーいじったりするの楽しかった．</li>
-<li>taketo957: B3くらいでRailsやってたらブラックボックスおおくていろいろ調べてた．京都ならはてなでインフラできそうということでアルバイトしてisuconしたりなどなど．面白くてそういう形式で入社した．</li>
-<li>alotofwe: 大学時代はそんなにインフラしてたわけじゃなかった．アプリは書いていたけど，やっていてアプリはもういいやという感じになった．インフラorセキュリティやろうとおもって，セキュリティ志望だけどセキュリティするためにはインフラ知らなきゃだめなので今インフラやってる
-
-<ul>
-<li><ol type="a">
-<li>せきゅりてぃ専門のひとpepaboにいる?</li>
-</ol>
-</li>
-<li><ol type="a">
-<li>ちょっといる．matsumotoryさんとかも?</li>
-</ol>
-</li>
-<li>はてなではセキュリティ専門はいない．みんなでやる．</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>アプリとインフラの境界? たとえばDBへのクエリ，スキーマあたりの責任や分担とかどう?
-
-<ul>
-<li>masayoshi: 監視業務のアルバイトしてその時はじめてインフラやった．そのときはコード書いてる人はいなかった．DBの設計まではしないけど性能のチェック，クエリのパフォーマンスチェックなどはしてた．はてなでは? -> だいたい一緒．</li>
-<li>taketo957: 入社以前はもっとハッキリした境界あると思ってたけど，入ってみたらアプリ側が一緒にやってくれたりとか．インフラはmiddle wareより下はだいたいみてる．</li>
-<li>hanazuki: パフォーマンスチューニングとかが境界．どっちからもみる．上からみるか下からみるかって感じ．境界がハッキリはしてない．</li>
-<li>alotofwe: だいたいhanazukiさんと同じ．開発のひとからpull-reqが飛んできてレビューするとかまであるくらい境界は曖昧．ある程度権限はあるけどソレ以外はほとんど境界はない．</li>
-</ul>
-</li>
-<li>インフラエンジニアになって1-2年，おもしろかったことや印象的なエピソードとかある?
-
-<ul>
-<li>masayoshi: はてなはオンプレ環境ある．ネットワーク機器をみてエラーパケットとかみたりした．そこで傾向とかがみれて面白い</li>
-<li>hanazuki: プライベートクラウド使ってる．チョット前まではオンプレ．仮想環境を使う側．awsを使うのとは違ってどう動かすかとかツールとか作っていく．この辺が楽しい</li>
-<li>taketo957: いろいろわかってきて嬉しい!</li>
-<li>alotofwe: 推理小説がスキ．障害の何が原因か調べるのが探偵の推理っぽくて楽しい．</li>
-</ul>
-</li>
-<li>研修でよかったこと
-
-<ul>
-<li>taketo957: 今年からインフラでも新卒研修．知識編と設計編．設計編がおもしろかった．実際に動いてるサービスにたいしてこのくらいのリクエストならどう設計するか．身になる部分でよかった．</li>
-<li>hanazuki: 1ヶ月間くらい研修ある．内容自体はだいたい知ってたりもしたけど試行錯誤がおもしろかった．</li>
-<li>alotofwe: 今年は研修作る側．内容: railsつくって運用基盤つくってmobileつくる．最低限の生き延びるための知識を得るようなもの．インフラのものはあまり知らなかったので特に勉強になった．</li>
-<li>masayoshi: 全部taketoくんに言われた! ミドルウェアの組み合わせだけじゃなくて構築するとかコードを書いて作ってみるとどこがボトルネックになるのかとかわかったりする．作ったり構築・コード書くのも研修でやるとその辺に気づけて勉強になるのでベンリ．</li>
-</ul>
-</li>
-<li>hatena は京都と東京．pepaboは福岡と東京にある．2拠点でやってることに関して感じることとか?
-
-<ul>
-<li>taketo957: 自分がやった話ではない．東京とのコミュニケーションコストを下げる．提示前15minのslack call雑談とかやってる．(yuukiさんが導入した)</li>
-<li>masayoshi: taketoさんの続きってかんじ．今すぐ，まだまとまってないけど考えを話し合い，そういうときに音声チャットあってすぐに話せる環境があるとよい．ちょっと話したいけどいいですか?って聞いたらすぐ聞けるという環境が大事でベンリ．</li>
-<li>taketo957: 補足．はてなは社内の文化的にこんなことも残すのか．というところまで残す．音声もベンリだけどチャットなどのテキストで何でも残すというところもよい．</li>
-<li>hanazuki: みてるサービスが違うのでそこまでコミュニケーションをする必要はそもそもない．週1でビデオコールとかしてる．コミュニケーションとりたいけど取れないときもあるのでなんとかしたい．</li>
-<li>alotofwe: slackべんり．アイコンが顔写真でよい．</li>
-<li>masayoshi: アイコンもよいよね!</li>
-<li>どうしても落ちがちな情報．手元で詰まってるけど大変とかいう情報とか．</li>
-</ul>
-</li>
-<li>ロールモデル．将来どうなりたいとか．社内社外問わず目標としてる人とかいるか?
-
-<ul>
-<li>masayoshi: 具体的な人物とかはあんまりない．エンジニアとアカデミック系では本来あんまり境界はない．インフラのパフォーマンスチューニングとかは個人の技術という側面がおおいので体系化して学術分野にも広めたりアウトプットしたい．</li>
-<li>taketo957: 入社したときはyuukiさんにあこがれてといった．ネットワーク周り喋ってるひとがおおい．アプリ観点から観てるひとはあんまりすくなさそう．研究室でやってきた人力でやる仕組みとか応用したりしていきたい．(クラウドソーシング?)</li>
-<li>hanazuki: あんまり決まってない．人力の認知力でやったりするのはうっかりとかが発生して困るのでつらい．半分寝てても仕事できるようにしたい</li>
-<li>alotofwe: よくばりさんなので側面によって尊敬してる人が異なる．つまみ食いしていきたい．食べてる最中なのであんまり決まってない．</li>
-</ul>
-</li>
-<li>インフラエンジニアの醍醐味?．会社のいいところは?
-
-<ul>
-<li>taketo957: レイヤーが下がるにつれて相手にするものが多くなる．それにつれて自分の知識も増やす必要がある．いろんな知識を裏側まで見通してやっていったりするのは面白い．会社のよいところ．新しい技術・古い技術と幅がでていてよい．</li>
-<li>masayoshi: 基盤をつくるのが面白い．大規模なものを支えるところが面白い．裏方だけど支えがないと動かない．このアラート放置していいんすか?とか聞くと先輩とかが話してくれて一緒に解決してくれたり．</li>
-<li>hanazuki: インフラといってもハードウェアみたりチューニングしたりなどいろいろな分野・仕事がある．いろいろできるのよい．それぞれスキなレイヤで改善できるところとかよい．</li>
-<li>alotofwe: アプリと比較．アプリ開発だと適当に書いても動いちゃう．インフラだと1行追加すると大きい影響があってじっくり考慮してかかなきゃだめだったりする．向上心強い人がおおい．よくしていきたいという気持ち．勉強しやすい会社．</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>僕の(雑)まとめ感想とか</h2>
-
-<p>インフラ系のことはほとんどできていなくて，知識も全然ないけど，どんな感じでやってるのかなぁと興味はあったので参加しました．
-アプリケーション書くときもインフラ意識して書くとよかったりするのでインフラエンジニアとかウェブオペレーションエンジニアみたいな職種につかなくても知っておくと便利．
-実際座談会の話では，はてなさんでもペパボさんでもアプリケーションエンジニアとインフラエンジニアの仕事の境界とかは曖昧で，上から見るか下から見るかの違い程度しかないみたいな話をしてた気がする．
-僕も，もっとインフラ意識しながら開発していきたいなーという気持ち高まった．</p>
-
-<p>ネットワーク周りだとシステムコールとかいろいろ正直よくわからんくて前提知識僕が持ってないんだなーという話は多かったけど，
-わかんない話でもおもしろいなーと得られる部分あったり，割とまだ分かる話(相対的に)でも知らないことがたくさん学べたり，なるほどなーとかそうだよなーよいよい!という話ばかりで
-どの発表もよくて来てよかった．</p>
-
-<p>運営・発表者の皆さんありがとうございました．</p>
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/hatena-pepabo-kyoto/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ</a>
-      <time datetime="2016-07-02T20:06:46+09:00" pubdate><span class='month'>Jul</span> <span class='day'>02</span> <span class='year'>2016</span></time>
       
       </footer>
     </article>

@@ -1,24 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: vim, | haya14busa]]></title>
-  <link href="http://haya14busa.com/categories/vim/atom.xml" rel="self"/>
-  <link href="http://haya14busa.com/"/>
-  <updated>2016-12-31T08:48:39+09:00</updated>
-  <id>http://haya14busa.com/</id>
-  <author>
-    <name><![CDATA[haya14busa]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Go に恋した Vimmer の2016年の振り返り - haya14busa</title>
+  <meta name="author" content="haya14busa">
 
   
-  <entry>
-    <title type="html"><![CDATA[Go に恋した Vimmer の2016年の振り返り]]></title>
-    <link href="http://haya14busa.com/2016-is-go-year/"/>
-    <updated>2016-12-29T17:47:59+09:00</updated>
-    <id>http://haya14busa.com/2016-is-go-year</id>
-    <content type="html"><![CDATA[<p>この記事では2016年 <a href="https://twitter.com/haya14busa">@haya14busa</a> がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
+  <meta name="description" content="この記事では2016年 @haya14busa がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
+個人的な備忘録です．あとポエム． 過去の振り返り記事 1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa
+2014年の振り返り. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/2016-is-go-year/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Go に恋した Vimmer の2016年の振り返り</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-12-29T17:47:59+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>この記事では2016年 <a href="https://twitter.com/haya14busa">@haya14busa</a> がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
 個人的な備忘録です．あとポエム．</p>
 
 <h3>過去の振り返り記事</h3>
@@ -317,29 +406,51 @@ The success of Go proves it. <br>
 
 <p><a href="https://talks.golang.org/2012/zen.slide#1">Go and the Zen of Python</a></p>
 
-<pre><code>&gt;&gt;&gt; import this
-The Zen of Python, by Tim Peters
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; import this
+</span><span class='line'>The Zen of Python, by Tim Peters
+</span><span class='line'>
+</span><span class='line'>Beautiful is better than ugly.
+</span><span class='line'>Explicit is better than implicit.
+</span><span class='line'>Simple is better than complex.
+</span><span class='line'>Complex is better than complicated.
+</span><span class='line'>Flat is better than nested.
+</span><span class='line'>Sparse is better than dense.
+</span><span class='line'>Readability counts.
+</span><span class='line'>Special cases aren't special enough to break the rules.
+</span><span class='line'>Although practicality beats purity.
+</span><span class='line'>Errors should never pass silently.
+</span><span class='line'>Unless explicitly silenced.
+</span><span class='line'>In the face of ambiguity, refuse the temptation to guess.
+</span><span class='line'>There should be one-- and preferably only one --obvious way to do it.
+</span><span class='line'>Although that way may not be obvious at first unless you're Dutch.
+</span><span class='line'>Now is better than never.
+</span><span class='line'>Although never is often better than *right* now.
+</span><span class='line'>If the implementation is hard to explain, it's a bad idea.
+</span><span class='line'>If the implementation is easy to explain, it may be a good idea.
+</span><span class='line'>Namespaces are one honking great idea -- let's do more of those!</span></code></pre></td></tr></table></div></figure>
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!
-</code></pre>
 
 <p>僕が最初に学んだ言語は Python で，The Zen of Python の思想はとても好きでした．</p>
 
@@ -598,582 +709,200 @@ reddit とかにあげるとそこそこ読みにきてくれて便利．(reddit
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Go で Vim プラグインを書く]]></title>
-    <link href="http://haya14busa.com/vim-go-client/"/>
-    <updated>2016-12-21T18:14:54+09:00</updated>
-    <id>http://haya14busa.com/vim-go-client</id>
-    <content type="html"><![CDATA[<p>この記事は <a href="http://qiita.com/advent-calendar/2016/vim">Vim アドベントカレンダー 2016</a> の21日目の記事です．</p>
 
-<p>最近は Go 言語が大好きすぎて，Vim plugin も Go で書きたい!!! という欲が出てきたので，
-Vim plugin を Go で書く方法について紹介します．</p>
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
 
-<h2>Go で Vim plugin を書くとは?</h2>
+      
 
-<p>一口に Go で Vim plugin を書くといっても</p>
 
-<ol>
-<li>Go で書いたバイナリがメインで Vim script の autoload 関数などから呼ぶ．例: <a href="https://github.com/mattn/vim-filewatcher">https://github.com/mattn/vim-filewatcher</a></li>
-<li>Go 側からも Vim script を呼ぶ，つまり Vim script で Vim の情報を取得するところなど含めて，ほぼ全部 Go で書く．</li>
-</ol>
 
 
-<p>という 2 段階があると思います．本記事では2の方法も含めて紹介しますがまずは1から行きましょう．</p>
 
-<h2>1. Go で書いたバイナリをつかった Vim plugin の作り方</h2>
 
-<p>これは先程例にあげた <a href="https://github.com/mattn/vim-filewatcher">https://github.com/mattn/vim-filewatcher</a> がシンプルでわかりやすいです．</p>
 
-<p><a href="https://github.com/mattn/vim-filewatcher/blob/22594895e16cb4de11afa37f04d88a996f48da58/filewatcher/filewatcher.go">filewatcher/filewatcher.go</a>
-で書いた Go をインストール時に <code>cd filewatcher &amp;&amp; go get -d &amp;&amp; go build</code> でビルドし，
-<a href="https://github.com/mattn/vim-filewatcher/blob/22594895e16cb4de11afa37f04d88a996f48da58/autoload/filewatcher.vim">autoload/filewatcher.vim</a>
-でこのバイナリを <code>job</code> をつかって呼んでいます．</p>
 
-<p><code>go get -d</code> を呼ぶことで依存するパッケージをダウンロードし，<code>go build</code> することで <code>$GOBIN</code> などを汚さずにプラグインディレクトリにバイナリを配置できます．</p>
-
-<h4><a href="https://github.com/mattn/vim-filewatcher/blob/22594895e16cb4de11afa37f04d88a996f48da58/autoload/filewatcher.vim">autoload/filewatcher.vim</a></h4>
-
-<pre><code>let s:cmd = expand('&lt;sfile&gt;:h:h:gs!\\!/!') . '/filewatcher/filewatcher' . (has('win32') ? '.exe' : '')
-if !filereadable(s:cmd)
-  finish
-endif
-
-function! filewatcher#watch(dir, cb)
-  return {'dir': a:dir, 'job': job_start([s:cmd, a:dir], { 'out_cb': a:cb, 'out_mode': 'nl' })}
-endfunction
-</code></pre>
-
-<p>バイナリを呼んでいるVim script もとてもシンプルで， windows かどうか見ながらバイナリのパスを取得し，
-それを <code>job</code> で呼ぶだけです．簡単．プラグインの性質によっては <code>job</code> ではなく <code>system()</code> などを使ってもよいでしょう．</p>
-
-<p>また，開発時には <code>g:plugin_name#debug</code> などを作ってそれを見て <code>go run</code> を呼ぶというふうに変えることもできます．</p>
-
-<pre><code>function! s:separator() abort
-  return fnamemodify('.', ':p')[-1 :]
-endfunction
-
-let s:is_windows = has('win16') || has('win32') || has('win64') || has('win95')
-
-let s:base = expand('&lt;sfile&gt;:p:h:h')
-let s:basecmd = s:base . s:separator() . fnamemodify(s:base, ':t')
-let s:cmd = s:basecmd . (s:is_windows ? '.exe' : '')
-
-if g:plugin_name#debug
-  let s:cmd = ['go', 'run', s:basecmd . '.go']
-elseif !filereadable(s:cmd)
-  call system(printf('cd %s &amp;&amp; go get -d &amp;&amp; go build', s:base))
-endif
-</code></pre>
-
-<p>僕が作ったプラグインから引っ張ってきた例で autoload/filewatcher.vim ほどシンプルではないですが，もうちょっとなんとか出来るかもしれないですね．
-main パッケージのファイル (<code>s:basecmd . '.go'</code>) を1ファイルにすると<code>go run</code>で呼びやすいです．</p>
-
-<h2>2. Go 側からも Vim script を呼ぶ必要があるようなプラグインの作り方</h2>
-
-<p>mattn/filewatcher ではファイルの変更を検知してstdout にJSONを吐いて，それが job の callback に渡されるという形式で単体で簡潔してましたが，
-場合によっては Go 側から Vim の状態を取得したり，Vim script を呼んだりしたい場合もあります．
-そういうプラグインを作るには，job を JSON モードで起動し， <a href="http://vim-jp.org/vimdoc-ja/channel.html#channel-commands">:h channel-commands</a>
-を使うことによって実現できます．</p>
-
-<h4><a href="http://vim-jp.org/vimdoc-ja/channel.html#channel-commands">:h channel-commands</a></h4>
-
-<pre><code>JSON チャンネルを使用すると、サーバープロセス側はVimへコマンドを送信できます。
-そのコマンドはチャンネルのハンドラーを介さずに、Vimの内部で実行されます。
-
-実行可能なコマンドは以下のとおりです:           *E903* *E904* *E905*
-    ["redraw", {forced}]
-    ["ex",     {Ex コマンド}]
-    ["normal", {ノーマルモードコマンド}]
-    ["eval",   {式}, {数値}]
-    ["expr",   {式}]
-    ["call",   {func name}, {argument list}, {number}]
-    ["call",   {func name}, {argument list}]
-</code></pre>
-
-<p><code>{数値}</code>(<code>{number}</code>) は id で，job -> Vim に渡すさいはマイナスを指定する必要があり，
-その渡した id と共に評価された値が返ってきます．</p>
-
-<p>例えば Go 側で stdout に <code>["expr","line('$')", -2]</code> を書き込むと， Vim
-が<code>line('$')</code> を評価してその結果が stdin に <code>[-2, "last line"]</code>
-といった結果が返ってきます．</p>
-
-<p>便利すぎる&hellip;</p>
-
-<p>ということでidの取扱などこのあたりの処理を毎回丁寧にやるのは面倒くさいので，
-<a href="https://github.com/haya14busa/vim-go-client">https://github.com/haya14busa/vim-go-client</a> というラッパーを作りました．
-ドキュメント: <a href="https://godoc.org/github.com/haya14busa/vim-go-client#Client">https://godoc.org/github.com/haya14busa/vim-go-client#Client</a></p>
-
-<p><a href="https://godoc.org/github.com/haya14busa/vim-go-client#Client"><code>type Client</code></a> が上記の channel-commands などのに相当するメソッドを持っており，
-<a href="https://godoc.org/github.com/haya14busa/vim-go-client#Handler"><code>type Handler</code></a> がメッセージの受け渡しを担当します．</p>
-
-<p>サンプル: <a href="https://github.com/haya14busa/vim-go-client/blob/32a96bf256fabc81dff549a70328a6bb3f24e9b5/_example/dev/job/job.go"><code>_example/dev/job/job.go</code></a></p>
-
-<pre><code>package main
-
-import (
-    "fmt"
-    "log"
-    "os"
-    "time"
-
-    vim "github.com/haya14busa/vim-go-client"
-)
-
-type myHandler struct{}
-
-func (h *myHandler) Serve(cli *vim.Client, msg *vim.Message) {
-    log.Printf("receive: %#v", msg)
-    if msg.MsgID &gt; 0 {
-
-        if msg.Body == "hi" {
-            cli.Send(&amp;vim.Message{
-                MsgID: msg.MsgID,
-                Body:  "hi how are you?",
-            })
-        } else {
-            start := time.Now()
-            log.Println(cli.Expr("eval(join(range(10), '+'))"))
-            log.Printf("cli.Expr: finished in %v", time.Now().Sub(start))
-        }
-
-    }
-}
-
-func main() {
-    handler := &amp;myHandler{}
-    cli := vim.NewClient(vim.NewReadWriter(os.Stdin, os.Stdout), handler)
-    done := make(chan error, 1)
-    go func() {
-        done &lt;- cli.Start()
-    }()
-
-    cli.Ex("echom 'hi'")
-    log.Println(cli.Expr("1+1"))
-
-    select {
-    case err := &lt;-done:
-        fmt.Printf("exit with error: %v\n", err)
-        fmt.Println("bye;)")
-    }
-}
-</code></pre>
-
-<p><code>handler := &amp;myHandler{}</code> でハンドラを作って <code>cli := vim.NewClient(vim.NewReadWriter(os.Stdin, os.Stdout), handler)</code>
-で stdin/stdout を介してVim と通信できるclientを作成しています．
-あとはこいつを <code>cli.Start()</code> しておけば Vim から <code>ch_sendexpr()</code> などが呼ばれると handler に中身が渡されるし，
-<code>cli.Ex("echom 'hi'")</code> などを呼ぶと Vim 側で <code>echom 'hi'</code> が実行されます．</p>
-
-<h2>実例: vim-stacktrace</h2>
-
-<p>実際に vim-go-client を使ってひとつプラグインを書いてみました．</p>
-
-<p><a href="https://github.com/haya14busa/vim-stacktrace">haya14busa/vim-stacktrace</a></p>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/e7ef65e590e850ea37425c6ebf4479c1422ef8c8/vim-stacktrace/stacktracefromhist.gif" alt="stacktracefromhist.gif (1287×800)" /></p>
-
-<p>Vim のスタックトレースをquickfix に流し込むプラグインでやっていることとしては6日目の記事の <a href="http://qiita.com/tmsanrinsha/items/0787352360997c387e84">Vim scriptのエラーメッセージをパースしてquickfixに表示する - Qiita</a>
-と近いです．</p>
-
-<p>autoload 関数からjobに <code>ch_evalexpr</code>
-する部分([link]<a href="https://github.com/haya14busa/vim-stacktrace/blob/933f9d10c7ef99467c27609fcdd80be37c0712e8/autoload/stacktrace.vim#L12-L30">https://github.com/haya14busa/vim-stacktrace/blob/933f9d10c7ef99467c27609fcdd80be37c0712e8/autoload/stacktrace.vim#L12-L30</a>())
-を除いてほぼ全てがGoで実装されていて，現時点で Go の割合が 87.8 % です．</p>
-
-<p><img src="https://cloud.githubusercontent.com/assets/3797062/21386073/5e56a5aa-c7b4-11e6-9cac-869cbb8ffe8d.png" alt="image" /></p>
-
-<p>実装の中身としても，Vim のスタックトレースからは関数内における行番号しかとれず，ファイルの行番号が取得できない問題があるのですが，
-それをGoで実装したVim script parser (<a href="https://github.com/haya14busa/go-vimlparser">https://github.com/haya14busa/go-vimlparser</a>) を使ってファイルをパースし，行番号を取得することができています．
-また，<code>:CStacktraceFromhist</code> などは Vim script の <code>inputlist</code> をGo側から呼んでいてインテラクティブにVimと協調して動作できることも示せました．</p>
-
-<h2>Go で書くよさ</h2>
-
-<p>実際に Vim script でやっているひともいたように，vim-stacktrace は Go
-が無いとかけなかったといった類のものではないですが，Goで書くといいことがたくさんありました．</p>
-
-<ul>
-<li>型がある安心感</li>
-<li>テストが標準に備わっていて書きやすい (go test)</li>
-<li>カバレッジも取れる! (go test -coverprofile)</li>
-<li>Go のパッケージが使える (go-vimlparser, etc&hellip;)</li>
-<li>etc&hellip;</li>
-</ul>
-
-
-<p>カバレッジなどは現在Vim scriptのテスティングフレームワークではサポートされていないし，なかなか実装しようとしてもムズカシそうなのですが，
-Goでかけば標準でついてきます．とても便利．</p>
-
-<p>coverall も使えます: <a href="https://coveralls.io/github/haya14busa/vim-stacktrace?branch=master"><img src="https://coveralls.io/repos/github/haya14busa/vim-stacktrace/badge.svg?branch=master" alt="Coverage Status" /></a></p>
-
-<p>逆にPure Vim script と比較して悪いところや注意点があるとすれば</p>
-
-<ul>
-<li>vim-go-client がまだ安定してない</li>
-<li>channel-commands がエラーをちゃんと返してくれない(エラーがあれば &ldquo;ERROR&rdquo; とだけ返ってくる)</li>
-<li>チャンネルの通信で少しだけオーバーヘッドがある</li>
-<li>現状vim/neovimに両対応できない</li>
-</ul>
-
-
-<p>といった感じでしょうか．もうちょっとvim-go-client精錬させたいですね&hellip;頑張ります&hellip;</p>
-
-<h2>NeoVim のリモートプラグイン</h2>
-
-<p>neovim 向けには実は <a href="https://github.com/neovim/go-client">neovim/go-client</a> というものが存在し，リモートプラグインをGoで書くことが出来るようです．</p>
-
-<p><a href="http://vimconf.vim-jp.org/2016/">Vimconf 2016</a> で <a href="https://github.com/zchee">zchee</a> さんが発表していた nvim-go はこれが使われています．</p>
-
-<p>スライド該当部分: <a href="http://go-talks.appspot.com/github.com/zchee/talks/vimconf2016.slide#33">http://go-talks.appspot.com/github.com/zchee/talks/vimconf2016.slide#33</a></p>
-
-<p>正直なところ neovim のリモートプラグインの先行アドバンテージ(?)は大きく，vim-go-client と比較してかなり高機能になってます．
-理想としては Vim 8 でも neovim でも使えるものをかけるようにしたいのですが， neovimのリモートプラグインが高機能であることや，
-msgpack 依存であることからなかなか両方に対応することはムズカシイです&hellip;</p>
-
-<p>うまく抽象化してロジックの部分だけ共通化して，vim8用/neovim用にメッセージのハンドラを管理してうんたん&hellip;みたいなことは出来るかも知れないので，
-今後の研究課題という感じですね．あと僕がほとんどneovim使わないので nvim-go の仕様感とか知っている方はお話してくれると嬉しいです．
-(Vimconf で zchee さんとその話ができたのは便利だった&hellip;)</p>
-
-<h2>おわりに</h2>
-
-<p>正直まだまだGoで書かれたVim plugin は少なく発展途上ですが，実用的なプラグインを作成することもできたので，可能性を感じます．
-Go でかけばマルチプラットフォームに対応できるし，ライブラリがどうとか環境がどうとか気にすることなく動かせるので，Vim との親和性はかなり高いと思っています．</p>
-
-<p>何よりGoはかわいい!書いていて楽しい!</p>
-
-<p>まだまだ発展途上ですが，ぜひ皆さんもGoでVim プラグインを作ってみてください．</p>
-]]></content>
-  </entry>
   
-  <entry>
-    <title type="html"><![CDATA[2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話]]></title>
-    <link href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/"/>
-    <updated>2014-12-30T00:00:00+09:00</updated>
-    <id>http://haya14busa.com/haya14busa-s-happy-vimming-year-2014</id>
-    <content type="html"><![CDATA[<h2>この記事について</h2>
 
-<p>この記事は <a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の30日目かもしれません(または来年, Vim記事集約系のイベントやりたいという気持ちの1つです).</p>
 
-<p>今年の2月に <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a> というVim歴換算で1年を振り返ったエントリーを書いたのですが, 今回は2014年を振り返ってみたら, やっぱりVim活たのしかったなぁという日記的エントリーです.</p>
 
-<p>また思い返してみると僕がプログラミング始めたのは2年と少し前だったので, 2014年はプログラミング2年目の年でもありました.
-この文脈でみると<strong>「プログラミング2年目をVimに捧げるとどうなるか?」</strong> というエントリーとも言えそうです. (※1年目からかなりの割合をVimに捧げていました)</p>
+<time datetime="2016-12-29T17:47:59+09:00" pubdate data-updated="true"></time>
+      
 
-<h2>2014年, 今年のVim活を振り返る</h2>
-
-<p>※Vim活が9割です</p>
-
-<h3>カーソル移動系人気プラグインの vim-easymotion の開発を乗っ取った!</h3>
-
-<div class="github-card" data-github="Lokaltog/vim-easymotion" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="../images/easymotion/20141230_easymotion_contribution_graph.png" alt="20141230_easymotion_contribution_graph" />
-<img src="../images/gif/easymotion_on_speed_ex.gif" alt="easymotion_on_speed_ex" /></p>
-
-<ul>
-<li><a href="https://github.com/Lokaltog/vim-easymotion">Lokaltog/vim-easymotion</a></li>
-<li><a href="https://github.com/haya14busa/vim-easyoperator-phrase">haya14busa/vim-easyoperator-phrase</a></li>
-<li><a href="https://github.com/haya14busa/vim-easyoperator-line">haya14busa/vim-easyoperator-line</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a></li>
-<li>執筆時GitHubスター数: 1556</li>
-</ul>
-
-
-<p>これは2013年の後半からforkして活動していて, 今年の2月くらいに起こった出来事なのですでに下記の記事に少し感想を書いています.</p>
-
-<p>-> <a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></p>
-
-<p>記事執筆現在, GitHub のStar数 1556 で, 開発を引き継いだ時点での Star数は 1000 にちょっと届かない程度でした.
-もともとほっといた場合の伸び具合がどれくらいかはわからないですが, 自分が引き継いだ時点で Star数 約1000 のリポジトリが, さらに500強増えたという事実は本当に嬉しいです.
-GitHub Star 500+ めでたい.</p>
-
-<p>これだけ 「たくさんのスター数がついている≒たくさんの人に使っていただけている」 プロジェクトを開発 &amp; メンテするというのはなかなかに学ぶことがおおくてとても楽しかったです.
-今後はリファクタリング含めもっと便利にしたいなぁと思っているんですが, そう思ってから半年くらい経過しております(すでに十分に便利&amp;安定してきているのでモチベが低い).</p>
-
-<h3>最高の検索体験を提供したい! incsearch.vim つくった</h3>
-
-<div class="github-card" data-github="haya14busa/incsearch.vim" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="../images/gif/incsearch/incremental_regex_building.gif" alt="incremental_regex_building" /></p>
-
-<ul>
-<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
-<li><a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/enrich-your-search-experience-with-incsearch-vim/">incsearch.vimでVimの検索体験をリッチにする - haya14busa</a>
-
-<ul>
-<li><a href="http://qiita.com/advent-calendar/2014/vim">Vim Advent Calendar 2014</a> の 14日目の記事でもあります</li>
-</ul>
-</li>
-<li>執筆時GitHubスター数: 231</li>
-</ul>
-
-
-<p>今年の前半がvim-easymotionだとしたら, 後半はほとんど incsearch.vim でした.
-実はこのプラグインは最初はサクッと気晴らしにつくったぜーというレベルのものだったのですが,
-なんだかんだちゃんとしたものにしようという流れになり目一杯頑張りました.</p>
-
-<p>また使用しているライブラリの <a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a>
-にもコントリビューションという名のリクエスト丸投げや, 設計についてコメント, ダメダメな Pull Request
-を交えながらいろいろ関わらせていただきました.
-おしょーさんありがとうございます, 迷惑いっぱいかけてスイマセンッ, これからもよろしくお願いします..!</p>
-
-<p>便利さの9割は vital-over のおかげなのですが, 自分が1から開発してるリポジトリーでスター数3桁を達成してこれもまた非常に嬉しいです. これもめでたい.</p>
-
-<p>GitHubの VimL trending で Repositories &amp; Developers の両方で1位も獲得できました&hellip;! 嬉しさ.</p>
-
-<p><img src="../images/github/github-trending-viml-today-incsearch-2014-10-21%2009:26:33.png" alt="github-trending-viml-today-incsearch" />
-<img src="../images/github/github-developer-today-vimL-2014-10-22%2022:51:58.png" alt="github-developer-today-vimL-2014-10-22 22:51:58" /></p>
-
-<h3>VimConf 2014 で発表した</h3>
-
-<ul>
-<li><a href="http://vimconf.vim-jp.org/2014/">VimConf 2014</a></li>
-<li>皆さんの発表などなど: <a href="http://vimconf.vim-jp.org/2014/reports/">Reports - VimConf 2014</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/vimconf2014/">VimConf2014 で検索とその拡張について発表した - haya14busa</a></li>
-<li>スライド: <a href="https://docs.google.com/presentation/d/1ie2VCSt9onXmoY3v_zxJdMjYJSbAelVR-QExdUQK-Tw/pub">/-improved</a></li>
-<li>発表動画: <a href="https://www.youtube.com/watch?v=yB1H5V8e1j4&amp;list=PLx8bw5NQypsnuX8NJPRHvURhXqj2NUnGZ&amp;index=12">/-improved #VimConf2014 - YouTube</a></li>
-</ul>
-
-
-<p>VimConf2014 という感極まるVimのカンファレンスが今年も開催されたのですが, そこでLT枠で発表させていただきました.
-Vimの便利な検索機能と上述した incsearch.vim の紹介をしました. 発表グダったりもしましたが, よかったという反応をいただけたり, スライドを英語で書いたので英語圏の人にも見てもらって便利さを伝えられたのは良かったです. 英語というより gif をふんだんに活用したので伝わったという説もある.
-(<a href="http://usevim.com/2014/11/14/vimconf/">usevim</a>, <a href="http://www.reddit.com/r/vim/comments/2lwrv0/vimconf_2014_reports/">reddit</a> )</p>
-
-<p>ちなみに動画はテンパッて間違ったことも多々言ってるので鵜呑みにしないでください&hellip; この辺慣れるには場数を踏む必要がありそう</p>
-
-<h3>最高の検索体験を提供したい + α!. vim-asterisk 勢いでつくった</h3>
-
-<div class="github-card" data-github="haya14busa/vim-asterisk" data-width="400" data-height="153" data-theme="default"></div>
-
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/master/vim-asterisk/asterisk_z_star.gif" alt="asterisk_z_star" /></p>
-
-<ul>
-<li><a href="https://github.com/haya14busa/vim-asterisk">haya14busa/vim-asterisk</a></li>
-<li>執筆時GitHubスター数: 34</li>
-</ul>
-
-
-<p>Vim の <code>*</code> ってとても便利なのですが, 自分のユースケースとしては次のマッチにジャンプして欲しくないという不満があったので, そこを解消するために作りました.
-<code>*</code> からの <code>gn</code> テキストオブジェクト活用でスムーズに編集できるようになってとても気に入っています.</p>
-
-<p>結構小さいプラグインではあるのですが, 今まで得たVim scriptの知識や経験をたくさん使っていたり, ビジュアルモードにおける <code>*</code> 機能は <a href="https://github.com/thinca/vim-visualstar">thinca/vim-visualstar</a> の部分をお借りしたり, マルチバイトの扱いを<a href="https://github.com/haya14busa/vim-asterisk/pulls?q=is%3Apr+is%3Aclosed">プルリク</a>貰って直したりとなかなかよさ気なものになりました.</p>
-
-<p>実は似たような機能を提供してるプラグインはいくつかあるのですが, どれも不満がまだありました(Vimの検索機能周りの拡張は結構落とし穴が多い).
-incsearch.vim の経験などが活きて落とし穴はうまく回避できました. 気になった方は是非使ってみてください.</p>
-
-<h3>vimrc 読書会にいっぱい参加 &amp; 管理のデータ化・自動化 &amp; 統計ページ をつくった</h3>
-
-<ul>
-<li><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a></li>
-<li><a href="http://vim-jp.org/reading-vimrc/stat/#/">vimrc読書会 Stat</a></li>
-<li>ブログ記事: <a href="http://haya14busa.com/reading-vimrc-stat/">vimrc読書会Stat作った - haya14busa</a></li>
-<li><a href="http://vim-jp.org/reading-vimrc/stat/#/u/haya14busa">たくさん参加してる様子</a></li>
-</ul>
-
-
-<p>確か管理者権限貰ったのは恐らく今年(すこしあやしい&hellip;厳密には去年だったかも&hellip;)で, 参加するだけでなくちょっとずつ運営面でも関わらせていただきました.
-Jekyll を覚えて 読書会のデータを yaml でデータ化したり,
-そのデータを使って Angularとd3.jsで 読書会の統計ページをつくったり,
-データ化によって扱いやすくなったので python や ruby で簡単なスクリプトを作成して更新作業を自動化したりしました.
-読書会は毎週やるので更新が一瞬でできるようになって非常に便利になりました. 統計ページのJS, よくない部分多々あるのでそのうち書き直したい.</p>
-
-<p><strong>毎週土曜日23:00からやっているので皆さん参加しましょう!</strong> -> <a href="http://lingr.com/signup?letmein=vim">http://lingr.com/signup?letmein=vim</a></p>
-
-<h3>Vim プラグイン読書会やってた</h3>
-
-<ul>
-<li><a href="http://haya14busa.github.io/reading-vimplugin/">Vimプラグイン読書会</a></li>
-</ul>
-
-
-<p>こちらも1ヶ月周期でやっていました. Vim プラグイン開発, 興味ある. という方にオススメです! 一緒に読みましょう.
-またvimrc読書会とVim プラグイン読書会での経験が, Vim以外の普段の開発のレビューにも活かされたような気も&hellip;しま&hellip;す(自信なし).</p>
-
-<p>執筆時現在次の日付が更新されてないという少々のグダりを見せていますが, 落ち着いたら必ず更新します!</p>
-
-<h3>Osaka.vim やで</h3>
-
-<ul>
-<li><a href="http://osaka-vim.connpass.com/">Osaka.vim - connpass</a></li>
-<li>ブログ記事: <a href="http://localhost:4000/osaka-vim-01/">Osaka.vim #1 に行ってきた - haya14busa</a></li>
-</ul>
-
-
-<p><strong>connpass上では運営になっていますが一切の運営をしていません&hellip;!</strong></p>
-
-<p>関西のVim勉強会, 近年ではほとんどなかったので便利. 関西の皆さん参加しましょう.</p>
-
-<h3>Vimで緊急地震速報が見れるの便利では&hellip;? eew.vim つくった</h3>
-
-<ul>
-<li><a href="https://github.com/haya14busa/eew.vim">haya14busa/eew.vim</a></li>
-<li>Emacs移植: <a href="http://d.hatena.ne.jp/syohex/20140829/1409291511">eew.vimを移植しました - Life is very short</a></li>
-<li>Sublime移植: <a href="https://github.com/tgfjt/Sublime-eew">tgfjt/Sublime-eew</a></li>
-</ul>
-
-
-<blockquote class="twitter-tweet" lang="en"><p>総務省の某審議会のエライ人が「家でテレビで録画を見ていた際、緊急地震速報が出なかった。なんとかならないのか」との意見を述べ、プチ衝撃が走っているらしい。ｗｗｗ 確かに、テレビ見てることには変わりないけれど。</p>&mdash; 閑居 (@doatease2313) <a href="https://twitter.com/doatease2313/status/504522127622418434">August 27, 2014</a></blockquote>
-
-
-<blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>とりあえずでつくった <a href="https://t.co/hQQuAnnF9M">https://t.co/hQQuAnnF9M</a> RT <a href="https://twitter.com/haya14busa">@haya14busa</a> Vimに緊急地震速報流すの便利なのでは！？！？！？</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/505004191199162368">August 28, 2014</a></blockquote>
-
-
-<p>EmacsやSublimeに移植されたりとちょっとだけ話題になった(すこし).</p>
-
-<h3>その他ちっちゃい Vim plugin 達</h3>
-
-<ul>
-<li><a href="https://github.com/haya14busa/unite-ghq">haya14busa/unite-ghq</a>
-
-<ul>
-<li>uniteでghqできるの便利では&hellip;?と思ってつくって公開したら, そのわずか数時間前に sorah さんが <a href="https://github.com/sorah/unite-ghq">sorah/unite-ghq</a> を公開しており,
-しかもこちらのほうが基本的によくできていて「ｱｱｱｯ&hellip;」とリアルで声がでた少し苦い思い出のあるプラグイン. 自分のバージョン使ってるの自分だけだとおもう. でも便利.
-既存プラグインの検索は直前まで入念にやりましょうという教訓を得ました. (数日前にやった時点ではなかったので大丈夫だと思ってた)</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/unite-reading-vimrc">haya14busa/unite-reading-vimrc</a>
-
-<ul>
-<li>vimrc読書会のログやvimrcのリンクをuniteで絞り込んで開ける. たまに vimrc読書会 の管理とか過去の記録を見るときに便利.</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/endtagcomment.vim">haya14busa/endtagcomment.vim</a>
-
-<ul>
-<li>よくvimrcで見かけるhtmlタグにコメントをつけるスクリプトをforkしてプラグイン化しただけ. もともと便利</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/unite-action-vimfiler_lcd">haya14busa/unite-action-vimfiler_lcd</a>
-
-<ul>
-<li>vimfilerで<code>lcd</code>してから開くというuniteアクションが欲しかった. 結局つかってないのであまり便利じゃない.</li>
-</ul>
-</li>
-<li><a href="https://github.com/haya14busa/vim-textobj-number">haya14busa/vim-textobj-number</a>
-
-<ul>
-<li>数字のテキストオブジェクト. たまに便利. テキストオブジェクト学ぶかぁーという意図も含まれてた気がするけど結局それ以降テキストオブジェクト系プラグインは作成してない. なにかアイデア湧いたら作りたい.</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Vim活以外の進捗(残りの1割)</h2>
-
-<ul>
-<li>プログラミングのバイトを4月からはじめました(たぶんVim活アピール補正はかかりました. ある意味 Vim script もペイする言語&hellip;?).</li>
-<li>それに伴って Scala をやりはじめたんですが視野が広がってとてもよかったし, もっと学んでいきたいです.</li>
-<li>JavaScript もそこそこ書いて, Angular.js に触れたりなどしました. underscore.js も便利.</li>
-<li>しかし Scala その他 Vim 以外のOSS活動の進捗ﾀﾞﾒです</li>
-<li>heroku にPythonで小さいウェッブアプリをつくったのですが, 乗っかってるサービスが終了したので一緒にお亡くなりになってつらい.</li>
-</ul>
-
-
-<h3>勉強会にちょっとずつ参加するようになった</h3>
-
-<ul>
-<li><a href="http://scalamatsuri.org/">Enjoy.scala ! 日本最大級の Scala のカンファレンス - ScalaMatsuri</a></li>
-<li><a href="http://kansaifp.doorkeeper.jp/events/17206">関西関数型道場 - 第02回 - 関西関数型道場 | Doorkeeper</a></li>
-<li><a href="http://fpscala-osaka.connpass.com/">fpscala-osaka - connpass</a></li>
-</ul>
-
-
-<p>Vim 以外の勉強会にも今年はちょっとずつ参加するようになりました(Vimも基本的には今年からですが). しかしこれは進捗でゎなぃな&hellip;</p>
-
-<h2>その他</h2>
-
-<h3>GitHub current streak 365 日達成した</h3>
-
-<blockquote class="twitter-tweet" lang="en"><p>気づいたらGitHubｺﾝﾄﾘﾋﾞｭｯｼｮﾝ Current streak 365日を達成していたっ&#8230;!!! <a href="http://t.co/XMED6OLFUp">pic.twitter.com/XMED6OLFUp</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/544899856037208065">December 16, 2014</a></blockquote>
-
-
-<p>dotfile 1行変更といったものがたくさんあるので全く大したことはしてないのですが, 日によってはそのついでにちゃんとプログラミングするぞっ! というきっかけになるので自分には合ってる継続的進捗管理術でした. 1年継続めでたい.</p>
-
-<h3>2014年 GitHub の Pull Requests / Issues 一覧</h3>
-
-<p><em>追記:</em></p>
-
-<ul>
-<li><a href="https://github.com/pulls?q=is%3Apr+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に出した Pull Requests 一覧</a></li>
-<li><a href="https://github.com/issues?q=is%3Aissue+author%3Ahaya14busa+created%3A%222014-01-01+..+2015-01-01%22+">2014年に開いた Issues 一覧</a></li>
-</ul>
-
-
-<p>PullRequest 8 opens / 83 closed, Issues 53 open / 95 closed ※99% Vimである</p>
-
-<h3>Podcast 聴くようになった</h3>
-
-<p>聴いてるPodcastは</p>
-
-<ul>
-<li><a href="http://rebuild.fm/">Rebuild</a></li>
-<li><a href="http://mozaic.fm/">mozaic.fm</a></li>
-<li><a href="https://itunes.apple.com/jp/podcast/bairingarunyusu-bilingual/id653415937?mt=2">バイリンガルニュース (Bilingual News)</a></li>
-<li><a href="http://thechangelog.com/podcast/">The Changelog Podcast</a></li>
-<li><a href="https://itunes.apple.com/us/podcast/the-binpress-podcast/id897178291?mt=2">The Binpress Podcast</a></li>
-<li>その他適当に気になったもの.</li>
-</ul>
-
-
-<p>という感じです. 例に漏れず(?), Rebuild.fm から聴き始めてめっちゃおもしろいっ! となり, そこから バイリンガルニュース や The Changelog を聴くようになりました.
-最近はずっと気になってはいたけど聞いていなかった mozaic.fm を聴くようになって, こちらも Rebuild とは別のベクトルのよさがあって全部聴きました. 技術系(?)英語 podcast の binpress podcast というポッドキャストは, 全部無料でスクリプトがついているという<em>エイゴ・ゼンゼン・キキトレナイ勢</em>としては歓喜のサービスがついていてお気に入りです. おもしろさは回によって違う感じですが, 英語もついでに学ぶかーという方にはオススメです.</p>
-
-<p>リスニング能力高めてもっと英語のポッドキャストを楽しめるようになりたい&hellip;</p>
-
-<h3>英語の記事をコンスタントに読む &amp; 検索するようになった</h3>
-
-<ul>
-<li><a href="http://www.reddit.com/r/vim/">reddit.com/r/vim</a></li>
-<li><a href="https://news.ycombinator.com/">Hacker News</a></li>
-<li><a href="https://medium.com/">Medium</a></li>
-<li><a href="http://getprismatic.com/home">Prismatic</a></li>
-</ul>
-
-
-<p>1年目も別に避けたりはしてなかったのですが, 最近は能動的に英語の情報に触れようとする確率が高くなったかなと思います.
-検索や話題になっている記事を除けば, 見ているのはだいたい上記のリンクです.
-ただ単に読んでるだけではなかなか得るものも少ないので, 自分から英語で発信する能力をつけたいなーというのが最近の悩みです.
-現状 GitHub の issue のやりとりやプラグインのドキュメントは基本英語を使ってるのですが, もっともっと使っていかないとなかなか身につかないですねー.</p>
-
-<h2>来年の抱負とか</h2>
-
-<ul>
-<li>Vim もっと頑張る.</li>
-<li>Vim のソースコード側も C言語ちょっとぐらい読み書きできるようになって簡単なバグくらいなら報告だけでなく修正案まで出せるようにしたい.</li>
-<li>Vim 以外も頑張る. なにか小さなウェッブサービスとか適当につくったりしたい.</li>
-<li>Scala力をより深めるのに加えて C, Go, Haskell あたりの言語を触って学んでいきたいという思いがある.</li>
-<li>データベース周りとか, 今触ってるレイヤーと別の部分も触っていきたい. 最低限基礎力が欲しい.</li>
-<li>英語力をつけていきたい. Vim について英語で適当に英語用Twitterアカウントつくってつぶやくとかなら継続してできるのでは&hellip;?という考えがある.
-欲を言えば Lingr の Vim 部屋のノリで英語でチャットとかできれば一番いいんじゃないかという思いがある. IRC に #vim チャンネルあるらしいけど, IRCよくわからない&hellip;ログ読みたい&hellip;</li>
-<li>人生は厳しいので人生についてちゃんと考える必要がある. 人生キビシイ.</li>
-</ul>
-
-
-<h2>「プログラミング2年目をVimに捧げるとどうなるか?」</h2>
-
-<p>少々Vim以外の進捗が少なすぎる気がするのは反省ですが, Vim活によってVimというコンテキストに留まらず, たくさんの貴重な経験ができました.
-git や GitHub, テスト, CI, オブジェクト指向やらクロージャ, 変数や関数の名前の付け方, 英語での技術系コミュニケーションなどなど, たくさんのことを Vim駆動で理解したり, 理解を深めた1年間だったと思います.</p>
-
-<p>Vim駆動学習, よさがあるのでオススメです. ※ただし用法用量を守って正しく Vim 活しないと Vim 以外の進捗が遅れます. 反省&hellip;</p>
-
-<p>また Vim だといろいろな言語を使ってる人がいて, しかも雲の上のような存在の人もたくさんいたり, オンラインでもオフラインの勉強会でも活動が活発なのでVim以外にもいろんなことが知れるし, プログラミング初学者でも最初から Vim をガンガン使ってプログラミングしていくのはおもしろいかなぁと思います.</p>
-
-<p>振り返ってみるとたくさんのVimmerにお世話になったなぁと思います. ※もちろんVimmerでないひとにもお世話になりました.</p>
-
-<p>みなさん今年はお世話になりました. 来年の2015年もぜひ仲良くしてください. よろしくお願いします.</p>
-
-<p>以上, <a href="https://twitter.com/haya14busa">@haya14busa</a> の 2年目の<del>プログラミング</del> Vim活記録でした.</p>
-
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-]]></content>
-  </entry>
+<span class="categories">
   
-</feed>
+    <a class='category' href='/categories/go/'>go</a>, <a class='category' href='/categories/vim/'>vim,</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/2016-is-go-year/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/2016-is-go-year/" data-via="haya14busa" data-counturl="http://haya14busa.com/2016-is-go-year/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/ci-for-go-in-end-of-2016/" title="Previous Post: Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年">&laquo; Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/2016-is-go-year/';
+        var disqus_url = 'http://haya14busa.com/2016-is-go-year/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

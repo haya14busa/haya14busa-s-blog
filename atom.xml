@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2016-12-26T03:11:52+09:00</updated>
+  <updated>2016-12-31T08:48:39+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -12,6 +12,616 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Go に恋した Vimmer の2016年の振り返り]]></title>
+    <link href="http://haya14busa.com/2016-is-go-year/"/>
+    <updated>2016-12-29T17:47:59+09:00</updated>
+    <id>http://haya14busa.com/2016-is-go-year</id>
+    <content type="html"><![CDATA[<p>この記事では2016年 <a href="https://twitter.com/haya14busa">@haya14busa</a> がやってきた活動，特にVimとかGo 活動をざっくり振り返ります．
+個人的な備忘録です．あとポエム．</p>
+
+<h3>過去の振り返り記事</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/vim_driven_learning/">1年間『Vim駆動学習』してきて最高に楽しかったのでオススメしたい - haya14busa</a></li>
+<li><a href="http://haya14busa.com/haya14busa-s-happy-vimming-year-2014/">2014年の振り返り. またはプログラミング2年目をVimに捧げるとこうなるという話 - haya14busa</a></li>
+<li><a href="http://haya14busa.com/look-back-2015/">はてな，Googleインターン行ってイカやりすぎたイカVimmerの2015年の振り返り - haya14busa</a></li>
+</ul>
+
+
+<p>今年はざっくりプログラミング &amp; Vimmer 歴 4年目でした．
+そろそろプログラミングの基礎的なところわかってなくても，まだはじめてそんな経ってなくてまだ勉強できてないんです〜，また今度やっておきますっ!
+みたいな言い訳が完全に通用しない年になってきた気がします (そもそも実際に言ったことは無い)．
+まだまだ学んでおきたい分野はたくさんあって，特にもうちょっとレイヤーが下の要素もやっていって理解しておきたさがありますね&hellip;</p>
+
+<h2>&ldquo;Go&rdquo; に恋した 2016年</h2>
+
+<p>AlphaGo, Pokemon GO, Amazon Go&hellip; &ldquo;Go&rdquo; は2016年の1つのキーワードだったように思いますが，個人的には Go 言語の &ldquo;Go&rdquo; に恋した1年でした．</p>
+
+<p><img src="../images/post/2016-12-26-gopher-stickers-lovely.png" alt="" /></p>
+
+<p><small>credit: <a href="https://github.com/tenntenn/gopher-stickers">Gopher by tenntenn CC BY 3.0</a></small></p>
+
+<h3>Go との出会い</h3>
+
+<p>Go 言語との出会いは去年インターンでGoをはじめて使ったときでした．</p>
+
+<p>その時一目惚れ&hellip; をしたわけではありません．</p>
+
+<p>シンプルでとにかくプロジェクトで動くものは作れる感じだったので，なんとなくGoよさそうかなぁとは感じつつも，
+ちょっと気になっている子(Scala) との大きな違いに戸惑ってたりしてました．
+&ldquo;Functional Programming&rdquo;? なにそれおいしいの? とでも聞こえてきそうな Go の雰囲気に，
+僕は一歩足を引いて評価を保留してました．
+ただ，さも vim で書くために生まれてきた言語では&hellip;? というほどの <code>gofmt</code>
+といった周辺のツールの充実っぷりはこの頃から大好きで，言語というよりは周囲の
+エコシステムがよさ&hellip;という印象でした．</p>
+
+<p>また，Go と出会ったころと時を同じくして，僕はスプラトゥーンと出会ってました．
+お家に帰って Go やってる場合ではなく，一日中イカする毎日．
+イカの存在によって Go とはどこかビジネスライクな付き合いにとどまってました．イカはっょぃ．</p>
+
+<h3>Go との別れ</h3>
+
+<p>それから程なくして，インターンが終了しました．
+Go をいちから学ぶところからはじめたにも関わらず，
+終了時にある程度のものが出来たことを Go にも感謝しつつ，
+一旦 Go との付き合いもお別れになりました．</p>
+
+<p>結局，まぁなんかよさそうな言語だ程度の(ふんわり)印象でここで一旦お別れしたわけですが，
+後々，このときのいい環境で Go を書いてレビューしてもらったり，
+教えてもらったことはとても役に立ちました．
+ありがたい．</p>
+
+<h3>Go との再会</h3>
+
+<p>2016年の春，忙しかった時期も一段落し，スプラトゥーンとの距離をうまく保てるようになった僕は
+ちょっとした小さいツールを Go で書くことにしました．</p>
+
+<p>理由としては，コマンドラインツールとか Go で書くのは便利そうだったことや，
+来年以降もGo書くことになりそうかなぁという打算的な思考，
+また同じ頃にはじめたアルバイト先のいくつかのサブシステムは Go で書かれていることもあり，
+Go 書けるとそのへんも触れておもしろそうかなという気持ちがありました．</p>
+
+<p>数カ月の Go とのお別れ期間でいろいろ忘れていることに戸惑いつつも，書いていくうちに勘も戻ってきました．
+ちょっとした自分用ツールをいくつか Go で完成させて，簡単にサーバにもっていって動かすことができてよいなーと感じたり，
+Google App Engine で雑に動かしたりして遊んでました．
+アルバイト先でもちょっとずつ書いたりするようになって，Go と触れ合う時間は増えました．</p>
+
+<h3>2016年秋，気づけば Go に恋に落ちてた</h3>
+
+<p>それからも，定期的に Go で何か作ったりしてました．例えば，</p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/goplay">haya14busa/goplay: The Go Playground (https://play.golang.org/) client</a>
+
+<ul>
+<li>コマンドラインから Go Playground で Go を実行したり，コードを Playground に共有するツール</li>
+<li>習作という向きも強かったけど，いまでも Playground でコードを共有する際に使ったりしていて便利．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/gopkgs">haya14busa/gopkgs: List Go packages FAST by using the same implementation as goimports</a>
+
+<ul>
+<li>goimports と同じ内部実装でGo のパッケージをリストするツール</li>
+<li>goimports と同じ実装なので <code>.goimportsignore</code> も見てくれてたりなど速い．</li>
+<li>peco/fzf/unite といったフィルタリングツールと組み合わせて，import したり godoc を開いたりなどして今も便利に使ってる．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/goverage">haya14busa/goverage: go test -coverprofile for multiple packages</a>
+
+<ul>
+<li>マルチパッケージ対応版 go test -coverprofile</li>
+<li>関連記事: <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a></li>
+</ul>
+</li>
+<li>関連Post: <a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.4h65zgqzb">Golang tips you might not know – Medium</a></li>
+</ul>
+
+
+<p>この頃には Go がかなり手に馴染むようになってきました．上記に上げたツールも Go
+の開発を助けるツールだということからも，Go をより書くようになってきてることがうかがえます．</p>
+
+<p>特にきっかけはありませんでした．でもこの頃にはもう Go に恋してたんだと思います．
+その結果，特に意味もなく Vim script のパーサを Go 言語で動かしたいなぁ&hellip;
+既存の Python 実装とかあるけど，Go でいじりたいなぁ&hellip; と思って Go 実装を作ったりしてました．</p>
+
+<h4>go-vimlparser - Vim Script Parser written in Go</h4>
+
+<ul>
+<li>GitHub: <a href="https://github.com/haya14busa/go-vimlparser">haya14busa/go-vimlparser: Vim Script Parser written in Go</a></li>
+<li>Post: <a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.rtaybepih">Vim Script Parser written in Go – Medium</a></li>
+<li>VimConf でも発表しました: <a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.d8n121p9e">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+</ul>
+
+
+<p>Just for fun ではじめましたが，結果として最速 Vim script parser 実装となって，Vimmer にも嬉しい便利なものになったと思います．
+Go のパフォーマンスチューニングのやり方も改めて経験できて身についたし，
+AST の表現や AST walker の実装をするために <a href="https://golang.org/pkg/go/ast/">go/ast</a>
+のコードを読んでインターフェースをパク&hellip;参考にしたりとおもしろかった．
+Go の標準ライブラリのデザインはとても参考になるし，それを Go 言語でザクザク読めるのは本当にいいなぁと思います．</p>
+
+<h3>Go と Vim との共同作業</h3>
+
+<p>この頃，Vim はJSONやchannel, job 機能が実装され，外部インターフェースとの通信が容易になり，もうすぐ Vim 8.0 出すよ〜という時期でした．
+Go に恋した Vimmer としては，もちろんここで Go 言語を使って Vim との共同作業をさせたいというのは必然です!
+(これでは Go と Vim がカップルになってるのではということは気にしない．でも実際2人の相性はとてもよい)</p>
+
+<p>このあたりの話は Vim Advent Calendar で書きました．</p>
+
+<ul>
+<li><a href="http://haya14busa.com/vim-go-client/">Go で Vim プラグインを書く - haya14busa</a></li>
+<li><a href="https://github.com/haya14busa/vim-go-client">haya14busa/vim-go-client: [WIP] Vim 8.0 client written in go</a></li>
+<li><a href="https://github.com/haya14busa/vim-stacktrace">haya14busa/vim-stacktrace: Stacktrace of Vim script</a></li>
+</ul>
+
+
+<p>vim-go-client の通信のハンドリングのデザインは Go の <a href="https://golang.org/pkg/net/http/">net/http</a> のコードを読んで参考にしたりしました．
+が，もうちょっといい感じにできそうな気がする&hellip;
+実際に Go で vim-stacktrace という便利プラグインを作れることを確認できて，go-vimlparser も有効活用できたりなど，
+Vim活にも Go が絡むようになってきてますます Go が好きになっていきました．</p>
+
+<h3>Go と Vim との間に生まれた子供 - reviewdog</h3>
+
+<p>(Go と Vim が結婚して子供を産みました．僕のGoへの恋は片想い)</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/d598ed7dc49fefb0018e422e4c43e5ab8f207a6b/reviewdog/reviewdog.logo.png" alt="reviewdog logo" /></p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/reviewdog">haya14busa/reviewdog: A code review dog who keeps your codebase healthy</a></li>
+<li><a href="https://github.com/haya14busa/errorformat">haya14busa/errorformat: Vim&rsquo;s quickfix errorformat implementation in Go</a></li>
+<li><a href="http://haya14busa.com/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa</a></li>
+<li><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.r3hb734et">reviewdog — A code review dog who keeps your codebase healthy</a></li>
+</ul>
+
+
+<p>reviewdog は僕の 2016年に作ったプロダクトの一番のヒット作と言えます．reviewdog の GitHub のスターは執筆時現在 268 です．
+reviewdog が好きなのは，実際に超便利プロダクトだということはもちろん，Vim の &lsquo;errorformat&rsquo; という便利な機能を
+Go言語で port して Vim の外でも使えるようにしたという，Vim と Go の&#8221;よさ&#8221; が存分に発揮されたプロダクトだというところがとても気に入っています．</p>
+
+<p>reviewdog のようなものを作るには，いろんな linter などのコマンドの結果を扱わなくてはいけません．
+他のツールでは， <a href="https://github.com/alecthomas/gometalinter">gometalinter</a> のように linter ごとに正規表現をアドホックに作ったり，
+それぞれのコマンドの runner を作ったり， checkstyle xml やJSONのある機械的な形式を吐くlinterにのみ対応するといった割り切りをしています．</p>
+
+<p>Vim はそういういろんなコマンドやいろんなアウトプット形式に対応するというのは得意で，
+&lsquo;errorformat&rsquo; という scanf-like な機能がこれにあたり，この形式を使うことに決めました．</p>
+
+<p>ただしこの&#8217;errorformat&#8217;は Vim でしか使えません．そこを同じくマルチプラットフォームで簡単に動く
+Go 言語で同等の機能をポート(<a href="https://github.com/haya14busa/errorformat">haya14busa/errorformat</a>)し，
+Vim のよさを Go がサポートしてより広く使ってもらえるようにできました．</p>
+
+<p>reviewdog は現在もちょくちょく改善していて，特にローカルでもより動かしやすいようにしようと思ってます．
+年内にある程度開発してバージョン1.0にしようかと思っていましたが，もう少しかかりそうです．</p>
+
+<h4>reviewdog の状況</h4>
+
+<ul>
+<li><blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">reviewdogでエゴサしたらつい昨日リリースしたというのにすでに <a href="https://twitter.com/hashtag/lispmeetup?src=hash">#lispmeetup</a> というミートアップで lisp のlint ツールの発表で reviewdog 使ってくれているっぽいことを発見した&hellip;. べんりすぎる <a href="https://t.co/zYQeOVIGTX"><a href="https://t.co/zYQeOVIGTX">https://t.co/zYQeOVIGTX</a></a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/790888183844089857">October 25, 2016</a></blockquote>
+
+<ul>
+<li>スライド: <a href="http://www.slideshare.net/fukamachi/sblint">SBLint</a></li>
+<li>リリースした直後に reviewdog に対応するための lint ツール作った発表とかを観測してビビった．</li>
+</ul>
+</li>
+<li><a href="https://speakerdeck.com/fortkle/yasashii-sonogo">やさしいコーディング規約の導入〜その後〜 / yasashii-sonogo // Speaker Deck</a>
+
+<ul>
+<li>実際に使ってもらえてるっぽくてよさ</li>
+</ul>
+</li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/458">CI: reviewdog 導入 by haya14busa · Pull Request #458 · vim-jp/vital.vim</a>
+
+<ul>
+<li>vital.vim という Vim script ライブラリのリポジトリに reviewdog 導入してもらった．</li>
+</ul>
+</li>
+<li>reviewdog は僕がバリバリドックフーディングしているのはもちろんのこと，ちょっと使ってもらってる例はちらほら見かける．</li>
+</ul>
+
+
+<p>OSS で導入するのは CI サービスがうまく Secure Token を扱ってくれないせいで，
+若干最初の導入が手間なのが使ってもらうには少し壁になってるのが悲しい．Travis〜CircleCI〜頼む〜改善してくれ〜．
+一度導入してしまえばあとは楽だし，もしくはローカルでだけ使っても便利なのでもうちょっと使用事案増えて欲しい．</p>
+
+<h3>Go 活動その他</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで mock を書く技法 - haya14busa</a>
+
+<ul>
+<li>いい記事に感化されて僕も何か書きたくなった。事案</li>
+</ul>
+</li>
+<li><a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a>
+
+<ul>
+<li>Go の CI 周りの紹介</li>
+</ul>
+</li>
+<li><a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.cp9eqobvo">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a>
+
+<ul>
+<li><a href="http://developer.hatenastaff.com/entry/engineer-advent-calendar-2016">はてなエンジニアアドベントカレンダー2016</a> の 6日目の記事</li>
+<li>はてなの Mackerel チームでアルバイトしていて，仕事してて直和型っぽいことを表現したいときの知見がちょうどあったのでアドベントカレンダーに書かせていただきました．</li>
+<li>linter はアドベントカレンダー書くなら知見共有だけよりはツールも欲しいなと書きました．<code>go/types</code> パッケージ便利．</li>
+</ul>
+</li>
+<li>OSS Contributions
+
+<ul>
+<li><a href="https://github.com/mattn/goveralls">mattn/goveralls</a> で複数パッケージサポート足した</li>
+<li>go-github で GitHub の Review API サポートのレビューをなぜかメンテナでもないけどやってる <a href="https://github.com/google/go-github/issues/495">https://github.com/google/go-github/issues/495</a>
+
+<ul>
+<li>実質 GitHub Review API の reviewer みたいにもなってて Support に要望送りまくってる</li>
+</ul>
+</li>
+<li>あんまりやってなかった&hellip;</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Go が好き</h3>
+
+<p>書いてるうちに手に馴染んできて，いつの間にか好きになってましたが，結局僕はなぜ Go に恋に落ちたのでしょうか．
+1つは間違いなく Go の Simplicity に惹かれたんだと思います．</p>
+
+<h4>Simplicity is Complicated</h4>
+
+<ul>
+<li>slide: <a href="https://talks.golang.org/2015/simplicity-is-complicated.slide#1">Simplicity is Complicated</a></li>
+<li>youtube: <a href="https://www.youtube.com/watch?v=rFejpH_tAHM">dotGo 2015 - Rob Pike - Simplicity is Complicated - YouTube</a></li>
+</ul>
+
+
+<p>Rob Pike の &ldquo;Simplicity is Complicated&rdquo; という発表がオススメです．
+僕はこの発表をみて，胸がきゅーーんっとなりました．Go かわいいよ Go．</p>
+
+<p>Go はなぜ成功したんでしょうか? コンパイル速度，実行速度，デプロイの容易さ，充実したツール，質の高いライブラリ，interfaceやconcurrencyをサポートする言語機能&hellip;
+そのどれもが大事で，僕も実際どれも好きですが，Rob Pike は &ldquo;Simplicity&rdquo; が答えだといいます．
+そしてこの &ldquo;Simplicity&rdquo; は &ldquo;Complicated&rdquo; だとも．</p>
+
+<p>シンプルという言葉はともすれば薄っぺらくなります．特にVimmerという職業(?)柄，
+Vim plugin とかをいくつかみると，&#8221;simple&#8221; だとか，他にも &ldquo;easy&rdquo;, &ldquo;minimalictic&rdquo;
+と言った単語が並んでたりします．これは自戒を込めてですが，場合によってはちょっと薄っぺらいなぁと感じるようなものもあったりします．</p>
+
+<blockquote><p>Simplicity is the art of hiding complexity.</p></blockquote>
+
+<p>Go が simple だとか，less is more だとか，引き算の言語だ&hellip;といった表現をされるとき，
+僕は全く薄っぺらいだとかは思いません．
+これは&#8221;Simplicity&#8221; というのは実は&#8221;Complicated&#8221; であり，
+&ldquo;Simplicity&rdquo; の背後には&#8221;complexity&#8221;を洗練された，緻密なデザインや設計，実装が隠れているからなんだと思います．</p>
+
+<p>GCやgoroutine,interfaceといった実際の例がスライドで説明されているので是非見てみてください．</p>
+
+<p>僕らが享受しているGo の &ldquo;Simplicity&rdquo; は簡単に実現されたものではありません．
+僕らが Go に対して，「あぁ，こういうのでいいんだよ．こういうので．」と感じるとき，
+その背後には Go がたくさんの機能を削ぎ落として，直交する必要十分な機能のデザインと
+複雑な実装が存在しています．</p>
+
+<blockquote><p>Simplicity is hard—to design. <br>
+Simplicity is complicated—to build. <br>
+But if you get it right&hellip; <br>
+Simplicity is easy—to use. <br>
+The success of Go proves it. <br>
+&ndash; <a href="https://talks.golang.org/2015/simplicity-is-complicated.slide#30">https://talks.golang.org/2015/simplicity-is-complicated.slide#30</a></p></blockquote>
+
+<p>&ldquo;Simplicity&rdquo; をデザインするのは難しく，&#8221;Simplicity&#8221;の実現はとても複雑です．
+でもこれらをうまくやると，&#8221;Simplicity&#8221; は使うのが簡単になります．</p>
+
+<p>これが Go は， &ldquo;simple&rdquo; であり，&#8221;less is more&#8221; であり，&#8221;引き算の言語&#8221; であり，
+「あぁ，こういうのでいいんだよ．こういうので．」ということなのでしょう．</p>
+
+<h4>Go is more Pythonic than Python</h4>
+
+<p><a href="https://talks.golang.org/2012/zen.slide#1">Go and the Zen of Python</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt;&gt;&gt; import this
+</span><span class='line'>The Zen of Python, by Tim Peters
+</span><span class='line'>
+</span><span class='line'>Beautiful is better than ugly.
+</span><span class='line'>Explicit is better than implicit.
+</span><span class='line'>Simple is better than complex.
+</span><span class='line'>Complex is better than complicated.
+</span><span class='line'>Flat is better than nested.
+</span><span class='line'>Sparse is better than dense.
+</span><span class='line'>Readability counts.
+</span><span class='line'>Special cases aren't special enough to break the rules.
+</span><span class='line'>Although practicality beats purity.
+</span><span class='line'>Errors should never pass silently.
+</span><span class='line'>Unless explicitly silenced.
+</span><span class='line'>In the face of ambiguity, refuse the temptation to guess.
+</span><span class='line'>There should be one-- and preferably only one --obvious way to do it.
+</span><span class='line'>Although that way may not be obvious at first unless you're Dutch.
+</span><span class='line'>Now is better than never.
+</span><span class='line'>Although never is often better than *right* now.
+</span><span class='line'>If the implementation is hard to explain, it's a bad idea.
+</span><span class='line'>If the implementation is easy to explain, it may be a good idea.
+</span><span class='line'>Namespaces are one honking great idea -- let's do more of those!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>僕が最初に学んだ言語は Python で，The Zen of Python の思想はとても好きでした．</p>
+
+<ul>
+<li>Explicit is better than implicit.</li>
+<li>Simple is better than complex.</li>
+<li>Readability counts.</li>
+<li>There should be one&ndash; and preferably only one &ndash;obvious way to do it.</li>
+</ul>
+
+
+<p>Go は The Zen of Python に，ともすれば Python 以上にマッチしています．
+Go が Pythonic なところも間違いなく僕が Go を好きになった一因です．
+なんなら，Go が Python より Pythonic なので，もう Python で書くようなところは，
+Go で書きたい．</p>
+
+<p>Go の前に学んだ言語は Scala でした．
+Scala が魅せてくれるプログラミング言語の可能性にはスゴイなぁ，おもしろいなぁ，
+と思いつつも，Scala が気になる子止まりだったのは，The Zen of Python の思想の真逆を
+行くような，ないし真逆のコードが生まれやすい言語だからだと思います．
+Scala は今も書いているし，堅牢かつ規模の大きいコードも Scala だと比較的安心して書いていけたり，
+僕に &ldquo;Functional Programming&rdquo; などを教えてくれた Scala は好きですが，恋に落ちるほどではなかった．
+僕を含め，もう少し人類が進化するとまた変わってくる気もする．</p>
+
+<h3>Go とのこれから</h3>
+
+<p>2017年もGoと仲良くやってきたいです．個人的には特に Vim との連携とか含め．
+Go 本体になんかコントリビュッションしたいと思いつつできなかったので，機会があればやっていきたい．</p>
+
+<p>あとは，Go のよさを再確認するため(?)に別のパラダイムの言語(rust とか)にちょい浮気しつつやっていきたいですね．</p>
+
+<h2>Vim との 2016年 - 本妻は Vim</h2>
+
+<p>2016年のVim活もザックリ振り返ります．</p>
+
+<h3>EasyMotion 3.0</h3>
+
+<p><a href="http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました - haya14busa</a></p>
+
+<p>結構前にやった気もしますが，今年でした．
+バージョン3.0の機能追加でウィンドウをまたいだEasyMotionによるカーソル移動が実現しました．
+完全にライフチェンジング機能だし，待望の機能の実現で自分の Vim script 力の高まりも確認できてよかった．</p>
+
+<h3>vital のロード高速化</h3>
+
+<ul>
+<li><a href="http://haya14busa.com/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする - haya14busa</a></li>
+<li><a href="https://github.com/vim-jp/vital.vim/pull/415">vital モジュールのロードを爆速にする &amp; ロード方法を考える by haya14busa · Pull Request #415 · vim-jp/vital.vim</a></li>
+</ul>
+
+
+<p>まず，revital.vim という別プラグインで vital.vim のロードを高速化できることを示した後，結局 vital.vim 本体に入れてもらいました．
+ついでにリファクタリングしたりインターフェースの改善も行いました(後方互換性は維持している)．
+特定の環境でvital.vimが遅いという問題を完全に解決し，現在では autoload 関数を呼ぶのと変わらなくなってます．</p>
+
+<h3>はじめてのパッチ - Vim の Contributer に!</h3>
+
+<ul>
+<li><a href="https://github.com/vim-jp/issues/issues/893">statuslineの%{}などでevalした際に，try-catch でVimのエラーをキャッチしていても statusline が disable されてしまう · Issue #893 · vim-jp/issues</a></li>
+<li><a href="https://github.com/vim/vim/commit/a742e084b677f76c67e9e52c4f9fb9ab24002e20">patch 7.4.1711 · vim/vim@a742e08</a></li>
+</ul>
+
+
+<p>vital のロード高速化の際に Vim のバグを踏んで，小さいですがはじめてパッチを書いて取り込まれました!
+このバグは本体のバグだったということもあって異常に原因究明が難しく，原因を見つけたのは <a href="https://github.com/lambdalisue">lambdalisue</a> さんでした．</p>
+
+<p>今年は他にも EasyMotion で踏んだバグの修正パッチや，Vim8.0 リリース前の channelやjob 機能を叩いたパッチを書いたり，
+Vim 8.0 に lambda いれようぜ! ともう一回 vim-jp でちょっと騒いで，あとは vim-jp の <a href="https://github.com/mattn">mattn</a> さんや
+<a href="https://github.com/k-takata">k-takata</a> さんに丸投げするなどをしてました．</p>
+
+<p>そのあたりの話で１つ記事を書いてます -> <a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.nxkskyex2">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></p>
+
+<p>今年になって小さいとは言え Vimのパッチ書いたりできたのはとても嬉しかったです．
+Vim のソースコードも読むことは出来るし，デバッグの仕方もわかってきたし，
+場合によってはちょっと修正するくらいのことも出来るということがわかったのは収穫でした．
+ただ，もっと C 力は高めたほうがよさそう．</p>
+
+<h3>Vim 8.0 &amp; Go関連</h3>
+
+<ul>
+<li>go-vimlparser</li>
+<li>vim-go-client</li>
+<li>vim-stacktrace</li>
+<li>パッチいくつか．</li>
+</ul>
+
+
+<p>詳細は Go のところで紹介したので省略．</p>
+
+<h3>VimConf</h3>
+
+<ul>
+<li><a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.d8n121p9e">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li><a href="https://github.com/haya14busa/vim-metarepeat">haya14busa/vim-metarepeat</a></li>
+<li><a href="https://github.com/haya14busa/vim-textobj-function-syntax">haya14busa/vim-textobj-function-syntax: heuristic syntax-based text-object for function</a></li>
+</ul>
+
+
+<p>発表は go-vimlparser についての話ですでに書きましたが，
+<a href="https://github.com/t9md">t9md</a> さんの <a href="https://github.com/t9md/atom-vim-mode-plus">t9md/atom-vim-mode-plus</a> の発表が面白くて，
+Atom の vim-mode-plus のアイデアを Vim にバックポートする業などをしていました．</p>
+
+<p><a href="https://github.com/haya14busa/vim-metarepeat">haya14busa/vim-metarepeat</a> は vim-mode-plus の occurence で出来るようになる便利な機能を別の角度から実装したもので，
+ドットリピートをオペレータとして，テキストオブジェクト内の対象に対して一括でドットリピートを実行するものです．
+記事には書いてないけどissueにちょっと考えとかを書いています -> <a href="https://github.com/vim-jp/issues/issues/977#issuecomment-259703728">https://github.com/vim-jp/issues/issues/977#issuecomment-259703728</a>
+vim-metarepeat はかなり便利で常用していて，記事書くかぁと思いながら今年が終了しました．</p>
+
+<p><a href="https://github.com/haya14busa/vim-textobj-function-syntax">haya14busa/vim-textobj-function-syntax</a> は関数text-objectをVimのsyntaxを使って言語ごとに用意せずに使えるようにしたものです．
+syntax によって使える/使えない言語がありますが，ちょっと便利．
+これも記事にはしてないけどissueにちょっとコメントしてます．-> <a href="https://github.com/vim-jp/issues/issues/987#issuecomment-262870187">https://github.com/vim-jp/issues/issues/987#issuecomment-262870187</a></p>
+
+<h3>Google Translate の衝撃と Vim</h3>
+
+<p><a href="https://japan.googleblog.com/2016/11/google.html">Google Japan Blog: Google 翻訳が進化しました。</a></p>
+
+<p>今年はGoogle Translate が日英間の翻訳に Neural Machine Translation を導入して，
+機械翻訳がとても流暢になりました．Google Translate さんすごい．
+この改善をみて，Vimから使いやすくするためにいくつかプラグインを作りました．</p>
+
+<ul>
+<li><a href="https://github.com/haya14busa/vim-open-googletranslate">haya14busa/vim-open-googletranslate: Open Google Translate (https://translate.google.com/) from Vim.</a>
+
+<ul>
+<li>Vim から Google Translate を開く operator やコマンドを追加するプラグイン．常用してます．</li>
+<li><a href="https://twitter.com/Linda_pp">りんだん</a> さんに <a href="https://github.com/rhysd/electron-open-url">rhysd/electron-open-url</a> という Electron で url を開くものを作ってもらって，これをつかって Google Translate を開く設定をすることによって，連続で翻訳しやすくなってとても便利になりました．</li>
+</ul>
+</li>
+<li><a href="https://github.com/haya14busa/gtrans">haya14busa/gtrans: Command-line translator using Google Translate</a></li>
+<li><a href="https://github.com/haya14busa/vim-gtrans">haya14busa/vim-gtrans: Google Translate in Vim</a>
+
+<ul>
+<li>Google Translate の API を使ったもの．こちらは Vim のバッファで完結できる．</li>
+<li>API はめちゃめちゃ安いとはいえ，お金がかかるし，vim-open-googletranslate with electron-open-url の組み合わせが十分便利なのでそちらを最近は使ってる．</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>英語でブログ記事を書く</h2>
+
+<p>Google Translate の流れでいうと今年後半からは実験的にブログ記事も英語で書くようにしました．
+Google Translate 改善前からやっていて，改善後も勿論(?)Google Translateはあくまで補助としての使用ですが．</p>
+
+<h3>書いた英語 Posts</h3>
+
+<ul>
+<li><a href="https://medium.com/@haya14busa">haya14busa – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.5f2fkfj0o">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.gj03djo2w">Vim Script Parser written in Go – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.80j73sekq">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.pz8doupyk">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.zhpcp2dot">Golang tips you might not know – Medium</a></li>
+<li><a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.l22136r8d">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a></li>
+</ul>
+
+
+<p>英語で書く記事かどうか決めるというよりは，基本的に英語で書いて，どうしても日本語で書いたほうがよさそうだったら日本語で書くことにしています．
+直近の2つのアドベントカレンダーは普通に日本語で書いてしまって守れてないけど&hellip;正直時間が取れなかったので日本語に逃げました&hellip;
+まぁ日本語で発信するのもそれはそれで大事だと思うのでいいかなぁーとは思ってます．</p>
+
+<p>英語で書く理由としては，今後使うし勉強のためやらなきゃ&hellip;という理由と，
+発信を日本に閉じる必要性はないかなーと最近は考えてるからでした．
+僕はVimとかGoについて書くことが最近は多いですが，それらの記事のターゲットは大抵 Vimmer か Gopher で，
+別に想定読者を日本人に絞る必要性はないんですよね．</p>
+
+<p>日本語で書いた後，英訳しようとはなかなか行動できないので，英語・日本語両方ポスト作ると言うよりは，
+実質デファクトになってる英語で書けば英語読める日本人は読めるので，基本的には
+英語で1つ記事を書くということにしました．</p>
+
+<p>&hellip;とはいえ時間やクオリティーの兼ね合い，日本のコミュニティーの活性化，
+フィードバックのもらいやすさ，そして何より現状の英語力が足りてない問題など，
+色々と問題はありますが．そもそもたくさんの人に読んでもらうというのが目的ではないという観点もありそうだけど．</p>
+
+<p>英語で書くと特に日本では伸びづらいですが，
+日本で伸びなくても今までリーチしなかった層にリーチするし，
+今年書いた記事はだいたいある程度は日本人もそれ以外も読んでもらえたっぽいので，
+今の所やってみてよかったです．
+reddit とかにあげるとそこそこ読みにきてくれて便利．(redditのCEOがコメント編集したという事件があって，若干使いたさが減りましたが&hellip;)．
+来年も続けていこうかなぁと思います．</p>
+
+<p>英語に関してはWritingもそうだけど，どちらかといえば勉強する必要があったのはSpeaking/Listeningだった気が&hellip;
+という説もあり，今後がとても心配すぎる&hellip;</p>
+
+<h2>2016年活動情報</h2>
+
+<h3>GitHub Contributions</h3>
+
+<ul>
+<li><a href="https://github.com/haya14busa?utf8=%E2%9C%93&amp;tab=repositories&amp;q=created%3A%222016-01-01%20..%202017-01-01%22%20fork%3Afalse&amp;type=&amp;language=">作った Repositories</a></li>
+<li><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222016-01-01+..+2017-01-01%22+&amp;type=Issues&amp;ref=searchresults">開いた issues</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Apr+author%3Ahaya14busa+created%3A%222016-01-01+..+2017-01-01%22+">開いた Pull Requests</a></li>
+</ul>
+
+
+<p>GitHub Contributions (including private contributions)</p>
+
+<p><img src="../images/post/2016-github-all-contributions.png" alt="GitHub Contributions (including private contributions)" /></p>
+
+<p>GitHub Contributions (public)</p>
+
+<p><img src="../images/post/2016-github-public-contributions.png" alt="GitHub Contributions (public)" /></p>
+
+<h3>Posts</h3>
+
+<ul>
+<li>Jan 19 <a href="http://haya14busa.com/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました - haya14busa</a></li>
+<li>Mar 23 <a href="http://haya14busa.com/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする - haya14busa</a></li>
+<li>May 30 <a href="http://haya14busa.com/amazon-kindle-sale-til-2016-06-02/">6/2までKindle本50%オフセール!IT系の本で僕が欲しい本をまとめた!!! - haya14busa</a></li>
+<li>Jul 02 <a href="http://haya14busa.com/hatena-pepabo-kyoto/">はてな・ペパボ技術大会〜インフラ技術基盤〜@京都 行ってきたメモ - haya14busa</a></li>
+<li>Oct 24 <a href="http://haya14busa.com/reviewdog/">reviewdog を飼ってコードレビューや開発を改善しませんか - haya14busa</a></li>
+<li>Nov 02 <a href="http://haya14busa.com/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで mock を書く技法 - haya14busa</a></li>
+<li>Dec 21 <a href="http://haya14busa.com/vim-go-client/">Go で Vim プラグインを書く - haya14busa</a></li>
+<li>Dec 24 <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a></li>
+</ul>
+
+
+<h3>Posts (English)</h3>
+
+<ul>
+<li>Sep 13 <a href="https://medium.com/@haya14busa/vim-8-0-released-and-now-im-a-contributor-of-vim-36d93bbfc7b6#.zeqiwqjtq">Vim 8.0 released and Now, I’m a contributor of Vim !!! – Medium</a></li>
+<li>Sep 20 <a href="https://medium.com/@haya14busa/vim-script-parser-written-in-go-4d0296782a14#.5ehmbn3dn">Vim Script Parser written in Go – Medium</a></li>
+<li>Oct 24 <a href="https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.lk0e5kix0">reviewdog — A code review dog who keeps your codebase healthy – Medium</a></li>
+<li>Nov 7 <a href="https://medium.com/@haya14busa/report-of-vimconf2016-an-international-conference-for-vim-f99925893322#.fe69sy14m">Report of #vimconf2016 — an international conference for Vim – Medium</a></li>
+<li>Dec 1 <a href="https://medium.com/@haya14busa/golang-tips-you-might-not-know-1c90e6921a3#.77th9mu4e">Golang tips you might not know – Medium</a></li>
+<li>Dec 6 <a href="https://medium.com/@haya14busa/sum-union-variant-type-in-go-and-static-check-tool-of-switch-case-handling-3bfc61618b1e#.cp9eqobvo">Sum/Union/Variant Type in Go and Static Check Tool of switch-case handling – Medium</a></li>
+</ul>
+
+
+<h2>歩くのが下手って気付いた2016年</h2>
+
+<p>今年は1つ大きく躓いた出来事がありました．躓いただけなら立て直せばよかったはずだったけど，
+そのまま歩き続ける意味を見失い，歩みを進めようとする心はもう折れていて，しばらくその場でうずくまってしまいました．
+躓いたことにも，歩き直せなかったことにも，道を変えて歩くことさえもできずに，ただただうずくまってました．
+今まで通りとはいかないにしても，もうちょっとうまく歩けたはずでした．
+あぁ，僕は歩くのがなんて下手なんだ&hellip;</p>
+
+<p>今の所，詳細はオープンインターネットには書かなくてもいいかな&hellip;と思ってます．
+書く気がないのにここでふんわり書いたのは完全に自己満足です．忘年です．忘れないけど．</p>
+
+<p>あとは完全にここでやるべきことではないけど，一種の懺悔みたいなものです．
+僕が単に1人でうずくまったまま世界から消えても，別に世界はどうってことないけど，
+無駄に不要なところにまで迷惑をおかけしてしまったり，いくつか見えた差し伸べられた手も
+完全にシャットアウトしてしまったことは，単純に反省しています．ごめんなさい．</p>
+
+<p>最近は人間的な生活をおくるリハビリをしていて，心に平穏は戻りつつある気はします．</p>
+
+<h2>最後に</h2>
+
+<p>2016年の振り返り記事だって言ってるのに無駄なポエムがところどころにあるせいで無駄に長くなった気がします．
+あとオープンにやってきたこと何でもかんでも放り込み過ぎて長くなったので，もうちょっとハイライトだけ振り返ればよかった気もする．
+まぁ，まだまだとはいえ，2016年結構いろいろやったのでは? と振り返って思いました．
+来年の目標，なにか定量的なものを設定して振り返るのが本当は良い気がしますが，
+来年はとりあえず強く生きることを目標にします．</p>
+
+<p>来年がとても素晴らしい1年でありますように．</p>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年]]></title>
@@ -7127,178 +7737,6 @@ themis便利なんですが自分が使いこなせてないのでテストも�
 
 <p><a href="http://vim-jp.org/reading-vimrc/">vimrc読書会</a>は毎週土曜日23:00から<a href="http://lingr.com/room/vim">LingrのVim部屋</a>でオンラインでやっています。
 参加すると、vim力がめちゃめちゃ上がるのでぜひぜひ参加して参加記録を伸ばしたりしましょう!お待ちしておりますよっ</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Osaka.vim #1 に行ってきた]]></title>
-    <link href="http://haya14busa.com/osaka-vim-01/"/>
-    <updated>2014-06-30T19:09:21+09:00</updated>
-    <id>http://haya14busa.com/osaka-vim-01</id>
-    <content type="html"><![CDATA[<ul>
-<li><a href="http://osaka-vim.connpass.com/event/6491/">Osaka.vim #1 - connpass</a></li>
-<li><a href="https://github.com/iyuuya/OsakaVim/wiki/OsakaVim%231">Osaka.vim#1</a></li>
-</ul>
-
-
-<p>6/28(土)に開催されたOsaka.vim #1に行ってきました。 待ちに待った関西圏の Vim 勉強会!</p>
-
-<h2>関西圏のVim勉強会!</h2>
-
-<p>過去を遡るといくつか関西でのvim勉強会が開催されていたようなのですが、いづれも現在まで続いているものはなく、最近ではめっきりなくなっていました。 関東その他のVimの勉強会は結構な頻度で開催されており、しかもどれも楽しそう。 関西Emacsはあるのに関西Vimない!ﾅﾝﾃﾞ!</p>
-
-<p>他の地域でのVim勉強会を見るたびに羨ましさの涙でvimrcを濡らしていたところ、やっと機会が回ってきました。</p>
-
-<h4>2014/04/05</h4>
-
-<blockquote><p>haya14busa: kansai.vim . &ldquo;#x09&rdquo; &ldquo; 関西Vim</p>
-
-<p>manga_osyo: やると聞いて
-              haya14busa.vim</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/04/05#message-18727221">vim-users.jp – Lingr</a></p></blockquote>
-
-<p>欲しいと思っている様子(口だけ)。そして時は流れて1ヶ月後</p>
-
-<h4>2014/05/17</h4>
-
-<blockquote><p>iyuuya: 大阪でもxxx.vimって無いんですかね
-          iyuuya.vimやってもいいんですけどねー</p>
-
-<p>&ndash; <cite><a href="http://lingr.com/room/vim/archives/2014/05/17#message-19050010">vim-users.jp – Lingr</a></p></blockquote>
-
-<p><strong>やりたい!!!</strong></p>
-
-<p>やっと開催の流れが現実味を帯びてきました。というか<a href="https://twitter.com/iyuuya">@iyuuya</a>さんが現実味を帯びせてくれました。非常に便利。
-一応、「一緒に開催しましょー」と<a href="https://twitter.com/iyuuya">@iyuuya</a>さんに言っていただいたのですが、ここから開催日を決めて開催場所を決め、告知etc&hellip;
-という流れまで <del>一緒に決め&hellip;</del> <a href="https://twitter.com/iyuuya">@iyuuya</a>さんがほとんどすべてやってくれ、とうとう<strong>Osaka.vim</strong>の開催が決定しました!</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">for</span> _ <span class="k">in</span> range<span class="p">(</span><span class="m">100</span><span class="p">)</span>
-</span><span class='line'>  @iyuuya<span class="p">++</span>
-</span><span class='line'><span class="k">endfor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://twitter.com/iyuuya">@iyuuya</a>さん本当にありがとうございました &amp; おつかれさまです。</p>
-
-<h2>Osaka.vim #1</h2>
-
-<p>待ちにまったOsaka.vim、 非常に楽しかったです。</p>
-
-<h3>@thinca さんによるライブコーディング</h3>
-
-<p>最初は <a href="https://twitter.com/thinca">@thinca</a> によるライブコーディングでした。
-個人的にスクリーンキャストとか実際に操作している画面を見るのはとても好きなのですが、ライブコーディングとして生でコード書いているのを見るのは初めてで、より面白かったです。</p>
-
-<p>Vimから一切出ずに操作していたり、<code>CursorHold</code>で <code>cursorline</code> を設定するなどといった便利tipsが得られたりなど、
-さすがthincaさんというべきか見ているだけでとてもおもしろかったのですが、周りの怖いVimmerたちがそこはこうじゃないか,などなど
-デバッグ手伝ったり、果ては Lingrのvim部屋 にいた Shougo さんにリアルタイムでuniteを修正をしてもらうなど、
-これがソーシャルコーディングか&hellip;!と驚きの連続でした。</p>
-
-<ul>
-<li>作成されたプラグイン: <a href="https://github.com/thinca/vim-quickmemo">thinca/vim-quickmemo</a></li>
-<li>uniteの修正の様子: <a href="https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9">https://github.com/Shougo/unite.vim/commit/94a29bc73d91f6a7847bc22cb4d37a3f482f9ec9</a></li>
-</ul>
-
-
-<p>まさかの <strong>1時間半</strong> にも渡るライブコーディングでしたが見ていて飽きず、面白かったです。thincaさんお疲れ様でした。</p>
-
-<h3>フリータイム</h3>
-
-<p>もくもく回となるかと思いきや,思った以上に交流会でﾜｲﾜｲという感じで非常に面白かったです。 <em>#進捗なんてなかった</em></p>
-
-<p>vimのキーマップの話をしたり、vi過激派の設定を聞いて狂気を感じたり、何故かAtomしてる人がいたり、T-code という完全に人類には早すぎる入力メソッドの紹介などがあってとても楽しめました。</p>
-
-<p><a href="https://twitter.com/itchyny">@itchyny</a> の <a href="https://github.com/itchyny/miv">itchyny/miv</a> というコマンドベースのHaskell製Vimプラグインマネージャの話が面白くて、ここでも来てよかったなぁと思いました。</p>
-
-<p><code>miv</code>の存在は知っていたけど本当に知っていただけで全然試したこともなかったのですが、
-聞いてみると興味をそそられました。
-<code>NeoBundleLazy</code> は遅延ロード用の指定したコマンドなどを動的に設定しているけど、
-いやそこは事前に生成できるし、そうすればもっと速くなるので<code>miv</code>はそうしてるなどといった利点の説明や、
-コマンドラインベースなのでシェルからプラグイン一覧を簡単に出したり、それぞれに<code>git gc</code>したりなどといった
-使い方がとても良さそうでした。</p>
-
-<p>ネックなところがあるとすれば個人的には<code>yaml</code>にVim scriptを書くところがやはり気になるのですが、試してみたいと思いました。</p>
-
-<blockquote><p><strong>既存のものに不満を持ちましょう</strong></p></blockquote>
-
-<p>とitchynyさんが最後に締めくくったのが個人的には結構ささりました。
-<del>今のところ<code>NeoBundleLazy</code>に不満がなかったとか言えない&hellip;</del></p>
-
-<p>割と大きいプラグインになると少々不満を持ってもだいたい無意識のうちにデカくて改善するのも大変そう, そもそもそんな大きいプロジェクトを改善するプログラミング力足りてなさそう&hellip;などと考えて、振り返ればそうやって妥協してるところが多々あるなぁということを再確認しました。</p>
-
-<p>ぼくの一番大きいVim活プロジェクトとしては、やっぱりEasyMotionになってしまうのですが、
-この <a href="http://haya14busa.com/mastering-vim-easymotion/">EasyMotionの開発を<del>乗っ取った</del>引き継いだ</a>という話は
-それこそ、それまでのEasyMotionに不満があって、より改善したい!という思いからゴリ押しで進めたところがあって、
-周りのVimmerたちに助けを求めながらもある程度の成果を出すことができました。</p>
-
-<p>そもそもの <code>NeoBundle</code> もおそらく <code>Pathogen</code>や <code>Bundle</code>といった既存マネージャに満足できない、不満があったから <code>NeoBundle</code>が作られたのだと思います(当時の話は知りませんが)。</p>
-
-<p>やはりこういう「不満」を持って、大きいプロジェクトでも妥協せずに取り組んで行くというのは、1つのあるべき姿だなぁと改めて感じました。</p>
-
-<p>がんばりたい</p>
-
-<h3>発表した</h3>
-
-<ul>
-<li>Slide資料: <a href="http://haya14busa.github.io/slide/2014-06-28-osaka-vim/">これからはじめるVimプラグイン開発</a></li>
-</ul>
-
-
-<p>そんなこんなで6時までのフリータイムだったのですが、残りだいたい30分。</p>
-
-<p>「フリータイム&hellip;??きっと発表する人いるでしょ&hellip;? 用意出来てない&hellip;ﾔﾊﾞｲ!!!」
-と実は朝起きてから2-3時間使ってざっくりスライドを書いたり、前からあったらいいなぁと思っていた
-<a href="https://github.com/osyo-manga/vital-over">osyo-manga/vital-over</a> を使った簡単なインクリメンタル検索の
-拡張プラグインがサクッとプロトタイプが作れてライブコーディングするのにいいんじゃないかなーと考えていたのでした。</p>
-
-<p>他のVimmerたちと話しているのが面白かったとか、他の進捗だそうと思っていたとか、
-あんまり用意してないし別にやらなくてもいいかなーとかいろいろ思ってたのですが、
-結局一番やろうとしなかった理由は勉強会で発表とか全くやったことないので日和ってたとかいう
-ﾀﾞﾒﾀﾞﾒな理由だったので、せっかくスライド作ったしｴｲﾔｰと発表しました。</p>
-
-<p>が、完全に言い出す時間が遅くて時間足りなかった上、そもそも十分に用意できてないのでグダったところもありなかなかつらみがありました&hellip;</p>
-
-<p>こういう勉強会って、別に全員がプラグイン書いてるような怖い方ばかりではなく、結構そのへんはやったことないよーという
-かたもたくさんいると思うので、そのあたりの層でこれからVimプラグイン作ってみたいって方向け(いると信じてる)
-に簡単なプラグインの構造と、僕がやってて便利だなぁーと思っていたデバッグの仕方を中心に発表しました。</p>
-
-<p>反応はイマイチわからなかった()</p>
-
-<p>その後にvital-overつかったインクリメンタル検索プラグインは、便利そう感はある程度伝わったような気がしたのですが、結局既存のものを見せるだけで終わった感がなきにしもあらず、ほんとにもっと早めに始めとけばよかったと反省しました&hellip;
-しかも、thincaさんが言っていたように、完全に作ってしまったものをそのまま書き直すのはライブコーディングっぽくもないので、簡単なプロトタイプにあえて留めて完成度もまだ低かったので出来ているものを見せてもそこまで大したものではなく輪をかけて反省でした。@各位 スイマセンでした</p>
-
-<h2>懇親会&hellip;そしてカラオケオールへ</h2>
-
-<p>その後、懇親会にいって美味しい料理を食べながらﾜｲﾜｲ話したりしてとても満足でした。
-アルコール入ったままカラオケオールは終盤つらくて帰って爆睡しました。若さがたりない。</p>
-
-<p>カラオケ中のvimrc 読書会が終了したあとサイトの更新で自動化できてなくて自分が更新ミスったこともあり、
-初めて ruby さわってみて 次に読むvimrcを更新する簡単なスクリプトをrubyで書きました。</p>
-
-<ul>
-<li><a href="https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb">https://github.com/vim-jp/reading-vimrc/blob/gh-pages/scripts/update_next_vimrc.rb</a></li>
-</ul>
-
-
-<p>更新便利になって満足。</p>
-
-<p>Vim部屋にも関わらず、rubyのインタラクティブシェルのことをlingrで聞いてpryを教えてもらったり、iyuuyaさんに<code>anyenv</code>つかって<code>rbenv</code>でrubyの環境管理するのを教えてもらったり、できたあとにvim部屋で何故かrubyスクリプトのレビューしてもらったりと、なかなかやっていて楽しかったです。教えてくださった各位ありがとうございました!</p>
-
-<p>何気にOsaka.vimで出した目に見える進捗がこのスクリプトくらいでVim scriptは進捗ﾀﾞﾒﾃﾞｼﾀ&hellip;</p>
-
-<h2>次回&hellip;?</h2>
-
-<p>きっと来月か再来月までにはOsaka.vim #2が開催されると思うのでぜひ#1に参加した人も、そうでない人も参加しましょう！</p>
-
-<p>思った以上に京都の学生が多かったのでKyoto.vimもﾜﾝﾁｬﾝあるんじゃないかとかも思うけどどうでしょうね(ﾁﾗｯ</p>
-
-<p>Osaka.vim #1, とっても楽しかったです。お疲れ様でした！</p>
-
-<p><strong><code>:wq Osaka.vim_01</code></strong></p>
 ]]></content>
   </entry>
   
