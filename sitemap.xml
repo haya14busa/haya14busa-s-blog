@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://haya14busa.com/go-typeconv/</loc>
+    <lastmod>2017-02-06T08:28:19+09:00</lastmod>
+  </url>
+  <url>
     <loc>http://haya14busa.com/2016-is-go-year/</loc>
     <lastmod>2016-12-29T17:47:59+09:00</lastmod>
   </url>
@@ -384,5 +388,8 @@
   </url>
   <url>
     <loc>http://haya14busa.com/categories/go/</loc>
+  </url>
+  <url>
+    <loc>http://haya14busa.com/categories/go-vim/</loc>
   </url>
 </urlset>

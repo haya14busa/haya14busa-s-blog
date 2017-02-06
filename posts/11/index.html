@@ -9,7 +9,12 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="A Concise History of Mathematics: Fourth Revised Edition (Dover Books on Mathematics) Dirk J. Struik,Mathematics Dover Publications 1987-08-01 ￥ 783 &hellip;">
+  <meta name="description" content="記憶の歪み・バイアス 記憶の七癖(Achacter, 1999) 環境による影響
+事後情報による誤誘導
+感情や精神状態による影響
+認知地図の歪み
+シーン記憶における境界拡張 短期記憶において視覚イメージが歪むという報告は少ない 統計的平均へのバイアス
+既有知識への回帰 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +81,101 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-10-09T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>記憶の歪み・バイアス</h2>
+
+<ul>
+<li>記憶の七癖(Achacter, 1999)
+
+<ul>
+<li>環境による影響</li>
+<li>事後情報による誤誘導</li>
+<li>感情や精神状態による影響</li>
+<li>認知地図の歪み</li>
+<li>シーン記憶における境界拡張</li>
+</ul>
+</li>
+<li>短期記憶において視覚イメージが歪むという報告は少ない
+
+<ul>
+<li>統計的平均へのバイアス</li>
+<li>既有知識への回帰</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>身体の部位の位置にかんする短期記憶実験</h2>
+
+<ul>
+<li>どの程度記憶できるか？</li>
+<li>バイアスは？</li>
+</ul>
+
+
+<h2>考察</h2>
+
+<ul>
+<li>歪みの原因
+
+<ul>
+<li>原型回帰・プロトタイプ仮説</li>
+<li>身体スキーマ仮説</li>
+</ul>
+</li>
+<li>今後
+
+<ul>
+<li>身体スキーマ(長期記憶)との関連</li>
+</ul>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/bias-of-short-term-memory/">身体的短期記憶の歪み・バイアス</a>
+      <time datetime="2013-10-09T00:00:00+09:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/memo/'>memo</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -702,299 +802,6 @@ sudo mount -t vmhgfs .host:/ /mnt/hgfs
       </footer>
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/python-nltk-natural-language-processing/">Python,NLTKで自然言語処理</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-08-16T00:00:00+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Install nltk</h2>
-
-<pre><code>$ pip install nltk
-</code></pre>
-
-<p>wordnetのコーパスをPythonインタプリタからダウンロード</p>
-
-<pre><code>$ python
-Python 2.7.5 (default, Jul 19 2013, 19:37:30)
-[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; import nltk
-&gt;&gt;&gt; nltk.download()
-</code></pre>
-
-<p>MacならGUIの画面が起動するので適当に従ってダウンロード。</p>
-
-<p>書き終わってから気づいたけど以下ナチュラルに<code>see()</code>使ってます。代わりに<code>dir()</code>使うか、そもそも飛ばすか、便利なので<code>see</code>をインストールしましょう。</p>
-
-<pre><code>$ pip install see
-</code></pre>
-
-<p>~/.pythonstartup に</p>
-
-<pre><code>from see import see
-</code></pre>
-
-<p>を記述しておくと便利</p>
-
-<p><a href="https://github.com/haya14busa/dotfiles/blob/master/.pythonstartup">dotfiles/.pythonstartup at master · haya14busa/dotfiles</a></p>
-
-<h2>Stemming and Lemmatisation</h2>
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Stemming">Stemming &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li>語幹化</li>
-</ul>
-</li>
-<li><a href="http://en.wikipedia.org/wiki/Lemmatisation">Lemmatisation &#8211; Wikipedia, the free encyclopedia</a>
-
-<ul>
-<li>見出し語化, レンマ化</li>
-</ul>
-</li>
-</ul>
-
-
-<p>語幹化、見出し語化の前に、大文字・小文字を正規化しておく。(語幹化は大文字小文字混ざってても動くっぽいけどレンマ化は動かない)</p>
-
-<pre><code>&gt;&gt;&gt; print 'Python'.lower()
-python
-</code></pre>
-
-<h3>Stemming</h3>
-
-<pre><code>&gt;&gt;&gt; from nltk import stem
-&gt;&gt;&gt; see(stem)
-    help()                 .ISRIStemmer()         .LancasterStemmer()
-    .PorterStemmer()       .RSLPStemmer()         .RegexpStemmer()
-    .SnowballStemmer()     .StemmerI()            .WordNetLemmatizer()   .api
-    .isri                  .lancaster             .porter
-    .regexp                .rslp                  .snowball
-    .wordnet
-&gt;&gt;&gt; stemmer = stem.PorterStemmer()
-&gt;&gt;&gt; stemmer.stem('dialogue')
-'dialogu'
-&gt;&gt;&gt; stemmer2 = stem.LancasterStemmer()
-&gt;&gt;&gt; stemmer2.stem('dialogue')
-'dialog'
-</code></pre>
-
-<p>PorterStemmerとLancasterStemmerでアルゴリズムが違うっぽい。</p>
-
-<p>Lancasterのほうがアグレッシブ。</p>
-
-<blockquote><p>Porter: Most commonly used stemmer without a doubt, also one of the most gentle stemmers. One of the few stemmers that actually has Java support which is a plus, though it is also the most computationally intensive of the algorithms(Granted not by a very significant margin). It is also the oldest stemming algorithm by a large margin.</p>
-
-<p>Lancaster: Very aggressive stemming algorithm, sometimes to a fault. With porter and snowball, the stemmed representations are usually fairly intuitive to a reader, not so with Lancaster, as many shorter words will become totally obfuscated. The fastest algorithm here, and will reduce your working set of words hugely, but if you want more distinction, not the tool you would want.</p>
-
-<p>&#8211; <cite><a href="http://stackoverflow.com/questions/10554052/what-are-the-major-differences-and-benefits-of-porter-and-lancaster-stemming-alg">java &#8211; What are the major differences and benefits of Porter and Lancaster Stemming algorithms? &#8211; Stack Overflow</a></cite></p></blockquote>
-
-<p>個人的にdialogueとdialogでstemが違うとつらいのでLancaster使ってみて、ミスが多いようならPorter使う予定。</p>
-
-<p>他にもSnowballとかあるけど割愛</p>
-
-<h3>Lemmatisation</h3>
-
-<pre><code>&gt;&gt;&gt; from nltk import stem
-&gt;&gt;&gt; lemmatizer = stem.WordNetLemmatizer()
-&gt;&gt;&gt; lemmatizer.lemmatize('dialogs')
-'dialog'
-&gt;&gt;&gt; lemmatizer.lemmatize('dialogues')
-'dialogue'
-&gt;&gt;&gt; lemmatizer.lemmatize('cookings')
-'cooking'
-&gt;&gt;&gt; lemmatizer.lemmatize('cooking', pos='v')
-'cook'
-</code></pre>
-
-<h2>Tokenization</h2>
-
-<p><a href="http://en.wikipedia.org/wiki/Tokenization">Tokenization &#8211; Wikipedia, the free encyclopedia</a></p>
-
-<pre><code>&gt;&gt;&gt; from nltk import tokenize
-&gt;&gt;&gt; see(tokenize)
-    help()                    .BlanklineTokenizer()     .LineTokenizer()
-    .PunktSentenceTokenizer()                           .PunktWordTokenizer()
-    .RegexpTokenizer()        .SExprTokenizer()         .SpaceTokenizer()
-    .TabTokenizer()           .TreebankWordTokenizer()  .WhitespaceTokenizer()
-    .WordPunctTokenizer()     .api                      .blankline_tokenize()
-    .line_tokenize()          .load()                   .punkt
-    .regexp                   .regexp_tokenize()        .sent_tokenize()
-    .sexpr                    .sexpr_tokenize()         .simple
-    .treebank                 .util                     .word_tokenize()
-    .wordpunct_tokenize()
-&gt;&gt;&gt; aio1 = 'He grinned and said, "I make lots of money.  On weekdays I receive
-an average of 50 orders a day from all over the globe via the Internet."'
-</code></pre>
-
-<h3>Sentence Tokenization</h3>
-
-<pre><code>&gt;&gt;&gt; tokenize.sent_tokenize(aio1)
-['He grinned and said, "I make lots of money.', 'On weekdays I receive an average of 50 orders a day from all over the globe via the Internet.', '"']
-</code></pre>
-
-<h3>Word Tokenization</h3>
-
-<pre><code>&gt;&gt;&gt; tokenize.word_tokenize(aio1)
-['He', 'grinned', 'and', 'said', ',', '``', 'I', 'make', 'lots', 'of', 'money.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '.', "''"]
-&gt;&gt;&gt; tokenize.wordpunct_tokenize(aio1)
-['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
-</code></pre>
-
-<h2>Delete Stopwords</h2>
-
-<p><a href="http://en.wikipedia.org/wiki/Stop_words">Stop words &#8211; Wikipedia, the free encyclopedia</a></p>
-
-<pre><code>&gt;&gt;&gt; from nltk.corpus import stopwords
-&gt;&gt;&gt; stopset = set(stopwords.words('english')
-... )
-&gt;&gt;&gt; stopset
-set(['all', 'just', 'being', 'over', 'both', 'through', 'yourselves', 'its', 'before', 'herself', 'had', 'should', 'to', 'only', 'under', 'ours', 'has', 'do', 'them', 'his', 'very', 'they', 'not', 'during', 'now', 'him', 'nor', 'did', 'this', 'she', 'each', 'further', 'where', 'few', 'because', 'doing', 'some', 'are', 'our', 'ourselves', 'out', 'what', 'for', 'while', 'does', 'above', 'between', 't', 'be', 'we', 'who', 'were', 'here', 'hers', 'by', 'on', 'about', 'of', 'against', 's', 'or', 'own', 'into', 'yourself', 'down', 'your', 'from', 'her', 'their', 'there', 'been', 'whom', 'too', 'themselves', 'was', 'until', 'more', 'himself', 'that', 'but', 'don', 'with', 'than', 'those', 'he', 'me', 'myself', 'these', 'up', 'will', 'below', 'can', 'theirs', 'my', 'and', 'then', 'is', 'am', 'it', 'an', 'as', 'itself', 'at', 'have', 'in', 'any', 'if', 'again', 'no', 'when', 'same', 'how', 'other', 'which', 'you', 'after', 'most', 'such', 'why', 'a', 'off', 'i', 'yours', 'so', 'the', 'having', 'once'])
-&gt;&gt;&gt; aio1words = tokenize.wordpunct_tokenize(aio1)
-&gt;&gt;&gt; aio1words
-['He', 'grinned', 'and', 'said', ',', '"', 'I', 'make', 'lots', 'of', 'money', '.', 'On', 'weekdays', 'I', 'receive', 'an', 'average', 'of', '50', 'orders', 'a', 'day', 'from', 'all', 'over', 'the', 'globe', 'via', 'the', 'Internet', '."']
-&gt;&gt;&gt; for word in aio1words:
-...  if len(word) &lt; 3 or word in stopset:
-...   continue
-...  print word
-...
-grinned
-said
-make
-lots
-money
-weekdays
-receive
-average
-orders
-day
-globe
-via
-Internet
-====================
-filter で
-====================
-&gt;&gt;&gt; print filter(lambda w: len(w) &gt; 2 and w not in stopset, aio1words)
-['grinned', 'said', 'make', 'lots', 'money', 'weekdays', 'receive', 'average', 'orders', 'day', 'globe', 'via', 'Internet']
-</code></pre>
-
-<h2>Links</h2>
-
-<ul>
-<li><a href="http://nltk.org/">Natural Language Toolkit — NLTK 2.0 documentation</a></li>
-<li><a href="https://github.com/japerk/PyCon-NLTK-Tutorial">japerk/PyCon-NLTK-Tutorial</a></li>
-<li><a href="http://petitviolet.hatenablog.com/entry/20120523/1337760714">正規表現・自然言語処理 &#8211; I/O Error : My Knowledge</a></li>
-<li><a href="https://github.com/pika-shi/sphinx_information_retrieval/blob/master/natural_language_processing.rst">sphinx_information_retrieval/natural_language_processing.rst at master · pika-shi/sphinx_information_retrieval</a></li>
-</ul>
-
-
-<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
-  <div class="amz-left" style="float:left; margin:0 20px 0;">
-    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51EoFqAGo1L._SL160_.jpg" class="amz-img" /></a>
-  </div>
-  
-  <div class="amz-right" style="overflow:hidden;">
-    <div class="amz-title" style="margin-bottom:20px;">
-      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">入門 自然言語処理</a>
-    </div>
-    
-    <div class="amz-detail">
-      <div class="amz-info1" style="white-space:nowrap;">
-        Steven Bird,Ewan Klein,Edward Loper
-      </div>
-      
-      <div class="amz-info2" style="white-space:nowrap;">
-        オライリージャパン 2010-11-11
-      </div>
-      
-      <div class="amz-price" style="white-space:nowrap;">
-        ￥ 3,990
-      </div>
-      
-      <div class="amz-link" style="margin-top:20px;">
-        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/4873114705/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="amz-container" style="overflow:hidden;margin-bottom:20px;">
-  <div class="amz-left" style="float:left; margin:0 20px 0;">
-    <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51QhcSlOO4L._SL160_.jpg" class="amz-img" /></a>
-  </div>
-  
-  <div class="amz-right" style="overflow:hidden;">
-    <div class="amz-title" style="margin-bottom:20px;">
-      <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofollow" target="_blank">Natural Language Processing with Python</a>
-    </div>
-    
-    <div class="amz-detail">
-      <div class="amz-info1" style="white-space:nowrap;">
-        Steven Bird,Ewan Klein,Edward Loper
-      </div>
-      
-      <div class="amz-info2" style="white-space:nowrap;">
-        Oreilly & Associates Inc 2009-06-30
-      </div>
-      
-      <div class="amz-price" style="white-space:nowrap;">
-        ￥ 3,724
-      </div>
-      
-      <div class="amz-link" style="margin-top:20px;">
-        <a href="http://www.amazon.co.jp/exec/obidos/ASIN/0596516495/haya14busa-22/ref=nosim/" rel="nofllow" target="_blank">Amazon.co.jp で詳細を見る</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/python-nltk-natural-language-processing/">Python,NLTKで自然言語処理</a>
-      <time datetime="2013-08-16T00:00:00+09:00" pubdate><span class='month'>Aug</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/python/'>python</a></span>
-      
-      </footer>
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/12">&larr; Older</a>
@@ -1068,7 +875,7 @@ filter で
 
 <div id="credit" role="contentinfo">
   <p>
-    Copyright &copy; 2016 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    Copyright &copy; 2017 - <a href="https://github.com/haya14busa/">haya14busa</a> -
     <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
   </p>
 </div>
