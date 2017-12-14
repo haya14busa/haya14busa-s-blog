@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2017-02-06T10:15:04+09:00</updated>
+  <updated>2017-12-14T21:38:37+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -14,313 +14,142 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Go に暗黙の型変換機能を明示的に導入する]]></title>
-    <link href="http://haya14busa.com/go-typeconv/"/>
-    <updated>2017-02-06T08:28:19+09:00</updated>
-    <id>http://haya14busa.com/go-typeconv</id>
-    <content type="html"><![CDATA[<h2>Go に暗黙の型変換はない</h2>
+    <title type="html"><![CDATA[コードのエッジへ移動しろ！ vim-edgemotion 作った]]></title>
+    <link href="http://haya14busa.com/vim-edgemotion/"/>
+    <updated>2017-12-14T20:24:11+09:00</updated>
+    <id>http://haya14busa.com/vim-edgemotion</id>
+    <content type="html"><![CDATA[<p>この記事は <a href="https://qiita.com/advent-calendar/2017/vim2">Vim2 Advent Calendar 2017</a> 14日目の記事です。</p>
 
-<p>Go には Tour of Go でも習うように，暗黙の型変換といったものは存在せず，明示的に型変換をする必要があります．</p>
+<h2>vim-edgemotion つくった</h2>
 
-<blockquote><p>Unlike in C, in Go assignment between items of different type requires an explicit conversion.
-&ndash; Type conversions <a href="https://tour.golang.org/basics/13">https://tour.golang.org/basics/13</a></p></blockquote>
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/4f66e3a746b4537397116e60979cc6e09348eb12/vim-edgemotion/vim-edgemotion%202017-11-04%2016-18.gif" alt="vim-edgemotion-demo" /></p>
 
-<p>このデザインについては FAQ にも書いてあります．
-FAQ: Why does Go not provide implicit numeric conversions? <a href="https://golang.org/doc/faq#conversions">https://golang.org/doc/faq#conversions</a></p>
+<p><a href="http://vimconf.vim-jp.org/2017/">VimConf 2017</a> の <a href="https://qiita.com/t9md/items/236d09fea9bcdfabdcea">t9md
+さんの発表</a> で紹介されていた、
+Atom vim-mode-plus の機能の一つ, Edge motion を Vim に移植しました。</p>
 
-<p>(厳密には interface への変換だけは勝手にやってくれるのでその意味では暗黙の型変換はあるといえる気もします)</p>
+<p><a href="https://github.com/haya14busa/vim-edgemotion">https://github.com/haya14busa/vim-edgemotion</a></p>
 
-<p>このデザインは僕も好きです．The Zen of Python も言うように何事も &ldquo;Explicit is better than Implicit&rdquo; だと感じます．
-Go ではほぼ全ての機能が Explicit に表現され，Go の Readablity に繋がっています．
-はぁ&hellip;Go かわいいよ Go&hellip;</p>
+<h2>Edge Motion とは?</h2>
 
-<p>しかし，そうは言ってもint->int64などの安全な変換ふくめてひたすら手で型変換しなきゃいけないのはつらいこともあります．
-競技プログラミングといった書捨てスクリプトで最初は int でやってたけど，int64 に変換しなきゃ&hellip;というときや，
-<code>func max(x int64, ys ...int64) int64</code> っていうテンプレ関数を用意していても，型が <code>int</code> のままでは使えず毎回 <code>int64()</code> で囲ったり <code>int()</code> で戻したりする必要があります．</p>
+<p>Edge Motion は上下方向へのカーソル移動を拡張するモーションで、&#8221;コードブロック&#8221;のエッジ(端)へカーソルを移動させることができます。
+ブロック内にいればそのブロックの端へ、すでにブロック端にいたりブロック外で実行すると次にぶつかるブロックの端までカーソルを移動します。</p>
 
-<p>これは人間のやる仕事じゃない&hellip;ということでこの問題を解消するツール， <a href="https://github.com/haya14busa/go-typeconv">go-typeconv</a> を作りました．</p>
+<p>VimConf2017 でのデモ(本記事の冒頭のgif) でも直感的・視覚的に移動できてよさそう感は
+伝わると思うのですが、個人的に便利だなぁと思うのはキチンとインデントされているコードであれば、
+関数やifブロックを効率的に、しかも言語を問わずに移動できるところです。</p>
 
-<h2>go-typeconv 作った</h2>
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/266c266ef7d2a3d9fa6cc026e2ac10c3e65136da/vim-edgemotion/vim-edgemotion-indent.gif" alt="edgemotion indent demo" /></p>
 
-<p><a href="https://github.com/haya14busa/go-typeconv">haya14busa/go-typeconv: Bring implicit type conversion into Go in a explicit way</a></p>
+<p>GIF では Vim script の if-elseif-else 間の移動や、function-endfunction 間の移動を行っていますが、
+CでもGoでもPythonでもHaskell でも、様々な言語でこのインデントベースで次のエッジに飛ぶという
+カーソル移動は効果を発揮するかと思います。</p>
 
-<p>gotypeconv は Go のソースコードを受け取って，型まわりのエラーを見つけ，AST を自動で書き換えて修正します．
-gofmt と同様に，stdout に修正後のコードをプリントしたり，ファイルを直接書き換えたり，diffを表示することが出来ます．</p>
+<h2>vim-edgemotionにおけるコードブロックってなに?</h2>
 
-<p>最終的には明示的な型変換を使ったソースコードになるけど，その変換をある意味暗黙的にやってくれる．というのがコンセプトです．</p>
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/266c266ef7d2a3d9fa6cc026e2ac10c3e65136da/vim-edgemotion/vim-edgemotion-visualize.gif" alt="edgemotion visualize" /></p>
 
-<h3>インストール</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ go get -u github.com/haya14busa/go-typeconv/cmd/gotypeconv</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>使い方</h3>
-
-<h4>./testdata/tour.input.go</h4>
+<p>GIF にあるように、以下の正規表現でコードのブロックをヴィジュアライズすることができます。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>// https://tour.golang.org/basics/13
-</span><span class='line'>package main
-</span><span class='line'>
-</span><span class='line'>import (
-</span><span class='line'>  "fmt"
-</span><span class='line'>  "math"
-</span><span class='line'>)
-</span><span class='line'>
-</span><span class='line'>func main() {
-</span><span class='line'>  var x, y int = 3, 4
-</span><span class='line'>  var f float64 = math.Sqrt(x*x + y*y)
-</span><span class='line'>  var z uint = f
-</span><span class='line'>  fmt.Println(x, y, z)
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>" Code block regex: [^[:space:]][[:space:]]\ze[^[:space:]]\|[^[:space:]]
+</span><span class='line'>" :let @/ = '[^[:space:]][[:space:]]\ze[^[:space:]]\|[^[:space:]]' | set hls</span></code></pre></td></tr></table></div></figure>
 
 
-<p>上記のコードは以下で示すように型変換周りでエラーがでます．</p>
+<p>要するに空白文字でないか、または非空白文字に挟まれている空白文字をコードブロックと見なしています。
+これは例えば <code>:let @/ =</code> の空白がブロックとみなされないと、カーソルが思っても見ないところで止まったり、
+予想以上のところまで移動してしまうことを防ぐためで、Atom vim-mode-plus の仕様にあわせています。</p>
+
+<p>最初はそのヒューリスティックでいいのかな&hellip;という気持ちはありましたが、他にいい判定方法も思いつかなかったし仕方ない。
+Edge Motion は説明なしに直感的・視覚的に使えると見せかけて仕様を理解しないと
+驚いてしまうかもしれないというのがデザインの難しいところですね&hellip;</p>
+
+<h2>使い方サンプル</h2>
+
+<p>お好みのキーにマッピングしてください。僕は <code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code>にマッピングしてみた。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ go build testdata/tour.input.go
-</span><span class='line'>testdata/tour.input.go:11: cannot use x * x + y * y (type int) as type float64 in argument to math.Sqrt
-</span><span class='line'>testdata/tour.input.go:12: cannot use f (type float64) as type uint in assignment</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>map &lt;C-j&gt; &lt;Plug&gt;(edgemotion-j)
+</span><span class='line'>map &lt;C-k&gt; &lt;Plug&gt;(edgemotion-k)</span></code></pre></td></tr></table></div></figure>
 
 
-<p>gotypeconv を実行するとこの通り!</p>
+<p><code>&lt;Plug&gt;(edgemotion-j)</code> で下方向、<code>&lt;Plug&gt;(edgemotion-k)</code> で上方向にカーソルを移動します。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv ./testdata/tour.input.go
-</span><span class='line'>// https://tour.golang.org/basics/13
-</span><span class='line'>package main
-</span><span class='line'>
-</span><span class='line'>import (
-</span><span class='line'>        "fmt"
-</span><span class='line'>        "math"
-</span><span class='line'>)
-</span><span class='line'>
-</span><span class='line'>func main() {
-</span><span class='line'>        var x, y int = 3, 4
-</span><span class='line'>        var f float64 = math.Sqrt(float64(x*x + y*y))
-</span><span class='line'>        var z uint = uint(f)
-</span><span class='line'>        fmt.Println(x, y, z)
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+<h3>宣伝</h3>
 
+<p><a href="https://github.com/haya14busa/vim-edgemotion">vim-edgemotion</a> は
+今年僕も発表した <a href="http://vimconf.vim-jp.org/2017/">VimConf 2017</a> の
+<a href="https://qiita.com/t9md/items/236d09fea9bcdfabdcea">t9md さんの発表</a> から
+インスパイア&hellip; というかまるまるパクってVim plugin にポートしてできたプラグインです。</p>
 
-<p><code>func max(x int64, ys ...int64) int64</code> といったテンプレートあるけど <code>int</code> では使えない&hellip;というときもこの通り．</p>
+<p>VimConf はエディタの垣根を超えるカンファレンスで奇しくも昨日の
+Vim2 Advent Calendar 2017 13日目の記事(
+<a href="https://qiita.com/maxmellon/items/2edc7bebe5a7762b22e1">vim-shiny という plugin を作った</a>)
+も VimConf2017 で発表された vim-mode-plus にインスパイアされてプラグインを作っています。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>package main
-</span><span class='line'>
-</span><span class='line'>import "fmt"
-</span><span class='line'>
-</span><span class='line'>func main() {
-</span><span class='line'>  var (
-</span><span class='line'>      x int     = 1
-</span><span class='line'>      y int64   = 14
-</span><span class='line'>      z float64 = -1.4
-</span><span class='line'>  )
-</span><span class='line'>
-</span><span class='line'>  var ans int = max(x, x+y, z)
-</span><span class='line'>  fmt.Println(ans)
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>func max(x int64, ys ...int64) int64 {
-</span><span class='line'>  for _, y := range ys {
-</span><span class='line'>      if y &gt; x {
-</span><span class='line'>          x = y
-</span><span class='line'>      }
-</span><span class='line'>  }
-</span><span class='line'>  return x
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+<h3>宣伝2</h3>
+
+<p>また vim-edgemotion はもともと VimConf2017 開催中に30minくらいで作ったのですが、
+あとで t9md さんに見てもらうとどうやら実装が違ったらしく、「その仕様はいいかもしれないけど
+それならedgemotion と名乗るな」とt9mdさんに怒られました(笑)。</p>
+
+<p>結局自分でもオリジナルの仕様が良さそうということで今の仕様にその後変更しました。
+この変更はつい<small>[要出典]</small> 先日 <a href="http://www.dozenryokan.com/">土善旅館</a> というにて開催された進捗合宿で
+ダメになるソファーでダメになりながら、ネコとペアプロすることで実装されました。</p>
+
+<p>その様子です。</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">やっていくぞ〜💪🏻🐦 <a href="https://t.co/jVQ8AEJ07l">pic.twitter.com/jVQ8AEJ07l</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933561197382721538?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
 
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv -d testdata/max.input.go
-</span><span class='line'>diff testdata/max.input.go gotypeconv/testdata/max.input.go
-</span><span class='line'>--- /tmp/gotypeconv308367427    2017-02-06 08:53:30.460299789 +0900
-</span><span class='line'>+++ /tmp/gotypeconv267288262    2017-02-06 08:53:30.460299789 +0900
-</span><span class='line'>@@ -9,7 +9,7 @@
-</span><span class='line'>                z float64 = -1.4
-</span><span class='line'>        )
-</span><span class='line'>
-</span><span class='line'>-       var ans int = max(x, x+y, z)
-</span><span class='line'>+       var ans int = int(max(int64(x), int64(x)+y, int64(z)))
-</span><span class='line'>        fmt.Println(ans)
-</span><span class='line'> }</span></code></pre></td></tr></table></div></figure>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">ねこちゃんとペアプロ <a href="https://t.co/ZAZWGLJoMI">pic.twitter.com/ZAZWGLJoMI</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933951181658890240?ref_src=twsrc%5Etfw">November 24, 2017</a></blockquote>
 
 
-<h2>vim-gofmt</h2>
-
-<p><a href="https://github.com/haya14busa/vim-gofmt">haya14busa/vim-gofmt: Formats Go source code asynchronously with multiple Go formatters.</a></p>
-
-<p>Vim で実行したい場合は (Experimentalですが) vim-gofmt というGoの formatter を複数，非同期で実行するプラグインを作成したのでこれを使ってみてください．</p>
-
-<p>設定例:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>let g:gofmt_formatters = [
-</span><span class='line'>\   { 'cmd': 'gofmt', 'args': ['-s', '-w'] },
-</span><span class='line'>\   { 'cmd': 'goimports', 'args': ['-w'] },
-</span><span class='line'>\   { 'cmd': 'gotypeconv', 'args': ['-w'] },
-</span><span class='line'>\ ]</span></code></pre></td></tr></table></div></figure>
 
 
-<p>実行: (filetype が Go のカレントバッファで) <code>:Fmt</code></p>
-
-<p>正直ワンバイナリでやってほしいけど，<code>gofmt -s</code> と <code>goimports</code> が同時に実行できないので，
-いずれ複数フォーマッタ対応のVim プラグイン 欲しいなと思ってたので作りました．
-どちらも，特に gofmt はかなり高速なので複数実行してもあまり気になりません．</p>
-
-<p>なお非同期にgofmt実行するといっても，バッファが書き換えられていたら上書きしたりするような挙動ではないので安心してください．
-(不具合あったら直します)</p>
-
-<p>なお</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>:command! GoTypeConv call gofmt#fmt([{ 'cmd': 'gotypeconv', 'args': ['-w'] }])</span></code></pre></td></tr></table></div></figure>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">セパレートキーボードでねこにゃんとペアプロうらやましい…😺✨ <a href="https://t.co/oTpyb6oGi9">pic.twitter.com/oTpyb6oGi9</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/934425547567804416?ref_src=twsrc%5Etfw">November 25, 2017</a></blockquote>
 
 
-<p>とか書いておくと<code>:GoTypeConv</code>でgotypeconv だけ実行出来たりしますが，API は変わるかも知れないのでご注意ください．</p>
-
-<p>また以下のようにすると保存時に自動で実行できます．が，APIは(ry</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>augroup vim-gofmt
-</span><span class='line'>  autocmd!
-</span><span class='line'>  autocmd BufWritePre *.go :Fmt
-</span><span class='line'>augroup END</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>機械で出来ることは機械にやらせたい</h2>
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">年代別で見るコンパイラちゃんの進化 <a href="https://twitter.com/hashtag/%E6%93%AC%E7%AB%9C%E5%8C%96?src=hash">#擬竜化</a> <a href="https://t.co/7zmiskfjmE">pic.twitter.com/7zmiskfjmE</a></p>&mdash; RAO(らお) (@RIORAO) <a href="https://twitter.com/RIORAO/status/827549093073293313">February 3, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼です <a href="https://t.co/VaE0taLxAD">pic.twitter.com/VaE0taLxAD</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933563374184538112?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
 
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-<p>途中で IDE ちゃんになっているようですが，Go の場合 IDE ちゃんじゃなくても大丈夫!</p>
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">りんなにC#教えてもらおうとしたら物凄い返信きた <a href="https://t.co/9jz5dtfPJd">pic.twitter.com/9jz5dtfPJd</a></p>&mdash; ダーシノ (@bc_rikko) <a href="https://twitter.com/bc_rikko/status/828125775421280256">February 5, 2017</a></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼（浴衣 ver） <a href="https://t.co/ak4XXbhFi0">pic.twitter.com/ak4XXbhFi0</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933842740588175360?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
 
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-<blockquote><p>The grammar is compact and regular, allowing for easy analysis by automatic tools such as integrated development environments.
-&ndash; <cite><a href="https://golang.org/ref/spec">The Go Programming Language Specification - The Go Programming Language</a></p></blockquote>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼（毛布ぬくぬくver） <a href="https://t.co/v8s6FbhxCJ">pic.twitter.com/v8s6FbhxCJ</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933933166968037377?ref_src=twsrc%5Etfw">November 24, 2017</a></blockquote>
 
-<p>Go は spec にまで書かれているように，Goのためのツールを書くのはとても簡単です．</p>
 
-<p>修正系ツールだけでも</p>
+<h3>Vim進捗週末旅行@土善旅館についてあわせて読みたい</h3>
 
 <ul>
-<li><code>gofmt -s</code> はフォーマットだけでなくシンプルにかけるところを自動で修正してくれ</li>
-<li><code>goimports</code> は自動で import 文を追加したり削除したりしてくれ</li>
-<li><code>gotypeconv</code> は型変換エラーを自動で修正してくれます</li>
+<li><a href="http://aomoriringo.hateblo.jp/entry/2017/11/26/225323">中年週末旅行 - チューリング不完全</a></li>
+<li><a href="https://darui.io/saikou-no-natsu/">土善旅館で最高の開発合宿をしような - だるい</a></li>
+<li><a href="http://rbtnn.hateblo.jp/entry/2017/11/27/011156">TabSideBarの進捗旅 at 土善旅館 - rbtnn雑記</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2017/11/27/091003">Vim 進捗旅行 - はやくプログラムになりたい</a></li>
 </ul>
 
 
-<p>また <a href="https://github.com/golang/go/issues/18939">proposal: gofmt: Add option to ignore parse error if no bad node in AST · Issue #18939 · golang/go</a>
-のプロポーザルにあるように，実は末尾コンマがないといったエラーも自動で修正できます．
-(gofmtに入るかはわからないけど個人的には入って欲しいなー)</p>
+<h2>おわりに</h2>
 
-<p>なお <a href="https://github.com/rhysd/gofmtrlx">https://github.com/rhysd/gofmtrlx</a> を入れると末尾カンマは修正してくれますし，実は go-typeconv も勝手に修正してくれます．</p>
+<ul>
+<li>Edge Motion は直感的・視覚的にカーソルの上下移動ができてなかなか可能性を感じるので使ってみてね</li>
+<li>VimConf は来年の VimConf2018 もオススメ</li>
+<li><a href="http://www.dozenryokan.com/">土善旅館</a> はネコにゃんとペアプロして積んでたタスクを崩せるので便利</li>
+</ul>
 
-<p><a href="https://github.com/dominikh/go-tools/tree/master/cmd/gosimple">gosimple</a> という simple にかけるところを教えてくれる linter もあります．
-(自動修正機能は今の所ないけどオプションあっても良い気がするなー)</p>
 
-<p>linter がたくさんあることは <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a> で紹介しました．</p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p><a href="https://golang.org/pkg/go/">go/*</a> を使えばパッケージをソースコードをパースして AST を取得したり，
-それを Format された形式で print したり，型情報を取得したり&hellip; などと言ったことが簡単にできます．</p>
-
-<p><a href="https://godoc.org/golang.org/x/tools/go/loader">golang.org/x/tools/go/loader</a> を使えば，簡単に型情報を使える形でプログラムをロードできますし，
-<a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a> なんてものもあります．</p>
-
-<p><code>go/*</code> パッケージ だけでなく，<a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go</a> 下のパッケージをみても面白いです．</p>
-
-<p>AST ベースのツールは他言語でもたくさんあると思うので比較的わかりやすいですが，
-型情報まで使えるパッケージを提供している言語はそんなになくて難しいですが，godoc の他にも公式チュートリアルが参考になります．<a href="https://golang.org/s/types-tutorial">https://golang.org/s/types-tutorial</a></p>
-
-<p>日本語情報でも
-<a href="https://motemen.github.io/">motemen</a> さんの <a href="https://motemen.github.io/go-for-go-book/">GoのためのGo</a> や
-<a href="https://twitter.com/tenntenn">tenntenn</a> さんの各種記事 <a href="http://qiita.com/tenntenn/items/868704380455c5090d4b">goパッケージで簡単に静的解析して世界を広げよう #golang - Qiita</a>
-が詳しいです．</p>
-
-<p>ぜひ，みなさんもGoのためのGo ツール作ってみると面白いかと思います．
-いろんなことができるので，なかなか楽しいです．</p>
-
-<p>はぁ&hellip;Go かわいいよ Go&hellip;(ため息)</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>コードのエッジへ移動しろ！ vim-edgemotion 作った - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="この記事は Vim2 Advent Calendar 2017 14日目の記事です。 vim-edgemotion つくった VimConf 2017 の t9md
+さんの発表 で紹介されていた、
+Atom vim-mode-plus の機能の一つ, Edge motion を Vim &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/vim-edgemotion/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">コードのエッジへ移動しろ！ Vim-edgemotion 作った</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-12-14T20:24:11+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>この記事は <a href="https://qiita.com/advent-calendar/2017/vim2">Vim2 Advent Calendar 2017</a> 14日目の記事です。</p>
+
+<h2>vim-edgemotion つくった</h2>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/4f66e3a746b4537397116e60979cc6e09348eb12/vim-edgemotion/vim-edgemotion%202017-11-04%2016-18.gif" alt="vim-edgemotion-demo" /></p>
+
+<p><a href="http://vimconf.vim-jp.org/2017/">VimConf 2017</a> の <a href="https://qiita.com/t9md/items/236d09fea9bcdfabdcea">t9md
+さんの発表</a> で紹介されていた、
+Atom vim-mode-plus の機能の一つ, Edge motion を Vim に移植しました。</p>
+
+<p><a href="https://github.com/haya14busa/vim-edgemotion">https://github.com/haya14busa/vim-edgemotion</a></p>
+
+<h2>Edge Motion とは?</h2>
+
+<p>Edge Motion は上下方向へのカーソル移動を拡張するモーションで、&#8221;コードブロック&#8221;のエッジ(端)へカーソルを移動させることができます。
+ブロック内にいればそのブロックの端へ、すでにブロック端にいたりブロック外で実行すると次にぶつかるブロックの端までカーソルを移動します。</p>
+
+<p>VimConf2017 でのデモ(本記事の冒頭のgif) でも直感的・視覚的に移動できてよさそう感は
+伝わると思うのですが、個人的に便利だなぁと思うのはキチンとインデントされているコードであれば、
+関数やifブロックを効率的に、しかも言語を問わずに移動できるところです。</p>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/266c266ef7d2a3d9fa6cc026e2ac10c3e65136da/vim-edgemotion/vim-edgemotion-indent.gif" alt="edgemotion indent demo" /></p>
+
+<p>GIF では Vim script の if-elseif-else 間の移動や、function-endfunction 間の移動を行っていますが、
+CでもGoでもPythonでもHaskell でも、様々な言語でこのインデントベースで次のエッジに飛ぶという
+カーソル移動は効果を発揮するかと思います。</p>
+
+<h2>vim-edgemotionにおけるコードブロックってなに?</h2>
+
+<p><img src="https://raw.githubusercontent.com/haya14busa/i/266c266ef7d2a3d9fa6cc026e2ac10c3e65136da/vim-edgemotion/vim-edgemotion-visualize.gif" alt="edgemotion visualize" /></p>
+
+<p>GIF にあるように、以下の正規表現でコードのブロックをヴィジュアライズすることができます。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>" Code block regex: [^[:space:]][[:space:]]\ze[^[:space:]]\|[^[:space:]]
+</span><span class='line'>" :let @/ = '[^[:space:]][[:space:]]\ze[^[:space:]]\|[^[:space:]]' | set hls</span></code></pre></td></tr></table></div></figure>
+
+
+<p>要するに空白文字でないか、または非空白文字に挟まれている空白文字をコードブロックと見なしています。
+これは例えば <code>:let @/ =</code> の空白がブロックとみなされないと、カーソルが思っても見ないところで止まったり、
+予想以上のところまで移動してしまうことを防ぐためで、Atom vim-mode-plus の仕様にあわせています。</p>
+
+<p>最初はそのヒューリスティックでいいのかな&hellip;という気持ちはありましたが、他にいい判定方法も思いつかなかったし仕方ない。
+Edge Motion は説明なしに直感的・視覚的に使えると見せかけて仕様を理解しないと
+驚いてしまうかもしれないというのがデザインの難しいところですね&hellip;</p>
+
+<h2>使い方サンプル</h2>
+
+<p>お好みのキーにマッピングしてください。僕は <code>&lt;C-j&gt;</code>/<code>&lt;C-k&gt;</code>にマッピングしてみた。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>map &lt;C-j&gt; &lt;Plug&gt;(edgemotion-j)
+</span><span class='line'>map &lt;C-k&gt; &lt;Plug&gt;(edgemotion-k)</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>&lt;Plug&gt;(edgemotion-j)</code> で下方向、<code>&lt;Plug&gt;(edgemotion-k)</code> で上方向にカーソルを移動します。</p>
+
+<h3>宣伝</h3>
+
+<p><a href="https://github.com/haya14busa/vim-edgemotion">vim-edgemotion</a> は
+今年僕も発表した <a href="http://vimconf.vim-jp.org/2017/">VimConf 2017</a> の
+<a href="https://qiita.com/t9md/items/236d09fea9bcdfabdcea">t9md さんの発表</a> から
+インスパイア&hellip; というかまるまるパクってVim plugin にポートしてできたプラグインです。</p>
+
+<p>VimConf はエディタの垣根を超えるカンファレンスで奇しくも昨日の
+Vim2 Advent Calendar 2017 13日目の記事(
+<a href="https://qiita.com/maxmellon/items/2edc7bebe5a7762b22e1">vim-shiny という plugin を作った</a>)
+も VimConf2017 で発表された vim-mode-plus にインスパイアされてプラグインを作っています。</p>
+
+<h3>宣伝2</h3>
+
+<p>また vim-edgemotion はもともと VimConf2017 開催中に30minくらいで作ったのですが、
+あとで t9md さんに見てもらうとどうやら実装が違ったらしく、「その仕様はいいかもしれないけど
+それならedgemotion と名乗るな」とt9mdさんに怒られました(笑)。</p>
+
+<p>結局自分でもオリジナルの仕様が良さそうということで今の仕様にその後変更しました。
+この変更はつい<small>[要出典]</small> 先日 <a href="http://www.dozenryokan.com/">土善旅館</a> というにて開催された進捗合宿で
+ダメになるソファーでダメになりながら、ネコとペアプロすることで実装されました。</p>
+
+<p>その様子です。</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">やっていくぞ〜💪🏻🐦 <a href="https://t.co/jVQ8AEJ07l">pic.twitter.com/jVQ8AEJ07l</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933561197382721538?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">ねこちゃんとペアプロ <a href="https://t.co/ZAZWGLJoMI">pic.twitter.com/ZAZWGLJoMI</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933951181658890240?ref_src=twsrc%5Etfw">November 24, 2017</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">セパレートキーボードでねこにゃんとペアプロうらやましい…😺✨ <a href="https://t.co/oTpyb6oGi9">pic.twitter.com/oTpyb6oGi9</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/934425547567804416?ref_src=twsrc%5Etfw">November 25, 2017</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼です <a href="https://t.co/VaE0taLxAD">pic.twitter.com/VaE0taLxAD</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933563374184538112?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼（浴衣 ver） <a href="https://t.co/ak4XXbhFi0">pic.twitter.com/ak4XXbhFi0</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933842740588175360?ref_src=twsrc%5Etfw">November 23, 2017</a></blockquote>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">進捗の鬼（毛布ぬくぬくver） <a href="https://t.co/v8s6FbhxCJ">pic.twitter.com/v8s6FbhxCJ</a></p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/933933166968037377?ref_src=twsrc%5Etfw">November 24, 2017</a></blockquote>
+
+
+<h3>Vim進捗週末旅行@土善旅館についてあわせて読みたい</h3>
+
+<ul>
+<li><a href="http://aomoriringo.hateblo.jp/entry/2017/11/26/225323">中年週末旅行 - チューリング不完全</a></li>
+<li><a href="https://darui.io/saikou-no-natsu/">土善旅館で最高の開発合宿をしような - だるい</a></li>
+<li><a href="http://rbtnn.hateblo.jp/entry/2017/11/27/011156">TabSideBarの進捗旅 at 土善旅館 - rbtnn雑記</a></li>
+<li><a href="http://rhysd.hatenablog.com/entry/2017/11/27/091003">Vim 進捗旅行 - はやくプログラムになりたい</a></li>
+</ul>
+
+
+<h2>おわりに</h2>
+
+<ul>
+<li>Edge Motion は直感的・視覚的にカーソルの上下移動ができてなかなか可能性を感じるので使ってみてね</li>
+<li>VimConf は来年の VimConf2018 もオススメ</li>
+<li><a href="http://www.dozenryokan.com/">土善旅館</a> はネコにゃんとペアプロして積んでたタスクを崩せるので便利</li>
+</ul>
+
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-12-14T20:24:11+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/vim-edgemotion/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/vim-edgemotion/" data-via="haya14busa" data-counturl="http://haya14busa.com/vim-edgemotion/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2016-is-go-year/" title="Previous Post: Go に恋した Vimmer の2016年の振り返り">&laquo; Go に恋した Vimmer の2016年の振り返り</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2017 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/vim-edgemotion/';
+        var disqus_url = 'http://haya14busa.com/vim-edgemotion/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
