@@ -4,7 +4,7 @@
   <title><![CDATA[haya14busa]]></title>
   <link href="http://haya14busa.com/atom.xml" rel="self"/>
   <link href="http://haya14busa.com/"/>
-  <updated>2017-12-14T21:49:10+09:00</updated>
+  <updated>2017-12-15T00:58:44+09:00</updated>
   <id>http://haya14busa.com/</id>
   <author>
     <name><![CDATA[haya14busa]]></name>
@@ -149,6 +149,319 @@ Vim2 Advent Calendar 2017 13日目の記事(
 
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Go に暗黙の型変換機能を明示的に導入する]]></title>
+    <link href="http://haya14busa.com/go-typeconv/"/>
+    <updated>2017-02-06T00:53:24+09:00</updated>
+    <id>http://haya14busa.com/go-typeconv</id>
+    <content type="html"><![CDATA[<div class="entry-content"><h2>Go に暗黙の型変換はない</h2>
+
+<p>Go には Tour of Go でも習うように，暗黙の型変換といったものは存在せず，明示的に型変換をする必要があります．</p>
+
+<blockquote><p>Unlike in C, in Go assignment between items of different type requires an explicit conversion.
+&ndash; Type conversions <a href="https://tour.golang.org/basics/13">https://tour.golang.org/basics/13</a></p></blockquote>
+
+<p>このデザインについては FAQ にも書いてあります．
+FAQ: Why does Go not provide implicit numeric conversions? <a href="https://golang.org/doc/faq#conversions">https://golang.org/doc/faq#conversions</a></p>
+
+<p>(厳密には interface への変換だけは勝手にやってくれるのでその意味では暗黙の型変換はあるといえる気もします)</p>
+
+<p>このデザインは僕も好きです．The Zen of Python も言うように何事も &ldquo;Explicit is better than Implicit&rdquo; だと感じます．
+Go ではほぼ全ての機能が Explicit に表現され，Go の Readablity に繋がっています．
+はぁ&hellip;Go かわいいよ Go&hellip;</p>
+
+<p>しかし，そうは言ってもint->int64などの安全な変換ふくめてひたすら手で型変換しなきゃいけないのはつらいこともあります．
+競技プログラミングといった書捨てスクリプトで最初は int でやってたけど，int64 に変換しなきゃ&hellip;というときや，
+<code>func max(x int64, ys ...int64) int64</code> っていうテンプレ関数を用意していても，型が <code>int</code> のままでは使えず毎回 <code>int64()</code> で囲ったり <code>int()</code> で戻したりする必要があります．</p>
+
+<p>これは人間のやる仕事じゃない&hellip;ということでこの問題を解消するツール， <a href="https://github.com/haya14busa/go-typeconv">go-typeconv</a> を作りました．</p>
+
+<h2>go-typeconv 作った</h2>
+
+<p><a href="https://github.com/haya14busa/go-typeconv">haya14busa/go-typeconv: Bring implicit type conversion into Go in a explicit way</a></p>
+
+<p>gotypeconv は Go のソースコードを受け取って，型まわりのエラーを見つけ，AST を自動で書き換えて修正します．
+gofmt と同様に，stdout に修正後のコードをプリントしたり，ファイルを直接書き換えたり，diffを表示することが出来ます．</p>
+
+<p>最終的には明示的な型変換を使ったソースコードになるけど，その変換をある意味暗黙的にやってくれる．というのがコンセプトです．</p>
+
+<h3>インストール</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ go get -u github.com/haya14busa/go-typeconv/cmd/gotypeconv</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>使い方</h3>
+
+<h4>./testdata/tour.input.go</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// https://tour.golang.org/basics/13
+</span><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "fmt"
+</span><span class='line'>  "math"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>  var x, y int = 3, 4
+</span><span class='line'>  var f float64 = math.Sqrt(x*x + y*y)
+</span><span class='line'>  var z uint = f
+</span><span class='line'>  fmt.Println(x, y, z)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記のコードは以下で示すように型変換周りでエラーがでます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ go build testdata/tour.input.go
+</span><span class='line'>testdata/tour.input.go:11: cannot use x * x + y * y (type int) as type float64 in argument to math.Sqrt
+</span><span class='line'>testdata/tour.input.go:12: cannot use f (type float64) as type uint in assignment</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gotypeconv を実行するとこの通り!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv ./testdata/tour.input.go
+</span><span class='line'>// https://tour.golang.org/basics/13
+</span><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>        "fmt"
+</span><span class='line'>        "math"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>        var x, y int = 3, 4
+</span><span class='line'>        var f float64 = math.Sqrt(float64(x*x + y*y))
+</span><span class='line'>        var z uint = uint(f)
+</span><span class='line'>        fmt.Println(x, y, z)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>func max(x int64, ys ...int64) int64</code> といったテンプレートあるけど <code>int</code> では使えない&hellip;というときもこの通り．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import "fmt"
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>  var (
+</span><span class='line'>      x int     = 1
+</span><span class='line'>      y int64   = 14
+</span><span class='line'>      z float64 = -1.4
+</span><span class='line'>  )
+</span><span class='line'>
+</span><span class='line'>  var ans int = max(x, x+y, z)
+</span><span class='line'>  fmt.Println(ans)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func max(x int64, ys ...int64) int64 {
+</span><span class='line'>  for _, y := range ys {
+</span><span class='line'>      if y &gt; x {
+</span><span class='line'>          x = y
+</span><span class='line'>      }
+</span><span class='line'>  }
+</span><span class='line'>  return x
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv -d testdata/max.input.go
+</span><span class='line'>diff testdata/max.input.go gotypeconv/testdata/max.input.go
+</span><span class='line'>--- /tmp/gotypeconv308367427    2017-02-06 08:53:30.460299789 +0900
+</span><span class='line'>+++ /tmp/gotypeconv267288262    2017-02-06 08:53:30.460299789 +0900
+</span><span class='line'>@@ -9,7 +9,7 @@
+</span><span class='line'>                z float64 = -1.4
+</span><span class='line'>        )
+</span><span class='line'>
+</span><span class='line'>-       var ans int = max(x, x+y, z)
+</span><span class='line'>+       var ans int = int(max(int64(x), int64(x)+y, int64(z)))
+</span><span class='line'>        fmt.Println(ans)
+</span><span class='line'> }</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>vim-gofmt</h2>
+
+<p><a href="https://github.com/haya14busa/vim-gofmt">haya14busa/vim-gofmt: Formats Go source code asynchronously with multiple Go formatters.</a></p>
+
+<p>Vim で実行したい場合は (Experimentalですが) vim-gofmt というGoの formatter を複数，非同期で実行するプラグインを作成したのでこれを使ってみてください．</p>
+
+<p>設定例:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:gofmt_formatters = [
+</span><span class='line'>\   { 'cmd': 'gofmt', 'args': ['-s', '-w'] },
+</span><span class='line'>\   { 'cmd': 'goimports', 'args': ['-w'] },
+</span><span class='line'>\   { 'cmd': 'gotypeconv', 'args': ['-w'] },
+</span><span class='line'>\ ]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行: (filetype が Go のカレントバッファで) <code>:Fmt</code></p>
+
+<p>正直ワンバイナリでやってほしいけど，<code>gofmt -s</code> と <code>goimports</code> が同時に実行できないので，
+いずれ複数フォーマッタ対応のVim プラグイン 欲しいなと思ってたので作りました．
+どちらも，特に gofmt はかなり高速なので複数実行してもあまり気になりません．</p>
+
+<p>なお非同期にgofmt実行するといっても，バッファが書き換えられていたら上書きしたりするような挙動ではないので安心してください．
+(不具合あったら直します)</p>
+
+<p>なお</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:command! GoTypeConv call gofmt#fmt([{ 'cmd': 'gotypeconv', 'args': ['-w'] }])</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とか書いておくと<code>:GoTypeConv</code>でgotypeconv だけ実行出来たりしますが，API は変わるかも知れないのでご注意ください．</p>
+
+<p>また以下のようにすると保存時に自動で実行できます．が，APIは(ry</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>augroup vim-gofmt
+</span><span class='line'>  autocmd!
+</span><span class='line'>  autocmd BufWritePre *.go :Fmt
+</span><span class='line'>augroup END</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>機械で出来ることは機械にやらせたい</h2>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">年代別で見るコンパイラちゃんの進化 <a href="https://twitter.com/hashtag/%E6%93%AC%E7%AB%9C%E5%8C%96?src=hash">#擬竜化</a> <a href="https://t.co/7zmiskfjmE">pic.twitter.com/7zmiskfjmE</a></p>&mdash; RAO(らお) (@RIORAO) <a href="https://twitter.com/RIORAO/status/827549093073293313">February 3, 2017</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>途中で IDE ちゃんになっているようですが，Go の場合 IDE ちゃんじゃなくても大丈夫!</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">りんなにC#教えてもらおうとしたら物凄い返信きた <a href="https://t.co/9jz5dtfPJd">pic.twitter.com/9jz5dtfPJd</a></p>&mdash; ダーシノ (@bc_rikko) <a href="https://twitter.com/bc_rikko/status/828125775421280256">February 5, 2017</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote><p>The grammar is compact and regular, allowing for easy analysis by automatic tools such as integrated development environments.
+&ndash; <cite><a href="https://golang.org/ref/spec">The Go Programming Language Specification - The Go Programming Language</a></p></blockquote>
+
+<p>Go は spec にまで書かれているように，Goのためのツールを書くのはとても簡単です．</p>
+
+<p>修正系ツールだけでも</p>
+
+<ul>
+<li><code>gofmt -s</code> はフォーマットだけでなくシンプルにかけるところを自動で修正してくれ</li>
+<li><code>goimports</code> は自動で import 文を追加したり削除したりしてくれ</li>
+<li><code>gotypeconv</code> は型変換エラーを自動で修正してくれます</li>
+</ul>
+
+
+<p>また <a href="https://github.com/golang/go/issues/18939">proposal: gofmt: Add option to ignore parse error if no bad node in AST · Issue #18939 · golang/go</a>
+のプロポーザルにあるように，実は末尾コンマがないといったエラーも自動で修正できます．
+(gofmtに入るかはわからないけど個人的には入って欲しいなー)</p>
+
+<p>なお <a href="https://github.com/rhysd/gofmtrlx">https://github.com/rhysd/gofmtrlx</a> を入れると末尾カンマは修正してくれますし，実は go-typeconv も勝手に修正してくれます．</p>
+
+<p><a href="https://github.com/dominikh/go-tools/tree/master/cmd/gosimple">gosimple</a> という simple にかけるところを教えてくれる linter もあります．
+(自動修正機能は今の所ないけどオプションあっても良い気がするなー)</p>
+
+<p>linter がたくさんあることは <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a> で紹介しました．</p>
+
+<p><a href="https://golang.org/pkg/go/">go/*</a> を使えばパッケージをソースコードをパースして AST を取得したり，
+それを Format された形式で print したり，型情報を取得したり&hellip; などと言ったことが簡単にできます．</p>
+
+<p><a href="https://godoc.org/golang.org/x/tools/go/loader">golang.org/x/tools/go/loader</a> を使えば，簡単に型情報を使える形でプログラムをロードできますし，
+<a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a> なんてものもあります．</p>
+
+<p><code>go/*</code> パッケージ だけでなく，<a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go</a> 下のパッケージをみても面白いです．</p>
+
+<p>AST ベースのツールは他言語でもたくさんあると思うので比較的わかりやすいですが，
+型情報まで使えるパッケージを提供している言語はそんなになくて難しいですが，godoc の他にも公式チュートリアルが参考になります．<a href="https://golang.org/s/types-tutorial">https://golang.org/s/types-tutorial</a></p>
+
+<p>日本語情報でも
+<a href="https://motemen.github.io/">motemen</a> さんの <a href="https://motemen.github.io/go-for-go-book/">GoのためのGo</a> や
+<a href="https://twitter.com/tenntenn">tenntenn</a> さんの各種記事 <a href="http://qiita.com/tenntenn/items/868704380455c5090d4b">goパッケージで簡単に静的解析して世界を広げよう #golang - Qiita</a>
+が詳しいです．</p>
+
+<p>ぜひ，みなさんもGoのためのGo ツール作ってみると面白いかと思います．
+いろんなことができるので，なかなか楽しいです．</p>
+
+<p>はぁ&hellip;Go かわいいよ Go&hellip;(ため息)</p>
+</div>
 
 ]]></content>
   </entry>
@@ -7644,79 +7957,6 @@ themis便利なんですが自分が使いこなせてないのでテストも�
 <p>当日これなかったり, Ustream の配信も見ていなかった方は Togetter に 当日のTwitterの様子をまとめた(<a href="http://togetter.com/li/742963">VimConf2014まとめ - Togetterまとめ</a>)ので, 発表者のスライドや他の方の感想記事, これから<a href="http://vimconf.vim-jp.org/2014/">公式ページ</a>にリンクが貼られるであろう録画とかを見て, 興味がでたら是非是非来年のVimConfは参加してみると楽しいと思います!</p>
 
 <p>それでは Happy Vim&#8217;ing ! ♥</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nagoya.vim 第2回に行ってきた]]></title>
-    <link href="http://haya14busa.com/nagoya-vim-2/"/>
-    <updated>2014-09-22T00:00:12+09:00</updated>
-    <id>http://haya14busa.com/nagoya-vim-2</id>
-    <content type="html"><![CDATA[<h2>Nagoya.vimに参戦!</h2>
-
-<p>9/20(Sat)に開催された, <a href="http://nagoyavim.connpass.com/event/8299/">Nagoya.vim #2</a> に京都から参戦しに行きました!</p>
-
-<p><img src="../images/post/haya14busa_nagoya_vim_sansen.png" alt="" /></p>
-
-<h3>TL;DR</h3>
-
-<p><a href="https://twitter.com/thinca">@thinca</a>さんと <a href="https://twitter.com/Linda_pp">@Linda_pp</a>さんと一緒にスマブラできて楽しかった</p>
-
-<h2>Nagoya.vim #2</h2>
-
-<ul>
-<li><a href="http://nagoyavim.connpass.com/event/8299/">Nagoya.vim #2 - connpass</a></li>
-</ul>
-
-
-<p>いわゆるもくもく回として久々(らしい)に開催された Nagoya.vim に初参加してきました。 connpassページにある目的を振り返ってみると</p>
-
-<blockquote><p>目的</p>
-
-<p>Vim script でなんか書く
-なごやの Vim 使いと交流する</p></blockquote>
-
-<h3>1. Vim script でなんか書く -> ○</h3>
-
-<p><a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の進捗を出していました(進捗がでたとは言ってない).</p>
-
-<p>主に内容としては <code>TODO:</code>, <code>FIXME:</code> がとっても増えたこと、テストをちょっとだけ拡充したことの2点です。 一応すでに実用段階にはあると思っているんですが、もう少しだけ足りない機能足して、テストちゃんとして早くバージョン1.0にしたさがあるのでまた頑張っておく予定です。</p>
-
-<p>気になった方は是非使ってみてください&hellip;!</p>
-
-<h3>2. なごやの Vim 使いと交流する -> ○()しかし◎の余地あり)</h3>
-
-<p>東京勢の犬さん(<a href="https://twitter.com/Linda_pp">@Linda_pp</a>さん) と初対面出来たことを初めとして, TwitterやLingrのVim部屋, GitHubで見かける なごやの Vimmer の方々(<a href="http://nagoyavim.connpass.com/event/8299/participation/#participants">Nagoya.vim #2 - Attendee List - connpass</a>) と懇親会含めてお話できてとてもよかったです。 みなさんありがとうございました! またよろしくお願いします。</p>
-
-<p>ただ、最初の自己紹介タイムだけでは自分の記憶力的にあまり覚えられなかったり、懇親会でもほとんど一緒に喋れなかった人がたくさんいたのでもうちょっと自分から話しかけて行きたい感が強まりました。 特にせっかく, なごやの関数型とか型界隈こわい勢 の方々がいらっしゃったのに、あんまり話さずじまいだったので、機会があれば関数型プログラミングとか教えてもらいたい(あわよくば)</p>
-
-<p>ぜひ、又の機会によろしくお願いします.</p>
-
-<h2>反省, あと進捗とか</h2>
-
-<p>久々に時間取ってVim活できる機会だったので<a href="https://twitter.com/thinca">@thinca</a> さんのライブコーディングを見ながらも上述したような<a href="https://github.com/haya14busa/incsearch.vim">incsearch.vim</a> の改善を行なって, 最後に成果発表させていただきましたがあまり目に見える進捗ではなかったという反省が1点。そのあとに実は以前&hellip;.(ｺﾞﾎッ&hellip;) 作った Vim系オンライン読書会 の宣伝LTみたいなものをしたのですが, 全くしゃべる内容とか準備せずにスライドだけ作ってグダッた発表したという反省が2点目。 そして極めつけは最後に撤収しないといけない時間に始めてしまってそもそも時間を押してしまったという反省の1点を合わせ, だいたい計3点くらいの反省がありました。皆さん申し訳ありませんでした。</p>
-
-<p>ということで(?) 一応発表に使ったスライドを少々手直して上げてました。</p>
-
-<p><a href="http://haya14busa.github.io/slide/2014-09-20-nagoya-vim-2/#/">オンラインVim系読書会でVim力を高めよう</a></p>
-
-<p>Nagoya.vimに参加した人も, 参加してないけどこの記事を読んで頂いてる人も, ぜひぜひvimrc読書会やvimプラグイン読書会に参加してくれると嬉しいです。</p>
-
-<p>特にvimヘルプ読書会やると絶対ベンリだと思っているのでプッシュしてくれるかたを常に募集しています。よろしくお願いします。</p>
-
-<h2>観光</h2>
-
-<p>翌日の21(日)は名古屋観光しながら進捗を出したりスマブラをやったり, グルメ楽しんだりしました</p>
-
-<p>一緒に観光した <a href="https://twitter.com/thinca">@thinca</a>さん, <a href="https://twitter.com/Linda_pp">@Linda_pp</a>さん, <a href="https://twitter.com/If_I_were_boxp">(@If_I_were_boxp</a> さん, 名古屋観光一緒にできて楽しかったです, ありがとうございました&hellip;! またぜひよろしくお願いします.</p>
-
-<p><img src="../images/post/nagoya/2014-09-21%2011.45.47.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2014.44.26.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2015.03.44.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2015.12.12.jpg" alt="" />
-<img src="../images/post/nagoya/2014-09-21%2018.49.17.jpg" alt="" /></p>
-
-<p>ひつまぶし超ウマイ〜</p>
 ]]></content>
   </entry>
   

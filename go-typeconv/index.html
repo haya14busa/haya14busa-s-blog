@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Go に暗黙の型変換機能を明示的に導入する - haya14busa</title>
+  <meta name="author" content="haya14busa">
+
+  
+  <meta name="description" content="Go に暗黙の型変換はない Go には Tour of Go でも習うように，暗黙の型変換といったものは存在せず，明示的に型変換をする必要があります． Unlike in C, in Go assignment between items of different type requires an &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://haya14busa.com/go-typeconv/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="haya14busa" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39461503-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">haya14busa</a></h1>
+  
+    <h2>haya14busa&#8217;s memo</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:haya14busa.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Go に暗黙の型変換機能を明示的に導入する</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-02-06T00:53:24+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><div class="entry-content"><h2>Go に暗黙の型変換はない</h2>
+
+<p>Go には Tour of Go でも習うように，暗黙の型変換といったものは存在せず，明示的に型変換をする必要があります．</p>
+
+<blockquote><p>Unlike in C, in Go assignment between items of different type requires an explicit conversion.
+&ndash; Type conversions <a href="https://tour.golang.org/basics/13">https://tour.golang.org/basics/13</a></p></blockquote>
+
+<p>このデザインについては FAQ にも書いてあります．
+FAQ: Why does Go not provide implicit numeric conversions? <a href="https://golang.org/doc/faq#conversions">https://golang.org/doc/faq#conversions</a></p>
+
+<p>(厳密には interface への変換だけは勝手にやってくれるのでその意味では暗黙の型変換はあるといえる気もします)</p>
+
+<p>このデザインは僕も好きです．The Zen of Python も言うように何事も &ldquo;Explicit is better than Implicit&rdquo; だと感じます．
+Go ではほぼ全ての機能が Explicit に表現され，Go の Readablity に繋がっています．
+はぁ&hellip;Go かわいいよ Go&hellip;</p>
+
+<p>しかし，そうは言ってもint->int64などの安全な変換ふくめてひたすら手で型変換しなきゃいけないのはつらいこともあります．
+競技プログラミングといった書捨てスクリプトで最初は int でやってたけど，int64 に変換しなきゃ&hellip;というときや，
+<code>func max(x int64, ys ...int64) int64</code> っていうテンプレ関数を用意していても，型が <code>int</code> のままでは使えず毎回 <code>int64()</code> で囲ったり <code>int()</code> で戻したりする必要があります．</p>
+
+<p>これは人間のやる仕事じゃない&hellip;ということでこの問題を解消するツール， <a href="https://github.com/haya14busa/go-typeconv">go-typeconv</a> を作りました．</p>
+
+<h2>go-typeconv 作った</h2>
+
+<p><a href="https://github.com/haya14busa/go-typeconv">haya14busa/go-typeconv: Bring implicit type conversion into Go in a explicit way</a></p>
+
+<p>gotypeconv は Go のソースコードを受け取って，型まわりのエラーを見つけ，AST を自動で書き換えて修正します．
+gofmt と同様に，stdout に修正後のコードをプリントしたり，ファイルを直接書き換えたり，diffを表示することが出来ます．</p>
+
+<p>最終的には明示的な型変換を使ったソースコードになるけど，その変換をある意味暗黙的にやってくれる．というのがコンセプトです．</p>
+
+<h3>インストール</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ go get -u github.com/haya14busa/go-typeconv/cmd/gotypeconv</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>使い方</h3>
+
+<h4>./testdata/tour.input.go</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// https://tour.golang.org/basics/13
+</span><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "fmt"
+</span><span class='line'>  "math"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>  var x, y int = 3, 4
+</span><span class='line'>  var f float64 = math.Sqrt(x*x + y*y)
+</span><span class='line'>  var z uint = f
+</span><span class='line'>  fmt.Println(x, y, z)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記のコードは以下で示すように型変換周りでエラーがでます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ go build testdata/tour.input.go
+</span><span class='line'>testdata/tour.input.go:11: cannot use x * x + y * y (type int) as type float64 in argument to math.Sqrt
+</span><span class='line'>testdata/tour.input.go:12: cannot use f (type float64) as type uint in assignment</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gotypeconv を実行するとこの通り!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv ./testdata/tour.input.go
+</span><span class='line'>// https://tour.golang.org/basics/13
+</span><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>        "fmt"
+</span><span class='line'>        "math"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>        var x, y int = 3, 4
+</span><span class='line'>        var f float64 = math.Sqrt(float64(x*x + y*y))
+</span><span class='line'>        var z uint = uint(f)
+</span><span class='line'>        fmt.Println(x, y, z)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>func max(x int64, ys ...int64) int64</code> といったテンプレートあるけど <code>int</code> では使えない&hellip;というときもこの通り．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import "fmt"
+</span><span class='line'>
+</span><span class='line'>func main() {
+</span><span class='line'>  var (
+</span><span class='line'>      x int     = 1
+</span><span class='line'>      y int64   = 14
+</span><span class='line'>      z float64 = -1.4
+</span><span class='line'>  )
+</span><span class='line'>
+</span><span class='line'>  var ans int = max(x, x+y, z)
+</span><span class='line'>  fmt.Println(ans)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func max(x int64, ys ...int64) int64 {
+</span><span class='line'>  for _, y := range ys {
+</span><span class='line'>      if y &gt; x {
+</span><span class='line'>          x = y
+</span><span class='line'>      }
+</span><span class='line'>  }
+</span><span class='line'>  return x
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gotypeconv -d testdata/max.input.go
+</span><span class='line'>diff testdata/max.input.go gotypeconv/testdata/max.input.go
+</span><span class='line'>--- /tmp/gotypeconv308367427    2017-02-06 08:53:30.460299789 +0900
+</span><span class='line'>+++ /tmp/gotypeconv267288262    2017-02-06 08:53:30.460299789 +0900
+</span><span class='line'>@@ -9,7 +9,7 @@
+</span><span class='line'>                z float64 = -1.4
+</span><span class='line'>        )
+</span><span class='line'>
+</span><span class='line'>-       var ans int = max(x, x+y, z)
+</span><span class='line'>+       var ans int = int(max(int64(x), int64(x)+y, int64(z)))
+</span><span class='line'>        fmt.Println(ans)
+</span><span class='line'> }</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>vim-gofmt</h2>
+
+<p><a href="https://github.com/haya14busa/vim-gofmt">haya14busa/vim-gofmt: Formats Go source code asynchronously with multiple Go formatters.</a></p>
+
+<p>Vim で実行したい場合は (Experimentalですが) vim-gofmt というGoの formatter を複数，非同期で実行するプラグインを作成したのでこれを使ってみてください．</p>
+
+<p>設定例:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>let g:gofmt_formatters = [
+</span><span class='line'>\   { 'cmd': 'gofmt', 'args': ['-s', '-w'] },
+</span><span class='line'>\   { 'cmd': 'goimports', 'args': ['-w'] },
+</span><span class='line'>\   { 'cmd': 'gotypeconv', 'args': ['-w'] },
+</span><span class='line'>\ ]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行: (filetype が Go のカレントバッファで) <code>:Fmt</code></p>
+
+<p>正直ワンバイナリでやってほしいけど，<code>gofmt -s</code> と <code>goimports</code> が同時に実行できないので，
+いずれ複数フォーマッタ対応のVim プラグイン 欲しいなと思ってたので作りました．
+どちらも，特に gofmt はかなり高速なので複数実行してもあまり気になりません．</p>
+
+<p>なお非同期にgofmt実行するといっても，バッファが書き換えられていたら上書きしたりするような挙動ではないので安心してください．
+(不具合あったら直します)</p>
+
+<p>なお</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>:command! GoTypeConv call gofmt#fmt([{ 'cmd': 'gotypeconv', 'args': ['-w'] }])</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とか書いておくと<code>:GoTypeConv</code>でgotypeconv だけ実行出来たりしますが，API は変わるかも知れないのでご注意ください．</p>
+
+<p>また以下のようにすると保存時に自動で実行できます．が，APIは(ry</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>augroup vim-gofmt
+</span><span class='line'>  autocmd!
+</span><span class='line'>  autocmd BufWritePre *.go :Fmt
+</span><span class='line'>augroup END</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>機械で出来ることは機械にやらせたい</h2>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">年代別で見るコンパイラちゃんの進化 <a href="https://twitter.com/hashtag/%E6%93%AC%E7%AB%9C%E5%8C%96?src=hash">#擬竜化</a> <a href="https://t.co/7zmiskfjmE">pic.twitter.com/7zmiskfjmE</a></p>&mdash; RAO(らお) (@RIORAO) <a href="https://twitter.com/RIORAO/status/827549093073293313">February 3, 2017</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>途中で IDE ちゃんになっているようですが，Go の場合 IDE ちゃんじゃなくても大丈夫!</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="ja" dir="ltr">りんなにC#教えてもらおうとしたら物凄い返信きた <a href="https://t.co/9jz5dtfPJd">pic.twitter.com/9jz5dtfPJd</a></p>&mdash; ダーシノ (@bc_rikko) <a href="https://twitter.com/bc_rikko/status/828125775421280256">February 5, 2017</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote><p>The grammar is compact and regular, allowing for easy analysis by automatic tools such as integrated development environments.
+&ndash; <cite><a href="https://golang.org/ref/spec">The Go Programming Language Specification - The Go Programming Language</a></p></blockquote>
+
+<p>Go は spec にまで書かれているように，Goのためのツールを書くのはとても簡単です．</p>
+
+<p>修正系ツールだけでも</p>
+
+<ul>
+<li><code>gofmt -s</code> はフォーマットだけでなくシンプルにかけるところを自動で修正してくれ</li>
+<li><code>goimports</code> は自動で import 文を追加したり削除したりしてくれ</li>
+<li><code>gotypeconv</code> は型変換エラーを自動で修正してくれます</li>
+</ul>
+
+
+<p>また <a href="https://github.com/golang/go/issues/18939">proposal: gofmt: Add option to ignore parse error if no bad node in AST · Issue #18939 · golang/go</a>
+のプロポーザルにあるように，実は末尾コンマがないといったエラーも自動で修正できます．
+(gofmtに入るかはわからないけど個人的には入って欲しいなー)</p>
+
+<p>なお <a href="https://github.com/rhysd/gofmtrlx">https://github.com/rhysd/gofmtrlx</a> を入れると末尾カンマは修正してくれますし，実は go-typeconv も勝手に修正してくれます．</p>
+
+<p><a href="https://github.com/dominikh/go-tools/tree/master/cmd/gosimple">gosimple</a> という simple にかけるところを教えてくれる linter もあります．
+(自動修正機能は今の所ないけどオプションあっても良い気がするなー)</p>
+
+<p>linter がたくさんあることは <a href="http://haya14busa.com/ci-for-go-in-end-of-2016/">Go の CI で lint と カバレッジ回して非人間的なレビューは自動化しよう in 2016年 - haya14busa</a> で紹介しました．</p>
+
+<p><a href="https://golang.org/pkg/go/">go/*</a> を使えばパッケージをソースコードをパースして AST を取得したり，
+それを Format された形式で print したり，型情報を取得したり&hellip; などと言ったことが簡単にできます．</p>
+
+<p><a href="https://godoc.org/golang.org/x/tools/go/loader">golang.org/x/tools/go/loader</a> を使えば，簡単に型情報を使える形でプログラムをロードできますし，
+<a href="https://godoc.org/golang.org/x/tools/go/ssa">golang.org/x/tools/go/ssa</a> なんてものもあります．</p>
+
+<p><code>go/*</code> パッケージ だけでなく，<a href="https://godoc.org/golang.org/x/tools/go">golang.org/x/tools/go</a> 下のパッケージをみても面白いです．</p>
+
+<p>AST ベースのツールは他言語でもたくさんあると思うので比較的わかりやすいですが，
+型情報まで使えるパッケージを提供している言語はそんなになくて難しいですが，godoc の他にも公式チュートリアルが参考になります．<a href="https://golang.org/s/types-tutorial">https://golang.org/s/types-tutorial</a></p>
+
+<p>日本語情報でも
+<a href="https://motemen.github.io/">motemen</a> さんの <a href="https://motemen.github.io/go-for-go-book/">GoのためのGo</a> や
+<a href="https://twitter.com/tenntenn">tenntenn</a> さんの各種記事 <a href="http://qiita.com/tenntenn/items/868704380455c5090d4b">goパッケージで簡単に静的解析して世界を広げよう #golang - Qiita</a>
+が詳しいです．</p>
+
+<p>ぜひ，みなさんもGoのためのGo ツール作ってみると面白いかと思います．
+いろんなことができるので，なかなか楽しいです．</p>
+
+<p>はぁ&hellip;Go かわいいよ Go&hellip;(ため息)</p>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">haya14busa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-02-06T00:53:24+09:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/go/'>go</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://b.hatena.ne.jp/entry/http://haya14busa.com/go-typeconv/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://haya14busa.com/go-typeconv/" data-via="haya14busa" data-counturl="http://haya14busa.com/go-typeconv/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2016-is-go-year/" title="Previous Post: Go に恋した Vimmer の2016年の振り返り">&laquo; Go に恋した Vimmer の2016年の振り返り</a>
+      
+      
+        <a class="basic-alignment right" href="/vim-edgemotion/" title="Next Post: コードのエッジへ移動しろ！ vim-edgemotion 作った">コードのエッジへ移動しろ！ vim-edgemotion 作った &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+        <img class="icon-image" src="https://0.gravatar.com/avatar/dca89778aa3e6bc49f0e100df1a1a1f0?s=240" alt="icon_image">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/haya14busa">@haya14busa</a></li>
+          
+          
+            <li>Twitter: <a href="https://twitter.com/haya14busa">@haya14busa</a></li>
+          
+            <li>Blog: <a href="http://haya14busa.com">http://haya14busa.com</a></li>
+        </ul>
+        <p>
+          V!mm!shment Th!s World!
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://haya14busa.com";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2017 - <a href="https://github.com/haya14busa/">haya14busa</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'haya14busa-s-memo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://haya14busa.com/go-typeconv/';
+        var disqus_url = 'http://haya14busa.com/go-typeconv/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

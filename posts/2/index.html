@@ -9,7 +9,9 @@
   <meta name="author" content="haya14busa">
 
   
-  <meta name="description" content="GitHub: haya14busa/reviewdog: A code review dog who keeps your codebase healthy 英語記事: reviewdog — A code review dog who keeps your codebase healthy &hellip;">
+  <meta name="description" content="いい記事に感化されて僕も何か書きたくなった。 Golangにおけるinterfaceをつかったテスト技法 | SOTA リスペクト: Big Sky :: golang で終了を確認するテストの書き方
+GolangでAPI Clientを実装する | SOTA
+Big Sky :: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,346 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで Mock を書く技法</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-11-02T07:19:14+09:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+  <div class="entry-content"><p>いい記事に感化されて僕も何か書きたくなった。</p>
+
+<p><a href="http://deeeet.com/writing/2016/10/25/go-interface-testing/">Golangにおけるinterfaceをつかったテスト技法 | SOTA</a></p>
+
+<p>リスペクト:</p>
+
+<ul>
+<li><a href="http://mattn.kaoriya.net/software/lang/go/20161025113154.htm">Big Sky :: golang で終了を確認するテストの書き方</a></li>
+<li><a href="http://deeeet.com/writing/2016/11/01/go-api-client/">GolangでAPI Clientを実装する | SOTA</a></li>
+<li><a href="http://mattn.kaoriya.net/software/lang/go/20161101151118.htm">Big Sky :: GolangでAPI Clientを実装する、の続き</a></li>
+</ul>
+
+
+<p>今週のやつではなく先週のです．今週のは特に知見がなかった&hellip;<a href="https://github.com/grpc/grpc-go">grpc-go</a>とか使えたらクライアント勝手に生成されるしいいよねgrpc流行ると便利そう(感想) くらい</p>
+
+<p><a href="http://deeeet.com/writing/2016/10/25/go-interface-testing/">Golangにおけるinterfaceをつかったテスト技法 | SOTA</a>
+めっちゃいいなーと思ったんですが，テスト用 の mock を気軽に作るテクニックはあまり詳しく紹介されてなかったのでそのあたりの１つのテクニックを書きたい．</p>
+
+<h2>前提</h2>
+
+<p>僕もテストフレームワークや外部ツールは全く使わない．標準のtestingパッケージのみを使う．
+<a href="https://github.com/stretchr/testify">testify</a> もいらないし， mock するために <a href="https://github.com/golang/mock">gomock</a> も基本はいらない．</p>
+
+<p>とにかくGolangだけで書くのが気持ちがいい，に尽きる．</p>
+
+<h2>テスト用 fake client をつくる</h2>
+
+<p>全体の動くはずのgist: <a href="https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee">https://gist.github.com/haya14busa/27a12284ad74477a6fd6ed66d0d153ee</a></p>
+
+<p>例えばこういう実装のテストを書くときのことを考えます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "context"
+</span><span class='line'>  "fmt"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>type GitHub interface {
+</span><span class='line'>  CreateRelease(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  GetRelease(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  DeleteRelease(ctx context.Context, releaseID int) error
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>type GhRelease struct {
+</span><span class='line'>  c GitHub
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (ghr *GhRelease) CreateNewRelease(ctx context.Context) (*Release, error) {
+</span><span class='line'>  tag, err := ghr.c.CreateRelease(ctx, nil)
+</span><span class='line'>  if err != nil {
+</span><span class='line'>      return nil, fmt.Errorf("failed to create release: %v", err)
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  // check created release
+</span><span class='line'>  if _, err := ghr.c.GetRelease(ctx, tag); err != nil {
+</span><span class='line'>      return nil, fmt.Errorf("failed to get created release: %v", err)
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  // ...
+</span><span class='line'>  return &Release{}, nil
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>type Option struct{}
+</span><span class='line'>type Release struct{}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>GitHub interface をテストでは mock したものを使いたい．そういうときには以下のように mock を作ると便利です．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>type fakeGitHub struct {
+</span><span class='line'>  // インターフェース埋め込み
+</span><span class='line'>  GitHub
+</span><span class='line'>  FakeCreateRelease func(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  FakeGetRelease    func(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  // 埋め込みを使うので，例えば DeleteRelease はまだテストしないので mock
+</span><span class='line'>  // しない... いうことができる．
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) CreateRelease(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>  return c.FakeCreateRelease(ctx, opt)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) GetRelease(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>  return c.FakeGetRelease(ctx, tag)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>fakeGitHub</code> という struct を作成し，インターフェースをとにかく満たすために <code>GitHub</code>
+interface を埋め込みます．</p>
+
+<p>そして mock したいメソッドは新たに <code>func (c *fakeGitHub) CreateRelease(...) (...)</code> と
+定義しなおし，実装の中身は <code>fakeGitHub</code> に持たせた <code>FakeCreateRelease</code> field に丸投げします．</p>
+
+<p>このようにしてテスト用 mock を作るとそれぞれのテストで簡単に中身の実装を変えられるので大変便利です．</p>
+
+<p>実際にテストしてみる例</p>
+
+<h4>main_test.go</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package main
+</span><span class='line'>
+</span><span class='line'>import (
+</span><span class='line'>  "context"
+</span><span class='line'>  "fmt"
+</span><span class='line'>  "testing"
+</span><span class='line'>)
+</span><span class='line'>
+</span><span class='line'>type fakeGitHub struct {
+</span><span class='line'>  // インターフェース埋め込み
+</span><span class='line'>  GitHub
+</span><span class='line'>  FakeCreateRelease func(ctx context.Context, opt *Option) (string, error)
+</span><span class='line'>  FakeGetRelease    func(ctx context.Context, tag string) (string, error)
+</span><span class='line'>  // 埋め込みを使うので，例えば DeleteRelease はまだテストしないので mock
+</span><span class='line'>  // しない... いうことができる．
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) CreateRelease(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>  return c.FakeCreateRelease(ctx, opt)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func (c *fakeGitHub) GetRelease(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>  return c.FakeGetRelease(ctx, tag)
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>func TestGhRelease_CreateNewRelease(t *testing.T) {
+</span><span class='line'>  fakeclient := &fakeGitHub{
+</span><span class='line'>      FakeCreateRelease: func(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>          return "v1.0", nil
+</span><span class='line'>      },
+</span><span class='line'>      FakeGetRelease: func(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>          return "", fmt.Errorf("failed to get %v release!", tag)
+</span><span class='line'>      },
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  ghr := &GhRelease{c: fakeclient}
+</span><span class='line'>
+</span><span class='line'>  release, err := ghr.CreateNewRelease(context.Background())
+</span><span class='line'>  if err != nil {
+</span><span class='line'>      t.Error(err)
+</span><span class='line'>      // =&gt; failed to get created release: failed to get v1.0 release!
+</span><span class='line'>  }
+</span><span class='line'>  _ = release
+</span><span class='line'>  // ...
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以下のような感じで，簡単にテスト用mockの実装を書いて，テストすることができます．</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>fakeclient := &fakeGitHub{
+</span><span class='line'>  FakeCreateRelease: func(ctx context.Context, opt *Option) (string, error) {
+</span><span class='line'>      return "v1.0", nil
+</span><span class='line'>  },
+</span><span class='line'>  FakeGetRelease: func(ctx context.Context, tag string) (string, error) {
+</span><span class='line'>      return "", fmt.Errorf("failed to get %v release!", tag)
+</span><span class='line'>  },
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記の例では1種類の実装しかテストしてないのであまり恩恵がわかりづらいかも知れないですが，
+例えば error が帰ってきたときに正しくエラーハンドリングできてるかとか，
+返り値をいろいろ変えたものをいくつか作ってテストする&hellip;といったことが上記のパターンを
+使うことによって簡単にできます．Table Testing することも可能．</p>
+
+<p>普通にわざわざstructごと作っていると，例えばテストの関数ないでは struct の method (e.g. <code>func (c *client) Func()</code>)
+を定義することができません．</p>
+
+<p>そこで <code>FakeFunc func()</code> というfield を持たせて実装を丸投げすることによって，
+簡単にいろんな実装のテスト用 mock を作成してテストができるということの紹介でした．</p>
+
+<h2>まとめ</h2>
+
+<p>僕は最初にこのパターンを教わってなるほどなぁ&hellip;と思ったんですが，いざ世にでてみると(?)
+ぜんぜんこのパターンを紹介しているものが見つからなかったので紹介してみました．
+(一応どっかの medium の英語記事にこれに似たパターンが紹介されてたのを見た気もする&hellip;)</p>
+
+<p>ぜひ使ってみてください．</p>
+
+<h2>あまり関係ない追記</h2>
+
+<p>この記事の主旨とは関係ないけど，基本的にテスト用ライブラリは使わないとはいえ，
+たまににヘルパー関数ほしいなーというケースがあります．</p>
+
+<p>でかい struct をテストで比較するときに，比較自体は <code>reflect.DeepEqual</code> で出来るのだけど，
+もし違っていたときにどこが違うかを表示するのが面倒くさいのでヘルパー関数提供してくれるライブラリがほしい&hellip;</p>
+
+<p>某社でgoのテスト書いてたときもこういう大きめのstruct比較するケースでは便利diff表示用ライブラリを
+使っていた気がしたんだけど，なんかOSSで見つからない気がする&hellip; prettycmp みたいな名前だった気がするが
+どうだったか&hellip; そもそも記憶違いな気もする&hellip;</p>
+
+<p>追記: twitter で教えてもらいましたが <a href="https://github.com/kylelemons/godebug">https://github.com/kylelemons/godebug</a> っぽいです．
+便利. <a href="https://godoc.org/github.com/kylelemons/godebug/pretty#Compare">https://godoc.org/github.com/kylelemons/godebug/pretty#Compare</a></p>
+</div>
+  
+  
+
+
+      <footer>
+      
+      - <a href="/golang-how-to-write-mock-of-interface-for-testing/">Golangにおけるinterfaceをつかったテストで mock を書く技法</a>
+      <time datetime="2016-11-02T07:19:14+09:00" pubdate><span class='month'>Nov</span> <span class='day'>02</span> <span class='year'>2016</span></time>
+      
+      <span class="categories">posted in <a class='category' href='/categories/go/'>go</a></span>
+      
+      </footer>
+    </article>
   
   
     <article>
@@ -1967,380 +2309,6 @@ vital.vim が爆速になるので vital.vim を使っている Vim プラグイ
       
       - <a href="/revital-vim-makes-vital-vim-a-lot-faster/">revital.vim で vital.vim を爆速にしてお前らの Vim plugin を速くする</a>
       <time datetime="2016-03-23T04:45:43+09:00" pubdate><span class='month'>Mar</span> <span class='day'>23</span> <span class='year'>2016</span></time>
-      
-      <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
-      
-      </footer>
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-01-19T03:14:43+09:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Vim-EasyMotion でウィンドウをまたいだ移動ができるようになりました!!!</p>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/2753bd4dd1dfdf5962dbdbffabf24244e4e14243/easymotion/overwin-motions.gif" alt="" /></p>
-
-<div class="github-card" data-github="easymotion/vim-easymotion" data-width="500" data-height="150" data-theme="default"></div>
-
-
-<p><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></p>
-
-<h3>過去の関連記事</h3>
-
-<ul>
-<li><a href="http://haya14busa.com/vim-lazymotion-on-speed/">Vim-Easymotionを拡張してカーソルを縦横無尽に楽々移動する - haya14busa</a>
-
-<ul>
-<li>まだ fork でやってた時代の記事． 自分のVim歴より始まりが古く，1年続いたという伝説のVim Advent Calendar 2012の363日目の記事で懐かしい．</li>
-</ul>
-</li>
-<li><a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a>
-
-<ul>
-<li>easymotionのメンテナになってからの便利機能まとめ的な記事.</li>
-</ul>
-</li>
-</ul>
-
-
-<p>そして今回の記事はvim-easymotionのリポジトリがorganization持ちになって<del>久々に</del>便利機能追加したという記事になります．</p>
-
-<p>vim-easymotionとはVimのカーソル移動をブラウザでいうHit-A-Hint機能のように行うカーソル移動改善系プラグインです．
-よく知らないよ〜という方は<a href="https://github.com/easymotion/vim-easymotion">README</a>眺めたり， 過去記事 (<a href="http://haya14busa.com/mastering-vim-easymotion/">Vim-EasyMotionでカーソル移動を爆速にして生産性をもっと向上させる - haya14busa</a> ) をさらっと読むと分かるかと思います．過去記事は<code>n-key Find Motion</code>の節以外はだいたい現役で使えると思います．</p>
-
-<h2>vim-easymotion v3.0</h2>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/2753bd4dd1dfdf5962dbdbffabf24244e4e14243/easymotion/overwin-motions.gif" alt="" /></p>
-
-<p><a href="https://github.com/easymotion/vim-easymotion/releases/tag/v3.0.0">Release EasyMotion now supports moving cursor over/across windows · easymotion/vim-easymotion</a></p>
-
-<p>vim-easymotionではこれまでカーソルと同一ウィンドウ内にしか移動できなかったのですが，v3.0でとうとう他のウィンドウにも移動できるようになりました! めでたい．
-実はv3.0 で追加するメイン機能はこれだけなんですが，個人的にかなり気に入ってしまい，「これはメジャーバージョンアップするしかない」と思い勢いだけでバージョンあげています．
-他にはバグフィックスとか細かい修正で，とくに後方互換性は壊してないはずなので気軽にアップデートできると思います．</p>
-
-<h3>追加したマッピング</h3>
-
-<table>
-<thead>
-<tr>
-<th> mapping </th>
-<th> description </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;Plug&gt;(easymotion-overwin-f){char}</code> </td>
-<td> <code>{char}</code> にマッチする位置を対象として移動 </td>
-</tr>
-<tr>
-<td><code>&lt;Plug&gt;(easymotion-overwin-f2){char}{char}</code> </td>
-<td> <code>{char}{char}</code> にマッチする位置を対象として移動 </td>
-</tr>
-<tr>
-<td><code>&lt;Plug&gt;(easymotion-overwin-line)</code> </td>
-<td> 行を対象として移動 </td>
-</tr>
-<tr>
-<td><code>&lt;Plug&gt;(easymotion-overwin-w)</code> </td>
-<td> 単語の先頭を対象として移動 </td>
-</tr>
-</tbody>
-</table>
-
-
-<h4>マッピング例</h4>
-
-<p>ヴィジュアルモードやオペレータ待機モードで他のウィンドウに移動するというのは意味をなさないので，
-他のウィンドウに移動する overwin モーションは <code>Normal</code> モードのマッピングのみ提供しています．</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; &lt;Leader&gt;f{char} to move to {char}</span>
-</span><span class='line'>map  <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">f</span><span class="p">)</span>
-</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">f</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span><span class="k">f</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&quot; s{char}{char} to move to {char}{char}</span>
-</span><span class='line'>nmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span>f2<span class="p">)</span>
-</span><span class='line'>vmap <span class="k">s</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>f2<span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&quot; Move to line</span>
-</span><span class='line'>map <span class="p">&lt;</span>Leader<span class="p">&gt;</span>L <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span>jk<span class="p">)</span>
-</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span>L <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span>line<span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&quot; Move to word</span>
-</span><span class='line'>map  <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span><span class="k">bd</span><span class="p">-</span><span class="k">w</span><span class="p">)</span>
-</span><span class='line'>nmap <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">w</span> <span class="p">&lt;</span>Plug<span class="p">&gt;(</span>easymotion<span class="p">-</span>overwin<span class="p">-</span><span class="k">w</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>EasyMotion触ったことなくてミニマムに始めたい場合は上記設定から気に入ったもの +
-以下の設定でデフォルトマッピングをオフにするとよいかなと思います．</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">let</span> <span class="k">g</span>:EasyMotion_do_mapping <span class="p">=</span> <span class="m">0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>もしひとつだけおすすめするなら<code>nmap s &lt;Plug&gt;(easymotion-overwin-f2)</code>がオススメです．
-このマッピングだと画面上の見えているところへならどこへでも <code>s{char}{char}{hint}</code>の4 キーストロークで移動できます．
-<code>&lt;Plug&gt;(easymotion-overwin-f)</code>や<code>&lt;Plug&gt;(easymotion-overwin-w)</code>だと候補が多すぎてヒントを2回以上打たないとダメなケースがよくあるのですが，
-<code>{char}{char}</code>と2文字打つと候補が劇的に減ってヒントは大抵のケースで1文字入力するだけですみます．</p>
-
-<h4>incsearch.vim との連携</h4>
-
-<p>vim-easymotionには<code>&lt;Plug&gt;(easymotion-sn)</code>という <code>N</code> 文字入力してマッチした位置
-を対象として移動するモーション，言わばeasymotionの検索(<code>/</code>)版マッピングを提供していたのですが，
-今回，それのウィンドウ間移動できるマッピングは提供していません．</p>
-
-<p>というのも，<code>&lt;Plug&gt;(easymotion-sn)</code>はVimデフォルトの検索との互換性が甘いところがあり，
-<a href="http://haya14busa.com/incsearch-dot-vim-ver-2/">Vimの検索はもっともっと便利になる! incsearch.vim v2.0 をリリースしました - haya14busa</a>
-の記事で紹介した incsearch.vim と vim-easymotion を連携させたほうが基本的に便利になっていて，
-こちらを推奨したいなという訳です．</p>
-
-<h4>必要なもの</h4>
-
-<ul>
-<li><a href="https://github.com/easymotion/vim-easymotion">easymotion/vim-easymotion</a></li>
-<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
-<li><a href="https://github.com/haya14busa/incsearch-easymotion.vim">haya14busa/incsearch-easymotion.vim</a></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="c">&quot; You can use other keymappings like &lt;C-l&gt; instead of &lt;CR&gt; if you want to</span>
-</span><span class='line'><span class="c">&quot; use these mappings as default search and somtimes want to move cursor with</span>
-</span><span class='line'><span class="c">&quot; EasyMotion.</span>
-</span><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:incsearch_config<span class="p">(</span>...<span class="p">)</span> abort
-</span><span class='line'>  <span class="k">return</span> <span class="nb">incsearch</span>#util#deepextend<span class="p">(</span>deepcopy<span class="p">(</span>{
-</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {
-</span><span class='line'>  \     <span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>
-</span><span class='line'>  \   }<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span>
-</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> /  <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">())</span>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> ?  <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">(</span>{<span class="s1">&#39;command&#39;</span>: <span class="s1">&#39;?&#39;</span>}<span class="p">))</span>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">g</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>incsearch_config<span class="p">(</span>{<span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>}<span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>&lt;CR&gt;</code> を <code>&lt;C-l&gt;</code>とかにすることで普段は普通の incsearch.vim, <code>&lt;C-l&gt;</code>押した時に
-easymotion発動といったことができたりします．僕はそういう設定にしていて，便利につかえてます．</p>
-
-<h2>おまけ</h2>
-
-<h3>incsearch-migemo 連携</h3>
-
-<p><a href="https://github.com/haya14busa/incsearch-migemo.vim">haya14busa/incsearch-migemo.vim</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_migemo<span class="p">(</span>...<span class="p">)</span> abort
-</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
-</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [
-</span><span class='line'>  \     <span class="nb">incsearch</span>#config#migemo#converter<span class="p">(),</span>
-</span><span class='line'>  \   ]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;C-l&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
-</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">m</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">())</span>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="k">m</span>? <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">(</span>{<span class="s1">&#39;command&#39;</span>: <span class="s1">&#39;?&#39;</span>}<span class="p">))</span>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> mg/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_migemo<span class="p">(</span>{<span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>}<span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>fuzzy search で easymotion</h3>
-
-<p><img src="https://raw.githubusercontent.com/haya14busa/i/eab1d12a8bd322223d551956a4fd8a21d5c4bfe9/easymotion/fuzzy-incsearch-easymotion.gif" alt="" /></p>
-
-<ul>
-<li><a href="https://github.com/haya14busa/incsearch.vim">haya14busa/incsearch.vim</a></li>
-<li><a href="https://github.com/haya14busa/incsearch-fuzzy.vim">haya14busa/incsearch-fuzzy.vim</a></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> <span class="k">s</span>:config_easyfuzzymotion<span class="p">(</span>...<span class="p">)</span> abort
-</span><span class='line'>  <span class="k">return</span> extend<span class="p">(</span>copy<span class="p">(</span>{
-</span><span class='line'>  \   <span class="s1">&#39;converters&#39;</span>: [<span class="nb">incsearch</span>#config#fuzzyword#converter<span class="p">()</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;modules&#39;</span>: [<span class="nb">incsearch</span>#config#easymotion#module<span class="p">(</span>{<span class="s1">&#39;overwin&#39;</span>: <span class="m">1</span>}<span class="p">)</span>]<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;keymap&#39;</span>: {<span class="s2">&quot;\&lt;CR&gt;&quot;</span>: <span class="s1">&#39;&lt;Over&gt;(easymotion)&#39;</span>}<span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_expr&#39;</span>: <span class="m">0</span><span class="p">,</span>
-</span><span class='line'>  \   <span class="s1">&#39;is_stay&#39;</span>: <span class="m">1</span>
-</span><span class='line'>  \ }<span class="p">),</span> <span class="k">get</span><span class="p">(</span><span class="k">a</span>:<span class="p">,</span> <span class="m">1</span><span class="p">,</span> {}<span class="p">))</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">noremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;&lt;</span>expr<span class="p">&gt;</span> <span class="p">&lt;</span>Space<span class="p">&gt;</span>/ <span class="nb">incsearch</span>#<span class="k">go</span><span class="p">(&lt;</span>SID<span class="p">&gt;</span>config_easyfuzzymotion<span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>実装とか背景の話</h2>
-
-<p>実はこのウィンドウをまたいだ移動についてはvim-easymotionの開発を引き継いだころからずっと欲しいなぁ〜やりたいな〜と思っていた待望の機能でした．
-emacs版easymotionである <a href="https://github.com/winterTTr/ace-jump-mode">winterTTr/ace-jump-mode</a> や atomのsmalls (<a href="http://qiita.com/t9md/items/bca96d45af1a5244b5d1">ATOM - smalls つくった - Qiita</a>)ではラベルジャンプでウィンドウ移動ができています．</p>
-
-<p>どの拡張も，もともとはEasyMotion にインスパイアされて作ったもので，他の機能はともかく少なくともウィンドウ間をまたげるという一点ではvim-easymotionを上回っていました．
-ではなぜ，vim-easymotionでもやりたいなぁと思っていたのに，これまで実装できていなかったかというと，
-これは<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>というわけではなく Vim の機能でやるのがきつかったことに起因します．
-Vimにはオーバーレイで文字を表示するといった機能がないのでvim-easymotionでは一旦バッファの文字を書き換えて戻すという実装になっていました．
-この実装だと同じバッファを別ウィンドウに表示している場合にラベルがバッティングしてしまいます．</p>
-
-<p>では今回どうしたかというと Vim の conceal 機能, <a href="http://vim-jp.org/vimdoc-ja/syntax.html#%3Asyn-cchar">:h syn-cchar</a> を使っています．
-この機能を使えば直接バッファを書き換えずにラベルを表示できるので，同じバッファが別ウィンドウにあっても違ったラベルを表示することが可能です．</p>
-
-<h3>Conceal の syn-cchar つらい問題</h3>
-
-<p>しかし，このconcealでラベルを表示するというアイデア自体は以前からあって <a href="https://github.com/justinmk/vim-sneak">justinmk/vim-sneak</a>
-がこのスタイルで表示しています(カーソルと同一ウィンドウだけですが)．
-前からアイデアを知っていたのにやれなかったのは，決して<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>というわけではなく
-conceal機能はかなり制限があってやりたいことができなさそうだなぁと長らく思っていたからです．
-というも，syn-ccharでは1文字しか表示できないし，空白行といった無の部分に文字を表示することができません．
-この制限からラベルが2文字以上の時でも1文字しか表示できなかったり，
-Tab文字や文字幅が2以上のマルチバイトの文字をラベルに置き換えるとラベル表示時に表示にズレが生じてしまいます．</p>
-
-<h3>結局<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong></h3>
-
-<p>じゃあどうすればいいかというと，ここまでの話・実装を組み合わせると実は答えは出ています．
-ラベルを表示するさいに対象が空白行や行末，マルチバイト文字であれば一旦スペースを追加またはスペースに置き換えてしまう前処理をすればOKです．
-そうすれば空白行や行末を対象とできるし，2文字のラベルも表示できるし，ラベルを表示した際に表示のズレが生じません!
-やったぜこれで理論上実装可能じゃん!</p>
-
-<p>なぜこれに気づくのに時間がかかったのかというと結局<strong>「vim-easymotionのコードがちょっと闇でつらかった&hellip;」</strong>
-のでしばらくeasymotionにまともに向き合ってなかったからでした．
-vim-easymotionはforkする前のもともとコードがそんなに綺麗じゃなかった上に，
-プログラミング自体ほとんど初心者だった僕が以前に便利な機能を追加したりVimとの互換性を保ったりすることと引き換えに，
-コードは比較的カオス状態になっていました．
-僕の実装力ではこれを互換性を保った状態でリファクタして他のウィンドウへ移動する抜本的な機能改善なんて無理や&hellip;
-と内心思っていましたし，実際無理感あります．
-こういった理由でウィンドウ間移動という待望の機能は2年間ほど待望の機能であり続けました．</p>
-
-<h3>1から作って互換性意識すればいいんじゃん?</h3>
-
-<p>互換性保ちながらリファクタしていくのがつらいなら1から作って，インターフェースを既存のeasymotionと合わせればいいんじゃないか?
-と気付き，今回の機能は実装されました．</p>
-
-<p>「パンがなければお菓子を食べればいいじゃない」に通ずるものがあります(ない)</p>
-
-<p>これに気づいてやってみると，一旦動くところまで実装する程度なら1日程度で待望の機能が実装できました．
-やってみるものですね．</p>
-
-<p>しかし，vim-easymotionを活発に開発していた2年前の僕にはできなかったかなぁと感じていて，
-これまでに incsearch.vim といった他のプラグインを作った知見や，他の Vim プラグイン開発者から得た知見，
-そして2年間でちょっと基本的な開発力があがったおかげで開発できたなぁと思います．
-みなさまありがとうございました．そして自分，まだまだですがちょっと頑張ったなって思いました．</p>
-
-<p>開発の実装や背景の話と2年前に熱を入れて取り組んでいたvim-easymotionに今の自分が取り組んでみたらちょっと感慨深かったなという話でした．</p>
-
-<h2>おわりに</h2>
-
-<p><a href="https://github.com/easymotion/vim-easymotion">vim-easymotion</a>, また一段と便利になったので是非使ってみてください!</p>
-
-<p>僕はもうこの機能なしでは生きていけなさそうです．</p>
-
-<p><strong>あぁ〜カーソルがぴょんぴょんするんじゃぁ〜</strong></p>
-
-<blockquote class="twitter-tweet" lang="en"><p lang="ja" dir="ltr">vim-easymotion, あぁ〜カーソルがぴょんぴょんするんじゃぁ〜 って感じだ</p>&mdash; はやぶさ (@haya14busa) <a href="https://twitter.com/haya14busa/status/687679866175500288">January 14, 2016</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
-
-</div>
-  
-  
-
-
-      <footer>
-      
-      - <a href="/vim-easymotion-ver-3-dot-0-overwin-motions/">Vimのカーソル移動はもっともっと爆速になる! Vim-EasyMotion v3.0 をリリースしました</a>
-      <time datetime="2016-01-19T03:14:43+09:00" pubdate><span class='month'>Jan</span> <span class='day'>19</span> <span class='year'>2016</span></time>
       
       <span class="categories">posted in <a class='category' href='/categories/vim/'>vim</a></span>
       
